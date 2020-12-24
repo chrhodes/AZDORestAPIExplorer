@@ -2,7 +2,7 @@
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public interface ITYPEDetail : IView
+    public interface ICatDetail : IView
     {
     }
 }

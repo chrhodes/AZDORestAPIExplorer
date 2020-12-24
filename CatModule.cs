@@ -1,5 +1,9 @@
-﻿using AZDORestApiExplorer.Core;
+﻿using System;
+
+using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.DomainServices;
+using AZDORestApiExplorer.Presentation.ViewModels;
+using AZDORestApiExplorer.Presentation.Views;
 
 using Prism.Ioc;
 using Prism.Modularity;
@@ -7,42 +11,64 @@ using Prism.Regions;
 
 using Unity;
 
+using VNC;
+
 namespace AZDORestApiExplorer
 {
     public class CatModule : IModule
     {
         private readonly IRegionManager _regionManager;
-        //private readonly IUnityContainer _container;
 
         // 01
 
         public CatModule(IRegionManager regionManager)
         {
-            //_container = container;
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
             _regionManager = regionManager;
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<Presentation.ViewModels.ITYPEDetailViewModel, Presentation.ViewModels.CatDetailViewModel>();
-            containerRegistry.Register<Presentation.Views.ITYPEDetail, Presentation.Views.TYPEDetail>();
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
+            containerRegistry.Register<ICatMainViewModel, CatMainViewModel>();
+            containerRegistry.RegisterSingleton<ICatMain, CatMain>();
+
+            containerRegistry.Register<ICatNavigationViewModel, CatNavigationViewModel>();
+            containerRegistry.RegisterSingleton<ICatNavigation, CatNavigation>();
+
+            containerRegistry.Register<ICatDetailViewModel, CatDetailViewModel>();
+            containerRegistry.RegisterSingleton<ICatDetail, CatDetail>();
+
+            containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
             containerRegistry.Register<ICatDataService, CatDataService>();
 
-            containerRegistry.Register<Presentation.ViewModels.ITYPEViewModel, Presentation.TYPE.ViewModels.TYPEViewModel>();
-            containerRegistry.Register<Presentation.Views.ITYPE, Presentation.Views.TYPE>();
-
-            containerRegistry.Register<ICatLookupDataService, LookupDataService>();
+            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.RegisterViewWithRegion(RegionNames.TYPERegion, typeof(Presentation.Views.TYPE));
-            _regionManager.RegisterViewWithRegion(RegionNames.TYPEDetailRegion, typeof(Presentation.Views.TYPEDetail));
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+
+            // NOTE(crhodes)
+            // using typeof(TYPE) calls constructor
+            // using typeof(ITYPE) resolves type (see RegisterTypes)
+
+            //this loads CatMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.CatMainRegion, typeof(ICatMain));
+
+            // These load into CatMain.xaml
+            _regionManager.RegisterViewWithRegion(RegionNames.CatNavigationRegion, typeof(ICatNavigation));
+            _regionManager.RegisterViewWithRegion(RegionNames.CatDetailRegion, typeof(ICatDetail));
+
+            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿
+﻿using VNC.Core.Events;
+
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class AfterCatSavedEventArgs
+    public class AfterCatSavedEventArgs : AfterDetailSavedEventArgs
     {
-        public int Id { get; set; }
-        public string DisplayMember { get; set; }
     }
 }

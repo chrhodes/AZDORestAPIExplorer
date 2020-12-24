@@ -4,7 +4,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public interface ITYPEDetailViewModel : IViewModel
+    public interface ICatDetailViewModel : IViewModel
     {
         Task LoadAsync(int id);
     }

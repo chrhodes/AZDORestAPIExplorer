@@ -1,12 +1,26 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+
+using AZDORestApiExplorer.ViewModels;
+
+using VNC;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindowViewModel _viewModel;
+
+        public MainWindow(MainWindowViewModel viewModel)
         {
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_APPNAME);
+
             InitializeComponent();
+
+            _viewModel = viewModel;
+            DataContext = _viewModel;
+
+            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_APPNAME, startTicks);
         }
     }
 }

@@ -1,21 +1,45 @@
-﻿using System.Windows.Controls;
+﻿using System;
 
+using VNC;
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class TYPEDetail : UserControl, ITYPEDetail
+    public partial class CatDetail : ViewBase, ICatDetail, IInstanceCountV
     {
-        public TYPEDetail(ViewModels.ITYPEDetailViewModel viewModel)
+
+        public CatDetail()
         {
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            InstanceCountV++;
             InitializeComponent();
-            ViewModel = viewModel;
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public IViewModel ViewModel
+        public CatDetail(ViewModels.ICatDetailViewModel viewModel)
         {
-            get { return (IViewModel)DataContext; }
-            set { DataContext = value; }
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_APPNAME);
+
+            InstanceCountV++;
+            InitializeComponent();
+            ViewModel = viewModel;
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
+
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        #endregion
+
     }
 }

@@ -1,211 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Persistence.Data;
 
+using VNC;
 using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    // TODO(crhodes)
-    // Think we are almost to making this Generic.  But then what is difference 
-    // between this and Generic Repository in VNC.Core.
-    // Carefully trace through the code path.
-
-    public class CatDataService : ICatDataService
+    public class CatDataService : GenericEFRepository<Cat, AZDORestApiExplorerDbContext>, ICatDataService
     {
-        private Func<AZDORestApiExplorerDbContext> _contextCreator;
 
-        private ConnectedRepository<Cat> _repository;
+        #region Constructors, Initialization, and Load
 
-        #region Constructors
-
-        public CatDataService(Func<AZDORestApiExplorerDbContext> context)
+        public CatDataService(AZDORestApiExplorerDbContext context)
+            : base(context)
         {
-            _contextCreator = context;
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        #endregion Constructors
+        #endregion
+
+        #region Enums
+
+
+        #endregion
+
+        #region Structures
+
+
+        #endregion
+
+        #region Fields and Properties
+
+
+        #endregion
+
+        #region Event Handlers
+
+
+        #endregion
 
         #region Public Methods
 
-        #region All
-
-        public IEnumerable<Cat> All()
+        public override async Task<Cat> FindByIdAsync(int id)
         {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return _repository.All();
-            }
+            Int64 startTicks = Log.DOMAINSERVICES("(CatDataService) Enter", Common.LOG_APPNAME);
+
+            var result = await Context.CatsSet
+                .Include(f => f.PhoneNumbers)
+                .SingleAsync(f => f.Id == id);
+
+            Log.DOMAINSERVICES("(CatDataService) Exit", Common.LOG_APPNAME, startTicks);
+
+            return result;
         }
 
-        public async Task<List<Cat>> AllAsync()
+        public void RemovePhoneNumber(CatPhoneNumber model)
         {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return await _repository.AllAsync();
-            }
+            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+
+            Context.CatPhoneNumbersSet.Remove(model);
+
+            Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public IEnumerable<Cat> AllInclude(
-            params Expression<Func<Cat, object>>[] includeProperties)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return _repository.AllInclude(includeProperties);
-            }
-        }
 
-        public async Task<IEnumerable<Cat>> AllIncludeAsync(
-            params Expression<Func<Cat, object>>[] includeProperties)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return await _repository.AllIncludeAsync(includeProperties);
-            }
-        }
+        #endregion
 
-        #endregion All
+        #region Protected Methods
 
-        #region Find
 
-        public Cat FindById(int entityId)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return _repository.FindById(entityId);
-            }
-        }
+        #endregion
 
-        public async Task<Cat> FindByIdAsync(int entityId)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return await _repository.FindByIdAsync(entityId);
-            }
-        }
+        #region Private Methods
 
-        public IEnumerable<Cat> FindBy(
-            Expression<Func<Cat, bool>> predicate)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return _repository.FindBy(predicate);
-            }
-        }
-
-        public async Task<IEnumerable<Cat>> FindByAsync(
-            Expression<Func<Cat, bool>> predicate)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return await _repository.FindByAsync(predicate);
-            }
-        }
-
-        public IEnumerable<Cat> FindByInclude(
-            Expression<Func<Cat, bool>> predicate,
-            params Expression<Func<Cat, object>>[] includeProperties)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return _repository.FindByInclude(predicate, includeProperties);
-            }
-        }
-
-        public async Task<IEnumerable<Cat>> FindByIncludeAsync(
-            Expression<Func<Cat, bool>> predicate,
-            params Expression<Func<Cat, object>>[] includeProperties)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                return await _repository.FindByIncludeAsync(predicate, includeProperties);
-            }
-        }
-
-        // TODO(crhodes)
-        // Decide if we need FindByKey
-
-        #endregion Find
-
-        #region Insert
-
-        public void Insert(Cat entity)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                _repository.Insert(entity);
-            }
-        }
-
-        public async Task InsertAsync(Cat entity)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                await _repository.InsertAsync(entity);
-            }
-        }
-
-        #endregion Insert
-
-        #region Update
-
-        public void Update(Cat entity)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                _repository.Update(entity);
-            }
-        }
-
-        public async Task UpdateAsync(Cat entity)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                await _repository.UpdateAsync(entity);
-            }
-        }
-
-        #endregion Update
-
-        #region Delete
-
-        public void Delete(int entityId)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                _repository.Delete(entityId);
-            }
-        }
-
-        public async Task DeleteAsync(int entityId)
-        {
-            using (var context = _contextCreator())
-            {
-                _repository = new ConnectedRepository<Cat>(context);
-                await _repository.DeleteAsync(entityId);
-            }
-        }
-
-        #endregion Delete
 
         #endregion
 

@@ -1,13 +1,27 @@
-﻿using AZDORestApiExplorer.DomainServices;
+﻿using System;
 
-using Prism.Mvvm;
-
-using VNC.Core.DomainServices;
+using VNC;
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : ViewModelBase
     {
+
+        private string _title = "AZDORestApiExplorer - MainWindow";
+
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                if (_title == value)
+                    return;
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
+
         // ObservableCollection notifies databinding when collection changes
         // because it implements INotifyPropertyChanged
 
@@ -17,6 +31,9 @@ namespace AZDORestApiExplorer.ViewModels
 
         public MainWindowViewModel()
         {
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
         //public MainWindowViewModel(I customerDataService)
         //{

@@ -1,23 +1,25 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain;
 
+using VNC;
 using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    public class TYPEDataServiceMock : ICatDataService
+    public class CatDataServiceMock : ICatDataService
     {
         public IEnumerable<Cat> All()
         {
-            //// TODO(crhodes)
-            //// Load data from real database.
-            //// For now just return hard coded list.
-            ///
+            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+
+            // TODO(crhodes)
+            // Load data from real database.
+            // For now just return hard coded list.
+
             yield return new Cat
             {
                 Id = 1,
@@ -26,7 +28,16 @@ namespace AZDORestApiExplorer.DomainServices
                 FieldInt = 23
 
             };
-            yield return new Cat { Id = 2, FieldString = null, FieldDouble = Double.MaxValue, FieldInt = int.MaxValue };
+
+            yield return new Cat
+            {
+                Id = 2,
+                FieldString = null,
+                FieldDouble = Double.MaxValue,
+                FieldInt = int.MaxValue
+            };
+
+            Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         public Task<List<Cat>> AllAsync()
@@ -40,16 +51,6 @@ namespace AZDORestApiExplorer.DomainServices
         }
 
         public Task<IEnumerable<Cat>> AllIncludeAsync(params Expression<Func<Cat, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteAsync(int entityId)
         {
             throw new NotImplementedException();
         }
@@ -84,37 +85,32 @@ namespace AZDORestApiExplorer.DomainServices
             throw new NotImplementedException();
         }
 
-        public void Insert(Cat entity)
+        public bool HasChanges()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Cat> InsertAsync(Cat entity)
+        public void Add(Cat entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Cat entity)
+        public void Remove(Cat entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Cat> UpdateAsync(Cat entity)
+        public void RemovePhoneNumber(CatPhoneNumber model)
         {
             throw new NotImplementedException();
         }
 
-        Task IDataService<Cat>.DeleteAsync(int entityId)
+        public void Update()
         {
             throw new NotImplementedException();
         }
 
-        Task IDataService<Cat>.InsertAsync(Cat entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IDataService<Cat>.UpdateAsync(Cat entity)
+        public Task UpdateAsync()
         {
             throw new NotImplementedException();
         }

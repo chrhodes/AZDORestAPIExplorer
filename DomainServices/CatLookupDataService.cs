@@ -5,26 +5,61 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Persistence.Data;
-//using AZDORestApiExplorer.Persistence.LookupData;
+
+using VNC;
 
 using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    public class LookupDataService : ICatLookupDataService
+    public class CatLookupDataService : ICatLookupDataService
     {
-        private Func<AZDORestApiExplorerDbContext> _contextCreator;
 
-        public LookupDataService(Func<AZDORestApiExplorerDbContext> context)
+        #region Constructors, Initialization, and Load
+
+        public CatLookupDataService(Func<AZDORestApiExplorerDbContext> context)
         {
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
             _contextCreator = context;
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public async Task<IEnumerable<LookupItem>> GetTYPELookupAsync()
+        #endregion
+
+        #region Enums
+
+
+        #endregion
+
+        #region Structures
+
+
+        #endregion
+
+        #region Fields and Properties
+
+        private Func<AZDORestApiExplorerDbContext> _contextCreator;
+
+        #endregion
+
+        #region Event Handlers
+
+
+        #endregion
+
+        #region Public Methods
+
+        public async Task<IEnumerable<LookupItem>> GetCatLookupAsync()
         {
+            Int64 startTicks = Log.DOMAINSERVICES("(CatLookupDataService) Enter", Common.LOG_APPNAME);
+
+            IEnumerable<LookupItem> result;
+
             using (var ctx = _contextCreator())
             {
-                return await ctx.TYPESet.AsNoTracking()
+                result = await ctx.CatsSet.AsNoTracking()
                   .Select(f =>
                   new LookupItem
                   {
@@ -33,6 +68,23 @@ namespace AZDORestApiExplorer.DomainServices
                   })
                   .ToListAsync();
             }
+
+            Log.DOMAINSERVICES("(CatLookupDataService) Exit", Common.LOG_APPNAME, startTicks);
+
+            return result;
         }
+
+        #endregion
+
+        #region Protected Methods
+
+
+        #endregion
+
+        #region Private Methods
+
+
+        #endregion
+
     }
 }
