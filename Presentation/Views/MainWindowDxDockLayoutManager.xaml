@@ -88,11 +88,11 @@
 
                                 <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
                                 
-                                <dxlc:LayoutGroup Header="Cat" >
+                                <!--<dxlc:LayoutGroup Header="Cat" >
                                     <Grid>
                                         <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatMainRegion}" />
                                     </Grid>
-                                    <!--<Grid>
+                                    --><!--<Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="200"/>
                                             <ColumnDefinition />
@@ -101,24 +101,72 @@
                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" />
                                         <ContentControl Grid.Column="1" 
                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" />
-                                    </Grid>-->
+                                    </Grid>--><!--
+                                </dxlc:LayoutGroup>-->
+
+                                <dxlc:LayoutGroup Header="Collections" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                                    </Grid>
+                                    <!--<Grid> 
+                                         <Grid.ColumnDefinitions> 
+                                             <ColumnDefinition Width="200"/> 
+                                             <ColumnDefinition /> 
+                                         </Grid.ColumnDefinitions> 
+                                         <ContentControl Grid.Column="0"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
+                                         <ContentControl Grid.Column="1"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
+                                     </Grid>-->
                                 </dxlc:LayoutGroup>
-                                
-                                <!-- <dxlc:LayoutGroup Header="TYPE" > -->
-                                    <!-- <Grid> -->
-                                        <!-- <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TYPEMainRegion}" /> -->
-                                    <!-- </Grid> -->
-                                    <!-- <Grid> -->
-                                        <!-- <Grid.ColumnDefinitions> -->
-                                            <!-- <ColumnDefinition Width="200"/> -->
-                                            <!-- <ColumnDefinition /> -->
-                                        <!-- </Grid.ColumnDefinitions> -->
-                                        <!-- <ContentControl Grid.Column="0"  -->
-                                                        <!-- prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> -->
-                                        <!-- <ContentControl Grid.Column="1"  -->
-                                                        <!-- prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> -->
-                                    <!-- </Grid> -->
-                                <!-- </dxlc:LayoutGroup> -->
+
+                                <dxlc:LayoutGroup Header="Processes" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessMainRegion}" />
+                                    </Grid>
+                                    <!--<Grid> 
+                                         <Grid.ColumnDefinitions> 
+                                             <ColumnDefinition Width="200"/> 
+                                             <ColumnDefinition /> 
+                                         </Grid.ColumnDefinitions> 
+                                         <ContentControl Grid.Column="0"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
+                                         <ContentControl Grid.Column="1"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
+                                     </Grid>-->
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Projects" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProjectMainRegion}" />
+                                    </Grid>
+                                    <!--<Grid> 
+                                         <Grid.ColumnDefinitions> 
+                                             <ColumnDefinition Width="200"/> 
+                                             <ColumnDefinition /> 
+                                         </Grid.ColumnDefinitions> 
+                                         <ContentControl Grid.Column="0"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
+                                         <ContentControl Grid.Column="1"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
+                                     </Grid>-->
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Commands" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                    </Grid>
+                                    <!--<Grid> 
+                                         <Grid.ColumnDefinitions> 
+                                             <ColumnDefinition Width="200"/> 
+                                             <ColumnDefinition /> 
+                                         </Grid.ColumnDefinitions> 
+                                         <ContentControl Grid.Column="0"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
+                                         <ContentControl Grid.Column="1"  
+                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
+                                     </Grid>-->
+                                </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
