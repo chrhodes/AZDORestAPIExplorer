@@ -103,28 +103,33 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
-
-        <Border Style="{StaticResource CountBorder}">
-            <StackPanel Style="{StaticResource CountStackPanel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
+            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                 <Label Content="Count:" />
-                <TextBlock Text="{Binding Process.Count}"
+                <TextBlock Text="{Binding Processes.Count}"
                                    Style="{StaticResource CountTextBlock}"/>
             </StackPanel>
         </Border>
 
-        <DataGrid 
+        <DataGrid
+            Grid.Row="1"
                     ItemsSource="{Binding Processes.ResultItems}"
                     SelectedItem="{Binding Processes.SelectedItem}"               
                     AutoGenerateColumns="True"
                     CanUserAddRows="False"
-                    MaxHeight="500" FontSize="12"
+                    FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
         </DataGrid>
 
-    </StackPanel>
+    </Grid>
     <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

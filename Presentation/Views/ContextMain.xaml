@@ -1,0 +1,61 @@
+﻿<vncmvvm:ViewBase
+    x:Class="AZDORestApiExplorer.Presentation.Views.ContextMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.CoreNF"
+    xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    
+    xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
+    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d"
+    d:DesignHeight="200" d:DesignWidth="300"
+>
+    <UserControl.Resources>
+        <!--These are implicit DataTemplates--><!--
+        <DataTemplate DataType="{x:Type viewModels:ContextDetailViewModel}">
+            <views:ContextDetail />
+        </DataTemplate>
+        --><!-- <DataTemplate DataType="{x:Type viewModels:MeetingDetailViewModel}"> -->
+            <!-- <views:MeetingDetail /> -->
+        <!-- </DataTemplate> --><!--
+        <DataTemplate DataType="{x:Type viewModels:DetailViewModel}">
+            <views:Detail />
+        </DataTemplate>-->
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Process" Grid.Row="0" />
+        <TextBlock Text="{Binding Context.SelectedProcess}" Grid.Row="0" Grid.Column="1" />
+        <TextBlock Text="{Binding Context.SelectedProcess.name}" Grid.Row="0" Grid.Column="2" />
+        <TextBlock Text="{Binding Context.SelectedProcess.typeId}" Grid.Row="0" Grid.Column="3" />
+
+        <Label Content="Project" Grid.Row="1" />
+        <TextBlock Text="{Binding Context.SelectedProject}" Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="{Binding Context.SelectedProject.name}" Grid.Row="1" Grid.Column="2" />
+        <TextBlock Text="{Binding Context.SelectedProject.id}" Grid.Row="1" Grid.Column="3" />
+
+        <Label Content="Team" Grid.Row="2" />
+        <TextBlock Text="{Binding Context.SelectedTeam}" Grid.Row="2" Grid.Column="1" />
+        <TextBlock Text="{Binding Context.SelectedTeam.name}" Grid.Row="2" Grid.Column="2" />
+        <TextBlock Text="{Binding Context.SelectedTeam.id}" Grid.Row="2" Grid.Column="3" />
+
+    </Grid>
+</vncmvvm:ViewBase>

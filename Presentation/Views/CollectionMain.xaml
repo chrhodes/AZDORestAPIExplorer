@@ -16,7 +16,7 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
-    <StackPanel Grid.Column="0">
+    <StackPanel Grid.Column="0" Margin="3">
         <Label Content="Available Collections" />
         <ComboBox x:Name="CB1OC"
                         ItemsSource="{Binding AvailableCollections}"
@@ -24,13 +24,13 @@
                               SelectedValuePath="Details"
                               SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
         </ComboBox>
-        <StackPanel Orientation="Horizontal" Margin="3">
+        <StackPanel Orientation="Vertical" >
             <StackPanel Orientation="Horizontal">
-                <Label Content="Uri" Width="20"/>
-                <TextBox x:Name="TB1OC" Text="{Binding SelectedCollection.Details.Uri }" />
+                <Label Content="Uri" Width="22"/>
+                <TextBox x:Name="TB1OC" Text="{Binding SelectedCollection.Details.Uri }" Width="320"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" >
-                <Label Content="PAT" Width="20"/>
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="PAT" Width="22"/>
                 <TextBox x:Name="TB2OC" Text="{Binding SelectedCollection.Details.PAT }" Width="320" ToolTip="Paste in PAT" Background="LightSalmon" />
             </StackPanel>
         </StackPanel>

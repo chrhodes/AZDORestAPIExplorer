@@ -5,25 +5,24 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.Domain
 {
-    public class ProjectsRoot
-    {
+    public class TeamsRoot
+    {    
         public int count { get; set; }
-        public Project[] value { get; set; }
+        public Team[] value { get; set; }
     }
 
-    public class Project
+    public class Team
     {
         public string id { get; set; }
         public string name { get; set; }
         public string url { get; set; }
-        public string state { get; set; }
-        public int revision { get; set; }
-        public string visibility { get; set; }
-        public DateTime lastUpdateTime { get; set; }
         public string description { get; set; }
+        public string identityUrl { get; set; }
+        public string projectName { get; set; }
+        public string projectId { get; set; }
     }
 
-    public class ProjectX : IEntity<int>, IModificationHistory, IOptimistic
+public class TeamX : IEntity<int>, IModificationHistory, IOptimistic
     {
         #region IEntity<int>
 

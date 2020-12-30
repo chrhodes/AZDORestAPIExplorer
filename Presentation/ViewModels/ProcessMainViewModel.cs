@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -62,6 +63,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             //OpenSingleDetailViewCommand = new DelegateCommand<Type>(
             //    OnOpenSingleDetailExecute);
 
+            InitializeViewModel();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -70,16 +72,21 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            //SelectedCollection = new CollectionDetails();
-            ////var foo = AvailableCollections.First().Key;
-            //CB1.SelectedItem = AvailableCollections.First();
+            EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
 
-            //EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(GetProjects);
+            this.Processes.PropertyChanged += PublishSelectedProcessChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
+        private void PublishSelectedProcessChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Processes.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
 
         #endregion
 
@@ -95,6 +102,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        public RESTResult<Domain.Process> Processes { get; set; } = new RESTResult<Domain.Process>();
+
         private string _requestUri;
 
         public string RequestUri
@@ -108,9 +117,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
-
 
         private Func<IProcessDetailViewModel> _ProcessDetailViewModelCreator;
         private Func<IDetailViewModel> _DetailViewModelCreator;
@@ -294,7 +300,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-
         #endregion
 
         #region Public Methods
@@ -306,6 +311,56 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             //await NavigationViewModel.LoadAsync();
 
             Log.VIEWMODEL("ProcessMainViewModel) Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public async void GetProcesses(CollectionDetails collection)
+        {
+            string jsonResult = default;
+            StringBuilder sb = new StringBuilder();
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    Helpers.InitializeHttpClient(collection, client);
+
+                    RequestUri = $"{collection.Uri}/_apis/work/processes?api-version=6.0-preview.2";
+
+                    RequestResponseInfo exchange = InitializeExchange(client, RequestUri);
+
+                    using (HttpResponseMessage response = await client.GetAsync(RequestUri))
+                    {
+                        RecordExchangeResponse(response, exchange);
+
+                        response.EnsureSuccessStatusCode();
+
+                        string outJson = await response.Content.ReadAsStringAsync();
+                        //sb.Append(outJson);
+
+                        JObject o = JObject.Parse(outJson);
+
+                        ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
+                        //Processes = new ObservableCollection<WpfAppCore.Domain.Process>(resultRoot.value);
+                        //ProcessCount = Processes.Count();
+
+                        Processes.ResultItems = new ObservableCollection<Domain.Process>(resultRoot.value);
+                        jsonResult = outJson;
+
+                        IEnumerable<string> continuationHeaders = default;
+
+                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                        Processes.Count = Processes.ResultItems.Count();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
+            RequestResponseExchangeCount = RequestResponseExchange.Count();
+            // return jsonResult;
         }
 
         #endregion

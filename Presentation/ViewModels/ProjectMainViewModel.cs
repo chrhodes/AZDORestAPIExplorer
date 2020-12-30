@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -71,13 +72,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            //SelectedCollection = new CollectionDetails();
-            ////var foo = AvailableCollections.First().Key;
-            //CB1.SelectedItem = AvailableCollections.First();
+            InstanceCountVM++;
 
             EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(GetProjects);
 
+            this.Projects.PropertyChanged += PublishSelectedProjectChanged;
+
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        private void PublishSelectedProjectChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Projects.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion
@@ -94,8 +104,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-
         public RESTResult<Domain.Project> Projects { get; set; } = new RESTResult<Domain.Project>();
+
+        //private Project _selectedProject;
+
+        //public Project SelectedProject
+        //{
+        //    get => _selectedProject;
+        //    set
+        //    {
+        //        if (_selectedProject == value)
+        //            return;
+        //        _selectedProject = value;
+        //        OnPropertyChanged();
+        //        PublishSelectedProjectChanged();
+        //    }
+        //}
 
         private string _requestUri;
 
@@ -292,7 +316,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
-
 
         public async void GetProjects(CollectionDetails collection)
         {

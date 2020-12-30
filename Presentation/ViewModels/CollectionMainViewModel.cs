@@ -67,7 +67,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             ////var foo = AvailableCollections.First().Key;
             //CB1.SelectedItem = AvailableCollections.First();
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME);
+            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
 
@@ -117,7 +117,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
         private void PublishSelectedCollectionChanged()
         {
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish();
+
+            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         public string Title

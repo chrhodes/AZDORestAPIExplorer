@@ -104,21 +104,11 @@
                                     </Grid>--><!--
                                 </dxlc:LayoutGroup>-->
 
-                                <dxlc:LayoutGroup Header="Collections" >
+                                <!--<dxlc:LayoutGroup Header="Collections" >
                                     <Grid>
                                         <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
                                     </Grid>
-                                    <!--<Grid> 
-                                         <Grid.ColumnDefinitions> 
-                                             <ColumnDefinition Width="200"/> 
-                                             <ColumnDefinition /> 
-                                         </Grid.ColumnDefinitions> 
-                                         <ContentControl Grid.Column="0"  
-                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
-                                         <ContentControl Grid.Column="1"  
-                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
-                                     </Grid>-->
-                                </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>-->
 
                                 <dxlc:LayoutGroup Header="Processes" >
                                     <Grid>
@@ -152,21 +142,23 @@
                                      </Grid>-->
                                 </dxlc:LayoutGroup>
 
-                                <dxlc:LayoutGroup Header="Commands" >
+                                <dxlc:LayoutGroup Header="Teams" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TeamMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="WorkItemTypes" >
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
+
+                                <!--<dxlc:LayoutGroup Header="Commands" >
                                     <Grid>
                                         <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
                                     </Grid>
-                                    <!--<Grid> 
-                                         <Grid.ColumnDefinitions> 
-                                             <ColumnDefinition Width="200"/> 
-                                             <ColumnDefinition /> 
-                                         </Grid.ColumnDefinitions> 
-                                         <ContentControl Grid.Column="0"  
-                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" /> 
-                                         <ContentControl Grid.Column="1"  
-                                                         prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" /> 
-                                     </Grid>-->
-                                </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>-->
 
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
@@ -175,22 +167,51 @@
 
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
+                    <dxdo:AutoHideGroup DockType="Top">
+                        <dxdo:LayoutPanel
+                            x:Name="lp_TopStuff"
+                            Caption="Commands"
+                            ItemHeight="150">
+                            <dxlc:LayoutGroup Header="Commands" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+                    </dxdo:AutoHideGroup>
+                    
                     <dxdo:AutoHideGroup DockType="Left">
                         <dxdo:LayoutPanel
                             x:Name="lp_LeftStuff"
-                            Caption="Left Stuff"
-                            ItemWidth="150">
-                            <StackPanel>
-                                <Label Content="lp_LeftStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
-                            </StackPanel>
+                            Caption="Collections"
+                            ItemWidth="400">
+                            <dxlc:LayoutGroup Header="Collections" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
                     </dxdo:AutoHideGroup>
 
                     <dxdo:AutoHideGroup DockType="Right">
-                        <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="Right Stuff">
+                        <dxdo:LayoutPanel x:Name="lp_RightStuff" 
+                                          Caption="Context"
+                                          ItemWidth="400">
+                            <dxlc:LayoutGroup Header="Context" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Bottom">
+                        <dxdo:LayoutPanel
+                            x:Name="lp_BottomStuff"
+                            Caption="Bottom Stuff"
+                            ItemWidth="150">
                             <StackPanel>
-                                <Label Content="lp_RightStuff Goes Here" />
+                                <Label Content="lp_BottomStuff Goes Here" />
                                 <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                             </StackPanel>
                         </dxdo:LayoutPanel>

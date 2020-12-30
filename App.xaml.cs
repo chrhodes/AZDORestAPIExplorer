@@ -124,11 +124,22 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(CatModule));
             moduleCatalog.AddModule(typeof(AZDORestApiExplorerModule));
 
+            // Project, Process, Team depend on CollectionModule
+
             moduleCatalog.AddModule(typeof(ProjectModule));
 
             moduleCatalog.AddModule(typeof(ProcessModule));
 
+            moduleCatalog.AddModule(typeof(TeamModule));
+
+
+            moduleCatalog.AddModule(typeof(WorkItemTypeModule));
+
             moduleCatalog.AddModule(typeof(CollectionModule));
+
+            moduleCatalog.AddModule(typeof(ContextModule));
+
+
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
         }

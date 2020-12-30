@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AZDORestApiExplorer", "AZDORestApiExplorer.csproj", "{446ED15A-F123-40B8-AD89-14B2CE51FB06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer", "AZDORestApiExplorer.csproj", "{446ED15A-F123-40B8-AD89-14B2CE51FB06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.CoreNF", "..\vnc\VNC.Core\VNC.CoreNF.csproj", "{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

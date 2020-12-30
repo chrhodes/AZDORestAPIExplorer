@@ -6,10 +6,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class ProjectMain : ViewBase, IProjectMain, IInstanceCountV
+    public partial class TeamMain : ViewBase, ITeamMain, IInstanceCountV
     {
 
-        public ProjectMain(ViewModels.IProjectMainViewModel viewModel)
+        public TeamMain(ViewModels.ITeamMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -17,19 +17,19 @@ namespace AZDORestApiExplorer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            //Loaded += UserControl_Loaded;
+            Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    Int64 startTicks = Log.EVENT_HANDLER("(ProjectMain) Enter", Common.LOG_APPNAME);
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("(TeamMain) Enter", Common.LOG_APPNAME);
 
-        //    await ((ViewModels.IProjectMainViewModel)ViewModel).LoadAsync();
+            await ((ViewModels.ITeamMainViewModel)ViewModel).LoadAsync();
 
-        //    Log.EVENT_HANDLER("(ProjectMain) Exit", Common.LOG_APPNAME, startTicks);
-        //}
+            Log.EVENT_HANDLER("(TeamMain) Exit", Common.LOG_APPNAME, startTicks);
+        }
 
         #region IInstanceCount
 

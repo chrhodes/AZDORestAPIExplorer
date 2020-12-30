@@ -18,10 +18,14 @@
     d:DesignHeight="450" d:DesignWidth="800"
 >
     <Grid>
-        <StackPanel Grid.Column="1" Orientation="Horizontal">
-            <StackPanel Orientation="Vertical">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+            <StackPanel Grid.Column="0" Orientation="Vertical">
                 <Label Content="Core" />
-                <WrapPanel Width="200">
+                <WrapPanel Width="300">
                     <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
                     
                     <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
@@ -47,6 +51,13 @@
                     		ToolTip="{Binding GetProjectsToolTip, FallbackValue='GetProjects ToolTip' }" />
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding GetTeamsCommand }"
+                    		Content="{Binding GetTeamsContent, FallbackValue='GetTeams' }"
+                    		ToolTip="{Binding GetTeamsToolTip, FallbackValue='GetTeams ToolTip' }" />
+                    </dxlc:LayoutItem>
+
                 </WrapPanel>
                 
             </StackPanel>
@@ -59,13 +70,18 @@
                 </WrapPanel>
             </StackPanel>-->
 
-            <!--<StackPanel Orientation="Vertical">
+            <StackPanel Grid.Column="1" Orientation="Vertical">
                 <Label Content="Work Item Tracking" />
                 <WrapPanel Width="200">
-                    <Button Click="Wit_GetWorkItemTypes_Click">GET WorkItemTypes</Button>
-                    
-                </WrapPanel>
-            </StackPanel>-->
+                <dxlc:LayoutItem>
+                    <Button 
+                    		Command="{Binding GetWorkItemTypesCommand }"
+                    		Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
+                    		ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
+                </dxlc:LayoutItem>
+
+            </WrapPanel>
+            </StackPanel>
 
             <!--<StackPanel Orientation="Vertical">
                 <Label Content="Work Item Tracking Process" />
@@ -100,6 +116,6 @@
             </StackPanel>-->
             <!--<Label Content="RequestUri" />
                 <TextBlock Text="{Binding RequestUri}" />-->
-        </StackPanel>
+        
     </Grid>
 </vncmvvm:ViewBase>
