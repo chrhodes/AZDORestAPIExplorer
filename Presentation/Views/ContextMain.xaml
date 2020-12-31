@@ -5,7 +5,13 @@
     xmlns:prism="http://www.codeplex.com/prism"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.CoreNF"
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     
@@ -14,7 +20,7 @@
     xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
-    d:DesignHeight="200" d:DesignWidth="300"
+    d:DesignHeight="300" d:DesignWidth="300"
 >
     <UserControl.Resources>
         <!--These are implicit DataTemplates--><!--
@@ -30,32 +36,71 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70" />
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <dxlc:LayoutGroup Header="Context"
+        	View="GroupBox" Orientation="Vertical" 
+        	VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	IsCollapsible="True"  IsCollapsed="False">
 
-        <Label Content="Process" Grid.Row="0" />
-        <TextBlock Text="{Binding Context.SelectedProcess}" Grid.Row="0" Grid.Column="1" />
-        <TextBlock Text="{Binding Context.SelectedProcess.name}" Grid.Row="0" Grid.Column="2" />
-        <TextBlock Text="{Binding Context.SelectedProcess.typeId}" Grid.Row="0" Grid.Column="3" />
+            <dxlc:LayoutGroup Header="Process"
+            	View="GroupBox" Orientation="Vertical" 
+            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	IsCollapsible="True"  IsCollapsed="False">
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedProcess.name}" />
+                </dxlc:LayoutItem>
 
-        <Label Content="Project" Grid.Row="1" />
-        <TextBlock Text="{Binding Context.SelectedProject}" Grid.Row="1" Grid.Column="1" />
-        <TextBlock Text="{Binding Context.SelectedProject.name}" Grid.Row="1" Grid.Column="2" />
-        <TextBlock Text="{Binding Context.SelectedProject.id}" Grid.Row="1" Grid.Column="3" />
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="typeid:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedProcess.typeId}" />
+                </dxlc:LayoutItem>
 
-        <Label Content="Team" Grid.Row="2" />
-        <TextBlock Text="{Binding Context.SelectedTeam}" Grid.Row="2" Grid.Column="1" />
-        <TextBlock Text="{Binding Context.SelectedTeam.name}" Grid.Row="2" Grid.Column="2" />
-        <TextBlock Text="{Binding Context.SelectedTeam.id}" Grid.Row="2" Grid.Column="3" />
+                <dxlc:LayoutGroup Header="WorkItem"
+            	View="GroupBox" Orientation="Vertical" 
+            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	IsCollapsible="True"  IsCollapsed="False">
 
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Project"
+            	View="GroupBox" Orientation="Vertical" 
+            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	IsCollapsible="True"  IsCollapsed="False">
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedProject.name}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedProject.id}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Team"
+            	View="GroupBox" Orientation="Vertical" 
+            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	IsCollapsible="True"  IsCollapsed="False">
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedTeam.name}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                    <TextBlock Text="{Binding Context.SelectedTeam.id}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+
+
+        </dxlc:LayoutGroup>
     </Grid>
 </vncmvvm:ViewBase>

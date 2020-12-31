@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
-using System.Text;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
@@ -18,15 +17,19 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class WorkItemTypeMainViewModel : HTTPExchangeBase, IWorkItemTypeMainViewModel
+    public class StateMainViewModel : HTTPExchangeBase, IStateMainViewModel
     {
+
         #region Constructors, Initialization, and Load
 
-        public WorkItemTypeMainViewModel(
+        public StateMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            // TODO(crhodes)
+            // Save constructor parameters here
 
             InitializeViewModel();
 
@@ -37,20 +40,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesEvent>().Subscribe(GetWorkItemTypes);
+            InstanceCountVM++;
 
-            this.WorkItemTypes.PropertyChanged += PublishSelectionChanged;
+
+            EventAggregator.GetEvent<GetStatesEvent>().Subscribe(GetStates);
+
+            this.States.PropertyChanged += PublishSelectionChanged;
+
+            // TODO(crhodes)
+            //
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-
-            EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Publish(WorkItemTypes.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion
@@ -67,7 +67,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.WorkItemType> WorkItemTypes { get; set; } = new RESTResult<Domain.WorkItemType>();
+        public RESTResult<Domain.State> States { get; set; } = new RESTResult<Domain.State>();
+
 
         #endregion
 
@@ -88,7 +89,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypes(GetWorkItemTypesEventArgs args)
+        // TODO(crhodes)
+        // Put Request Handler Here
+
+        private async void GetStates(GetStatesEventArgs args)
         {
             try
             {
@@ -96,7 +100,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.CollectionDetails, client);
 
-                    var requestUri = $"{args.CollectionDetails.Uri}/_apis/work/processes/{args.Process.typeId}/workitemtypes?api-version=6.1-preview.2";
+                    var requestUri = $"{args.CollectionDetails.Uri}/_apis/work/processes/{args.Process.typeId}/workItemTypes/{args.WorkItemType.referenceName}/states?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -106,20 +110,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         response.EnsureSuccessStatusCode();
 
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        response.EnsureSuccessStatusCode();
-
                         string outJson = await response.Content.ReadAsStringAsync();
 
                         JObject o = JObject.Parse(outJson);
 
-                        WorkItemTypesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypesRoot>(outJson);
+                        StatesRoot resultRoot = JsonConvert.DeserializeObject<StatesRoot>(outJson);
 
-                        WorkItemTypes.ResultItems = new ObservableCollection<Domain.WorkItemType>(resultRoot.value); ;
-                        WorkItemTypes.Count = WorkItemTypes.ResultItems.Count;
+                        States.ResultItems = new ObservableCollection<Domain.State>(resultRoot.value);
+
+                        IEnumerable<string> continuationHeaders = default;
+
+                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                        States.Count = States.ResultItems.Count;
                     }
                 }
             }
@@ -130,7 +133,27 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+        }
 
+        private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<SelectedStateChangedEvent>().Publish(States.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

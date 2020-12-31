@@ -132,14 +132,13 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(TeamModule));
 
-
             moduleCatalog.AddModule(typeof(WorkItemTypeModule));
 
             moduleCatalog.AddModule(typeof(CollectionModule));
 
             moduleCatalog.AddModule(typeof(ContextModule));
 
-
+            moduleCatalog.AddModule(typeof(HTTPExchangeModule));
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -73,14 +73,28 @@
             <StackPanel Grid.Column="1" Orientation="Vertical">
                 <Label Content="Work Item Tracking" />
                 <WrapPanel Width="200">
-                <dxlc:LayoutItem>
-                    <Button 
-                    		Command="{Binding GetWorkItemTypesCommand }"
-                    		Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
-                    		ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
-                </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		    Command="{Binding GetWorkItemTypesCommand }"
+                    		    Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
+                    		    ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
+                    </dxlc:LayoutItem>
 
-            </WrapPanel>
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		        Command="{Binding GetStatesCommand }"
+                    		        Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
+                    		        ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		        Command="{Binding GetFieldsCommand }"
+                    		        Content="{Binding GetFieldsContent, FallbackValue='GetFields' }"
+                    		        ToolTip="{Binding GetFieldsToolTip, FallbackValue='GetFields ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                </WrapPanel>
             </StackPanel>
 
             <!--<StackPanel Orientation="Vertical">

@@ -4,7 +4,8 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public interface IWorkItemTypeMainViewModel : IViewModel
+    public interface IFieldMainViewModel : IViewModel
     {
+
     }
 }

@@ -17,18 +17,8 @@ namespace AZDORestApiExplorer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("(ProcessMain) Enter", Common.LOG_APPNAME);
-
-            await ((ViewModels.IProcessMainViewModel)ViewModel).LoadAsync();
-
-            Log.EVENT_HANDLER("(ProcessMain) Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #region IInstanceCount

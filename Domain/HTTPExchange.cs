@@ -10,11 +10,6 @@ namespace AZDORestApiExplorer.Domain
 {
     public class HTTPExchange : IEntity<int>, IModificationHistory, IOptimistic
     {
-        public HTTPExchange()
-        {
-            PhoneNumbers = new Collection<HTTPExchangePhoneNumber>();
-            //Meetings = new Collection<Meeting>();
-        }
 
         #region IEntity<int>
 
@@ -41,33 +36,24 @@ namespace AZDORestApiExplorer.Domain
         [Column(TypeName = "datetime2")]
         public DateTime? FieldDate2 { get; set; }
 
-        [StringLength(50)]
-        [EmailAddress]
-        public string Email { get; set; }
 
-        public ICollection<HTTPExchangePhoneNumber> PhoneNumbers { get; set; }
+        #region IModificationHistory
 
-        public int? FavoriteId { get; set; }
+        public DateTime? DateModified { get; set; }
 
-        public Favorite { get; set; }
+        public DateTime? DateCreated { get; set; }
 
-    #region IModificationHistory
+        public Boolean? IsDirty { get; set; }
 
-    public DateTime? DateModified { get; set; }
+        #endregion
 
-    public DateTime? DateCreated { get; set; }
+        #region IOptimistic
 
-    public Boolean? IsDirty { get; set; }
+        // Need to have data annotation here.
+        // Presence in interface ignored.
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
-    #endregion
-
-    #region IOptimistic
-
-    // Need to have data annotation here.
-    // Presence in interface ignored.
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
-
-    #endregion
-}
+        #endregion
+    }
 }

@@ -6,6 +6,5 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 {
     public interface ITeamMainViewModel : IViewModel
     {
-        Task LoadAsync();
     }
 }

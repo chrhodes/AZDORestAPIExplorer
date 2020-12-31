@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class WorkItemTypeMain : ViewBase, IWorkItemTypeMain, IInstanceCountV
+    public partial class HTTPExchangeMain : ViewBase, IHTTPExchangeMain, IInstanceCountV
     {
 
-        public WorkItemTypeMain(ViewModels.IWorkItemTypeMainViewModel viewModel)
+        public HTTPExchangeMain(ViewModels.IHTTPExchangeMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 

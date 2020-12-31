@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
@@ -51,6 +47,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
+            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
+
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -59,7 +59,21 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetTeamsCommand.RaiseCanExecuteChanged();
             GetProcessesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseProcessChanged(Process process)
+        {
             GetWorkItemTypesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseProjectChanged(Project project)
+        {
+            GetProjectsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseTeamChanged(Team team)
+        {
+            GetTeamsCommand.RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -187,7 +201,95 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (_collectionMainViewModel.SelectedCollection is null)
+            if (_collectionMainViewModel.SelectedCollection is null 
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetStates Command
+
+        public DelegateCommand GetStatesCommand { get; set; }
+        public string GetStatesContent { get; set; } = "GetStates";
+        public string GetStatesToolTip { get; set; } = "GetStates ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetStatesContent { get; set; } = "ViewName_GetStatesContent";
+        //public string GetStatesToolTip { get; set; } = "ViewName_GetStatesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
+
+        public void OnGetStatesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetStatesEvent>().Publish(
+                new GetStatesEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetStatesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetFields Command
+
+        public DelegateCommand GetFieldsCommand { get; set; }
+        public string GetFieldsContent { get; set; } = "GetFields";
+        public string GetFieldsToolTip { get; set; } = "GetFields ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
+        //public string GetFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
+
+        public void OnGetFieldsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetFieldsEvent>().Publish(
+                new GetFieldsEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetFieldsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
             {
                 return false;
             }

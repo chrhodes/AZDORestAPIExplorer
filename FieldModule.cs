@@ -15,13 +15,13 @@ using VNC;
 
 namespace AZDORestApiExplorer
 {
-    public class HTTPExchangeModule : IModule
+    public class FieldModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public HTTPExchangeModule(IRegionManager regionManager)
+        public FieldModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -36,11 +36,11 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IHTTPExchangeMainViewModel, HTTPExchangeMainViewModel>();
-            containerRegistry.RegisterSingleton<IHTTPExchangeMain, HTTPExchangeMain>();
+            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
+            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
 
-            // containerRegistry.RegisterSingleton<IHTTPExchangeLookupDataService, HTTPExchangeLookupDataService>();
-            // containerRegistry.Register<IHTTPExchangeDataService, HTTPExchangeDataService>();
+            // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
+            // containerRegistry.Register<IFieldDataService, FieldDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -55,8 +55,8 @@ namespace AZDORestApiExplorer
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads HTTPExchangeMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.HTTPExchangeMainRegion, typeof(IHTTPExchangeMain));
+            //this loads FieldMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldMainRegion, typeof(IFieldMain));
 
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
@@ -65,13 +65,13 @@ namespace AZDORestApiExplorer
         // TODO(crhodes)
         // Place these in Core\RegionNames.cs
 
-        public static string HTTPExchangeMainRegion = "HTTPExchangeMainRegion";
-        // public static string HTTPExchangeNavigationRegion = "HTTPExchangeNavigationRegion";
-        // public static string HTTPExchangeDetailRegion = "HTTPExchangeDetailRegion";
+        public static string FieldMainRegion = "FieldMainRegion";
+        // public static string FieldNavigationRegion = "FieldNavigationRegion";
+        // public static string FieldDetailRegion = "FieldDetailRegion";
 
         // TODO(crhodes)
         // Add this to App.xaml.cs - ConfigureModuleCatalog()
 
-        moduleCatalog.AddModule(typeof(HTTPExchangeModule));
+        moduleCatalog.AddModule(typeof(FieldModule));
     }
 }

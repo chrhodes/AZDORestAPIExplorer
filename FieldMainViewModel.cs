@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 
@@ -18,15 +11,19 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProcessMainViewModel : HTTPExchangeBase, IProcessMainViewModel
+    public class FieldMainViewModel : HTTPExchangeBase, IFieldMainViewModel
     {
+
         #region Constructors, Initialization, and Load
 
-        public ProcessMainViewModel(
+        public FieldMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            // TODO(crhodes)
+            // Save constructor parameters here
 
             InitializeViewModel();
 
@@ -37,20 +34,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
+            InstanceCountVM++;
 
-            this.Processes.PropertyChanged += PublishSelectedProcessChanged;
+
+            EventAggregator.GetEvent<GetFieldsEvent>().Subscribe(GetFields);
+
+            this.Fields.PropertyChanged += PublishSelectionChanged;
+
+            // TODO(crhodes)
+            //
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        private void PublishSelectedProcessChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-
-            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Processes.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion
@@ -67,7 +61,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Process> Processes { get; set; } = new RESTResult<Domain.Process>();
+        public RESTResult<Domain.Field> Fields { get; set; } = new RESTResult<Domain.Field>();
+
 
         #endregion
 
@@ -78,6 +73,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Public Methods
 
+
         #endregion
 
         #region Protected Methods
@@ -87,15 +83,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetProcesses(CollectionDetails collection)
+        // TODO(crhodes)
+        // Put Request Handler Here - Check Parameters
+        // Update GetFieldEventArgs as needed
+        private async void GetField(GetFieldEventArgs args)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(collection, client);
+                    Helpers.InitializeHttpClient(args.CollectionDetails, client);
 
-                    var requestUri = $"{collection.Uri}/_apis/work/processes?api-version=6.0-preview.2";
+                    // TODO(crhodes)
+                    // Update Uri  Use args for parameters.
+                    var requestUri = $"{collection.Uri}/_apis/work/processes/{selectedProcess.typeId}/workItemTypes/{selectedWorkItem.referenceName}/states?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -109,15 +110,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
+                        FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldRoot>(outJson);
 
-                        Processes.ResultItems = new ObservableCollection<Domain.Process>(resultRoot.value);
+                        States.ResultItems = new ObservableCollection<Domain.Field>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Processes.Count = Processes.ResultItems.Count();
+                        Fields.Count = Fields.ResultItems.Count;
                     }
                 }
             }
@@ -130,7 +131,27 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
         }
 
+        private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<SelectedFieldChangedEvent>().Publish(Fields.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

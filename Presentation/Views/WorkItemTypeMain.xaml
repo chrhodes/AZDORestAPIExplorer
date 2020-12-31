@@ -107,7 +107,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -123,13 +123,13 @@
                     SelectedItem="{Binding WorkItemTypes.SelectedItem}"               
                     AutoGenerateColumns="True"
                     CanUserAddRows="False"
-                    MaxHeight="500" FontSize="12"
+                    FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
         </DataGrid>
 
-        <TextBlock Text="{Binding WorkItems.SelectedItem}" />
+        <!--<TextBlock Text="{Binding WorkItems.SelectedItem}" Grid.Row="2" />-->
 
     </Grid>
     

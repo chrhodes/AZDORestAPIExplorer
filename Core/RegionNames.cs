@@ -44,5 +44,9 @@ namespace AZDORestApiExplorer.Core
         public static string WorkItemTypeMainRegion = "WorkItemTypeMainRegion";
         public static string WorkItemTypeNavigationRegion = "WorkItemTypeNavigationRegion";
         public static string WorkItemTypeDetailRegion = "WorkItemTypeDetailRegion";
+
+        public static string HTTPExchangeMainRegion = "HTTPExchangeMainRegion";
+        // public static string HTTPExchangeNavigationRegion = "HTTPExchangeNavigationRegion";
+        // public static string HTTPExchangeDetailRegion = "HTTPExchangeDetailRegion";
     }
 }

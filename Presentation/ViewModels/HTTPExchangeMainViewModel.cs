@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
-using Prism.Commands;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Domain;
+
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
@@ -42,6 +40,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // TODO(crhodes)
             //
 
+            EventAggregator.GetEvent<HttpExchangeEvent>().Subscribe(NewHttpExchange);
+
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -59,6 +59,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        public ObservableCollection<RequestResponseInfo> RequestResponseExchange { get; set; }
+            = new ObservableCollection<RequestResponseInfo>();
+
+        //private int _requestResponseExchangeCount;
+
+        //public int RequestResponseExchangeCount
+        //{
+        //    get => _requestResponseExchangeCount;
+        //    set
+        //    {
+        //        if (_requestResponseExchangeCount == value)
+        //            return;
+        //        _requestResponseExchangeCount = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -79,6 +95,28 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
+        private void NewHttpExchange(ObservableCollection<RequestResponseInfo> exchange)
+        {
+            // NOTE(crhodes)
+            // This does not work to refresh bindings
+            //RequestResponseExchange = exchange;
+
+            RequestResponseExchange.Clear();
+            RequestResponseExchange.AddRange(exchange);
+
+            ////foreach (RequestResponseInfo item in exchange)
+            ////{
+            ////    RequestResponseInfo rri = new RequestResponseInfo();
+            ////    rri.Response = item.Response;
+            ////    rri.ResponseStatusCode = item.ResponseStatusCode;
+            ////    rri.ResponseContentHeaders = item.ResponseContentHeaders;
+            ////    rri.ResponseHeadersX = item.ResponseHeadersX;
+
+            ////    RequestResponseExchange.Add(rri);
+            ////}
+
+            //RequestResponseExchangeCount = exchange.Count();
+        }
 
         #endregion
 
