@@ -47,6 +47,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetStatesCommand = new DelegateCommand(OnGetStatesExecute, OnGetStatesCanExecute);
             GetFieldsCommand = new DelegateCommand(OnGetFieldsExecute, OnGetFieldsCanExecute);
             GetListsCommand = new DelegateCommand(OnGetListsExecute, OnGetListsCanExecute);
+            GetDashboardsCommand = new DelegateCommand(OnGetDashboardsExecute, OnGetDashboardsCanExecute);
+            GetWidgetsCommand = new DelegateCommand(OnGetWidgetsExecute, OnGetWidgetsCanExecute);
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
@@ -54,6 +56,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
             EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
+
+            EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -63,6 +67,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetTeamsCommand.RaiseCanExecuteChanged();
             GetProcessesCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProcessChanged(Process process)
@@ -80,11 +85,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseProjectChanged(Project project)
         {
             GetProjectsCommand.RaiseCanExecuteChanged();
+            GetDashboardsCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseTeamChanged(Team team)
         {
             GetTeamsCommand.RaiseCanExecuteChanged();
+            GetDashboardsCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseDashboardChanged(Dashboard dashboard)
+        {
+            GetWidgetsCommand.RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -346,6 +360,94 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Add any before button is enabled logic.
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetDashboards Command
+
+        public DelegateCommand GetDashboardsCommand { get; set; }
+        public string GetDashboardsContent { get; set; } = "GetDashboards";
+        public string GetDashboardsToolTip { get; set; } = "GetDashboards ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetDashboardsContent { get; set; } = "ViewName_GetDashboardsContent";
+        //public string GetDashboardsToolTip { get; set; } = "ViewName_GetDashboardsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetDashboardsContent">GetDashboards</system:String>
+        //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>  
+
+        public void OnGetDashboardsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetDashboardsEvent>().Publish(
+                new GetDashboardsEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetDashboardsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetWidgets Command
+
+        public DelegateCommand GetWidgetsCommand { get; set; }
+        public string GetWidgetsContent { get; set; } = "GetWidgets";
+        public string GetWidgetsToolTip { get; set; } = "GetWidgets ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWidgetsContent { get; set; } = "ViewName_GetWidgetsContent";
+        //public string GetWidgetsToolTip { get; set; } = "ViewName_GetWidgetsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWidgetsContent">GetWidgets</system:String>
+        //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>  
+
+        public void OnGetWidgetsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetWidgetsEvent>().Publish(
+                new GetWidgetsEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetWidgetsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
             {
                 return false;
             }

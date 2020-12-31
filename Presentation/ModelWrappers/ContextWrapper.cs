@@ -36,5 +36,11 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             get { return GetValue<WorkItemType>(); }
             set { SetValue(value); }
         }
+
+        public Dashboard SelecteDashboard
+        {
+            get { return GetValue<Dashboard>(); }
+            set { SetValue(value); }
+        }
     }
 }

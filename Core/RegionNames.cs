@@ -60,5 +60,17 @@ namespace AZDORestApiExplorer.Core
         public static string ListMainRegion = "ListMainRegion";
         // public static string ListNavigationRegion = "ListNavigationRegion";
         // public static string ListDetailRegion = "ListDetailRegion";
+
+        public static string DashboardMainRegion = "DashboardMainRegion";
+        // public static string DashboardNavigationRegion = "DashboardNavigationRegion";
+        // public static string DashboardDetailRegion = "DashboardDetailRegion";
+
+        public static string WidgetMainRegion = "WidgetMainRegion";
+        // public static string WidgetNavigationRegion = "WidgetNavigationRegion";
+        // public static string WidgetDetailRegion = "WidgetDetailRegion";
+
+        public static string BehaviorMainRegion = "BehaviorMainRegion";
+        // public static string BehaviorNavigationRegion = "BehaviorNavigationRegion";
+        // public static string BehaviorDetailRegion = "BehaviorDetailRegion";
     }
 }

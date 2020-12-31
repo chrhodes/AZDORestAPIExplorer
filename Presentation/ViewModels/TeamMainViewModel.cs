@@ -94,7 +94,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(collection, client);
 
-                    var requestUri = $"{collection.Uri}/_apis/teams?api-version=6.1-preview.3";
+                    var requestUri = $"{collection.Uri}/_apis/teams?$top=300&api-version=6.1-preview.3";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 

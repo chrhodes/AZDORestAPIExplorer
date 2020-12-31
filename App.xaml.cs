@@ -146,6 +146,12 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(HTTPExchangeModule));
 
+            moduleCatalog.AddModule(typeof(WidgetModule));
+
+            moduleCatalog.AddModule(typeof(DashboardModule));
+
+            moduleCatalog.AddModule(typeof(BehaviorModule));
+
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -190,9 +196,7 @@ namespace AZDORestApiExplorer
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
 
-            //return Container.Resolve<MainWindow>();
-            //return Container.Resolve<MainWindowDxLayout>();
-            return Container.Resolve<MainWindowDxDockLayoutManager>();
+            return Container.Resolve<MainWindow>();
         }
 
         // 12

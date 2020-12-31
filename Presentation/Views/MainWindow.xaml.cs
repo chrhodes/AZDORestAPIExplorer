@@ -20,7 +20,7 @@ namespace AZDORestApiExplorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace AZDORestApiExplorer.Domain
         public Team SelectedTeam { get; set; }
         public Process SelectedProcess { get; set; }
         public WorkItemType SelectedWorkItemType { get; set; }
+        public Dashboard SelectedDashboard { get; set; }
     }
 }

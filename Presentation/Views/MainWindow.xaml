@@ -5,17 +5,267 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
-    
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"    
+        
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
     xmlns:prism="http://prismlibrary.com/"
-
+    
+    xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    
     Width="1200"
     Height="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Title="{Binding Title}"
-    d:DesignHeight="200" d:DesignWidth="300"
- >
-    <Grid>
-        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static infra:RegionNames.MainRegion}" />
-    </Grid>
+    d:DesignHeight="200" d:DesignWidth="300"         
+>
+    <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
+
+    <dxlc:LayoutControl
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="Transparent"
+        Name="lc_Root"
+        Orientation="Vertical">
+        <dxlc:LayoutControl.AvailableItems>
+            <!-- Add things that are optionally displayable-->
+            <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+                <StackPanel>
+                    <Label Content="lp_OptStuff1 Goes Here" />
+                    <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                </StackPanel>
+            </dxdo:LayoutPanel>
+            <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
+                <StackPanel>
+                    <Label Content="lp_OptStuff2 Goes Here" />
+                    <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                </StackPanel>
+            </dxdo:LayoutPanel>
+        </dxlc:LayoutControl.AvailableItems>
+        
+        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+            <Label Content="lg_Header Stuff Goes Here" />
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup Name="lg_Body">
+
+            <dxdo:DockLayoutManager
+                dx:StyleManager.ApplyApplicationTheme="True"
+                FloatingMode="Desktop"
+                FontSize="12"
+                Name="lg_Body_dlm">
+
+                <dxdo:LayoutGroup Orientation="Horizontal">
+
+                    <dxdo:LayoutGroup Name="lg_Body_dlm_lg" Orientation="Vertical">
+                        <dxdo:LayoutPanel
+                            x:Name="lp_LeftStuff"
+                            Caption="Collections"
+                            ItemHeight="150">
+                            <dxlc:LayoutGroup Header="Collections">
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+                        
+                        <dxdo:LayoutPanel
+                                x:Name="lp_TopStuff"
+                                Caption="Commands"
+                                ItemHeight="150">
+                            <dxlc:LayoutGroup Header="Commands" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+                    
+                        <dxdo:LayoutPanel
+                            FontSize="12"
+                            MinHeight="400"
+                            Name="lg_Body_dlm_lg_lpRoot">
+                            <dxlc:LayoutControl
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Background="Transparent"
+                                Orientation="Vertical"
+                                StretchContentVertically="True">
+                                <!-- This makes content stretch to bottom -->
+                                <dxlc:LayoutGroup
+                                    Name="groupContainer"
+                                    Orientation="Vertical"
+                                    View="Tabs">
+                                    <dxlc:LayoutGroup.GroupBoxStyle>
+                                        <Style TargetType="dxlc:GroupBox">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                            <Setter Property="Padding" Value="0" />
+                                            <Setter Property="TitleVisibility" Value="Collapsed" />
+                                        </Style>
+                                    </dxlc:LayoutGroup.GroupBoxStyle>
+
+                                    <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
+                                
+                                    <!--<dxlc:LayoutGroup Header="Cat" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatMainRegion}" />
+                                        </Grid>
+                                        --><!--<Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200"/>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentControl Grid.Column="0" 
+                                                            prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" />
+                                            <ContentControl Grid.Column="1" 
+                                                            prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" />
+                                        </Grid>--><!--
+                                    </dxlc:LayoutGroup>-->
+
+                                    <!--<dxlc:LayoutGroup Header="Collections" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>-->
+
+                                    <dxlc:LayoutGroup Header="Processes" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Lists">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ListMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Projects" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProjectMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Teams" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TeamMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="WorkItemTypes">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="States">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StateMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Fields">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Dashboards">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.DashboardMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                    <dxlc:LayoutGroup Header="Widgets">
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WidgetMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+
+                                </dxlc:LayoutGroup>
+                            
+                            </dxlc:LayoutControl>
+                        
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel
+                                    x:Name="lp_BottomStuff"
+                                    Caption="HTTP Exchange" >
+                            <dxlc:LayoutGroup Header="HTTP Exchange" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+                        
+                    </dxdo:LayoutGroup>
+
+                    <dxdo:LayoutGroup >
+                        <dxdo:LayoutPanel 
+                                    Caption="Context" >
+                            <dxlc:LayoutGroup Header="Context">
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:LayoutGroup>
+                        
+                </dxdo:LayoutGroup>
+
+                <dxdo:DockLayoutManager.FloatGroups>
+                    <dxdo:FloatGroup>
+
+                    </dxdo:FloatGroup>
+                </dxdo:DockLayoutManager.FloatGroups>
+                
+                <dxdo:DockLayoutManager.AutoHideGroups>
+
+                    <dxdo:AutoHideGroup DockType="Top">
+                        <!--<dxdo:LayoutPanel
+                            x:Name="lp_TopStuff"
+                            Caption="Commands"
+                            ItemHeight="150">
+                            <dxlc:LayoutGroup Header="Commands" >
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>-->
+                    </dxdo:AutoHideGroup>
+                    
+                    <dxdo:AutoHideGroup DockType="Left">
+
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Right">
+  
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Bottom">
+
+                    </dxdo:AutoHideGroup>
+
+                </dxdo:DockLayoutManager.AutoHideGroups>
+
+            </dxdo:DockLayoutManager>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
+            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatusBarRegion}" />
+            <Label Content="lg_Footer Stuff Goes Here" />
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+
 </Window>
+

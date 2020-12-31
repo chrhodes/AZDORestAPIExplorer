@@ -36,7 +36,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <dxlc:LayoutGroup Header="Context"
+        <dxlc:LayoutGroup Header="WorkItemTracking"
         	View="GroupBox" Orientation="Vertical" 
         	VerticalAlignment="Top" HorizontalAlignment="Stretch"
         	IsCollapsible="True"  IsCollapsed="False">

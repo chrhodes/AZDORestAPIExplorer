@@ -16,127 +16,146 @@
              
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
+    Background="White"
 >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+
+    <dxlc:LayoutGroup 
+        View="Group" Orientation="Horizontal" >
         
-            <StackPanel Grid.Column="0" Orientation="Vertical">
-                <Label Content="Core" />
-                <WrapPanel Width="300">
-                    <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
+
+    <dxlc:LayoutGroup Header="Core"
+        View="GroupBox" Orientation="Vertical" 
+        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        IsCollapsible="True"  IsCollapsed="False">
+
+        <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
                     
-                    <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
+        <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
                     
-                    <!--<Button Click="GetProjects_Click">GET projects</Button>-->
+        <!--<Button Click="GetProjects_Click">GET projects</Button>-->
                     
-                    <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
-                    <Button Click="GetAllTeams_Click">GET teams</Button>
-                    <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
-                    <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
+        <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
+        <Button Click="GetAllTeams_Click">GET teams</Button>
+        <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
+        <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
                    
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		Command="{Binding GetProcessesCommand }"
-                    		Content="{Binding GetProcessesContent, FallbackValue='GetProcesses' }"
-                    		ToolTip="{Binding GetProcessesToolTip, FallbackValue='GetProcesses ToolTip' }" />
-                    </dxlc:LayoutItem>
+        <dxlc:LayoutItem>
+            <Button 
+                Command="{Binding GetProcessesCommand }"
+                Content="{Binding GetProcessesContent, FallbackValue='GetProcesses' }"
+                ToolTip="{Binding GetProcessesToolTip, FallbackValue='GetProcesses ToolTip' }" />
+        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		Command="{Binding GetProjectsCommand }"
-                    		Content="{Binding GetProjectsContent, FallbackValue='GetProjects' }"
-                    		ToolTip="{Binding GetProjectsToolTip, FallbackValue='GetProjects ToolTip' }" />
-                    </dxlc:LayoutItem>
+        <dxlc:LayoutItem>
+            <Button 
+                Command="{Binding GetProjectsCommand }"
+                Content="{Binding GetProjectsContent, FallbackValue='GetProjects' }"
+                ToolTip="{Binding GetProjectsToolTip, FallbackValue='GetProjects ToolTip' }" />
+        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		Command="{Binding GetTeamsCommand }"
-                    		Content="{Binding GetTeamsContent, FallbackValue='GetTeams' }"
-                    		ToolTip="{Binding GetTeamsToolTip, FallbackValue='GetTeams ToolTip' }" />
-                    </dxlc:LayoutItem>
+        <dxlc:LayoutItem>
+            <Button 
+                Command="{Binding GetTeamsCommand }"
+                Content="{Binding GetTeamsContent, FallbackValue='GetTeams' }"
+                ToolTip="{Binding GetTeamsToolTip, FallbackValue='GetTeams ToolTip' }" />
+        </dxlc:LayoutItem>
 
-                </WrapPanel>
-                
+    </dxlc:LayoutGroup>
+
+    <dxlc:LayoutGroup Header="Dashboard"
+        View="GroupBox" Orientation="Vertical" 
+        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        IsCollapsible="True"  IsCollapsed="False">
+
+        <dxlc:LayoutItem>
+            <Button 
+                Command="{Binding GetDashboardsCommand }"
+                Content="{Binding GetDashboardsContent, FallbackValue='GetDashboards' }"
+                ToolTip="{Binding GetDashboardsToolTip, FallbackValue='GetDashboards ToolTip' }" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem>
+            <Button 
+                Command="{Binding GetWidgetsCommand }"
+                Content="{Binding GetWidgetsContent, FallbackValue='GetWidgets' }"
+                ToolTip="{Binding GetWidgetsToolTip, FallbackValue='GetWidgets ToolTip' }" />
+        </dxlc:LayoutItem>
+
+    </dxlc:LayoutGroup>
+        <!--<StackPanel Orientation="Vertical">
+            <Label Content="Status" />
+            <WrapPanel Width="200">
+                <Button Click="GetHealth_Click">GET status/health</Button>
+                <Button Click="GetRegionMetaData_Click">GET status/region-metadata</Button>
+            </WrapPanel>
+        </StackPanel>-->
+
+
+
+    <dxlc:LayoutGroup Header="Work Item Tracking Process"
+        View="GroupBox" Orientation="Vertical" 
+        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        IsCollapsible="True"  IsCollapsed="False">
+
+            <dxlc:LayoutItem>
+                <Button 
+                    		Command="{Binding GetWorkItemTypesCommand }"
+                    		Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
+                    		ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button 
+                    		    Command="{Binding GetStatesCommand }"
+                    		    Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
+                    		    ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button 
+                    		    Command="{Binding GetFieldsCommand }"
+                    		    Content="{Binding GetFieldsContent, FallbackValue='GetFields' }"
+                    		    ToolTip="{Binding GetFieldsToolTip, FallbackValue='GetFields ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button 
+                    		        Command="{Binding GetListsCommand }"
+                    		        Content="{Binding GetListsContent, FallbackValue='GetLists' }"
+                    		        ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
+            </dxlc:LayoutItem>
+
+    </dxlc:LayoutGroup>
+
+    <dxlc:LayoutGroup Header="Work Item Tracking Process Template"
+        View="GroupBox" Orientation="Vertical" 
+        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        IsCollapsible="True"  IsCollapsed="False">
+
+    </dxlc:LayoutGroup>
+
+
+
+    <!--<StackPanel Orientation="Vertical">
+            <Label Content="Work Item Tracking Process" />
+            <TextBlock Text="{Binding Processes.SelectedItem.typeId}" />
+            <StackPanel Width="200">
+                <Button Click="GetWorkItemTypes_Click">GET WorkItemTypes</Button>
+                <Button Click="GetBehaviors_Click">GET Behaviors</Button>
+
+                <Button Click="GetLists_Click">GET Processes Lists</Button>
+                <Button Click="GetList_Click">GET Lists</Button>
+
+
             </StackPanel>
-
-            <!--<StackPanel Orientation="Vertical">
-                <Label Content="Status" />
-                <WrapPanel Width="200">
-                    <Button Click="GetHealth_Click">GET status/health</Button>
-                    <Button Click="GetRegionMetaData_Click">GET status/region-metadata</Button>
-                </WrapPanel>
-            </StackPanel>-->
-
-            <StackPanel Grid.Column="1" Orientation="Vertical">
-                <Label Content="Work Item Tracking" />
-                <WrapPanel Width="200">
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		    Command="{Binding GetWorkItemTypesCommand }"
-                    		    Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
-                    		    ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		        Command="{Binding GetStatesCommand }"
-                    		        Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
-                    		        ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		        Command="{Binding GetFieldsCommand }"
-                    		        Content="{Binding GetFieldsContent, FallbackValue='GetFields' }"
-                    		        ToolTip="{Binding GetFieldsToolTip, FallbackValue='GetFields ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		            Command="{Binding GetListsCommand }"
-                    		            Content="{Binding GetListsContent, FallbackValue='GetLists' }"
-                    		            ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                </WrapPanel>
+            <TextBlock Text="{Binding WorkItemTypes.SelectedItem.referenceName}" />
+            <StackPanel>
+                <Button Click="GetFields_Click">GET Fields</Button>
+                <Button Click="GetField_Click">GET Field</Button>
+                <Button Click="GetStates_Click">GET States</Button>
+                <Button Click="GetState_Click">GET State</Button>
             </StackPanel>
+        </StackPanel>-->
 
-            <!--<StackPanel Orientation="Vertical">
-                <Label Content="Work Item Tracking Process" />
-                <TextBlock Text="{Binding Processes.SelectedItem.typeId}" />
-                <StackPanel Width="200">
-                    <Button Click="GetWorkItemTypes_Click">GET WorkItemTypes</Button>
-                    <Button Click="GetBehaviors_Click">GET Behaviors</Button>
-
-                    <Button Click="GetLists_Click">GET Processes Lists</Button>
-                    <Button Click="GetList_Click">GET Lists</Button>
-
-
-                </StackPanel>
-                <TextBlock Text="{Binding WorkItemTypes.SelectedItem.referenceName}" />
-                <StackPanel>
-                    <Button Click="GetFields_Click">GET Fields</Button>
-                    <Button Click="GetField_Click">GET Field</Button>
-                    <Button Click="GetStates_Click">GET States</Button>
-                    <Button Click="GetState_Click">GET State</Button>
-                </StackPanel>
-            </StackPanel>-->
-
-            <!--<StackPanel Orientation="Vertical">
-                <Label Content="Misc" />
-                <WrapPanel Width="200">
-                    <Button Click="SampleREST_Click">SampleREST</Button>
-                    <Button Click="PersonalAccessToken_Click">PersonalAccessToken</Button>
-                    <Button Click="MicrosoftAccount_Click">MicrosoftAccount</Button>
-                    <Button Click="OAuth_Click">OAuth</Button>
-                    <Button Click="AzureActiveDirectory_Click">AzureActiveDirectory</Button>
-                </WrapPanel>
-            </StackPanel>-->
-            <!--<Label Content="RequestUri" />
-                <TextBlock Text="{Binding RequestUri}" />-->
-        
-    </Grid>
+    </dxlc:LayoutGroup>
 </vncmvvm:ViewBase>
