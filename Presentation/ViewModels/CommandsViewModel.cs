@@ -128,151 +128,97 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Public Methods
 
 
-        #endregion
+        #region Commands
 
-        #region Protected Methods
+        // TODO(crhodes)
+        // Decide if these need to be public
 
+        #region Behavior Command
 
-        #endregion
-
-        #region Private Methods
-
-
-        #endregion
-
-        #region GetProcesses Command
-
-        public DelegateCommand GetProcessesCommand { get; set; }
-        public string GetProcessesContent { get; set; } = "GetProcesses";
-        public string GetProcessesToolTip { get; set; } = "GetProcesses ToolTip";
+        public DelegateCommand BehaviorCommand { get; set; }
+        public string BehaviorContent { get; set; } = "Behavior";
+        public string BehaviorToolTip { get; set; } = "Behavior ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
-        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
+        //public string BehaviorContent { get; set; } = "ViewName_BehaviorContent";
+        //public string BehaviorToolTip { get; set; } = "ViewName_BehaviorContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
+        //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>  
 
-        public void OnGetProcessesExecute()
+        public void OnBehaviorExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
             // TODO(crhodes)
             // Do something amazing.
-            //Message = "Cool, you called GetProcesses";
-            EventAggregator.GetEvent<GetProcessesEvent>().Publish(
-                _collectionMainViewModel.SelectedCollection.Details);
+            //Message = "Cool, you called BehaviorExecute";
 
-            // Start Cut Four
+            // If using events to tell something else to act
+
+            //	Common.EventAggregator.GetEvent<BehaviorEvent>().Publish();
+
+            // Put this in Core\Events
+            //    public class BehaviorEvent : PubSubEvent { }
 
             // Put this in places that listen for event
-            //Common.EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
+            //Common.EventAggregator.GetEvent<BehaviorEvent>().Subscribe(Behavior);
 
-            // End Cut Four
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetProcessesCanExecute()
+        public bool OnBehaviorCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
             return true;
         }
 
-        #endregion
+        
 
-        #region GetWorkItemTypes Command
-
-        public DelegateCommand GetWorkItemTypesCommand { get; set; }
-        public string GetWorkItemTypesContent { get; set; } = "GetWorkItemTypes";
-        public string GetWorkItemTypesToolTip { get; set; } = "GetWorkItemTypes ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
-        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
-
-        public void OnGetWorkItemTypesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-            // TODO(crhodes)
-            // Do something amazing.
-            //Message = "Cool, you called GetProcesses";
-            EventAggregator.GetEvent<GetWorkItemTypesEvent>().Publish(
-                new GetWorkItemTypesEventArgs()
-                {
-                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
-                    Process = _contextMainViewModel.Context.SelectedProcess
-                });
-
-            // Start Cut Four
-
-            // Put this in places that listen for event
-            //Common.EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
-
-            // End Cut Four
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        public bool OnGetWorkItemTypesCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            if (_collectionMainViewModel.SelectedCollection is null 
-                || _contextMainViewModel.Context.SelectedProcess is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
+        // Put this in InitializeViewModel or Constructor
+        BehaviorCommand = new DelegateCommand(OnBehaviorExecute, OnBehaviorCanExecute);
 
         #endregion
 
-        #region GetStates Command
 
-        public DelegateCommand GetStatesCommand { get; set; }
-        public string GetStatesContent { get; set; } = "GetStates";
-        public string GetStatesToolTip { get; set; } = "GetStates ToolTip";
+
+
+
+        #region GetDashboards Command
+
+        public DelegateCommand GetDashboardsCommand { get; set; }
+        public string GetDashboardsContent { get; set; } = "GetDashboards";
+        public string GetDashboardsToolTip { get; set; } = "GetDashboards ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetStatesContent { get; set; } = "ViewName_GetStatesContent";
-        //public string GetStatesToolTip { get; set; } = "ViewName_GetStatesContentToolTip";
+        //public string GetDashboardsContent { get; set; } = "ViewName_GetDashboardsContent";
+        //public string GetDashboardsToolTip { get; set; } = "ViewName_GetDashboardsContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
-        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetDashboardsContent">GetDashboards</system:String>
+        //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>  
 
-        public void OnGetStatesExecute()
+        public void OnGetDashboardsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetStatesEvent>().Publish(
-                new GetStatesEventArgs()
+            EventAggregator.GetEvent<GetDashboardsEvent>().Publish(
+                new GetDashboardsEventArgs()
                 {
                     CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
-                    Process = _contextMainViewModel.Context.SelectedProcess,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetStatesCanExecute()
+        public bool OnGetDashboardsCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
             {
                 return false;
             }
@@ -369,42 +315,168 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region GetDashboards Command
+        #region GetProcesses Command
 
-        public DelegateCommand GetDashboardsCommand { get; set; }
-        public string GetDashboardsContent { get; set; } = "GetDashboards";
-        public string GetDashboardsToolTip { get; set; } = "GetDashboards ToolTip";
+        public DelegateCommand GetProcessesCommand { get; set; }
+        public string GetProcessesContent { get; set; } = "GetProcesses";
+        public string GetProcessesToolTip { get; set; } = "GetProcesses ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetDashboardsContent { get; set; } = "ViewName_GetDashboardsContent";
-        //public string GetDashboardsToolTip { get; set; } = "ViewName_GetDashboardsContentToolTip";
+        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
+        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetDashboardsContent">GetDashboards</system:String>
-        //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void OnGetDashboardsExecute()
+        public void OnGetProcessesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetProcesses";
+            EventAggregator.GetEvent<GetProcessesEvent>().Publish(
+                _collectionMainViewModel.SelectedCollection.Details);
+
+            // Start Cut Four
+
+            // Put this in places that listen for event
+            //Common.EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
+
+            // End Cut Four
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetProcessesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetProjects Command
+
+        public DelegateCommand GetProjectsCommand { get; set; }
+        public string GetProjectsContent { get; set; } = "GetProjects";
+        public string GetProjectsToolTip { get; set; } = "GetProjects ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetProjectsContent { get; set; } = "ViewName_GetProjectsContent";
+        //public string GetProjectsToolTip { get; set; } = "ViewName_GetProjectsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetProjectsContent">GetProjects</system:String>
+        //    <system:String x:Key="ViewName_GetProjectsContentToolTip">GetProjects ToolTip</system:String>  
+
+        public void OnGetProjectsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetProjects";
+            EventAggregator.GetEvent<GetProjectsEvent>().Publish(
+                _collectionMainViewModel.SelectedCollection.Details);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetProjectsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetStates Command
+
+        public DelegateCommand GetStatesCommand { get; set; }
+        public string GetStatesContent { get; set; } = "GetStates";
+        public string GetStatesToolTip { get; set; } = "GetStates ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetStatesContent { get; set; } = "ViewName_GetStatesContent";
+        //public string GetStatesToolTip { get; set; } = "ViewName_GetStatesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
+
+        public void OnGetStatesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetDashboardsEvent>().Publish(
-                new GetDashboardsEventArgs()
+            EventAggregator.GetEvent<GetStatesEvent>().Publish(
+                new GetStatesEventArgs()
                 {
                     CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Team = _contextMainViewModel.Context.SelectedTeam
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetDashboardsCanExecute()
+        public bool OnGetStatesCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedTeam is null)
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetTeams Command
+
+        public DelegateCommand GetTeamsCommand { get; set; }
+        public string GetTeamsContent { get; set; } = "GetTeams";
+        public string GetTeamsToolTip { get; set; } = "GetTeams ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTeamsContent { get; set; } = "ViewName_GetTeamsContent";
+        //public string GetTeamsToolTip { get; set; } = "ViewName_GetTeamsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
+        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
+
+        public void OnGetTeamsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetTeams";
+            EventAggregator.GetEvent<GetTeamsEvent>().Publish(
+                _collectionMainViewModel.SelectedCollection.Details);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetTeamsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
                 return false;
             }
@@ -457,38 +529,48 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region GetWorkItemTypes Command
 
-        #region GetProjects Command
-
-        public DelegateCommand GetProjectsCommand { get; set; }
-        public string GetProjectsContent { get; set; } = "GetProjects";
-        public string GetProjectsToolTip { get; set; } = "GetProjects ToolTip";
+        public DelegateCommand GetWorkItemTypesCommand { get; set; }
+        public string GetWorkItemTypesContent { get; set; } = "GetWorkItemTypes";
+        public string GetWorkItemTypesToolTip { get; set; } = "GetWorkItemTypes ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetProjectsContent { get; set; } = "ViewName_GetProjectsContent";
-        //public string GetProjectsToolTip { get; set; } = "ViewName_GetProjectsContentToolTip";
+        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
+        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetProjectsContent">GetProjects</system:String>
-        //    <system:String x:Key="ViewName_GetProjectsContentToolTip">GetProjects ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void OnGetProjectsExecute()
+        public void OnGetWorkItemTypesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
             // TODO(crhodes)
             // Do something amazing.
-            //Message = "Cool, you called GetProjects";
-            EventAggregator.GetEvent<GetProjectsEvent>().Publish(
-                _collectionMainViewModel.SelectedCollection.Details);
+            //Message = "Cool, you called GetProcesses";
+            EventAggregator.GetEvent<GetWorkItemTypesEvent>().Publish(
+                new GetWorkItemTypesEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                });
 
+            // Start Cut Four
+
+            // Put this in places that listen for event
+            //Common.EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
+
+            // End Cut Four
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetProjectsCanExecute()
+        public bool OnGetWorkItemTypesCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (_collectionMainViewModel.SelectedCollection is null)
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
             {
                 return false;
             }
@@ -498,44 +580,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #endregion
 
-        #region GetTeams Command
 
-        public DelegateCommand GetTeamsCommand { get; set; }
-        public string GetTeamsContent { get; set; } = "GetTeams";
-        public string GetTeamsToolTip { get; set; } = "GetTeams ToolTip";
+        #endregion
 
-        // Can get fancy and use Resources
-        //public string GetTeamsContent { get; set; } = "ViewName_GetTeamsContent";
-        //public string GetTeamsToolTip { get; set; } = "ViewName_GetTeamsContentToolTip";
+        #region Protected Methods
 
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
-        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
 
-        public void OnGetTeamsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-            // TODO(crhodes)
-            // Do something amazing.
-            //Message = "Cool, you called GetTeams";
-            EventAggregator.GetEvent<GetTeamsEvent>().Publish(
-                _collectionMainViewModel.SelectedCollection.Details);
+        #endregion
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        #region Private Methods
 
-        public bool OnGetTeamsCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
 
         #endregion
 
