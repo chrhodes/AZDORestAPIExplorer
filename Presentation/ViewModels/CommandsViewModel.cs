@@ -44,10 +44,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand = new DelegateCommand(OnGetProjectsExecute, OnGetProjectsCanExecute);
             GetTeamsCommand = new DelegateCommand(OnGetTeamsExecute, OnGetTeamsCanExecute);
             GetWorkItemTypesCommand = new DelegateCommand(OnGetWorkItemTypesExecute, OnGetWorkItemTypesCanExecute);
+            GetStatesCommand = new DelegateCommand(OnGetStatesExecute, OnGetStatesCanExecute);
+            GetFieldsCommand = new DelegateCommand(OnGetFieldsExecute, OnGetFieldsCanExecute);
+            GetListsCommand = new DelegateCommand(OnGetListsExecute, OnGetListsCanExecute);
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
             EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
@@ -64,6 +68,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseProcessChanged(Process process)
         {
             GetWorkItemTypesCommand.RaiseCanExecuteChanged();
+            GetListsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseWorkItemTypeChanged(WorkItemType workItemType)
+        {
+            GetStatesCommand.RaiseCanExecuteChanged();
+            GetFieldsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProjectChanged(Project project)
@@ -234,7 +245,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new GetStatesEventArgs()
                 {
                     CollectionDetails = _collectionMainViewModel.SelectedCollection.Details,
-                    Process = _contextMainViewModel.Context.SelectedProcess
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -245,7 +257,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemType is null)
             {
                 return false;
             }
@@ -285,6 +298,49 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         public bool OnGetFieldsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetLists Command
+
+        public DelegateCommand GetListsCommand { get; set; }
+        public string GetListsContent { get; set; } = "GetLists";
+        public string GetListsToolTip { get; set; } = "GetLists ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetListsContent { get; set; } = "ViewName_GetListsContent";
+        //public string GetListsToolTip { get; set; } = "ViewName_GetListsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetListsContent">GetLists</system:String>
+        //    <system:String x:Key="ViewName_GetListsContentToolTip">GetLists ToolTip</system:String>  
+
+        public void OnGetListsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetListsEvent>().Publish(
+                new GetListsEventArgs()
+                {
+                    CollectionDetails = _collectionMainViewModel.SelectedCollection.Details
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool OnGetListsCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

@@ -37,6 +37,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(TeamChanged);
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
+            EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(WorkItemTypeChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -54,6 +55,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void ProcessChanged(Process process)
         {
             Context.SelectedProcess = process;
+        }
+
+        private void WorkItemTypeChanged(WorkItemType workItemType)
+        {
+            Context.SelectedWorkItemType = workItemType;
         }
 
         #endregion

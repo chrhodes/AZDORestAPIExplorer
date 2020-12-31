@@ -138,6 +138,12 @@
                                     </Grid>
                                 </dxlc:LayoutGroup>
 
+                                <dxlc:LayoutGroup Header="Lists">
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ListMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
+
                                 <dxlc:LayoutGroup Header="Projects" >
                                     <Grid>
                                         <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProjectMainRegion}" />
@@ -156,11 +162,17 @@
                                     </Grid>
                                 </dxlc:LayoutGroup>
 
-                                <!--<dxlc:LayoutGroup Header="Commands" >
+                                <dxlc:LayoutGroup Header="States">
                                     <Grid>
-                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StateMainRegion}" />
                                     </Grid>
-                                </dxlc:LayoutGroup>-->
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutGroup Header="Fields">
+                                    <Grid>
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldMainRegion}" />
+                                    </Grid>
+                                </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>

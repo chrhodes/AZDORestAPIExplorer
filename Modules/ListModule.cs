@@ -15,13 +15,13 @@ using VNC;
 
 namespace AZDORestApiExplorer
 {
-    public class FieldModule : IModule
+    public class ListModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public FieldModule(IRegionManager regionManager)
+        public ListModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -36,11 +36,11 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
-            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
+            containerRegistry.Register<IListMainViewModel, ListMainViewModel>();
+            containerRegistry.RegisterSingleton<IListMain, ListMain>();
 
-            // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
-            // containerRegistry.Register<IFieldDataService, FieldDataService>();
+            // containerRegistry.RegisterSingleton<IListLookupDataService, ListLookupDataService>();
+            // containerRegistry.Register<IListDataService, ListDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -55,23 +55,11 @@ namespace AZDORestApiExplorer
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads FieldMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.FieldMainRegion, typeof(IFieldMain));
+            //this loads ListMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.ListMainRegion, typeof(IListMain));
 
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
-
-        // TODO(crhodes)
-        // Place these in Core\RegionNames.cs
-
-        public static string FieldMainRegion = "FieldMainRegion";
-        // public static string FieldNavigationRegion = "FieldNavigationRegion";
-        // public static string FieldDetailRegion = "FieldDetailRegion";
-
-        // TODO(crhodes)
-        // Add this to App.xaml.cs - ConfigureModuleCatalog()
-
-        moduleCatalog.AddModule(typeof(FieldModule));
     }
 }

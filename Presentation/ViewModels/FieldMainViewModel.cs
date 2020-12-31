@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 
@@ -86,7 +92,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // TODO(crhodes)
         // Put Request Handler Here - Check Parameters
         // Update GetFieldEventArgs as needed
-        private async void GetField(GetFieldEventArgs args)
+        private async void GetFields(GetFieldsEventArgs args)
         {
             try
             {
@@ -96,7 +102,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
-                    var requestUri = $"{collection.Uri}/_apis/work/processes/{selectedProcess.typeId}/workItemTypes/{selectedWorkItem.referenceName}/states?api-version=6.1-preview.1";
+                    var requestUri = $"{args.CollectionDetails.Uri}/_apis/work/processes/{args.Process.typeId}"
+                        + $"/workItemTypes/{args.WorkItemType.referenceName}/fields?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -110,9 +117,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldRoot>(outJson);
+                        FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldsRoot>(outJson);
 
-                        States.ResultItems = new ObservableCollection<Domain.Field>(resultRoot.value);
+                        Fields.ResultItems = new ObservableCollection<Domain.Field>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

@@ -17,12 +17,12 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class StateMainViewModel : HTTPExchangeBase, IStateMainViewModel
+    public class ListMainViewModel : HTTPExchangeBase, IListMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public StateMainViewModel(
+        public ListMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -42,10 +42,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
+            EventAggregator.GetEvent<GetListsEvent>().Subscribe(GetLists);
 
-            EventAggregator.GetEvent<GetStatesEvent>().Subscribe(GetStates);
-
-            this.States.PropertyChanged += PublishSelectionChanged;
+            this.Lists.PropertyChanged += PublishSelectionChanged;
 
             // TODO(crhodes)
             //
@@ -67,7 +66,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.State> States { get; set; } = new RESTResult<Domain.State>();
+        public RESTResult<Domain.List> Lists { get; set; } = new RESTResult<Domain.List>();
 
 
         #endregion
@@ -90,9 +89,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Private Methods
 
         // TODO(crhodes)
-        // Put Request Handler Here
-
-        private async void GetStates(GetStatesEventArgs args)
+        // Put Request Handler Here - Check Parameters
+        // Update GetListEventArgs as needed
+        private async void GetLists(GetListsEventArgs args)
         {
             try
             {
@@ -100,8 +99,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.CollectionDetails, client);
 
-                    var requestUri = $"{args.CollectionDetails.Uri}/_apis/work/processes/{args.Process.typeId}"
-                        + $"/workItemTypes/{args.WorkItemType.referenceName}/states?api-version=6.1-preview.1";
+                    // TODO(crhodes)
+                    // Update Uri  Use args for parameters.
+                    var requestUri = $"{args.CollectionDetails.Uri}/_apis/work/processes/lists?api-version=6.0-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -115,15 +115,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        StatesRoot resultRoot = JsonConvert.DeserializeObject<StatesRoot>(outJson);
+                        ListsRoot resultRoot = JsonConvert.DeserializeObject<ListsRoot>(outJson);
 
-                        States.ResultItems = new ObservableCollection<Domain.State>(resultRoot.value);
+                        Lists.ResultItems = new ObservableCollection<Domain.List>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        States.Count = States.ResultItems.Count;
+                        Lists.Count = Lists.ResultItems.Count;
                     }
                 }
             }
@@ -140,7 +140,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedStateChangedEvent>().Publish(States.SelectedItem);
+            EventAggregator.GetEvent<SelectedListChangedEvent>().Publish(Lists.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -94,6 +94,13 @@
                     		        ToolTip="{Binding GetFieldsToolTip, FallbackValue='GetFields ToolTip' }" />
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		            Command="{Binding GetListsCommand }"
+                    		            Content="{Binding GetListsContent, FallbackValue='GetLists' }"
+                    		            ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
+                    </dxlc:LayoutItem>
+
                 </WrapPanel>
             </StackPanel>
 

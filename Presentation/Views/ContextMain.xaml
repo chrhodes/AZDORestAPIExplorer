@@ -58,8 +58,8 @@
             	VerticalAlignment="Top" HorizontalAlignment="Stretch"
             	IsCollapsible="True"  IsCollapsed="False">
 
-                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                        <TextBlock Text="" />
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedWorkItemType.referenceName}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">

@@ -15,13 +15,13 @@ using VNC;
 
 namespace AZDORestApiExplorer
 {
-    public class StateModule : IModule
+    public class FieldModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public StateModule(IRegionManager regionManager)
+        public FieldModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -36,11 +36,11 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IStateMainViewModel, StateMainViewModel>();
-            containerRegistry.RegisterSingleton<IStateMain, StateMain>();
+            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
+            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
 
-            // containerRegistry.RegisterSingleton<IStateLookupDataService, StateLookupDataService>();
-            // containerRegistry.Register<IStateDataService, StateDataService>();
+            // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
+            // containerRegistry.Register<IFieldDataService, FieldDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -55,8 +55,8 @@ namespace AZDORestApiExplorer
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads StateMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.StateMainRegion, typeof(IStateMain));
+            //this loads FieldMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldMainRegion, typeof(IFieldMain));
 
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);

@@ -134,6 +134,12 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(WorkItemTypeModule));
 
+            moduleCatalog.AddModule(typeof(StateModule));
+
+            moduleCatalog.AddModule(typeof(FieldModule));
+
+            moduleCatalog.AddModule(typeof(ListModule));
+
             moduleCatalog.AddModule(typeof(CollectionModule));
 
             moduleCatalog.AddModule(typeof(ContextModule));
