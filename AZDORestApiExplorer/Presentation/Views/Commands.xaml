@@ -22,44 +22,63 @@
     <dxlc:LayoutGroup
         View="Group" Orientation="Horizontal" >
 
-        <dxlc:LayoutGroup Header="Core"
-            View="GroupBox" Orientation="Vertical"
-            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            IsCollapsible="True"  IsCollapsed="False">
+        <dxlc:LayoutGroup 
+        	View="Group" Orientation="Vertical" >
+            
+            <dxlc:LayoutGroup Header="Accounts"
+                View="GroupBox" Orientation="Vertical"
+                VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                IsCollapsible="True"  IsCollapsed="False">
 
-            <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
+                <dxlc:LayoutItem>
+                    <Button
+                    Command="{Binding GetAccountsCommand }"
+                    Content="{Binding GetAccountsContent, FallbackValue='Get Accounts' }"
+                    ToolTip="{Binding GetAccountsToolTip, FallbackValue='Get Accounts ToolTip' }" />
+                </dxlc:LayoutItem>
 
-            <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
+            </dxlc:LayoutGroup>
 
-            <!--<Button Click="GetProjects_Click">GET projects</Button>-->
+            <dxlc:LayoutGroup Header="Core"
+                View="GroupBox" Orientation="Vertical"
+                VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                IsCollapsible="True"  IsCollapsed="False">
 
-            <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
-                <Button Click="GetAllTeams_Click">GET teams</Button>
-                <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
-                <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
+                    <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
 
-            <dxlc:LayoutItem>
-                <Button
-                Command="{Binding Get_Processes_Command }"
-                Content="{Binding Get_Processes_Content, FallbackValue='Get Processes' }"
-                ToolTip="{Binding Get_Processes_ToolTip, FallbackValue='Get Processes ToolTip' }" />
-            </dxlc:LayoutItem>
+                    <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
 
-            <dxlc:LayoutItem>
-                <Button
-                Command="{Binding Get_Projects_Command }"
-                Content="{Binding Get_Projects_Content, FallbackValue='Get Projects' }"
-                ToolTip="{Binding Get_Projects_ToolTip, FallbackValue='Get Projects ToolTip' }" />
-            </dxlc:LayoutItem>
+                    <!--<Button Click="GetProjects_Click">GET projects</Button>-->
 
-            <dxlc:LayoutItem>
-                <Button
-                Command="{Binding Get_Teams_Command }"
-                Content="{Binding Get_Teams_Content, FallbackValue='Get Teams' }"
-                ToolTip="{Binding Get_Teams_ToolTip, FallbackValue='Get Teams ToolTip' }" />
-            </dxlc:LayoutItem>
+                    <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
+                        <Button Click="GetAllTeams_Click">GET teams</Button>
+                        <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
+                        <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
+
+                <dxlc:LayoutItem>
+                    <Button
+                    Command="{Binding GetProcessesCommand }"
+                    Content="{Binding GetProcessesContent, FallbackValue='Get Processes' }"
+                    ToolTip="{Binding GetProcessesToolTip, FallbackValue='Get Processes ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem>
+                    <Button
+                    Command="{Binding GetProjectsCommand }"
+                    Content="{Binding GetProjectsContent, FallbackValue='Get Projects' }"
+                    ToolTip="{Binding GetProjectsToolTip, FallbackValue='Get Projects ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem>
+                    <Button
+                    Command="{Binding GetTeamsCommand }"
+                    Content="{Binding GetTeamsContent, FallbackValue='Get Teams' }"
+                    ToolTip="{Binding GetTeamsToolTip, FallbackValue='Get Teams ToolTip' }" />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            
         </dxlc:LayoutGroup>
-
+        
         <dxlc:LayoutGroup Header="Dashboard"
             View="GroupBox" Orientation="Vertical"
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
