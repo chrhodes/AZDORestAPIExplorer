@@ -36,8 +36,8 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IProject_MainViewModel, Project_MainViewModel>();
-            containerRegistry.RegisterSingleton<IProject_Main, Project_Main>();
+            containerRegistry.Register<IProjectMainViewModel, ProjectMainViewModel>();
+            containerRegistry.RegisterSingleton<IProjectMain, ProjectMain>();
 
             //containerRegistry.Register<IProjectNavigationViewModel, ProjectNavigationViewModel>();
             //containerRegistry.RegisterSingleton<IProjectNavigation, ProjectNavigation>();
@@ -62,7 +62,7 @@ namespace AZDORestApiExplorer
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             ////this loads ProjectMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(IProject_Main));
+            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(IProjectMain));
 
             //// These load into ProjectMain.xaml
             //_regionManager.RegisterViewWithRegion(RegionNames.ProjectNavigationRegion, typeof(IProjectNavigation));

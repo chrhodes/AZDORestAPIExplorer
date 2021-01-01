@@ -1,4 +1,5 @@
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 namespace AZDORestApiExplorer.Core.Events
 {

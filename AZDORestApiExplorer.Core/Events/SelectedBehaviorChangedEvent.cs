@@ -1,8 +1,8 @@
-﻿using AZDORestApiExplorer.Domain;
+﻿using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class SelectedBehaviorChangedEvent : PubSubEvent<Domain.Behavior> { }
+    public class SelectedBehaviorChangedEvent : PubSubEvent<Behavior> { }
 }

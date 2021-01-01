@@ -1,10 +1,12 @@
-﻿using VNC.Core.Mvvm;
+﻿using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ModelWrappers
 {
-    public class BehaviorWrapper : ModelWrapper<Domain.Behavior>
+    public class BehaviorWrapper : ModelWrapper<Behavior>
     {
-        public BehaviorWrapper(Domain.Behavior model) : base(model)
+        public BehaviorWrapper(Behavior model) : base(model)
         {
         }
 

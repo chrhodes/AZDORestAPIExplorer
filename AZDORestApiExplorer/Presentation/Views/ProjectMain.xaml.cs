@@ -7,10 +7,10 @@ using AZDORestApiExplorer.Presentation.ViewModels;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class Project_Main : ViewBase, IProject_Main, IInstanceCountV
+    public partial class ProjectMain : ViewBase, IProjectMain, IInstanceCountV
     {
 
-        public Project_Main(IProject_MainViewModel viewModel)
+        public ProjectMain(IProjectMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 

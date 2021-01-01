@@ -1,4 +1,4 @@
-﻿using AZDORestApiExplorer.Domain;
+﻿using AZDORestApiExplorer.Domain.Core;
 
 using Prism.Events;
 

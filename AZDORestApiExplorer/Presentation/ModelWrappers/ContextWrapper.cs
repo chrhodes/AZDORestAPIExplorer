@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
 

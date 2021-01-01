@@ -1,8 +1,11 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.Core;
 
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
 using Prism.Events;

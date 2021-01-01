@@ -2,8 +2,11 @@
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Accounts;
+using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Core.Events.Dashboard;
-using AZDORestApiExplorer.Domain;
+
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Prism.Commands;
 using Prism.Events;

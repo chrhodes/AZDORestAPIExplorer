@@ -1,5 +1,6 @@
 ﻿using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 namespace AZDORestApiExplorer.Application
 {

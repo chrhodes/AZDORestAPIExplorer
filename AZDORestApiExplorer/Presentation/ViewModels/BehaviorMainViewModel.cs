@@ -6,6 +6,7 @@ using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -58,7 +59,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Behavior> Behaviors { get; set; } = new RESTResult<Domain.Behavior>();
+        public RESTResult<Behavior> Behaviors { get; set; } = new RESTResult<Behavior>();
 
         #endregion
 
@@ -103,9 +104,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        Domain.BehaviorsRoot resultRoot = JsonConvert.DeserializeObject<Domain.BehaviorsRoot>(outJson);
+                        BehaviorsRoot resultRoot = JsonConvert.DeserializeObject<BehaviorsRoot>(outJson);
 
-                        Behaviors.ResultItems = new ObservableCollection<Domain.Behavior>(resultRoot.value);
+                        Behaviors.ResultItems = new ObservableCollection<Behavior>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

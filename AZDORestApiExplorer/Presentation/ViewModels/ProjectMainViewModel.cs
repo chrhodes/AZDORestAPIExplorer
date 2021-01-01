@@ -7,9 +7,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
-
+using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
-
+using AZDORestApiExplorer.Domain.Core;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,11 +22,11 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class Project_MainViewModel : HTTPExchangeBase, IProject_MainViewModel
+    public class ProjectMainViewModel : HTTPExchangeBase, IProjectMainViewModel
     {
         #region Constructors, Initialization, and Load
 
-        public Project_MainViewModel(
+        public ProjectMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {

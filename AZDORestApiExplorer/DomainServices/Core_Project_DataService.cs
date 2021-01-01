@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Persistence.Data;
 
 using VNC;
