@@ -7,7 +7,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,13 +20,13 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-namespace AZDORestApiExplorer.Presentation.ViewModels
+namespace AZDORestApiExplorer.Presentation.ViewModels.Core
 {
-    public class ProjectMainViewModel : HTTPExchangeBase, IProjectMainViewModel
+    public class Project_MainViewModel : HTTPExchangeBase, IProject_MainViewModel
     {
         #region Constructors, Initialization, and Load
 
-        public ProjectMainViewModel(
+        public Project_MainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -39,22 +41,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            InstanceCountVM++;
-
-            EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(GetProjects);
+            EventAggregator.GetEvent<Get_Projects_Event>().Subscribe(Get_Projects);
 
             this.Projects.PropertyChanged += PublishSelectedProjectChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        private void PublishSelectedProjectChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Projects.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion
@@ -71,7 +62,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Project> Projects { get; set; } = new RESTResult<Domain.Project>();
+        public RESTResult<Project> Projects { get; set; } = new RESTResult<Project>();
 
         #endregion
 
@@ -92,15 +83,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetProjects(CollectionDetails collection)
+        private async void Get_Projects(Get_Projects_EventArgs args)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(collection, client);
+                    Helpers.InitializeHttpClient(args.Organization, client);
 
-                    var requestUri = $"{collection.Uri}/_apis/projects?api-version=6.1-preview.4";
+                    var requestUri = $"{args.Organization.Uri}/_apis/projects?api-version=6.1-preview.4";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -126,7 +117,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                             string continueToken = continuationHeaders.First();
 
-                            string requestUri2 = $"{collection.Uri}/_apis/projects?api-version=6.1-preview.4&continuationToken={continueToken}";
+                            string requestUri2 = $"{args.Organization.Uri}/_apis/projects?api-version=6.1-preview.4&continuationToken={continueToken}";
 
                             exchange2.Uri = requestUri2;
                             exchange2.RequestHeadersX.AddRange(client.DefaultRequestHeaders);
@@ -162,6 +153,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+        }
+
+        private void PublishSelectedProjectChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<Selected_Project_ChangedEvent>().Publish(Projects.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion

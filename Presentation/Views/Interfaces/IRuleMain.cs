@@ -2,7 +2,7 @@
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public interface IProjectMain : IView
+    public interface IRuleMain : IView
     {
     }
 }

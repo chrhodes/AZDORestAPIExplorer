@@ -8,10 +8,12 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.Domain
 {
-    public class Behavior
+    public class SystemControl
     {
     }
     // TODO(crhodes)
-    // Add info from Json TYPEsRoot and TYPE classes
+    // PasteSpecial from Json result text
+
+    // Rename classes to use TYPEsRoot and TYPE classes
 
 }

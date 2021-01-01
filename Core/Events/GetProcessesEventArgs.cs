@@ -2,8 +2,8 @@
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class SelectedProjectChangedEventArgs
+    public class GetProcessesEventArgs
     {
-        public Project Project;
+        public Organization Organization;
     }
 }

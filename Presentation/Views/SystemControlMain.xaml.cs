@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class ProjectMain : ViewBase, IProjectMain, IInstanceCountV
+    public partial class SystemControlMain : ViewBase, ISystemControlMain, IInstanceCountV
     {
 
-        public ProjectMain(ViewModels.IProjectMainViewModel viewModel)
+        public SystemControlMain(ViewModels.ISystemControlMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -17,19 +16,9 @@ namespace AZDORestApiExplorer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            //Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
-
-        //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    Int64 startTicks = Log.EVENT_HANDLER("(ProjectMain) Enter", Common.LOG_APPNAME);
-
-        //    await ((ViewModels.IProjectMainViewModel)ViewModel).LoadAsync();
-
-        //    Log.EVENT_HANDLER("(ProjectMain) Exit", Common.LOG_APPNAME, startTicks);
-        //}
 
         #region IInstanceCount
 

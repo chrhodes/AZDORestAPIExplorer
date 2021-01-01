@@ -13,15 +13,15 @@ using Unity;
 
 using VNC;
 
-namespace AZDORestApiExplorer
+namespace AZDORestApiExplorer.Core
 {
-    public class ProjectModule : IModule
+    public class CoreModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public ProjectModule(IRegionManager regionManager)
+        public CoreModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -36,8 +36,8 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IProjectMainViewModel, ProjectMainViewModel>();
-            containerRegistry.RegisterSingleton<IProjectMain, ProjectMain>();
+            containerRegistry.Register<ICore_ProjectMainViewModel, Project_MainViewModel>();
+            containerRegistry.RegisterSingleton<IProject_Main, Core_ProjectMain>();
 
             //containerRegistry.Register<IProjectNavigationViewModel, ProjectNavigationViewModel>();
             //containerRegistry.RegisterSingleton<IProjectNavigation, ProjectNavigation>();
@@ -62,7 +62,7 @@ namespace AZDORestApiExplorer
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             ////this loads ProjectMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(IProjectMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.Core_ProjectMainRegion, typeof(IProject_Main));
 
             //// These load into ProjectMain.xaml
             //_regionManager.RegisterViewWithRegion(RegionNames.ProjectNavigationRegion, typeof(IProjectNavigation));

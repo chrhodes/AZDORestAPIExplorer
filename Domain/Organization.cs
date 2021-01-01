@@ -4,10 +4,10 @@
     public class AvailableCollection
     {
         public string Name { get; set; }
-        public CollectionDetails Details { get; set; }
+        public Organization Organization { get; set; }
     }
 
-    public class CollectionDetails
+    public class Organization
     {
         public string Uri { get; set; }
         public string PAT { get; set; }

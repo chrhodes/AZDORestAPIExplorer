@@ -10,12 +10,12 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    public class ProjectDataService : GenericEFRepository<Project, AZDORestApiExplorerDbContext>, IProjectDataService
+    public class Core_Project_DataService : GenericEFRepository<Domain.Core.Project, AZDORestApiExplorerDbContext>, ICore_Project_DataService
     {
 
         #region Constructors, Initialization, and Load
 
-        public ProjectDataService(AZDORestApiExplorerDbContext context)
+        public Core_Project_DataService(AZDORestApiExplorerDbContext context)
             : base(context)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
@@ -47,11 +47,11 @@ namespace AZDORestApiExplorer.DomainServices
 
         #region Public Methods
 
-        public override async Task<Project> FindByIdAsync(int id)
+        public override async Task<Domain.Core.Project> FindByIdAsync(int id)
         {
             Int64 startTicks = Log.DOMAINSERVICES("(ProjectDataService) Enter", Common.LOG_APPNAME);
 
-            Project result = null;
+            Domain.Core.Project result = null;
 
             //var result = await Context.ProjectsSet
             //    .Include(f => f.PhoneNumbers)
