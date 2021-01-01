@@ -1,0 +1,8 @@
+PAT_BD-STS-PROD
+6ihogqqtmez7hrzd2bzwm26viz6at6zewkzani63puiwallr7zka
+
+PAT_BD-STS-QA2
+wjetylzcjtas737vm6vy7tvuw4qepip5ni3znptyr7d4tcsxxiuq
+
+PAT_VNC-Development
+vgsdzn2do7jukm6ka2ciu3lthyqq5ydnfvogv2kc7estzmwkff3a
