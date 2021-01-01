@@ -1,7 +1,8 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
-
+using AZDORestApiExplorer.Core.Events.Accounts;
+using AZDORestApiExplorer.Core.Events.Dashboard;
 using AZDORestApiExplorer.Domain;
 
 using Prism.Commands;
@@ -37,24 +38,25 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            Get_Processes_Command = new DelegateCommand(OnGetProcessesExecute, OnGetProcessesCanExecute);
-            Get_Projects_Command = new DelegateCommand(OnGet_Projects_Execute, OnGet_Projects_CanExecute);
-            Get_Teams_Command = new DelegateCommand(OnGetTeamsExecute, OnGetTeamsCanExecute);
-            GetWorkItemTypesCommand = new DelegateCommand(OnGetWorkItemTypesExecute, OnGetWorkItemTypesCanExecute);
-            GetStatesCommand = new DelegateCommand(OnGetStatesExecute, OnGetStatesCanExecute);
-            GetFieldsCommand = new DelegateCommand(OnGetFieldsExecute, OnGetFieldsCanExecute);
-            GetListsCommand = new DelegateCommand(OnGetListsExecute, OnGetListsCanExecute);
-            GetDashboardsCommand = new DelegateCommand(OnGetDashboardsExecute, OnGetDashboardsCanExecute);
-            GetWidgetsCommand = new DelegateCommand(OnGetWidgetsExecute, OnGetWidgetsCanExecute);
-            GetBehaviorsCommand = new DelegateCommand(OnGetBehaviorsExecute, OnGetBehaviorsCanExecute);
-            GetSystemControlsCommand = new DelegateCommand(OnGetSystemControlsExecute, OnGetSystemControlsCanExecute);
-            GetRulesCommand = new DelegateCommand(OnGetRulesExecute, OnGetRulesCanExecute);
+            GetProcessesCommand = new DelegateCommand(GetProcessesExecute, GetProcessesCanExecute);
+            GetProjectsCommand = new DelegateCommand(GetProjectsExecute, GetProjectsCanExecute);
+            GetTeamsCommand = new DelegateCommand(GetTeamsExecute, GetTeamsCanExecute);
+            GetWorkItemTypesCommand = new DelegateCommand(GetWorkItemTypesExecute, GetWorkItemTypesCanExecute);
+            GetStatesCommand = new DelegateCommand(GetStatesExecute, GetStatesCanExecute);
+            GetFieldsCommand = new DelegateCommand(GetFieldsExecute, GetFieldsCanExecute);
+            GetListsCommand = new DelegateCommand(GetListsExecute, GetListsCanExecute);
+            GetDashboardsCommand = new DelegateCommand(GetDashboardsExecute, GetDashboardsCanExecute);
+            GetWidgetsCommand = new DelegateCommand(GetWidgetsExecute, GetWidgetsCanExecute);
+            GetBehaviorsCommand = new DelegateCommand(GetBehaviorsExecute, GetBehaviorsCanExecute);
+            GetSystemControlsCommand = new DelegateCommand(GetSystemControlsExecute, GetSystemControlsCanExecute);
+            GetRulesCommand = new DelegateCommand(GetRulesExecute, GetRulesCanExecute);
+            GetAccountsCommand = new DelegateCommand(GetAccountsExecute, GetAccountsCanExecute);
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
             EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
-            EventAggregator.GetEvent<Selected_Project_ChangedEvent>().Subscribe(Raise_Project_Changed);
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(Raise_Project_Changed);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
             EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
@@ -68,9 +70,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void RaiseCollectionChanged()
         {
-            Get_Projects_Command.RaiseCanExecuteChanged();
-            Get_Teams_Command.RaiseCanExecuteChanged();
-            Get_Processes_Command.RaiseCanExecuteChanged();
+            GetProjectsCommand.RaiseCanExecuteChanged();
+            GetTeamsCommand.RaiseCanExecuteChanged();
+            GetProcessesCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
             GetBehaviorsCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
@@ -96,19 +98,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void Raise_Project_Changed(Project project)
         {
-            Get_Projects_Command.RaiseCanExecuteChanged();
+            GetProjectsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseTeamChanged(Team team)
         {
-            Get_Teams_Command.RaiseCanExecuteChanged();
+            GetTeamsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
         }
 
-        private void RaiseDashboardChanged(Dashboard dashboard)
+        private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
         {
             GetWidgetsCommand.RaiseCanExecuteChanged();
         }
@@ -142,29 +144,71 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Commands
 
+        #region Accounts
+
+        #region GetAccounts Command
+
+        public DelegateCommand GetAccountsCommand { get; set; }
+        public string GetAccountsContent { get; set; } = "GetAccounts";
+        public string GetAccountsToolTip { get; set; } = "GetAccounts ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetAccountsContent { get; set; } = "ViewName_GetAccountsContent";
+        //public string GetAccountsToolTip { get; set; } = "ViewName_GetAccountsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
+
+        public void GetAccountsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetAccountsEvent>().Publish(
+                new GetAccountsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    //, Project = _contextMainViewModel.Context.SelectedProject
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetAccountsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
         #region Core
 
 
-        #region Get_Core_Projects Command
+        #region GetCoreProjects Command
 
-        public DelegateCommand Get_Projects_Command { get; set; }
-        public string Get_Projects_Content { get; set; } = "Get Projects";
-        public string Get_Projects_ToolTip { get; set; } = "Get Projects ToolTip";
+        public DelegateCommand GetProjectsCommand { get; set; }
+        public string GetProjectsContent { get; set; } = "Get Projects";
+        public string GetProjectsToolTip { get; set; } = "Get Projects ToolTip";
 
         // Can get fancy and use Resources
-        //public string Get_Core_Projects_Content { get; set; } = "ViewName_Get_Core_ProjectsContent";
-        //public string Get_Core_Projects_ToolTip { get; set; } = "ViewName_Get_Core_ProjectsContentToolTip";
+        //public string Get_CoreProjectsContent { get; set; } = "ViewName_Get_Core_ProjectsContent";
+        //public string Get_CoreProjectsToolTip { get; set; } = "ViewName_Get_Core_ProjectsContentToolTip";
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_Get_Core_ProjectsContent">Get_Core_Projects</system:String>
         //    <system:String x:Key="ViewName_Get_Core_ProjectsContentToolTip">Get_Core_Projects ToolTip</system:String>  
 
-        public void OnGet_Projects_Execute()
+        public void GetProjectsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<Get_Projects_Event>().Publish(
-                new Get_Projects_EventArgs()
+            EventAggregator.GetEvent<GetProjectsEvent>().Publish(
+                new GetProjectsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -172,7 +216,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGet_Projects_CanExecute()
+        public bool GetProjectsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null)
             {
@@ -203,7 +247,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
         //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>  
 
-        public void OnGetBehaviorsExecute()
+        public void GetBehaviorsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -217,7 +261,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetBehaviorsCanExecute()
+        public bool GetBehaviorsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null)
@@ -244,7 +288,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetDashboardsContent">GetDashboards</system:String>
         //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>  
 
-        public void OnGetDashboardsExecute()
+        public void GetDashboardsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -259,7 +303,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetDashboardsCanExecute()
+        public bool GetDashboardsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
@@ -287,7 +331,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
         //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
 
-        public void OnGetFieldsExecute()
+        public void GetFieldsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -302,7 +346,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetFieldsCanExecute()
+        public bool GetFieldsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
@@ -330,7 +374,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetListsContent">GetLists</system:String>
         //    <system:String x:Key="ViewName_GetListsContentToolTip">GetLists ToolTip</system:String>  
 
-        public void OnGetListsExecute()
+        public void GetListsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -343,7 +387,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetListsCanExecute()
+        public bool GetListsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null)
@@ -358,9 +402,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetProcesses Command
 
-        public DelegateCommand Get_Processes_Command { get; set; }
-        public string Get_Processes_Content { get; set; } = "Get Processes";
-        public string Get_Processes_ToolTip { get; set; } = "Get Processes ToolTip";
+        public DelegateCommand GetProcessesCommand { get; set; }
+        public string GetProcessesContent { get; set; } = "Get Processes";
+        public string GetProcessesToolTip { get; set; } = "Get Processes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -370,7 +414,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
         //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void OnGetProcessesExecute()
+        public void GetProcessesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -383,7 +427,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetProcessesCanExecute()
+        public bool GetProcessesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null)
             {
@@ -409,7 +453,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetRulesContent">GetRules</system:String>
         //    <system:String x:Key="ViewName_GetRulesContentToolTip">GetRules ToolTip</system:String>  
 
-        public void OnGetRulesExecute()
+        public void GetRulesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -424,7 +468,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetRulesCanExecute()
+        public bool GetRulesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
@@ -452,7 +496,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
         //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
 
-        public void OnGetStatesExecute()
+        public void GetStatesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -467,7 +511,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetStatesCanExecute()
+        public bool GetStatesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
@@ -495,7 +539,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetSystemControlsContent">GetSystemControls</system:String>
         //    <system:String x:Key="ViewName_GetSystemControlsContentToolTip">GetSystemControls ToolTip</system:String>  
 
-        public void OnGetSystemControlsExecute()
+        public void GetSystemControlsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -510,7 +554,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetSystemControlsCanExecute()
+        public bool GetSystemControlsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
@@ -526,9 +570,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetTeams Command
 
-        public DelegateCommand Get_Teams_Command { get; set; }
-        public string Get_Teams_Content { get; set; } = "GetTeams";
-        public string Get_Teams_ToolTip { get; set; } = "GetTeams ToolTip";
+        public DelegateCommand GetTeamsCommand { get; set; }
+        public string GetTeamsContent { get; set; } = "GetTeams";
+        public string GetTeamsToolTip { get; set; } = "GetTeams ToolTip";
 
         // Can get fancy and use Resources
         //public string GetTeamsContent { get; set; } = "ViewName_GetTeamsContent";
@@ -538,7 +582,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
         //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
 
-        public void OnGetTeamsExecute()
+        public void GetTeamsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -551,7 +595,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetTeamsCanExecute()
+        public bool GetTeamsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null)
             {
@@ -577,7 +621,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetWidgetsContent">GetWidgets</system:String>
         //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>  
 
-        public void OnGetWidgetsExecute()
+        public void GetWidgetsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -590,7 +634,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetWidgetsCanExecute()
+        public bool GetWidgetsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
@@ -618,7 +662,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
         //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void OnGetWorkItemTypesExecute()
+        public void GetWorkItemTypesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -632,7 +676,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool OnGetWorkItemTypesCanExecute()
+        public bool GetWorkItemTypesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null)

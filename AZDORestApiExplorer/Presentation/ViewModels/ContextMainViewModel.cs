@@ -35,7 +35,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            EventAggregator.GetEvent<Selected_Project_ChangedEvent>().Subscribe(ProjectChanged);
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(TeamChanged);
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
             EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(WorkItemTypeChanged);

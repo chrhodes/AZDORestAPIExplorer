@@ -37,9 +37,9 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-        public Dashboard SelectedDashboard
+        public Domain.Dashboard.Dashboard SelectedDashboard
         {
-            get { return GetValue<Dashboard>(); }
+            get { return GetValue<Domain.Dashboard.Dashboard>(); }
             set { SetValue(value); }
         }
     }

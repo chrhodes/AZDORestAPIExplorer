@@ -2,10 +2,8 @@
 
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.DomainServices;
-using AZDORestApiExplorer.Presentation.ViewModels;
-using AZDORestApiExplorer.Presentation.ViewModels.Dashboard;
-using AZDORestApiExplorer.Presentation.Views;
-using AZDORestApiExplorer.Presentation.Views.Dashboard;
+using AZDORestApiExplorer.Presentation.ViewModels.Accounts;
+using AZDORestApiExplorer.Presentation.Views.Accounts;
 
 using Prism.Ioc;
 using Prism.Modularity;
@@ -17,13 +15,13 @@ using VNC;
 
 namespace AZDORestApiExplorer
 {
-    public class DashboardModule : IModule
+    public class AccountModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public DashboardModule(IRegionManager regionManager)
+        public AccountModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -38,11 +36,11 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IDashboardMainViewModel, DashboardMainViewModel>();
-            containerRegistry.RegisterSingleton<IDashboardMain, DashboardMain>();
+            containerRegistry.Register<IAccountMainViewModel, AccountMainViewModel>();
+            containerRegistry.RegisterSingleton<IAccountMain, AccountMain>();
 
-            // containerRegistry.RegisterSingleton<IDashboardLookupDataService, DashboardLookupDataService>();
-            // containerRegistry.Register<IDashboardDataService, DashboardDataService>();
+            // containerRegistry.RegisterSingleton<IAccountLookupDataService, AccountLookupDataService>();
+            // containerRegistry.Register<IAccountDataService, AccountDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -57,8 +55,8 @@ namespace AZDORestApiExplorer
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads DashboardMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.DashboardMainRegion, typeof(IDashboardMain));
+            //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.AccountMainRegion, typeof(IAccountMain));
 
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);

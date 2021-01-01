@@ -80,5 +80,9 @@ namespace AZDORestApiExplorer.Core
         public static string RuleMainRegion = "RuleMainRegion";
         // public static string RuleNavigationRegion = "RuleNavigationRegion";
         // public static string RuleDetailRegion = "RuleDetailRegion";
+
+        public static string AccountMainRegion = "AccountMainRegion";
+        // public static string AccountNavigationRegion = "AccountNavigationRegion";
+        // public static string AccountDetailRegion = "AccountDetailRegion";
     }
 }

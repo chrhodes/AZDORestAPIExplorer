@@ -5,9 +5,9 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ModelWrappers
 {
-    public class DashboardWrapper : ModelWrapper<Domain.Dashboard>
+    public class DashboardWrapper : ModelWrapper<Domain.Dashboard.Dashboard>
     {
-        public DashboardWrapper(Domain.Dashboard model) : base(model)
+        public DashboardWrapper(Domain.Dashboard.Dashboard model) : base(model)
         {
         }
 

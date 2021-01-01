@@ -42,10 +42,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 .Subscribe(AfterCollectionSaved);
 
             AddPhoneNumberCommand = new DelegateCommand(
-                OnAddPhoneNumberExecute);
+                AddPhoneNumberExecute);
 
             RemovePhoneNumberCommand = new DelegateCommand(
-                OnRemovePhoneNumberExecute, OnRemovePhoneNumberCanExecute);
+                RemovePhoneNumberExecute, RemovePhoneNumberCanExecute);
 
             Foods = new ObservableCollection<LookupItem>();
             PhoneNumbers = new ObservableCollection<CatPhoneNumberWrapper>();
@@ -104,7 +104,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        private async void OnOpenDetailView(OpenDetailViewEventArgs args)
+        private async void OpenDetailView(OpenDetailViewEventArgs args)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -152,14 +152,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Protected Methods
 
-        protected override bool OnDeleteCanExecute()
+        protected override bool DeleteCanExecute()
         {
             // TODO(crhodes)
             // Why do we need this?
             return true;
         }
 
-        protected override async void OnDeleteExecute()
+        protected override async void DeleteExecute()
         {
             Int64 startTicks = Log.VIEWMODEL($"(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_APPNAME);
 
@@ -178,7 +178,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        protected override bool OnSaveCanExecute()
+        protected override bool SaveCanExecute()
         {
             // TODO(crhodes)
             // Check if Cat is valid or has changes
@@ -193,7 +193,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             //return true;
         }
 
-        protected override async void OnSaveExecute()
+        protected override async void SaveExecute()
         {
             Int64 startTicks = Log.VIEWMODEL("(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_APPNAME);
 
@@ -215,7 +215,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private void OnAddPhoneNumberExecute()
+        private void AddPhoneNumberExecute()
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
 
@@ -228,7 +228,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private void OnRemovePhoneNumberExecute()
+        private void RemovePhoneNumberExecute()
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
 
@@ -242,7 +242,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private bool OnRemovePhoneNumberCanExecute()
+        private bool RemovePhoneNumberCanExecute()
         {
             return SelectedPhoneNumber != null;
         }

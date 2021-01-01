@@ -1,4 +1,5 @@
 ﻿using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
 
 namespace AZDORestApiExplorer.Application
 {
@@ -8,6 +9,6 @@ namespace AZDORestApiExplorer.Application
         public Team SelectedTeam { get; set; }
         public Process SelectedProcess { get; set; }
         public WorkItemType SelectedWorkItemType { get; set; }
-        public Dashboard SelectedDashboard { get; set; }
+        public Domain.Dashboard.Dashboard SelectedDashboard { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -12,6 +12,42 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\ArtifactsPackageTypes\" />
+    <Folder Include="Events\Artifacts\" />
+    <Folder Include="Events\Audit\" />
+    <Folder Include="Events\Build\" />
+    <Folder Include="Events\Dashbard\" />
+    <Folder Include="Events\DistributedTask\" />
+    <Folder Include="Events\ExtenstionManagement\" />
+    <Folder Include="Events\Git\" />
+    <Folder Include="Events\Graph\" />
+    <Folder Include="Events\Identities\" />
+    <Folder Include="Events\MemberEntitlementManagement\" />
+    <Folder Include="Events\Notification\" />
+    <Folder Include="Events\Operations\" />
+    <Folder Include="Events\PermissionsReport\" />
+    <Folder Include="Events\Pipelines\" />
+    <Folder Include="Events\Policy\" />
+    <Folder Include="Events\Profile\" />
+    <Folder Include="Events\Release\" />
+    <Folder Include="Events\Search\" />
+    <Folder Include="Events\SecurityRoles\" />
+    <Folder Include="Events\Security\" />
+    <Folder Include="Events\ServiceEndpoint\" />
+    <Folder Include="Events\ServiceHooks\" />
+    <Folder Include="Events\TestPlan\" />
+    <Folder Include="Events\TestResults\" />
+    <Folder Include="Events\Test\" />
+    <Folder Include="Events\Tfvc\" />
+    <Folder Include="Events\TokenAdmin\" />
+    <Folder Include="Events\Wiki\" />
+    <Folder Include="Events\WorkItemTrackingProcessTemplate\" />
+    <Folder Include="Events\WorkItemTrackingProcess\" />
+    <Folder Include="Events\WorkItemTracking\" />
+    <Folder Include="Events\Work\" />
   </ItemGroup>
   
 </Project>

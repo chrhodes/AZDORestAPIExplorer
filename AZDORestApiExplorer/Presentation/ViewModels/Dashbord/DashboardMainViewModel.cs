@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
-
+using AZDORestApiExplorer.Core.Events.Dashboard;
 using AZDORestApiExplorer.Domain;
-
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -17,20 +14,23 @@ using Newtonsoft.Json.Linq;
 using Prism.Events;
 
 using VNC;
-using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-namespace AZDORestApiExplorer.Presentation.ViewModels
+namespace AZDORestApiExplorer.Presentation.ViewModels.Dashboard
 {
-    public class Project_MainViewModel : HTTPExchangeBase, IProject_MainViewModel
+    public class DashboardMainViewModel : HTTPExchangeBase, IDashboardMainViewModel
     {
+
         #region Constructors, Initialization, and Load
 
-        public Project_MainViewModel(
+        public DashboardMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+
+            // TODO(crhodes)
+            // Save constructor parameters here
 
             InitializeViewModel();
 
@@ -41,9 +41,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(Get_Projects);
+            InstanceCountVM++;
 
-            this.Projects.PropertyChanged += PublishSelectedProjectChanged;
+
+            EventAggregator.GetEvent<GetDashboardsEvent>().Subscribe(GetDashboards);
+
+            this.Dashboards.PropertyChanged += PublishSelectionChanged;
+
+            // TODO(crhodes)
+            //
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -62,7 +68,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Project> Projects { get; set; } = new RESTResult<Project>();
+        public RESTResult<Domain.Dashboard.Dashboard> Dashboards { get; set; } = new RESTResult<Domain.Dashboard.Dashboard>();
+
 
         #endregion
 
@@ -83,7 +90,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void Get_Projects(GetProjectsEventArgs args)
+        private async void GetDashboards(GetDashboardsEventArgs args)
         {
             try
             {
@@ -91,7 +98,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    var requestUri = $"{args.Organization.Uri}/_apis/projects?api-version=6.1-preview.4";
+                    // TODO(crhodes)
+                    // Update Uri  Use args for parameters.
+                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/{args.Team.id}/_apis/dashboard/dashboards?api-version=6.1-preview.3";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -103,46 +112,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        ProjectsRoot resultRoot = JsonConvert.DeserializeObject<ProjectsRoot>(outJson);
+                        JObject o = JObject.Parse(outJson);
 
-                        Projects.ResultItems = new ObservableCollection<Project>(resultRoot.value);
+                        Domain.Dashboard.DashboardsRoot resultRoot = JsonConvert.DeserializeObject<Domain.Dashboard.DashboardsRoot>(outJson);
+
+                        Dashboards.ResultItems = new ObservableCollection<Domain.Dashboard.Dashboard>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        while (hasContinuationToken)
-                        {
-                            RequestResponseInfo exchange2 = new RequestResponseInfo();
-
-                            string continueToken = continuationHeaders.First();
-
-                            string requestUri2 = $"{args.Organization.Uri}/_apis/projects?api-version=6.1-preview.4&continuationToken={continueToken}";
-
-                            exchange2.Uri = requestUri2;
-                            exchange2.RequestHeadersX.AddRange(client.DefaultRequestHeaders);
-
-                            using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
-                            {
-                                exchange2.Response = response2;
-                                exchange2.ResponseHeadersX.AddRange(response2.Headers);
-
-                                RequestResponseExchange.Add(exchange2);
-
-                                response2.EnsureSuccessStatusCode();
-                                string outJson2 = await response2.Content.ReadAsStringAsync();
-
-                                JObject oC = JObject.Parse(outJson2);
-
-                                ProjectsRoot projects2C = JsonConvert.DeserializeObject<ProjectsRoot>(outJson2);
-
-                                Projects.ResultItems.AddRange(projects2C.value);
-
-                                hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-                            }
-                        }
-
-                        Projects.Count = Projects.ResultItems.Count();
+                        Dashboards.Count = Dashboards.ResultItems.Count;
                     }
                 }
             }
@@ -155,15 +135,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
         }
 
-        private void PublishSelectedProjectChanged(object sender, PropertyChangedEventArgs e)
+        private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Projects.SelectedItem);
+            EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Publish(Dashboards.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         #endregion
+
     }
 }

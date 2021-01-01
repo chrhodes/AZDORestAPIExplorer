@@ -1,16 +1,14 @@
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
 
-namespace AZDORestApiExplorer.Core.Events
+namespace AZDORestApiExplorer.Core.Events.Dashboard
 {
-    public class GetWidgetsEventArgs
+    public class GetDashboardsEventArgs
     {
         public Organization Organization;
 
         public Project Project;
 
         public Team Team;
-
-        public Domain.Dashboard.Dashboard Dashboard;
     }
 }

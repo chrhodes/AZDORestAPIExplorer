@@ -13,4 +13,39 @@
     <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ArtifactsPackageTypes\" />
+    <Folder Include="Artifacts\" />
+    <Folder Include="Audit\" />
+    <Folder Include="Build\" />
+    <Folder Include="Dashbard\" />
+    <Folder Include="DistributedTask\" />
+    <Folder Include="ExtenstionManagement\" />
+    <Folder Include="Git\" />
+    <Folder Include="Graph\" />
+    <Folder Include="Identities\" />
+    <Folder Include="MemberEntitlementManagement\" />
+    <Folder Include="Notification\" />
+    <Folder Include="Operations\" />
+    <Folder Include="PermissionsReport\" />
+    <Folder Include="Pipelines\" />
+    <Folder Include="Policy\" />
+    <Folder Include="Profile\" />
+    <Folder Include="Release\" />
+    <Folder Include="Search\" />
+    <Folder Include="SecurityRoles\" />
+    <Folder Include="Security\" />
+    <Folder Include="ServiceEndpoint\" />
+    <Folder Include="ServiceHooks\" />
+    <Folder Include="TestPlan\" />
+    <Folder Include="TestResults\" />
+    <Folder Include="Test\" />
+    <Folder Include="Tfvc\" />
+    <Folder Include="TokenAdmin\" />
+    <Folder Include="Wiki\" />
+    <Folder Include="WorkItemTrackingProcessTemplate\" />
+    <Folder Include="WorkItemTracking\" />
+    <Folder Include="Work\" />
+  </ItemGroup>
+
 </Project>

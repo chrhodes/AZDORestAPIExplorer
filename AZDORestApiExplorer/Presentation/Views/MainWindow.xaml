@@ -21,7 +21,7 @@
     
     prism:ViewModelLocator.AutoWireViewModel="True"
     Title="{Binding Title}"
-    d:DesignHeight="800" d:DesignWidth="900"         
+    d:DesignHeight="800" d:DesignWidth="1200"         
 >
     <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
@@ -127,6 +127,12 @@
                                         </Grid>--><!--
                                     </dxlc:LayoutGroup>-->
 
+                                    <dxlc:LayoutGroup Header="Accounts" >
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
+                                        </Grid>
+                                    </dxlc:LayoutGroup>
+                                    
                                     <dxlc:LayoutGroup Header="Processes" >
                                         <Grid>
                                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessMainRegion}" />

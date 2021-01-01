@@ -156,8 +156,10 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(RuleModule));
 
+            moduleCatalog.AddModule(typeof(AccountModule));
 
-        Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
         // 08

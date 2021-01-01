@@ -37,8 +37,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Title = "Foods";
             Foods = new ObservableCollection<FoodWrapper>();
 
-            AddCommand = new DelegateCommand(OnAddExecute);
-            RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
+            AddCommand = new DelegateCommand(AddExecute);
+            RemoveCommand = new DelegateCommand(RemoveExecute, RemoveCanExecute);
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -80,7 +80,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        // private async void OnOpenDetailView(OpenDetailViewEventArgs args)
+        // private async void OpenDetailView(OpenDetailViewEventArgs args)
         // {
         // Int64 startTicks = Log.EVENT("(FoodDetailViewModel) Enter", Common.LOG_APPNAME);
 
@@ -135,26 +135,26 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Protected Methods
 
-        protected override bool OnDeleteCanExecute()
+        protected override bool DeleteCanExecute()
         {
             // TODO(crhodes)
             // Why do we need this?
             return true;
         }
 
-        protected override async void OnDeleteExecute()
+        protected override async void DeleteExecute()
         {
             Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_APPNAME);
 
             Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        protected override bool OnSaveCanExecute()
+        protected override bool SaveCanExecute()
         {
             return HasChanges && Foods.All(p => !p.HasErrors);
         }
 
-        protected override async void OnSaveExecute()
+        protected override async void SaveExecute()
         {
             Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_APPNAME);
 
@@ -186,7 +186,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        void OnAddExecute()
+        void AddExecute()
         {
             Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_APPNAME);
 
@@ -201,7 +201,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private async void OnRemoveExecute()
+        private async void RemoveExecute()
         {
             Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_APPNAME);
 
@@ -227,7 +227,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        bool OnRemoveCanExecute()
+        bool RemoveCanExecute()
         {
             return SelectedFood != null;
         }
