@@ -5,7 +5,7 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    public interface IProject_DataService : IGenericRepository<Project>
+    public interface IProjectDataService : IGenericRepository<Project>
     {
 
     }

@@ -11,12 +11,12 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.DomainServices
 {
-    public class Project_DataService : GenericEFRepository<Project, AZDORestApiExplorerDbContext>, IProject_DataService
+    public class ProjectDataService : GenericEFRepository<Project, AZDORestApiExplorerDbContext>, IProjectDataService
     {
 
         #region Constructors, Initialization, and Load
 
-        public Project_DataService(AZDORestApiExplorerDbContext context)
+        public ProjectDataService(AZDORestApiExplorerDbContext context)
             : base(context)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);

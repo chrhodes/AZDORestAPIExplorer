@@ -1,158 +1,157 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net4.8</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net4.8</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Core\**" />
-    <Compile Remove="Domain\**" />
-    <EmbeddedResource Remove="Core\**" />
-    <EmbeddedResource Remove="Domain\**" />
-    <None Remove="Core\**" />
-    <None Remove="Domain\**" />
-    <Page Remove="Core\**" />
-    <Page Remove="Domain\**" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove=".editorconfig" />
-    <None Remove=".gitattributes" />
-    <None Remove=".gitignore" />
-  </ItemGroup>
-  
-  <ItemGroup>
-   <PackageReference Include="DevExpress.Wpf.Core" Version="19.2.6" />
-   <PackageReference Include="DevExpress.Wpf.Grid" Version="19.2.6" />
-   <PackageReference Include="DevExpress.Wpf.Layout" Version="19.2.6" />
-   <PackageReference Include="DevExpress.Wpf.Navigation" Version="19.2.6" />
-   <PackageReference Include="EntityFramework" Version="6.4.4" />
-   <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
-   <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
-   </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
-  </ItemGroup>
-  <!--<ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Core\**" />
+        <Compile Remove="Domain\**" />
+        <EmbeddedResource Remove="Core\**" />
+        <EmbeddedResource Remove="Domain\**" />
+        <None Remove="Core\**" />
+        <None Remove="Domain\**" />
+        <Page Remove="Core\**" />
+        <Page Remove="Domain\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove=".editorconfig" />
+        <None Remove=".gitattributes" />
+        <None Remove=".gitignore" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DevExpress.Wpf.Core" Version="19.2.6" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="19.2.6" />
+        <PackageReference Include="DevExpress.Wpf.Layout" Version="19.2.6" />
+        <PackageReference Include="DevExpress.Wpf.Navigation" Version="19.2.6" />
+        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
+        <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
+    </ItemGroup>
+    <!--<ItemGroup>
     <ProjectReference Include="..\..\vnc\VNC.Core\VNC.CoreNF.csproj" />
     <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.LoggingNF.csproj" />
   </ItemGroup>-->
-  <ItemGroup>
-    <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentation\ModelWrappers\ArtifactsPackageTypes\" />
-    <Folder Include="Presentation\ModelWrappers\Artifacts\" />
-    <Folder Include="Presentation\ModelWrappers\Audit\" />
-    <Folder Include="Presentation\ModelWrappers\Build\" />
-    <Folder Include="Presentation\ModelWrappers\Core\" />
-    <Folder Include="Presentation\ModelWrappers\Dashbard\" />
-    <Folder Include="Presentation\ModelWrappers\DistributedTask\" />
-    <Folder Include="Presentation\ModelWrappers\ExtenstionManagement\" />
-    <Folder Include="Presentation\ModelWrappers\Git\" />
-    <Folder Include="Presentation\ModelWrappers\Graph\" />
-    <Folder Include="Presentation\ModelWrappers\Identities\" />
-    <Folder Include="Presentation\ModelWrappers\MemberEntitlementManagement\" />
-    <Folder Include="Presentation\ModelWrappers\Notification\" />
-    <Folder Include="Presentation\ModelWrappers\Operations\" />
-    <Folder Include="Presentation\ModelWrappers\PermissionsReport\" />
-    <Folder Include="Presentation\ModelWrappers\Pipelines\" />
-    <Folder Include="Presentation\ModelWrappers\Policy\" />
-    <Folder Include="Presentation\ModelWrappers\Profile\" />
-    <Folder Include="Presentation\ModelWrappers\Release\" />
-    <Folder Include="Presentation\ModelWrappers\Search\" />
-    <Folder Include="Presentation\ModelWrappers\SecurityRoles\" />
-    <Folder Include="Presentation\ModelWrappers\Security\" />
-    <Folder Include="Presentation\ModelWrappers\ServiceEndpoint\" />
-    <Folder Include="Presentation\ModelWrappers\ServiceHooks\" />
-    <Folder Include="Presentation\ModelWrappers\TestPlan\" />
-    <Folder Include="Presentation\ModelWrappers\TestResults\" />
-    <Folder Include="Presentation\ModelWrappers\Test\" />
-    <Folder Include="Presentation\ModelWrappers\Tfvc\" />
-    <Folder Include="Presentation\ModelWrappers\TokenAdmin\" />
-    <Folder Include="Presentation\ModelWrappers\Wiki\" />
-    <Folder Include="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\" />
-    <Folder Include="Presentation\ModelWrappers\WorkItemTrackingProcess\" />
-    <Folder Include="Presentation\ModelWrappers\WorkItemTracking\" />
-    <Folder Include="Presentation\ModelWrappers\Work\" />
-    <Folder Include="Presentation\ViewModels\ArtifactsPackageTypes\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Artifacts\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Audit\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Build\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Core\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\DistributedTask\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\ExtenstionManagement\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Git\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Graph\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Identities\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\MemberEntitlementManagement\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Notification\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Operations\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\PermissionsReport\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Pipelines\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Policy\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Profile\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Release\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Search\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\SecurityRoles\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Security\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\ServiceEndpoint\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\ServiceHooks\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\TestPlan\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\TestResults\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Test\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Tfvc\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\TokenAdmin\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Wiki\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\WorkItemTrackingProcessTemplate\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\WorkItemTrackingProcess\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\WorkItemTracking\Interfaces\" />
-    <Folder Include="Presentation\ViewModels\Work\Interfaces\" />
-    <Folder Include="Presentation\Views\ArtifactsPackageTypes\Interfaces\" />
-    <Folder Include="Presentation\Views\Artifacts\Interfaces\" />
-    <Folder Include="Presentation\Views\Audit\Interfaces\" />
-    <Folder Include="Presentation\Views\Build\Interfaces\" />
-    <Folder Include="Presentation\Views\Core\Interfaces\" />
-    <Folder Include="Presentation\Views\DistributedTask\Interfaces\" />
-    <Folder Include="Presentation\Views\ExtenstionManagement\Interfaces\" />
-    <Folder Include="Presentation\Views\Git\Interfaces\" />
-    <Folder Include="Presentation\Views\Graph\Interfaces\" />
-    <Folder Include="Presentation\Views\Identities\Interfaces\" />
-    <Folder Include="Presentation\Views\MemberEntitlementManagement\Interfaces\" />
-    <Folder Include="Presentation\Views\Notification\Interfaces\" />
-    <Folder Include="Presentation\Views\Operations\Interfaces\" />
-    <Folder Include="Presentation\Views\PermissionsReport\Interfaces\" />
-    <Folder Include="Presentation\Views\Pipelines\Interfaces\" />
-    <Folder Include="Presentation\Views\Policy\Interfaces\" />
-    <Folder Include="Presentation\Views\Profile\Interfaces\" />
-    <Folder Include="Presentation\Views\Release\Interfaces\" />
-    <Folder Include="Presentation\Views\Search\Interfaces\" />
-    <Folder Include="Presentation\Views\SecurityRoles\Interfaces\" />
-    <Folder Include="Presentation\Views\Security\Interfaces\" />
-    <Folder Include="Presentation\Views\ServiceEndpoint\Interfaces\" />
-    <Folder Include="Presentation\Views\ServiceHooks\Interfaces\" />
-    <Folder Include="Presentation\Views\TestPlan\Interfaces\" />
-    <Folder Include="Presentation\Views\TestResults\Interfaces\" />
-    <Folder Include="Presentation\Views\Test\Interfaces\" />
-    <Folder Include="Presentation\Views\Tfvc\Interfaces\" />
-    <Folder Include="Presentation\Views\TokenAdmin\Interfaces\" />
-    <Folder Include="Presentation\Views\Wiki\Interfaces\" />
-    <Folder Include="Presentation\Views\WorkItemTrackingProcess\Interfaces\" />
-    <Folder Include="Presentation\Views\WorkItemTracking\Interfaces\" />
-    <Folder Include="Presentation\Views\Work\Interfaces\" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
+        <Reference Include="System.Web" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Presentation\ModelWrappers\ArtifactsPackageTypes\" />
+        <Folder Include="Presentation\ModelWrappers\Artifacts\" />
+        <Folder Include="Presentation\ModelWrappers\Audit\" />
+        <Folder Include="Presentation\ModelWrappers\Build\" />
+        <Folder Include="Presentation\ModelWrappers\Core\" />
+        <Folder Include="Presentation\ModelWrappers\Dashbard\" />
+        <Folder Include="Presentation\ModelWrappers\DistributedTask\" />
+        <Folder Include="Presentation\ModelWrappers\ExtenstionManagement\" />
+        <Folder Include="Presentation\ModelWrappers\Git\" />
+        <Folder Include="Presentation\ModelWrappers\Graph\" />
+        <Folder Include="Presentation\ModelWrappers\Identities\" />
+        <Folder Include="Presentation\ModelWrappers\MemberEntitlementManagement\" />
+        <Folder Include="Presentation\ModelWrappers\Notification\" />
+        <Folder Include="Presentation\ModelWrappers\Operations\" />
+        <Folder Include="Presentation\ModelWrappers\PermissionsReport\" />
+        <Folder Include="Presentation\ModelWrappers\Pipelines\" />
+        <Folder Include="Presentation\ModelWrappers\Policy\" />
+        <Folder Include="Presentation\ModelWrappers\Profile\" />
+        <Folder Include="Presentation\ModelWrappers\Release\" />
+        <Folder Include="Presentation\ModelWrappers\Search\" />
+        <Folder Include="Presentation\ModelWrappers\SecurityRoles\" />
+        <Folder Include="Presentation\ModelWrappers\Security\" />
+        <Folder Include="Presentation\ModelWrappers\ServiceEndpoint\" />
+        <Folder Include="Presentation\ModelWrappers\ServiceHooks\" />
+        <Folder Include="Presentation\ModelWrappers\TestPlan\" />
+        <Folder Include="Presentation\ModelWrappers\TestResults\" />
+        <Folder Include="Presentation\ModelWrappers\Test\" />
+        <Folder Include="Presentation\ModelWrappers\Tfvc\" />
+        <Folder Include="Presentation\ModelWrappers\TokenAdmin\" />
+        <Folder Include="Presentation\ModelWrappers\Wiki\" />
+        <Folder Include="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\" />
+        <Folder Include="Presentation\ModelWrappers\WorkItemTrackingProcess\" />
+        <Folder Include="Presentation\ModelWrappers\WorkItemTracking\" />
+        <Folder Include="Presentation\ModelWrappers\Work\" />
+        <Folder Include="Presentation\ViewModels\ArtifactsPackageTypes\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Artifacts\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Audit\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Build\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Core\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\DistributedTask\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\ExtenstionManagement\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Git\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Graph\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Identities\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\MemberEntitlementManagement\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Notification\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Operations\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\PermissionsReport\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Pipelines\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Policy\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Profile\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Release\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Search\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\SecurityRoles\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Security\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\ServiceEndpoint\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\ServiceHooks\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\TestPlan\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\TestResults\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Test\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Tfvc\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\TokenAdmin\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Wiki\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\WorkItemTrackingProcessTemplate\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\WorkItemTrackingProcess\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\WorkItemTracking\Interfaces\" />
+        <Folder Include="Presentation\ViewModels\Work\Interfaces\" />
+        <Folder Include="Presentation\Views\ArtifactsPackageTypes\Interfaces\" />
+        <Folder Include="Presentation\Views\Artifacts\Interfaces\" />
+        <Folder Include="Presentation\Views\Audit\Interfaces\" />
+        <Folder Include="Presentation\Views\Build\Interfaces\" />
+        <Folder Include="Presentation\Views\Core\Interfaces\" />
+        <Folder Include="Presentation\Views\DistributedTask\Interfaces\" />
+        <Folder Include="Presentation\Views\ExtenstionManagement\Interfaces\" />
+        <Folder Include="Presentation\Views\Git\Interfaces\" />
+        <Folder Include="Presentation\Views\Graph\Interfaces\" />
+        <Folder Include="Presentation\Views\Identities\Interfaces\" />
+        <Folder Include="Presentation\Views\MemberEntitlementManagement\Interfaces\" />
+        <Folder Include="Presentation\Views\Notification\Interfaces\" />
+        <Folder Include="Presentation\Views\Operations\Interfaces\" />
+        <Folder Include="Presentation\Views\PermissionsReport\Interfaces\" />
+        <Folder Include="Presentation\Views\Pipelines\Interfaces\" />
+        <Folder Include="Presentation\Views\Policy\Interfaces\" />
+        <Folder Include="Presentation\Views\Profile\Interfaces\" />
+        <Folder Include="Presentation\Views\Release\Interfaces\" />
+        <Folder Include="Presentation\Views\Search\Interfaces\" />
+        <Folder Include="Presentation\Views\SecurityRoles\Interfaces\" />
+        <Folder Include="Presentation\Views\Security\Interfaces\" />
+        <Folder Include="Presentation\Views\ServiceEndpoint\Interfaces\" />
+        <Folder Include="Presentation\Views\ServiceHooks\Interfaces\" />
+        <Folder Include="Presentation\Views\TestPlan\Interfaces\" />
+        <Folder Include="Presentation\Views\TestResults\Interfaces\" />
+        <Folder Include="Presentation\Views\Test\Interfaces\" />
+        <Folder Include="Presentation\Views\Tfvc\Interfaces\" />
+        <Folder Include="Presentation\Views\TokenAdmin\Interfaces\" />
+        <Folder Include="Presentation\Views\Wiki\Interfaces\" />
+        <Folder Include="Presentation\Views\WorkItemTrackingProcess\Interfaces\" />
+        <Folder Include="Presentation\Views\WorkItemTracking\Interfaces\" />
+        <Folder Include="Presentation\Views\Work\Interfaces\" />
+    </ItemGroup>
 </Project>
