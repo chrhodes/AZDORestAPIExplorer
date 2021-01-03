@@ -6,14 +6,18 @@ using System.Linq;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
 
 using Newtonsoft.Json;
 
 using Prism.Events;
 
 using VNC;
+
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -66,7 +70,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Team> Teams { get; set; } = new RESTResult<Domain.Team>();
+        public RESTResult<Team> Teams { get; set; } = new RESTResult<Team>();
 
         #endregion
 
@@ -92,7 +96,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/teams?$top=300&api-version=6.1-preview.3";
 
@@ -108,7 +112,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         TeamsRoot resultRoot = JsonConvert.DeserializeObject<TeamsRoot>(outJson);
 
-                        Teams.ResultItems = new ObservableCollection<Domain.Team>(resultRoot.value);
+                        Teams.ResultItems = new ObservableCollection<Team>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

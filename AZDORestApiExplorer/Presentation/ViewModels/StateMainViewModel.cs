@@ -6,6 +6,7 @@ using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,7 +14,9 @@ using Newtonsoft.Json.Linq;
 using Prism.Events;
 
 using VNC;
+
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -67,7 +70,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.State> States { get; set; } = new RESTResult<Domain.State>();
+        public RESTResult<State> States { get; set; } = new RESTResult<State>();
 
 
         #endregion
@@ -95,7 +98,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/work/processes/{args.Process.typeId}"
                         + $"/workItemTypes/{args.WorkItemType.referenceName}/states?api-version=6.1-preview.1";
@@ -114,7 +117,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         StatesRoot resultRoot = JsonConvert.DeserializeObject<StatesRoot>(outJson);
 
-                        States.ResultItems = new ObservableCollection<Domain.State>(resultRoot.value);
+                        States.ResultItems = new ObservableCollection<State>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

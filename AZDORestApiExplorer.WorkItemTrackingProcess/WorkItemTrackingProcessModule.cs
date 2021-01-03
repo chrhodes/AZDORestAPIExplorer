@@ -1,14 +1,12 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Presentation.ViewModels.Accounts;
-using AZDORestApiExplorer.Presentation.Views.Accounts;
+using AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels;
+using AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views;
 
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-
-using Unity;
 
 using VNC;
 
@@ -35,8 +33,8 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.Register<IProcessMainViewModel, ProcessMainViewModel>();
+            containerRegistry.RegisterSingleton<IProcessMain, ProcessMain>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -52,7 +50,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WITPProcessMainRegion, typeof(IProcessMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

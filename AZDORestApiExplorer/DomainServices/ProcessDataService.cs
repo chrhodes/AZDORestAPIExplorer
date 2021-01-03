@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Threading.Tasks;
 
-using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Persistence.Data;
 
 using VNC;

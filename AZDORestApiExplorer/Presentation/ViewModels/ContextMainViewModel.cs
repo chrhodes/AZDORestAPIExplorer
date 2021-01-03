@@ -1,7 +1,5 @@
 ﻿using System;
 
-using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Core;
 
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
@@ -38,12 +36,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
-            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(TeamChanged);
-            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
-            EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Subscribe(WorkItemTypeChanged);
+            EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
+            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
+            EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeChangedEvent>().Subscribe(WorkItemTypeChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        private void ProcessChanged(Domain.Core.Process process)
+        {
+            Context.SelectedProcess = process;
         }
 
         private void ProjectChanged(Project project)
@@ -54,11 +58,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void TeamChanged(Team team)
         {
             Context.SelectedTeam = team;
-        }
-
-        private void ProcessChanged(Process process)
-        {
-            Context.SelectedProcess = process;
         }
 
         private void WorkItemTypeChanged(WorkItemType workItemType)

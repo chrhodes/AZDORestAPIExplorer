@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ModelWrappers
 {
-    public class ListWrapper : ModelWrapper<Domain.List>
+    public class ListWrapper : ModelWrapper<List>
     {
-        public ListWrapper(Domain.List model) : base(model)
+        public ListWrapper(List model) : base(model)
         {
         }
 

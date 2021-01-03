@@ -39,11 +39,19 @@
         <PackageReference Include="DevExpress.Wpf.Navigation" Version="19.2.6" />
         <PackageReference Include="EntityFramework" Version="6.4.4" />
         <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
-        <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\vnc\VNC.Core\VNC.CoreNF.csproj" />
+        <ProjectReference Include="..\..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Dashboard\AZDORestApiExplorer.Dashboard.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcessTemplate\AZDORestApiExplorer.WorkItemTrackingProcessTemplate.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcess\AZDORestApiExplorer.WorkItemTrackingProcess.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTracking\AZDORestApiExplorer.WorkItemTracking.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Work\AZDORestApiExplorer.Work.csproj" />
     </ItemGroup>
     <!--<ItemGroup>
     <ProjectReference Include="..\..\vnc\VNC.Core\VNC.CoreNF.csproj" />
@@ -88,70 +96,5 @@
         <Folder Include="Presentation\ModelWrappers\WorkItemTrackingProcess\" />
         <Folder Include="Presentation\ModelWrappers\WorkItemTracking\" />
         <Folder Include="Presentation\ModelWrappers\Work\" />
-        <Folder Include="Presentation\ViewModels\ArtifactsPackageTypes\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Artifacts\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Audit\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Build\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Core\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\DistributedTask\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\ExtenstionManagement\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Git\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Graph\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Identities\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\MemberEntitlementManagement\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Notification\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Operations\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\PermissionsReport\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Pipelines\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Policy\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Profile\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Release\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Search\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\SecurityRoles\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Security\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\ServiceEndpoint\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\ServiceHooks\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\TestPlan\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\TestResults\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Test\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Tfvc\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\TokenAdmin\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Wiki\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\WorkItemTrackingProcessTemplate\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\WorkItemTrackingProcess\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\WorkItemTracking\Interfaces\" />
-        <Folder Include="Presentation\ViewModels\Work\Interfaces\" />
-        <Folder Include="Presentation\Views\ArtifactsPackageTypes\Interfaces\" />
-        <Folder Include="Presentation\Views\Artifacts\Interfaces\" />
-        <Folder Include="Presentation\Views\Audit\Interfaces\" />
-        <Folder Include="Presentation\Views\Build\Interfaces\" />
-        <Folder Include="Presentation\Views\Core\Interfaces\" />
-        <Folder Include="Presentation\Views\DistributedTask\Interfaces\" />
-        <Folder Include="Presentation\Views\ExtenstionManagement\Interfaces\" />
-        <Folder Include="Presentation\Views\Git\Interfaces\" />
-        <Folder Include="Presentation\Views\Graph\Interfaces\" />
-        <Folder Include="Presentation\Views\Identities\Interfaces\" />
-        <Folder Include="Presentation\Views\MemberEntitlementManagement\Interfaces\" />
-        <Folder Include="Presentation\Views\Notification\Interfaces\" />
-        <Folder Include="Presentation\Views\Operations\Interfaces\" />
-        <Folder Include="Presentation\Views\PermissionsReport\Interfaces\" />
-        <Folder Include="Presentation\Views\Pipelines\Interfaces\" />
-        <Folder Include="Presentation\Views\Policy\Interfaces\" />
-        <Folder Include="Presentation\Views\Profile\Interfaces\" />
-        <Folder Include="Presentation\Views\Release\Interfaces\" />
-        <Folder Include="Presentation\Views\Search\Interfaces\" />
-        <Folder Include="Presentation\Views\SecurityRoles\Interfaces\" />
-        <Folder Include="Presentation\Views\Security\Interfaces\" />
-        <Folder Include="Presentation\Views\ServiceEndpoint\Interfaces\" />
-        <Folder Include="Presentation\Views\ServiceHooks\Interfaces\" />
-        <Folder Include="Presentation\Views\TestPlan\Interfaces\" />
-        <Folder Include="Presentation\Views\TestResults\Interfaces\" />
-        <Folder Include="Presentation\Views\Test\Interfaces\" />
-        <Folder Include="Presentation\Views\Tfvc\Interfaces\" />
-        <Folder Include="Presentation\Views\TokenAdmin\Interfaces\" />
-        <Folder Include="Presentation\Views\Wiki\Interfaces\" />
-        <Folder Include="Presentation\Views\WorkItemTrackingProcess\Interfaces\" />
-        <Folder Include="Presentation\Views\WorkItemTracking\Interfaces\" />
-        <Folder Include="Presentation\Views\Work\Interfaces\" />
     </ItemGroup>
 </Project>

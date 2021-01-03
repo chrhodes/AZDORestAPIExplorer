@@ -400,6 +400,23 @@
         "runtime": {
           "bin/placeholder/AZDORestApiExplorer.Domain.dll": {}
         }
+      },
+      "VNC.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.8",
+        "dependencies": {
+          "CommonServiceLocator": "2.0.5",
+          "EntityFramework": "6.4.4",
+          "Prism.Wpf": "7.2.0.1422",
+          "Unity.Interception": "5.11.1",
+          "VNC.LoggingNF": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VNC.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VNC.Core.dll": {}
+        }
       }
     }
   },
@@ -1064,13 +1081,18 @@
       "type": "project",
       "path": "../AZDORestApiExplorer.Domain/AZDORestApiExplorer.Domain.csproj",
       "msbuildProject": "../AZDORestApiExplorer.Domain/AZDORestApiExplorer.Domain.csproj"
+    },
+    "VNC.Core/1.0.0": {
+      "type": "project",
+      "path": "../../vnc/VNC.Core/VNC.CoreNF.csproj",
+      "msbuildProject": "../../vnc/VNC.Core/VNC.CoreNF.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
       "AZDORestApiExplorer.Domain >= 1.0.0",
       "Prism.Unity >= 7.2.0.1422",
-      "VNC.CoreNF >= 1.0.0"
+      "VNC.Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1117,6 +1139,9 @@
           "projectReferences": {
             "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
               "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
+            },
+            "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj": {
+              "projectPath": "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj"
             }
           }
         }
@@ -1134,10 +1159,6 @@
           "Prism.Unity": {
             "target": "Package",
             "version": "[7.2.0.1422, )"
-          },
-          "VNC.CoreNF": {
-            "target": "Package",
-            "version": "[1.0.0, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"

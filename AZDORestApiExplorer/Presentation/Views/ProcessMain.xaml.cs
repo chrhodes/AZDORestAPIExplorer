@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;

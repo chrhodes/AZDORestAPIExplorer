@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -13,12 +13,18 @@
     <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
   </ItemGroup>
 
+    <ItemGroup>
+        <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
+        <Reference Include="System.Web" />
+    </ItemGroup>
+
   <ItemGroup>
     <Folder Include="ArtifactsPackageTypes\" />
     <Folder Include="Artifacts\" />
     <Folder Include="Audit\" />
     <Folder Include="Build\" />
     <Folder Include="DistributedTask\" />
+    <Folder Include="DomainServices\" />
     <Folder Include="ExtenstionManagement\" />
     <Folder Include="Git\" />
     <Folder Include="Graph\" />
@@ -29,6 +35,7 @@
     <Folder Include="PermissionsReport\" />
     <Folder Include="Pipelines\" />
     <Folder Include="Policy\" />
+    <Folder Include="Presentation\" />
     <Folder Include="Profile\" />
     <Folder Include="Release\" />
     <Folder Include="Search\" />

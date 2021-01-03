@@ -27,6 +27,10 @@ namespace AZDORestApiExplorer.Core
         public static string ProcessNavigationRegion = "ProcessNavigationRegion";
         public static string ProcessDetailRegion = "ProcessDetailRegion";
 
+        public static string WITPProcessMainRegion = "WITPProcessMainRegion";
+        //public static string ProcessNavigationRegion = "ProcessNavigationRegion";
+        //public static string ProcessDetailRegion = "ProcessDetailRegion";
+
         public static string ProjectMainRegion = "ProjectMainRegion";
         public static string ProjectNavigationRegion = "ProjectNavigationRegion";
         public static string ProjectDetailRegion = "ProjectDetailRegion";

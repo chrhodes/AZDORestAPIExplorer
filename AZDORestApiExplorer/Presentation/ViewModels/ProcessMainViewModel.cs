@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Core;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,6 +17,7 @@ using Prism.Events;
 
 using VNC;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -67,7 +70,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Process> Processes { get; set; } = new RESTResult<Domain.Process>();
+        public RESTResult<Process> Processes { get; set; } = new RESTResult<Process>();
 
         #endregion
 
@@ -93,9 +96,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
-                    var requestUri = $"{args.Organization.Uri}/_apis/work/processes?api-version=6.0-preview.2";
+                    var requestUri = $"{args.Organization.Uri}/_apis/"
+                        +"process/processes?"
+                        + "api-version=6.0-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -111,7 +116,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
 
-                        Processes.ResultItems = new ObservableCollection<Domain.Process>(resultRoot.value);
+                        Processes.ResultItems = new ObservableCollection<Process>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

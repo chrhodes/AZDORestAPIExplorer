@@ -18,7 +18,7 @@
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
+
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
@@ -137,49 +137,5 @@
         </DataGrid>
 
     </Grid>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="2" FontSize="18">
-            <MenuItem Header="Create">
-                <MenuItem Header="Add Process" Command="{Binding CreateNewDetailCommand}"
-                          CommandParameter="{x:Type viewModels:ProcessDetailViewModel}" />
-                --><!--<MenuItem Header="Add Meeting" Command="{Binding CreateNewDetailCommand}"
-                          CommandParameter="{x:Type viewModels:MeetingDetailViewModel}" />--><!--
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header=""
-                            Command="{Binding OpenSingleDetailViewCommand}"
-                            CommandParameter="{x:Type viewModels:DetailViewModel}" />
-            </MenuItem>
-        </Menu>
 
-        <ContentControl Grid.Row="1" Grid.Column="0"
-                        prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessNavigationRegion}"
-                        DataContext="{Binding NavigationViewModel}" />
-
-        <TabControl Grid.Row="1" Grid.Column="1"
-                    ItemsSource="{Binding DetailViewModels}"
-                    SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}">
-            <TabControl.ItemTemplate>
-
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}" />
-                        <TextBlock Text="*" Visibility="{Binding HasChanges,
-                            Converter={StaticResource booleanToVisibilityConverter}}" />
-                        <Button Command="{Binding CloseDetailViewCommand}"
-                                VerticalAlignment="Top" Margin="2"
-                                Content="x" FontSize="20" />
-                    </StackPanel>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>
-    </Grid>-->
 </vncmvvm:ViewBase>

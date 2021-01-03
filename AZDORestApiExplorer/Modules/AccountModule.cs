@@ -1,9 +1,8 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Accounts.Presentation.ViewModels;
+using AZDORestApiExplorer.Accounts.Presentation.Views;
 using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.DomainServices;
-using AZDORestApiExplorer.Presentation.ViewModels.Accounts;
-using AZDORestApiExplorer.Presentation.Views.Accounts;
 
 using Prism.Ioc;
 using Prism.Modularity;

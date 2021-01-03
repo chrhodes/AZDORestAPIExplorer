@@ -19,64 +19,85 @@
     Background="White"
 >
 
-    <dxlc:LayoutGroup
-        View="Group" Orientation="Horizontal" >
+    <WrapPanel>
+        <dxlc:LayoutGroup Header="Core"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
 
-        <dxlc:LayoutGroup 
-        	View="Group" Orientation="Vertical" >
-            
-            <dxlc:LayoutGroup Header="Accounts"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+            <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
 
-                <dxlc:LayoutItem>
-                    <Button
-                    Command="{Binding GetAccountsCommand }"
-                    Content="{Binding GetAccountsContent, FallbackValue='Get Accounts' }"
-                    ToolTip="{Binding GetAccountsToolTip, FallbackValue='Get Accounts ToolTip' }" />
-                </dxlc:LayoutItem>
+            <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
 
-            </dxlc:LayoutGroup>
+            <!--<Button Click="GetProjects_Click">GET projects</Button>-->
 
-            <dxlc:LayoutGroup Header="Core"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+            <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
+                    <Button Click="GetAllTeams_Click">GET teams</Button>
+                    <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
+                    <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
 
-                    <!--<Button Click="GetProcesses_Click">GET process/processes</Button>-->
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetCoreProcessesCommand }"
+                    Content="{Binding GetCoreProcessesContent, FallbackValue='Get Core Processes' }"
+                    ToolTip="{Binding GetCoreProcessesToolTip, FallbackValue='Get Core Processes ToolTip' }" />
+            </dxlc:LayoutItem>
 
-                    <!--<Button Click="GetProcess_Click">GET process/{processId}</Button>-->
-
-                    <!--<Button Click="GetProjects_Click">GET projects</Button>-->
-
-                    <!--<Button Click="GetProject_Click">GET projects/projectId</Button>
-                        <Button Click="GetAllTeams_Click">GET teams</Button>
-                        <Button Click="GetTeams_Click">GET projects/{projectId}/teams</Button>
-                        <Button Click="GetTeam_Click">GET projects/{projectId}/teams/{teamId}</Button>-->
-
-                <dxlc:LayoutItem>
-                    <Button
-                    Command="{Binding GetProcessesCommand }"
-                    Content="{Binding GetProcessesContent, FallbackValue='Get Processes' }"
-                    ToolTip="{Binding GetProcessesToolTip, FallbackValue='Get Processes ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button
+            <dxlc:LayoutItem>
+                <Button
                     Command="{Binding GetProjectsCommand }"
                     Content="{Binding GetProjectsContent, FallbackValue='Get Projects' }"
                     ToolTip="{Binding GetProjectsToolTip, FallbackValue='Get Projects ToolTip' }" />
-                </dxlc:LayoutItem>
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem>
-                    <Button
+            <dxlc:LayoutItem>
+                <Button
                     Command="{Binding GetTeamsCommand }"
                     Content="{Binding GetTeamsContent, FallbackValue='Get Teams' }"
                     ToolTip="{Binding GetTeamsToolTip, FallbackValue='Get Teams ToolTip' }" />
-                </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+      
+        <dxlc:LayoutGroup Header="Accounts"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+            <dxlc:LayoutItem>
+                <Button
+                Command="{Binding GetAccountsCommand }"
+                Content="{Binding GetAccountsContent, FallbackValue='Get Accounts' }"
+                ToolTip="{Binding GetAccountsToolTip, FallbackValue='Get Accounts ToolTip' }" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Artifacts"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Audit"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Build"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Cloud Load Test"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
         </dxlc:LayoutGroup>
         
         <dxlc:LayoutGroup Header="Dashboard"
@@ -98,7 +119,161 @@
                     ToolTip="{Binding GetWidgetsToolTip, FallbackValue='GetWidgets ToolTip' }" />
             </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
-        
+
+        <dxlc:LayoutGroup Header="Distributed Task"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Extension Management"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Git"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Graph"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Identities"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Member Entitlement Management"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Notification"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Operations"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Permissions Report"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Pipelines"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Policy"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Profile"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Release"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Search"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Security"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Service Endpoint"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Service Hooks"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Status"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Symbol"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Test"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Tfvc"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Token Admin"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup Header="Work"
                 View="GroupBox" Orientation="Vertical"
                 VerticalAlignment="Top" HorizontalAlignment="Stretch"
@@ -106,30 +281,30 @@
 
             <dxlc:LayoutItem>
                 <Button
-                    Command="{Binding Get_Work_BacklogsCommand }"
-                    Content="{Binding Get_Work_BacklogsContent, FallbackValue='Get Work Backlogs' }"
-                    ToolTip="{Binding Get_Work_BacklogsToolTip, FallbackValue='Get Work Backlogs ToolTip' }" />
+                    Command="{Binding GetBacklogsCommand }"
+                    Content="{Binding GetBacklogsContent, FallbackValue='Get Backlogs' }"
+                    ToolTip="{Binding GetBacklogsToolTip, FallbackValue='Get Backlogs ToolTip' }" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <Button
-                    Command="{Binding Get_Work_BoardsCommand }"
-                    Content="{Binding Get_Work_BoardsContent, FallbackValue='Get Work Boards' }"
-                    ToolTip="{Binding Get_Work_BoardsToolTip, FallbackValue='Get Work Boards ToolTip' }" />
+                    Command="{Binding GetBoardsCommand }"
+                    Content="{Binding GetBoardsContent, FallbackValue='Get Boards' }"
+                    ToolTip="{Binding GetBoardsToolTip, FallbackValue='Get Boards ToolTip' }" />
             </dxlc:LayoutItem>
             
             <dxlc:LayoutItem>
                 <Button
-                    Command="{Binding Get_Work_BoardColumnsCommand }"
-                    Content="{Binding Get_Work_BoardColumnsContent, FallbackValue='Get Work BoardColumns' }"
-                    ToolTip="{Binding Get_Work_BoardColumnsToolTip, FallbackValue='Get Work BoardColumns ToolTip' }" />
+                    Command="{Binding GetBoardColumnsCommand }"
+                    Content="{Binding GetBoardColumnsContent, FallbackValue='Get BoardColumns' }"
+                    ToolTip="{Binding GetBoardColumnsToolTip, FallbackValue='Get BoardColumns ToolTip' }" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <Button
-                    Command="{Binding Get_Work_BoardRowsCommand }"
-                    Content="{Binding Get_Work_BoardRowsContent, FallbackValue='Get Work BoardRows' }"
-                    ToolTip="{Binding Get_Work_BoardRowsToolTip, FallbackValue='Get Work BoardRows ToolTip' }" />
+                    Command="{Binding GetBoardRowsCommand }"
+                    Content="{Binding GetBoardRowsContent, FallbackValue='Get BoardRows' }"
+                    ToolTip="{Binding GetBoardRowsToolTip, FallbackValue='Get BoardRows ToolTip' }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
@@ -144,24 +319,11 @@
                 
             </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Work Item Tracking Process"
+            <dxlc:LayoutGroup Header="Work Item Tracking Process"
                 View="GroupBox" Orientation="Vertical"
                 VerticalAlignment="Top" HorizontalAlignment="Stretch"
                 IsCollapsible="True"  IsCollapsed="False">
 
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetWorkItemTypesCommand }"
-                        Content="{Binding GetWorkItemTypesContent, FallbackValue='GetWorkItemTypes' }"
-                        ToolTip="{Binding GetWorkItemTypesToolTip, FallbackValue='GetWorkItemTypes ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetStatesCommand }"
-                        Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
-                        ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
-                </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
                     <Button
@@ -176,6 +338,13 @@
                         Content="{Binding GetListsContent, FallbackValue='GetLists' }"
                         ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
                 </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem>
+                    <Button
+                    Command="{Binding GetWITPProcessesCommand }"
+                    Content="{Binding GetWITPProcessesContent, FallbackValue='Get WITP Processes' }"
+                    ToolTip="{Binding GetWITPProcessesToolTip, FallbackValue='Get WITP Processes ToolTip' }" />
+                </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
                     <Button
@@ -183,13 +352,28 @@
                         Content="{Binding GetRulesContent, FallbackValue='GetRules' }"
                         ToolTip="{Binding GetRulesToolTip, FallbackValue='GetRules ToolTip' }" />
                 </dxlc:LayoutItem>
-                    
+
+                <dxlc:LayoutItem>
+                    <Button
+                        Command="{Binding GetStatesCommand }"
+                        Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
+                        ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
+                </dxlc:LayoutItem>
+
                 <dxlc:LayoutItem>
                     <Button
                         Command="{Binding GetSystemControlsCommand }"
                         Content="{Binding GetSystemControlsContent, FallbackValue='GetSystemControls' }"
                         ToolTip="{Binding GetSystemControlsToolTip, FallbackValue='GetSystemControls ToolTip' }" />
                 </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem>
+                    <Button
+                        Command="{Binding GetWITPWorkItemTypesCommand }"
+                        Content="{Binding GetWITPWorkItemTypesContent, FallbackValue='Get WITP WorkItemTypes' }"
+                        ToolTip="{Binding GetWITPWorkItemTypesToolTip, FallbackValue='Get WITP WorkItemTypes ToolTip' }" />
+                </dxlc:LayoutItem>
+                
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Work Item Tracking Process Template"
@@ -205,7 +389,9 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
+
+
         </dxlc:LayoutGroup>
 
-    </dxlc:LayoutGroup>
+    </WrapPanel>
 </vncmvvm:ViewBase>

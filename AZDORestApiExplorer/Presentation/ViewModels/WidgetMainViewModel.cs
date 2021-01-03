@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.Dashboard;
 
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 
 using VNC;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -67,7 +67,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Widget> Widgets { get; set; } = new RESTResult<Domain.Widget>();
+        public RESTResult<Widget> Widgets { get; set; } = new RESTResult<Widget>();
 
 
         #endregion
@@ -95,7 +95,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/{args.Team.id}/_apis/dashboard/dashboards/{args.Dashboard}?api-version=6.1-preview.1";
 

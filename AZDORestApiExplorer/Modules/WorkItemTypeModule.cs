@@ -4,6 +4,8 @@ using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.Presentation.Views;
+using AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels;
+using AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views;
 
 using Prism.Ioc;
 using Prism.Modularity;

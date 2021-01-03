@@ -1,4 +1,4 @@
-﻿using AZDORestApiExplorer.Domain;
+﻿using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Prism.Events;
 

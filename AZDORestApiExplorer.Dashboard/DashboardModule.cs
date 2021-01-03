@@ -1,14 +1,12 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Presentation.ViewModels.Accounts;
-using AZDORestApiExplorer.Presentation.Views.Accounts;
+using AZDORestApiExplorer.Dashboard.Presentation.ViewModels;
+using AZDORestApiExplorer.Dashboard.Presentation.Views;
 
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-
-using Unity;
 
 using VNC;
 
@@ -35,8 +33,8 @@ namespace AZDORestApiExplorer.Dashboard
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.Register<IDashboardMainViewModel, DashboardMainViewModel>();
+            containerRegistry.RegisterSingleton<IDashboardMain, DashboardMain>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -52,7 +50,7 @@ namespace AZDORestApiExplorer.Dashboard
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.DashboardMainRegion, typeof(IDashboardMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

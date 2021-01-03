@@ -2,8 +2,10 @@
 using System.Threading;
 using System.Windows;
 
+using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Presentation.Views;
+using AZDORestApiExplorer.WorkItemTrackingProcess;
 
 using Prism.Ioc;
 using Prism.Modularity;
@@ -156,7 +158,11 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(RuleModule));
 
+            // These come from other assemblies
+
             moduleCatalog.AddModule(typeof(AccountModule));
+
+            moduleCatalog.AddModule(typeof(WorkItemTrackingProcessModule));
 
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);

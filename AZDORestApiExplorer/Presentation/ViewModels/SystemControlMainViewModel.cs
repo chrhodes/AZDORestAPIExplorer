@@ -6,6 +6,7 @@ using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,6 +15,7 @@ using Prism.Events;
 
 using VNC;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -58,7 +60,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.SystemControl> SystemControls { get; set; } = new RESTResult<Domain.SystemControl>();
+        public RESTResult<SystemControl> SystemControls { get; set; } = new RESTResult<SystemControl>();
 
         #endregion
 
@@ -85,7 +87,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/"
                         + $"work/processes/{args.Process.typeId}/workItemTypes/{args.WorkItemType.referenceName}/layout/systemcontrols"

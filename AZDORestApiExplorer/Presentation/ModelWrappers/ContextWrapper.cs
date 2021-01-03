@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Domain.Core;
+﻿using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
@@ -13,6 +9,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
     {
         public ContextWrapper(Application.Context model) : base(model)
         {
+        }
+
+        public Domain.Core.Process SelectedProcess
+        {
+            get { return GetValue<Domain.Core.Process>(); }
+            set { SetValue(value); }
         }
 
         public Project SelectedProject
@@ -27,11 +29,7 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-        public Process SelectedProcess
-        {
-            get { return GetValue<Process>(); }
-            set { SetValue(value); }
-        }
+
 
         public WorkItemType SelectedWorkItemType
         {

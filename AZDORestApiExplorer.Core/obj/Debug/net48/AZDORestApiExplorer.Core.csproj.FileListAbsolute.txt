@@ -1,3 +1,5 @@
+P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.csproj.CoreCompileInputs.cache
+P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.csprojAssemblyReference.cache
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\AZDORestApiExplorer.Core.dll
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\AZDORestApiExplorer.Core.pdb
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\CommonServiceLocator.dll
@@ -30,9 +32,9 @@ P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\Uni
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\VNC.CoreNF.dll
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\VNC.LoggingNF.dll
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\AZDORestApiExplorer.Domain.dll
+P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\VNC.HttpHelper.dll
+P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\VNC.HttpHelper.pdb
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\bin\Debug\net48\AZDORestApiExplorer.Domain.pdb
-P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.csprojAssemblyReference.cache
-P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.csproj.CoreCompileInputs.cache
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.csproj.CopyComplete
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.dll
 P:\git\chrhodes\AZDORestApiExplorer\AZDORestApiExplorer.Core\obj\Debug\net48\AZDORestApiExplorer.Core.pdb

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using AZDORestApiExplorer.Domain.Dashboard;
 
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ModelWrappers
 {
-    public class WidgetWrapper : ModelWrapper<Domain.Widget>
+    public class WidgetWrapper : ModelWrapper<Widget>
     {
-        public WidgetWrapper(Domain.Widget model) : base(model)
+        public WidgetWrapper(Widget model) : base(model)
         {
         }
 

@@ -1,14 +1,8 @@
 ﻿using System;
 
-using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Presentation.ViewModels.Accounts;
-using AZDORestApiExplorer.Presentation.Views.Accounts;
-
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-
-using Unity;
 
 using VNC;
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 
-using AZDORestApiExplorer.Domain;
-
 using Prism.Events;
+
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Core.Events
 {

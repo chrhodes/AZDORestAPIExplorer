@@ -6,6 +6,7 @@ using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,6 +15,7 @@ using Prism.Events;
 
 using VNC;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -66,7 +68,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.List> Lists { get; set; } = new RESTResult<Domain.List>();
+        public RESTResult<List> Lists { get; set; } = new RESTResult<List>();
 
 
         #endregion
@@ -94,7 +96,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/work/processes/lists?api-version=6.0-preview.1";
 
@@ -112,7 +114,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         ListsRoot resultRoot = JsonConvert.DeserializeObject<ListsRoot>(outJson);
 
-                        Lists.ResultItems = new ObservableCollection<Domain.List>(resultRoot.value);
+                        Lists.ResultItems = new ObservableCollection<List>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

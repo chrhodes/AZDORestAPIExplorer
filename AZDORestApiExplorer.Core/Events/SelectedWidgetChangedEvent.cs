@@ -1,8 +1,6 @@
-﻿using AZDORestApiExplorer.Domain;
+﻿using AZDORestApiExplorer.Domain.Dashboard;
 
 using Prism.Events;
-
-using VNC.Core.Events;
 
 namespace AZDORestApiExplorer.Core.Events
 {

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
@@ -15,6 +16,7 @@ using Prism.Events;
 
 using VNC;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -86,7 +88,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.

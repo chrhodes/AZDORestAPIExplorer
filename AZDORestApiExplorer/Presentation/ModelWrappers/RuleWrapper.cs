@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ModelWrappers
 {
-    public class RuleWrapper : ModelWrapper<Domain.Rule>
+    public class RuleWrapper : ModelWrapper<Rule>
     {
-        public RuleWrapper(Domain.Rule model) : base(model)
+        public RuleWrapper(Rule model) : base(model)
         {
         }
 

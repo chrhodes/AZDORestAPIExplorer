@@ -2,13 +2,13 @@
 using System.Collections.ObjectModel;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain;
 
 using Prism.Events;
 
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -62,19 +62,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         public ObservableCollection<RequestResponseInfo> RequestResponseExchange { get; set; }
             = new ObservableCollection<RequestResponseInfo>();
 
-        //private int _requestResponseExchangeCount;
-
-        //public int RequestResponseExchangeCount
-        //{
-        //    get => _requestResponseExchangeCount;
-        //    set
-        //    {
-        //        if (_requestResponseExchangeCount == value)
-        //            return;
-        //        _requestResponseExchangeCount = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         #endregion
 

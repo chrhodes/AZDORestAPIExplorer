@@ -43,6 +43,9 @@
             "projectReferences": {
               "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
                 "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
+              },
+              "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj": {
+                "projectPath": "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj"
               }
             }
           }
@@ -60,10 +63,6 @@
             "Prism.Unity": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
-            },
-            "VNC.CoreNF": {
-              "target": "Package",
-              "version": "[1.0.0, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
@@ -120,6 +119,80 @@
           "targetAlias": "net48",
           "dependencies": {
             "VNC.CoreNF": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj",
+        "projectName": "VNC.Core",
+        "projectPath": "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj",
+        "packagesPath": "C:\\Users\\crhodes\\.nuget\\packages\\",
+        "outputPath": "P:\\git\\chrhodes\\vnc\\VNC.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\crhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "B:\\VNCNuget": {},
+          "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "CommonServiceLocator": {
+              "target": "Package",
+              "version": "[2.0.5, )"
+            },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Prism.Wpf": {
+              "target": "Package",
+              "version": "[7.2.0.1422, )"
+            },
+            "Unity.Interception": {
+              "target": "Package",
+              "version": "[5.11.1, )"
+            },
+            "VNC.LoggingNF": {
               "target": "Package",
               "version": "[1.0.0, )"
             }
