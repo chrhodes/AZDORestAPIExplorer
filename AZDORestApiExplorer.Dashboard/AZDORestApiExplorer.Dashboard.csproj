@@ -36,6 +36,9 @@
       <Page Update="Presentation\Views\DashboardMain.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>
+      <Page Update="Presentation\Views\WidgetMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
     </ItemGroup>
     
 </Project>

@@ -15,7 +15,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
     mc:Ignorable="d"
-    d:DesignHeight="450" d:DesignWidth="800"
+    d:DesignHeight="650" d:DesignWidth="800"
     Background="White"
 >
 
@@ -309,86 +309,81 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup 
-        	View="Group" Orientation="Vertical" >
+          
+        <dxlc:LayoutGroup Header="Work Item Tracking"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+                
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Work Item Tracking Process"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
+
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetBehaviorsWITPCommand }"
+                    Content="{Binding GetBehaviorsWITPContent, FallbackValue='GetBehaviors' }"
+                    ToolTip="{Binding GetBehaviorsWITPToolTip, FallbackValue='GetBehaviors ToolTip' }" />
+            </dxlc:LayoutItem>
             
-            <dxlc:LayoutGroup Header="Work Item Tracking"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetFieldsWITPCommand }"
+                    Content="{Binding GetFieldsWITPContent, FallbackValue='Get Fields' }"
+                    ToolTip="{Binding GetFieldsWITPToolTip, FallbackValue='Get Fields ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetListsCommand }"
+                    Content="{Binding GetListsContent, FallbackValue='GetLists' }"
+                    ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
+            </dxlc:LayoutItem>
                 
-            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <Button
+                Command="{Binding GetProcessesWITPCommand }"
+                Content="{Binding GetProcessesWITPContent, FallbackValue='Get Processes' }"
+                ToolTip="{Binding GetProcessesWITPToolTip, FallbackValue='Get Processes ToolTip' }" />
+            </dxlc:LayoutItem>
 
-            <dxlc:LayoutGroup Header="Work Item Tracking Process"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetRulesCommand }"
+                    Content="{Binding GetRulesContent, FallbackValue='GetRules' }"
+                    ToolTip="{Binding GetRulesToolTip, FallbackValue='GetRules ToolTip' }" />
+            </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetStatesCommand }"
+                    Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
+                    ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetFieldsCommand }"
-                        Content="{Binding GetFieldsContent, FallbackValue='GetFields' }"
-                        ToolTip="{Binding GetFieldsToolTip, FallbackValue='GetFields ToolTip' }" />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetSystemControlsCommand }"
+                    Content="{Binding GetSystemControlsContent, FallbackValue='GetSystemControls' }"
+                    ToolTip="{Binding GetSystemControlsToolTip, FallbackValue='GetSystemControls ToolTip' }" />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetListsCommand }"
-                        Content="{Binding GetListsContent, FallbackValue='GetLists' }"
-                        ToolTip="{Binding GetListsToolTip, FallbackValue='GetLists ToolTip' }" />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetWorkItemTypesWITPCommand }"
+                    Content="{Binding GetWorkItemTypesWITPContent, FallbackValue='Get WorkItemTypes' }"
+                    ToolTip="{Binding GetWorkItemTypesWITPToolTip, FallbackValue='Get WorkItemTypes ToolTip' }" />
+            </dxlc:LayoutItem>
                 
-                <dxlc:LayoutItem>
-                    <Button
-                    Command="{Binding GetWITPProcessesCommand }"
-                    Content="{Binding GetWITPProcessesContent, FallbackValue='Get WITP Processes' }"
-                    ToolTip="{Binding GetWITPProcessesToolTip, FallbackValue='Get WITP Processes ToolTip' }" />
-                </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetRulesCommand }"
-                        Content="{Binding GetRulesContent, FallbackValue='GetRules' }"
-                        ToolTip="{Binding GetRulesToolTip, FallbackValue='GetRules ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetStatesCommand }"
-                        Content="{Binding GetStatesContent, FallbackValue='GetStates' }"
-                        ToolTip="{Binding GetStatesToolTip, FallbackValue='GetStates ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetSystemControlsCommand }"
-                        Content="{Binding GetSystemControlsContent, FallbackValue='GetSystemControls' }"
-                        ToolTip="{Binding GetSystemControlsToolTip, FallbackValue='GetSystemControls ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetWITPWorkItemTypesCommand }"
-                        Content="{Binding GetWITPWorkItemTypesContent, FallbackValue='Get WITP WorkItemTypes' }"
-                        ToolTip="{Binding GetWITPWorkItemTypesToolTip, FallbackValue='Get WITP WorkItemTypes ToolTip' }" />
-                </dxlc:LayoutItem>
-                
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup Header="Work Item Tracking Process Template"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
-
-                <dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetBehaviorsCommand }"
-                        Content="{Binding GetBehaviorsContent, FallbackValue='GetBehaviors' }"
-                        ToolTip="{Binding GetBehaviorsToolTip, FallbackValue='GetBehaviors ToolTip' }" />
-                </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-
+        <dxlc:LayoutGroup Header="Work Item Tracking Process Template"
+            View="GroupBox" Orientation="Vertical"
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True"  IsCollapsed="False">
 
 
         </dxlc:LayoutGroup>

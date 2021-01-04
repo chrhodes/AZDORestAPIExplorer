@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 
+using AZDORestApiExplorer.Accounts;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Presentation.Views;
@@ -134,13 +135,6 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(TeamModule));
 
-            moduleCatalog.AddModule(typeof(WorkItemTypeModule));
-
-            moduleCatalog.AddModule(typeof(StateModule));
-
-            moduleCatalog.AddModule(typeof(FieldModule));
-
-            moduleCatalog.AddModule(typeof(ListModule));
 
             moduleCatalog.AddModule(typeof(CollectionModule));
 
@@ -148,19 +142,15 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(HTTPExchangeModule));
 
-            moduleCatalog.AddModule(typeof(WidgetModule));
-
             moduleCatalog.AddModule(typeof(DashboardModule));
 
-            moduleCatalog.AddModule(typeof(BehaviorModule));
 
-            moduleCatalog.AddModule(typeof(SystemControlModule));
-
-            moduleCatalog.AddModule(typeof(RuleModule));
 
             // These come from other assemblies
 
-            moduleCatalog.AddModule(typeof(AccountModule));
+            moduleCatalog.AddModule(typeof(AccountsModule));
+
+            moduleCatalog.AddModule(typeof(DashboardModule));
 
             moduleCatalog.AddModule(typeof(WorkItemTrackingProcessModule));
 

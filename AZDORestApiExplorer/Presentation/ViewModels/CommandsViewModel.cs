@@ -1,6 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
@@ -37,25 +38,172 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            // Core Category
+            #region Core Category
 
             GetCoreProcessesCommand = new DelegateCommand(GetCoreProcessesExecute, GetCoreProcessesCanExecute);
             GetProjectsCommand = new DelegateCommand(GetProjectsExecute, GetProjectsCanExecute);
             GetTeamsCommand = new DelegateCommand(GetTeamsExecute, GetTeamsCanExecute);
 
-            // WorkItemTrackingProcess Category
+            #endregion
 
-            GetWITPProcessesCommand = new DelegateCommand(GetWITPProcessesExecute, GetWITPProcessesCanExecute);
-            GetWorkItemTypesCommand = new DelegateCommand(GetWorkItemTypesExecute, GetWorkItemTypesCanExecute);
-            GetStatesCommand = new DelegateCommand(GetStatesExecute, GetStatesCanExecute);
-            GetFieldsCommand = new DelegateCommand(GetFieldsExecute, GetFieldsCanExecute);
-            GetListsCommand = new DelegateCommand(GetListsExecute, GetListsCanExecute);
-            GetDashboardsCommand = new DelegateCommand(GetDashboardsExecute, GetDashboardsCanExecute);
-            GetWidgetsCommand = new DelegateCommand(GetWidgetsExecute, GetWidgetsCanExecute);
-            GetBehaviorsCommand = new DelegateCommand(GetBehaviorsExecute, GetBehaviorsCanExecute);
-            GetSystemControlsCommand = new DelegateCommand(GetSystemControlsExecute, GetSystemControlsCanExecute);
-            GetRulesCommand = new DelegateCommand(GetRulesExecute, GetRulesCanExecute);
+            #region Accounts Category
+
             GetAccountsCommand = new DelegateCommand(GetAccountsExecute, GetAccountsCanExecute);
+
+            #endregion
+
+            #region Artifacts Category
+
+            #endregion
+
+            #region Artifacts Package Types Category
+
+            #endregion
+
+            #region Audit Category
+
+            #endregion
+
+            #region Build Category
+
+            #endregion
+
+            #region Cloud Load Test Category
+
+            #endregion
+
+            #region Dashboard Category
+
+            GetDashboardsCommand = new DelegateCommand(GetDashboardsExecute, GetDashboardsCanExecute);
+
+            GetWidgetsCommand = new DelegateCommand(GetWidgetsExecute, GetWidgetsCanExecute);
+
+            #endregion
+
+            #region Distributed Task Category
+
+            #endregion
+
+            #region Extension Management Category
+
+            #endregion
+
+            #region Git Category
+
+            #endregion
+
+            #region Graph Category
+
+            #endregion
+
+            #region Identities Category
+
+            #endregion
+
+            #region Member Entitlement Management Category
+
+            #endregion
+
+            #region Notification Category
+
+            #endregion
+
+            #region Operations Category
+
+            #endregion
+
+            #region Permissions Report Category
+
+            #endregion
+
+            #region Pipelines Category
+
+            #endregion
+
+            #region Policy Category
+
+            #endregion
+
+            #region Profile Category
+
+            #endregion
+
+            #region Relese Category
+
+            #endregion
+
+            #region Search Category
+
+            #endregion
+
+            #region Security Category
+
+            #endregion
+
+            #region Service Endpoint Category
+
+            #endregion
+
+            #region Service Hooks Category
+
+            #endregion
+
+            #region Status Category
+
+            #endregion
+
+            #region Symbol Category
+
+            #endregion
+
+            #region Test Category
+
+            #endregion
+
+            #region Test Plan Category
+
+            #endregion
+
+            #region Test Results Category
+
+            #endregion
+
+            #region Tfvc Category
+
+            #endregion
+
+            #region Token Admin Category
+
+            #endregion
+
+            #region Work Category
+
+            #endregion
+
+            #region Work Item Tracking Category
+
+            #endregion
+
+            #region Work Item Tracking Process Category
+
+            GetBehaviorsWITPCommand = new DelegateCommand(GetBehaviorsWITPExecute, GetBehaviorsWITPCanExecute);
+
+            GetFieldsWITPCommand = new DelegateCommand(GetFieldsWITPExecute, GetFieldsWITPCanExecute);
+
+            GetListsCommand = new DelegateCommand(GetListsExecute, GetListsCanExecute);
+
+            GetProcessesWITPCommand = new DelegateCommand(GetProcessesWITPExecute, GetProcessesWITPCanExecute);
+
+            GetRulesCommand = new DelegateCommand(GetRulesExecute, GetRulesCanExecute);
+
+            GetStatesCommand = new DelegateCommand(GetStatesExecute, GetStatesCanExecute);
+
+            GetSystemControlsCommand = new DelegateCommand(GetSystemControlsExecute, GetSystemControlsCanExecute);
+
+            GetWorkItemTypesWITPCommand = new DelegateCommand(GetWorkItemTypesWITPExecute, GetWorkItemTypesWITPCanExecute);
+
+            #endregion
+
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
@@ -66,6 +214,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
 
             EventAggregator.GetEvent<Core.Events.Dashboard.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
+
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -80,18 +229,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetTeamsCommand.RaiseCanExecuteChanged();
             GetCoreProcessesCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
-            GetBehaviorsCommand.RaiseCanExecuteChanged();
+            GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
 
-            GetWITPProcessesCommand.RaiseCanExecuteChanged();
+            GetProcessesWITPCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
-            GetWorkItemTypesCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypesWITPCommand.RaiseCanExecuteChanged();
             GetListsCommand.RaiseCanExecuteChanged();
-            GetBehaviorsCommand.RaiseCanExecuteChanged();
+            GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
         }
@@ -99,7 +248,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseWorkItemTypeChanged(WorkItemType workItemType)
         {
             GetStatesCommand.RaiseCanExecuteChanged();
-            GetFieldsCommand.RaiseCanExecuteChanged();
+            GetFieldsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
         }
@@ -149,10 +298,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Public Methods
 
-
         #region Commands
 
-        #region Accounts
+        // TODO(crhodes)
+        // Decide if these need to be public, perhaps just private
+
+        #region Accounts Category
 
         #region GetAccounts Command
 
@@ -191,6 +342,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #endregion
+
+        #region Artifacts Category
+
+        #endregion
+
+        #region Build Category
+
+
+        #endregion
+
+        #region Cloud Load Test Category
+
 
         #endregion
 
@@ -274,52 +439,44 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #endregion
+        #region GetTeams Command
 
-        // TODO(crhodes)
-        // Decide if these need to be public
-
-        #region GetBehaviors Command
-
-        public DelegateCommand GetBehaviorsCommand { get; set; }
-        public string GetBehaviorsContent { get; set; } = "GetBehaviors";
-        public string GetBehaviorsToolTip { get; set; } = "GetBehaviors ToolTip";
+        public DelegateCommand GetTeamsCommand { get; set; }
+        public string GetTeamsContent { get; set; } = "GetTeams";
+        public string GetTeamsToolTip { get; set; } = "GetTeams ToolTip";
 
         // Can get fancy and use Resources
-        //public string BehaviorContent { get; set; } = "ViewName_BehaviorContent";
-        //public string BehaviorToolTip { get; set; } = "ViewName_BehaviorContentToolTip";
+        //public string GetTeamsContent { get; set; } = "ViewName_GetTeamsContent";
+        //public string GetTeamsToolTip { get; set; } = "ViewName_GetTeamsContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
-        //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
+        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
 
-        public void GetBehaviorsExecute()
+        public void GetTeamsExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment this once get Process figure out.
-
-            //EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
-            //    new Core.Events.WorkItemTrackingProcess.GetBehaviorsEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
-            //        , Process = _contextMainViewModel.Context.SelectedProcess
-            //    });
+            EventAggregator.GetEvent<GetTeamsEvent>().Publish(
+                new GetTeamsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetBehaviorsCanExecute()
+        public bool GetTeamsCanExecute()
         {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
                 return false;
             }
 
             return true;
         }
+
+        #endregion
 
         #endregion
 
@@ -368,13 +525,194 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region GetWidgets Command
+
+        public DelegateCommand GetWidgetsCommand { get; set; }
+        public string GetWidgetsContent { get; set; } = "GetWidgets";
+        public string GetWidgetsToolTip { get; set; } = "GetWidgets ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWidgetsContent { get; set; } = "ViewName_GetWidgetsContent";
+        //public string GetWidgetsToolTip { get; set; } = "ViewName_GetWidgetsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWidgetsContent">GetWidgets</system:String>
+        //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>  
+
+        public void GetWidgetsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetWidgetsEvent>().Publish(
+                new GetWidgetsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWidgetsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
+        #endregion
+
+        #region Distributed Task Category
+
+        #endregion
+
+        #region Extension Management Category
+
+        #endregion
+
+        #region Git Category
+
+        #endregion
+
+        #region Graph Category
+
+        #endregion
+
+        #region Identities Category
+
+        #endregion
+
+        #region Member Entitlement Category
+
+
+        #endregion
+
+        #region Notification Category
+
+
+        #endregion
+
+        #region Operations Category
+
+        #endregion
+
+        #region Permissions Report Category
+
+        #endregion
+
+        #region Pipelines Category
+
+        #endregion
+
+        #region Policy Category
+
+        #endregion Region
+
+        #region Profile Category
+
+        #endregion
+
+        #region Release Category
+
+        #endregion
+
+        #region Search Category
+
+        #endregion
+
+        #region Service Endpoint Category
+
+        #endregion
+
+        #region Service Hooks Category
+
+        #endregion
+
+        #region Status Category
+
+        #endregion
+
+        #region Symbol Category
+
+        #endregion
+
+        #region Test Category
+
+        #endregion Region
+
+        #region Tfvc Category
+
+        #endregion
+
+        #region Token Admin Category
+
+        #endregion
+
+        #region Work Category
+
+        #endregion
+
+        #region Work Item Tracking Category
+
+        #endregion 
+
+        #region Work Item Tracking Process Category
+
+        #region GetBehaviors Command
+
+        public DelegateCommand GetBehaviorsWITPCommand { get; set; }
+        public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors (WITP)";
+        public string GetBehaviorsWITPToolTip { get; set; } = "GetBehaviors (WITP) ToolTip";
+
+        // Can get fancy and use Resources
+        //public string BehaviorContent { get; set; } = "ViewName_BehaviorContent";
+        //public string BehaviorToolTip { get; set; } = "ViewName_BehaviorContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
+        //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>  
+
+        public void GetBehaviorsWITPExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // HACK(crhodes)
+            // Uncomment this once get Process figure out.
+
+            //EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
+            //    new Core.Events.WorkItemTrackingProcess.GetBehaviorsEventArgs()
+            //    {
+            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
+            //        , Process = _contextMainViewModel.Context.SelectedProcess
+            //    });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetBehaviorsWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+        
         #region GetFields Command
 
-        public DelegateCommand GetFieldsCommand { get; set; }
-        public string GetFieldsContent { get; set; } = "GetFields";
-        public string GetFieldsToolTip { get; set; } = "GetFields ToolTip";
+        public DelegateCommand GetFieldsWITPCommand { get; set; }
+        public string GetFieldsWITPContent { get; set; } = "GetFields (WITP)";
+        public string GetFieldsWITPToolTip { get; set; } = "GetFields (WITP) ToolTip";
 
         // Can get fancy and use Resources
         //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
@@ -384,25 +722,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
         //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
 
-        public void GetFieldsExecute()
+        public void GetFieldsWITPExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment once get Process Figured out.
-
-            //EventAggregator.GetEvent<GetFieldsEvent>().Publish(
-            //    new GetFieldsEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //        Process = _contextMainViewModel.Context.SelectedProcess,
-            //        WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
-            //    });
+            EventAggregator.GetEvent<GetFieldsEvent>().Publish(
+                new GetFieldsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetFieldsCanExecute()
+        public bool GetFieldsWITPCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
@@ -456,11 +791,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region GetWITPProcesses Command
+        #region GetProcesses Command
 
-        public DelegateCommand GetWITPProcessesCommand { get; set; }
-        public string GetWITPProcessesContent { get; set; } = "Get WITP Processes";
-        public string GetWITPProcessesToolTip { get; set; } = "Get WITP Processes ToolTip";
+        public DelegateCommand GetProcessesWITPCommand { get; set; }
+        public string GetProcessesWITPContent { get; set; } = "Get WITP Processes (WITP)";
+        public string GetProcessesWITPToolTip { get; set; } = "Get WITP Processes (WITP) ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -470,7 +805,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
         //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void GetWITPProcessesExecute()
+        public void GetProcessesWITPExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -483,7 +818,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetWITPProcessesCanExecute()
+        public bool GetProcessesWITPCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null)
             {
@@ -633,91 +968,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region GetTeams Command
-
-        public DelegateCommand GetTeamsCommand { get; set; }
-        public string GetTeamsContent { get; set; } = "GetTeams";
-        public string GetTeamsToolTip { get; set; } = "GetTeams ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetTeamsContent { get; set; } = "ViewName_GetTeamsContent";
-        //public string GetTeamsToolTip { get; set; } = "ViewName_GetTeamsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
-        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
-
-        public void GetTeamsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-
-            EventAggregator.GetEvent<GetTeamsEvent>().Publish(
-                new GetTeamsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                });
-
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        public bool GetTeamsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
-
-        #region GetWidgets Command
-
-        public DelegateCommand GetWidgetsCommand { get; set; }
-        public string GetWidgetsContent { get; set; } = "GetWidgets";
-        public string GetWidgetsToolTip { get; set; } = "GetWidgets ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetWidgetsContent { get; set; } = "ViewName_GetWidgetsContent";
-        //public string GetWidgetsToolTip { get; set; } = "ViewName_GetWidgetsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetWidgetsContent">GetWidgets</system:String>
-        //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>  
-
-        public void GetWidgetsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
-
-            EventAggregator.GetEvent<GetWidgetsEvent>().Publish(
-                new GetWidgetsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                });
-
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
-        }
-
-        public bool GetWidgetsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedTeam is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
-
         #region GetWorkItemTypes Command
 
-        public DelegateCommand GetWorkItemTypesCommand { get; set; }
-        public string GetWorkItemTypesContent { get; set; } = "GetWorkItemTypes";
-        public string GetWorkItemTypesToolTip { get; set; } = "GetWorkItemTypes ToolTip";
+        public DelegateCommand GetWorkItemTypesWITPCommand { get; set; }
+        public string GetWorkItemTypesWITPContent { get; set; } = "GetWorkItemTypes (WITP)";
+        public string GetWorkItemTypesWITPToolTip { get; set; } = "GetWorkItemTypes (WITP) ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -727,7 +982,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
         //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
 
-        public void GetWorkItemTypesExecute()
+        public void GetWorkItemTypesWITPExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -744,7 +999,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetWorkItemTypesCanExecute()
+        public bool GetWorkItemTypesWITPCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null)
@@ -759,6 +1014,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region Work Item Tracking Process Template Category
+
+        #endregion
+
+        #endregion
 
         #endregion
 

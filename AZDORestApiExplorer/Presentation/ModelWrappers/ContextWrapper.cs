@@ -29,8 +29,6 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-
-
         public WorkItemType SelectedWorkItemType
         {
             get { return GetValue<WorkItemType>(); }

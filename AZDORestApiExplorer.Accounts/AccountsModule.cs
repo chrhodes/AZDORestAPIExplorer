@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Accounts.Presentation.ViewModels;
+using AZDORestApiExplorer.Accounts.Presentation.Views;
+using AZDORestApiExplorer.Core;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -29,8 +33,8 @@ namespace AZDORestApiExplorer.Accounts
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.Register<IAccountMainViewModel, AccountMainViewModel>();
+            containerRegistry.RegisterSingleton<IAccountMain, AccountMain>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -46,7 +50,7 @@ namespace AZDORestApiExplorer.Accounts
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.AccountMainRegion, typeof(IAccountMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

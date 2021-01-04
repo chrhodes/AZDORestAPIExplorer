@@ -36,6 +36,10 @@ namespace AZDORestApiExplorer.Dashboard
             containerRegistry.Register<IDashboardMainViewModel, DashboardMainViewModel>();
             containerRegistry.RegisterSingleton<IDashboardMain, DashboardMain>();
 
+
+            containerRegistry.Register<IWidgetMainViewModel, WidgetMainViewModel>();
+            containerRegistry.RegisterSingleton<IWidgetMain, WidgetMain>();
+
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -51,6 +55,7 @@ namespace AZDORestApiExplorer.Dashboard
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
             _regionManager.RegisterViewWithRegion(RegionNames.DashboardMainRegion, typeof(IDashboardMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WidgetMainRegion, typeof(IWidgetMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

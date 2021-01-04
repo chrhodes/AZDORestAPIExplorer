@@ -33,8 +33,33 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
+            containerRegistry.Register<IBehaviorMainViewModel, BehaviorMainViewModel>();
+            containerRegistry.RegisterSingleton<IBehaviorMain, BehaviorMain>();
+
+            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
+            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
+
+            containerRegistry.Register<IListMainViewModel, ListMainViewModel>();
+            containerRegistry.RegisterSingleton<IListMain, ListMain>();
+
             containerRegistry.Register<IProcessMainViewModel, ProcessMainViewModel>();
             containerRegistry.RegisterSingleton<IProcessMain, ProcessMain>();
+
+            containerRegistry.Register<IRuleMainViewModel, RuleMainViewModel>();
+            containerRegistry.RegisterSingleton<IRuleMain, RuleMain>();
+
+            containerRegistry.Register<IStateMainViewModel, StateMainViewModel>();
+            containerRegistry.RegisterSingleton<IStateMain, StateMain>();
+
+            containerRegistry.Register<ISystemControlMainViewModel, SystemControlMainViewModel>();
+            containerRegistry.RegisterSingleton<ISystemControlMain, SystemControlMain>();
+
+            containerRegistry.Register<IWorkItemTypeMainViewModel, WorkItemTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemTypeMain, WorkItemTypeMain>();
+
+
+            // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
+            // containerRegistry.Register<IFieldDataService, FieldDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -50,7 +75,15 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.WITPProcessMainRegion, typeof(IProcessMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.BehaviorMainRegion, typeof(IBehaviorMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldMainRegion, typeof(IFieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ListMainRegion, typeof(IListMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ProcessWITPMainRegion, typeof(IProcessMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.RuleMainRegion, typeof(IRuleMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StateMainRegion, typeof(IStateMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.SystemControlMainRegion, typeof(ISystemControlMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeMainRegion, typeof(IWorkItemTypeMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

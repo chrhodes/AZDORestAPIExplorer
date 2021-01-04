@@ -27,8 +27,28 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Page Update="Presentation\Views\BehaviorMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="Presentation\Views\FieldMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="Presentation\Views\ListMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
       <Page Update="Presentation\Views\ProcessMain.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="Presentation\Views\RuleMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Presentation\Views\StateMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="Presentation\Views\SystemControlMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
       </Page>
       <Page Update="Presentation\Views\WorkItemTypeMain.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
