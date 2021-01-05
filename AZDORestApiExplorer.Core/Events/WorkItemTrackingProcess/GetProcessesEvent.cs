@@ -2,5 +2,7 @@
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
-    public class GetProcessesEvent : PubSubEvent<GetProcessesEventArgs> { }
+    public class GetProcessesEvent : PubSubEvent<GetProcessesEventArgs>
+    { 
+    }
 }

@@ -20,7 +20,6 @@
     xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300"
 >
     <UserControl.Resources>
         <!--These are implicit DataTemplates--><!--
@@ -36,22 +35,62 @@
     </UserControl.Resources>
 
     <Grid>
-        <dxlc:LayoutGroup Header="WorkItemTracking"
-        	View="GroupBox" Orientation="Vertical" 
-        	VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	IsCollapsible="True"  IsCollapsed="False">
+        <dxlc:LayoutGroup Orientation="Vertical">
 
-            <dxlc:LayoutGroup Header="Process"
-            	View="GroupBox" Orientation="Vertical" 
-            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	IsCollapsible="True"  IsCollapsed="False">
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedProcess.name}" />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Header="Core"
+        	    View="GroupBox" Orientation="Vertical" 
+        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	    IsCollapsible="True"  IsCollapsed="False">
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="typeid:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedProcess.typeId}" />
-                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Header="Process"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False">
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedProcess.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedProcess.id}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Project"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedProject.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedProject.id}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Team"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTeam.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTeam.id}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+                
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="WorkItemTracking"
+        	    View="GroupBox" Orientation="Vertical" 
+        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	    IsCollapsible="True"  IsCollapsed="False">
 
                 <dxlc:LayoutGroup Header="WorkItem"
             	View="GroupBox" Orientation="Vertical" 
@@ -68,38 +107,6 @@
 
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup Header="Project"
-            	View="GroupBox" Orientation="Vertical" 
-            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	IsCollapsible="True"  IsCollapsed="False">
-
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedProject.name}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedProject.id}" />
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup Header="Team"
-            	View="GroupBox" Orientation="Vertical" 
-            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	IsCollapsible="True"  IsCollapsed="False">
-
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedTeam.name}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                    <TextBlock Text="{Binding Context.SelectedTeam.id}" />
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
-
-
 
         </dxlc:LayoutGroup>
     </Grid>

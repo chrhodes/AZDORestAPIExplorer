@@ -5,6 +5,13 @@
     xmlns:prism="http://www.codeplex.com/prism"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"    
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.CoreNF"
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
@@ -24,6 +31,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -45,6 +53,21 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
         </DataGrid>
+
+        <dxg:GridControl Grid.Row="2"
+                    ItemsSource="{Binding Rules.ResultItems}"
+                    SelectedItem="{Binding Rules.SelectedItem}"               
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <dxg:GridColumn FieldName="friendlyName" />
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="conditions" />
+            <dxg:GridColumn FieldName="actions" />
+            <dxg:GridColumn FieldName="isDisabled" />
+            <dxg:GridColumn FieldName="isSystem" />            
+        </dxg:GridControl>
 
     </Grid>
     

@@ -6,13 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
-    <!--<PackageReference Include="VNC.CoreNF" Version="1.0.0" />-->
+    <PackageReference Include="VNC.CoreNF" Version="1.0.0" />
+    <PackageReference Include="VNC.HttpHelper" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\vnc\VNC.Core\VNC.CoreNF.csproj" />
-    <ProjectReference Include="..\..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj" />
     <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
   </ItemGroup>
 
@@ -47,7 +45,6 @@
     <Folder Include="Events\TokenAdmin\" />
     <Folder Include="Events\Wiki\" />
     <Folder Include="Events\WorkItemTrackingProcessTemplate\" />
-    <Folder Include="Events\WorkItemTracking\" />
     <Folder Include="Events\Work\" />
   </ItemGroup>
   

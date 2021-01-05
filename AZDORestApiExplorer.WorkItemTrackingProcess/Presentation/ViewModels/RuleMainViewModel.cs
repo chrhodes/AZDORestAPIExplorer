@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
@@ -87,12 +89,14 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Core.Helpers.InitializeHttpClient(args.Organization, client);
+                    Helpers.InitializeHttpClient(args.Organization, client);
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"work/processes/{args.Process.typeId}/workItemTypes/{args.WorkItemType.referenceName}/rules"
+                        + $"work/processes/{args.Process.id}/"
+                        + $"workItemTypes/{args.WorkItemType.referenceName}/"
+                        + "rules"
                         + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);

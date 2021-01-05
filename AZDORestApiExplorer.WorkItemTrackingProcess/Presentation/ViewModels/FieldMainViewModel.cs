@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain;
@@ -92,20 +93,17 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Private Methods
 
-        // TODO(crhodes)
-        // Put Request Handler Here - Check Parameters
-        // Update GetFieldEventArgs as needed
         private async void GetFields(GetFieldsEventArgs args)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Core.Helpers.InitializeHttpClient(args.Organization, client);
+                    Helpers.InitializeHttpClient(args.Organization, client);
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/work/processes/{args.Process.typeId}"
+                    var requestUri = $"{args.Organization.Uri}/_apis/work/processes/{args.Process.id}"
                         + $"/workItemTypes/{args.WorkItemType.referenceName}/fields?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);

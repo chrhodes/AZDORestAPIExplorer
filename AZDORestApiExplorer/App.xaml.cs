@@ -6,6 +6,7 @@ using AZDORestApiExplorer.Accounts;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Presentation.Views;
+using AZDORestApiExplorer.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTrackingProcess;
 
 using Prism.Ioc;
@@ -135,15 +136,11 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(TeamModule));
 
-
             moduleCatalog.AddModule(typeof(CollectionModule));
 
             moduleCatalog.AddModule(typeof(ContextModule));
 
             moduleCatalog.AddModule(typeof(HTTPExchangeModule));
-
-            moduleCatalog.AddModule(typeof(DashboardModule));
-
 
 
             // These come from other assemblies
@@ -151,6 +148,8 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(AccountsModule));
 
             moduleCatalog.AddModule(typeof(DashboardModule));
+
+            moduleCatalog.AddModule(typeof(WorkItemTrackingModule));
 
             moduleCatalog.AddModule(typeof(WorkItemTrackingProcessModule));
 
@@ -223,9 +222,6 @@ namespace AZDORestApiExplorer
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
         }
-
-
-
 
         #endregion
 

@@ -6,6 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.CoreNF"
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     
@@ -39,68 +46,6 @@
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="-3,-5,-2,-3" />
         </Style>
-        <DataTemplate x:Key="ProjectTemplateStackPanel">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Project id"/>
-                <TextBox Text="{Binding id}" />
-                <Label Content="Project name"/>
-                <TextBox Text="{Binding name}" />
-                <Label Content="Project url"/>
-                <TextBox Text="{Binding url}" />
-                <Label Content="Project state" />
-                <TextBox Text="{Binding state}" />
-                <Label Content="Project revision" />
-                <TextBox Text="{Binding revision}" />
-                <Label Content="Project visibility" />
-                <TextBox Text="{Binding visibility}" />
-                <Label Content="Project lastUpdateTime" />
-                <TextBox Text="{Binding lastUpdateTime}" />
-                <Label Content="Project description" />
-                <TextBox Text="{Binding description}" />
-            </StackPanel>
-        </DataTemplate>
-
-        <DataTemplate x:Key="ProjectTemplateGrid">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Project id"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}" />
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Project name"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}" />
-
-                <Label Grid.Row="2" Grid.Column="0" Content="Project url"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding url}" />
-
-                <Label Grid.Row="3" Grid.Column="0" Content="Project state" />
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding state}" />
-
-                <Label Grid.Row="4" Grid.Column="0" Content="Project revision" />
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding revision}" />
-
-                <Label Grid.Row="5" Grid.Column="0" Content="Project visibility" />
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding visibility}" />
-
-                <Label Grid.Row="6" Grid.Column="0" Content="Project lastUpdateTime" />
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding lastUpdateTime}" />
-
-                <Label Grid.Row="7" Grid.Column="0" Content="Project description" />
-                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding description}" />
-            </Grid>
-        </DataTemplate>
     </UserControl.Resources>
     
     <Grid>
@@ -117,44 +62,22 @@
             </StackPanel>
         </Border>
 
-        <DataGrid Grid.Row="1"
+        <dxg:GridControl Grid.Row="1"
                 ItemsSource="{Binding Teams.ResultItems}"
                 SelectedItem="{Binding Teams.SelectedItem}"               
-                AutoGenerateColumns="True"
-                CanUserAddRows="False"
                 FontSize="12"
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <!--<DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Key">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Key}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+            <dxg:GridColumn FieldName="name" />
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="projectName" />
+            <dxg:GridColumn FieldName="projectId" />
+            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="identityUrl" />
+            <dxg:GridColumn FieldName="url" />
+        </dxg:GridControl>
 
-                            <DataGridTemplateColumn Header="Value">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ItemsControl ItemsSource="{Binding Value}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding}" Margin="0,0,5,0" />
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Vertical" />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                        </ItemsControl>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>-->
-        </DataGrid>
 
     </Grid>
     

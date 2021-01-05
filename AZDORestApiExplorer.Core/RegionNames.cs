@@ -23,13 +23,25 @@ namespace AZDORestApiExplorer.Core
         public static string CollectionNavigationRegion = "CollectionNavigationRegion";
         public static string CollectionDetailRegion = "CollectionDetailRegion";
 
+
+
+        public static string CommandRegion = "CommandRegion";
+
+        public static string ContextMainRegion = "ContextMainRegion";
+        public static string ContextNavigationRegion = "ContextNavigationRegion";
+        public static string ContextDetailRegion = "ContextDetailRegion";
+
+        public static string HTTPExchangeMainRegion = "HTTPExchangeMainRegion";
+        // public static string HTTPExchangeNavigationRegion = "HTTPExchangeNavigationRegion";
+        // public static string HTTPExchangeDetailRegion = "HTTPExchangeDetailRegion";
+
+        //
+        // Core Category
+        //
+
         public static string ProcessMainRegion = "ProcessMainRegion";
         public static string ProcessNavigationRegion = "ProcessNavigationRegion";
         public static string ProcessDetailRegion = "ProcessDetailRegion";
-
-        public static string ProcessWITPMainRegion = "ProcessWITPMainRegion";
-        //public static string ProcessNavigationRegion = "ProcessNavigationRegion";
-        //public static string ProcessDetailRegion = "ProcessDetailRegion";
 
         public static string ProjectMainRegion = "ProjectMainRegion";
         public static string ProjectNavigationRegion = "ProjectNavigationRegion";
@@ -39,31 +51,17 @@ namespace AZDORestApiExplorer.Core
         public static string TeamNavigationRegion = "TeamNavigationRegion";
         public static string TeamDetailRegion = "TeamDetailRegion";
 
-        public static string CommandRegion = "CommandRegion";
+        //
+        // Accounts Category
+        //
 
-        public static string ContextMainRegion = "ContextMainRegion";
-        public static string ContextNavigationRegion = "ContextNavigationRegion";
-        public static string ContextDetailRegion = "ContextDetailRegion";
+        public static string AccountMainRegion = "AccountMainRegion";
+        // public static string AccountNavigationRegion = "AccountNavigationRegion";
+        // public static string AccountDetailRegion = "AccountDetailRegion";
 
-        public static string WorkItemTypeMainRegion = "WorkItemTypeMainRegion";
-        public static string WorkItemTypeNavigationRegion = "WorkItemTypeNavigationRegion";
-        public static string WorkItemTypeDetailRegion = "WorkItemTypeDetailRegion";
-
-        public static string HTTPExchangeMainRegion = "HTTPExchangeMainRegion";
-        // public static string HTTPExchangeNavigationRegion = "HTTPExchangeNavigationRegion";
-        // public static string HTTPExchangeDetailRegion = "HTTPExchangeDetailRegion";
-
-        public static string FieldMainRegion = "FieldMainRegion";
-        // public static string FieldNavigationRegion = "FieldNavigationRegion";
-        // public static string FieldDetailRegion = "FieldDetailRegion";
-
-        public static string StateMainRegion = "StateMainRegion";
-        // public static string StateNavigationRegion = "StateNavigationRegion";
-        // public static string StateDetailRegion = "StateDetailRegion";
-
-        public static string ListMainRegion = "ListMainRegion";
-        // public static string ListNavigationRegion = "ListNavigationRegion";
-        // public static string ListDetailRegion = "ListDetailRegion";
+        //
+        // Dashboard Category
+        //
 
         public static string DashboardMainRegion = "DashboardMainRegion";
         // public static string DashboardNavigationRegion = "DashboardNavigationRegion";
@@ -73,20 +71,88 @@ namespace AZDORestApiExplorer.Core
         // public static string WidgetNavigationRegion = "WidgetNavigationRegion";
         // public static string WidgetDetailRegion = "WidgetDetailRegion";
 
+        public static string FieldWITMainRegion = "FieldWITMainRegion";
+        // public static string FieldNavigationRegion = "FieldNavigationRegion";
+        // public static string FieldDetailRegion = "FieldDetailRegion";
+
+
+        //
+        // Work Item Tracking Category
+        //
+
+        public static string ArtifactLinkTypeMainRegion = "ArtifactLinkTypeMainRegion";
+        // public static string ArtifactLinkTypeNavigationRegion = "ArtifactLinkTypeNavigationRegion";
+        // public static string ArtifactLinkTypeDetailRegion = "ArtifactLinkTypeDetailRegion";
+
+        public static string QueryMainRegion = "QueryMainRegion";
+        // public static string QueryNavigationRegion = "QueryNavigationRegion";
+        // public static string QueryDetailRegion = "QueryDetailRegion";
+
+        public static string TagMainRegion = "TagMainRegion";
+        // public static string TagNavigationRegion = "TagNavigationRegion";
+        // public static string TagDetailRegion = "TagDetailRegion";
+
+        public static string TemplateMainRegion = "TemplateMainRegion";
+        // public static string TemplateNavigationRegion = "TemplateNavigationRegion";
+        // public static string TemplateDetailRegion = "TemplateDetailRegion";
+
+        public static string WorkItemIconMainRegion = "WorkItemIconMainRegion";
+        // public static string WorkItemIconNavigationRegion = "WorkItemIconNavigationRegion";
+        // public static string WorkItemIconDetailRegion = "WorkItemIconDetailRegion";
+
+        public static string WorkItemRelationTypeMainRegion = "WorkItemRelationTypeMainRegion";
+        // public static string WorkItemRelationTypeNavigationRegion = "WorkItemRelationTypeNavigationRegion";
+        // public static string WorkItemRelationTypeDetailRegion = "WorkItemRelationTypeDetailRegion";
+
+        public static string WorkItemTypeCategoryMainRegion = "WorkItemTypeCategoryMainRegion";
+        // public static string WorkItemTypeCategoryNavigationRegion = "WorkItemTypeCategoryNavigationRegion";
+        // public static string WorkItemTypeCategoryDetailRegion = "WorkItemTypeCategoryDetailRegion";
+
+        public static string WorkItemTypesFieldMainRegion = "WorkItemTypesFieldMainRegion";
+        // public static string WorkItemTypesFieldNavigationRegion = "WorkItemTypesFieldNavigationRegion";
+        // public static string WorkItemTypesFieldDetailRegion = "WorkItemTypesFieldDetailRegion";
+
+        //
+        // Work Item Type Tracking Process Category
+        //
         public static string BehaviorMainRegion = "BehaviorMainRegion";
         // public static string BehaviorNavigationRegion = "BehaviorNavigationRegion";
         // public static string BehaviorDetailRegion = "BehaviorDetailRegion";
 
-        public static string SystemControlMainRegion = "SystemControlMainRegion";
-        // public static string SystemControlNavigationRegion = "SystemControlNavigationRegion";
-        // public static string SystemControlDetailRegion = "SystemControlDetailRegion";
+        public static string FieldWITPMainRegion = "FieldWITPMainRegion";
+        // public static string FieldNavigationRegion = "FieldNavigationRegion";
+        // public static string FieldDetailRegion = "FieldDetailRegion";
+
+        public static string ListMainRegion = "ListMainRegion";
+        // public static string ListNavigationRegion = "ListNavigationRegion";
+        // public static string ListDetailRegion = "ListDetailRegion";
+
+        public static string ProcessWITPMainRegion = "ProcessWITPMainRegion";
+        //public static string ProcessNavigationRegion = "ProcessNavigationRegion";
+        //public static string ProcessDetailRegion = "ProcessDetailRegion";
 
         public static string RuleMainRegion = "RuleMainRegion";
         // public static string RuleNavigationRegion = "RuleNavigationRegion";
         // public static string RuleDetailRegion = "RuleDetailRegion";
 
-        public static string AccountMainRegion = "AccountMainRegion";
-        // public static string AccountNavigationRegion = "AccountNavigationRegion";
-        // public static string AccountDetailRegion = "AccountDetailRegion";
+        public static string StateMainRegion = "StateMainRegion";
+        // public static string StateNavigationRegion = "StateNavigationRegion";
+        // public static string StateDetailRegion = "StateDetailRegion";
+
+        public static string SystemControlMainRegion = "SystemControlMainRegion";
+        // public static string SystemControlNavigationRegion = "SystemControlNavigationRegion";
+        // public static string SystemControlDetailRegion = "SystemControlDetailRegion";
+
+        public static string WorkItemTypeMainRegion = "WorkItemTypeMainRegion";
+        //public static string WorkItemTypeNavigationRegion = "WorkItemTypeNavigationRegion";
+        //public static string WorkItemTypeDetailRegion = "WorkItemTypeDetailRegion";
+
+        public static string WorkItemTypesBehaviorMainRegion = "WorkItemTypesBehaviorMainRegion";
+        // public static string WorkItemTypesBehaviorNavigationRegion = "WorkItemTypesBehaviorNavigationRegion";
+        // public static string WorkItemTypesBehaviorDetailRegion = "WorkItemTypesBehaviorDetailRegion";
+
+
+
+
     }
 }

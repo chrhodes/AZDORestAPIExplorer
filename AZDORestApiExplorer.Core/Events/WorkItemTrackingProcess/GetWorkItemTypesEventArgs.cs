@@ -1,5 +1,4 @@
 ﻿using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
@@ -7,6 +6,6 @@ namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
     {
         public Organization Organization;
 
-        public Process Process;
+        public Domain.Core.Process Process;
     }
 }

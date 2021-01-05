@@ -4,6 +4,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -182,6 +183,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Work Item Tracking Category
 
+            GetArtifactLinkTypesCommand = new DelegateCommand(GetArtifactLinkTypesExecute, GetArtifactLinkTypesCanExecute);
+            GetFieldsWITCommand = new DelegateCommand(GetFieldsWITExecute, GetFieldsWITCanExecute);
+            GetQueriesCommand = new DelegateCommand(GetQueriesExecute, GetQueriesCanExecute);
+            GetTagsCommand = new DelegateCommand(GetTagsExecute, GetTagsCanExecute);
+            GetTemplatesCommand = new DelegateCommand(GetTemplatesExecute, GetTemplatesCanExecute);
+            GetWorkItemIconsCommand = new DelegateCommand(GetWorkItemIconsExecute, GetWorkItemIconsCanExecute);
+            GetWorkRelationTypesCommand = new DelegateCommand(GetWorkRelationTypesExecute, GetWorkRelationTypesCanExecute);
+            GetWorkItemTypeCategoriesCommand = new DelegateCommand(GetWorkItemTypeCategoriesExecute, GetWorkItemTypeCategoriesCanExecute);
+            GetWorkItemTypesWITCommand = new DelegateCommand(GetWorkItemTypesWITExecute, GetWorkItemTypesWITCanExecute);
+            GetWorkItemTypesFieldsCommand = new DelegateCommand(GetWorkItemTypesFieldsExecute, GetWorkItemTypesFieldsCanExecute);
+
             #endregion
 
             #region Work Item Tracking Process Category
@@ -202,19 +214,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetWorkItemTypesWITPCommand = new DelegateCommand(GetWorkItemTypesWITPExecute, GetWorkItemTypesWITPCanExecute);
 
-            #endregion
+            GetWorkItemTypesBehaviorsCommand = new DelegateCommand(GetWorkItemTypesBehaviorsExecute, GetWorkItemTypesBehaviorsCanExecute);
 
+            #endregion
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
             EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(Raise_Project_Changed);
+            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
 
             EventAggregator.GetEvent<Core.Events.Dashboard.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
-
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -223,12 +235,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // RaiseCanExecuteChanged for any Command that is dependent on Context.
         // N.B. Need to add to each Context Item for button to be enabled.
 
+        // Do we really needs this as the check is in most places.
         private void RaiseCollectionChanged()
         {
+            GetCoreProcessesCommand.RaiseCanExecuteChanged();
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetTeamsCommand.RaiseCanExecuteChanged();
-            GetCoreProcessesCommand.RaiseCanExecuteChanged();
+
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
@@ -238,7 +253,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
+            GetFieldsWITCommand.RaiseCanExecuteChanged();
+
             GetWorkItemTypesWITPCommand.RaiseCanExecuteChanged();
+
             GetListsCommand.RaiseCanExecuteChanged();
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
@@ -247,13 +265,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void RaiseWorkItemTypeChanged(WorkItemType workItemType)
         {
-            GetStatesCommand.RaiseCanExecuteChanged();
             GetFieldsWITPCommand.RaiseCanExecuteChanged();
-            GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
+            GetStatesCommand.RaiseCanExecuteChanged();
+            GetSystemControlsCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypesBehaviorsCommand.RaiseCanExecuteChanged();
         }
 
-        private void Raise_Project_Changed(Project project)
+        private void RaiseProjectChanged(Project project)
         {
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
@@ -364,8 +383,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetCoreProcesses Command
 
         public DelegateCommand GetCoreProcessesCommand { get; set; }
-        public string GetCoreProcessesContent { get; set; } = "Get Core Processes";
-        public string GetCoreProcessesToolTip { get; set; } = "Get Core Processes ToolTip";
+        public string GetCoreProcessesContent { get; set; } = "Get Processes";
+        public string GetCoreProcessesToolTip { get; set; } = "Get Processes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -660,7 +679,398 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Work Item Tracking Category
 
-        #endregion 
+        #region GetArtifactLinkTypes Command
+
+        public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
+        public string GetArtifactLinkTypesContent { get; set; } = "GetArtifactLinkTypes";
+        public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetArtifactLinkTypesContent { get; set; } = "ViewName_GetArtifactLinkTypesContent";
+        //public string GetArtifactLinkTypesToolTip { get; set; } = "ViewName_GetArtifactLinkTypesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetArtifactLinkTypesContent">GetArtifactLinkTypes</system:String>
+        //    <system:String x:Key="ViewName_GetArtifactLinkTypesContentToolTip">GetArtifactLinkTypes ToolTip</system:String>  
+
+        public void GetArtifactLinkTypesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetArtifactLinkTypesEvent>().Publish(
+                new GetArtifactLinkTypesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetArtifactLinkTypesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetFields Command
+
+        public DelegateCommand GetFieldsWITCommand { get; set; }
+        public string GetFieldsWITContent { get; set; } = "GetFields";
+        public string GetFieldsWITToolTip { get; set; } = "GetFields ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
+        //public string GetFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
+
+        public void GetFieldsWITExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetFieldsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetFieldsWITCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetQueries Command
+
+        public DelegateCommand GetQueriesCommand { get; set; }
+        public string GetQueriesContent { get; set; } = "GetQueries";
+        public string GetQueriesToolTip { get; set; } = "GetQueries ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetQueriesContent { get; set; } = "ViewName_GetQueriesContent";
+        //public string GetQueriesToolTip { get; set; } = "ViewName_GetQueriesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetQueriesContent">GetQueries</system:String>
+        //    <system:String x:Key="ViewName_GetQueriesContentToolTip">GetQueries ToolTip</system:String>  
+
+        public void GetQueriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetQueriesEvent>().Publish(
+                new GetQueriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetQueriesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetTags Command
+
+        public DelegateCommand GetTagsCommand { get; set; }
+        public string GetTagsContent { get; set; } = "GetTags";
+        public string GetTagsToolTip { get; set; } = "GetTags ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTagsContent { get; set; } = "ViewName_GetTagsContent";
+        //public string GetTagsToolTip { get; set; } = "ViewName_GetTagsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTagsContent">GetTags</system:String>
+        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>  
+
+        public void GetTagsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetTagsEvent>().Publish(
+                new GetTagsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetTagsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetTemplates Command
+
+        public DelegateCommand GetTemplatesCommand { get; set; }
+        public string GetTemplatesContent { get; set; } = "GetTemplates";
+        public string GetTemplatesToolTip { get; set; } = "GetTemplates ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTemplatesContent { get; set; } = "ViewName_GetTemplatesContent";
+        //public string GetTemplatesToolTip { get; set; } = "ViewName_GetTemplatesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTemplatesContent">GetTemplates</system:String>
+        //    <system:String x:Key="ViewName_GetTemplatesContentToolTip">GetTemplates ToolTip</system:String>  
+
+        public void GetTemplatesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
+                new GetTemplatesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetTemplatesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetWorkItemIcons Command
+
+        public DelegateCommand GetWorkItemIconsCommand { get; set; }
+        public string GetWorkItemIconsContent { get; set; } = "GetWorkItemIcons";
+        public string GetWorkItemIconsToolTip { get; set; } = "GetWorkItemIcons ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkItemIconsContent { get; set; } = "ViewName_GetWorkItemIconsContent";
+        //public string GetWorkItemIconsToolTip { get; set; } = "ViewName_GetWorkItemIconsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemIconsContent">GetWorkItemIcons</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemIconsContentToolTip">GetWorkItemIcons ToolTip</system:String>  
+
+        public void GetWorkItemIconsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+
+            EventAggregator.GetEvent<GetWorkItemIconsEvent>().Publish(
+                new GetWorkItemIconsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkItemIconsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetWorkRelationTypes Command
+
+        public DelegateCommand GetWorkRelationTypesCommand { get; set; }
+        public string GetWorkRelationTypesContent { get; set; } = "GetWorkRelationTypes";
+        public string GetWorkRelationTypesToolTip { get; set; } = "GetWorkRelationTypes ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkRelationTypesContent { get; set; } = "ViewName_GetWorkRelationTypesContent";
+        //public string GetWorkRelationTypesToolTip { get; set; } = "ViewName_GetWorkRelationTypesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkRelationTypesContent">GetWorkRelationTypes</system:String>
+        //    <system:String x:Key="ViewName_GetWorkRelationTypesContentToolTip">GetWorkRelationTypes ToolTip</system:String>  
+
+        public void GetWorkRelationTypesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // If using events to tell something else to act
+
+            EventAggregator.GetEvent<GetWorkRelationTypesEvent>().Publish(
+                new GetWorkRelationTypesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkRelationTypesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetWorkItemTypeCategories Command
+
+        public DelegateCommand GetWorkItemTypeCategoriesCommand { get; set; }
+        public string GetWorkItemTypeCategoriesContent { get; set; } = "GetWorkItemTypeCategories";
+        public string GetWorkItemTypeCategoriesToolTip { get; set; } = "GetWorkItemTypeCategories ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkItemTypeCategoriesContent { get; set; } = "ViewName_GetWorkItemTypeCategoriesContent";
+        //public string GetWorkItemTypeCategoriesToolTip { get; set; } = "ViewName_GetWorkItemTypeCategoriesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemTypeCategoriesContent">GetWorkItemTypeCategories</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemTypeCategoriesContentToolTip">GetWorkItemTypeCategories ToolTip</system:String>  
+
+        public void GetWorkItemTypeCategoriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // If using events to tell something else to act
+
+            EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Publish(
+                new GetWorkItemTypeCategoriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkItemTypeCategoriesCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+        #region GetWorkItemTypesWIT Command
+
+        public DelegateCommand GetWorkItemTypesWITCommand { get; set; }
+        public string GetWorkItemTypesWITContent { get; set; } = "GetWorkItemTypesWIT";
+        public string GetWorkItemTypesWITToolTip { get; set; } = "GetWorkItemTypesWIT ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkItemTypesWITContent { get; set; } = "ViewName_GetWorkItemTypesWITContent";
+        //public string GetWorkItemTypesWITToolTip { get; set; } = "ViewName_GetWorkItemTypesWITContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemTypesWITContent">GetWorkItemTypesWIT</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemTypesWITContentToolTip">GetWorkItemTypesWIT ToolTip</system:String>  
+
+        public void GetWorkItemTypesWITExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // If using events to tell something else to act
+
+            EventAggregator.GetEvent<GetWorkItemTypesWITEvent>().Publish(
+                new GetWorkItemTypesWITEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkItemTypesWITCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region GetWorkItemTypesFields Command
+
+        public DelegateCommand GetWorkItemTypesFieldsCommand { get; set; }
+        public string GetWorkItemTypesFieldsContent { get; set; } = "GetWorkItemTypesFields";
+        public string GetWorkItemTypesFieldsToolTip { get; set; } = "GetWorkItemTypesFields ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkItemTypesFieldsContent { get; set; } = "ViewName_GetWorkItemTypesFieldsContent";
+        //public string GetWorkItemTypesFieldsToolTip { get; set; } = "ViewName_GetWorkItemTypesFieldsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemTypesFieldsContent">GetWorkItemTypesFields</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemTypesFieldsContentToolTip">GetWorkItemTypesFields ToolTip</system:String>  
+
+        public void GetWorkItemTypesFieldsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // If using events to tell something else to act
+
+            EventAggregator.GetEvent<GetWorkItemTypesFieldsEvent>().Publish(
+                new GetWorkItemTypesFieldsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkItemTypesFieldsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+
+        #endregion
+
+        #endregion
+
+
+
+
+
+
+
+        #endregion
 
         #region Work Item Tracking Process Category
 
@@ -682,15 +1092,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment this once get Process figure out.
-
-            //EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
-            //    new Core.Events.WorkItemTrackingProcess.GetBehaviorsEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
-            //        , Process = _contextMainViewModel.Context.SelectedProcess
-            //    });
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
+                new GetBehaviorsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -707,7 +1115,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
-        
+
         #region GetFields Command
 
         public DelegateCommand GetFieldsWITPCommand { get; set; }
@@ -794,8 +1202,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetProcesses Command
 
         public DelegateCommand GetProcessesWITPCommand { get; set; }
-        public string GetProcessesWITPContent { get; set; } = "Get WITP Processes (WITP)";
-        public string GetProcessesWITPToolTip { get; set; } = "Get WITP Processes (WITP) ToolTip";
+        public string GetProcessesWITPContent { get; set; } = "Get Processes (WITP)";
+        public string GetProcessesWITPToolTip { get; set; } = "Get Processes (WITP) ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -809,7 +1217,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetProcessesEvent>().Publish(
+            EventAggregator.GetEvent<GetProcessesEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetProcessesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
@@ -848,16 +1256,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment once get Process Figured out.
-
-            //EventAggregator.GetEvent<GetRulesEvent>().Publish(
-            //    new GetRulesEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //        Process = _contextMainViewModel.Context.SelectedProcess,
-            //        WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
-            //    });
+            EventAggregator.GetEvent<GetRulesEvent>().Publish(
+                new GetRulesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -894,16 +1299,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment once get Process Figured out.
-
-            //EventAggregator.GetEvent<GetStatesEvent>().Publish(
-            //    new GetStatesEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //        Process = _contextMainViewModel.Context.SelectedProcess,
-            //        WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
-            //    });
+            EventAggregator.GetEvent<GetStatesEvent>().Publish(
+                new GetStatesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -940,16 +1342,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment once get Process Figured out.
-
-            //EventAggregator.GetEvent<GetSystemControlsEvent>().Publish(
-            //    new GetSystemControlsEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
-            //        , Process = _contextMainViewModel.Context.SelectedProcess
-            //        , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
-            //    });
+              EventAggregator.GetEvent<GetSystemControlsEvent>().Publish(
+                new GetSystemControlsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                    ,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -986,15 +1387,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // HACK(crhodes)
-            // Uncomment this once get Process understood
-
-            //EventAggregator.GetEvent<GetWorkItemTypesEvent>().Publish(
-            //    new GetWorkItemTypesEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //        Process = _contextMainViewModel.Context.SelectedProcess
-            //    });
+            EventAggregator.GetEvent<GetWorkItemTypesEvent>().Publish(
+                new GetWorkItemTypesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -1012,15 +1410,58 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region GetWorkItemTypesBehaviors Command
+
+        public DelegateCommand GetWorkItemTypesBehaviorsCommand { get; set; }
+        public string GetWorkItemTypesBehaviorsContent { get; set; } = "GetWorkItemTypesBehaviors";
+        public string GetWorkItemTypesBehaviorsToolTip { get; set; } = "GetWorkItemTypesBehaviors ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetWorkItemTypesBehaviorsContent { get; set; } = "ViewName_GetWorkItemTypesBehaviorsContent";
+        //public string GetWorkItemTypesBehaviorsToolTip { get; set; } = "ViewName_GetWorkItemTypesBehaviorsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemTypesBehaviorsContent">GetWorkItemTypesBehaviors</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemTypesBehaviorsContentToolTip">GetWorkItemTypesBehaviors ToolTip</system:String>  
+
+        public void GetWorkItemTypesBehaviorsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetWorkItemTypesBehaviorsEvent>().Publish(
+                new GetWorkItemTypesBehaviorsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetWorkItemTypesBehaviorsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
         #endregion
 
         #region Work Item Tracking Process Template Category
 
         #endregion
 
-        #endregion
 
         #endregion
+
 
         #region Protected Methods
 

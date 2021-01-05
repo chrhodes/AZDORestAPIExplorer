@@ -25,95 +25,14 @@
 >
 
     <UserControl.Resources>
-        <Style x:Key="OutlineBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="5" />
-        </Style>
-        <Style x:Key="CountBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="CountTextBlock" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black" />
-            <!--<Setter Property="FontSize" Value="18" />-->
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,0,5,0" />
-        </Style>
-        <Style x:Key="CountStackPanel" TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal" />
-            <Setter Property="Margin" Value="-3,-5,-2,-3" />
-        </Style>
-        <DataTemplate x:Key="ProjectTemplateStackPanel">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Project id"/>
-                <TextBox Text="{Binding id}" />
-                <Label Content="Project name"/>
-                <TextBox Text="{Binding name}" />
-                <Label Content="Project url"/>
-                <TextBox Text="{Binding url}" />
-                <Label Content="Project state" />
-                <TextBox Text="{Binding state}" />
-                <Label Content="Project revision" />
-                <TextBox Text="{Binding revision}" />
-                <Label Content="Project visibility" />
-                <TextBox Text="{Binding visibility}" />
-                <Label Content="Project lastUpdateTime" />
-                <TextBox Text="{Binding lastUpdateTime}" />
-                <Label Content="Project description" />
-                <TextBox Text="{Binding description}" />
-            </StackPanel>
-        </DataTemplate>
 
-        <DataTemplate x:Key="ProjectTemplateGrid">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Project id"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}" />
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Project name"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}" />
-
-                <Label Grid.Row="2" Grid.Column="0" Content="Project url"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding url}" />
-
-                <Label Grid.Row="3" Grid.Column="0" Content="Project state" />
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding state}" />
-
-                <Label Grid.Row="4" Grid.Column="0" Content="Project revision" />
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding revision}" />
-
-                <Label Grid.Row="5" Grid.Column="0" Content="Project visibility" />
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding visibility}" />
-
-                <Label Grid.Row="6" Grid.Column="0" Content="Project lastUpdateTime" />
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding lastUpdateTime}" />
-
-                <Label Grid.Row="7" Grid.Column="0" Content="Project description" />
-                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding description}" />
-            </Grid>
-        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -124,17 +43,23 @@
             </StackPanel>
         </Border>
 
-        <DataGrid
+        <dxg:GridControl
             Grid.Row="1"
                     ItemsSource="{Binding Processes.ResultItems}"
                     SelectedItem="{Binding Processes.SelectedItem}"               
-                    AutoGenerateColumns="True"
-                    CanUserAddRows="False"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-        </DataGrid>
+            <dxg:GridColumn FieldName="name" />
+            <dxg:GridColumn FieldName="typeId" />
+            <dxg:GridColumn FieldName="referenceName" />
+            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="parentProcessTypeId" />
+            <dxg:GridColumn FieldName="isEnabled" />
+            <dxg:GridColumn FieldName="isDefault" />
+            <dxg:GridColumn FieldName="customizationType" />
+        </dxg:GridControl>
 
     </Grid>
 

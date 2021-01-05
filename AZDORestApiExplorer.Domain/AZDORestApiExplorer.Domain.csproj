@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
+      <UseWPF>true</UseWPF>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
@@ -50,7 +51,6 @@
     <Folder Include="TokenAdmin\" />
     <Folder Include="Wiki\" />
     <Folder Include="WorkItemTrackingProcessTemplate\" />
-    <Folder Include="WorkItemTracking\" />
     <Folder Include="Work\" />
   </ItemGroup>
 

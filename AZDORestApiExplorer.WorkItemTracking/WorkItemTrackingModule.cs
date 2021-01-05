@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels;
+using AZDORestApiExplorer.WorkItemTracking.Presentation.Views;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -29,8 +33,35 @@ namespace AZDORestApiExplorer.WorkItemTracking
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.Register<IArtifactLinkTypeMainViewModel, ArtifactLinkTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<IArtifactLinkTypeMain, ArtifactLinkTypeMain>();
+
+            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
+            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
+
+            containerRegistry.Register<IQueryMainViewModel, QueryMainViewModel>();
+            containerRegistry.RegisterSingleton<IQueryMain, QueryMain>();
+
+            containerRegistry.Register<ITagMainViewModel, TagMainViewModel>();
+            containerRegistry.RegisterSingleton<ITagMain, TagMain>();
+
+            containerRegistry.Register<ITemplateMainViewModel, TemplateMainViewModel>();
+            containerRegistry.RegisterSingleton<ITemplateMain, TemplateMain>();
+
+            containerRegistry.Register<IWorkItemIconMainViewModel, WorkItemIconMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemIconMain, WorkItemIconMain>();
+
+            containerRegistry.Register<IWorkItemRelationTypeMainViewModel, WorkItemRelationTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemRelationTypeMain, WorkItemRelationTypeMain>();
+
+            containerRegistry.Register<IWorkItemTypeMainViewModel, WorkItemTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemTypeMain, WorkItemTypeMain>();
+
+            containerRegistry.Register<IWorkItemTypeCategoryMainViewModel, WorkItemTypeCategoryMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemTypeCategoryMain, WorkItemTypeCategoryMain>();
+
+            containerRegistry.Register<IWorkItemTypesFieldMainViewModel, WorkItemTypesFieldMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemTypesFieldMain, WorkItemTypesFieldMain>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -46,7 +77,16 @@ namespace AZDORestApiExplorer.WorkItemTracking
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ArtifactLinkTypeMainRegion, typeof(IArtifactLinkTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldWITMainRegion, typeof(IFieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.QueryMainRegion, typeof(IQueryMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TagMainRegion, typeof(ITagMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TemplateMainRegion, typeof(ITemplateMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemIconMainRegion, typeof(IWorkItemIconMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemRelationTypeMainRegion, typeof(IWorkItemRelationTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeMainRegion, typeof(IWorkItemTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeCategoryMainRegion, typeof(IWorkItemTypeCategoryMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(IWorkItemTypesFieldMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

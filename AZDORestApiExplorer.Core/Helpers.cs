@@ -21,6 +21,5 @@ namespace AZDORestApiExplorer.Core
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
         }
-
     }
 }

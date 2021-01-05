@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain;
@@ -97,11 +98,11 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Core.Helpers.InitializeHttpClient(args.Organization, client);
+                    Helpers.InitializeHttpClient(args.Organization, client);
 
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + "work/processes?"
-                        + "api-version=6.0-preview.2";
+                    var requestUri = $"{args.Organization.Uri}/_apis"
+                        + "/work/processes"
+                        + "?api-version=6.0-preview.2";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 

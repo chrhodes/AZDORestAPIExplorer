@@ -57,6 +57,8 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             containerRegistry.Register<IWorkItemTypeMainViewModel, WorkItemTypeMainViewModel>();
             containerRegistry.RegisterSingleton<IWorkItemTypeMain, WorkItemTypeMain>();
 
+            containerRegistry.Register<IWorkItemTypesBehaviorMainViewModel, WorkItemTypesBehaviorMainViewModel>();
+            containerRegistry.RegisterSingleton<IWorkItemTypesBehaviorMain, WorkItemTypesBehaviorMain>();
 
             // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
             // containerRegistry.Register<IFieldDataService, FieldDataService>();
@@ -77,13 +79,14 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
 
             _regionManager.RegisterViewWithRegion(RegionNames.BehaviorMainRegion, typeof(IBehaviorMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.FieldMainRegion, typeof(IFieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldWITPMainRegion, typeof(IFieldMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ListMainRegion, typeof(IListMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ProcessWITPMainRegion, typeof(IProcessMain));
             _regionManager.RegisterViewWithRegion(RegionNames.RuleMainRegion, typeof(IRuleMain));
             _regionManager.RegisterViewWithRegion(RegionNames.StateMainRegion, typeof(IStateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.SystemControlMainRegion, typeof(ISystemControlMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeMainRegion, typeof(IWorkItemTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesBehaviorMainRegion, typeof(IWorkItemTypesBehaviorMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

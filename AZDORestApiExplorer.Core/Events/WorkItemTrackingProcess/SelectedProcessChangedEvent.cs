@@ -4,5 +4,7 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
-    public class SelectedProcessChangedEvent : PubSubEvent<Process> { }
+    public class SelectedProcessChangedEvent : PubSubEvent<Process>
+    { 
+    }
 }

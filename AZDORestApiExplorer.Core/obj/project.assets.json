@@ -167,19 +167,6 @@
           "lib/net45/Prism.dll": {}
         }
       },
-      "Prism.Unity/7.2.0.1422": {
-        "type": "package",
-        "dependencies": {
-          "Prism.Wpf": "7.2.0.1422",
-          "Unity.Container": "5.11.1"
-        },
-        "compile": {
-          "lib/net45/Prism.Unity.Wpf.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Prism.Unity.Wpf.dll": {}
-        }
-      },
       "Prism.Wpf/7.2.0.1422": {
         "type": "package",
         "dependencies": {
@@ -371,6 +358,25 @@
           "lib/net48/VNC.CoreNF.dll": {}
         }
       },
+      "VNC.HttpHelper/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "2.0.5",
+          "Prism.Wpf": "7.2.0.1422",
+          "Unity.Interception": "5.11.1",
+          "VNC.CoreNF": "1.0.0",
+          "VNC.LoggingNF": "1.0.0"
+        },
+        "frameworkAssemblies": [
+          "System.Web"
+        ],
+        "compile": {
+          "lib/net48/VNC.HttpHelper.dll": {}
+        },
+        "runtime": {
+          "lib/net48/VNC.HttpHelper.dll": {}
+        }
+      },
       "VNC.LoggingNF/1.0.0": {
         "type": "package",
         "dependencies": {
@@ -399,23 +405,6 @@
         },
         "runtime": {
           "bin/placeholder/AZDORestApiExplorer.Domain.dll": {}
-        }
-      },
-      "VNC.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETFramework,Version=v4.8",
-        "dependencies": {
-          "CommonServiceLocator": "2.0.5",
-          "EntityFramework": "6.4.4",
-          "Prism.Wpf": "7.2.0.1422",
-          "Unity.Interception": "5.11.1",
-          "VNC.LoggingNF": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/VNC.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/VNC.Core.dll": {}
         }
       }
     }
@@ -680,23 +669,6 @@
         "lib/netstandard2.0/Prism.xml",
         "prism.core.7.2.0.1422.nupkg.sha512",
         "prism.core.nuspec"
-      ]
-    },
-    "Prism.Unity/7.2.0.1422": {
-      "sha512": "oHBqsyIg6Zaj7TK5jrK5BptXdGOqnWinQKKZvc2/1IZi/ql+lSzqOOrU2J/8ANrRnMOKXPSxH68O+/Zv1kvzrA==",
-      "type": "package",
-      "path": "prism.unity/7.2.0.1422",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Prism.Unity.Wpf.dll",
-        "lib/net45/Prism.Unity.Wpf.pdb",
-        "lib/net45/Prism.Unity.Wpf.xml",
-        "lib/netcoreapp3.0/Prism.Unity.Wpf.dll",
-        "lib/netcoreapp3.0/Prism.Unity.Wpf.pdb",
-        "lib/netcoreapp3.0/Prism.Unity.Wpf.xml",
-        "prism.unity.7.2.0.1422.nupkg.sha512",
-        "prism.unity.nuspec"
       ]
     },
     "Prism.Wpf/7.2.0.1422": {
@@ -1056,7 +1028,7 @@
       ]
     },
     "VNC.CoreNF/1.0.0": {
-      "sha512": "pNm5doUGgimAZE41i5af2RBhQ/ne6esKSYPYb59d6huVMfKK+ZdbSv+x6Bz3K0felbTpKNkpj8N62dkg4cTgXw==",
+      "sha512": "/drM0WjTE0/7IUagMpPaq9UMiAfA1xcltY2nyAPN/ATyI7SYkxKJ6xGKhGOgf3ZrLjqHRcmkXYkUlCX6xtAOGA==",
       "type": "package",
       "path": "vnc.corenf/1.0.0",
       "files": [
@@ -1064,6 +1036,17 @@
         "lib/net48/VNC.CoreNF.dll",
         "vnc.corenf.1.0.0.nupkg.sha512",
         "vnc.corenf.nuspec"
+      ]
+    },
+    "VNC.HttpHelper/1.0.0": {
+      "sha512": "nYrlhfjHciGBlgVhYzW/mOdvdYQrDwBtfc+jQ1l38R3hL30gbtt3MG9hxfS//sigYhonTe+DL8Y9yEBkCyx49w==",
+      "type": "package",
+      "path": "vnc.httphelper/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "lib/net48/VNC.HttpHelper.dll",
+        "vnc.httphelper.1.0.0.nupkg.sha512",
+        "vnc.httphelper.nuspec"
       ]
     },
     "VNC.LoggingNF/1.0.0": {
@@ -1081,43 +1064,39 @@
       "type": "project",
       "path": "../AZDORestApiExplorer.Domain/AZDORestApiExplorer.Domain.csproj",
       "msbuildProject": "../AZDORestApiExplorer.Domain/AZDORestApiExplorer.Domain.csproj"
-    },
-    "VNC.Core/1.0.0": {
-      "type": "project",
-      "path": "../../vnc/VNC.Core/VNC.CoreNF.csproj",
-      "msbuildProject": "../../vnc/VNC.Core/VNC.CoreNF.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
       "AZDORestApiExplorer.Domain >= 1.0.0",
-      "Prism.Unity >= 7.2.0.1422",
-      "VNC.Core >= 1.0.0"
+      "VNC.CoreNF >= 1.0.0",
+      "VNC.HttpHelper >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\crhodes\\.nuget\\packages\\": {},
+    "C:\\Users\\10298093\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
+      "projectUniqueName": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
       "projectName": "AZDORestApiExplorer.Core",
-      "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
-      "packagesPath": "C:\\Users\\crhodes\\.nuget\\packages\\",
-      "outputPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\obj\\",
+      "projectPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
+      "packagesPath": "C:\\Users\\10298093\\.nuget\\packages\\",
+      "outputPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\crhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 19.2.config",
+        "C:\\Users\\10298093\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1126,22 +1105,18 @@
       ],
       "sources": {
         "B:\\VNCNuget": {},
-        "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.devexpress.com/MDFHJ2eefkwHoQYHnFp5JFqIKg8tNjUZjRk7KrDvTxhNTSEVEc/api": {}
       },
       "frameworks": {
         "net48": {
           "targetAlias": "net48",
           "projectReferences": {
-            "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
-              "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
-            },
-            "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj": {
-              "projectPath": "P:\\git\\chrhodes\\vnc\\VNC.Core\\VNC.CoreNF.csproj"
+            "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
+              "projectPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
             }
           }
         }
@@ -1156,9 +1131,13 @@
       "net48": {
         "targetAlias": "net48",
         "dependencies": {
-          "Prism.Unity": {
+          "VNC.CoreNF": {
             "target": "Package",
-            "version": "[7.2.0.1422, )"
+            "version": "[1.0.0, )"
+          },
+          "VNC.HttpHelper": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
