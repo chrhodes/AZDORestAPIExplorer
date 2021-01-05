@@ -4,9 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-using AZDORestApiExplorer.WorkItemTracking.Domain;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -39,9 +43,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypeCategorysEvent>().Subscribe(GetWorkItemTypeCategorys);
+            EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Subscribe(GetWorkItemTypeCategorys);
 
-            this.WorkItemTypeCategorys.PropertyChanged += PublishSelectionChanged;
+            this.WorkItemTypeCategories.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -60,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.WorkItemTypeCategory> WorkItemTypeCategorys { get; set; } = new RESTResult<Domain.WorkItemTypeCategory>();
+        public RESTResult<WorkItemTypeCategory> WorkItemTypeCategories { get; set; } = new RESTResult<WorkItemTypeCategory>();
 
         #endregion
 
@@ -81,7 +85,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypeCategorys(GetWorkItemTypeCategorysEventArgs args)
+        private async void GetWorkItemTypeCategorys(GetWorkItemTypeCategoriesEventArgs args)
         {
             try
             {
@@ -109,13 +113,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemTypeCategorysRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypeCategorysRoot>(outJson);
 
-                        WorkItemTypeCategorys.ResultItems = new ObservableCollection<Domain.WorkItemTypeCategory>(resultRoot.value);
+                        //WorkItemTypeCategories.ResultItems = new ObservableCollection<WorkItemTypeCategory>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        WorkItemTypeCategorys.Count = WorkItemTypeCategorys.ResultItems.Count;
+                        WorkItemTypeCategories.Count = WorkItemTypeCategories.ResultItems.Count;
                     }
                 }
             }
@@ -132,7 +136,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedWorkItemTypeCategoryChangedEvent>().Publish(WorkItemTypeCategorys.SelectedItem);
+            EventAggregator.GetEvent<SelectedWorkItemTypeCategoryChangedEvent>().Publish(WorkItemTypeCategories.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

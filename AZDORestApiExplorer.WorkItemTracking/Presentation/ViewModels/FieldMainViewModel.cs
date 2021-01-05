@@ -41,7 +41,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetFieldsEvent>().Subscribe(GetFields);
+            EventAggregator.GetEvent<GetFieldsWITEvent>().Subscribe(GetFields);
 
             this.Fields.PropertyChanged += PublishSelectionChanged;
 
@@ -83,7 +83,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetFields(GetFieldsEventArgs args)
+        private async void GetFields(GetFieldsWITEventArgs args)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedFieldChangedEvent>().Publish(Fields.SelectedItem);
+            EventAggregator.GetEvent<SelectedFieldWITChangedEvent>().Publish(Fields.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

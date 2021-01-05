@@ -3,7 +3,7 @@ using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
-    public class GetFieldsEventArgs
+    public class GetFieldsWITPEventArgs
     {
         public Organization Organization;
 

@@ -1,10 +1,12 @@
-﻿using VNC.Core.Mvvm;
+﻿using AZDORestApiExplorer.Domain.WorkItemTracking;
+
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ModelWrappers
 {
-    public class TagWrapper : ModelWrapper<Domain.Tag>
+    public class TagWrapper : ModelWrapper<Tag>
     {
-        public TagWrapper(Domain.Tag model) : base(model)
+        public TagWrapper(Tag model) : base(model)
         {
         }
     }

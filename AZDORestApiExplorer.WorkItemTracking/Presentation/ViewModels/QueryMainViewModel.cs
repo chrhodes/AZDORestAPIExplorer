@@ -4,9 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-using AZDORestApiExplorer.WorkItemTracking.Domain;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -39,9 +43,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetQuerysEvent>().Subscribe(GetQuerys);
+            EventAggregator.GetEvent<GetQueriesEvent>().Subscribe(GetQueries);
 
-            this.Querys.PropertyChanged += PublishSelectionChanged;
+            this.Queries.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -60,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Query> Querys { get; set; } = new RESTResult<Domain.Query>();
+        public RESTResult<Query> Queries { get; set; } = new RESTResult<Query>();
 
         #endregion
 
@@ -81,7 +85,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetQuerys(GetQuerysEventArgs args)
+        private async void GetQueries(GetQueriesEventArgs args)
         {
             try
             {
@@ -109,13 +113,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         QuerysRoot resultRoot = JsonConvert.DeserializeObject<QuerysRoot>(outJson);
 
-                        Querys.ResultItems = new ObservableCollection<Domain.Query>(resultRoot.value);
+                        //Queries.ResultItems = new ObservableCollection<Query>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Querys.Count = Querys.ResultItems.Count;
+                        Queries.Count = Queries.ResultItems.Count;
                     }
                 }
             }
@@ -132,7 +136,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedQueryChangedEvent>().Publish(Querys.SelectedItem);
+            EventAggregator.GetEvent<SelectedQueryChangedEvent>().Publish(Queries.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

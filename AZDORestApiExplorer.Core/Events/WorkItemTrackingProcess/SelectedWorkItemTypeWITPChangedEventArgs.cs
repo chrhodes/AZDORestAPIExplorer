@@ -1,6 +1,6 @@
 ﻿namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
-    public class SelectedWorkItemTypeChangedEventArgs
+    public class SelectedWorkItemTypeWITPChangedEventArgs
     {
     }
 }

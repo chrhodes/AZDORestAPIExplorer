@@ -1,6 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
@@ -189,7 +190,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetTagsCommand = new DelegateCommand(GetTagsExecute, GetTagsCanExecute);
             GetTemplatesCommand = new DelegateCommand(GetTemplatesExecute, GetTemplatesCanExecute);
             GetWorkItemIconsCommand = new DelegateCommand(GetWorkItemIconsExecute, GetWorkItemIconsCanExecute);
-            GetWorkRelationTypesCommand = new DelegateCommand(GetWorkRelationTypesExecute, GetWorkRelationTypesCanExecute);
+            GetWorkItemRelationTypesCommand = new DelegateCommand(GetWorkItemRelationTypesExecute, GetWorkItemRelationTypesCanExecute);
             GetWorkItemTypeCategoriesCommand = new DelegateCommand(GetWorkItemTypeCategoriesExecute, GetWorkItemTypeCategoriesCanExecute);
             GetWorkItemTypesWITCommand = new DelegateCommand(GetWorkItemTypesWITExecute, GetWorkItemTypesWITCanExecute);
             GetWorkItemTypesFieldsCommand = new DelegateCommand(GetWorkItemTypesFieldsExecute, GetWorkItemTypesFieldsCanExecute);
@@ -235,7 +236,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // RaiseCanExecuteChanged for any Command that is dependent on Context.
         // N.B. Need to add to each Context Item for button to be enabled.
 
-        // Do we really needs this as the check is in most places.
+        // Add Commands that only depend on Organization Context here
+        // Other commands that depend on more do not need to be added 
+        // as the check is in all CanExecute methods
         private void RaiseCollectionChanged()
         {
             GetCoreProcessesCommand.RaiseCanExecuteChanged();
@@ -249,6 +252,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRulesCommand.RaiseCanExecuteChanged();
 
             GetProcessesWITPCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+            GetArtifactLinkTypesCommand.RaiseCanExecuteChanged();
+            GetWorkItemIconsCommand.RaiseCanExecuteChanged();
+            GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
@@ -277,6 +285,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+            GetTagsCommand.RaiseCanExecuteChanged();
+            GetTemplatesCommand.RaiseCanExecuteChanged();
+            GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypeCategoriesCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseTeamChanged(Team team)
@@ -284,6 +299,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetTeamsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+            GetTagsCommand.RaiseCanExecuteChanged();
+            GetTemplatesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
@@ -709,8 +728,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetArtifactLinkTypesCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -734,8 +756,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetFieldsEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -776,9 +798,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<GetQueriesEvent>().Publish(
                 new GetQueriesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Team = _contextMainViewModel.Context.SelectedTeam
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -786,8 +807,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetQueriesCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -814,8 +838,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<GetTagsEvent>().Publish(
                 new GetTagsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -823,8 +847,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetTagsCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -851,8 +879,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
                 new GetTemplatesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -860,8 +889,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetTemplatesCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -885,12 +918,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-
             EventAggregator.GetEvent<GetWorkItemIconsEvent>().Publish(
                 new GetWorkItemIconsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -898,8 +929,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWorkItemIconsCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -907,9 +941,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetWorkRelationTypes Command
 
-        public DelegateCommand GetWorkRelationTypesCommand { get; set; }
-        public string GetWorkRelationTypesContent { get; set; } = "GetWorkRelationTypes";
-        public string GetWorkRelationTypesToolTip { get; set; } = "GetWorkRelationTypes ToolTip";
+        public DelegateCommand GetWorkItemRelationTypesCommand { get; set; }
+        public string GetWorkItemRelationTypesContent { get; set; } = "GetWorItemRelationTypes";
+        public string GetWorkItemRelationTypesToolTip { get; set; } = "GetWorItemRelationTypes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetWorkRelationTypesContent { get; set; } = "ViewName_GetWorkRelationTypesContent";
@@ -919,26 +953,26 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetWorkRelationTypesContent">GetWorkRelationTypes</system:String>
         //    <system:String x:Key="ViewName_GetWorkRelationTypesContentToolTip">GetWorkRelationTypes ToolTip</system:String>  
 
-        public void GetWorkRelationTypesExecute()
+        public void GetWorkItemRelationTypesExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // If using events to tell something else to act
-
-            EventAggregator.GetEvent<GetWorkRelationTypesEvent>().Publish(
-                new GetWorkRelationTypesEventArgs()
+            EventAggregator.GetEvent<GetWorkItemRelationTypesEvent>().Publish(
+                new GetWorkItemRelationTypesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetWorkRelationTypesCanExecute()
+        public bool GetWorkItemRelationTypesCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -962,13 +996,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // If using events to tell something else to act
-
             EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Publish(
                 new GetWorkItemTypeCategoriesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -976,8 +1008,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWorkItemTypeCategoriesCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -1000,8 +1036,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // If using events to tell something else to act
-
             EventAggregator.GetEvent<GetWorkItemTypesWITEvent>().Publish(
                 new GetWorkItemTypesWITEventArgs()
                 {
@@ -1014,8 +1048,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWorkItemTypesWITCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -1039,14 +1077,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // If using events to tell something else to act
-
-            EventAggregator.GetEvent<GetWorkItemTypesFieldsEvent>().Publish(
-                new GetWorkItemTypesFieldsEventArgs()
+            EventAggregator.GetEvent<GetWorkItemTypesFieldsWITEvent>().Publish(
+                new GetWorkItemTypesFieldsWITEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Team = _contextMainViewModel.Context.SelectedTeam
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1054,21 +1089,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWorkItemTypesFieldsCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
-
         #endregion
 
         #endregion
-
-
-
-
-
-
 
         #endregion
 
@@ -1134,8 +1166,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetFieldsEvent>().Publish(
-                new GetFieldsEventArgs()
+            EventAggregator.GetEvent<GetFieldsWITPEvent>().Publish(
+                new GetFieldsWITPEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess,

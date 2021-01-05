@@ -1,10 +1,12 @@
-﻿using VNC.Core.Mvvm;
+﻿using AZDORestApiExplorer.Domain.WorkItemTracking;
+
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ModelWrappers
 {
-    public class QueryWrapper : ModelWrapper<Domain.Query>
+    public class QueryWrapper : ModelWrapper<Query>
     {
-        public QueryWrapper(Domain.Query model) : base(model)
+        public QueryWrapper(Query model) : base(model)
         {
         }
     }

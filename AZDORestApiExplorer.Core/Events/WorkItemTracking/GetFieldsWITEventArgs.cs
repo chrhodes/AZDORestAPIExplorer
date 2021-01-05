@@ -2,7 +2,7 @@ using AZDORestApiExplorer.Domain;
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTracking
 {
-    public class GetWorkItemTypeCategorysEventArgs
+    public class GetFieldsWITEventArgs
     {
         public Organization Organization;
 

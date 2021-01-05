@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-using AZDORestApiExplorer.WorkItemTracking.Domain;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,7 +63,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.WorkItemIcon> WorkItemIcons { get; set; } = new RESTResult<Domain.WorkItemIcon>();
+        public RESTResult<WorkItemIcon> WorkItemIcons { get; set; } = new RESTResult<WorkItemIcon>();
 
         #endregion
 
@@ -109,7 +112,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemIconsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemIconsRoot>(outJson);
 
-                        WorkItemIcons.ResultItems = new ObservableCollection<Domain.WorkItemIcon>(resultRoot.value);
+                        //WorkItemIcons.ResultItems = new ObservableCollection<WorkItemIcon>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

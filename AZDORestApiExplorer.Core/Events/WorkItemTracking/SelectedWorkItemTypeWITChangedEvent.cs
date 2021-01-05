@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Core.Events
 {
-    public class SelectedWorkItemTypeChangedEvent : PubSubEvent<WorkItemType> { }
+    public class SelectedWorkItemTypeWITChangedEvent : PubSubEvent<WorkItemType> { }
 }

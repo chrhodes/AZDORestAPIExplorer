@@ -1,10 +1,12 @@
-﻿using VNC.Core.Mvvm;
+﻿using AZDORestApiExplorer.Domain.WorkItemTracking;
+
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ModelWrappers
 {
-    public class WorkItemTypesFieldWrapper : ModelWrapper<Domain.WorkItemTypesField>
+    public class WorkItemTypesFieldWrapper : ModelWrapper<WorkItemTypesField>
     {
-        public WorkItemTypesFieldWrapper(Domain.WorkItemTypesField model) : base(model)
+        public WorkItemTypesFieldWrapper(WorkItemTypesField model) : base(model)
         {
         }
     }

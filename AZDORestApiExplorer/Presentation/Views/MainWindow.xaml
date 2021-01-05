@@ -308,12 +308,66 @@
 
                                     <dxlc:LayoutGroup Header="Work Item Tracking" >
 
+                                        <dxlc:LayoutGroup Header="Artifact Link Types">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ArtifactLinkTypeMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
                                         <dxlc:LayoutGroup Header="Fields">
                                             <Grid>
                                                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldWITMainRegion}" />
                                             </Grid>
                                         </dxlc:LayoutGroup>
-                                        
+
+                                        <dxlc:LayoutGroup Header="Queries">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.QueryMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Tags">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TagMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Templates">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TemplateMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Work Item Icons">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemIconMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Work Item Relation Types">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemRelationTypeMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Work Item Types">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Work Item Type Categories">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeCategoryMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxlc:LayoutGroup Header="Work Item Types Fields">
+                                            <Grid>
+                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypesFieldMainRegion}" />
+                                            </Grid>
+                                        </dxlc:LayoutGroup>
+
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Work Item Tracking Process">

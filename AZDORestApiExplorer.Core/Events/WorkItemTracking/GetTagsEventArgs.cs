@@ -6,8 +6,6 @@ namespace AZDORestApiExplorer.WorkItemTracking.Core.Events
     {
         public Organization Organization;
 
-        // public Process Process;
-
-        // public WorkItemType WorkItemType;
+        public Domain.Core.Project Project;
     }
 }

@@ -172,16 +172,16 @@
 
                 <dxlc:LayoutItem>
                     <Button
-                    Command="{Binding GetWorkRelationTypesCommand }"
-                    Content="{Binding GetWorkRelationTypesContent, FallbackValue='Get WorkRelationTypes' }"
-                    ToolTip="{Binding GetWorkRelationTypesToolTip, FallbackValue='Get WorkRelationTypes ToolTip' }" />
+                    Command="{Binding GetWorkItemRelationTypesCommand }"
+                    Content="{Binding GetWorkItemRelationTypesContent, FallbackValue='Get WorkItem RelationTypes' }"
+                    ToolTip="{Binding GetWorkItemRelationTypesToolTip, FallbackValue='Get WorkItem RelationTypes ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
                     <Button
                     Command="{Binding GetWorkItemTypeCategoriesCommand }"
-                    Content="{Binding GetWorkItemTypeCategoriesContent, FallbackValue='Get WorkItemTypeCategories' }"
-                    ToolTip="{Binding GetWorkItemTypeCategoriesToolTip, FallbackValue='Get WorkItemTypeCategories ToolTip' }" />
+                    Content="{Binding GetWorkItemTypeCategoriesContent, FallbackValue='Get WorkItem TypeCategories' }"
+                    ToolTip="{Binding GetWorkItemTypeCategoriesToolTip, FallbackValue='Get WorkItem TypeCategories ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>

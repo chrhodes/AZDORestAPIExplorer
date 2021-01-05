@@ -47,7 +47,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             InstanceCountVM++;
 
 
-            EventAggregator.GetEvent<GetFieldsEvent>().Subscribe(GetFields);
+            EventAggregator.GetEvent<GetFieldsWITPEvent>().Subscribe(GetFields);
 
             this.Fields.PropertyChanged += PublishSelectionChanged;
 
@@ -93,7 +93,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetFields(GetFieldsEventArgs args)
+        private async void GetFields(GetFieldsWITPEventArgs args)
         {
             try
             {

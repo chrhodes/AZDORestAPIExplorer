@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-using AZDORestApiExplorer.WorkItemTracking.Domain;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,7 +63,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Tag> Tags { get; set; } = new RESTResult<Domain.Tag>();
+        public RESTResult<Tag> Tags { get; set; } = new RESTResult<Tag>();
 
         #endregion
 
@@ -109,7 +112,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         TagsRoot resultRoot = JsonConvert.DeserializeObject<TagsRoot>(outJson);
 
-                        Tags.ResultItems = new ObservableCollection<Domain.Tag>(resultRoot.value);
+                        //Tags.ResultItems = new ObservableCollection<Tag>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

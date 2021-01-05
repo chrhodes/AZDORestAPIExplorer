@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Core.Events
 {
-    public class GetQuerysEvent : PubSubEvent<GetQuerysEventArgs> { }
+    public class GetQueriesEvent : PubSubEvent<GetQueriesEventArgs> { }
 }

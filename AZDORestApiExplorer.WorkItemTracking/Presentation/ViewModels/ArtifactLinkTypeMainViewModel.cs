@@ -4,9 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-using AZDORestApiExplorer.WorkItemTracking.Domain;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.ArtifactLinkType> ArtifactLinkTypes { get; set; } = new RESTResult<Domain.ArtifactLinkType>();
+        public RESTResult<ArtifactLinkType> ArtifactLinkTypes { get; set; } = new RESTResult<ArtifactLinkType>();
 
         #endregion
 
@@ -109,7 +113,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         ArtifactLinkTypesRoot resultRoot = JsonConvert.DeserializeObject<ArtifactLinkTypesRoot>(outJson);
 
-                        ArtifactLinkTypes.ResultItems = new ObservableCollection<Domain.ArtifactLinkType>(resultRoot.value);
+                        //ArtifactLinkTypes.ResultItems = new ObservableCollection<ArtifactLinkType>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
