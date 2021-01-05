@@ -2,7 +2,7 @@
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
-    public class GetWorkItemTypesEvent : PubSubEvent<GetWorkItemTypesEventArgs>
+    public class GetWorkItemTypesWITPEvent : PubSubEvent<GetWorkItemTypesWITPEventArgs>
     { 
     }
 }

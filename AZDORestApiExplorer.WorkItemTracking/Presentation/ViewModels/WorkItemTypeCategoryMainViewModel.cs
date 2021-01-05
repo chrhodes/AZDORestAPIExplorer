@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Subscribe(GetWorkItemTypeCategorys);
+            EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Subscribe(GetWorkItemTypeCategories);
 
             this.WorkItemTypeCategories.PropertyChanged += PublishSelectionChanged;
 
@@ -85,7 +85,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypeCategorys(GetWorkItemTypeCategoriesEventArgs args)
+        private async void GetWorkItemTypeCategories(GetWorkItemTypeCategoriesEventArgs args)
         {
             try
             {
@@ -93,11 +93,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + "wit/workitemtypecategories"
+                        + "?api-version=4.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -111,9 +109,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        WorkItemTypeCategorysRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypeCategorysRoot>(outJson);
+                        WorkItemTypeCategoriesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypeCategoriesRoot>(outJson);
 
-                        //WorkItemTypeCategories.ResultItems = new ObservableCollection<WorkItemTypeCategory>(resultRoot.value);
+                        WorkItemTypeCategories.ResultItems = new ObservableCollection<WorkItemTypeCategory>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

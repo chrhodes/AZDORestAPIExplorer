@@ -41,7 +41,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesEvent>().Subscribe(GetWorkItemTypes);
+            EventAggregator.GetEvent<GetWorkItemTypesWITPEvent>().Subscribe(GetWorkItemTypes);
 
             this.WorkItemTypes.PropertyChanged += PublishSelectionChanged;
 
@@ -92,7 +92,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypes(GetWorkItemTypesEventArgs args)
+        private async void GetWorkItemTypes(GetWorkItemTypesWITPEventArgs args)
         {
             try
             {

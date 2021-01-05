@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class GetStatesEvent : PubSubEvent<GetStatesEventArgs> { }
+    public class GetStatesWITPEvent : PubSubEvent<GetStatesWITPEventArgs> { }
 }

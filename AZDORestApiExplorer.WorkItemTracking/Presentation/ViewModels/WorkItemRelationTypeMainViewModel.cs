@@ -95,8 +95,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                        + "wit/workitemrelationtypes"
+                        + "?api-version=4.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -112,7 +112,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemRelationTypesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemRelationTypesRoot>(outJson);
 
-                        //WorkItemRelationTypes.ResultItems = new ObservableCollection<WorkItemRelationType>(resultRoot.value);
+                        WorkItemRelationTypes.ResultItems = new ObservableCollection<WorkItemRelationType>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

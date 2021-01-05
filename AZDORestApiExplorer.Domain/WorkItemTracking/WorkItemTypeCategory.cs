@@ -1,22 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using VNC.Core.DomainServices;
-
-namespace AZDORestApiExplorer.Domain.WorkItemTracking
+﻿namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
-    public class WorkItemTypeCategorysRoot
+    public class WorkItemTypeCategoriesRoot
     {
+        public int count { get; set; }
+        public WorkItemTypeCategory[] value { get; set; }
     }
+
     public class WorkItemTypeCategory
     {
+        public string name { get; set; }
+        public string referenceName { get; set; }
+        public Defaultworkitemtype defaultWorkItemType { get; set; }
+        public Workitemtype[] workItemTypes { get; set; }
+        public string url { get; set; }
+
+        public class Defaultworkitemtype
+        {
+            public string name { get; set; }
+            public string url { get; set; }
+        }
+
+        public class Workitemtype
+        {
+            public string name { get; set; }
+            public string url { get; set; }
+        }
     }
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Rename classes to use TYPEsRoot and TYPE classes
-
 }

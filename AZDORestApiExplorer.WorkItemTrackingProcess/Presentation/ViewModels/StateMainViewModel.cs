@@ -48,7 +48,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             InstanceCountVM++;
 
 
-            EventAggregator.GetEvent<GetStatesEvent>().Subscribe(GetStates);
+            EventAggregator.GetEvent<GetStatesWITPEvent>().Subscribe(GetStates);
 
             this.States.PropertyChanged += PublishSelectionChanged;
 
@@ -94,7 +94,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetStates(GetStatesEventArgs args)
+        private async void GetStates(GetStatesWITPEventArgs args)
         {
             try
             {

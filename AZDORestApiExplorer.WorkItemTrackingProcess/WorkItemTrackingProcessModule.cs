@@ -83,9 +83,9 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             _regionManager.RegisterViewWithRegion(RegionNames.ListMainRegion, typeof(IListMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ProcessWITPMainRegion, typeof(IProcessMain));
             _regionManager.RegisterViewWithRegion(RegionNames.RuleMainRegion, typeof(IRuleMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.StateMainRegion, typeof(IStateMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StateWITPMainRegion, typeof(IStateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.SystemControlMainRegion, typeof(ISystemControlMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeMainRegion, typeof(IWorkItemTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITPMainRegion, typeof(IWorkItemTypeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesBehaviorMainRegion, typeof(IWorkItemTypesBehaviorMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);

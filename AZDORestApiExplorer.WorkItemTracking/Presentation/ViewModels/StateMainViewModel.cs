@@ -4,12 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,15 +16,19 @@ using Prism.Events;
 using VNC;
 using VNC.Core.Services;
 using VNC.HttpHelper;
+using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class TagMainViewModel : HTTPExchangeBase, ITagMainViewModel
+    public class StateMainViewModel : HTTPExchangeBase, IStateMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public TagMainViewModel(
+        public StateMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -42,9 +43,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetTagsEvent>().Subscribe(GetTags);
+            EventAggregator.GetEvent<GetStatesWITEvent>().Subscribe(GetStates);
 
-            this.Tags.PropertyChanged += PublishSelectionChanged;
+            this.States.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Tag> Tags { get; set; } = new RESTResult<Tag>();
+        public RESTResult<State> States { get; set; } = new RESTResult<State>();
 
         #endregion
 
@@ -84,7 +85,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetTags(GetTagsEventArgs args)
+        private async void GetStates(GetStatesWITEventArgs args)
         {
             try
             {
@@ -92,10 +93,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + "/wit/tags"
+                        + $"wit/workitemtypes/{args.WorkItemType.referenceName}/states"
                         + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
@@ -110,15 +109,15 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        TagsRoot resultRoot = JsonConvert.DeserializeObject<TagsRoot>(outJson);
+                        StatesRoot resultRoot = JsonConvert.DeserializeObject<StatesRoot>(outJson);
 
-                        Tags.ResultItems = new ObservableCollection<Tag>(resultRoot.value);
+                        States.ResultItems = new ObservableCollection<State>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Tags.Count = Tags.ResultItems.Count;
+                        States.Count = States.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +134,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedTagChangedEvent>().Publish(Tags.SelectedItem);
+            EventAggregator.GetEvent<SelectedStateWITChangedEvent>().Publish(States.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

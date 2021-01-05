@@ -108,6 +108,14 @@ namespace AZDORestApiExplorer.Core
         // public static string WorkItemTypeCategoryNavigationRegion = "WorkItemTypeCategoryNavigationRegion";
         // public static string WorkItemTypeCategoryDetailRegion = "WorkItemTypeCategoryDetailRegion";
 
+        public static string StateWITMainRegion = "StateWITMainRegion";
+        // public static string StateNavigationRegion = "StateNavigationRegion";
+        // public static string StateDetailRegion = "StateDetailRegion";
+
+        public static string WorkItemTypeWITMainRegion = "WorkItemTypeWITMainRegion";
+        //public static string WorkItemTypeNavigationRegion = "WorkItemTypeNavigationRegion";
+        //public static string WorkItemTypeDetailRegion = "WorkItemTypeDetailRegion";
+
         public static string WorkItemTypesFieldMainRegion = "WorkItemTypesFieldMainRegion";
         // public static string WorkItemTypesFieldNavigationRegion = "WorkItemTypesFieldNavigationRegion";
         // public static string WorkItemTypesFieldDetailRegion = "WorkItemTypesFieldDetailRegion";
@@ -115,6 +123,7 @@ namespace AZDORestApiExplorer.Core
         //
         // Work Item Type Tracking Process Category
         //
+
         public static string BehaviorMainRegion = "BehaviorMainRegion";
         // public static string BehaviorNavigationRegion = "BehaviorNavigationRegion";
         // public static string BehaviorDetailRegion = "BehaviorDetailRegion";
@@ -135,7 +144,7 @@ namespace AZDORestApiExplorer.Core
         // public static string RuleNavigationRegion = "RuleNavigationRegion";
         // public static string RuleDetailRegion = "RuleDetailRegion";
 
-        public static string StateMainRegion = "StateMainRegion";
+        public static string StateWITPMainRegion = "StateWITPMainRegion";
         // public static string StateNavigationRegion = "StateNavigationRegion";
         // public static string StateDetailRegion = "StateDetailRegion";
 
@@ -143,7 +152,7 @@ namespace AZDORestApiExplorer.Core
         // public static string SystemControlNavigationRegion = "SystemControlNavigationRegion";
         // public static string SystemControlDetailRegion = "SystemControlDetailRegion";
 
-        public static string WorkItemTypeMainRegion = "WorkItemTypeMainRegion";
+        public static string WorkItemTypeWITPMainRegion = "WorkItemTypeWITPMainRegion";
         //public static string WorkItemTypeNavigationRegion = "WorkItemTypeNavigationRegion";
         //public static string WorkItemTypeDetailRegion = "WorkItemTypeDetailRegion";
 

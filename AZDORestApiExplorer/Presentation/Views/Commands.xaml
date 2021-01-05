@@ -166,8 +166,8 @@
                 <dxlc:LayoutItem>
                     <Button
                     Command="{Binding GetWorkItemIconsCommand }"
-                    Content="{Binding GetWorkItemIconsContent, FallbackValue='Get WorkItemIcons' }"
-                    ToolTip="{Binding GetWorkItemIconsToolTip, FallbackValue='Get WorkItemIcons ToolTip' }" />
+                    Content="{Binding GetWorkItemIconsContent, FallbackValue='Get WorkItem Icons' }"
+                    ToolTip="{Binding GetWorkItemIconsToolTip, FallbackValue='Get WorkItem Icons ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
@@ -186,16 +186,24 @@
 
                 <dxlc:LayoutItem>
                     <Button
+                        Command="{Binding GetStatesWITCommand }"
+                        Content="{Binding GetStatesWITContent, FallbackValue='Get States (WIT)' }"
+                        ToolTip="{Binding GetStatesWITToolTip, FallbackValue='Get States (WIT) ToolTip' }" />
+                </dxlc:LayoutItem>
+
+
+                <dxlc:LayoutItem>
+                    <Button
                     Command="{Binding GetWorkItemTypesWITCommand }"
-                    Content="{Binding GetWorkItemTypesWITContent, FallbackValue='Get WorkItemTypes' }"
-                    ToolTip="{Binding GetWorkItemTypesWITToolTip, FallbackValue='Get WorkItemTypes ToolTip' }" />
+                    Content="{Binding GetWorkItemTypesWITContent, FallbackValue='Get WorkItem Types' }"
+                    ToolTip="{Binding GetWorkItemTypesWITToolTip, FallbackValue='Get WorkItem Types ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>
                     <Button
                     Command="{Binding GetWorkItemTypesFieldsCommand }"
-                    Content="{Binding GetWorkItemTypesFieldsContent, FallbackValue='Get WorkItemTypesFields' }"
-                    ToolTip="{Binding GetWorkItemTypesFieldsToolTip, FallbackValue='Get WorkItemTypesFields ToolTip' }" />
+                    Content="{Binding GetWorkItemTypesFieldsContent, FallbackValue='Get WorkItemTypes Fields' }"
+                    ToolTip="{Binding GetWorkItemTypesFieldsToolTip, FallbackValue='Get WorkItemTypes Fields ToolTip' }" />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
@@ -248,9 +256,9 @@
 
                 <dxlc:LayoutItem>
                     <Button
-                        Command="{Binding GetStatesCommand }"
-                        Content="{Binding GetStatesContent, FallbackValue='Get States' }"
-                        ToolTip="{Binding GetStatesToolTip, FallbackValue='Get States ToolTip' }" />
+                        Command="{Binding GetStatesWITPCommand }"
+                        Content="{Binding GetStatesWITPContent, FallbackValue='Get States (WITP)' }"
+                        ToolTip="{Binding GetStatesWITPToolTip, FallbackValue='Get States (WITP) ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem>

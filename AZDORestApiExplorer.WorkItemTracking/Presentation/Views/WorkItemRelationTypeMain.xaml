@@ -50,6 +50,9 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
             <dxg:GridColumn FieldName="name" />
+            <dxg:GridColumn FieldName="referenceName" />
+            <dxg:GridColumn FieldName="attributes" />
+            <dxg:GridColumn FieldName="url" />
         </dxg:GridControl>
 
     </Grid>

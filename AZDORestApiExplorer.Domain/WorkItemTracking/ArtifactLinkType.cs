@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using VNC.Core.DomainServices;
-
-namespace AZDORestApiExplorer.Domain.WorkItemTracking
+﻿namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     public class ArtifactLinkTypesRoot
     {
+        public int count { get; set; }
+        public ArtifactLinkType[] value { get; set; }
     }
+
     public class ArtifactLinkType
     {
+        public string linkType { get; set; }
+        public string artifactType { get; set; }
+        public string toolType { get; set; }
     }
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Rename classes to use TYPEsRoot and TYPE classes
-
 }

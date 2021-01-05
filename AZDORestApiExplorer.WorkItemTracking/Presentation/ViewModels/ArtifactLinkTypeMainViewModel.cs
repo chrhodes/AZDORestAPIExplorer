@@ -96,8 +96,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                        + "wit/artifactlinktypes"
+                        + "?api-version=4.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -113,7 +113,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         ArtifactLinkTypesRoot resultRoot = JsonConvert.DeserializeObject<ArtifactLinkTypesRoot>(outJson);
 
-                        //ArtifactLinkTypes.ResultItems = new ObservableCollection<ArtifactLinkType>(resultRoot.value);
+                        ArtifactLinkTypes.ResultItems = new ObservableCollection<ArtifactLinkType>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

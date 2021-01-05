@@ -60,6 +60,9 @@ namespace AZDORestApiExplorer.WorkItemTracking
             containerRegistry.Register<IWorkItemTypeCategoryMainViewModel, WorkItemTypeCategoryMainViewModel>();
             containerRegistry.RegisterSingleton<IWorkItemTypeCategoryMain, WorkItemTypeCategoryMain>();
 
+            containerRegistry.Register<IStateMainViewModel, StateMainViewModel>();
+            containerRegistry.RegisterSingleton<IStateMain, StateMain>();
+
             containerRegistry.Register<IWorkItemTypesFieldMainViewModel, WorkItemTypesFieldMainViewModel>();
             containerRegistry.RegisterSingleton<IWorkItemTypesFieldMain, WorkItemTypesFieldMain>();
 
@@ -84,8 +87,9 @@ namespace AZDORestApiExplorer.WorkItemTracking
             _regionManager.RegisterViewWithRegion(RegionNames.TemplateMainRegion, typeof(ITemplateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemIconMainRegion, typeof(IWorkItemIconMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemRelationTypeMainRegion, typeof(IWorkItemRelationTypeMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeMainRegion, typeof(IWorkItemTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITMainRegion, typeof(IWorkItemTypeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeCategoryMainRegion, typeof(IWorkItemTypeCategoryMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StateWITMainRegion, typeof(IStateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(IWorkItemTypesFieldMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);

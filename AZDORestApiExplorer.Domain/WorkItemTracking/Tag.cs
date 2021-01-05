@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using VNC.Core.DomainServices;
-
-namespace AZDORestApiExplorer.Domain.WorkItemTracking
+﻿namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     public class TagsRoot
     {
+        public int count { get; set; }
+        public Tag[] value { get; set; }
     }
     public class Tag
     {
+        public string id { get; set; }
+        public string name { get; set; }
+        public string url { get; set; }
     }
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Rename classes to use TYPEsRoot and TYPE classes
-
 }

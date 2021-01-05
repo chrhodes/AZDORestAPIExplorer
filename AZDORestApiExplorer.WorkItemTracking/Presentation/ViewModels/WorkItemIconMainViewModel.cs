@@ -92,11 +92,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                        + "wit/workitemicons"
+                        + "?api-version=4.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -112,7 +110,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemIconsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemIconsRoot>(outJson);
 
-                        //WorkItemIcons.ResultItems = new ObservableCollection<WorkItemIcon>(resultRoot.value);
+                        WorkItemIcons.ResultItems = new ObservableCollection<WorkItemIcon>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
