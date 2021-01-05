@@ -32,7 +32,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -43,24 +42,14 @@
             </StackPanel>
         </Border>
 
-        <DataGrid Grid.Row="1"
-                    ItemsSource="{Binding States.ResultItems}"
-                    SelectedItem="{Binding States.SelectedItem}"               
-                    AutoGenerateColumns="True"
-                    CanUserAddRows="False"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-        </DataGrid>
-
-        <dxg:GridControl Grid.Row="2"
+        <dxg:GridControl Grid.Row="1"
                     ItemsSource="{Binding States.ResultItems}"
                     SelectedItem="{Binding States.SelectedItem}"               
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            
             <dxg:GridColumn FieldName="name" />
             <dxg:GridColumn FieldName="id" />
             <dxg:GridColumn FieldName="stateCategory" />
@@ -68,6 +57,7 @@
             <dxg:GridColumn FieldName="cusomizationType" />
             <dxg:GridColumn FieldName="color" />            
             <dxg:GridColumn FieldName="url" />
+            
         </dxg:GridControl>
 
     </Grid>

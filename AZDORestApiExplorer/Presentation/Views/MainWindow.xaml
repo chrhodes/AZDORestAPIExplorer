@@ -470,7 +470,7 @@
                     </dxdo:LayoutGroup>
 
                     <dxdo:LayoutGroup ItemWidth="400">
-                        <dxdo:LayoutPanel Caption="Context" >
+                        <dxdo:LayoutPanel Caption="Context Level Providers" >
                             <dxlc:LayoutGroup>
                                 <Grid>
                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />

@@ -42,7 +42,7 @@
         <dxlc:LayoutItem Label="PAT">
             <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
                      Width="320" ToolTip="Paste in Personal Access Token (PAT)" 
-                     Background="LightGreen" />
+                     Background="{StaticResource OrganizationColor}" />
         </dxlc:LayoutItem>
 
     </dxlc:LayoutGroup>

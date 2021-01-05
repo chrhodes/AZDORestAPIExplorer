@@ -17,7 +17,7 @@
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
+
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
 >
@@ -45,7 +45,9 @@
                 <dxlc:LayoutGroup Header="Process"
             	    View="GroupBox" Orientation="Vertical" 
             	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False">
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource ProcessColor}">
+                    
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                         <TextBlock Text="{Binding Context.SelectedProcess.name}" />
                     </dxlc:LayoutItem>
@@ -58,7 +60,8 @@
                 <dxlc:LayoutGroup Header="Project"
             	    View="GroupBox" Orientation="Vertical" 
             	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False">
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource ProjectColor}">
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                         <TextBlock Text="{Binding Context.SelectedProject.name}" />
@@ -73,7 +76,8 @@
                 <dxlc:LayoutGroup Header="Team"
             	    View="GroupBox" Orientation="Vertical" 
             	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False">
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource TeamColor}">
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                         <TextBlock Text="{Binding Context.SelectedTeam.name}" />
@@ -87,15 +91,17 @@
                 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="WorkItemTracking"
+            <dxlc:LayoutGroup Header="Work Item Tracking Process"
         	    View="GroupBox" Orientation="Vertical" 
         	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	    IsCollapsible="True"  IsCollapsed="False">
+        	    IsCollapsible="True"  IsCollapsed="False"
+>
 
-                <dxlc:LayoutGroup Header="WorkItem"
-            	View="GroupBox" Orientation="Vertical" 
-            	VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	IsCollapsible="True"  IsCollapsed="False">
+                <dxlc:LayoutGroup Header="Work Item Type"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource WorkItemTypeColor}">
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
                         <TextBlock Text="{Binding Context.SelectedWorkItemType.referenceName}" />

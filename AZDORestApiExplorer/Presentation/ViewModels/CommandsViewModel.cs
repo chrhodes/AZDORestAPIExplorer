@@ -258,15 +258,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetArtifactLinkTypesCommand.RaiseCanExecuteChanged();
             GetWorkItemIconsCommand.RaiseCanExecuteChanged();
             GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking Process
+            GetListsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
-            GetFieldsWITCommand.RaiseCanExecuteChanged();
-
             GetWorkItemTypesWITPCommand.RaiseCanExecuteChanged();
 
-            GetListsCommand.RaiseCanExecuteChanged();
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
@@ -292,6 +292,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWidgetsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
+            GetFieldsWITCommand.RaiseCanExecuteChanged();
+            GetQueriesCommand.RaiseCanExecuteChanged();
             GetTagsCommand.RaiseCanExecuteChanged();
             GetTemplatesCommand.RaiseCanExecuteChanged();
             GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
@@ -380,8 +382,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetAccountsCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -1272,8 +1277,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetListsCanExecute()
         {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
                 return false;
             }
