@@ -23,7 +23,7 @@
                     IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
+                        <Button 
                             Command="{Binding GetCoreProcessesCommand }"
                             Content="{Binding GetCoreProcessesContent, FallbackValue='Get Processes' }"
                             ToolTip="{Binding GetCoreProcessesToolTip, FallbackValue='Get Processes ToolTip' }" />
@@ -50,7 +50,7 @@
                     IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
+                        <Button 
                             Command="{Binding GetAccountsCommand }"
                             Content="{Binding GetAccountsContent, FallbackValue='Get Accounts' }"
                             ToolTip="{Binding GetAccountsToolTip, FallbackValue='Get Accounts ToolTip' }" />
@@ -84,7 +84,7 @@
                 VerticalAlignment="Top" HorizontalAlignment="Stretch"
                 IsCollapsible="True"  IsCollapsed="False">
 
-                <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                <!--<dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                     <Button
                         Command="{Binding GetBacklogsCommand }"
                         Content="{Binding GetBacklogsContent, FallbackValue='Get Backlogs' }"
@@ -110,7 +110,7 @@
                         Command="{Binding GetBoardRowsCommand }"
                         Content="{Binding GetBoardRowsContent, FallbackValue='Get BoardRows' }"
                         ToolTip="{Binding GetBoardRowsToolTip, FallbackValue='Get BoardRows ToolTip' }" />
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 
             </dxlc:LayoutGroup>
 
@@ -149,6 +149,13 @@
                                   Orientation="Vertical"
                                   Background="{StaticResource ProjectColor}">
 
+                    <dxlc:LayoutItem>
+                        <Button
+                            Command="{Binding GetClassificationNodesCommand }"
+                            Content="{Binding GetClassificationNodesContent, FallbackValue='Get ClassificationNodes' }"
+                            ToolTip="{Binding GetClassificationNodesToolTip, FallbackValue='Get ClassificationNodes ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem>
                         <Button
                             Command="{Binding GetFieldsWITCommand }"
@@ -260,6 +267,13 @@
                             ToolTip="{Binding GetBehaviorsWITPToolTip, FallbackValue='Get Behaviors ToolTip' }" />
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem Background="{StaticResource ProcessColor}">
+                        <Button
+                                Command="{Binding GetWorkItemTypesWITPCommand }"
+                                Content="{Binding GetWorkItemTypesWITPContent, FallbackValue='Get WorkItemTypes' }"
+                                ToolTip="{Binding GetWorkItemTypesWITPToolTip, FallbackValue='Get WorkItemTypes ToolTip' }" />
+                    </dxlc:LayoutItem>
+
                     <dxlc:LayoutGroup Header="WorkItemType Level" 
                                   View="GroupBox"
                                   Orientation="Vertical" >
@@ -291,12 +305,7 @@
                                 ToolTip="{Binding GetSystemControlsToolTip, FallbackValue='Get SystemControls ToolTip' }" />
                         </dxlc:LayoutItem>
                         
-                        <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                            <Button
-                                Command="{Binding GetWorkItemTypesWITPCommand }"
-                                Content="{Binding GetWorkItemTypesWITPContent, FallbackValue='Get WorkItemTypes' }"
-                                ToolTip="{Binding GetWorkItemTypesWITPToolTip, FallbackValue='Get WorkItemTypes ToolTip' }" />
-                        </dxlc:LayoutItem>
+
 
                         <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
                             <Button

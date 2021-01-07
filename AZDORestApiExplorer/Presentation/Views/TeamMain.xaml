@@ -25,33 +25,14 @@
 >
     
     <UserControl.Resources>
-        <Style x:Key="OutlineBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="5" />
-        </Style>
-        <Style x:Key="CountBorder" TargetType="Border">
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="CountTextBlock" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black" />
-            <!--<Setter Property="FontSize" Value="18" />-->
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,0,5,0" />
-        </Style>
-        <Style x:Key="CountStackPanel" TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal" />
-            <Setter Property="Margin" Value="-3,-5,-2,-3" />
-        </Style>
+
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -69,15 +50,18 @@
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+            
             <dxg:GridColumn FieldName="name" />
             <dxg:GridColumn FieldName="id" />
             <dxg:GridColumn FieldName="projectName" />
             <dxg:GridColumn FieldName="projectId" />
             <dxg:GridColumn FieldName="description" />
             <dxg:GridColumn FieldName="identityUrl" />
-            <dxg:GridColumn FieldName="url" />
+            <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>
 
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Teams.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
     

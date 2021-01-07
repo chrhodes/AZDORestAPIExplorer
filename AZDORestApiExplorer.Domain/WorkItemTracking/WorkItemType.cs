@@ -269,8 +269,5 @@
             public string category { get; set; }
         }
 
-
     }
-
-
 }

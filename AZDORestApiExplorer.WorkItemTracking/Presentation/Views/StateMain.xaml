@@ -32,6 +32,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -49,8 +50,12 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            
             <dxg:GridColumn FieldName="name" />
         </dxg:GridControl>
+
+        <dxe:TextEdit Grid.Row="2" Text="{Binding States.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
     

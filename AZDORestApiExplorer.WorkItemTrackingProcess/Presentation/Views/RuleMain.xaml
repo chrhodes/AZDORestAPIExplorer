@@ -25,12 +25,95 @@
 >
 
     <UserControl.Resources>
+        <Style x:Key="OutlineBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+        <Style x:Key="CountBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="CountTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <!--<Setter Property="FontSize" Value="18" />-->
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+        </Style>
+        <Style x:Key="CountStackPanel" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="-3,-5,-2,-3" />
+        </Style>
+        <DataTemplate x:Key="ProjectTemplateStackPanel">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Project id"/>
+                <TextBox Text="{Binding id}" />
+                <Label Content="Project name"/>
+                <TextBox Text="{Binding name}" />
+                <Label Content="Project url"/>
+                <TextBox Text="{Binding url}" />
+                <Label Content="Project state" />
+                <TextBox Text="{Binding state}" />
+                <Label Content="Project revision" />
+                <TextBox Text="{Binding revision}" />
+                <Label Content="Project visibility" />
+                <TextBox Text="{Binding visibility}" />
+                <Label Content="Project lastUpdateTime" />
+                <TextBox Text="{Binding lastUpdateTime}" />
+                <Label Content="Project description" />
+                <TextBox Text="{Binding description}" />
+            </StackPanel>
+        </DataTemplate>
 
+        <DataTemplate x:Key="ProjectTemplateGrid">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Project id"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Project name"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Project url"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding url}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Project state" />
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding state}" />
+
+                <Label Grid.Row="4" Grid.Column="0" Content="Project revision" />
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding revision}" />
+
+                <Label Grid.Row="5" Grid.Column="0" Content="Project visibility" />
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding visibility}" />
+
+                <Label Grid.Row="6" Grid.Column="0" Content="Project lastUpdateTime" />
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding lastUpdateTime}" />
+
+                <Label Grid.Row="7" Grid.Column="0" Content="Project description" />
+                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding description}" />
+            </Grid>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -56,8 +139,81 @@
             <dxg:GridColumn FieldName="actions" />
             <dxg:GridColumn FieldName="isDisabled" />
             <dxg:GridColumn FieldName="isSystem" />
-            
+
+            <dxg:GridControl.View>
+                <dxg:TableView DetailHeaderContent="Employees" AutoWidth="True" ShowGroupPanel="False" />
+            </dxg:GridControl.View>
+            <dxg:GridControl.DetailDescriptor>
+                <dxg:TabViewDetailDescriptor>
+                    <dxg:TabViewDetailDescriptor.DetailDescriptors>
+                        <dxg:DataControlDetailDescriptor ItemsSourcePath="conditions">
+                            <dxg:DataControlDetailDescriptor.DataControl>
+                                <dxg:GridControl AutoGenerateColumns="AddNew">
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView DetailHeaderContent="conditions" AutoWidth="True" ShowGroupPanel="False" />
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxg:DataControlDetailDescriptor.DataControl>
+                        </dxg:DataControlDetailDescriptor>
+                        <dxg:DataControlDetailDescriptor ItemsSourcePath="actions">
+                            <dxg:DataControlDetailDescriptor.DataControl>
+                                <dxg:GridControl AutoGenerateColumns="AddNew">
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView DetailHeaderContent="actions" AutoWidth="True" ShowGroupPanel="False" />
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxg:DataControlDetailDescriptor.DataControl>
+                        </dxg:DataControlDetailDescriptor>
+                        <!--<dxg:ContentDetailDescriptor ContentTemplate="{StaticResource EmployeeNotes}" HeaderContent="Notes">
+                        </dxg:ContentDetailDescriptor>-->
+                    </dxg:TabViewDetailDescriptor.DetailDescriptors>
+                </dxg:TabViewDetailDescriptor>
+            </dxg:GridControl.DetailDescriptor>
         </dxg:GridControl>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--<ContentControl Grid.Column="0" FontSize="12"
+                                Content="{Binding Projects.SelectedItem}"
+                                ContentTemplate="{StaticResource ProjectTemplateStackPanel}"/>
+
+            <ContentControl Grid.Column="1"  FontSize="12"
+                                Content="{Binding Projects.SelectedItem}"
+                                ContentTemplate="{StaticResource ProjectTemplateGrid}"/>-->
+
+            <dxg:GridControl Grid.Column="0"
+                ItemsSource="{Binding Rules.SelectedItem.conditions}"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    <dxg:GridColumn FieldName="conditionType" />
+                    <dxg:GridColumn FieldName="field" />
+                    <dxg:GridColumn FieldName="value" />
+
+            </dxg:GridControl>
+            
+            <dxg:GridControl Grid.Column="1"
+                ItemsSource="{Binding Rules.SelectedItem.actions}"            
+                FontSize="12"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <dxg:GridColumn FieldName="actionType" />
+                <dxg:GridColumn FieldName="targetField" />
+                <dxg:GridColumn FieldName="value" />
+
+            </dxg:GridControl>
+
+        </Grid>
 
     </Grid>
     

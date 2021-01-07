@@ -84,6 +84,10 @@ namespace AZDORestApiExplorer.Core
         // public static string ArtifactLinkTypeNavigationRegion = "ArtifactLinkTypeNavigationRegion";
         // public static string ArtifactLinkTypeDetailRegion = "ArtifactLinkTypeDetailRegion";
 
+        public static string ClassificationNodeMainRegion = "ClassificationNodeMainRegion";
+        // public static string ClassificationNodeNavigationRegion = "ClassificationNodeNavigationRegion";
+        // public static string ClassificationNodeDetailRegion = "ClassificationNodeDetailRegion";
+
         public static string QueryMainRegion = "QueryMainRegion";
         // public static string QueryNavigationRegion = "QueryNavigationRegion";
         // public static string QueryDetailRegion = "QueryDetailRegion";

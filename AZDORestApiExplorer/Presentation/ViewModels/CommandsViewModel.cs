@@ -185,6 +185,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Work Item Tracking Category
 
             GetArtifactLinkTypesCommand = new DelegateCommand(GetArtifactLinkTypesExecute, GetArtifactLinkTypesCanExecute);
+            GetClassificationNodesCommand = new DelegateCommand(GetClassificationNodesExecute, GetClassificationNodesCanExecute);
             GetFieldsWITCommand = new DelegateCommand(GetFieldsWITExecute, GetFieldsWITCanExecute);
             GetQueriesCommand = new DelegateCommand(GetQueriesExecute, GetQueriesCanExecute);
             GetTagsCommand = new DelegateCommand(GetTagsExecute, GetTagsCanExecute);
@@ -292,6 +293,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWidgetsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
+
+            GetClassificationNodesCommand.RaiseCanExecuteChanged();
             GetFieldsWITCommand.RaiseCanExecuteChanged();
             GetQueriesCommand.RaiseCanExecuteChanged();
             GetTagsCommand.RaiseCanExecuteChanged();
@@ -749,6 +752,48 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region GetClassificationNodes Command
+
+        public DelegateCommand GetClassificationNodesCommand { get; set; }
+        public string GetClassificationNodesContent { get; set; } = "Get Classification Nodes";
+        public string GetClassificationNodesToolTip { get; set; } = "Get Classification Nodes ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetClassificationNodesContent { get; set; } = "ViewName_GetClassificationNodesContent";
+        //public string GetClassificationNodesToolTip { get; set; } = "ViewName_GetClassificationNodesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetClassificationNodesContent">GetClassificationNodes</system:String>
+        //    <system:String x:Key="ViewName_GetClassificationNodesContentToolTip">GetClassificationNodes ToolTip</system:String>  
+
+        public void GetClassificationNodesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<GetClassificationNodesEvent>().Publish(
+                new GetClassificationNodesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetClassificationNodesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+        #endregion
+
         #region GetFields Command
 
         public DelegateCommand GetFieldsWITCommand { get; set; }
@@ -778,7 +823,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetFieldsWITCanExecute()
         {
-            if (_collectionMainViewModel.SelectedCollection is null)
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
             {
                 return false;
             }
@@ -818,7 +864,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetQueriesCanExecute()
         {
-            if (_collectionMainViewModel.SelectedCollection is null)
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
             {
                 return false;
             }

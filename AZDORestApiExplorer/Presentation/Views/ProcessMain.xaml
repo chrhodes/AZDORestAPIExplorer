@@ -32,6 +32,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />            
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -56,6 +57,8 @@
             <dxg:GridColumn FieldName="isDefault" />
             <dxg:GridColumn FieldName="url" />
         </dxg:GridControl>
+
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Processes.SelectedItem.url}"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
 

@@ -32,6 +32,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -56,10 +57,12 @@
             <dxg:GridColumn FieldName="order" />
             <dxg:GridColumn FieldName="cusomizationType" />
             <dxg:GridColumn FieldName="color" />            
-            <dxg:GridColumn FieldName="url" />
+            <!--<dxg:GridColumn FieldName="url" />-->
             
         </dxg:GridControl>
 
+        <dxe:TextEdit Grid.Row="2" Text="{Binding States.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
     </Grid>
     
 </vncmvvm:ViewBase>

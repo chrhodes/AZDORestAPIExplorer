@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,8 +9,6 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
-using AZDORestApiExplorer.WorkItemTracking.Core;
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,12 +21,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemTypesFieldMainViewModel : HTTPExchangeBase, IWorkItemTypesFieldMainViewModel
+    public class ClassificationNodeMainViewModel : HTTPExchangeBase, IClassificationNodeMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public WorkItemTypesFieldMainViewModel(
+        public ClassificationNodeMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -43,9 +41,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesFieldsWITEvent>().Subscribe(GetWorkItemTypesFields);
+            EventAggregator.GetEvent<GetClassificationNodesEvent>().Subscribe(GetClassificationNodes);
 
-            this.WorkItemTypesFields.PropertyChanged += PublishSelectionChanged;
+            this.ClassificationNodes.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -64,7 +62,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<WorkItemTypesField> WorkItemTypesFields { get; set; } = new RESTResult<WorkItemTypesField>();
+        public RESTResult<ClassificationNode> ClassificationNodes { get; set; } = new RESTResult<ClassificationNode>();
 
         #endregion
 
@@ -85,7 +83,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypesFields(GetWorkItemTypesFieldsWITEventArgs args)
+        private async void GetClassificationNodes(GetClassificationNodesEventArgs args)
         {
             try
             {
@@ -96,7 +94,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"wit/workitemtypes/{args.WorkItemType.referenceName}/fields"
+                        + "wit/classificationnodes"
                         + "?api-version=4.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
@@ -111,15 +109,15 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        WorkItemTypesFieldsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypesFieldsRoot>(outJson);
+                        ClassificationNodesRoot resultRoot = JsonConvert.DeserializeObject<ClassificationNodesRoot>(outJson);
 
-                        //WorkItemTypesFields.ResultItems = new ObservableCollection<WorkItemTypesField>(resultRoot.value);
+                        ClassificationNodes.ResultItems = new ObservableCollection<ClassificationNode>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        WorkItemTypesFields.Count = WorkItemTypesFields.ResultItems.Count;
+                        ClassificationNodes.Count = ClassificationNodes.ResultItems.Count;
                     }
                 }
             }
@@ -136,7 +134,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedWorkItemTypesFieldChangedEvent>().Publish(WorkItemTypesFields.SelectedItem);
+            EventAggregator.GetEvent<SelectedClassificationNodeChangedEvent>().Publish(ClassificationNodes.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

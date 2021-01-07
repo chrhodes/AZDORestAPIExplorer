@@ -36,6 +36,9 @@ namespace AZDORestApiExplorer.WorkItemTracking
             containerRegistry.Register<IArtifactLinkTypeMainViewModel, ArtifactLinkTypeMainViewModel>();
             containerRegistry.RegisterSingleton<IArtifactLinkTypeMain, ArtifactLinkTypeMain>();
 
+            containerRegistry.Register<IClassificationNodeMainViewModel, ClassificationNodeMainViewModel>();
+            containerRegistry.RegisterSingleton<IClassificationNodeMain, ClassificationNodeMain>();
+
             containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
             containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
 
@@ -81,6 +84,7 @@ namespace AZDORestApiExplorer.WorkItemTracking
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
             _regionManager.RegisterViewWithRegion(RegionNames.ArtifactLinkTypeMainRegion, typeof(IArtifactLinkTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ClassificationNodeMainRegion, typeof(IClassificationNodeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.FieldWITMainRegion, typeof(IFieldMain));
             _regionManager.RegisterViewWithRegion(RegionNames.QueryMainRegion, typeof(IQueryMain));
             _regionManager.RegisterViewWithRegion(RegionNames.TagMainRegion, typeof(ITagMain));

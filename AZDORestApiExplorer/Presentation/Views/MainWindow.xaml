@@ -25,6 +25,13 @@
 >
     <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
+    <!--<Window.Resources>
+
+            <Style x:Key="MyStyle" TargetType="{x:Type dx:DXTabControl}">
+                <Setter Property="Foreground" Value="Red" />
+            </Style>
+
+    </Window.Resources>-->
     <dxlc:LayoutControl
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
@@ -305,6 +312,7 @@
                                         
                                         <dxlc:LayoutGroup 
                                             Orientation="Vertical"  View="Tabs">
+                                            
                                             <dxlc:LayoutGroup.GroupBoxStyle>
                                                 <Style TargetType="dxlc:GroupBox">
                                                     <Setter Property="Background" Value="Transparent" />
@@ -318,6 +326,24 @@
                                             <dxlc:LayoutGroup Header="Artifact Link Types">
                                                 <Grid>
                                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ArtifactLinkTypeMainRegion}" />
+                                                </Grid>
+                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutGroup Header="Work Item Icons">
+                                                <Grid>
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemIconMainRegion}" />
+                                                </Grid>
+                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutGroup Header="Work Item Relation Types">
+                                                <Grid>
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemRelationTypeMainRegion}" />
+                                                </Grid>
+                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutGroup Header="ClassificationNodes">
+                                                <Grid>
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ClassificationNodeMainRegion}" />
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
@@ -345,17 +371,7 @@
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
-                                            <dxlc:LayoutGroup Header="Work Item Icons">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemIconMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
 
-                                            <dxlc:LayoutGroup Header="Work Item Relation Types">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemRelationTypeMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
 
                                             <dxlc:LayoutGroup Header="Work Item Type Categories">
                                                 <Grid>
@@ -389,19 +405,43 @@
                                         
                                         <dxlc:LayoutGroup 
                                             Orientation="Vertical"  View="Tabs">
-                                            <dxlc:LayoutGroup.GroupBoxStyle>
-                                                <Style TargetType="dxlc:GroupBox">
-                                                    <Setter Property="Background" Value="Transparent" />
-                                                    <Setter Property="BorderBrush" Value="Transparent" />
-                                                    <Setter Property="BorderThickness" Value="0" />
-                                                    <Setter Property="Padding" Value="0" />
-                                                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                                            <!--<dxlc:LayoutGroup.Resources>
+                                                --><!--<DataTemplate x:Key="{dxt:DXTabControlThemeKey ResourceKey=BackgroundTemplate, ThemeName=Office2010Black}">
+                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
+                                                </DataTemplate>--><!--
+                                                <DataTemplate x:Key="foobar">
+                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
+                                                </DataTemplate>                                                
+                                            </dxlc:LayoutGroup.Resources>
+                                            <dxlc:LayoutGroup.TabsStyle>
+                                                <Style TargetType="dx:DXTabControl">
+                                                    <Setter Property="Padding" Value="5"/>
                                                 </Style>
-                                            </dxlc:LayoutGroup.GroupBoxStyle>
+                                            </dxlc:LayoutGroup.TabsStyle>
+                                            <dxlc:LayoutGroup.TabStyle>
+                                                <Style TargetType="dx:DXTabItem">
+                                                    <Setter Property="Padding" Value="0"/>
+                                                    <Setter Property="HeaderTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <Border Background="Black" BorderBrush="Red" BorderThickness="1,1,1,0" Margin="0,-1,0,0" Padding="9,3,9,3">
+                                                                    <TextBlock Text="{Binding}" Foreground="Yellow"/>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </dxlc:LayoutGroup.TabStyle>-->
 
-                                            <dxlc:LayoutGroup Header="Behaviors" >
+                                            <dxlc:LayoutGroup Header="Behaviors">
+                                                <Grid >
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BehaviorMainRegion}"/>
+                                                </Grid>
+                                            </dxlc:LayoutGroup>
+
+                                            <dxlc:LayoutGroup Header="WorkItemTypes">
                                                 <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BehaviorMainRegion}" />
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeWITPMainRegion}" />
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
@@ -441,11 +481,7 @@
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
-                                            <dxlc:LayoutGroup Header="WorkItemTypes">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeWITPMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
+
 
                                             <dxlc:LayoutGroup Header="WorkItemTypesBehaviors">
                                                 <Grid>
