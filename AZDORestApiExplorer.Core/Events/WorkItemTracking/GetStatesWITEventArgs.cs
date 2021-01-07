@@ -1,6 +1,6 @@
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 
 namespace AZDORestApiExplorer.Core.Events.WorkItemTracking
 {

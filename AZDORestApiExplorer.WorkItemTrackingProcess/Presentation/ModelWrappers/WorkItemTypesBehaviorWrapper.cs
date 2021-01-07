@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ModelWrappers
 {
-    public class WorkItemTypesBehaviorWrapper : ModelWrapper<Domain.WorkItemTypesBehavior>
+    public class WorkItemTypesBehaviorWrapper : ModelWrapper<WorkItemTypesBehavior>
     {
-        public WorkItemTypesBehaviorWrapper(Domain.WorkItemTypesBehavior model) : base(model)
+        public WorkItemTypesBehaviorWrapper(WorkItemTypesBehavior model) : base(model)
         {
         }
 

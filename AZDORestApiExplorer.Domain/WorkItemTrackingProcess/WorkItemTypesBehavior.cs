@@ -1,4 +1,4 @@
-﻿namespace AZDORestApiExplorer.WorkItemTrackingProcess.Domain
+﻿namespace AZDORestApiExplorer.Domain.WorkItemTrackingProcess
 {
     public class WorkItemTypesBehaviorsRoot
     {

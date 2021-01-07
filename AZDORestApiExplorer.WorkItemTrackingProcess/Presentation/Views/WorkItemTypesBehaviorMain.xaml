@@ -18,7 +18,7 @@
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Core"
+
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"

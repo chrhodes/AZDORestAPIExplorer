@@ -1,15 +1,13 @@
-﻿using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
-
-namespace AZDORestApiExplorer.Application
+﻿namespace AZDORestApiExplorer.Application
 {
     public class Context
     {
         public Domain.Core.Process SelectedProcess { get; set; }
-        public Project SelectedProject { get; set; }
-        public Team SelectedTeam { get; set; }
+        public Domain.Core.Project SelectedProject { get; set; }
+        public Domain.Core.Team SelectedTeam { get; set; }
 
-        public WorkItemType SelectedWorkItemType { get; set; }
+        public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT { get; set; }
+        public Domain.WorkItemTrackingProcess.WorkItemType SelectedWorkItemTypeWITP { get; set; }
         public Domain.Dashboard.Dashboard SelectedDashboard { get; set; }
     }
 }

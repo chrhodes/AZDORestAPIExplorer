@@ -22,16 +22,7 @@
     mc:Ignorable="d"
 >
     <UserControl.Resources>
-        <!--These are implicit DataTemplates--><!--
-        <DataTemplate DataType="{x:Type viewModels:ContextDetailViewModel}">
-            <views:ContextDetail />
-        </DataTemplate>
-        --><!-- <DataTemplate DataType="{x:Type viewModels:MeetingDetailViewModel}"> -->
-            <!-- <views:MeetingDetail /> -->
-        <!-- </DataTemplate> --><!--
-        <DataTemplate DataType="{x:Type viewModels:DetailViewModel}">
-            <views:Detail />
-        </DataTemplate>-->
+
     </UserControl.Resources>
 
     <Grid>
@@ -104,7 +95,7 @@
                     Background="{StaticResource WorkItemTypeColor}">
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
-                        <TextBlock Text="{Binding Context.SelectedWorkItemType.referenceName}" />
+                        <TextBlock Text="{Binding Context.SelectedWorkItemTypeWITP.referenceName}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
@@ -114,6 +105,28 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
+            <dxlc:LayoutGroup Header="Work Item Tracking"
+        	    View="GroupBox" Orientation="Vertical" 
+        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	    IsCollapsible="True"  IsCollapsed="False"
+>
+
+                <dxlc:LayoutGroup Header="Work Item Type"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource WorkItemTypeColor}">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedWorkItemTypeWIT.referenceName}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
         </dxlc:LayoutGroup>
     </Grid>
 </vncmvvm:ViewBase>

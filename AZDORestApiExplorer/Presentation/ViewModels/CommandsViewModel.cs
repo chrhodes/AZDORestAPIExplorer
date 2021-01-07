@@ -1,10 +1,9 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.WorkItemTracking;
-using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
+
 using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
@@ -227,7 +226,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeChangedEvent>().Subscribe(RaiseWorkItemTypeChanged);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
 
             EventAggregator.GetEvent<Core.Events.Dashboard.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
@@ -273,17 +274,25 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRulesCommand.RaiseCanExecuteChanged();
         }
 
-        private void RaiseWorkItemTypeChanged(WorkItemType workItemType)
+        private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
+        {
+            GetFieldsWITCommand.RaiseCanExecuteChanged();
+            GetRulesCommand.RaiseCanExecuteChanged();
+            GetStatesWITPCommand.RaiseCanExecuteChanged();
+            GetSystemControlsCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+            GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
+            GetStatesWITCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseWorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
         {
             GetFieldsWITPCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
             GetStatesWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesBehaviorsCommand.RaiseCanExecuteChanged();
-
-            // Work Item Tracking
-            GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
-            GetStatesWITCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseProjectChanged(Project project)
@@ -730,8 +739,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetArtifactLinkTypesEvent>().Publish(
-                new GetArtifactLinkTypesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject
@@ -770,8 +779,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetClassificationNodesEvent>().Publish(
-                new GetClassificationNodesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetClassificationNodesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetClassificationNodesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
@@ -797,8 +806,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetFields Command
 
         public DelegateCommand GetFieldsWITCommand { get; set; }
-        public string GetFieldsWITContent { get; set; } = "GetFields";
-        public string GetFieldsWITToolTip { get; set; } = "GetFields ToolTip";
+        public string GetFieldsWITContent { get; set; } = "GetFields (WIT)";
+        public string GetFieldsWITToolTip { get; set; } = "GetFields (WIT) ToolTip";
 
         // Can get fancy and use Resources
         //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
@@ -852,8 +861,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetQueriesEvent>().Publish(
-                new GetQueriesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetQueriesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetQueriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
@@ -1054,8 +1063,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypeCategoriesEvent>().Publish(
-                new GetWorkItemTypeCategoriesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
@@ -1095,12 +1104,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetStatesWITEvent>().Publish(
-                new GetStatesWITEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetStatesWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetStatesWITEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1110,7 +1119,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWIT is null)
             {
                 return false;
             }
@@ -1138,8 +1147,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesWITEvent>().Publish(
-                new GetWorkItemTypesWITEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetWorkItemTypesWITEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject
@@ -1179,12 +1188,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesFieldsWITEvent>().Publish(
-                new GetWorkItemTypesFieldsWITEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
-                    , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1194,7 +1203,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWIT is null)
             {
                 return false;
             }
@@ -1229,7 +1238,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
-                new GetBehaviorsEventArgs()
+                new Core.Events.WorkItemTrackingProcess.GetBehaviorsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1270,12 +1279,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetFieldsWITPEvent>().Publish(
-                new GetFieldsWITPEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetFieldsWITPEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetFieldsWITPEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1285,7 +1294,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
             {
                 return false;
             }
@@ -1313,8 +1322,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetListsEvent>().Publish(
-                new GetListsEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetListsEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetListsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -1352,8 +1361,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetProcessesEvent>().Publish(
-                new Core.Events.WorkItemTrackingProcess.GetProcessesEventArgs()
+            EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
+                new Core.Events.Core.GetProcessesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -1391,12 +1400,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetRulesEvent>().Publish(
-                new GetRulesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetRulesEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetRulesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1406,7 +1415,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
             {
                 return false;
             }
@@ -1434,12 +1443,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetStatesWITPEvent>().Publish(
-                new GetStatesWITPEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetStatesWITPEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetStatesWITPEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1449,7 +1458,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
             {
                 return false;
             }
@@ -1477,14 +1486,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-              EventAggregator.GetEvent<GetSystemControlsEvent>().Publish(
-                new GetSystemControlsEventArgs()
+              EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetSystemControlsEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetSystemControlsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
                     Process = _contextMainViewModel.Context.SelectedProcess
                     ,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1494,7 +1503,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
             {
                 return false;
             }
@@ -1522,8 +1531,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesWITPEvent>().Publish(
-                new GetWorkItemTypesWITPEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetWorkItemTypesWITPEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetWorkItemTypesWITPEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess
@@ -1563,12 +1572,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesBehaviorsEvent>().Publish(
-                new GetWorkItemTypesBehaviorsEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetWorkItemTypesBehaviorsEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetWorkItemTypesBehaviorsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Process = _contextMainViewModel.Context.SelectedProcess,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemType
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1578,7 +1587,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemType is null)
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
             {
                 return false;
             }

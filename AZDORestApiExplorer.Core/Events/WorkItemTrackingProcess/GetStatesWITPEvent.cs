@@ -1,8 +1,6 @@
-﻿using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
+﻿using Prism.Events;
 
-using Prism.Events;
-
-namespace AZDORestApiExplorer.Core.Events
+namespace AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess
 {
     public class GetStatesWITPEvent : PubSubEvent<GetStatesWITPEventArgs> { }
 }

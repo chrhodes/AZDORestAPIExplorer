@@ -1,9 +1,6 @@
 ﻿using System;
 
-
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
 using Prism.Events;
@@ -40,12 +37,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeChangedEvent>().Subscribe(WorkItemTypeChanged);
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        private void ProcessChanged(Domain.Core.Process process)
+        private void ProcessChanged(Process process)
         {
             Context.SelectedProcess = process;
         }
@@ -60,9 +58,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Context.SelectedTeam = team;
         }
 
-        private void WorkItemTypeChanged(WorkItemType workItemType)
+        private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
         {
-            Context.SelectedWorkItemType = workItemType;
+            Context.SelectedWorkItemTypeWIT = workItemType;
+        }
+
+        private void WorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
+        {
+            Context.SelectedWorkItemTypeWITP = workItemType;
         }
 
         #endregion

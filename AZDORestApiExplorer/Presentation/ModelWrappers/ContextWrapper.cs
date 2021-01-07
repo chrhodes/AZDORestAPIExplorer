@@ -1,5 +1,4 @@
 ﻿using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 
 using VNC.Core.Mvvm;
 
@@ -29,9 +28,15 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-        public WorkItemType SelectedWorkItemType
+        public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT
         {
-            get { return GetValue<WorkItemType>(); }
+            get { return GetValue<Domain.WorkItemTracking.WorkItemType>(); }
+            set { SetValue(value); }
+        }
+
+        public Domain.WorkItemTrackingProcess.WorkItemType SelectedWorkItemTypeWITP
+        {
+            get { return GetValue<Domain.WorkItemTrackingProcess.WorkItemType>(); }
             set { SetValue(value); }
         }
 

@@ -52,7 +52,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedWorkItemTypeChangedEvent>().Publish(WorkItemTypes.SelectedItem);
+            EventAggregator.GetEvent<SelectedWorkItemTypeWITPChangedEvent>().Publish(WorkItemTypes.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
