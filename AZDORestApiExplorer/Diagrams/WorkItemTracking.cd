@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.ArtifactLinkType">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.ClassificationNode">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.ClassificationNode.Attributes" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Field">
+    <Position X="6.25" Y="0.5" Width="3.75" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Field.Supportedoperation" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query">
+    <Position X="0.75" Y="4.5" Width="3" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Createdby" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Avatar1" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query._Links1" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Avatar" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query._Links2" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Html" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query._Links" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Self" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Query.Lastmodifiedby" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.State">
+    <Position X="4.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Tag">
+    <Position X="6" Y="7.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.Template">
+    <Position X="8.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemIcon">
+    <Position X="0.75" Y="10.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemRelationType">
+    <Position X="9" Y="5.75" Width="2.5" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemRelationType.Attributes" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType">
+    <Position X="8.75" Y="10.25" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Field">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.SDLReview">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Ready">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.InPlanning">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Completed">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.InProgress">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Repair">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.TechReviewed">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Proposed">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Approved">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Accepted">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Closed">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Inactive">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Active">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.TeamReview">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.FixIssue">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Preliminary">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Archive">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Child">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.DeferReview">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.AdminReview">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Assigned">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Requested">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Icon">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.OnHold">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Deferred">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.InReview">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Fieldinstance">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.VerifyFix">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.State">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Implement">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Resolved">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Transitions">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.ReviewCompleted">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemType.Design">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemTypeCategory">
+    <Position X="1.25" Y="13" Width="3.75" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemTypeCategory.Defaultworkitemtype" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemTypeCategory.Workitemtype" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.WorkItemTracking.WorkItemTypesField">
+    <Position X="5" Y="10.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

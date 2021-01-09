@@ -58,7 +58,7 @@
             <dxg:GridColumn FieldName="defaultValue" />
             <dxg:GridColumn FieldName="description" />
 
-            <dxg:GridColumn FieldName="url" />
+            <!--<dxg:GridColumn FieldName="url" />-->
 
         </dxg:GridControl>
 

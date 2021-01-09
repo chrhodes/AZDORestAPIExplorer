@@ -21,9 +21,9 @@
 
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
-    d:DesignHeight="450" d:DesignWidth="800"
 >
-
+    <!--d:DesignHeight="450" d:DesignWidth="800"-->
+    
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -32,15 +32,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding WorkItemTypes.Count}"
+      
+        <Border Style="{StaticResource CountBorder}" Grid.Row="0" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
+                    <Label Content="Count:" />
+                    <TextBlock Text="{Binding WorkItemTypes.Count}"
                            Style="{StaticResource CountTextBlock}"/>
+                </StackPanel>
+                <dxe:TextEdit Grid.Row="0" Text="{Binding RequestUri}" Margin="5" />
             </StackPanel>
         </Border>
     
@@ -63,11 +67,11 @@
             <dxg:GridColumn FieldName="fieldInstances" />
             <dxg:GridColumn FieldName="transitions" />
             <dxg:GridColumn FieldName="states" />
-            <dxg:GridColumn FieldName="url" />
+            <!--<dxg:GridColumn FieldName="url" />-->
             
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2" Text="{Binding WorkItemTypes.SelectedItem.xmlForm}"  TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+        <dxe:TextEdit Grid.Row="2" Text="{Binding WorkItemTypes.SelectedItem.url}" />
 
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
@@ -90,7 +94,7 @@
                 <dxg:GridColumn FieldName="color" />
 
             </dxg:GridControl>
-
+            
             <dxg:GridControl Grid.Column="1"
                 ItemsSource="{Binding WorkItemTypes.SelectedItem.fields}"
                 ScrollViewer.CanContentScroll="True"
@@ -122,6 +126,9 @@
             </dxg:GridControl>
 
         </Grid>
+
+        <dxe:TextEdit Grid.Row="4" Text="{Binding WorkItemTypes.SelectedItem.xmlForm}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
     

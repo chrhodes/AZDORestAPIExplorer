@@ -11,7 +11,8 @@
     Background="White"
 >
 
-    <dxlc:LayoutGroup Orientation="Vertical">
+    <ScrollViewer>
+        <dxlc:LayoutGroup Orientation="Vertical">
 
         <dxlc:LayoutGroup Orientation="Horizontal">
 
@@ -507,7 +508,8 @@
                 </dxlc:LayoutGroup>
             </WrapPanel>
         </dxlc:LayoutGroup>
-        
+
     </dxlc:LayoutGroup>
-    
+    </ScrollViewer>
+
 </vncmvvm:ViewBase>

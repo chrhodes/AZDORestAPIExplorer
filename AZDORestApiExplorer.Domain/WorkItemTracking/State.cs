@@ -9,11 +9,8 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
 
     public class State
     {
-
+        public string name { get; set; }
+        public string color { get; set; }
+        public string category { get; set; }
     }
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Nest any additional classes inside class State
-
 }

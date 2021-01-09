@@ -23,7 +23,6 @@
     Title="{Binding Title}"
     d:DesignHeight="800" d:DesignWidth="1200"         
 >
-    <!--xmlns:infra="clr-namespace:$customAPPLICATON$.Core;assembly=$customAPPLICATON$.Core"-->
 
     <!--<Window.Resources>
 
@@ -32,6 +31,7 @@
             </Style>
 
     </Window.Resources>-->
+    
     <dxlc:LayoutControl
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
@@ -73,22 +73,37 @@
 
                         <dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100">
-                            <dxlc:LayoutGroup >
-                                <Grid>
+                            <!--<dxlc:LayoutGroup >
+                                <Grid>-->
                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
+                                <!--</Grid>
+                            </dxlc:LayoutGroup>-->
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands" VerticalAlignment="Top">
-                            <dxlc:LayoutGroup>
-                                <Grid>
+                            <!--<dxlc:LayoutGroup>
+                                <Grid>-->
                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
+                                <!--</Grid>
+                            </dxlc:LayoutGroup>-->
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Output">
+
+
+                        <dxdo:LayoutPanel Caption="Dashboard">
+                            <local:DashboardMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Work Item Tracking">
+                            <local:WorkItemTrackingMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Work Item Tracking Process">
+                            <local:WorkItemTrackingProcessMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Future Output">
+                            
                             <dxlc:LayoutControl
                                 Orientation="Vertical"
                                 StretchContentVertically="True">
@@ -125,7 +140,8 @@
                                         </Grid>--><!--
                                     </dxlc:LayoutGroup>-->
 
-                                    <dxlc:LayoutGroup Header="Core">
+
+                                    <!--<dxlc:LayoutGroup Header="Core">
                                         <dxlc:LayoutGroup 
                                             Orientation="Vertical"  View="Tabs">
                                             <dxlc:LayoutGroup.GroupBoxStyle>
@@ -158,7 +174,7 @@
 
                                         </dxlc:LayoutGroup>
 
-                                    </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>-->
 
                                     <dxlc:LayoutGroup Header="Accounts" >
                                         
@@ -186,7 +202,7 @@
 
                                     </dxlc:LayoutGroup>
 
-                                    <dxlc:LayoutGroup Header="Dashboard">
+                                    <!--<dxlc:LayoutGroup Header="Dashboard">
                                         <dxlc:LayoutGroup 
                                             Orientation="Vertical"  View="Tabs">
                                             <dxlc:LayoutGroup.GroupBoxStyle>
@@ -210,7 +226,7 @@
                                                 </Grid>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutGroup>
-                                    </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>-->
 
                                     <dxlc:LayoutGroup Header="Distributed Task" >
 
@@ -308,7 +324,7 @@
 
                                     </dxlc:LayoutGroup>
 
-                                    <dxlc:LayoutGroup Header="Work Item Tracking">
+                                    <!--<dxlc:LayoutGroup Header="Work Item Tracking">
                                         
                                         <dxlc:LayoutGroup 
                                             Orientation="Vertical"  View="Tabs">
@@ -371,8 +387,6 @@
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
-
-
                                             <dxlc:LayoutGroup Header="Work Item Type Categories">
                                                 <Grid>
                                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeCategoryMainRegion}" />
@@ -399,99 +413,9 @@
 
                                         </dxlc:LayoutGroup>
                                         
-                                    </dxlc:LayoutGroup>
-
-                                    <dxlc:LayoutGroup Header="Work Item Tracking Process">
-                                        
-                                        <dxlc:LayoutGroup 
-                                            Orientation="Vertical"  View="Tabs">
-                                            <!--<dxlc:LayoutGroup.Resources>
-                                                --><!--<DataTemplate x:Key="{dxt:DXTabControlThemeKey ResourceKey=BackgroundTemplate, ThemeName=Office2010Black}">
-                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
-                                                </DataTemplate>--><!--
-                                                <DataTemplate x:Key="foobar">
-                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
-                                                </DataTemplate>                                                
-                                            </dxlc:LayoutGroup.Resources>
-                                            <dxlc:LayoutGroup.TabsStyle>
-                                                <Style TargetType="dx:DXTabControl">
-                                                    <Setter Property="Padding" Value="5"/>
-                                                </Style>
-                                            </dxlc:LayoutGroup.TabsStyle>
-                                            <dxlc:LayoutGroup.TabStyle>
-                                                <Style TargetType="dx:DXTabItem">
-                                                    <Setter Property="Padding" Value="0"/>
-                                                    <Setter Property="HeaderTemplate">
-                                                        <Setter.Value>
-                                                            <DataTemplate>
-                                                                <Border Background="Black" BorderBrush="Red" BorderThickness="1,1,1,0" Margin="0,-1,0,0" Padding="9,3,9,3">
-                                                                    <TextBlock Text="{Binding}" Foreground="Yellow"/>
-                                                                </Border>
-                                                            </DataTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </dxlc:LayoutGroup.TabStyle>-->
-
-                                            <dxlc:LayoutGroup Header="Behaviors">
-                                                <Grid >
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BehaviorMainRegion}"/>
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="WorkItemTypes">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeWITPMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Fields">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldWITPMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="System Controls" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.SystemControlMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Lists">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ListMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Processes" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessWITPMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Rules" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RuleMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="States">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StateWITPMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>-->
 
 
-
-                                            <dxlc:LayoutGroup Header="WorkItemTypesBehaviors">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypesBehaviorMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                        </dxlc:LayoutGroup>
-                                        
-                                    </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Work Item Tracking Process Template" >
 
@@ -527,20 +451,17 @@
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
                     <dxdo:AutoHideGroup DockType="Top">
-                        <!--<dxdo:LayoutPanel
-                            x:Name="lp_TopStuff"
-                            Caption="Commands"
-                            ItemHeight="150">
-                            <dxlc:LayoutGroup Header="Commands" >
-                                <Grid>
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
-                        </dxdo:LayoutPanel>-->
+
+
+
                     </dxdo:AutoHideGroup>
                     
                     <dxdo:AutoHideGroup DockType="Left">
-
+                        
+                        <dxdo:LayoutPanel Caption="Core" MinWidth="400">
+                            <local:CoreMain />
+                        </dxdo:LayoutPanel>
+                        
                     </dxdo:AutoHideGroup>
 
                     <dxdo:AutoHideGroup DockType="Right">
@@ -548,6 +469,7 @@
                     </dxdo:AutoHideGroup>
 
                     <dxdo:AutoHideGroup DockType="Bottom">
+                        
                         <dxdo:LayoutPanel Caption="HTTP Exchange" >
                             <dxlc:LayoutGroup>
                                 <Grid>
@@ -555,6 +477,7 @@
                                 </Grid>
                             </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
+                        
                     </dxdo:AutoHideGroup>
 
                 </dxdo:DockLayoutManager.AutoHideGroups>

@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.WorkItemTracking.Core;
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
 
 using Newtonsoft.Json;
@@ -94,7 +92,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                     Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"wit/workitemtypes/{args.WorkItemType.referenceName}/states"
+                        + $"wit/workitemtypes/{args.WorkItemType.name}/states"
                         + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);

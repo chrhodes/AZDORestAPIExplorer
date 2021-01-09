@@ -806,8 +806,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetFields Command
 
         public DelegateCommand GetFieldsWITCommand { get; set; }
-        public string GetFieldsWITContent { get; set; } = "GetFields (WIT)";
-        public string GetFieldsWITToolTip { get; set; } = "GetFields (WIT) ToolTip";
+        public string GetFieldsWITContent { get; set; } = "GetFields";
+        public string GetFieldsWITToolTip { get; set; } = "GetFields ToolTip";
 
         // Can get fancy and use Resources
         //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
@@ -1089,16 +1089,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetStates Command
 
         public DelegateCommand GetStatesWITCommand { get; set; }
-        public string GetStatesWITContent { get; set; } = "GetStates (WIT)";
-        public string GetStatesWITToolTip { get; set; } = "GetStates (WIT) ToolTip";
+        public string GetStatesWITContent { get; set; } = "GetStates";
+        public string GetStatesWITToolTip { get; set; } = "GetStates ToolTip";
 
         // Can get fancy and use Resources
         //public string GetStatesWITPContent { get; set; } = "ViewName_GetStatesWITContent";
         //public string GetStatesWITPToolTip { get; set; } = "ViewName_GetStatesWITContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetStatesContent">GetStates (WIT)</system:String>
-        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates (WIT) ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
 
         public void GetStatesWITExecute()
         {
@@ -1132,8 +1132,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetWorkItemTypesWIT Command
 
         public DelegateCommand GetWorkItemTypesWITCommand { get; set; }
-        public string GetWorkItemTypesWITContent { get; set; } = "Get WorkItemTypes (WIT)";
-        public string GetWorkItemTypesWITToolTip { get; set; } = "Get WorkItemTypes (WIT) ToolTip";
+        public string GetWorkItemTypesWITContent { get; set; } = "Get WorkItemTypes";
+        public string GetWorkItemTypesWITToolTip { get; set; } = "Get WorkItemTypes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetWorkItemTypesWITContent { get; set; } = "ViewName_GetWorkItemTypesWITContent";
@@ -1222,8 +1222,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetBehaviors Command
 
         public DelegateCommand GetBehaviorsWITPCommand { get; set; }
-        public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors (WITP)";
-        public string GetBehaviorsWITPToolTip { get; set; } = "GetBehaviors (WITP) ToolTip";
+        public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors";
+        public string GetBehaviorsWITPToolTip { get; set; } = "GetBehaviors ToolTip";
 
         // Can get fancy and use Resources
         //public string BehaviorContent { get; set; } = "ViewName_BehaviorContent";
@@ -1264,8 +1264,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetFields Command
 
         public DelegateCommand GetFieldsWITPCommand { get; set; }
-        public string GetFieldsWITPContent { get; set; } = "Get Fields (WITP)";
-        public string GetFieldsWITPToolTip { get; set; } = "Get Fields (WITP) ToolTip";
+        public string GetFieldsWITPContent { get; set; } = "Get Fields";
+        public string GetFieldsWITPToolTip { get; set; } = "Get Fields ToolTip";
 
         // Can get fancy and use Resources
         //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
@@ -1346,8 +1346,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetProcesses Command
 
         public DelegateCommand GetProcessesWITPCommand { get; set; }
-        public string GetProcessesWITPContent { get; set; } = "Get Processes (WITP)";
-        public string GetProcessesWITPToolTip { get; set; } = "Get Processes (WITP) ToolTip";
+        public string GetProcessesWITPContent { get; set; } = "Get Processes";
+        public string GetProcessesWITPToolTip { get; set; } = "Get Processes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
@@ -1361,8 +1361,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
-                new Core.Events.Core.GetProcessesEventArgs()
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetProcessesEvent>().Publish(
+                new Core.Events.WorkItemTrackingProcess.GetProcessesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -1428,16 +1428,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetStates Command
 
         public DelegateCommand GetStatesWITPCommand { get; set; }
-        public string GetStatesWITPContent { get; set; } = "GetStates (WITP)";
-        public string GetStatesWITPToolTip { get; set; } = "GetStates (WITP) ToolTip";
+        public string GetStatesWITPContent { get; set; } = "GetStates";
+        public string GetStatesWITPToolTip { get; set; } = "GetStates ToolTip";
 
         // Can get fancy and use Resources
         //public string GetStatesWITPContent { get; set; } = "ViewName_GetStatesWITPContent";
         //public string GetStatesWITPToolTip { get; set; } = "ViewName_GetStatesWITPContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetStatesContent">GetStates (WITP)</system:String>
-        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates (WITP) ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
 
         public void GetStatesWITPExecute()
         {
@@ -1490,10 +1490,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.WorkItemTrackingProcess.GetSystemControlsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Process = _contextMainViewModel.Context.SelectedProcess
-                    ,
-                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
+                    , Process = _contextMainViewModel.Context.SelectedProcess
+                    , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
@@ -1516,8 +1514,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetWorkItemTypes Command
 
         public DelegateCommand GetWorkItemTypesWITPCommand { get; set; }
-        public string GetWorkItemTypesWITPContent { get; set; } = "GetWorkItemTypes (WITP)";
-        public string GetWorkItemTypesWITPToolTip { get; set; } = "GetWorkItemTypes (WITP) ToolTip";
+        public string GetWorkItemTypesWITPContent { get; set; } = "GetWorkItemTypes";
+        public string GetWorkItemTypesWITPToolTip { get; set; } = "GetWorkItemTypes ToolTip";
 
         // Can get fancy and use Resources
         //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";

@@ -7,6 +7,7 @@ namespace AZDORestApiExplorer.Domain
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
+
         private int _count;
 
         public int Count
@@ -58,5 +59,20 @@ namespace AZDORestApiExplorer.Domain
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ResultItems)));
             }
         }
+
+        //private string _requestUri;
+
+        //public string RequestUri
+        //{
+        //    get => _requestUri;
+        //    set
+        //    {
+        //        if (_requestUri == value)
+        //            return;
+        //        _requestUri = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RequestUri)));
+        //    }
+        //}
+
     }
 }

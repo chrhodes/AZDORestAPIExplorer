@@ -31,8 +31,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />            
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -44,7 +44,10 @@
             </StackPanel>
         </Border>
 
-        <dxg:GridControl Grid.Row="1"
+        <dxe:TextEdit Grid.Row="1" Text="{Binding Fields.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+        
+        <dxg:GridControl Grid.Row="2"
                     ItemsSource="{Binding Fields.ResultItems}"
                     SelectedItem="{Binding Fields.SelectedItem}"               
                     ScrollViewer.CanContentScroll="True"
@@ -67,9 +70,6 @@
             <!--<dxg:GridColumn FieldName="url" />-->
 
         </dxg:GridControl>
-
-        <dxe:TextEdit Grid.Row="2" Text="{Binding Fields.SelectedItem.url}"  
-                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>

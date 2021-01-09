@@ -30,7 +30,6 @@
             <ComboBox
                 ItemsSource="{Binding AvailableCollections}"
                 DisplayMemberPath="Name"
-                SelectedValuePath="Details"
                 SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
             </ComboBox>
         </dxlc:LayoutItem>

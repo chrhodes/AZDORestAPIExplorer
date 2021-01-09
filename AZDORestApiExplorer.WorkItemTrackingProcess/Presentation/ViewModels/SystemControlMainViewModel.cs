@@ -109,9 +109,9 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        //SystemControlsRoot resultRoot = JsonConvert.DeserializeObject<SystemControlsRoot>(outJson);
+                        SystemControlsRoot resultRoot = JsonConvert.DeserializeObject<SystemControlsRoot>(outJson);
 
-                        //SystemControls.ResultItems = new ObservableCollection<Domain.SystemControl>(resultRoot.value);
+                        SystemControls.ResultItems = new ObservableCollection<SystemControl>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 

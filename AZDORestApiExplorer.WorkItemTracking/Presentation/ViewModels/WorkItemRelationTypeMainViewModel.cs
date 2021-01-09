@@ -65,6 +65,22 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         public RESTResult<WorkItemRelationType> WorkItemRelationTypes { get; set; } = new RESTResult<WorkItemRelationType>();
 
+
+        private WorkItemRelationType.Attributes _aStuff;
+
+        public WorkItemRelationType.Attributes AStuff
+        {
+            get => _aStuff;
+            set
+            {
+                if (_aStuff == value)
+                    return;
+                _aStuff = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
         #endregion
 
         #region Event Handlers
@@ -135,7 +151,12 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
+            if (WorkItemRelationTypes.SelectedItem is null)
+            {
+                return;
+            }
             EventAggregator.GetEvent<SelectedWorkItemRelationTypeChangedEvent>().Publish(WorkItemRelationTypes.SelectedItem);
+            AStuff = WorkItemRelationTypes.SelectedItem.attributes;
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
