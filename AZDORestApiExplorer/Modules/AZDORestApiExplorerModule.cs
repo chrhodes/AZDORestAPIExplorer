@@ -48,7 +48,7 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<IFoodDataService, FoodDataService>();
             containerRegistry.RegisterSingleton<IFoodLookupDataService, FoodLookupDataService>();
 
-            containerRegistry.RegisterSingleton<Commands>();
+            containerRegistry.RegisterSingleton<GetCommands>();
 
 
             containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
@@ -75,7 +75,7 @@ namespace AZDORestApiExplorer
             // These load into CombinedMain.xaml
             _regionManager.RegisterViewWithRegion(RegionNames.CombinedNavigationRegion, typeof(ICombinedNavigation));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.CommandRegion, typeof(Commands));
+            _regionManager.RegisterViewWithRegion(RegionNames.GetCommandRegion, typeof(GetCommands));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

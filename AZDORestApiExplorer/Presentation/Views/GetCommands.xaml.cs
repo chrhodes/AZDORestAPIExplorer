@@ -6,9 +6,9 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class Commands : ViewBase
+    public partial class GetCommands : ViewBase
     {
-        public Commands(CommandsViewModel viewModel)
+        public GetCommands(GetCommandsViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 

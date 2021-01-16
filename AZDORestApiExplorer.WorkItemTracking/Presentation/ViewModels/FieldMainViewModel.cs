@@ -9,10 +9,14 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.WorkItemTracking.Presentation.Views;
+
+using DevExpress.XtraPrinting;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using Prism.Commands;
 using Prism.Events;
 
 using VNC;
@@ -44,6 +48,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             EventAggregator.GetEvent<GetFieldsWITEvent>().Subscribe(GetFields);
 
             this.Fields.PropertyChanged += PublishSelectionChanged;
+
+            ExportToExcelCommand = new DelegateCommand(ExportToExcelExecute, ExportToExcelCanExecute);
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -83,19 +89,62 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
+        #region Commands
+
+
+        #region GetFields Command
+
+        public DelegateCommand ExportToExcelCommand { get; set; }
+        public string ExportToExcelTContent { get; set; } = "Export to Excel";
+        public string ExportToExcelToolTip { get; set; } = "Export to Excel ToolTip";
+
+        public void ExportToExcelExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            XlsxExportOptions options = new XlsxExportOptions();
+            options.SheetName = "WITFields"
+            ((FieldMain)View).gcMainTable.View.ExportToXlsx(@"C:\temp\FieldData.xlsx",);
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool ExportToExcelCanExecute()
+        {
+            //if (_collectionMainViewModel.SelectedCollection is null)
+            //{
+            //    return false;
+            //}
+
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
         private async void GetFields(GetFieldsWITEventArgs args)
         {
             try
             {
+                string requestUri;
+
                 using (HttpClient client = new HttpClient())
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis"
-                        + "/wit/fields"
-                        + "?api-version=4.1";
+                    if (args.Project is null)
+                    {
+                        requestUri = $"{args.Organization.Uri}/_apis"
+                            + "/wit/fields"
+                            + "?api-version=4.1";
+                    }
+                    else
+                    {
+                        requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis"
+                            + "/wit/fields"
+                            + "?api-version=4.1";
+                    }
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 

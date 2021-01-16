@@ -1,5 +1,7 @@
 ﻿using System;
 
+using DevExpress.XtraPrinting;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -8,7 +10,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
     public partial class FieldMain : ViewBase, IFieldMain, IInstanceCountV
     {
 
-        public FieldMain(ViewModels.IFieldMainViewModel viewModel)
+        public FieldMain(ViewModels.IFieldMainViewModel viewModel) : base()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -16,6 +18,14 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+
+            // TODO(crhodes)
+            // Determine if need to do this or if the plumbing is broken.
+
+            // Doing this so can have the export to excel in view model.  Maybe we just let this happen in the code behind.
+            // See ExportToExcel_Click below.
+
+            ViewModel.View = this;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -32,5 +42,14 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 
         #endregion
 
+        private void ExportToExcel_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            // TODO(crhodes)
+            // Maybe launch file picker to get name.
+
+            XlsxExportOptions options = new XlsxExportOptions();
+            options.SheetName = "WITFields";
+            gcMainTable.View.ExportToXlsx(@"C:\temp\FieldData.xlsx",options);
+        }
     }
 }

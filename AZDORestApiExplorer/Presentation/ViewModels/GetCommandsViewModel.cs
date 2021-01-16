@@ -15,12 +15,12 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class CommandsViewModel : EventViewModelBase
+    public class GetCommandsViewModel : EventViewModelBase
     {
 
         #region Constructors, Initialization, and Load
 
-        public CommandsViewModel(
+        public GetCommandsViewModel(
             ICollectionMainViewModel collectionMainViewModel,
             ContextMainViewModel contextMainViewModel,
             IEventAggregator eventAggregator,
@@ -35,6 +35,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
         }
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
@@ -183,9 +184,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Work Item Tracking Category
 
+            // Organization Level
+
+            GetOrganizationFieldsWITCommand = new DelegateCommand(GetOrganizationFieldsWITExecute, GetOrganizationFieldsWITCanExecute);
+
+            // Organization + Project Level
+
             GetArtifactLinkTypesCommand = new DelegateCommand(GetArtifactLinkTypesExecute, GetArtifactLinkTypesCanExecute);
             GetClassificationNodesCommand = new DelegateCommand(GetClassificationNodesExecute, GetClassificationNodesCanExecute);
-            GetFieldsWITCommand = new DelegateCommand(GetFieldsWITExecute, GetFieldsWITCanExecute);
+            GetProjectFieldsWITCommand = new DelegateCommand(GetProjectFieldsWITExecute, GetProjectFieldsWITCanExecute);
             GetQueriesCommand = new DelegateCommand(GetQueriesExecute, GetQueriesCanExecute);
             GetTagsCommand = new DelegateCommand(GetTagsExecute, GetTagsCanExecute);
             GetTemplatesCommand = new DelegateCommand(GetTemplatesExecute, GetTemplatesCanExecute);
@@ -226,7 +233,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
-
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
 
@@ -258,6 +264,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             // Work Item Tracking
             GetArtifactLinkTypesCommand.RaiseCanExecuteChanged();
+            GetOrganizationFieldsWITCommand.RaiseCanExecuteChanged();
             GetWorkItemIconsCommand.RaiseCanExecuteChanged();
             GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
 
@@ -274,14 +281,35 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRulesCommand.RaiseCanExecuteChanged();
         }
 
+        private void RaiseProjectChanged(Project project)
+        {
+            GetProjectsCommand.RaiseCanExecuteChanged();
+            GetDashboardsCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+
+            GetClassificationNodesCommand.RaiseCanExecuteChanged();
+            GetProjectFieldsWITCommand.RaiseCanExecuteChanged();
+            GetQueriesCommand.RaiseCanExecuteChanged();
+            GetTagsCommand.RaiseCanExecuteChanged();
+            GetTemplatesCommand.RaiseCanExecuteChanged();
+            GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypeCategoriesCommand.RaiseCanExecuteChanged();
+            GetStatesWITCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypesWITCommand.RaiseCanExecuteChanged();
+            GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
+        }
+
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
         {
-            GetFieldsWITCommand.RaiseCanExecuteChanged();
+            GetProjectFieldsWITCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
             GetStatesWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
+
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
             GetStatesWITCommand.RaiseCanExecuteChanged();
         }
@@ -295,26 +323,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesBehaviorsCommand.RaiseCanExecuteChanged();
         }
 
-        private void RaiseProjectChanged(Project project)
-        {
-            GetProjectsCommand.RaiseCanExecuteChanged();
-            GetDashboardsCommand.RaiseCanExecuteChanged();
-            GetWidgetsCommand.RaiseCanExecuteChanged();
-
-            // Work Item Tracking
-
-            GetClassificationNodesCommand.RaiseCanExecuteChanged();
-            GetFieldsWITCommand.RaiseCanExecuteChanged();
-            GetQueriesCommand.RaiseCanExecuteChanged();
-            GetTagsCommand.RaiseCanExecuteChanged();
-            GetTemplatesCommand.RaiseCanExecuteChanged();
-            GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
-            GetWorkItemTypeCategoriesCommand.RaiseCanExecuteChanged();
-            GetStatesWITCommand.RaiseCanExecuteChanged();
-            GetWorkItemTypesWITCommand.RaiseCanExecuteChanged();
-            GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
-        }
-
         private void RaiseTeamChanged(Team team)
         {
             GetTeamsCommand.RaiseCanExecuteChanged();
@@ -322,6 +330,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWidgetsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
+
             GetTemplatesCommand.RaiseCanExecuteChanged();
         }
 
@@ -805,19 +814,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetFields Command
 
-        public DelegateCommand GetFieldsWITCommand { get; set; }
-        public string GetFieldsWITContent { get; set; } = "GetFields";
-        public string GetFieldsWITToolTip { get; set; } = "GetFields ToolTip";
+        public DelegateCommand GetOrganizationFieldsWITCommand { get; set; }
+        public string GetOrganizationFieldsWITContent { get; set; } = "GetFields (Organization)";
+        public string GetOrganizationFieldsWITToolTip { get; set; } = "GetFields (Organization) ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
-        //public string GetFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
+        //public string GetOrganizationFieldsContent { get; set; } = "ViewName_GetFieldsContent";
+        //public string GetOrganizationFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
         //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
 
-        public void GetFieldsWITExecute()
+        public void GetOrganizationFieldsWITExecute()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
@@ -830,7 +839,43 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }
 
-        public bool GetFieldsWITCanExecute()
+        public bool GetOrganizationFieldsWITCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public DelegateCommand GetProjectFieldsWITCommand { get; set; }
+        public string GetProjectFieldsWITContent { get; set; } = "GetFields (Project)";
+        public string GetProjectFieldsWITToolTip { get; set; } = "GetFields (Project) ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
+        //public string GetFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
+
+        public void GetProjectFieldsWITExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        public bool GetProjectFieldsWITCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
@@ -1603,7 +1648,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
 
         #endregion
-
 
         #region Protected Methods
 

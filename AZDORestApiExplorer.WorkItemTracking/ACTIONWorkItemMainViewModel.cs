@@ -1,16 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
-using AZDORestApiExplorer.WorkItemTracking.Core;
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,12 +20,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemTypesFieldMainViewModel : HTTPExchangeBase, IWorkItemTypesFieldMainViewModel
+    public class CreateWorkItemMainViewModel : HTTPExchangeBase, ICreateWorkItemMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public WorkItemTypesFieldMainViewModel(
+        public CreateWorkItemMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -43,9 +40,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetWorkItemTypesFieldsWITEvent>().Subscribe(GetWorkItemTypesFields);
+            EventAggregator.GetEvent<GetWorkItemsEvent>().Subscribe(GetWorkItems);
 
-            this.WorkItemTypesFields.PropertyChanged += PublishSelectionChanged;
+            // this.WorkItems.PropertyChanged += PublishCreateWorkItemPerformed;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -64,7 +61,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<WorkItemTypesField> WorkItemTypesFields { get; set; } = new RESTResult<WorkItemTypesField>();
+        // public RESTResult<WorkItem> WorkItems { get; set; } = new RESTResult<WorkItem>();
 
         #endregion
 
@@ -85,7 +82,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItemTypesFields(GetWorkItemTypesFieldsWITEventArgs args)
+        private async void CreateWorkItems(CreateWorkItemEventArgs args)
         {
             try
             {
@@ -95,9 +92,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"wit/workitemtypes/{args.WorkItemType.referenceName}/fields"
-                        + "?$Expand=All&api-version=6.0";
+                    var requestUri = $"{args.Organization.Uri}/_apis/"
+                        + $"<UPDATE URI>"
+                        + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -111,15 +108,15 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        WorkItemTypesFieldsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypesFieldsRoot>(outJson);
+                        WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
 
-                        WorkItemTypesFields.ResultItems = new ObservableCollection<WorkItemTypesField>(resultRoot.value);
+                        WorkItems.ResultItems = new ObservableCollection<WorkItem>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        WorkItemTypesFields.Count = WorkItemTypesFields.ResultItems.Count;
+                        WorkItems.Count = WorkItems.ResultItems.Count;
                     }
                 }
             }
@@ -130,13 +127,15 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+
+            EventAggregator.GetEvent<CreateWorkItemChangedEvent>().Publish();
         }
 
-        private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
+        private void PublishCreatePerformed(object sender, PropertyChangedEventArgs e)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedWorkItemTypesFieldChangedEvent>().Publish(WorkItemTypesFields.SelectedItem);
+            EventAggregator.GetEvent<CreateWorkItemChangedEvent>().Publish();
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

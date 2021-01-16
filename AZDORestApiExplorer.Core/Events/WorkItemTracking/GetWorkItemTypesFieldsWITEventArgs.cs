@@ -7,5 +7,7 @@ namespace AZDORestApiExplorer.Core.Events.WorkItemTracking
         public Domain.Core.Project Project;
 
         public Domain.WorkItemTracking.WorkItemType WorkItemType;
+
+        string QueryString;
     }
 }

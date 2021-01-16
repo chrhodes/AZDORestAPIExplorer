@@ -194,4 +194,10 @@
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Presentation\Views\PutCommands.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+    </ItemGroup>
 </Project>

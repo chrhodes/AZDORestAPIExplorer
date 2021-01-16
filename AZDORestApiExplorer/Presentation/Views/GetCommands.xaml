@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Presentation.Views.Commands"
+    x:Class="AZDORestApiExplorer.Presentation.Views.GetCommands"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,8 @@
     Background="White"
 >
 
-    <ScrollViewer>
+<ScrollViewer>
+        
         <dxlc:LayoutGroup Orientation="Vertical">
 
         <dxlc:LayoutGroup Orientation="Horizontal">
@@ -118,7 +119,7 @@
             <dxlc:LayoutGroup Header="Work Item Tracking - Organization Level"
                 View="GroupBox" Orientation="Vertical"
                 VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                IsCollapsible="True"  IsCollapsed="False" >
 
                 <!-- Enbled at Organization Level -->
 
@@ -143,13 +144,21 @@
                         ToolTip="{Binding GetWorkItemRelationTypesToolTip, FallbackValue='Get WorkItem RelationTypes ToolTip' }" />
                 </dxlc:LayoutItem>
 
-                <!-- Enbled at Organization and Project Level -->
+
+                <dxlc:LayoutItem>
+                    <Button
+                        Command="{Binding GetOrganizationFieldsWITCommand }"
+                        Content="{Binding GetOrganizationFieldsWITContent, FallbackValue='Get Fields (Organization)' }"
+                        ToolTip="{Binding GetOrganizationFieldsWITToolTip, FallbackValue='Get Fields (Organization) ToolTip' }" />
+                </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup Header="Project Level" 
                                   View="GroupBox"
                                   Orientation="Vertical"
                                   Background="{StaticResource ProjectColor}">
 
+                        <!-- Enbled at Organization and Project Level -->
+                    
                     <dxlc:LayoutItem>
                         <Button
                             Command="{Binding GetClassificationNodesCommand }"
@@ -159,9 +168,9 @@
                     
                     <dxlc:LayoutItem>
                         <Button
-                            Command="{Binding GetFieldsWITCommand }"
-                            Content="{Binding GetFieldsWITContent, FallbackValue='Get Fields' }"
-                            ToolTip="{Binding GetFieldsWITToolTip, FallbackValue='Get Fields ToolTip' }" />
+                            Command="{Binding GetProjectFieldsWITCommand }"
+                            Content="{Binding GetProjectFieldsWITContent, FallbackValue='Get Fields (Project)' }"
+                            ToolTip="{Binding GetProjectFieldsWITToolTip, FallbackValue='Get Fields (Project) ToolTip' }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem>
@@ -510,6 +519,7 @@
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
-    </ScrollViewer>
+
+</ScrollViewer>
 
 </vncmvvm:ViewBase>

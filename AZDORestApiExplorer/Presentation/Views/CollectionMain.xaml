@@ -24,7 +24,7 @@
     d:DesignHeight="200" d:DesignWidth="600"
 >
     <dxlc:LayoutGroup Header="Enter Orgnzation Information"
-    	View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
+    	View="Group" Orientation="Horizontal" >
         
         <dxlc:LayoutItem Label="Available Collections" >
             <ComboBox
@@ -40,7 +40,7 @@
         
         <dxlc:LayoutItem Label="PAT">
             <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
-                     Width="320" ToolTip="Paste in Personal Access Token (PAT)" 
+                     ToolTip="Paste in Personal Access Token (PAT)" 
                      Background="{StaticResource OrganizationColor}" />
         </dxlc:LayoutItem>
 

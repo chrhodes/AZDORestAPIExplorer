@@ -66,6 +66,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         public RESTResult<WorkItemType> WorkItemTypes { get; set; } = new RESTResult<WorkItemType>();
 
+        public ObservableCollection<Action> Transitions { get; set; } = new ObservableCollection<Action>();
+
         #endregion
 
         #region Event Handlers
@@ -137,6 +139,33 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
             EventAggregator.GetEvent<SelectedWorkItemTypeWITChangedEvent>().Publish(WorkItemTypes.SelectedItem);
+
+            if (WorkItemTypes.SelectedItem != null)
+            {
+                var transitions = WorkItemTypes.SelectedItem.transitions.ToString();
+
+                //Rootobject output = JsonConvert.DeserializeObject<Rootobject>(transitions);
+
+                ////JArray ja = JArray.Parse(transitions);
+
+                //JObject jo = JObject.Parse(transitions);
+
+                Transitions.Clear();
+
+                foreach (var item in JObject.Parse(transitions))
+                {
+                    Action action = new Action();
+
+                    Action.ActionTarget[] actrgt = JsonConvert.DeserializeObject<Action.ActionTarget[]>(item.Value.ToString());
+
+                    action.Name = item.Key;
+                    action.Target = actrgt;
+
+                    //var v1 = JArray.Parse(item.Value.ToString());
+
+                    Transitions.Add(action);
+                }
+            }
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

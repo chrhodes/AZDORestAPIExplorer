@@ -80,17 +80,15 @@
                             </dxlc:LayoutGroup>-->
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Commands" VerticalAlignment="Top">
+                        <dxdo:LayoutPanel Caption="Commands (GET)">
                             <!--<dxlc:LayoutGroup>
                                 <Grid>-->
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandRegion}" />
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.GetCommandRegion}" />
                                 <!--</Grid>
                             </dxlc:LayoutGroup>-->
                         </dxdo:LayoutPanel>
 
-
-
-                        <dxdo:LayoutPanel Caption="Dashboard">
+                        <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True">
                             <local:DashboardMain />
                         </dxdo:LayoutPanel>
 
@@ -102,7 +100,8 @@
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Future Output">
+                        <dxdo:LayoutPanel Caption="Future Output"
+                                          AutoHidden="True">
                             
                             <dxlc:LayoutControl
                                 Orientation="Vertical"
