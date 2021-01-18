@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
@@ -20,12 +21,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class CreateQueryMainViewModel : HTTPExchangeBase, ICreateQueryMainViewModel
+    public class CreateWorkItemMainViewModel : HTTPExchangeBase, ICreateWorkItemMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public CreateQueryMainViewModel(
+        public CreateWorkItemMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -40,9 +41,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetQuerysEvent>().Subscribe(GetQuerys);
+            EventAggregator.GetEvent<CreateWorkItemEvent>().Subscribe(CreateWorkItem);
 
-            // this.Querys.PropertyChanged += PublishCreateQueryPerformed;
+            // this.WorkItems.PropertyChanged += PublishCreateWorkItemPerformed;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -61,7 +62,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        // public RESTResult<Query> Querys { get; set; } = new RESTResult<Query>();
+        // public RESTResult<WorkItem> WorkItems { get; set; } = new RESTResult<WorkItem>();
 
         #endregion
 
@@ -82,7 +83,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void CreateQuerys(CreateQueryEventArgs args)
+        private async void CreateWorkItem(CreateWorkItemEventArgs args)
         {
             try
             {
@@ -108,15 +109,15 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        QuerysRoot resultRoot = JsonConvert.DeserializeObject<QuerysRoot>(outJson);
+                        // WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
 
-                        Querys.ResultItems = new ObservableCollection<Query>(resultRoot.value);
+                        // WorkItems.ResultItems = new ObservableCollection<WorkItem>(resultRoot.value);
 
-                        IEnumerable<string> continuationHeaders = default;
+                        // IEnumerable<string> continuationHeaders = default;
 
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                        // bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Querys.Count = Querys.ResultItems.Count;
+                        // WorkItems.Count = WorkItems.ResultItems.Count;
                     }
                 }
             }
@@ -128,14 +129,14 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
 
-            EventAggregator.GetEvent<CreateQueryChangedEvent>().Publish();
+            EventAggregator.GetEvent<CreateWorkItemEvent>().Publish(new CreateWorkItemEventArgs());
         }
 
         private void PublishCreatePerformed(object sender, PropertyChangedEventArgs e)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<CreateQueryChangedEvent>().Publish();
+            EventAggregator.GetEvent<CreateWorkItemEvent>().Publish(new CreateWorkItemEventArgs());
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

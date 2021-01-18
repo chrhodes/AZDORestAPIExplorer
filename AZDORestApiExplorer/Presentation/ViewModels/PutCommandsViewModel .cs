@@ -42,12 +42,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Core Category
 
-
             #endregion
 
             #region Accounts Category
-
-
 
             #endregion
 
@@ -177,8 +174,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Work Item Tracking Category
 
-            PostWorkItemTypeCommand = new DelegateCommand(PostWorkItemTypeExecute, PostWorkItemTypeCanExecute);
-
             #endregion
 
             #region Work Item Tracking Process Category
@@ -196,31 +191,30 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // RaiseCanExecuteChanged for any Command that is dependent on Context.
         // N.B. Need to add to each Context Item for button to be enabled.
 
-        // Add Commands that only depend on Organization Context here
+        // Add Commands that depend only on Organization Context here
         // Other commands that depend on more do not need to be added 
         // as the check is in all CanExecute methods
 
         private void RaiseCollectionChanged()
         {
 
-            // Work Item Tracking
-            PostWorkItemTypeCommand.RaiseCanExecuteChanged();
-
-
-            // Work Item Tracking Process
 
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
 
+            // Work Item Tracking
+
+            // Work Item Tracking Process
         }
 
         private void RaiseProjectChanged(Project project)
         {
+
             // Work Item Tracking
 
-            PostWorkItemTypeCommand.RaiseCanExecuteChanged();
+            // Work Item Tracking Process
 
         }
 
@@ -371,39 +365,39 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetArtifactLinkTypes Command
 
-        public DelegateCommand PostWorkItemTypeCommand { get; set; }
-        public string PostWorkItemTypeContent { get; set; } = "GetArtifactLinkTypes";
-        public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
+        //public DelegateCommand PostWorkItemTypeCommand { get; set; }
+        //public string PostWorkItemTypeContent { get; set; } = "GetArtifactLinkTypes";
+        //public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
 
-        public void PostWorkItemTypeExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+        //public void PostWorkItemTypeExecute()
+        //{
+        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            // TODO(crhodes)
-            // What do we want to happen here?
-            // Let's start with creating a new window and loading a UI that will serve two purposes
-            // 1. Create new WorkItems
-            // 2. Update existing WorkItem
+        //    // TODO(crhodes)
+        //    // What do we want to happen here?
+        //    // Let's start with creating a new window and loading a UI that will serve two purposes
+        //    // 1. Create new WorkItems
+        //    // 2. Update existing WorkItem
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                });
+        //    EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
+        //        new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
+        //        {
+        //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //            Project = _contextMainViewModel.Context.SelectedProject
+        //        });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        //    Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        //}
 
-        public bool PostWorkItemTypeCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
+        //public bool PostWorkItemTypeCanExecute()
+        //{
+        //    if (_collectionMainViewModel.SelectedCollection is null)
+        //    {
+        //        return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         #endregion
 

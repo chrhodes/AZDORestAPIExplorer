@@ -180,6 +180,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\vnc\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.DxNF.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Artifacts\AZDORestApiExplorer.Artifacts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Audit\AZDORestApiExplorer.Audit.csproj" />
@@ -196,6 +197,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Page Update="Presentation\Views\PostCommands.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
       <Page Update="Presentation\Views\PutCommands.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>

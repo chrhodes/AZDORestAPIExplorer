@@ -78,6 +78,7 @@ namespace AZDORestApiExplorer.WorkItemTracking
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
+            
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
