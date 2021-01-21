@@ -23,9 +23,10 @@ namespace AZDORestApiExplorer.Core
         public static string CollectionNavigationRegion = "CollectionNavigationRegion";
         public static string CollectionDetailRegion = "CollectionDetailRegion";
 
-        public static string GetCommandRegion = "GetCommandRegion";
-        public static string PutCommandRegion = "PutCommandRegion";
-        public static string PatchCommandRegion = "PatchCommandRegion";
+        public static string CommandGetRegion = "CommandGetRegion";
+        public static string CommandPatchRegion = "CommandPatchRegion";
+        public static string CommandPostRegion = "CommandPostRegion";
+        public static string CommandPutRegion = "CommandPutRegion";
 
         public static string ContextMainRegion = "ContextMainRegion";
         public static string ContextNavigationRegion = "ContextNavigationRegion";

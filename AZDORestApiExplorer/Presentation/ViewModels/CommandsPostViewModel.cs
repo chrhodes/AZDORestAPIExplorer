@@ -16,14 +16,15 @@ using VNC.WPF.Presentation.Dx.Views;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class PostCommandsViewModel : EventViewModelBase
+    public class CommandsPostViewModel : EventViewModelBase
     {
 
         #region Constructors, Initialization, and Load
 
-        public PostCommandsViewModel(
+        public CommandsPostViewModel(
             ICollectionMainViewModel collectionMainViewModel,
             ContextMainViewModel contextMainViewModel,
+            IShellService shellService,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -31,6 +32,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             _collectionMainViewModel = (CollectionMainViewModel)collectionMainViewModel;
             _contextMainViewModel = (ContextMainViewModel)contextMainViewModel;
+            _shellService = shellService;
 
             InitializeViewModel();
 
@@ -239,6 +241,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        // TODO(crhodes)
+        // May want to push down into VNCCore
+        IShellService _shellService;
+
         CollectionMainViewModel _collectionMainViewModel;
         ContextMainViewModel _contextMainViewModel;
 
@@ -373,8 +379,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region PostWorkItemType Command
 
         public DelegateCommand PostWorkItemTypeCommand { get; set; }
-        public string PostWorkItemTypeContent { get; set; } = "GetArtifactLinkTypes";
-        public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
+        public string PostWorkItemTypeContent { get; set; } = "POST WorkItemType";
+        public string PostWorkItemTypeToolTip { get; set; } = "POST WorkItemType ToolTip";
 
         public static DxThemedWindowHost vncMVVM_V1_Modal_Host = null;
 
@@ -387,13 +393,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Let's start with creating a new window and loading a UI that will serve two purposes
             // 1. Create new WorkItems
             // 2. Update existing WorkItem
+            _shellService.ShowShell();
 
 
-            DxThemedWindowHost.DisplayUserControlInHost(ref vncMVVM_V1_Modal_Host,
-                "MVVM View First (View is passed ViewModel) Modal",
-                600, 450,
-                //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
-                DxThemedWindowHost.ShowWindowMode.Modal,  Container. new CreateWorkItemMain());
+            //DxThemedWindowHost.DisplayUserControlInHost(ref vncMVVM_V1_Modal_Host,
+            //    "MVVM View First (View is passed ViewModel) Modal",
+            //    600, 450,
+            //    //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+            //    DxThemedWindowHost.ShowWindowMode.Modal,  Container. new CreateWorkItemMain());
 
             //EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
             //    new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()

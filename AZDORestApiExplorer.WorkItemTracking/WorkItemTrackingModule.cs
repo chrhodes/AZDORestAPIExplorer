@@ -69,6 +69,9 @@ namespace AZDORestApiExplorer.WorkItemTracking
             containerRegistry.Register<IWorkItemTypesFieldMainViewModel, WorkItemTypesFieldMainViewModel>();
             containerRegistry.RegisterSingleton<IWorkItemTypesFieldMain, WorkItemTypesFieldMain>();
 
+            containerRegistry.Register<ICreateWorkItemMainViewModel, CreateWorkItemMainViewModel>();
+            containerRegistry.RegisterSingleton<ICreateWorkItemMain, CreateWorkItemMain>();
+
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
 

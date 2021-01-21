@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Presentation.Views.GetCommands"
+    x:Class="AZDORestApiExplorer.Presentation.Views.CommandsGet"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

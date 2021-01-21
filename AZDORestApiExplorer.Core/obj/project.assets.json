@@ -1074,28 +1074,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\crhodes\\.nuget\\packages\\": {},
+    "C:\\Users\\10298093\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
+      "projectUniqueName": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
       "projectName": "AZDORestApiExplorer.Core",
-      "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
-      "packagesPath": "C:\\Users\\crhodes\\.nuget\\packages\\",
-      "outputPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\obj\\",
+      "projectPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\AZDORestApiExplorer.Core.csproj",
+      "packagesPath": "C:\\Users\\10298093\\.nuget\\packages\\",
+      "outputPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\crhodes\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 19.2.config",
+        "C:\\Users\\10298093\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1104,19 +1105,18 @@
       ],
       "sources": {
         "B:\\VNCNuget": {},
-        "C:\\Program Files (x86)\\DevExpress 18.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files (x86)\\DevExpress 19.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.devexpress.com/MDFHJ2eefkwHoQYHnFp5JFqIKg8tNjUZjRk7KrDvTxhNTSEVEc/api": {}
       },
       "frameworks": {
         "net48": {
           "targetAlias": "net48",
           "projectReferences": {
-            "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
-              "projectPath": "P:\\git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
+            "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj": {
+              "projectPath": "C:\\VNC\\Git\\chrhodes\\AZDORestApiExplorer\\AZDORestApiExplorer.Domain\\AZDORestApiExplorer.Domain.csproj"
             }
           }
         }
@@ -1140,7 +1140,7 @@
             "version": "[1.0.0, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

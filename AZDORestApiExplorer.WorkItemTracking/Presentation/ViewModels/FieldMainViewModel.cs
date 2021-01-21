@@ -103,8 +103,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
             XlsxExportOptions options = new XlsxExportOptions();
-            options.SheetName = "WITFields"
-            ((FieldMain)View).gcMainTable.View.ExportToXlsx(@"C:\temp\FieldData.xlsx",);
+            options.SheetName = "WITFields";
+            ((FieldMain)View).gcMainTable.View.ExportToXlsx(@"C:\temp\FieldData.xlsx",options);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -1,10 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
-
 using AZDORestApiExplorer.Domain.Core;
-
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -12,17 +9,19 @@ using Prism.Events;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.WPF.Presentation.Dx.Views;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class PutCommandsViewModel : EventViewModelBase
+    public class CommandsPatchViewModel : EventViewModelBase
     {
 
         #region Constructors, Initialization, and Load
 
-        public PutCommandsViewModel(
+        public CommandsPatchViewModel(
             ICollectionMainViewModel collectionMainViewModel,
             ContextMainViewModel contextMainViewModel,
+            IShellService shellService,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -30,6 +29,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             _collectionMainViewModel = (CollectionMainViewModel)collectionMainViewModel;
             _contextMainViewModel = (ContextMainViewModel)contextMainViewModel;
+            _shellService = shellService;
 
             InitializeViewModel();
 
@@ -42,9 +42,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Core Category
 
+
             #endregion
 
             #region Accounts Category
+
+
 
             #endregion
 
@@ -174,6 +177,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Work Item Tracking Category
 
+            PatchWorkItemTypeCommand = new DelegateCommand(PatchWorkItemTypeExecute, PatchWorkItemTypeCanExecute);
+
             #endregion
 
             #region Work Item Tracking Process Category
@@ -191,30 +196,29 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // RaiseCanExecuteChanged for any Command that is dependent on Context.
         // N.B. Need to add to each Context Item for button to be enabled.
 
-        // Add Commands that depend only on Organization Context here
+        // Add Commands that only depend on Organization Context here
         // Other commands that depend on more do not need to be added 
         // as the check is in all CanExecute methods
 
         private void RaiseCollectionChanged()
         {
 
+            // Work Item Tracking
+            PatchWorkItemTypeCommand.RaiseCanExecuteChanged();
+
+
+            // Work Item Tracking Process
 
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
 
-            // Work Item Tracking
-
-            // Work Item Tracking Process
         }
 
         private void RaiseProjectChanged(Project project)
         {
-
             // Work Item Tracking
-
-            // Work Item Tracking Process
 
         }
 
@@ -231,6 +235,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
+
+        // TODO(crhodes)
+        // May want to push down into VNCCore
+        IShellService _shellService;
 
         CollectionMainViewModel _collectionMainViewModel;
         ContextMainViewModel _contextMainViewModel;
@@ -363,41 +371,84 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Work Item Tracking Category
 
-        #region GetArtifactLinkTypes Command
+        #region PostWorkItemType Command
 
-        //public DelegateCommand PostWorkItemTypeCommand { get; set; }
-        //public string PostWorkItemTypeContent { get; set; } = "GetArtifactLinkTypes";
-        //public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
+        public DelegateCommand PatchWorkItemTypeCommand { get; set; }
+        public string PatchWorkItemTypeContent { get; set; } = "PATCH WorkItemType";
+        public string PatchWorkItemTypeToolTip { get; set; } = "PATCH WorkItemType ToolTip";
 
-        //public void PostWorkItemTypeExecute()
+        public static DxThemedWindowHost vncMVVM_V1_Modal_Host = null;
+
+        public void PatchWorkItemTypeExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+
+            // TODO(crhodes)
+            // What do we want to happen here?
+            // Let's start with creating a new window and loading a UI that will serve two purposes
+            // 1. Create new WorkItems
+            // 2. Update existing WorkItem
+
+            _shellService.ShowShell();
+
+
+            //DxThemedWindowHost.DisplayUserControlInHost(ref vncMVVM_V1_Modal_Host,
+            //    "MVVM View First (View is passed ViewModel) Modal",
+            //    600, 450,
+            //    //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+            //    DxThemedWindowHost.ShowWindowMode.Modal,  Container. new CreateWorkItemMain());
+
+            //EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
+            //    new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
+            //    {
+            //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //        Project = _contextMainViewModel.Context.SelectedProject
+            //    });
+
+            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        //public static DxThemedWindowHost vncMVVM_V1_Modal_Host = null;
+
+        //private void btnVNC_MVVM_V1_Modal_Click(object sender, RibbonControlEventArgs e)
         //{
-        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+        //    long startTicks = Log.EVENT_HANDLER("Enter", Common.PROJECT_NAME);
 
-        //    // TODO(crhodes)
-        //    // What do we want to happen here?
-        //    // Let's start with creating a new window and loading a UI that will serve two purposes
-        //    // 1. Create new WorkItems
-        //    // 2. Update existing WorkItem
+        //    DxThemedWindowHost.DisplayUserControlInHost(ref vncMVVM_V1_Modal_Host,
+        //    "MVVM View First (View is passed ViewModel) Modal",
+        //    600, 450,
+        //    //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+        //    DxThemedWindowHost.ShowWindowMode.Modal,
+        //    new Cat(new CatViewModel()));
 
-        //    EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
-        //        new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
-        //        {
-        //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //            Project = _contextMainViewModel.Context.SelectedProject
-        //        });
-
-        //    Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.EVENT_HANDLER("Exit", Common.PROJECT_NAME, startTicks);
         //}
 
-        //public bool PostWorkItemTypeCanExecute()
-        //{
-        //    if (_collectionMainViewModel.SelectedCollection is null)
-        //    {
-        //        return false;
-        //    }
+        //public static DxThemedWindowHost vncMVVM_VM1_Modal_Host = null;
 
-        //    return true;
+        //private void btnVNC_MVVM_VM1_Modal_Click(object sender, RibbonControlEventArgs e)
+        //{
+        //    long startTicks = Log.EVENT_HANDLER("Enter", Common.PROJECT_NAME);
+
+        //    DxThemedWindowHost.DisplayUserControlInHost(ref vncMVVM_VM1_Modal_Host,
+        //    "MVVM ViewModel First (ViewModel is passed View) Modal",
+        //    800, 600,
+        //    //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+        //    DxThemedWindowHost.ShowWindowMode.Modal,
+        //    new CatViewModel(new Cat()));
+
+        //    Log.EVENT_HANDLER("Exit", Common.PROJECT_NAME, startTicks);
         //}
+
+        public bool PatchWorkItemTypeCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         #endregion
 

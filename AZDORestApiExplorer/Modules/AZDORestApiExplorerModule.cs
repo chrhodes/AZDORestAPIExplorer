@@ -12,6 +12,7 @@ using Prism.Regions;
 using Unity;
 
 using VNC;
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer
 {
@@ -48,8 +49,6 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<IFoodDataService, FoodDataService>();
             containerRegistry.RegisterSingleton<IFoodLookupDataService, FoodLookupDataService>();
 
-            containerRegistry.RegisterSingleton<GetCommands>();
-
 
             containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
             containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
@@ -59,6 +58,13 @@ namespace AZDORestApiExplorer
             //containerRegistry.Register<IFriendLookupDataService, LookupDataService>();
             //containerRegistry.Register<IProgrammingLanguageLookupDataService, LookupDataService>();
             //containerRegistry.Register<IMeetingLookupDataService, LookupDataService>();
+
+            containerRegistry.RegisterSingleton<IShellService, ShellService>();
+
+            containerRegistry.RegisterSingleton<CommandsGet>();
+            containerRegistry.RegisterSingleton<CommandsPatch>();
+            containerRegistry.RegisterSingleton<CommandsPost>();
+            containerRegistry.RegisterSingleton<CommandsPut>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -75,7 +81,10 @@ namespace AZDORestApiExplorer
             // These load into CombinedMain.xaml
             _regionManager.RegisterViewWithRegion(RegionNames.CombinedNavigationRegion, typeof(ICombinedNavigation));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.GetCommandRegion, typeof(GetCommands));
+            _regionManager.RegisterViewWithRegion(RegionNames.CommandGetRegion, typeof(CommandsGet));
+            _regionManager.RegisterViewWithRegion(RegionNames.CommandPatchRegion, typeof(CommandsPatch));
+            _regionManager.RegisterViewWithRegion(RegionNames.CommandPostRegion, typeof(CommandsPost));
+            _regionManager.RegisterViewWithRegion(RegionNames.CommandPutRegion, typeof(CommandsPut));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -197,10 +197,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Presentation\Views\PostCommands.xaml">
+      <Page Update="Presentation\Views\CommandsPatch.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>
-      <Page Update="Presentation\Views\PutCommands.xaml">
+      <Page Update="Presentation\Views\CommandsPost.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      </Page>
+      <Page Update="Presentation\Views\CommandsPut.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>
     </ItemGroup>

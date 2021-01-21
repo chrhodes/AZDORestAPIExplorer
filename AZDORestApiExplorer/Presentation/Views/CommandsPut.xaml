@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Presentation.Views.PostCommands"
+    x:Class="AZDORestApiExplorer.Presentation.Views.CommandsPut"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -31,7 +31,6 @@
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True"  IsCollapsed="False" >
 
-
                     <dxlc:LayoutGroup Header="Project Level" 
                                       View="GroupBox"
                                       Orientation="Vertical"
@@ -41,9 +40,9 @@
                         
                         <dxlc:LayoutItem>
                             <Button
-                                Command="{Binding PostWorkItemTypeCommand }"
-                                Content="{Binding PostWorkItemTypeContent, FallbackValue='POST WorkItemType' }"
-                                ToolTip="{Binding PostWorkItemTypeToolTip, FallbackValue='POST WorkItemType ToolTip' }" />
+                                Command="{Binding PutWorkItemTypeCommand }"
+                                Content="{Binding PutWorkItemTypeContent, FallbackValue='PUT WorkItemType' }"
+                                ToolTip="{Binding PutWorkItemTypeToolTip, FallbackValue='PUT WorkItemType ToolTip' }" />
                         </dxlc:LayoutItem>
                    
                         

@@ -83,9 +83,21 @@
                         <dxdo:LayoutPanel Caption="Commands (GET)">
                             <!--<dxlc:LayoutGroup>
                                 <Grid>-->
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.GetCommandRegion}" />
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
                                 <!--</Grid>
                             </dxlc:LayoutGroup>-->
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Commands (PATCH)">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPatchRegion}" />
+                        </dxdo:LayoutPanel>
+                        
+                        <dxdo:LayoutPanel Caption="Commands (POST)">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPostRegion}" />
+                        </dxdo:LayoutPanel>
+                        
+                        <dxdo:LayoutPanel Caption="Commands (PUT)">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPutRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True">

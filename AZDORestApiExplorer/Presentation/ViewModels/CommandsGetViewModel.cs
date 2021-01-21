@@ -15,12 +15,12 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class GetCommandsViewModel : EventViewModelBase
+    public class CommandsGetViewModel : EventViewModelBase
     {
 
         #region Constructors, Initialization, and Load
 
-        public GetCommandsViewModel(
+        public CommandsGetViewModel(
             ICollectionMainViewModel collectionMainViewModel,
             ContextMainViewModel contextMainViewModel,
             IEventAggregator eventAggregator,
