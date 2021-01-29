@@ -2,9 +2,6 @@
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.WorkItemTracking;
-using AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels;
-using AZDORestApiExplorer.WorkItemTracking.Presentation.Views;
 
 using Prism.Commands;
 using Prism.Events;

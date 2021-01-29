@@ -31,12 +31,16 @@
             </Style>
 
     </Window.Resources>-->
+
+    <!--AllowAvailableItemsDuringCustomization="true"
+        IsCustomization="false"-->
     
     <dxlc:LayoutControl
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Background="Transparent"
         Name="lc_Root"
+
         Orientation="Vertical">
         
         <dxlc:LayoutControl.AvailableItems>
