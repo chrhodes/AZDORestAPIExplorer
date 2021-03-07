@@ -1,5 +1,7 @@
 # Ignore Folders until ready to commit
 
+PAT.txt
+
 # Ignore Zip Files
 *.zip
 
