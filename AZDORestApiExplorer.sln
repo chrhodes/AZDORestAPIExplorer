@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer", "AZDORestApiExplorer\AZDORestApiExplorer.csproj", "{446ED15A-F123-40B8-AD89-14B2CE51FB06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.CoreNF", "..\vnc\VNC.Core\VNC.CoreNF.csproj", "{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.HttpHelper", "..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj", "{134816AC-87EC-43AF-A524-ACC367313983}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Domain", "AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj", "{D1EAB69F-4E5D-4CCC-BE85-06A63BA80CD2}"
@@ -67,7 +65,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Wiki", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Work", "AZDORestApiExplorer.Work\AZDORestApiExplorer.Work.csproj", "{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNC.WPF.Presentation.DxNF", "..\vnc\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.DxNF.csproj", "{E1790662-2083-4640-BB3C-AEDA5D9A7137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\VNC\VNC.Core\VNC.Core.csproj", "{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation.Dx", "..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj", "{6346A659-1276-46E3-AF9B-4A9F64C36204}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,10 +79,6 @@ Global
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E17CD58-F3F4-45AA-ADF4-FB1DA9BB4A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{134816AC-87EC-43AF-A524-ACC367313983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{134816AC-87EC-43AF-A524-ACC367313983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134816AC-87EC-43AF-A524-ACC367313983}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -199,10 +195,14 @@ Global
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1790662-2083-4640-BB3C-AEDA5D9A7137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1790662-2083-4640-BB3C-AEDA5D9A7137}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1790662-2083-4640-BB3C-AEDA5D9A7137}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1790662-2083-4640-BB3C-AEDA5D9A7137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

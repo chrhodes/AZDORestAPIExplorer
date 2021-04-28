@@ -26,8 +26,8 @@ namespace AZDORestApiExplorer
         public App()
         {
             // HACK(crhodes)
-            // If don't delay a bit here, the SignarlR logging infrastructure does not initialize quickly enough
-            // and the first few log messsages are missed.
+            // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
+            // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
             Int64 startTicks = Log.APPLICATION_START("App()", Common.LOG_APPNAME);
@@ -107,14 +107,14 @@ namespace AZDORestApiExplorer
 
         // 06
 
-        protected override void ConfigureServiceLocator()
-        {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+        //protected override void ConfigureServiceLocator()
+        //{
+        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
 
-            base.ConfigureServiceLocator();
+        //    base.ConfigureServiceLocator();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
-        }
+        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+        //}
 
         // 07 - Configure the catalog of modules
         // Modules are loaded at Startup and must be a project reference

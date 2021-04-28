@@ -13,12 +13,12 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.CoreNF"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core"
+    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="600"
