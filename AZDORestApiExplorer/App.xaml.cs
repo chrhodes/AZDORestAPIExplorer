@@ -30,9 +30,11 @@ namespace AZDORestApiExplorer
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("App()", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
-            Thread.Sleep(250);
+            Thread.Sleep(150);
+            
+            startTicks = Log.APPLICATION_START("App()", Common.LOG_APPNAME);
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_APPNAME, startTicks);
         }
