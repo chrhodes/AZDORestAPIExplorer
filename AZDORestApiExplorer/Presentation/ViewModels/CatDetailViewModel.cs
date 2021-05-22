@@ -31,7 +31,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 IEventAggregator eventAggregator,
                 IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -50,7 +50,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Foods = new ObservableCollection<LookupItem>();
             PhoneNumbers = new ObservableCollection<CatPhoneNumberWrapper>();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -106,23 +106,23 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private async void OpenDetailView(OpenDetailViewEventArgs args)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             await LoadAsync(args.Id);
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("(CatDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("(CatDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             if (args.ViewModelName == nameof(FoodDetailViewModel))
             {
                 await LoadFoodsLookupAsync();
             }
 
-            Log.EVENT_HANDLER("(CatDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("(CatDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -131,7 +131,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public override async Task LoadAsync(int id)
         {
-            Int64 startTicks = Log.VIEWMODEL($"(CatDetailViewModel) Enter Id:({id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(CatDetailViewModel) Enter Id:({id})", Common.LOG_CATEGORY);
 
             var item = id > 0
                 ? await _CatDataService.FindByIdAsync(id)
@@ -145,7 +145,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             await LoadFoodsLookupAsync();
 
-            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -161,7 +161,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         protected override async void DeleteExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL($"(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_CATEGORY);
 
             var result = MessageDialogService.ShowOkCancelDialog(
                 "Do you really want to delete the Cat?", "Question");
@@ -175,7 +175,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 PublishAfterDetailDeletedEvent(Cat.Id);
             }
 
-            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override bool SaveCanExecute()
@@ -195,7 +195,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         protected override async void SaveExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL("(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(CatDetailViewModel) Enter Id:({Cat.Id})", Common.LOG_CATEGORY);
 
             await _CatDataService.UpdateAsync();
 
@@ -212,12 +212,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             PublishAfterDetailSavedEvent(Cat.Id, Cat.FieldString);
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void AddPhoneNumberExecute()
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             var newNumber = new CatPhoneNumberWrapper(new CatPhoneNumber());
             newNumber.PropertyChanged += CatPhoneNumberWrapper_PropertyChanged;
@@ -225,12 +225,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Cat.Model.PhoneNumbers.Add(newNumber.Model);
             newNumber.Number = ""; // Trigger validation :-)
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RemovePhoneNumberExecute()
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             SelectedPhoneNumber.PropertyChanged -= CatPhoneNumberWrapper_PropertyChanged;
             //_friendRepository.RemovePhoneNumber(SelectedPhoneNumber.Model);
@@ -239,7 +239,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             HasChanges = _CatDataService.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private bool RemovePhoneNumberCanExecute()
@@ -253,7 +253,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private Domain.Cat CreateNewCat()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var item = new Domain.Cat();
             item.FieldDate = DateTime.Now;
@@ -273,14 +273,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // This is what was in Claudius Code (NB>  Add does not call Save Changes in his code
             //_friendRepository.Add(friend);
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
 
             return item;
         }
 
         private void InitializeCat(Cat item)
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             Cat = new CatWrapper(item);
 
@@ -312,12 +312,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             SetTitle();
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeCatPhoneNumbers(ICollection<CatPhoneNumber> phoneNumbers)
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             foreach (var wrapper in PhoneNumbers)
             {
@@ -333,12 +333,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 wrapper.PropertyChanged += CatPhoneNumberWrapper_PropertyChanged;
             }
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void CatPhoneNumberWrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             if (!HasChanges)
             {
@@ -349,12 +349,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async Task LoadFoodsLookupAsync()
         {
-            Int64 startTicks = Log.VIEWMODEL("(CatDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(CatDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             Foods.Clear();
 
@@ -369,7 +369,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 Foods.Add(lookupItem);
             }
 
-            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(CatDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void SetTitle()

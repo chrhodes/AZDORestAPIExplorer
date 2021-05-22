@@ -174,6 +174,8 @@
         <PackageReference Include="DevExpress.Wpf.Layout" Version="19.2.6" />
         <PackageReference Include="DevExpress.Wpf.Navigation" Version="19.2.6" />
         <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Services.InteractiveClient" Version="16.170.0" />
         <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
         <PackageReference Include="VNC.Core" Version="1.0.0" />
         <PackageReference Include="VNC.HttpHelper" Version="1.0.0" />

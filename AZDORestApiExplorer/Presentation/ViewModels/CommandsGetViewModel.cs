@@ -26,19 +26,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _collectionMainViewModel = (CollectionMainViewModel)collectionMainViewModel;
             _contextMainViewModel = (ContextMainViewModel)contextMainViewModel;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             #region Core Category
 
@@ -238,7 +238,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Core.Events.Dashboard.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // NOTE(crhodes)
@@ -388,7 +388,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetAccountsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.Accounts.GetAccountsEvent>().Publish(
                 new Core.Events.Accounts.GetAccountsEventArgs()
@@ -398,7 +398,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetAccountsCanExecute()
@@ -447,7 +447,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetCoreProcessesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
                 new Core.Events.Core.GetProcessesEventArgs()
@@ -455,7 +455,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetCoreProcessesCanExecute()
@@ -486,7 +486,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetProjectsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetProjectsEvent>().Publish(
                 new GetProjectsEventArgs()
@@ -494,7 +494,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetProjectsCanExecute()
@@ -525,7 +525,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetTeamsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetTeamsEvent>().Publish(
                 new GetTeamsEventArgs()
@@ -533,7 +533,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetTeamsCanExecute()
@@ -568,7 +568,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetDashboardsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.Dashboard.GetDashboardsEvent>().Publish(
                 new Core.Events.Dashboard.GetDashboardsEventArgs()
@@ -578,7 +578,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetDashboardsCanExecute()
@@ -611,7 +611,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWidgetsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetWidgetsEvent>().Publish(
                 new GetWidgetsEventArgs()
@@ -619,7 +619,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWidgetsCanExecute()
@@ -746,7 +746,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetArtifactLinkTypesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
@@ -755,7 +755,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetArtifactLinkTypesCanExecute()
@@ -786,7 +786,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetClassificationNodesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetClassificationNodesEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetClassificationNodesEventArgs()
@@ -795,7 +795,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetClassificationNodesCanExecute()
@@ -828,7 +828,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetOrganizationFieldsWITExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
@@ -836,7 +836,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetOrganizationFieldsWITCanExecute()
@@ -863,7 +863,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetProjectFieldsWITExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
@@ -872,7 +872,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetProjectFieldsWITCanExecute()
@@ -904,7 +904,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetQueriesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetQueriesEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetQueriesEventArgs()
@@ -913,7 +913,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetQueriesCanExecute()
@@ -945,7 +945,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetTagsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetTagsEvent>().Publish(
                 new GetTagsEventArgs()
@@ -954,7 +954,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetTagsCanExecute()
@@ -986,7 +986,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetTemplatesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
                 new GetTemplatesEventArgs()
@@ -996,7 +996,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetTemplatesCanExecute()
@@ -1028,7 +1028,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemIconsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetWorkItemIconsEvent>().Publish(
                 new GetWorkItemIconsEventArgs()
@@ -1036,7 +1036,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemIconsCanExecute()
@@ -1067,7 +1067,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemRelationTypesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetWorkItemRelationTypesEvent>().Publish(
                 new GetWorkItemRelationTypesEventArgs()
@@ -1075,7 +1075,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemRelationTypesCanExecute()
@@ -1106,7 +1106,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemTypeCategoriesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEventArgs()
@@ -1115,7 +1115,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemTypeCategoriesCanExecute()
@@ -1147,7 +1147,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetStatesWITExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetStatesWITEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetStatesWITEventArgs()
@@ -1157,7 +1157,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetStatesWITCanExecute()
@@ -1190,7 +1190,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemTypesWITExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesWITEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetWorkItemTypesWITEventArgs()
@@ -1199,7 +1199,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemTypesWITCanExecute()
@@ -1231,7 +1231,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemTypesFieldsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEvent>().Publish(
                 new Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEventArgs()
@@ -1241,7 +1241,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemTypesFieldsCanExecute()
@@ -1280,7 +1280,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetBehaviorsWITPExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetBehaviorsEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetBehaviorsEventArgs()
@@ -1290,7 +1290,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Process = _contextMainViewModel.Context.SelectedProcess
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetBehaviorsWITPCanExecute()
@@ -1322,7 +1322,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetFieldsWITPExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetFieldsWITPEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetFieldsWITPEventArgs()
@@ -1332,7 +1332,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetFieldsWITPCanExecute()
@@ -1365,7 +1365,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetListsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetListsEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetListsEventArgs()
@@ -1373,7 +1373,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetListsCanExecute()
@@ -1404,7 +1404,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetProcessesWITPExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetProcessesEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetProcessesEventArgs()
@@ -1412,7 +1412,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetProcessesWITPCanExecute()
@@ -1443,7 +1443,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetRulesExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetRulesEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetRulesEventArgs()
@@ -1453,7 +1453,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetRulesCanExecute()
@@ -1486,7 +1486,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetStatesWITPExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetStatesWITPEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetStatesWITPEventArgs()
@@ -1496,7 +1496,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetStatesWITPCanExecute()
@@ -1529,7 +1529,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetSystemControlsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
               EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetSystemControlsEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetSystemControlsEventArgs()
@@ -1539,7 +1539,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetSystemControlsCanExecute()
@@ -1572,7 +1572,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemTypesWITPExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetWorkItemTypesWITPEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetWorkItemTypesWITPEventArgs()
@@ -1581,7 +1581,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Process = _contextMainViewModel.Context.SelectedProcess
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemTypesWITPCanExecute()
@@ -1613,7 +1613,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItemTypesBehaviorsExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetWorkItemTypesBehaviorsEvent>().Publish(
                 new Core.Events.WorkItemTrackingProcess.GetWorkItemTypesBehaviorsEventArgs()
@@ -1623,7 +1623,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
                 });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemTypesBehaviorsCanExecute()

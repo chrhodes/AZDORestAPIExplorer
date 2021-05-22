@@ -28,7 +28,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 IEventAggregator eventAggregator,
                 IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -40,7 +40,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             AddCommand = new DelegateCommand(AddExecute);
             RemoveCommand = new DelegateCommand(RemoveExecute, RemoveCanExecute);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -95,7 +95,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public override async Task LoadAsync(int id)
         {
-            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter Id:({id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter Id:({id})", Common.LOG_CATEGORY);
 
             Id = id;
 
@@ -115,7 +115,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 Foods.Add(wrapper);
             }
 
-            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -144,9 +144,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         protected override async void DeleteExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_CATEGORY);
 
-            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         protected override bool SaveCanExecute()
@@ -156,7 +156,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         protected override async void SaveExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"(FoodDetailViewModel) Enter Id:({SelectedFood.Id})", Common.LOG_CATEGORY);
 
             try
             {
@@ -179,7 +179,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 await LoadAsync(Id);
             }
 
-            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -188,7 +188,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         void AddExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             var wrapper = new FoodWrapper(new Domain.Food());
             wrapper.PropertyChanged += Wrapper_PropertyChanged;
@@ -198,12 +198,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             wrapper.Name = "";  // Trigger the validation
 
-            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void RemoveExecute()
         {
-            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(FoodDetailViewModel) Enter", Common.LOG_CATEGORY);
 
             var isReferenced =
                 await _FoodDataService.IsReferencedByCatAsync(SelectedFood.Id);
@@ -224,7 +224,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
-            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(FoodDetailViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         bool RemoveCanExecute()

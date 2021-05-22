@@ -19,11 +19,11 @@ namespace AZDORestApiExplorer.DomainServices
 
         public CollectionLookupDataService(Func<AZDORestApiExplorerDbContext> context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _contextCreator = context;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace AZDORestApiExplorer.DomainServices
 
         public async Task<IEnumerable<LookupItem>> GetCollectionLookupAsync()
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(CollectionLookupDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(CollectionLookupDataService) Enter", Common.LOG_CATEGORY);
 
             IEnumerable<LookupItem> result = null;
 
@@ -69,7 +69,7 @@ namespace AZDORestApiExplorer.DomainServices
             //      .ToListAsync();
             //}
 
-            Log.DOMAINSERVICES("(CollectionLookupDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(CollectionLookupDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }

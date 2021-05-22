@@ -13,14 +13,14 @@ namespace AZDORestApiExplorer.Presentation.Views
 
         public MainWindow(MainWindowViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_CATEGORY);
 
             InitializeComponent();
 
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

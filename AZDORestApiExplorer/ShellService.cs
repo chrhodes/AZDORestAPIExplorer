@@ -21,17 +21,17 @@ namespace AZDORestApiExplorer
 
         public ShellService(IUnityContainer container, IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _container = container;
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void ShowShell(string uri)
         {
-            Int64 startTicks = Log.VIEWMODEL($"Enter: ({uri})", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL($"Enter: ({uri})", Common.LOG_CATEGORY);
 
             var shell = _container.Resolve<Shell>();
 
@@ -42,13 +42,13 @@ namespace AZDORestApiExplorer
 
             shell.Show();
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public static DxThemedWindowHost vncMVVM_V1_Modal_Host = null;
         public void ShowShell()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var foo = _container.Resolve<CreateWorkItemMain>();
 
@@ -67,7 +67,7 @@ namespace AZDORestApiExplorer
 
             //shell.Show();
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

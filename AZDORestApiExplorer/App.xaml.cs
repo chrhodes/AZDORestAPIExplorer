@@ -34,29 +34,29 @@ namespace AZDORestApiExplorer
 
             Thread.Sleep(150);
             
-            startTicks = Log.APPLICATION_START("App()", Common.LOG_APPNAME);
+            startTicks = Log.APPLICATION_START("App()", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         // 01
 
         protected override void ConfigureViewModelLocator()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureViewModelLocator();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         protected override IContainerExtension CreateContainerExtension()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateContainerExtension();
         }
@@ -65,9 +65,9 @@ namespace AZDORestApiExplorer
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateModuleCatalog();
         }
@@ -76,18 +76,18 @@ namespace AZDORestApiExplorer
 
         protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.RegisterRequiredTypes(containerRegistry);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 05
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.RegisterSingleton<ICustomerDataService, CustomerDataServiceMock>();
             //containerRegistry.RegisterSingleton<IMaterialDataService, MaterialDataServiceMock>();
@@ -104,7 +104,7 @@ namespace AZDORestApiExplorer
 
             // Add the new UI elements
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 06
@@ -123,7 +123,7 @@ namespace AZDORestApiExplorer
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //NOTE(crhodes)
             // Order matters here.  Application depends on types in Cat
@@ -156,49 +156,49 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(WorkItemTrackingProcessModule));
 
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 08
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 09
 
         protected override void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureDefaultRegionBehaviors(regionBehaviors);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 10
 
         protected override void RegisterFrameworkExceptionTypes()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.RegisterFrameworkExceptionTypes();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 11
 
         protected override Window CreateShell()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return Container.Resolve<MainWindow>();
         }
@@ -207,22 +207,22 @@ namespace AZDORestApiExplorer
 
         protected override void InitializeShell(Window shell)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeShell(shell);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 13
 
         protected override void InitializeModules()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeModules();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -248,7 +248,7 @@ namespace AZDORestApiExplorer
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Log.Error("Unexpected error occurred. Please inform the admin."
-              + Environment.NewLine + e.Exception.Message, Common.LOG_APPNAME);
+              + Environment.NewLine + e.Exception.Message, Common.LOG_CATEGORY);
 
             MessageBox.Show("Unexpected error occurred. Please inform the admin."
               + Environment.NewLine + e.Exception.Message, "Unexpected error");

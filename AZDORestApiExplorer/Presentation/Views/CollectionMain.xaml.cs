@@ -11,7 +11,7 @@ namespace AZDORestApiExplorer.Presentation.Views
 
         public CollectionMain(ViewModels.ICollectionMainViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             //InstanceCountV++;
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace AZDORestApiExplorer.Presentation.Views
             ViewModel = viewModel;
             //Loaded += UserControl_Loaded;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private async void UserControl_Loaded(object sender, RoutedEventArgs e)

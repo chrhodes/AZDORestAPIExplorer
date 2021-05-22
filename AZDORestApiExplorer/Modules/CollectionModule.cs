@@ -23,18 +23,18 @@ namespace AZDORestApiExplorer
 
         public CollectionModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
             //containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
@@ -48,14 +48,14 @@ namespace AZDORestApiExplorer
             //containerRegistry.RegisterSingleton<ICollectionLookupDataService, CollectionLookupDataService>();
             //containerRegistry.Register<ICollectionDataService, CollectionDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
@@ -68,7 +68,7 @@ namespace AZDORestApiExplorer
             //_regionManager.RegisterViewWithRegion(RegionNames.CollectionNavigationRegion, typeof(ICollectionNavigation));
             //_regionManager.RegisterViewWithRegion(RegionNames.CollectionDetailRegion, typeof(ICollectionDetail));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
     }

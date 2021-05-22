@@ -19,11 +19,11 @@ namespace AZDORestApiExplorer.DomainServices
 
         public FoodLookupDataService(Func<AZDORestApiExplorerDbContext> context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _contextCreator = context;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace AZDORestApiExplorer.DomainServices
 
         public async Task<IEnumerable<LookupItem>> GetFoodLookupAsync()
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(FoodLookupDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(FoodLookupDataService) Enter", Common.LOG_CATEGORY);
 
             IEnumerable<LookupItem> result;
 
@@ -69,7 +69,7 @@ namespace AZDORestApiExplorer.DomainServices
                   .ToListAsync();
             }
 
-            Log.DOMAINSERVICES("(FoodLookupDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(FoodLookupDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }

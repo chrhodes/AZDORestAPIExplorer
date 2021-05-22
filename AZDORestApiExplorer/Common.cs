@@ -10,7 +10,7 @@ namespace AZDORestApiExplorer
     public class Common
     {
         public const string PROJECT_NAME = "AZDORestApiExplorer";
-        public const string LOG_APPNAME = "AZDORestApiExplorer";
+        public const string LOG_CATEGORY = "AZDORestApiExplorer";
 
         public const string cCONFIG_FILE = @"C:\temp\AZDORestApiExplorer_Config.xml";
 

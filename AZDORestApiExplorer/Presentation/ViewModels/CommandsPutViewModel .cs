@@ -28,7 +28,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _collectionMainViewModel = (CollectionMainViewModel)collectionMainViewModel;
             _contextMainViewModel = (ContextMainViewModel)contextMainViewModel;
@@ -36,12 +36,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             #region Core Category
 
@@ -189,7 +189,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // NOTE(crhodes)
@@ -380,7 +380,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void PutWorkItemTypeExecute()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // What do we want to happen here?
@@ -404,7 +404,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             //        Project = _contextMainViewModel.Context.SelectedProject
             //    });
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //public static DxThemedWindowHost vncMVVM_V1_Modal_Host = null;

@@ -76,7 +76,7 @@
                     <dxdo:LayoutGroup Name="lg_Body_dlm_lg" Orientation="Vertical" >
 
                         <dxdo:LayoutPanel Caption="Collections"                     
-                            ItemHeight="100">
+                            ItemHeight="100" ShowHideButton="False">
                             <!--<dxlc:LayoutGroup >
                                 <Grid>-->
                                     <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />

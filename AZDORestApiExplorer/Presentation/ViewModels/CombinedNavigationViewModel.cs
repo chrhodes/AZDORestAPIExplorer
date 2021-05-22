@@ -24,7 +24,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 IEventAggregator eventAggregator,
                 IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -40,7 +40,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<AfterDetailDeletedEvent>()
                 .Subscribe(AfterDetailDeleted);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -69,7 +69,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void AfterDetailSaved(AfterDetailSavedEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             switch (args.ViewModelName)
             {
@@ -85,12 +85,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     throw new System.Exception($"AfterDetailSaved(): ViewModel {args.ViewModelName} not mapped.");
             }
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             switch (args.ViewModelName)
             {
@@ -106,7 +106,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     throw new System.Exception($"AfterDetailDeleted(): ViewModel {args.ViewModelName} not mapped.");
             }
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -115,7 +115,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public async Task LoadAsync()
         {
-            Int64 startTicks = Log.VIEWMODEL("(NavigationViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("(NavigationViewModel) Enter", Common.LOG_CATEGORY);
 
             var lookupCats = await _CatLookupDataService.GetCatLookupAsync();
             Cats.Clear();
@@ -142,7 +142,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             //TODO(crhodes)
             // Load more TYPEs as needed here
 
-            Log.VIEWMODEL("(NavigationViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(NavigationViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

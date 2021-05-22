@@ -14,7 +14,7 @@ namespace AZDORestApiExplorer.DomainServices
     {
         public IEnumerable<Cat> All()
         {
-            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Load data from real database.
@@ -37,7 +37,7 @@ namespace AZDORestApiExplorer.DomainServices
                 FieldInt = int.MaxValue
             };
 
-            Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public Task<List<Cat>> AllAsync()

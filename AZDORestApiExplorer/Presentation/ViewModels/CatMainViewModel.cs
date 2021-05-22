@@ -26,7 +26,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -54,7 +54,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
 
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -110,7 +110,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         void OnOpenSingleDetailExecute(Type viewModelType)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             OnOpenDetailView(
                 new OpenDetailViewEventArgs
@@ -119,12 +119,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ViewModelName = viewModelType.Name
                 });
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void OnCreateNewDetailExecute(Type viewModelType)
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             OnOpenDetailView(
                 new OpenDetailViewEventArgs
@@ -133,12 +133,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ViewModelName = viewModelType.Name
                 });
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void OnOpenDetailView(OpenDetailViewEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER($"(CatMainViewModel) Enter Id:({args.Id}(", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER($"(CatMainViewModel) Enter Id:({args.Id}(", Common.LOG_CATEGORY);
 
             var detailViewModel = DetailViewModels
                     .SingleOrDefault(vm => vm.Id == args.Id
@@ -186,30 +186,30 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             SelectedDetailViewModel = detailViewModel;
 
-            Log.VIEWMODEL("(CatMainViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("(CatMainViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             RemoveDetailViewModel(args.Id, args.ViewModelName);
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         void AfterDetailClosed(AfterDetailClosedEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             RemoveDetailViewModel(args.Id, args.ViewModelName);
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RemoveDetailViewModel(int id, string viewModelName)
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             var detailViewModel = DetailViewModels
                 .SingleOrDefault(vm => vm.Id == id
@@ -220,7 +220,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 DetailViewModels.Remove(detailViewModel);
             }
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -229,11 +229,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public async Task LoadAsync()
         {
-            Int64 startTicks = Log.VIEWMODEL("CatMainViewModel) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("CatMainViewModel) Enter", Common.LOG_CATEGORY);
 
             await NavigationViewModel.LoadAsync();
 
-            Log.VIEWMODEL("CatMainViewModel) Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("CatMainViewModel) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

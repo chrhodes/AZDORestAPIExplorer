@@ -19,9 +19,9 @@ namespace AZDORestApiExplorer.DomainServices
         public ProjectDataService(AZDORestApiExplorerDbContext context)
             : base(context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace AZDORestApiExplorer.DomainServices
 
         public override async Task<Project> FindByIdAsync(int id)
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(ProjectDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(ProjectDataService) Enter", Common.LOG_CATEGORY);
 
             Project result = null;
 
@@ -58,7 +58,7 @@ namespace AZDORestApiExplorer.DomainServices
             //    .Include(f => f.PhoneNumbers)
             //    .SingleAsync(f => f.Id == id);
 
-            Log.DOMAINSERVICES("(ProjectDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(ProjectDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }

@@ -18,9 +18,9 @@ namespace AZDORestApiExplorer.DomainServices
         public FoodDataService(AZDORestApiExplorerDbContext context)
             : base(context)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -49,12 +49,12 @@ namespace AZDORestApiExplorer.DomainServices
 
         public async Task<bool> IsReferencedByCatAsync(int id)
         {
-            Int64 startTicks = Log.DOMAINSERVICES("(FoodDataService) Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.DOMAINSERVICES("(FoodDataService) Enter", Common.LOG_CATEGORY);
 
             var result = await Context.CatsSet.AsNoTracking()
                 .AnyAsync(f => f.FavoriteFoodId == id);
 
-            Log.DOMAINSERVICES("(FoodDataService) Exit", Common.LOG_APPNAME, startTicks);
+            Log.DOMAINSERVICES("(FoodDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }
