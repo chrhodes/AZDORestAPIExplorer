@@ -108,21 +108,71 @@
                         View="GroupBox"
                         Orientation="Vertical"
                         Background="{StaticResource RepositoryColor}">
-                            <dxlc:LayoutItem>
-                                <Button 
-                            		Command="{Binding GetPullRequestsCommand }"
-                            		Content="{Binding GetPullRequestsContent, FallbackValue='Get PullRequests' }"
-                            		ToolTip="{Binding GetPullRequestsToolTip, FallbackValue='Get PullRequests ToolTip' }" />
-                            </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetBlobsCommand }"
+                        		Content="{Binding GetBlobsContent, FallbackValue='GetBlobs' }"
+                        		ToolTip="{Binding GetBlobsToolTip, FallbackValue='GetBlobs ToolTip' }" />
+                        </dxlc:LayoutItem>
+                     
+                        <dxlc:LayoutItem>
+                            <Button 
+                            	Command="{Binding GetCommitsCommand }"
+                            	Content="{Binding GetCommitsContent, FallbackValue='GetCommits' }"
+                            	ToolTip="{Binding GetCommitsToolTip, FallbackValue='GetCommits ToolTip' }" />
+                        </dxlc:LayoutItem>                         
+                            
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetImportRequestsCommand }"
+                        		Content="{Binding GetImportRequestsContent, FallbackValue='GetImportRequests' }"
+                        		ToolTip="{Binding GetImportRequestsToolTip, FallbackValue='GetImportRequests ToolTip' }" />
+                        </dxlc:LayoutItem>
+                                        
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetItemsCommand }"
+                        		Content="{Binding GetItemsContent, FallbackValue='GetItems' }"
+                        		ToolTip="{Binding GetItemsToolTip, FallbackValue='GetItems ToolTip' }" />
+                        </dxlc:LayoutItem>
+                                       
+                        <dxlc:LayoutItem>
+                            <Button 
+                            	Command="{Binding GetMergesCommand }"
+                            	Content="{Binding GetMergesContent, FallbackValue='GetMerges' }"
+                            	ToolTip="{Binding GetMergesToolTip, FallbackValue='GetMerges ToolTip' }" />
+                        </dxlc:LayoutItem>
+                                               
+                        <dxlc:LayoutItem>
+                            <Button 
+                            	Command="{Binding GetPullRequestsCommand }"
+                            	Content="{Binding GetPullRequestsContent, FallbackValue='Get PullRequests' }"
+                            	ToolTip="{Binding GetPullRequestsToolTip, FallbackValue='Get PullRequests ToolTip' }" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem>
+                            <Button 
+		                        Command="{Binding GetPushesCommand }"
+		                        Content="{Binding GetPushesContent, FallbackValue='GetPushes' }"
+		                        ToolTip="{Binding GetPushesToolTip, FallbackValue='GetPushes ToolTip' }" />
+                        </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem>
-                                <Button 
-                        		Command="{Binding GetStatsCommand }"
-                        		Content="{Binding GetStatsContent, FallbackValue='Get Stats' }"
-                        		ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
-                            </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetRefsCommand }"
+                        		Content="{Binding GetRefsContent, FallbackValue='Get Refs' }"
+                        		ToolTip="{Binding GetRefsToolTip, FallbackValue='Get Refs ToolTip' }" />
+                        </dxlc:LayoutItem>
+                                      
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	Command="{Binding GetStatsCommand }"
+                        	Content="{Binding GetStatsContent, FallbackValue='Get Stats' }"
+                        	ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
+                        </dxlc:LayoutItem>
 
-                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 

@@ -28,9 +28,51 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Blobs" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BlobMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Commits" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommitMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Import Requests" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ImportRequestMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Items" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ItemMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Merges" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MergeMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup Header="Pull Requests" >
             <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PullRequestMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Pushes" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PushMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup Header="Refs" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RefMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 

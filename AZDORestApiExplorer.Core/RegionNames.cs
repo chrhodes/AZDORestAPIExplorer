@@ -81,8 +81,16 @@ namespace AZDORestApiExplorer.Core
         //
 
         public static string RepositoryMainRegion = "RepositoryMainRegion";
+
+        public static string BlobMainRegion = "BlobMainRegion";
+        public static string CommitMainRegion = "CommitMainRegion";
+        public static string ImportRequestMainRegion = "ImportRequestMainRegion";
+        public static string ItemMainRegion = "ItemMainRegion";
+        public static string MergeMainRegion = "MergeMainRegion";
         public static string PullRequestMainRegion = "PullRequestMainRegion";
+        public static string PushMainRegion = "PushMainRegion";
         public static string StatMainRegion = "StatMainRegion";
+        public static string RefMainRegion = "RefMainRegion";
 
         // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
         // public static string RepositoryDetailRegion = "RepositoryDetailRegion";

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 
 using AZDORestApiExplorer.Core.Events;
 
@@ -18,7 +17,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 {
     public class CommandsGetViewModel : EventViewModelBase
     {
-
         #region Constructors, Initialization, and Load
 
         public CommandsGetViewModel(
@@ -47,33 +45,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand = new DelegateCommand(GetProjectsExecute, GetProjectsCanExecute);
             GetTeamsCommand = new DelegateCommand(GetTeamsExecute, GetTeamsCanExecute);
 
-            #endregion
+            #endregion Core Category
 
             #region Accounts Category
 
             GetAccountsCommand = new DelegateCommand(GetAccountsExecute, GetAccountsCanExecute);
 
-            #endregion
+            #endregion Accounts Category
 
-            #region Artifacts Category
 
-            #endregion
-
-            #region Artifacts Package Types Category
-
-            #endregion
-
-            #region Audit Category
-
-            #endregion
-
-            #region Build Category
-
-            #endregion
-
-            #region Cloud Load Test Category
-
-            #endregion
 
             #region Dashboard Category
 
@@ -81,112 +61,27 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetWidgetsCommand = new DelegateCommand(GetWidgetsExecute, GetWidgetsCanExecute);
 
-            #endregion
+            #endregion Dashboard Category
 
-            #region Distributed Task Category
 
-            #endregion
-
-            #region Extension Management Category
-
-            #endregion
 
             #region Git Category
 
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
             GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
-            GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
+
+            GetBlobsCommand = new DelegateCommand(GetBlobs, GetBlobsCanExecute);
+            GetCommitsCommand = new DelegateCommand(GetCommits, GetCommitsCanExecute);
+            GetImportRequestsCommand = new DelegateCommand(GetImportRequests, GetImportRequestsCanExecute);
+            GetItemsCommand = new DelegateCommand(GetItems, GetItemsCanExecute);
+            GetMergesCommand = new DelegateCommand(GetMerges, GetMergesCanExecute);
+            GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute); GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
             GetStatsCommand = new DelegateCommand(GetStats, GetStatsCanExecute);
+            GetRefsCommand = new DelegateCommand(GetRefs, GetRefsCanExecute);
 
-            #endregion
+            #endregion Git Category
 
-            #region Graph Category
 
-            #endregion
-
-            #region Identities Category
-
-            #endregion
-
-            #region Member Entitlement Management Category
-
-            #endregion
-
-            #region Notification Category
-
-            #endregion
-
-            #region Operations Category
-
-            #endregion
-
-            #region Permissions Report Category
-
-            #endregion
-
-            #region Pipelines Category
-
-            #endregion
-
-            #region Policy Category
-
-            #endregion
-
-            #region Profile Category
-
-            #endregion
-
-            #region Relese Category
-
-            #endregion
-
-            #region Search Category
-
-            #endregion
-
-            #region Security Category
-
-            #endregion
-
-            #region Service Endpoint Category
-
-            #endregion
-
-            #region Service Hooks Category
-
-            #endregion
-
-            #region Status Category
-
-            #endregion
-
-            #region Symbol Category
-
-            #endregion
-
-            #region Test Category
-
-            #endregion
-
-            #region Test Plan Category
-
-            #endregion
-
-            #region Test Results Category
-
-            #endregion
-
-            #region Tfvc Category
-
-            #endregion
-
-            #region Token Admin Category
-
-            #endregion
-
-            #region Work Category
-
-            #endregion
 
             #region Work Item Tracking Category
 
@@ -209,7 +104,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesWITCommand = new DelegateCommand(GetWorkItemTypesWITExecute, GetWorkItemTypesWITCanExecute);
             GetWorkItemTypesFieldsCommand = new DelegateCommand(GetWorkItemTypesFieldsExecute, GetWorkItemTypesFieldsCanExecute);
 
-            #endregion
+            #endregion Work Item Tracking Category
 
             #region Work Item Tracking Process Category
 
@@ -231,7 +126,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetWorkItemTypesBehaviorsCommand = new DelegateCommand(GetWorkItemTypesBehaviorsExecute, GetWorkItemTypesBehaviorsCanExecute);
 
-            #endregion
+            #endregion Work Item Tracking Process Category
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
@@ -254,7 +149,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // N.B. Need to add to each Context Item for button to be enabled.
 
         // Add Commands that only depend on Organization Context here
-        // Other commands that depend on more do not need to be added 
+        // Other commands that depend on more do not need to be added
         // as the check is in all CanExecute methods
         private void RaiseCollectionChanged()
         {
@@ -284,6 +179,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetListsCommand.RaiseCanExecuteChanged();
         }
 
+        private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
+        {
+            GetWidgetsCommand.RaiseCanExecuteChanged();
+        }
+
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
             GetWorkItemTypesWITPCommand.RaiseCanExecuteChanged();
@@ -303,6 +203,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetProjectRepositoriesCommand.RaiseCanExecuteChanged();
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+
+            GetBlobsCommand.RaiseCanExecuteChanged();
+            GetCommitsCommand.RaiseCanExecuteChanged();
+            GetImportRequestsCommand.RaiseCanExecuteChanged();
+            GetItemsCommand.RaiseCanExecuteChanged();
+            GetMerges.RaiseCanExecuteChanged();
+            GetPushesCommand.RaiseCanExecuteChanged();
+            GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
@@ -322,7 +230,26 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseRepositoryChanged(Repository repository)
         {
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+
+            GetBlobsCommand.RaiseCanExecuteChanged();
+            GetCommitsCommand.RaiseCanExecuteChanged();
+            GetImportRequestsCommand.RaiseCanExecuteChanged();
+            GetItemsCommand.RaiseCanExecuteChanged();
+            GetMerges.RaiseCanExecuteChanged();
+            GetPushesCommand.RaiseCanExecuteChanged();
+            GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseTeamChanged(Team team)
+        {
+            GetTeamsCommand.RaiseCanExecuteChanged();
+            GetDashboardsCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Work Item Tracking
+
+            GetTemplatesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
@@ -347,45 +274,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesBehaviorsCommand.RaiseCanExecuteChanged();
         }
 
-        private void RaiseTeamChanged(Team team)
-        {
-            GetTeamsCommand.RaiseCanExecuteChanged();
-            GetDashboardsCommand.RaiseCanExecuteChanged();
-            GetWidgetsCommand.RaiseCanExecuteChanged();
-
-            // Work Item Tracking
-
-            GetTemplatesCommand.RaiseCanExecuteChanged();
-        }
-
-        private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
-        {
-            GetWidgetsCommand.RaiseCanExecuteChanged();
-        }
-
-        #endregion
-
-        #region Enums
+        #endregion Constructors, Initialization, and Load
 
 
-        #endregion
-
-        #region Structures
-
-
-        #endregion
 
         #region Fields and Properties
 
-        CollectionMainViewModel _collectionMainViewModel;
-        ContextMainViewModel _contextMainViewModel;
+        private CollectionMainViewModel _collectionMainViewModel;
+        private ContextMainViewModel _contextMainViewModel;
 
-        #endregion
-
-        #region Event Handlers
+        #endregion Fields and Properties
 
 
-        #endregion
 
         #region Public Methods
 
@@ -408,7 +308,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
-        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>
+
+        public bool GetAccountsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetAccountsExecute()
         {
@@ -425,33 +335,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetAccountsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
+        #endregion GetAccounts Command
 
-            return true;
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Artifacts Category
-
-        #endregion
-
-        #region Build Category
+        #endregion Accounts Category
 
 
-        #endregion
-
-        #region Cloud Load Test Category
-
-
-        #endregion
 
         #region Core
 
@@ -467,7 +355,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+
+        public bool GetCoreProcessesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetCoreProcessesExecute()
         {
@@ -482,17 +380,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetCoreProcessesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetCoreProcesses Command
 
         #region GetCoreProjects Command
 
@@ -506,7 +394,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_Get_Core_ProjectsContent">Get_Core_Projects</system:String>
-        //    <system:String x:Key="ViewName_Get_Core_ProjectsContentToolTip">Get_Core_Projects ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_Get_Core_ProjectsContentToolTip">Get_Core_Projects ToolTip</system:String>
+
+        public bool GetProjectsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetProjectsExecute()
         {
@@ -521,17 +419,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetProjectsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetCoreProjects Command
 
         #region GetTeams Command
 
@@ -545,7 +433,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTeamsContent">GetTeams</system:String>
-        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetTeamsContentToolTip">GetTeams ToolTip</system:String>
+
+        public bool GetTeamsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetTeamsExecute()
         {
@@ -560,19 +458,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetTeamsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
+        #endregion GetTeams Command
 
-            return true;
-        }
-
-        #endregion
-
-        #endregion
+        #endregion Core
 
         #region Dashboard Category
 
@@ -588,22 +476,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetDashboardsContent">GetDashboards</system:String>
-        //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>  
-
-        public void GetDashboardsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.Dashboard.GetDashboardsEvent>().Publish(
-                new Core.Events.Dashboard.GetDashboardsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetDashboardsContentToolTip">GetDashboards ToolTip</system:String>
 
         public bool GetDashboardsCanExecute()
         {
@@ -617,7 +490,24 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetDashboardsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Dashboard.GetDashboardsEvent>().Publish(
+                new Core.Events.Dashboard.GetDashboardsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetDashboards Command
 
         #region GetWidgets Command
 
@@ -631,7 +521,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWidgetsContent">GetWidgets</system:String>
-        //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWidgetsContentToolTip">GetWidgets ToolTip</system:String>
+
+        public bool GetWidgetsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTeam is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWidgetsExecute()
         {
@@ -646,29 +548,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWidgetsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedTeam is null)
-            {
-                return false;
-            }
+        #endregion GetWidgets Command
 
-            return true;
-        }
+        #endregion Dashboard Category
 
-        #endregion
 
-        #endregion
-
-        #region Distributed Task Category
-
-        #endregion
-
-        #region Extension Management Category
-
-        #endregion
 
         #region Git Category
 
@@ -684,7 +568,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
-        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>
+
+        public bool GetRepositoriesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetRepositoriesExecute()
         {
@@ -701,17 +595,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetRepositoriesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetRepositories Command
 
         #region GetProjectRepositories Command
 
@@ -725,22 +609,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
-        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
-
-        public void GetProjectRepositoriesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.Git.GetProjectRepositoriesEvent>().Publish(
-                new Core.Events.Git.GetProjectRepositoriesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>
 
         public bool GetProjectRepositoriesCanExecute()
         {
@@ -753,7 +622,253 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetProjectRepositoriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetProjectRepositoriesEvent>().Publish(
+                new Core.Events.Git.GetProjectRepositoriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetProjectRepositories Command
+
+        #region GetBlobs Command
+
+        public DelegateCommand GetBlobsCommand { get; set; }
+        public string GetBlobsContent { get; set; } = "Get Blobs";
+        public string GetBlobsToolTip { get; set; } = "Get Blobs ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetBlobsContent { get; set; } = "ViewName_GetBlobsContent";
+        //public string GetBlobsToolTip { get; set; } = "ViewName_GetBlobsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBlobsContent">GetBlobs</system:String>
+        //    <system:String x:Key="ViewName_GetBlobsContentToolTip">GetBlobs ToolTip</system:String>
+
+        public void GetBlobs()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetBlobsEvent>().Publish(
+                new Core.Events.Git.GetBlobsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBlobsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetBlobs Command
+
+        #region GetCommits Command
+
+        public DelegateCommand GetCommitsCommand { get; set; }
+        public string GetCommitsContent { get; set; } = "GetCommits";
+        public string GetCommitsToolTip { get; set; } = "GetCommits ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetCommitsContent { get; set; } = "ViewName_GetCommitsContent";
+        //public string GetCommitsToolTip { get; set; } = "ViewName_GetCommitsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetCommitsContent">GetCommits</system:String>
+        //    <system:String x:Key="ViewName_GetCommitsContentToolTip">GetCommits ToolTip</system:String>
+
+        public void GetCommits()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetCommitsEvent>().Publish(
+                new Core.Events.Git.GetCommitsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetCommitsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetCommits Command
+
+        #region GetImportRequests Command
+
+        public DelegateCommand GetImportRequestsCommand { get; set; }
+        public string GetImportRequestsContent { get; set; } = "GetImportRequests";
+        public string GetImportRequestsToolTip { get; set; } = "GetImportRequests ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetImportRequestsContent { get; set; } = "ViewName_GetImportRequestsContent";
+        //public string GetImportRequestsToolTip { get; set; } = "ViewName_GetImportRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetImportRequestsContent">GetImportRequests</system:String>
+        //    <system:String x:Key="ViewName_GetImportRequestsContentToolTip">GetImportRequests ToolTip</system:String>
+
+        public void GetImportRequests()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetImportRequestsEvent>().Publish(
+                new Core.Events.Git.GetImportRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetImportRequestsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetImportRequests Command
+
+        #region GetItems Command
+
+        public DelegateCommand GetItemsCommand { get; set; }
+        public string GetItemsContent { get; set; } = "GetItems";
+        public string GetItemsToolTip { get; set; } = "GetItems ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetItemsContent { get; set; } = "ViewName_GetItemsContent";
+        //public string GetItemsToolTip { get; set; } = "ViewName_GetItemsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetItemsContent">GetItems</system:String>
+        //    <system:String x:Key="ViewName_GetItemsContentToolTip">GetItems ToolTip</system:String>
+
+        public void GetItems()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetItemsEvent>().Publish(
+                new Core.Events.Git.GetItemsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetItemsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetItems Command
+
+        #region GetMerges Command
+
+        public DelegateCommand GetMergesCommand { get; set; }
+        public string GetMergesContent { get; set; } = "GetMerges";
+        public string GetMergesToolTip { get; set; } = "GetMerges ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetMergesContent { get; set; } = "ViewName_GetMergesContent";
+        //public string GetMergesToolTip { get; set; } = "ViewName_GetMergesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetMergesContent">GetMerges</system:String>
+        //    <system:String x:Key="ViewName_GetMergesContentToolTip">GetMerges ToolTip</system:String>
+
+        public void GetMerges()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetMergesEvent>().Publish(
+                new Core.Events.Git.GetMergesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetMergesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetMerges Command
 
         #region GetPullRequests Command
 
@@ -767,7 +882,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
 
         public void GetPullRequests()
         {
@@ -777,8 +892,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetPullRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -797,10 +914,103 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetPullRequests Command
 
+        #region GetPushes Command
 
-        // Start Cut One - Put this in ViewModel
+        public DelegateCommand GetPushesCommand { get; set; }
+        public string GetPushesContent { get; set; } = "Get Pushes";
+        public string GetPushesToolTip { get; set; } = "Get Pushes ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPushesContent { get; set; } = "ViewName_GetPushesContent";
+        //public string GetPushesToolTip { get; set; } = "ViewName_GetPushesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPushesContent">GetPushes</system:String>
+        //    <system:String x:Key="ViewName_GetPushesContentToolTip">GetPushes ToolTip</system:String>
+
+        public void GetPushes()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetPushesEvent>().Publish(
+                new Core.Events.Git.GetPushesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPushesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetPushes Command
+
+        // End Cut One
+
+        #region GetRefs Command
+
+        public DelegateCommand GetRefsCommand { get; set; }
+        public string GetRefsContent { get; set; } = "GetRefs";
+        public string GetRefsToolTip { get; set; } = "GetRefs ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetRefsContent { get; set; } = "ViewName_GetRefsContent";
+        //public string GetRefsToolTip { get; set; } = "ViewName_GetRefsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetRefsContent">GetRefs</system:String>
+        //    <system:String x:Key="ViewName_GetRefsContentToolTip">GetRefs ToolTip</system:String>
+
+        public void GetRefs()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetRefsEvent>().Publish(
+                new Core.Events.Git.GetRefsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetRefsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetRefs Command
+
+        // End Cut One
 
         #region GetStats Command
 
@@ -814,7 +1024,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetStatsContent">GetStats</system:String>
-        //    <system:String x:Key="ViewName_GetStatsContentToolTip">GetStats ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetStatsContentToolTip">GetStats ToolTip</system:String>
 
         public void GetStats()
         {
@@ -824,8 +1034,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetStatsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -844,94 +1056,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-    #endregion
+        #endregion GetStats Command
 
-    // End Cut One
-    #endregion
+        // End Cut One
 
-    #region Graph Category
-
-    #endregion
-
-    #region Identities Category
-
-    #endregion
-
-    #region Member Entitlement Category
+        #endregion Git Category
 
 
-    #endregion
 
-    #region Notification Category
+        #region Work Item Tracking Category
 
+        #region GetArtifactLinkTypes Command
 
-    #endregion
-
-    #region Operations Category
-
-    #endregion
-
-    #region Permissions Report Category
-
-    #endregion
-
-    #region Pipelines Category
-
-    #endregion
-
-    #region Policy Category
-
-    #endregion Region
-
-    #region Profile Category
-
-    #endregion
-
-    #region Release Category
-
-    #endregion
-
-    #region Search Category
-
-    #endregion
-
-    #region Service Endpoint Category
-
-    #endregion
-
-    #region Service Hooks Category
-
-    #endregion
-
-    #region Status Category
-
-    #endregion
-
-    #region Symbol Category
-
-    #endregion
-
-    #region Test Category
-
-    #endregion Region
-
-    #region Tfvc Category
-
-    #endregion
-
-    #region Token Admin Category
-
-    #endregion
-
-    #region Work Category
-
-    #endregion
-
-    #region Work Item Tracking Category
-
-    #region GetArtifactLinkTypes Command
-
-    public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
+        public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
         public string GetArtifactLinkTypesContent { get; set; } = "GetArtifactLinkTypes";
         public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
 
@@ -941,7 +1078,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetArtifactLinkTypesContent">GetArtifactLinkTypes</system:String>
-        //    <system:String x:Key="ViewName_GetArtifactLinkTypesContentToolTip">GetArtifactLinkTypes ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetArtifactLinkTypesContentToolTip">GetArtifactLinkTypes ToolTip</system:String>
+
+        public bool GetArtifactLinkTypesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetArtifactLinkTypesExecute()
         {
@@ -957,17 +1104,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetArtifactLinkTypesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetArtifactLinkTypes Command
 
         #region GetClassificationNodes Command
 
@@ -981,21 +1118,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetClassificationNodesContent">GetClassificationNodes</system:String>
-        //    <system:String x:Key="ViewName_GetClassificationNodesContentToolTip">GetClassificationNodes ToolTip</system:String>  
-
-        public void GetClassificationNodesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetClassificationNodesEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetClassificationNodesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetClassificationNodesContentToolTip">GetClassificationNodes ToolTip</system:String>
 
         public bool GetClassificationNodesCanExecute()
         {
@@ -1008,8 +1131,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
+        public void GetClassificationNodesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-        #endregion
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetClassificationNodesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetClassificationNodesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetClassificationNodes Command
 
         #region GetFields Command
 
@@ -1023,7 +1160,23 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
-        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>
+
+        public DelegateCommand GetProjectFieldsWITCommand { get; set; }
+
+        public string GetProjectFieldsWITContent { get; set; } = "GetFields (Project)";
+
+        public string GetProjectFieldsWITToolTip { get; set; } = "GetFields (Project) ToolTip";
+
+        public bool GetOrganizationFieldsWITCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetOrganizationFieldsWITExecute()
         {
@@ -1038,41 +1191,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetOrganizationFieldsWITCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public DelegateCommand GetProjectFieldsWITCommand { get; set; }
-        public string GetProjectFieldsWITContent { get; set; } = "GetFields (Project)";
-        public string GetProjectFieldsWITToolTip { get; set; } = "GetFields (Project) ToolTip";
-
         // Can get fancy and use Resources
         //public string GetFieldsContent { get; set; } = "ViewName_GetFieldsContent";
         //public string GetFieldsToolTip { get; set; } = "ViewName_GetFieldsContentToolTip";
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
-        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
-
-        public void GetProjectFieldsWITExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>
 
         public bool GetProjectFieldsWITCanExecute()
         {
@@ -1085,7 +1210,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetProjectFieldsWITExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetFieldsWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetFieldsWITEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetFields Command
 
         #region GetQueries Command
 
@@ -1099,21 +1239,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetQueriesContent">GetQueries</system:String>
-        //    <system:String x:Key="ViewName_GetQueriesContentToolTip">GetQueries ToolTip</system:String>  
-
-        public void GetQueriesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetQueriesEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetQueriesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetQueriesContentToolTip">GetQueries ToolTip</system:String>
 
         public bool GetQueriesCanExecute()
         {
@@ -1126,7 +1252,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetQueriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetQueriesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetQueriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetQueries Command
 
         #region GetTags Command
 
@@ -1140,21 +1281,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTagsContent">GetTags</system:String>
-        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>  
-
-        public void GetTagsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<GetTagsEvent>().Publish(
-                new GetTagsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>
 
         public bool GetTagsCanExecute()
         {
@@ -1167,7 +1294,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetTagsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetTagsEvent>().Publish(
+                new GetTagsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetTags Command
 
         #region GetTemplates Command
 
@@ -1181,22 +1323,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTemplatesContent">GetTemplates</system:String>
-        //    <system:String x:Key="ViewName_GetTemplatesContentToolTip">GetTemplates ToolTip</system:String>  
-
-        public void GetTemplatesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
-                new GetTemplatesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetTemplatesContentToolTip">GetTemplates ToolTip</system:String>
 
         public bool GetTemplatesCanExecute()
         {
@@ -1209,7 +1336,24 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetTemplatesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
+                new GetTemplatesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetTemplates Command
 
         #region GetWorkItemIcons Command
 
@@ -1223,7 +1367,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemIconsContent">GetWorkItemIcons</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemIconsContentToolTip">GetWorkItemIcons ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWorkItemIconsContentToolTip">GetWorkItemIcons ToolTip</system:String>
+
+        public bool GetWorkItemIconsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWorkItemIconsExecute()
         {
@@ -1238,17 +1392,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWorkItemIconsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetWorkItemIcons Command
 
         #region GetWorkRelationTypes Command
 
@@ -1262,7 +1406,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkRelationTypesContent">GetWorkRelationTypes</system:String>
-        //    <system:String x:Key="ViewName_GetWorkRelationTypesContentToolTip">GetWorkRelationTypes ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWorkRelationTypesContentToolTip">GetWorkRelationTypes ToolTip</system:String>
+
+        public bool GetWorkItemRelationTypesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWorkItemRelationTypesExecute()
         {
@@ -1277,17 +1431,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWorkItemRelationTypesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetWorkRelationTypes Command
 
         #region GetWorkItemTypeCategories Command
 
@@ -1301,21 +1445,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemTypeCategoriesContent">GetWorkItemTypeCategories</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemTypeCategoriesContentToolTip">GetWorkItemTypeCategories ToolTip</system:String>  
-
-        public void GetWorkItemTypeCategoriesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetWorkItemTypeCategoriesContentToolTip">GetWorkItemTypeCategories ToolTip</system:String>
 
         public bool GetWorkItemTypeCategoriesCanExecute()
         {
@@ -1328,7 +1458,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetWorkItemTypeCategoriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetWorkItemTypeCategoriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetWorkItemTypeCategories Command
 
         #region GetStates Command
 
@@ -1342,7 +1487,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
-        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>
+
+        public bool GetStatesWITCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWIT is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetStatesWITExecute()
         {
@@ -1359,19 +1516,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetStatesWITCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedWorkItemTypeWIT is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetStates Command
 
         #region GetWorkItemTypesWIT Command
 
@@ -1385,7 +1530,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemTypesWITContent">GetWorkItemTypesWIT</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemTypesWITContentToolTip">GetWorkItemTypesWIT ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWorkItemTypesWITContentToolTip">GetWorkItemTypesWIT ToolTip</system:String>
+
+        public bool GetWorkItemTypesWITCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWorkItemTypesWITExecute()
         {
@@ -1401,18 +1557,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWorkItemTypesWITCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetWorkItemTypesWIT Command
 
         #region GetWorkItemTypesFields Command
 
@@ -1426,22 +1571,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemTypesFieldsContent">GetWorkItemTypesFields</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemTypesFieldsContentToolTip">GetWorkItemTypesFields ToolTip</system:String>  
-
-        public void GetWorkItemTypesFieldsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetWorkItemTypesFieldsContentToolTip">GetWorkItemTypesFields ToolTip</system:String>
 
         public bool GetWorkItemTypesFieldsCanExecute()
         {
@@ -1455,11 +1585,28 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetWorkItemTypesFieldsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-        #endregion
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetWorkItemTypesFieldsWITEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWIT
+                });
 
-        #endregion
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetWorkItemTypesFields Command
+
+        #endregion Work Item Tracking Category
+
+        #endregion Commands
 
         #region Work Item Tracking Process Category
 
@@ -1475,7 +1622,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
-        //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>
+
+        public bool GetBehaviorsWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetBehaviorsWITPExecute()
         {
@@ -1492,18 +1650,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetBehaviorsWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetBehaviors Command
 
         #region GetFields Command
 
@@ -1517,7 +1664,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetFieldsContent">GetFields</system:String>
-        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetFieldsContentToolTip">GetFields ToolTip</system:String>
+
+        public bool GetFieldsWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetFieldsWITPExecute()
         {
@@ -1534,19 +1693,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetFieldsWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetFields Command
 
         #region GetLists Command
 
@@ -1560,7 +1707,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetListsContent">GetLists</system:String>
-        //    <system:String x:Key="ViewName_GetListsContentToolTip">GetLists ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetListsContentToolTip">GetLists ToolTip</system:String>
+
+        public bool GetListsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetListsExecute()
         {
@@ -1575,17 +1732,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetListsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetLists Command
 
         #region GetProcesses Command
 
@@ -1599,7 +1746,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+
+        public bool GetProcessesWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetProcessesWITPExecute()
         {
@@ -1614,17 +1771,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetProcessesWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetProcesses Command
 
         #region GetRules Command
 
@@ -1638,7 +1785,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetRulesContent">GetRules</system:String>
-        //    <system:String x:Key="ViewName_GetRulesContentToolTip">GetRules ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetRulesContentToolTip">GetRules ToolTip</system:String>
+
+        public bool GetRulesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetRulesExecute()
         {
@@ -1655,19 +1814,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetRulesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetRules Command
 
         #region GetStates Command
 
@@ -1681,7 +1828,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetStatesContent">GetStates</system:String>
-        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetStatesContentToolTip">GetStates ToolTip</system:String>
+
+        public bool GetStatesWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetStatesWITPExecute()
         {
@@ -1698,19 +1857,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetStatesWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetStates Command
 
         #region GetSystemControls Command
 
@@ -1724,22 +1871,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetSystemControlsContent">GetSystemControls</system:String>
-        //    <system:String x:Key="ViewName_GetSystemControlsContentToolTip">GetSystemControls ToolTip</system:String>  
-
-        public void GetSystemControlsExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-              EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetSystemControlsEvent>().Publish(
-                new Core.Events.WorkItemTrackingProcess.GetSystemControlsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Process = _contextMainViewModel.Context.SelectedProcess
-                    , WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    <system:String x:Key="ViewName_GetSystemControlsContentToolTip">GetSystemControls ToolTip</system:String>
 
         public bool GetSystemControlsCanExecute()
         {
@@ -1753,7 +1885,24 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        public void GetSystemControlsExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.GetSystemControlsEvent>().Publish(
+              new Core.Events.WorkItemTrackingProcess.GetSystemControlsEventArgs()
+              {
+                  Organization = _collectionMainViewModel.SelectedCollection.Organization
+                  ,
+                  Process = _contextMainViewModel.Context.SelectedProcess
+                  ,
+                  WorkItemType = _contextMainViewModel.Context.SelectedWorkItemTypeWITP
+              });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion GetSystemControls Command
 
         #region GetWorkItemTypes Command
 
@@ -1767,7 +1916,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+
+        public bool GetWorkItemTypesWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWorkItemTypesWITPExecute()
         {
@@ -1783,18 +1943,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWorkItemTypesWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetWorkItemTypes Command
 
         #region GetWorkItemTypesBehaviors Command
 
@@ -1808,7 +1957,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemTypesBehaviorsContent">GetWorkItemTypesBehaviors</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemTypesBehaviorsContentToolTip">GetWorkItemTypesBehaviors ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWorkItemTypesBehaviorsContentToolTip">GetWorkItemTypesBehaviors ToolTip</system:String>
+
+        public bool GetWorkItemTypesBehaviorsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null
+                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetWorkItemTypesBehaviorsExecute()
         {
@@ -1825,37 +1986,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool GetWorkItemTypesBehaviorsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null
-                || _contextMainViewModel.Context.SelectedWorkItemTypeWITP is null)
-            {
-                return false;
-            }
+        #endregion GetWorkItemTypesBehaviors Command
 
-            return true;
-        }
+        #endregion Work Item Tracking Process Category
 
-        #endregion
-
-        #endregion
-
-        #region Work Item Tracking Process Template Category
-
-        #endregion
-
-        #endregion
-
-        #region Protected Methods
-
-
-        #endregion
-
-        #region Private Methods
-
-
-        #endregion
-
+        #endregion Public Methods
     }
 }
