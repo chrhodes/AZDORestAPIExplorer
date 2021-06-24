@@ -98,32 +98,32 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private async void GetProcesses(GetProcessesEventArgs args)
         {
-            VssConnection connection = new VssConnection(
-                new Uri(args.Organization.Uri),
-                new VssClientCredentials());
+            //VssConnection connection = new VssConnection(
+            //    new Uri(args.Organization.Uri),
+            //    new VssClientCredentials());
 
-            var username = @"Christopher.Rhodes@bd.com";
-            var password = @"HappyH0jnacki08";
+            //var username = @"Christopher.Rhodes@bd.com";
+            //var password = @"HappyH0jnacki08";
 
-            var credentials = new NetworkCredential(username, password);
-            var handler = new HttpClientHandler { Credentials = credentials };
+            //var credentials = new NetworkCredential(username, password);
+            //var handler = new HttpClientHandler { Credentials = credentials };
 
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Accept.Add(
-                        new MediaTypeWithQualityHeaderValue("application/json"));
+                    //client.DefaultRequestHeaders.Accept.Add(
+                    //    new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    string base64PAT = Convert.ToBase64String(
-                            ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
                     //string base64PAT = Convert.ToBase64String(
-                    //        ASCIIEncoding.ASCII.GetBytes(
-                    //            string.Format("{0}:{1}", "", collection.PAT)));
+                    //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
+                    ////string base64PAT = Convert.ToBase64String(
+                    ////        ASCIIEncoding.ASCII.GetBytes(
+                    ////            string.Format("{0}:{1}", "", collection.PAT)));
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
+                    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
 
-                    //Core.Helpers.InitializeHttpClient(args.Organization, client);
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/"
                         + "process/processes?"

@@ -92,6 +92,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Git Category
 
+            GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
+
             #endregion
 
             #region Graph Category
@@ -286,6 +288,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Git
+
+            GetRepositoriesCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
 
@@ -647,6 +653,49 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion
 
         #region Git Category
+
+        #region GetRepositories Command
+
+        public DelegateCommand GetRepositoriesCommand { get; set; }
+        public string GetRepositoriesContent { get; set; } = "Get Repositories";
+        public string GetRepositoriesToolTip { get; set; } = "Get Repositories ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetAccountsContent { get; set; } = "ViewName_GetAccountsContent";
+        //public string GetAccountsToolTip { get; set; } = "ViewName_GetAccountsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
+
+        public void GetRepositoriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetRepositoriesEvent>().Publish(
+                new Core.Events.Git.GetRepositoriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetRepositoriesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
 
         #endregion
 
@@ -1645,7 +1694,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Work Item Tracking Process Template Category
 
         #endregion
-
 
         #endregion
 

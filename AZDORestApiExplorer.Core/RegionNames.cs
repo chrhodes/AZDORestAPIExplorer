@@ -76,6 +76,14 @@ namespace AZDORestApiExplorer.Core
         // public static string FieldNavigationRegion = "FieldNavigationRegion";
         // public static string FieldDetailRegion = "FieldDetailRegion";
 
+        //
+        // Git Category
+        //
+
+        public static string RepositoryMainRegion = "RepositoryMainRegion";
+
+        // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
+        // public static string RepositoryDetailRegion = "RepositoryDetailRegion";
 
         //
         // Work Item Tracking Category
@@ -164,9 +172,6 @@ namespace AZDORestApiExplorer.Core
         public static string WorkItemTypesBehaviorMainRegion = "WorkItemTypesBehaviorMainRegion";
         // public static string WorkItemTypesBehaviorNavigationRegion = "WorkItemTypesBehaviorNavigationRegion";
         // public static string WorkItemTypesBehaviorDetailRegion = "WorkItemTypesBehaviorDetailRegion";
-
-
-
 
     }
 }

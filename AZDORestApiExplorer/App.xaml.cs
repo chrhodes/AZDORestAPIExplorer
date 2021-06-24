@@ -5,6 +5,7 @@ using System.Windows;
 using AZDORestApiExplorer.Accounts;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
+using AZDORestApiExplorer.Git;
 using AZDORestApiExplorer.Presentation.Views;
 using AZDORestApiExplorer.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTrackingProcess;
@@ -144,17 +145,17 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(HTTPExchangeModule));
 
-
             // These come from other assemblies
 
             moduleCatalog.AddModule(typeof(AccountsModule));
 
             moduleCatalog.AddModule(typeof(DashboardModule));
 
+            moduleCatalog.AddModule(typeof(GitModule));
+
             moduleCatalog.AddModule(typeof(WorkItemTrackingModule));
 
             moduleCatalog.AddModule(typeof(WorkItemTrackingProcessModule));
-
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

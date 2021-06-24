@@ -23,7 +23,6 @@
     Title="{Binding Title}"
     d:DesignHeight="800" d:DesignWidth="1200"         
 >
-
     <!--<Window.Resources>
 
             <Style x:Key="MyStyle" TargetType="{x:Type dx:DXTabControl}">
@@ -77,19 +76,11 @@
 
                         <dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100" ShowHideButton="False">
-                            <!--<dxlc:LayoutGroup >
-                                <Grid>-->
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
-                                <!--</Grid>
-                            </dxlc:LayoutGroup>-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (GET)">
-                            <!--<dxlc:LayoutGroup>
-                                <Grid>-->
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
-                                <!--</Grid>
-                            </dxlc:LayoutGroup>-->
+                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PATCH)">
@@ -116,8 +107,7 @@
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Future Output"
-                                          AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Future Output" AutoHidden="True">
                             
                             <dxlc:LayoutControl
                                 Orientation="Vertical"
@@ -191,15 +181,12 @@
 
                                     </dxlc:LayoutGroup>-->
 
-                                    <dxlc:LayoutGroup Header="Accounts" >
-                                        
+                                       
                                         <dxlc:LayoutGroup Header="Accounts" >
                                             <Grid>
                                                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
                                             </Grid>
                                         </dxlc:LayoutGroup>
-                                        
-                                    </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Artifacts" >
 
@@ -252,7 +239,9 @@
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Git" >
-
+                                        <Grid>
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RepositoryMainRegion}" />
+                                        </Grid>
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Graph" >
@@ -466,8 +455,6 @@
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
                     <dxdo:AutoHideGroup DockType="Top">
-
-
 
                     </dxdo:AutoHideGroup>
                     

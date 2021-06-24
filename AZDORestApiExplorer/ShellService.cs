@@ -56,7 +56,7 @@ namespace AZDORestApiExplorer
                 "MVVM View First (View is passed ViewModel) Modal",
                 600, 450,
                 //Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
-                DxThemedWindowHost.ShowWindowMode.Modeless, foo);
+                VNC.Core.Presentation.ShowWindowMode.Modeless_Show, foo);
 
             //var shell = _container.Resolve<Shell>();
 

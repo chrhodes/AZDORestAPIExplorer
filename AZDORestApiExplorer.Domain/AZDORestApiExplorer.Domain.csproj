@@ -27,7 +27,6 @@
     <Folder Include="DistributedTask\" />
     <Folder Include="DomainServices\" />
     <Folder Include="ExtenstionManagement\" />
-    <Folder Include="Git\" />
     <Folder Include="Graph\" />
     <Folder Include="Identities\" />
     <Folder Include="MemberEntitlementManagement\" />

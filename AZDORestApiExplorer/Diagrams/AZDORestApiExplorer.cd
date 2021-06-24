@@ -15,7 +15,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="AZDORestApiExplorer.Domain.RESTResult&lt;T&gt;">
-    <Position X="4" Y="3.75" Width="3.5" />
+    <Position X="4.75" Y="4.5" Width="3.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>

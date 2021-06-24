@@ -22,7 +22,6 @@
     <Folder Include="Events\Dashbard\" />
     <Folder Include="Events\DistributedTask\" />
     <Folder Include="Events\ExtenstionManagement\" />
-    <Folder Include="Events\Git\" />
     <Folder Include="Events\Graph\" />
     <Folder Include="Events\Identities\" />
     <Folder Include="Events\MemberEntitlementManagement\" />

@@ -13,7 +13,7 @@
 
 <ScrollViewer>
         
-        <dxlc:LayoutGroup Orientation="Vertical">
+    <dxlc:LayoutGroup Orientation="Vertical">
 
         <dxlc:LayoutGroup Orientation="Horizontal">
 
@@ -67,18 +67,31 @@
                     <dxlc:LayoutItem>
                         <Button
                             Command="{Binding GetDashboardsCommand }"
-                            Content="{Binding GetDashboardsContent, FallbackValue='GetDashboards' }"
-                            ToolTip="{Binding GetDashboardsToolTip, FallbackValue='GetDashboards ToolTip' }" />
+                            Content="{Binding GetDashboardsContent, FallbackValue='Get Dashboards' }"
+                            ToolTip="{Binding GetDashboardsToolTip, FallbackValue='Get Dashboards ToolTip' }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem>
                         <Button
                             Command="{Binding GetWidgetsCommand }"
-                            Content="{Binding GetWidgetsContent, FallbackValue='GetWidgets' }"
-                            ToolTip="{Binding GetWidgetsToolTip, FallbackValue='GetWidgets ToolTip' }" />
+                            Content="{Binding GetWidgetsContent, FallbackValue='Get Widgets' }"
+                            ToolTip="{Binding GetWidgetsToolTip, FallbackValue='Get Widgets ToolTip' }" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                
+
+                <dxlc:LayoutGroup Header="Git - Organization+Project Level"
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutItem Background="{StaticResource ProjectColor}">
+                        <Button 
+                            Command="{Binding GetRepositoriesCommand }"
+                            Content="{Binding GetRepositoriesContent, FallbackValue='Get Repositories' }"
+                            ToolTip="{Binding GetRepositoriesToolTip, FallbackValue='Get Repositories ToolTip' }" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Work - Organization Level"

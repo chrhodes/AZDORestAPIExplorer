@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Git.Presentation.ViewModels;
+using AZDORestApiExplorer.Git.Presentation.Views;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -29,8 +33,11 @@ namespace AZDORestApiExplorer.Git
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
+            containerRegistry.RegisterSingleton<IRepositoryMain, RepositoryMain>();
+
+            // containerRegistry.RegisterSingleton<IRepositoryLookupDataService, RepositoryLookupDataService>();
+            // containerRegistry.Register<IRepositoryDataService, RepositoryDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -45,8 +52,8 @@ namespace AZDORestApiExplorer.Git
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            //this loads RepositoryMain into the Shell loaded in CreateShell() in App.Xaml.cs
+            _regionManager.RegisterViewWithRegion(RegionNames.RepositoryMainRegion, typeof(IRepositoryMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
