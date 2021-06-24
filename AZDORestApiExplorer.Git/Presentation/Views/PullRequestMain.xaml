@@ -1,5 +1,5 @@
 <vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Git.Presentation.Views.RepositoryMain"
+    x:Class="AZDORestApiExplorer.Git.Presentation.Views.PullRequestMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -39,34 +39,30 @@
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
             <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                 <Label Content="Count:" />
-                <TextBlock Text="{Binding Repositories.Count}"
+                <TextBlock Text="{Binding PullRequests.Count}"
                            Style="{StaticResource CountTextBlock}"/>
             </StackPanel>
         </Border>
 
         <dxg:GridControl Grid.Row="1"
-                    ItemsSource="{Binding Repositories.ResultItems}"
-                    SelectedItem="{Binding Repositories.SelectedItem}"
+                    ItemsSource="{Binding PullRequests.ResultItems}"
+                    SelectedItem="{Binding PullRequests.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="id" />
-            <dxg:GridColumn FieldName="name" />
-            <dxg:GridColumn FieldName="url" />
-            <dxg:GridColumn FieldName="project" />
-            <dxg:GridColumn FieldName="defaultBranch" />
-            <dxg:GridColumn FieldName="size" />
-            <dxg:GridColumn FieldName="remoteUrl" />
-            <dxg:GridColumn FieldName="sshUrl" />
-            <dxg:GridColumn FieldName="webUrl" />
-            <dxg:GridColumn FieldName="isDisabled" />
-            <dxg:GridColumn FieldName="isFork" />
-            
+            <dxg:GridColumn FieldName="title" />
+            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="pullRequestId" />
+            <dxg:GridColumn FieldName="codeReviewId" />
+            <dxg:GridColumn FieldName="status" />
+            <dxg:GridColumn FieldName="createdBy" />
+            <dxg:GridColumn FieldName="creationDate" />
+            <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"
-            Text="{Binding Repositories.SelectedItem.url}"
+            Text="{Binding PullRequests.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
         <!--<Grid Grid.Row="3">
@@ -79,11 +75,11 @@
             </Grid.ColumnDefinitions>
 
             <ContentControl Grid.Column="0" FontSize="12"
-                                Content="{Binding Repository.SelectedItem}"
+                                Content="{Binding PullRequest.SelectedItem}"
                                 ContentTemplate="{StaticResource ProjectTemplateStackPanel}"/>
 
             <ContentControl Grid.Column="1"  FontSize="12"
-                                Content="{Binding Repository.SelectedItem}"
+                                Content="{Binding PullRequest.SelectedItem}"
                                 ContentTemplate="{StaticResource ProjectTemplateGrid}"/>
 
         </Grid>-->

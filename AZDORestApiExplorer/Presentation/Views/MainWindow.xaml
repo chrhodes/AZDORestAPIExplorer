@@ -83,15 +83,19 @@
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Commands (PATCH)">
+                        <dxdo:LayoutPanel Caption="Git">
+                            <local:GitMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPatchRegion}" />
                         </dxdo:LayoutPanel>
-                        
-                        <dxdo:LayoutPanel Caption="Commands (POST)">
+
+                        <dxdo:LayoutPanel Caption="Commands (POST)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPostRegion}" />
                         </dxdo:LayoutPanel>
-                        
-                        <dxdo:LayoutPanel Caption="Commands (PUT)">
+
+                        <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPutRegion}" />
                         </dxdo:LayoutPanel>
 
@@ -99,11 +103,11 @@
                             <local:DashboardMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Work Item Tracking">
+                        <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True">
                             <local:WorkItemTrackingMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Work Item Tracking Process">
+                        <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
@@ -126,67 +130,12 @@
                                             <Setter Property="TitleVisibility" Value="Collapsed" />
                                         </Style>
                                     </dxlc:LayoutGroup.GroupBoxStyle>
-
-                                    <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
-                                
-                                    <!--<dxlc:LayoutGroup Header="Cat" >
+                                      
+                                    <dxlc:LayoutGroup Header="Accounts" >
                                         <Grid>
-                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatMainRegion}" />
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
                                         </Grid>
-                                        --><!--<Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="200"/>
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <ContentControl Grid.Column="0" 
-                                                            prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatNavigationRegion}" />
-                                            <ContentControl Grid.Column="1" 
-                                                            prism:RegionManager.RegionName="{x:Static infra:RegionNames.CatDetailRegion}" />
-                                        </Grid>--><!--
-                                    </dxlc:LayoutGroup>-->
-
-
-                                    <!--<dxlc:LayoutGroup Header="Core">
-                                        <dxlc:LayoutGroup 
-                                            Orientation="Vertical"  View="Tabs">
-                                            <dxlc:LayoutGroup.GroupBoxStyle>
-                                                <Style TargetType="dxlc:GroupBox">
-                                                    <Setter Property="Background" Value="Transparent" />
-                                                    <Setter Property="BorderBrush" Value="Transparent" />
-                                                    <Setter Property="BorderThickness" Value="0" />
-                                                    <Setter Property="Padding" Value="0" />
-                                                    <Setter Property="TitleVisibility" Value="Collapsed" />
-                                                </Style>
-                                            </dxlc:LayoutGroup.GroupBoxStyle>
-
-                                            <dxlc:LayoutGroup Header="Processes" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Projects" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProjectMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Teams" >
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TeamMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                        </dxlc:LayoutGroup>
-
-                                    </dxlc:LayoutGroup>-->
-
-                                       
-                                        <dxlc:LayoutGroup Header="Accounts" >
-                                            <Grid>
-                                                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
-                                            </Grid>
-                                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Artifacts" >
 
@@ -236,12 +185,6 @@
 
                                     <dxlc:LayoutGroup Header="Extension Management" >
 
-                                    </dxlc:LayoutGroup>
-
-                                    <dxlc:LayoutGroup Header="Git" >
-                                        <Grid>
-                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RepositoryMainRegion}" />
-                                        </Grid>
                                     </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Graph" >
@@ -327,99 +270,6 @@
                                     <dxlc:LayoutGroup Header="Work" >
 
                                     </dxlc:LayoutGroup>
-
-                                    <!--<dxlc:LayoutGroup Header="Work Item Tracking">
-                                        
-                                        <dxlc:LayoutGroup 
-                                            Orientation="Vertical"  View="Tabs">
-                                            
-                                            <dxlc:LayoutGroup.GroupBoxStyle>
-                                                <Style TargetType="dxlc:GroupBox">
-                                                    <Setter Property="Background" Value="Transparent" />
-                                                    <Setter Property="BorderBrush" Value="Transparent" />
-                                                    <Setter Property="BorderThickness" Value="0" />
-                                                    <Setter Property="Padding" Value="0" />
-                                                    <Setter Property="TitleVisibility" Value="Collapsed" />
-                                                </Style>
-                                            </dxlc:LayoutGroup.GroupBoxStyle>
-
-                                            <dxlc:LayoutGroup Header="Artifact Link Types">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ArtifactLinkTypeMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Work Item Icons">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemIconMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Work Item Relation Types">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemRelationTypeMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="ClassificationNodes">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ClassificationNodeMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Fields">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldWITMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Queries">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.QueryMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Tags">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TagMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Templates">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TemplateMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Work Item Type Categories">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeCategoryMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="States">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StateWITMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Work Item Types">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeWITMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                            <dxlc:LayoutGroup Header="Work Item Types Fields">
-                                                <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypesFieldMainRegion}" />
-                                                </Grid>
-                                            </dxlc:LayoutGroup>
-
-                                        </dxlc:LayoutGroup>
-                                        
-                                    </dxlc:LayoutGroup>-->
-
-
 
                                     <dxlc:LayoutGroup Header="Work Item Tracking Process Template" >
 

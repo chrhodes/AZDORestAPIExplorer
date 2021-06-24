@@ -1,4 +1,5 @@
 ﻿using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Git;
 
 using VNC.Core.Mvvm;
 
@@ -25,6 +26,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
         public Team SelectedTeam
         {
             get { return GetValue<Team>(); }
+            set { SetValue(value); }
+        }
+
+        public Repository SelectedRepository
+        {
+            get { return GetValue<Repository>(); }
             set { SetValue(value); }
         }
 

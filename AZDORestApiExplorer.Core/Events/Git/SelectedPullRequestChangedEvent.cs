@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events.Git
 {
-    public class SelectedRepositoryChangedEvent : PubSubEvent<Repository> { }
+    public class SelectedPullRequestChangedEvent : PubSubEvent<PullRequest> { }
 }

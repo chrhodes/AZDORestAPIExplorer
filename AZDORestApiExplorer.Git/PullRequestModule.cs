@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 
 using AZDORestApiExplorer.Core;
+
 using AZDORestApiExplorer.Git.Presentation.ViewModels;
 using AZDORestApiExplorer.Git.Presentation.Views;
 
@@ -8,17 +9,19 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
+using Unity;
+
 using VNC;
 
 namespace AZDORestApiExplorer.Git
 {
-    public class GitModule : IModule
+    public class PullRequestModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public GitModule(IRegionManager regionManager)
+        public PullRequestModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -33,14 +36,11 @@ namespace AZDORestApiExplorer.Git
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
-            containerRegistry.RegisterSingleton<IRepositoryMain, RepositoryMain>();
-
             containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<IPullRequestMain, PullRequestMain>();
 
-            // containerRegistry.RegisterSingleton<IRepositoryLookupDataService, RepositoryLookupDataService>();
-            // containerRegistry.Register<IRepositoryDataService, RepositoryDataService>();
+            // containerRegistry.RegisterSingleton<IPullRequestLookupDataService, PullRequestLookupDataService>();
+            // containerRegistry.Register<IPullRequestDataService, PullRequestDataService>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -55,12 +55,23 @@ namespace AZDORestApiExplorer.Git
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads RepositoryMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.RepositoryMainRegion, typeof(IRepositoryMain));
-
+            //this loads PullRequestMain into the Shell loaded in CreateShell() in App.Xaml.cs
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestMainRegion, typeof(IPullRequestMain));
+
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
+
+        // TODO(crhodes)
+        // Place these in Core\RegionNames.cs
+
+
+        // public static string PullRequestNavigationRegion = "PullRequestNavigationRegion";
+        // public static string PullRequestDetailRegion = "PullRequestDetailRegion";
+
+        // TODO(crhodes)
+        // Add this to App.xaml.cs - ConfigureModuleCatalog()
+
+
     }
 }

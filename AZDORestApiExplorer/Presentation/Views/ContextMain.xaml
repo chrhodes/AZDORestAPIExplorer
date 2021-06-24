@@ -82,11 +82,33 @@
                 
             </dxlc:LayoutGroup>
 
+            <dxlc:LayoutGroup Header="Git"
+        	    View="GroupBox" Orientation="Vertical" 
+        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	    IsCollapsible="True"  IsCollapsed="False">
+
+                <dxlc:LayoutGroup Header="Repository"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource RepositoryColor}">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedRepository.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedRepository.id}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+            
             <dxlc:LayoutGroup Header="Work Item Tracking Process"
         	    View="GroupBox" Orientation="Vertical" 
         	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	    IsCollapsible="True"  IsCollapsed="False"
->
+        	    IsCollapsible="True"  IsCollapsed="False">
 
                 <dxlc:LayoutGroup Header="Work Item Type"
             	    View="GroupBox" Orientation="Vertical" 
@@ -103,6 +125,7 @@
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
+                
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Work Item Tracking"

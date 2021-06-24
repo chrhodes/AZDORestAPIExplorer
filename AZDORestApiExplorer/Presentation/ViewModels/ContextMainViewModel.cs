@@ -1,6 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
 using Prism.Events;
@@ -37,35 +38,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
 
+            EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
+
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ProcessChanged(Process process)
-        {
-            Context.SelectedProcess = process;
-        }
-
-        private void ProjectChanged(Project project)
-        {
-            Context.SelectedProject = project;
-        }
-
-        private void TeamChanged(Team team)
-        {
-            Context.SelectedTeam = team;
-        }
-
-        private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
-        {
-            Context.SelectedWorkItemTypeWIT = workItemType;
-        }
-
-        private void WorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
-        {
-            Context.SelectedWorkItemTypeWITP = workItemType;
         }
 
         #endregion
@@ -115,6 +93,35 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
+        private void ProcessChanged(Process process)
+        {
+            Context.SelectedProcess = process;
+        }
+
+        private void ProjectChanged(Project project)
+        {
+            Context.SelectedProject = project;
+        }
+
+        private void TeamChanged(Team team)
+        {
+            Context.SelectedTeam = team;
+        }
+
+        private void RepositoryChanged(Repository repository)
+        {
+            Context.SelectedRepository = repository;
+        }
+
+        private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
+        {
+            Context.SelectedWorkItemTypeWIT = workItemType;
+        }
+
+        private void WorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
+        {
+            Context.SelectedWorkItemTypeWITP = workItemType;
+        }
 
         #endregion
 

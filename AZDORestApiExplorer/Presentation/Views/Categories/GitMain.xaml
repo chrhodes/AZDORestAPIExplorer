@@ -9,7 +9,30 @@
     xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <dxlc:LayoutGroup Header="Git"
+        Orientation="Vertical"  View="Tabs">
+
+        <dxlc:LayoutGroup.GroupBoxStyle>
+            <Style TargetType="dxlc:GroupBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="TitleVisibility" Value="Collapsed" />
+            </Style>
+        </dxlc:LayoutGroup.GroupBoxStyle>
+
+        <dxlc:LayoutGroup Header="Repositories" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RepositoryMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Pull Requests" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PullRequestMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutGroup>
 </UserControl>

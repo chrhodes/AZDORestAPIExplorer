@@ -21,12 +21,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class RepositoryMainViewModel : HTTPExchangeBase, IRepositoryMainViewModel
+    public class PullRequestMainViewModel : HTTPExchangeBase, IPullRequestMainViewModel
     {
 
         #region Constructors, Initialization, and Load
 
-        public RepositoryMainViewModel(
+        public PullRequestMainViewModel(
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
@@ -41,10 +41,9 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetRepositoriesEvent>().Subscribe(GetRepositories);
-            EventAggregator.GetEvent<GetProjectRepositoriesEvent>().Subscribe(GetProjectRepositories);
+            EventAggregator.GetEvent<GetPullRequestsEvent>().Subscribe(GetPullRequests);
 
-            this.Repositories.PropertyChanged += PublishSelectionChanged;
+            this.PullRequests.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
         }
@@ -63,7 +62,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Repository> Repositories { get; set; } = new RESTResult<Repository>();
+        public RESTResult<PullRequest> PullRequests { get; set; } = new RESTResult<PullRequest>();
 
         #endregion
 
@@ -84,54 +83,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetRepositories(GetRepositoriesEventArgs args)
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    Helpers.InitializeHttpClient(args.Organization, client);
-
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"git/repositories"
-                        + "?api-version=6.1-preview.1";
-
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        JObject o = JObject.Parse(outJson);
-
-                        RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
-
-                        Repositories.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        Repositories.Count = Repositories.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_APPNAME);
-                MessageDialogService.ShowInfoDialog($"Error ({ex})");
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
-        }
-
-        private async void GetProjectRepositories(GetProjectRepositoriesEventArgs args)
+        private async void GetPullRequests(GetPullRequestsEventArgs args)
         {
             try
             {
@@ -142,8 +94,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories"
-                        + "?api-version=6.1-preview.1";
+                        + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all"
+                        + "&api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -157,15 +109,15 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         JObject o = JObject.Parse(outJson);
 
-                        RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
+                        PullRequestsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson);
 
-                        Repositories.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
+                        PullRequests.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Repositories.Count = Repositories.ResultItems.Count;
+                        PullRequests.Count = PullRequests.ResultItems.Count;
                     }
                 }
             }
@@ -182,7 +134,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedRepositoryChangedEvent>().Publish(Repositories.SelectedItem);
+            EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Publish(PullRequests.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

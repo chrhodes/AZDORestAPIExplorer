@@ -79,17 +79,44 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Git - Organization+Project Level"
+                <dxlc:LayoutGroup Header="Git - Organization Level"
                     View="GroupBox" Orientation="Vertical"
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True"  IsCollapsed="False">
 
-                    <dxlc:LayoutItem Background="{StaticResource ProjectColor}">
+                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                         <Button 
                             Command="{Binding GetRepositoriesCommand }"
                             Content="{Binding GetRepositoriesContent, FallbackValue='Get Repositories' }"
                             ToolTip="{Binding GetRepositoriesToolTip, FallbackValue='Get Repositories ToolTip' }" />
                     </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup Header="Project Level" 
+                                View="GroupBox"
+                                Orientation="Vertical"
+                                Background="{StaticResource ProjectColor}">
+
+                        <dxlc:LayoutItem Background="{StaticResource ProjectColor}">
+                            <Button 
+                            Command="{Binding GetProjectRepositoriesCommand }"
+                            Content="{Binding GetProjectRepositoriesContent, FallbackValue='Get Project Repositories' }"
+                            ToolTip="{Binding GetProjectRepositoriesToolTip, FallbackValue='Get Project Repositories ToolTip' }" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutGroup Header="Repository Level" 
+                        View="GroupBox"
+                        Orientation="Vertical"
+                        Background="{StaticResource RepositoryColor}">
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding GetPullRequestsCommand }"
+                            		Content="{Binding GetPullRequestsContent, FallbackValue='GetPullRequests' }"
+                            		ToolTip="{Binding GetPullRequestsToolTip, FallbackValue='GetPullRequests ToolTip' }" />
+                            </dxlc:LayoutItem>
+                                                    
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
@@ -156,7 +183,6 @@
                         Content="{Binding GetWorkItemRelationTypesContent, FallbackValue='Get WorkItem RelationTypes' }"
                         ToolTip="{Binding GetWorkItemRelationTypesToolTip, FallbackValue='Get WorkItem RelationTypes ToolTip' }" />
                 </dxlc:LayoutItem>
-
 
                 <dxlc:LayoutItem>
                     <Button
@@ -342,22 +368,21 @@
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
+    
+            <!--<dxlc:LayoutItem>
+                <Button
+                    Command="{Binding GetControlsCommand }"
+                    Content="{Binding GetControlsContent, FallbackValue='Get Controls' }"
+                    ToolTip="{Binding GetControlsToolTip, FallbackValue='Get Controls ToolTip' }" />
+            </dxlc:LayoutItem>-->
 
-               
-                <!--<dxlc:LayoutItem>
-                    <Button
-                        Command="{Binding GetControlsCommand }"
-                        Content="{Binding GetControlsContent, FallbackValue='Get Controls' }"
-                        ToolTip="{Binding GetControlsToolTip, FallbackValue='Get Controls ToolTip' }" />
-                </dxlc:LayoutItem>-->
-
-            <!--Wrap Everything else in a  WrapPane until we add at least one control-->
+            <!--Wrap Everything else in a  WrapPanel until we add at least one control-->
             
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Not Implemented Yet"
                     View="GroupBox" Orientation="Vertical"
-                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                     IsCollapsible="True"  IsCollapsed="True">
             <WrapPanel>
 
@@ -368,167 +393,163 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Audit"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Build"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Cloud Load Test"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Distributed Task"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Extension Management"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Git"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Graph"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Identities"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Member Entitlement Management"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Notification"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Operations"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Permissions Report"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Pipelines"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Policy"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Profile"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Release"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Search"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Security"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Service Endpoint"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Service Hooks"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Status"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Symbol"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Test"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Tfvc"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Token Admin"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Work Item Tracking"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Work Item Tracking Process Template"
-                View="GroupBox" Orientation="Vertical"
-                VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                IsCollapsible="True"  IsCollapsed="False">
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
                 </dxlc:LayoutGroup>
+                
             </WrapPanel>
+            
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>

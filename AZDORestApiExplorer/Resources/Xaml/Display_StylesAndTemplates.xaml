@@ -24,6 +24,7 @@
     <SolidColorBrush x:Key="ProcessColor" Color="LightGreen" />
     <SolidColorBrush x:Key="ProjectColor" Color="LightBlue" />
     <SolidColorBrush x:Key="TeamColor" Color="LightSalmon" />
+    <SolidColorBrush x:Key="RepositoryColor" Color="#FFFF6400" />
     <SolidColorBrush x:Key="WorkItemTypeColor" Color="#FFA68ADE" />
 
     <Style x:Key="OutlineBorder" TargetType="Border">

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Windows.Forms;
 
 using AZDORestApiExplorer.Core.Events;
 
 using AZDORestApiExplorer.Domain.Core;
-
+using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
@@ -93,6 +94,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Git Category
 
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
+            GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
+            GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
 
             #endregion
 
@@ -235,6 +238,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
+            EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
+
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
 
@@ -264,6 +269,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetProcessesWITPCommand.RaiseCanExecuteChanged();
 
+            // Git
+
+            GetRepositoriesCommand.RaiseCanExecuteChanged();
+
             // Work Item Tracking
             GetArtifactLinkTypesCommand.RaiseCanExecuteChanged();
             GetOrganizationFieldsWITCommand.RaiseCanExecuteChanged();
@@ -291,7 +300,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             // Git
 
-            GetRepositoriesCommand.RaiseCanExecuteChanged();
+            GetProjectRepositoriesCommand.RaiseCanExecuteChanged();
+            GetPullRequestsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
 
@@ -305,6 +315,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetStatesWITCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesWITCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseRepositoryChanged(Repository repository)
+        {
+            GetPullRequestsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
@@ -676,7 +691,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetRepositoriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
+                    //, Project = _contextMainViewModel.Context.SelectedProject
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -684,6 +699,47 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         public bool GetRepositoriesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetProjectRepositories Command
+
+        public DelegateCommand GetProjectRepositoriesCommand { get; set; }
+        public string GetProjectRepositoriesContent { get; set; } = "Get Project Repositories";
+        public string GetProjectRepositoriesToolTip { get; set; } = "Get Project Repositories ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetAccountsContent { get; set; } = "ViewName_GetAccountsContent";
+        //public string GetAccountsToolTip { get; set; } = "ViewName_GetAccountsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
+        //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>  
+
+        public void GetProjectRepositoriesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetProjectRepositoriesEvent>().Publish(
+                new Core.Events.Git.GetProjectRepositoriesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetProjectRepositoriesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
@@ -696,92 +752,135 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region GetPullRequests Command
 
-        #endregion
+        public DelegateCommand GetPullRequestsCommand { get; set; }
+        public string GetPullRequestsContent { get; set; } = "GetPullRequests";
+        public string GetPullRequestsToolTip { get; set; } = "GetPullRequests ToolTip";
 
-        #region Graph Category
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
 
-        #endregion
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>  
 
-        #region Identities Category
+        public void GetPullRequests()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-        #endregion
+            EventAggregator.GetEvent<Core.Events.Git.GetPullRequestsEvent>().Publish(
+                new Core.Events.Git.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
 
-        #region Member Entitlement Category
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPullRequestsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+    #endregion
+
+    #endregion
+
+    #region Graph Category
+
+    #endregion
+
+    #region Identities Category
+
+    #endregion
+
+    #region Member Entitlement Category
 
 
-        #endregion
+    #endregion
 
-        #region Notification Category
+    #region Notification Category
 
 
-        #endregion
+    #endregion
 
-        #region Operations Category
+    #region Operations Category
 
-        #endregion
+    #endregion
 
-        #region Permissions Report Category
+    #region Permissions Report Category
 
-        #endregion
+    #endregion
 
-        #region Pipelines Category
+    #region Pipelines Category
 
-        #endregion
+    #endregion
 
-        #region Policy Category
+    #region Policy Category
 
-        #endregion Region
+    #endregion Region
 
-        #region Profile Category
+    #region Profile Category
 
-        #endregion
+    #endregion
 
-        #region Release Category
+    #region Release Category
 
-        #endregion
+    #endregion
 
-        #region Search Category
+    #region Search Category
 
-        #endregion
+    #endregion
 
-        #region Service Endpoint Category
+    #region Service Endpoint Category
 
-        #endregion
+    #endregion
 
-        #region Service Hooks Category
+    #region Service Hooks Category
 
-        #endregion
+    #endregion
 
-        #region Status Category
+    #region Status Category
 
-        #endregion
+    #endregion
 
-        #region Symbol Category
+    #region Symbol Category
 
-        #endregion
+    #endregion
 
-        #region Test Category
+    #region Test Category
 
-        #endregion Region
+    #endregion Region
 
-        #region Tfvc Category
+    #region Tfvc Category
 
-        #endregion
+    #endregion
 
-        #region Token Admin Category
+    #region Token Admin Category
 
-        #endregion
+    #endregion
 
-        #region Work Category
+    #region Work Category
 
-        #endregion
+    #endregion
 
-        #region Work Item Tracking Category
+    #region Work Item Tracking Category
 
-        #region GetArtifactLinkTypes Command
+    #region GetArtifactLinkTypes Command
 
-        public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
+    public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
         public string GetArtifactLinkTypesContent { get; set; } = "GetArtifactLinkTypes";
         public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
 
