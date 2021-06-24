@@ -34,5 +34,11 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Stats" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutGroup>
 </UserControl>

@@ -96,6 +96,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
             GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
             GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
+            GetStatsCommand = new DelegateCommand(GetStats, GetStatsCanExecute);
 
             #endregion
 
@@ -302,6 +303,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetProjectRepositoriesCommand.RaiseCanExecuteChanged();
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+            GetStatsCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
 
@@ -320,6 +322,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseRepositoryChanged(Repository repository)
         {
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+            GetStatsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
@@ -794,8 +797,56 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
+        #endregion
+
+
+        // Start Cut One - Put this in ViewModel
+
+        #region GetStats Command
+
+        public DelegateCommand GetStatsCommand { get; set; }
+        public string GetStatsContent { get; set; } = "Get Stats";
+        public string GetStatsToolTip { get; set; } = "Get Stats ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetStatsContent { get; set; } = "ViewName_GetStatsContent";
+        //public string GetStatsToolTip { get; set; } = "ViewName_GetStatsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetStatsContent">GetStats</system:String>
+        //    <system:String x:Key="ViewName_GetStatsContentToolTip">GetStats ToolTip</system:String>  
+
+        public void GetStats()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetStatsEvent>().Publish(
+                new Core.Events.Git.GetStatsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetStatsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     #endregion
 
+    // End Cut One
     #endregion
 
     #region Graph Category

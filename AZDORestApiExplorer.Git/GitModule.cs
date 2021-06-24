@@ -39,6 +39,9 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<IPullRequestMain, PullRequestMain>();
 
+            containerRegistry.Register<IStatMainViewModel, StatMainViewModel>();
+            containerRegistry.RegisterSingleton<IStatMain, StatMain>();
+
             // containerRegistry.RegisterSingleton<IRepositoryLookupDataService, RepositoryLookupDataService>();
             // containerRegistry.Register<IRepositoryDataService, RepositoryDataService>();
 
@@ -59,6 +62,8 @@ namespace AZDORestApiExplorer.Git
             _regionManager.RegisterViewWithRegion(RegionNames.RepositoryMainRegion, typeof(IRepositoryMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestMainRegion, typeof(IPullRequestMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.StatMainRegion, typeof(IStatMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

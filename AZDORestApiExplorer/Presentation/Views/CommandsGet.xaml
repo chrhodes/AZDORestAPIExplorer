@@ -111,11 +111,18 @@
                             <dxlc:LayoutItem>
                                 <Button 
                             		Command="{Binding GetPullRequestsCommand }"
-                            		Content="{Binding GetPullRequestsContent, FallbackValue='GetPullRequests' }"
-                            		ToolTip="{Binding GetPullRequestsToolTip, FallbackValue='GetPullRequests ToolTip' }" />
+                            		Content="{Binding GetPullRequestsContent, FallbackValue='Get PullRequests' }"
+                            		ToolTip="{Binding GetPullRequestsToolTip, FallbackValue='Get PullRequests ToolTip' }" />
                             </dxlc:LayoutItem>
-                                                    
-                    </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem>
+                                <Button 
+                        		Command="{Binding GetStatsCommand }"
+                        		Content="{Binding GetStatsContent, FallbackValue='Get Stats' }"
+                        		ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 
