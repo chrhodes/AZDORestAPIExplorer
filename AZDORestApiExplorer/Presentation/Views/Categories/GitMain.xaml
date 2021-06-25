@@ -28,11 +28,11 @@
             </Grid>
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Blobs" >
+        <!--<dxlc:LayoutGroup Header="Blobs" >
             <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BlobMainRegion}" />
             </Grid>
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Commits" >
             <Grid>
@@ -52,11 +52,11 @@
             </Grid>
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Merges" >
+        <!--<dxlc:LayoutGroup Header="Merges" >
             <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MergeMainRegion}" />
             </Grid>
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Pull Requests" >
             <Grid>
