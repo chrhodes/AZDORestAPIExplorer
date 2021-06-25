@@ -42,6 +42,9 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();
             containerRegistry.RegisterSingleton<ICommitMain, CommitMain>();
 
+            containerRegistry.Register<ICommitChangeMainViewModel, CommitChangeMainViewModel>();
+            containerRegistry.RegisterSingleton<ICommitChangeMain, CommitChangeMain>();
+
             containerRegistry.Register<IImportRequestMainViewModel, ImportRequestMainViewModel>();
             containerRegistry.RegisterSingleton<IImportRequestMain, ImportRequestMain>();
 
@@ -85,6 +88,8 @@ namespace AZDORestApiExplorer.Git
             _regionManager.RegisterViewWithRegion(RegionNames.BlobMainRegion, typeof(IBlobMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.CommitMainRegion, typeof(ICommitMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.CommitChangeMainRegion, typeof(ICommitChangeMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.ImportRequestMainRegion, typeof(IImportRequestMain));
 

@@ -172,6 +172,23 @@
                         	ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
                         </dxlc:LayoutItem>
 
+                        <dxlc:LayoutGroup Header="Commit Level" 
+                            View="GroupBox"
+                            Orientation="Vertical"
+                            Background="{StaticResource CommitColor}">
+                            
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding GetCommitChangesCommand }"
+                            		Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
+                            		ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
+                            </dxlc:LayoutItem>
+                            
+
+                            
+                                
+                        </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>

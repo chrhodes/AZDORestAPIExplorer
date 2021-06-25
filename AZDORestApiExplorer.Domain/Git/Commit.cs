@@ -47,6 +47,4 @@ namespace AZDORestApiExplorer.Domain.Git
 
     // Nest any additional classes inside class Commit
 
-
-
 }

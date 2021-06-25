@@ -40,6 +40,12 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Commit Changes" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommitChangeMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup Header="Import Requests" >
             <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ImportRequestMainRegion}" />

@@ -63,8 +63,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Dashboard Category
 
-
-
             #region Git Category
 
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
@@ -72,6 +70,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetBlobsCommand = new DelegateCommand(GetBlobs, GetBlobsCanExecute);
             GetCommitsCommand = new DelegateCommand(GetCommits, GetCommitsCanExecute);
+            GetCommitChangesCommand = new DelegateCommand(GetCommitChanges, GetCommitChangesCanExecute);
+
             GetImportRequestsCommand = new DelegateCommand(GetImportRequests, GetImportRequestsCanExecute);
             GetItemsCommand = new DelegateCommand(GetItems, GetItemsCanExecute);
             GetMergesCommand = new DelegateCommand(GetMerges, GetMergesCanExecute);
@@ -728,9 +728,57 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetCommits Command
 
-        #region GetImportRequests Command
+        #region GetCommitChanges Command
 
-        public DelegateCommand GetImportRequestsCommand { get; set; }
+        public DelegateCommand GetCommitChangesCommand { get; set; }
+        public string GetCommitChangesContent { get; set; } = "GetCommitChanges";
+        public string GetCommitChangesToolTip { get; set; } = "GetCommitChanges ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetCommitChangesContent { get; set; } = "ViewName_GetCommitChangesContent";
+        //public string GetCommitChangesToolTip { get; set; } = "ViewName_GetCommitChangesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetCommitChangesContent">GetCommitChanges</system:String>
+        //    <system:String x:Key="ViewName_GetCommitChangesContentToolTip">GetCommitChanges ToolTip</system:String>  
+
+        public void GetCommitChanges()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Git.GetCommitChangesEvent>().Publish(
+                new Core.Events.Git.GetCommitChangesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Commit = _contextMainViewModel.Context.SelectedCommit
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+        }
+
+    public bool GetCommitChangesCanExecute()
+    {
+        if (_collectionMainViewModel.SelectedCollection is null
+            || _contextMainViewModel.Context.SelectedProject is null
+            || _contextMainViewModel.Context.SelectedRepository is null
+            || _contextMainViewModel.Context.SelectedCommit is null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    #endregion
+
+    // End Cut One
+    #region GetImportRequests Command
+
+    public DelegateCommand GetImportRequestsCommand { get; set; }
         public string GetImportRequestsContent { get; set; } = "GetImportRequests";
         public string GetImportRequestsToolTip { get; set; } = "GetImportRequests ToolTip";
 

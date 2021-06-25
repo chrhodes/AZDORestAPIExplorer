@@ -103,6 +103,22 @@
 
                 </dxlc:LayoutGroup>
 
+                <dxlc:LayoutGroup Header="Commit"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource CommitColor}">
+
+                    <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedCommit.commitId}" />
+                    </dxlc:LayoutItem>-->
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="commitId:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedCommit.commitId}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
             
             <dxlc:LayoutGroup Header="Work Item Tracking Process"

@@ -35,6 +35,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public Commit SelectedCommit
+        {
+            get { return GetValue<Commit>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT
         {
             get { return GetValue<Domain.WorkItemTracking.WorkItemType>(); }
