@@ -136,14 +136,12 @@
             ScrollViewer.VerticalScrollBarVisibility="Auto">
             
             <dxg:GridColumn FieldName="name" />
-            <dxg:GridColumn FieldName="id" />
-
+            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="lastUpdateTime" />
             <dxg:GridColumn FieldName="state" />
             <dxg:GridColumn FieldName="revision" />
             <dxg:GridColumn FieldName="visibility" />
-            <dxg:GridColumn FieldName="lastUpdateTime" />
-            <dxg:GridColumn FieldName="description" />    
-            
+            <dxg:GridColumn FieldName="id" />
             <!--<dxg:GridColumn FieldName="url" />-->
             
         </dxg:GridControl>

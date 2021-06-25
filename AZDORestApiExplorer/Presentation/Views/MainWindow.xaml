@@ -59,7 +59,10 @@
         </dxlc:LayoutControl.AvailableItems>
         
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-            <Label Content="lg_Header Stuff Goes Here" />
+            <dxdo:LayoutPanel Caption="Collections"                     
+                            ItemHeight="100" ShowHideButton="False">
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+            </dxdo:LayoutPanel>
         </dxlc:LayoutGroup>
         
         <dxlc:LayoutGroup Name="lg_Body">
@@ -72,19 +75,68 @@
 
                 <dxdo:LayoutGroup Orientation="Horizontal">
 
+                    <dxdo:LayoutPanel Caption="Core" MinWidth="300" ItemWidth="350">
+                        <local:CoreMain />
+                    </dxdo:LayoutPanel>
+                    
                     <dxdo:LayoutGroup Name="lg_Body_dlm_lg" Orientation="Vertical" >
 
-                        <dxdo:LayoutPanel Caption="Collections"                     
+                        <!--<dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100" ShowHideButton="False">
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
-                        </dxdo:LayoutPanel>
-
+                        </dxdo:LayoutPanel>-->
+                 
                         <dxdo:LayoutPanel Caption="Commands (GET)">
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Git">
                             <local:GitMain />
+                        </dxdo:LayoutPanel>
+ 
+                    </dxdo:LayoutGroup>
+
+                    <dxdo:LayoutGroup  MinWidth="300" ItemWidth="350">
+                        <dxdo:LayoutPanel Caption="Context Level Providers" >
+                            <dxlc:LayoutGroup>
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:LayoutGroup>
+                        
+                </dxdo:LayoutGroup>
+
+                <dxdo:DockLayoutManager.FloatGroups>
+                    <dxdo:FloatGroup>
+
+                    </dxdo:FloatGroup>
+                </dxdo:DockLayoutManager.FloatGroups>
+                
+                <dxdo:DockLayoutManager.AutoHideGroups>
+
+                    <dxdo:AutoHideGroup DockType="Top">
+
+                    </dxdo:AutoHideGroup>
+                    
+                    <dxdo:AutoHideGroup DockType="Left">
+                                        
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Right">
+  
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Bottom">
+                        
+                        <dxdo:LayoutPanel Caption="HTTP Exchange" >
+                            <dxlc:LayoutGroup>
+                                <Grid>
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
+                                </Grid>
+                            </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
@@ -99,20 +151,21 @@
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPutRegion}" />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True" TabBackgroundColor="Red" >
                             <local:DashboardMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True" TabBackgroundColor="AliceBlue" >
                             <local:WorkItemTrackingMain />
                         </dxdo:LayoutPanel>
-
+                        
                         <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
+
                         <dxdo:LayoutPanel Caption="Future Output" AutoHidden="True">
-                            
+
                             <dxlc:LayoutControl
                                 Orientation="Vertical"
                                 StretchContentVertically="True">
@@ -130,7 +183,7 @@
                                             <Setter Property="TitleVisibility" Value="Collapsed" />
                                         </Style>
                                     </dxlc:LayoutGroup.GroupBoxStyle>
-                                      
+
                                     <dxlc:LayoutGroup Header="Accounts" >
                                         <Grid>
                                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
@@ -276,58 +329,9 @@
                                     </dxlc:LayoutGroup>
 
                                 </dxlc:LayoutGroup>
-                            
+
                             </dxlc:LayoutControl>
-                        
-                        </dxdo:LayoutPanel>
- 
-                    </dxdo:LayoutGroup>
 
-                    <dxdo:LayoutGroup ItemWidth="400">
-                        <dxdo:LayoutPanel Caption="Context Level Providers" >
-                            <dxlc:LayoutGroup>
-                                <Grid>
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
-                        </dxdo:LayoutPanel>
-
-                    </dxdo:LayoutGroup>
-                        
-                </dxdo:LayoutGroup>
-
-                <dxdo:DockLayoutManager.FloatGroups>
-                    <dxdo:FloatGroup>
-
-                    </dxdo:FloatGroup>
-                </dxdo:DockLayoutManager.FloatGroups>
-                
-                <dxdo:DockLayoutManager.AutoHideGroups>
-
-                    <dxdo:AutoHideGroup DockType="Top">
-
-                    </dxdo:AutoHideGroup>
-                    
-                    <dxdo:AutoHideGroup DockType="Left">
-                        
-                        <dxdo:LayoutPanel Caption="Core" MinWidth="400">
-                            <local:CoreMain />
-                        </dxdo:LayoutPanel>
-                        
-                    </dxdo:AutoHideGroup>
-
-                    <dxdo:AutoHideGroup DockType="Right">
-  
-                    </dxdo:AutoHideGroup>
-
-                    <dxdo:AutoHideGroup DockType="Bottom">
-                        
-                        <dxdo:LayoutPanel Caption="HTTP Exchange" >
-                            <dxlc:LayoutGroup>
-                                <Grid>
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
                         
                     </dxdo:AutoHideGroup>

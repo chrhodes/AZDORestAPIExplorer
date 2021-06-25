@@ -23,7 +23,12 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
-
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -36,15 +41,27 @@
             <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
+        <Border Style="{StaticResource CountBorder}" Grid.Row="0" HorizontalAlignment="Left">
             <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                 <Label Content="Count:" />
                 <TextBlock Text="{Binding PullRequests.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
+                            Style="{StaticResource CountTextBlock}"/>
             </StackPanel>
         </Border>
 
-        <dxg:GridControl Grid.Row="1"
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            <Label Content="Export to:" VerticalAlignment="Center" />
+            <dxe:TextEdit x:Name="teExportPath" Text="C:\Temp\PullRequest" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content=".xlsx" Click="ExportToExcel_Click" Height="20" Width="45"/>
+                <Button Content=".docx" Click="ExportToWord_Click" Height="20" Width="45"/>
+                <Button Content=".html" Click="ExportToHtml_Click" Height="20" Width="35"/>
+                <Button Content=".pdf" Click="ExportToPdf" Height="20" Width="35"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding PullRequests.ResultItems}"
                     SelectedItem="{Binding PullRequests.SelectedItem}"
                     FontSize="12"
@@ -56,7 +73,7 @@
             <dxg:GridColumn FieldName="pullRequestId" />
             <dxg:GridColumn FieldName="codeReviewId" />
             <dxg:GridColumn FieldName="status" />
-            <dxg:GridColumn FieldName="createdBy" />
+            <dxg:GridColumn FieldName="createdBy.uniqueName" />
             <dxg:GridColumn FieldName="creationDate" />
             <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>

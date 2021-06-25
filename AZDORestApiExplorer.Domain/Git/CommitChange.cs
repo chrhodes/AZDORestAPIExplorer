@@ -3,11 +3,11 @@ using System;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
-    public class CommitChangesRoot
-    {
-        public int count { get; set; }
-        public CommitChange[] value { get; set; }
-    }
+    //public class CommitChangesRoot
+    //{
+    //    public int count { get; set; }
+    //    public CommitChange[] value { get; set; }
+    //}
 
     public class CommitChange
     {
@@ -19,7 +19,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
     // Nest any additional classes inside class CommitChange
 
-    public class Rootobject
+    public class CommitChangesRoot
     {
         public string treeId { get; set; }
         public string commitId { get; set; }
@@ -104,7 +104,5 @@ namespace AZDORestApiExplorer.Domain.Git
             public string href { get; set; }
         }
     }
-
-
 
 }

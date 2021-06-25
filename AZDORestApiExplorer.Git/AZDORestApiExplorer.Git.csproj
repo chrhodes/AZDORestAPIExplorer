@@ -4,6 +4,7 @@
       <TargetFramework>net48</TargetFramework>
       <UseWPF>true</UseWPF>
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <ApplicationIcon>application.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

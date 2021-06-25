@@ -94,7 +94,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories/{args.Repository.id}/commits/{args.Commit.commitId}"
+                        + $"git/repositories/{args.Repository.id}/commits/{args.Commit.commitId}/changes"
                         + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
@@ -111,13 +111,16 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         CommitChangesRoot resultRoot = JsonConvert.DeserializeObject<CommitChangesRoot>(outJson);
 
-                        CommitChanges.ResultItems = new ObservableCollection<CommitChange>(resultRoot.value);
+                        // TODO(crhodes)
+                        // Need to handle this differently as there is just one result
 
-                        IEnumerable<string> continuationHeaders = default;
+                        //CommitChanges.ResultItems = new ObservableCollection<CommitChange>(resultRoot.value);
 
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                        //IEnumerable<string> continuationHeaders = default;
 
-                        CommitChanges.Count = CommitChanges.ResultItems.Count;
+                        //bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                        //CommitChanges.Count = CommitChanges.ResultItems.Count;
                     }
                 }
             }

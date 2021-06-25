@@ -52,10 +52,10 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
             
             <dxg:GridColumn FieldName="name" />
-            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="description" />
             <dxg:GridColumn FieldName="projectName" />
             <dxg:GridColumn FieldName="projectId" />
-            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="id" />
             <dxg:GridColumn FieldName="identityUrl" />
             <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>
