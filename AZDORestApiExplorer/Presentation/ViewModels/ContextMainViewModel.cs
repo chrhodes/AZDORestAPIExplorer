@@ -39,6 +39,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
 
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
+            EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
@@ -111,6 +112,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RepositoryChanged(Repository repository)
         {
             Context.SelectedRepository = repository;
+        }
+        private void CommitChanged(Commit commit)
+        {
+            Context.SelectedCommit = commit;
         }
 
         private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
