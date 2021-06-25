@@ -33,7 +33,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
 
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
@@ -51,7 +51,12 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="name" />
+            <dxg:GridColumn FieldName="importRequestId" />
+            <dxg:GridColumn FieldName="repository" />
+            <dxg:GridColumn FieldName="parameters" />
+            <dxg:GridColumn FieldName="status" />
+            <dxg:GridColumn FieldName="detailedStatus" />
+            <dxg:GridColumn FieldName="_links" />
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"

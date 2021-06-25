@@ -208,7 +208,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetCommitsCommand.RaiseCanExecuteChanged();
             GetImportRequestsCommand.RaiseCanExecuteChanged();
             GetItemsCommand.RaiseCanExecuteChanged();
-            GetMerges.RaiseCanExecuteChanged();
+            GetMergesCommand.RaiseCanExecuteChanged();
             GetPushesCommand.RaiseCanExecuteChanged();
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
@@ -235,7 +235,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetCommitsCommand.RaiseCanExecuteChanged();
             GetImportRequestsCommand.RaiseCanExecuteChanged();
             GetItemsCommand.RaiseCanExecuteChanged();
-            GetMerges.RaiseCanExecuteChanged();
+            GetMergesCommand.RaiseCanExecuteChanged();
             GetPushesCommand.RaiseCanExecuteChanged();
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
@@ -662,10 +662,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetBlobsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -708,10 +706,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetCommitsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -754,10 +750,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetImportRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -800,10 +794,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetItemsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -846,10 +838,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetMergesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -892,10 +882,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetPullRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -938,10 +926,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetPushesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -986,10 +972,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetRefsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1034,10 +1018,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetStatsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 

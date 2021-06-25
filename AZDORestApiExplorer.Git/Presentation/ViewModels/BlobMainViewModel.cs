@@ -93,9 +93,9 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                       + $"git/repositories/{args.Repository.id}/blobs"
+                       + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
