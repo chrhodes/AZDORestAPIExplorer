@@ -20,18 +20,18 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
 
         public WorkItemTrackingProcessModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.Register<IBehaviorMainViewModel, BehaviorMainViewModel>();
             containerRegistry.RegisterSingleton<IBehaviorMain, BehaviorMain>();
@@ -63,14 +63,14 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             // containerRegistry.RegisterSingleton<IFieldLookupDataService, FieldLookupDataService>();
             // containerRegistry.Register<IFieldDataService, FieldDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
@@ -88,7 +88,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITPMainRegion, typeof(IWorkItemTypeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesBehaviorMainRegion, typeof(IWorkItemTypesBehaviorMain));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

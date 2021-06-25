@@ -31,22 +31,22 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetTagsEvent>().Subscribe(GetTags);
 
             this.Tags.PropertyChanged += PublishSelectionChanged;
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -124,7 +124,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_APPNAME);
+                Log.Error(ex, Common.LOG_CATEGORY);
                 MessageDialogService.ShowInfoDialog($"Error ({ex})");
             }
 
@@ -133,11 +133,11 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<SelectedTagChangedEvent>().Publish(Tags.SelectedItem);
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

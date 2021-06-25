@@ -1,5 +1,7 @@
 ﻿using System;
 
+using AZDORestApiExploer.Git.Presentation.Views;
+
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Git.Presentation.ViewModels;
 using AZDORestApiExplorer.Git.Presentation.Views;
@@ -20,18 +22,18 @@ namespace AZDORestApiExplorer.Git
 
         public GitModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
             containerRegistry.RegisterSingleton<IRepositoryMain, RepositoryMain>();
@@ -69,14 +71,16 @@ namespace AZDORestApiExplorer.Git
             // containerRegistry.RegisterSingleton<IRepositoryLookupDataService, RepositoryLookupDataService>();
             // containerRegistry.Register<IRepositoryDataService, RepositoryDataService>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
+
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
@@ -105,7 +109,7 @@ namespace AZDORestApiExplorer.Git
 
             _regionManager.RegisterViewWithRegion(RegionNames.RefMainRegion, typeof(IRefMain));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

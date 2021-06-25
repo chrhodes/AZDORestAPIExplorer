@@ -20,18 +20,18 @@ namespace AZDORestApiExplorer.WorkItemTracking
 
         public WorkItemTrackingModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.Register<IArtifactLinkTypeMainViewModel, ArtifactLinkTypeMainViewModel>();
             containerRegistry.RegisterSingleton<IArtifactLinkTypeMain, ArtifactLinkTypeMain>();
@@ -72,14 +72,14 @@ namespace AZDORestApiExplorer.WorkItemTracking
             containerRegistry.Register<ICreateWorkItemMainViewModel, CreateWorkItemMainViewModel>();
             containerRegistry.RegisterSingleton<ICreateWorkItemMain, CreateWorkItemMain>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             
             // NOTE(crhodes)
@@ -100,7 +100,7 @@ namespace AZDORestApiExplorer.WorkItemTracking
             _regionManager.RegisterViewWithRegion(RegionNames.StateWITMainRegion, typeof(IStateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(IWorkItemTypesFieldMain));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

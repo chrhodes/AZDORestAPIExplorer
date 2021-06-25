@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
+using System.Windows.Input;
 
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
@@ -13,7 +14,9 @@ using AZDORestApiExplorer.Domain.Git;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using Prism.Commands;
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Services;
@@ -26,26 +29,34 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Constructors, Initialization, and Load
 
+        IDialogService _dialogService;
+
         public PullRequestMainViewModel(
+            IDialogService dialogService,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            _dialogService = dialogService;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<GetPullRequestsEvent>().Subscribe(GetPullRequests);
 
             this.PullRequests.PropertyChanged += PublishSelectionChanged;
 
-            Log.VIEWMODEL("Exit", Common.LOG_APPNAME, startTicks);
+            ShowCommand = new DelegateCommand<string>(Show);
+            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -63,6 +74,23 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         #region Fields and Properties
 
         public RESTResult<PullRequest> PullRequests { get; set; } = new RESTResult<PullRequest>();
+
+        public ICommand ShowCommand { get; private set; }
+        public ICommand ShowDialogCommand { get; private set; }
+
+        private string _message = "Initial Message";
+
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -123,7 +151,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_APPNAME);
+                Log.Error(ex, Common.LOG_CATEGORY);
                 MessageDialogService.ShowInfoDialog($"Error ({ex})");
             }
 
@@ -132,14 +160,56 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Publish(PullRequests.SelectedItem);
 
-            Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
+
+        private void Show(string payload)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            var message = payload;
+            //using the dialog service as-is
+            _dialogService.Show("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            {
+                if (r.Result == ButtonResult.None)
+                    Message = "Result is None";
+                else if (r.Result == ButtonResult.OK)
+                    Message = "Result is OK";
+                else if (r.Result == ButtonResult.Cancel)
+                    Message = "Result is Cancel";
+                else
+                    Message = "I Don't know what you did!?";
+            });
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ShowDialog(string payload)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            var message = payload;
+            //using the dialog service as-is
+            _dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            {
+                if (r.Result == ButtonResult.None)
+                    Message = "Result is None";
+                else if (r.Result == ButtonResult.OK)
+                    Message = "Result is OK";
+                else if (r.Result == ButtonResult.Cancel)
+                    Message = "Result is Cancel";
+                else
+                    Message = "I Don't know what you did!?";
+            });
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
     }
 }
