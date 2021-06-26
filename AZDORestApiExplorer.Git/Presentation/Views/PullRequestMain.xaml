@@ -59,10 +59,10 @@
                 <Button Content=".pdf" Click="ExportToPdf" Height="20" Width="35"/>
                 <Button Content="Show"
                             Command="{Binding ShowCommand}"
-                            CommandParameter="hello showd" />                
+                            CommandParameter="{Binding ElementName=grdResults}" />                
                 <Button Content="ShowDialog"
                             Command="{Binding ShowDialogCommand}"
-                            CommandParameter="hello showdialog" />
+                            CommandParameter="{Binding ElementName=grdResults}" />
             </StackPanel>
 
         </StackPanel>

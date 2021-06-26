@@ -11,6 +11,8 @@ using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
 
+using DevExpress.Xpf.Grid;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -53,8 +55,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             this.PullRequests.PropertyChanged += PublishSelectionChanged;
 
-            ShowCommand = new DelegateCommand<string>(Show);
-            ShowDialogCommand = new DelegateCommand<string>(ShowDialog);
+            ShowCommand = new DelegateCommand<GridControl>(Show);
+            ShowDialogCommand = new DelegateCommand<GridControl>(ShowDialog);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -169,11 +171,11 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #endregion
 
-        private void Show(string payload)
+        private void Show(GridControl gridControl)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            var message = payload;
+            var message = "Show";
             //using the dialog service as-is
             _dialogService.Show("NotificationDialog", new DialogParameters($"message={message}"), r =>
             {
@@ -187,14 +189,16 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                     Message = "I Don't know what you did!?";
             });
 
+            gridControl.View.ExportToXlsx(@"C:\temp\PullRequestExport.xlsx");
+
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void ShowDialog(string payload)
+        private void ShowDialog(GridControl gridControl)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            var message = payload;
+            var message = "ShowDialog";
             //using the dialog service as-is
             _dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
             {
@@ -207,6 +211,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 else
                     Message = "I Don't know what you did!?";
             });
+
+            gridControl.View.ExportToXlsx(@"C:\temp\PullRequestExport.xlsx");
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
