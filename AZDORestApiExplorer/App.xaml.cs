@@ -16,6 +16,8 @@ using Prism.Regions;
 using Prism.Unity;
 
 using VNC;
+using VNC.Core.Presentation.ViewModels;
+using VNC.Core.Presentation.Views;
 using VNC.Core.Services;
 
 namespace AZDORestApiExplorer
@@ -101,7 +103,11 @@ namespace AZDORestApiExplorer
             // AddressDataService2 has a constructor that takes a CustomPoolAndSpaDbContext.
 
             //containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
-            containerRegistry.Register<IMessageDialogService, MessageDialogService>();
+
+            // Common Dialogs used my most applications.
+
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
+            containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
 
             // Add the new UI elements
 

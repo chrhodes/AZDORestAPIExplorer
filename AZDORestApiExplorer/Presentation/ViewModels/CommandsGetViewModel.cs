@@ -8,6 +8,7 @@ using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -23,7 +24,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             ICollectionMainViewModel collectionMainViewModel,
             ContextMainViewModel contextMainViewModel,
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            DialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

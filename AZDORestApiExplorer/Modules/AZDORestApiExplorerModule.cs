@@ -37,19 +37,6 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
-            containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
-
-            containerRegistry.Register<ICombinedNavigationViewModel, CombinedNavigationViewModel>();
-            containerRegistry.RegisterSingleton<ICombinedNavigation, CombinedNavigation>();
-
-            containerRegistry.Register<IFoodDetailViewModel, FoodDetailViewModel>();
-            containerRegistry.RegisterSingleton<IFoodDetail, FoodDetail>();
-
-            containerRegistry.RegisterSingleton<IFoodDataService, FoodDataService>();
-            containerRegistry.RegisterSingleton<IFoodLookupDataService, FoodLookupDataService>();
-
-
             containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
             containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
 
@@ -74,12 +61,6 @@ namespace AZDORestApiExplorer
         public void OnInitialized(IContainerProvider containerProvider)
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
-
-            //This loads CombinedMain into the Shell loaded in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.CombinedMainRegion, typeof(ICombinedMain));
-
-            // These load into CombinedMain.xaml
-            _regionManager.RegisterViewWithRegion(RegionNames.CombinedNavigationRegion, typeof(ICombinedNavigation));
 
             _regionManager.RegisterViewWithRegion(RegionNames.CommandGetRegion, typeof(CommandsGet));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPatchRegion, typeof(CommandsPatch));

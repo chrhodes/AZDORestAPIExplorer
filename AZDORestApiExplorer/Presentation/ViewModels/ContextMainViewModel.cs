@@ -5,6 +5,7 @@ using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -19,7 +20,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public ContextMainViewModel(
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            DialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

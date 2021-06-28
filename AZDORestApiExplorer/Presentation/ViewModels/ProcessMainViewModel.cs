@@ -156,7 +156,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
-                MessageDialogService.ShowInfoDialog($"Error ({ex})");
+                ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
