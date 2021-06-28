@@ -31,16 +31,11 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Constructors, Initialization, and Load
 
-        IDialogService _dialogService;
-
         public PullRequestMainViewModel(
-            IDialogService dialogService,
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
-
-            _dialogService = dialogService;
 
             InitializeViewModel();
 
@@ -184,7 +179,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             var message = "Show";
             //using the dialog service as-is
-            _dialogService.Show("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            DialogService.Show("NotificationDialog", new DialogParameters($"message={message}"), r =>
             {
                 if (r.Result == ButtonResult.None)
                     Message = "Result is None";
@@ -207,7 +202,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             var message = "ShowDialog";
             //using the dialog service as-is
-            _dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            DialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
             {
                 if (r.Result == ButtonResult.None)
                     Message = "Result is None";

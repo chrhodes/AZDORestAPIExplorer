@@ -10,6 +10,7 @@ using AZDORestApiExplorer.Domain.Dashboard;
 using Newtonsoft.Json.Linq;
 
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Services;
@@ -24,7 +25,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
         public WidgetMainViewModel(
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

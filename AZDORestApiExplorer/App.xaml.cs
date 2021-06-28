@@ -133,8 +133,8 @@ namespace AZDORestApiExplorer
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //NOTE(crhodes)
-            // Order matters here.  Application depends on types in Cat
-            moduleCatalog.AddModule(typeof(CatModule));
+            // Order matters here.  
+
             moduleCatalog.AddModule(typeof(AZDORestApiExplorerModule));
 
             // Project, Process, Team depend on CollectionModule
