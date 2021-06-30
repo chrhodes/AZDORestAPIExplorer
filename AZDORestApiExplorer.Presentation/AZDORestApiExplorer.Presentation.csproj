@@ -1,15 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-      <TargetFramework>net48</TargetFramework>
-      <UseWPF>true</UseWPF>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <ApplicationIcon>application.ico</ApplicationIcon>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="DomainServices\Interfaces\" />
-  </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="19.2.6" />
@@ -23,12 +18,15 @@
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
-        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Views\" />
     </ItemGroup>
     
 </Project>

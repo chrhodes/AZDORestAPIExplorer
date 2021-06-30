@@ -23,6 +23,11 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
     
     <UserControl.Resources>
 
@@ -35,15 +40,31 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
+        <Border Style="{StaticResource CountBorder}" Grid.Row="0"
+                    HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Style="{StaticResource CountStackPanel}">
                 <Label Content="Count:" />
-                <TextBlock Text="{Binding Teams.Count}"
-                                Style="{StaticResource CountTextBlock}"/>
+                <TextBlock Text="{Binding PullRequests.Count}"
+                                Style="{StaticResource CountTextBlock}" />
             </StackPanel>
         </Border>
 
-        <dxg:GridControl Grid.Row="1"
+        <dxlc:LayoutGroup
+        	View="Group" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+
+            <Button
+                Command="{Binding ExportGridCommand}"
+                CommandParameter="{Binding ElementName=grdResults}"
+                Content="{Binding ExportGridContent, FallbackValue='ExportGrid' }"
+                ToolTip="{Binding ExportGridToolTip, FallbackValue='ExportGrid ToolTip' }"
+                Width="75" VerticalAlignment="Center" />
+
+            <dxlc:LayoutItem  Label="Output Path:" VerticalAlignment="Center">
+                <dxe:TextEdit Text="{Binding OutputFileNameAndPath}"  Width="300" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+
+        <dxg:GridControl  x:Name="grdResults" Grid.Row="1"
                 ItemsSource="{Binding Teams.ResultItems}"
                 SelectedItem="{Binding Teams.SelectedItem}"               
                 FontSize="12"

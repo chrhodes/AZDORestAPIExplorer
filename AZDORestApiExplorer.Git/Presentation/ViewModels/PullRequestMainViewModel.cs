@@ -10,6 +10,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using DevExpress.Xpf.Grid;
 
@@ -21,14 +22,12 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class PullRequestMainViewModel : HTTPExchangeBase, IPullRequestMainViewModel
+    public class PullRequestMainViewModel : GridViewModelBase, IPullRequestMainViewModel
     {
-
         #region Constructors, Initialization, and Load
 
         public PullRequestMainViewModel(
@@ -50,66 +49,101 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             this.PullRequests.PropertyChanged += PublishSelectionChanged;
 
-            ShowCommand = new DelegateCommand<GridControl>(Show);
-            ShowDialogCommand = new DelegateCommand<GridControl>(ShowDialog);
-
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #endregion
-
-        #region Enums
+        #endregion Constructors, Initialization, and Load
 
 
-        #endregion
-
-        #region Structures
-
-
-        #endregion
 
         #region Fields and Properties
 
+        //private string _message = "Initial Message";
+
+        //public string Message
+        //{
+        //    get => _message;
+        //    set
+        //    {
+        //        if (_message == value)
+        //            return;
+        //        _message = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private string _outputFileNameAndPath;
+        //public string OutputFileNameAndPath
+        //{
+        //    get => _outputFileNameAndPath;
+        //    set
+        //    {
+        //        if (_outputFileNameAndPath == value)
+        //            return;
+        //        _outputFileNameAndPath = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+        
         public RESTResult<PullRequest> PullRequests { get; set; } = new RESTResult<PullRequest>();
 
-        public ICommand ShowCommand { get; private set; }
-        public ICommand ShowDialogCommand { get; private set; }
-
-        private string _message = "Initial Message";
-
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
+        #endregion Fields and Properties
 
         #region Event Handlers
 
+        //#region ExportGrid Command
 
-        #endregion
+        //public DelegateCommand<GridControl> ExportGridCommand { get; set; }
 
-        #region Public Methods
+        //public string ExportGridContent { get; set; } = "ExportGrid";
+        //public string ExportGridToolTip { get; set; } = "ExportGrid ToolTip";
 
+        //// Can get fancy and use Resources
+        ////public string ExportGridContent { get; set; } = "ViewName_ExportGridContent";
+        ////public string ExportGridToolTip { get; set; } = "ViewName_ExportGridContentToolTip";
 
-        #endregion
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_ExportGridContent">ExportGrid</system:String>
+        ////    <system:String x:Key="ViewName_ExportGridContentToolTip">ExportGrid ToolTip</system:String>
 
-        #region Protected Methods
+        //public void ExportGrid(GridControl gridControl)
+        //{
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+        //    Message = "Cool, you called ExportGrid";
 
+        //    var dialogParameters = new DialogParameters();
+        //    dialogParameters.Add("message", $"Message)");
+        //    dialogParameters.Add("title", "Exception");
+        //    dialogParameters.Add("gridcontrol", gridControl);
 
-        #endregion
+        //    // TODO(crhodes)
+        //    // Add some more context to name, e.g. Org, Team Project, ???
+
+        //    dialogParameters.Add("filenameandpath", OutputFileNameAndPath);
+
+        //    DialogService.Show("ExportGridDialog", dialogParameters, r =>
+        //    {
+        //    });
+        //}
+
+        //public bool ExportGridCanExecute(GridControl gridControl)
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //}
+
+        //#endregion ExportGrid Command
+
+        #endregion Event Handlers
 
         #region Private Methods
 
         private async void GetPullRequests(GetPullRequestsEventArgs args)
         {
+            OutputFileNameAndPath = $@"C:\temp\{args.Project.name}-{args.Repository.name}-PullRequests";
+
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -171,7 +205,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #endregion
+        #endregion Private Methods
 
         private void Show(GridControl gridControl)
         {
@@ -218,6 +252,5 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
     }
 }

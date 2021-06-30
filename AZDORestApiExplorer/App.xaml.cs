@@ -104,10 +104,12 @@ namespace AZDORestApiExplorer
 
             //containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
 
-            // Common Dialogs used my most applications.
+            // Common Dialogs used by most applications.
 
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
             containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
+
+            containerRegistry.RegisterDialog<ExportGridDialog, ExportGridDialogViewModel>("ExportGridDialog");
 
             // Add the new UI elements
 

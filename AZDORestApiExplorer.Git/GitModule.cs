@@ -1,6 +1,6 @@
 ﻿using System;
 
-using AZDORestApiExploer.Git.Presentation.Views;
+using AZDORestApiExplorer.Git.Presentation.Views;
 
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Git.Presentation.ViewModels;
@@ -11,6 +11,8 @@ using Prism.Modularity;
 using Prism.Regions;
 
 using VNC;
+using VNC.Core.Presentation.Views;
+using VNC.Core.Presentation.ViewModels;
 
 namespace AZDORestApiExplorer.Git
 {
