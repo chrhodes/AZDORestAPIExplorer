@@ -92,13 +92,36 @@
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True"  IsCollapsed="False">
 
-                    <dxlc:LayoutItem>
-                        <Button 
-                    		Command="{Binding GetTestsPlanCommand }"
-                    		Content="{Binding GetTestsPlanContent, FallbackValue='GetTestsPlan' }"
-                    		ToolTip="{Binding GetTestsPlanToolTip, FallbackValue='GetTestsPlan ToolTip' }" />
-                    </dxlc:LayoutItem>
+                        <!-- Enbled at Organization and Project Level -->
                     
+                    <dxlc:LayoutGroup Header="Project Level" 
+                        View="GroupBox"
+                        Orientation="Vertical"
+                        Background="{StaticResource ProjectColor}">
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                    		    Command="{Binding GetTestPlansCommand }"
+                    		    Content="{Binding GetTestPlansContent, FallbackValue='Get Test Plans' }"
+                    		    ToolTip="{Binding GetTestPlansToolTip, FallbackValue='Get Test Plans ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup Header="Test Plan Level" 
+                                View="GroupBox"
+                                Orientation="Vertical" 
+                                Background="{StaticResource TestColor}">
+
+                                <dxlc:LayoutItem>
+                                    <Button 
+                                		Command="{Binding GetTestSuitesCommand }"
+                                		Content="{Binding GetTestSuitesContent, FallbackValue='Get Test Suites' }"
+                                		ToolTip="{Binding GetTestSuitesToolTip, FallbackValue='Get Test Suites ToolTip' }" />
+                                </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+                        
+                     </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
@@ -215,15 +238,14 @@
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
-                
-                <dxlc:LayoutGroup Header="Work - Organization Level"
+
+                        <dxlc:LayoutGroup Header="Work - Organization Level"
                     View="GroupBox" Orientation="Vertical"
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True"  IsCollapsed="False">
-                </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
 
-
-                <!--<dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                        <!--<dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                     <Button
                         Command="{Binding GetBacklogsCommand }"
                         Content="{Binding GetBacklogsContent, FallbackValue='Get Backlogs' }"

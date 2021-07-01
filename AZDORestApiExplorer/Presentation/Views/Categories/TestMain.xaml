@@ -38,6 +38,12 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Test Suites" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TestSuiteMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutGroup>
     
 </UserControl>

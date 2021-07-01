@@ -4,6 +4,7 @@ using AZDORestApiExplorer.Core.Events;
 
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
@@ -12,7 +13,6 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -54,8 +54,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Accounts Category
 
-
-
             #region Dashboard Category
 
             GetDashboardsCommand = new DelegateCommand(GetDashboardsExecute, GetDashboardsCanExecute);
@@ -84,9 +82,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Test Category
 
-            GetTestsPlanCommand = new DelegateCommand(GetTestsPlan, GetTestsPlanCanExecute);
+            GetTestPlansCommand = new DelegateCommand(GetTestPlans, GetTestPlansCanExecute);
+            GetTestSuitesCommand = new DelegateCommand(GetTestSuites, GetTestSuitesCanExecute);
 
-            #endregion
+            #endregion Test Category
 
             #region Work Item Tracking Category
 
@@ -142,6 +141,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
+            EventAggregator.GetEvent<Core.Events.Test.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
+
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
 
@@ -157,6 +158,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // Add Commands that only depend on Organization Context here
         // Other commands that depend on more do not need to be added
         // as the check is in all CanExecute methods
+
         private void RaiseCollectionChanged()
         {
             GetCoreProcessesCommand.RaiseCanExecuteChanged();
@@ -183,6 +185,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             // Work Item Tracking Process
             GetListsCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseCommitChanged(Commit commit)
+        {
+            GetCommitChangesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
@@ -221,7 +228,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             // Test
 
-            GetTestsPlanCommand.RaiseCanExecuteChanged();
+            GetTestPlansCommand.RaiseCanExecuteChanged();
 
             // Work Item Tracking
 
@@ -237,6 +244,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
         }
 
+        private void RaiseTestPlanChanged(TestPlan testPlan)
+        {
+            GetTestSuitesCommand.RaiseCanExecuteChanged();
+        }
+
         private void RaiseRepositoryChanged(Repository repository)
         {
             GetPullRequestsCommand.RaiseCanExecuteChanged();
@@ -249,11 +261,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPushesCommand.RaiseCanExecuteChanged();
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
-        }
-
-        private void RaiseCommitChanged(Commit commit)
-        {
-            GetCommitChangesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseTeamChanged(Team team)
@@ -291,16 +298,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Constructors, Initialization, and Load
 
-
-
         #region Fields and Properties
 
         private CollectionMainViewModel _collectionMainViewModel;
         private ContextMainViewModel _contextMainViewModel;
 
         #endregion Fields and Properties
-
-
 
         #region Public Methods
 
@@ -353,8 +356,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion GetAccounts Command
 
         #endregion Accounts Category
-
-
 
         #region Core
 
@@ -567,8 +568,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Dashboard Category
 
-
-
         #region Git Category
 
         #region GetRepositories Command
@@ -677,8 +676,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetBlobsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -721,8 +722,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetCommitsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -755,7 +758,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetCommitChangesContent">GetCommitChanges</system:String>
-        //    <system:String x:Key="ViewName_GetCommitChangesContentToolTip">GetCommitChanges ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetCommitChangesContentToolTip">GetCommitChanges ToolTip</system:String>
 
         public void GetCommitChanges()
         {
@@ -765,35 +768,36 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetCommitChangesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
-                    , Commit = _contextMainViewModel.Context.SelectedCommit
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Commit = _contextMainViewModel.Context.SelectedCommit
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-
         }
 
-    public bool GetCommitChangesCanExecute()
-    {
-        if (_collectionMainViewModel.SelectedCollection is null
-            || _contextMainViewModel.Context.SelectedProject is null
-            || _contextMainViewModel.Context.SelectedRepository is null
-            || _contextMainViewModel.Context.SelectedCommit is null)
+        public bool GetCommitChangesCanExecute()
         {
-            return false;
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null
+                || _contextMainViewModel.Context.SelectedCommit is null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        return true;
-    }
+        #endregion GetCommitChanges Command
 
-    #endregion
+        #region GetImportRequests Command
 
-    // End Cut One
-    #region GetImportRequests Command
-
-    public DelegateCommand GetImportRequestsCommand { get; set; }
+        public DelegateCommand GetImportRequestsCommand { get; set; }
         public string GetImportRequestsContent { get; set; } = "GetImportRequests";
         public string GetImportRequestsToolTip { get; set; } = "GetImportRequests ToolTip";
 
@@ -813,8 +817,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetImportRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -857,8 +863,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetItemsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -901,8 +909,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetMergesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -945,8 +955,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetPullRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -989,8 +1001,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetPushesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1010,8 +1024,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion GetPushes Command
-
-        // End Cut One
 
         #region GetRefs Command
 
@@ -1035,8 +1047,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetRefsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1056,7 +1070,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion GetRefs Command
-        
+
         #region GetStats Command
 
         public DelegateCommand GetStatsCommand { get; set; }
@@ -1079,8 +1093,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Core.Events.Git.GetStatsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1101,17 +1117,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetStats Command
 
-
         #endregion Git Category
-
 
         #region Test Category
 
         #region GetTestsPlan Command
 
-        public DelegateCommand GetTestsPlanCommand { get; set; }
-        public string GetTestsPlanContent { get; set; } = "GetTestsPlan";
-        public string GetTestsPlanToolTip { get; set; } = "GetTestsPlan ToolTip";
+        public DelegateCommand GetTestPlansCommand { get; set; }
+        public string GetTestPlansContent { get; set; } = "Get Test Plans";
+        public string GetTestPlansToolTip { get; set; } = "Get Test Plans ToolTip";
 
         // Can get fancy and use Resources
         //public string GetTestsPlanContent { get; set; } = "ViewName_GetTestsPlanContent";
@@ -1119,9 +1133,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTestsPlanContent">GetTestsPlan</system:String>
-        //    <system:String x:Key="ViewName_GetTestsPlanContentToolTip">GetTestsPlan ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetTestsPlanContentToolTip">GetTestsPlan ToolTip</system:String>
 
-        public void GetTestsPlan()
+        public void GetTestPlans()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
@@ -1135,8 +1149,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-    public bool GetTestsPlanCanExecute()
-    {
+        public bool GetTestPlansCanExecute()
+        {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
             {
@@ -1146,16 +1160,58 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-    #endregion
+        #endregion GetTestsPlan Command
 
+        #region GetTestSuites Command
 
-    #endregion
+        public DelegateCommand GetTestSuitesCommand { get; set; }
+        public string GetTestSuitesContent { get; set; } = "GetTestSuites";
+        public string GetTestSuitesToolTip { get; set; } = "GetTestSuites ToolTip";
 
-    #region Work Item Tracking Category
+        // Can get fancy and use Resources
+        //public string GetTestSuitesContent { get; set; } = "ViewName_GetTestSuitesContent";
+        //public string GetTestSuitesToolTip { get; set; } = "ViewName_GetTestSuitesContentToolTip";
 
-    #region GetArtifactLinkTypes Command
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTestSuitesContent">GetTestSuites</system:String>
+        //    <system:String x:Key="ViewName_GetTestSuitesContentToolTip">GetTestSuites ToolTip</system:String>
 
-    public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
+        public void GetTestSuites()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Test.GetTestSuitesEvent>().Publish(
+                new Core.Events.Test.GetTestSuitesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    TestPlan = _contextMainViewModel.Context.SelectedTestPlan
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetTestSuitesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTestPlan is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetTestSuites Command
+
+        #endregion Test Category
+
+        #region Work Item Tracking Category
+
+        #region GetArtifactLinkTypes Command
+
+        public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
         public string GetArtifactLinkTypesContent { get; set; } = "GetArtifactLinkTypes";
         public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
 

@@ -36,6 +36,9 @@ namespace AZDORestApiExplorer.Test
             containerRegistry.Register<ITestPlanMainViewModel, TestPlanMainViewModel>();
             containerRegistry.RegisterSingleton<ITestPlanMain, TestPlanMain>();
 
+            containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();
+            containerRegistry.RegisterSingleton<ITestSuiteMain, TestSuiteMain>();
+
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -50,6 +53,8 @@ namespace AZDORestApiExplorer.Test
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             _regionManager.RegisterViewWithRegion(RegionNames.TestPlanMainRegion, typeof(ITestPlanMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.TestSuiteMainRegion, typeof(ITestSuiteMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

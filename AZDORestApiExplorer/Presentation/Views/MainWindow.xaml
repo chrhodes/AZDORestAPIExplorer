@@ -96,8 +96,8 @@
                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Git">
-                            <local:GitMain />
+                        <dxdo:LayoutPanel Caption="Test" >
+                            <local:TestMain />
                         </dxdo:LayoutPanel>
  
                     </dxdo:LayoutGroup>
@@ -138,11 +138,7 @@
                     <dxdo:AutoHideGroup DockType="Bottom">
                         
                         <dxdo:LayoutPanel Caption="HTTP Exchange" >
-                            <dxlc:LayoutGroup>
-                                <Grid>
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
-                                </Grid>
-                            </dxlc:LayoutGroup>
+                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
@@ -161,8 +157,8 @@
                             <local:DashboardMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Test" >
-                            <local:TestMain />
+                        <dxdo:LayoutPanel Caption="Git" AutoHidden="True" >
+                            <local:GitMain />
                         </dxdo:LayoutPanel>
                         
                         <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True" TabBackgroundColor="AliceBlue" >
