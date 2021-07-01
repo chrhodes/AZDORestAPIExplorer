@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
@@ -28,6 +30,7 @@
             <Setter Property="Background" Value="White" />
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -35,36 +38,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="3*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <dxlc:LayoutGroup Grid.Row="0" Orientation="Horizontal">
-            
-            <Border Style="{StaticResource CountBorder}" >
-                <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                    <Label Content="Count:" />
-                    <TextBlock Text="{Binding Fields.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-                </StackPanel>
-            </Border>
-            
-            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}" HorizontalAlignment="Left">
-                <Button Click="ExportToExcel_Click" />
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
-                <!--<Button 
-                    Command="{Binding ExportToExcelCommand }"
-                                Content="{Binding ExportToExcelContent, FallbackValue='Export to Excel' }"
-                                ToolTip="{Binding ExportToExcelToolTip, FallbackValue='Export to Excel ToolTip' }" />-->                
-            </dxlc:LayoutItem>
-            
-        </dxlc:LayoutGroup>
-
-        <dxe:TextEdit Grid.Row="1" Text="{Binding Fields.SelectedItem.url}"  
-                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
         
-        <dxg:GridControl x:Name="gcMainTable" Grid.Row="2"
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Fields.ResultItems}"
                     SelectedItem="{Binding Fields.SelectedItem}"
                    
@@ -84,15 +66,18 @@
             <dxg:GridColumn FieldName="isPicklist" BestFitMode="Smart"/>
             <dxg:GridColumn FieldName="isPicklistSuggested" />
             <!--<dxg:GridColumn FieldName="supportedOperations" />-->
-
-            <dxg:GridColumn FieldName="url" />
+            <!--<dxg:GridColumn FieldName="url" />-->
 
         </dxg:GridControl>
 
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Fields.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+        
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />

@@ -8,6 +8,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Accounts;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Accounts;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -21,7 +22,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Accounts.Presentation.ViewModels
 {
-    public class AccountMainViewModel : HTTPExchangeBase, IAccountMainViewModel
+    public class AccountMainViewModel : GridViewModelBase, IAccountMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -43,7 +44,7 @@ namespace AZDORestApiExplorer.Accounts.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetAccountsEvent>().Subscribe(GetAccounts);
 
-            this.Accounts.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -62,7 +63,7 @@ namespace AZDORestApiExplorer.Accounts.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Accounts.Account> Accounts { get; set; } = new RESTResult<Domain.Accounts.Account>();
+        public RESTResult<Account> Results { get; set; } = new RESTResult<Account>();
 
         #endregion
 
@@ -117,7 +118,7 @@ namespace AZDORestApiExplorer.Accounts.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Accounts.Count = Accounts.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.Accounts.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedAccountChangedEvent>().Publish(Accounts.SelectedItem);
+            EventAggregator.GetEvent<SelectedAccountChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

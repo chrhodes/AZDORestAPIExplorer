@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class RepositoryMainViewModel : HTTPExchangeBase, IRepositoryMainViewModel
+    public class RepositoryMainViewModel : GridViewModelBase, IRepositoryMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -45,7 +46,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             EventAggregator.GetEvent<GetRepositoriesEvent>().Subscribe(GetRepositories);
             EventAggregator.GetEvent<GetProjectRepositoriesEvent>().Subscribe(GetProjectRepositories);
 
-            this.Repositories.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +65,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Repository> Repositories { get; set; } = new RESTResult<Repository>();
+        public RESTResult<Repository> Results { get; set; } = new RESTResult<Repository>();
 
         #endregion
 
@@ -113,13 +114,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
 
-                        Repositories.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Repositories.Count = Repositories.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -160,13 +161,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
 
-                        Repositories.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Repositories.Count = Repositories.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -183,7 +184,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedRepositoryChangedEvent>().Publish(Repositories.SelectedItem);
+            EventAggregator.GetEvent<SelectedRepositoryChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

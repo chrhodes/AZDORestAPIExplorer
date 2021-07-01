@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
@@ -38,20 +40,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding CommitChanges.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
-        <dxg:GridControl Grid.Row="1"
-                    ItemsSource="{Binding CommitChanges.ResultItems}"
-                    SelectedItem="{Binding CommitChanges.SelectedItem}"
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                    ItemsSource="{Binding Results.ResultItems}"
+                    SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -60,49 +55,8 @@
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"
-            Text="{Binding CommitChanges.SelectedItem.url}"
+            Text="{Binding Results.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
-
-        <!--<Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <ContentControl Grid.Column="0" FontSize="12"
-                                Content="{Binding CommitChange.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateStackPanel}"/>
-
-            <ContentControl Grid.Column="1"  FontSize="12"
-                                Content="{Binding CommitChange.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateGrid}"/>
-
-        </Grid>-->
-        
-        <!--<Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <dxg:GridControl Grid.Column="0"
-                ItemsSource="{Binding Fields.SelectedItem.supportedOperations}"
-                ScrollViewer.CanContentScroll="True"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                <dxg:GridColumn FieldName="referenceName" />
-                <dxg:GridColumn FieldName="name" />
-
-            </dxg:GridControl>
-
-        </Grid>-->
 
     </Grid>
 

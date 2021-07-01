@@ -8,6 +8,7 @@ using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
@@ -23,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemIconMainViewModel : HTTPExchangeBase, IWorkItemIconMainViewModel
+    public class WorkItemIconMainViewModel : GridViewModelBase, IWorkItemIconMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -45,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetWorkItemIconsEvent>().Subscribe(GetWorkItemIcons);
 
-            this.WorkItemIcons.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<WorkItemIcon> WorkItemIcons { get; set; } = new RESTResult<WorkItemIcon>();
+        public RESTResult<WorkItemIcon> Results { get; set; } = new RESTResult<WorkItemIcon>();
 
         #endregion
 
@@ -111,13 +112,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemIconsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemIconsRoot>(outJson);
 
-                        WorkItemIcons.ResultItems = new ObservableCollection<WorkItemIcon>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<WorkItemIcon>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        WorkItemIcons.Count = WorkItemIcons.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -134,7 +135,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedWorkItemIconChangedEvent>().Publish(WorkItemIcons.SelectedItem);
+            EventAggregator.GetEvent<SelectedWorkItemIconChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

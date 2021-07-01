@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class MergeMainViewModel : HTTPExchangeBase, IMergeMainViewModel
+    public class MergeMainViewModel : GridViewModelBase, IMergeMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetMergesEvent>().Subscribe(GetMerges);
 
-            this.Merges.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Merge> Merges { get; set; } = new RESTResult<Merge>();
+        public RESTResult<Merge> Results { get; set; } = new RESTResult<Merge>();
 
         #endregion
 
@@ -112,13 +113,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         MergesRoot resultRoot = JsonConvert.DeserializeObject<MergesRoot>(outJson);
 
-                        Merges.ResultItems = new ObservableCollection<Merge>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Merge>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Merges.Count = Merges.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedMergeChangedEvent>().Publish(Merges.SelectedItem);
+            EventAggregator.GetEvent<SelectedMergeChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

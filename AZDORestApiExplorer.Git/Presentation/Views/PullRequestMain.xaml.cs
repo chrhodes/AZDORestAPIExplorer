@@ -23,7 +23,6 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private GridControl _targetGrid;
 
         public GridControl TargetGrid

@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Presentation.Views;
 
 using DevExpress.XtraPrinting;
@@ -26,7 +27,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class FieldMainViewModel : HTTPExchangeBase, IFieldMainViewModel
+    public class FieldMainViewModel : GridViewModelBase, IFieldMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -48,9 +49,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetFieldsWITEvent>().Subscribe(GetFields);
 
-            this.Fields.PropertyChanged += PublishSelectionChanged;
-
-            ExportToExcelCommand = new DelegateCommand(ExportToExcelExecute, ExportToExcelCanExecute);
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -69,7 +68,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Field> Fields { get; set; } = new RESTResult<Field>();
+        public RESTResult<Field> Results { get; set; } = new RESTResult<Field>();
 
         #endregion
 
@@ -91,36 +90,6 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         #region Private Methods
 
         #region Commands
-
-
-        #region GetFields Command
-
-        public DelegateCommand ExportToExcelCommand { get; set; }
-        public string ExportToExcelTContent { get; set; } = "Export to Excel";
-        public string ExportToExcelToolTip { get; set; } = "Export to Excel ToolTip";
-
-        public void ExportToExcelExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            XlsxExportOptions options = new XlsxExportOptions();
-            options.SheetName = "WITFields";
-            ((FieldMain)View).gcMainTable.View.ExportToXlsx(@"C:\temp\FieldData.xlsx",options);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool ExportToExcelCanExecute()
-        {
-            //if (_collectionMainViewModel.SelectedCollection is null)
-            //{
-            //    return false;
-            //}
-
-            return true;
-        }
-
-        #endregion
 
         #endregion
 
@@ -161,13 +130,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldsRoot>(outJson);
 
-                        Fields.ResultItems = new ObservableCollection<Field>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Field>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Fields.Count = Fields.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -184,7 +153,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedFieldWITChangedEvent>().Publish(Fields.SelectedItem);
+            EventAggregator.GetEvent<SelectedFieldWITChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

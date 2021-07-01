@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class PushMainViewModel : HTTPExchangeBase, IPushMainViewModel
+    public class PushMainViewModel : GridViewModelBase, IPushMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetPushesEvent>().Subscribe(GetPushes);
 
-            this.Pushes.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Push> Pushes { get; set; } = new RESTResult<Push>();
+        public RESTResult<Push> Results { get; set; } = new RESTResult<Push>();
 
         #endregion
 
@@ -112,13 +113,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PushesRoot resultRoot = JsonConvert.DeserializeObject<PushesRoot>(outJson);
 
-                        Pushes.ResultItems = new ObservableCollection<Push>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Push>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Pushes.Count = Pushes.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedPushChangedEvent>().Publish(Pushes.SelectedItem);
+            EventAggregator.GetEvent<SelectedPushChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

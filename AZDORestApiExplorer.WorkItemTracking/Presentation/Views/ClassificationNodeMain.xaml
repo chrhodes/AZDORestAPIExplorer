@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
@@ -28,8 +30,8 @@
             <Setter Property="Background" Value="White" />
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
     <UserControl.Resources>
-
 
     </UserControl.Resources>
 
@@ -41,15 +43,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding ClassificationNodes.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
-        <dxg:GridControl Grid.Row="1"
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding ClassificationNodes.ResultItems}"
                     SelectedItem="{Binding ClassificationNodes.SelectedItem}"
                     FontSize="12"
@@ -63,31 +59,13 @@
             <dxg:GridColumn FieldName="structureType" />
             <dxg:GridColumn FieldName="hasChildren" />
             <dxg:GridColumn FieldName="path" />
-            <!--<dxg:GridColumn FieldName="url" />-->
             <dxg:GridColumn FieldName="attributes" />
-
+            <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"
             Text="{Binding ClassificationNodes.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
-
-        <!--<Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <ContentControl Grid.Column="0" FontSize="12"
-                                Content="{Binding ClassificationNode.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateStackPanel}"/>
-
-            <ContentControl Grid.Column="1"  FontSize="12"
-                                Content="{Binding ClassificationNode.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateGrid}"/>-->
 
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>

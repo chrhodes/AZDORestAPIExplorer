@@ -6,6 +6,7 @@ using System.Net.Http;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Dashboard;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json.Linq;
 
@@ -18,7 +19,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 {
-    public class WidgetMainViewModel : HTTPExchangeBase, IWidgetMainViewModel
+    public class WidgetMainViewModel : GridViewModelBase, IWidgetMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -46,7 +47,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetWidgetsEvent>().Subscribe(GetWidgets);
 
-            this.Widgets.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             // TODO(crhodes)
             //
@@ -68,7 +69,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Widget> Widgets { get; set; } = new RESTResult<Widget>();
+        public RESTResult<Widget> Results { get; set; } = new RESTResult<Widget>();
 
 
         #endregion
@@ -120,7 +121,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Widgets.Count = Widgets.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -137,7 +138,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedWidgetChangedEvent>().Publish(Widgets.SelectedItem);
+            EventAggregator.GetEvent<SelectedWidgetChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

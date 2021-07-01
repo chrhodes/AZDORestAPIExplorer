@@ -8,6 +8,7 @@ using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
@@ -23,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class TagMainViewModel : HTTPExchangeBase, ITagMainViewModel
+    public class TagMainViewModel : GridViewModelBase, ITagMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -45,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetTagsEvent>().Subscribe(GetTags);
 
-            this.Tags.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Tag> Tags { get; set; } = new RESTResult<Tag>();
+        public RESTResult<Tag> Results { get; set; } = new RESTResult<Tag>();
 
         #endregion
 
@@ -113,13 +114,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         TagsRoot resultRoot = JsonConvert.DeserializeObject<TagsRoot>(outJson);
 
-                        Tags.ResultItems = new ObservableCollection<Tag>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Tag>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Tags.Count = Tags.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -136,7 +137,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedTagChangedEvent>().Publish(Tags.SelectedItem);
+            EventAggregator.GetEvent<SelectedTagChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

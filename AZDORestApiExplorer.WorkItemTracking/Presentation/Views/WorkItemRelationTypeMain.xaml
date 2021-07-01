@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
@@ -41,16 +43,10 @@
 
             <RowDefinition Height="*" />            
         </Grid.RowDefinitions>
-        
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding WorkItemRelationTypes.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
 
-        <dxg:GridControl Grid.Row="2"
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+
+        <dxg:GridControl x:Name="grdResults" Grid.Row="2"
                     ItemsSource="{Binding WorkItemRelationTypes.ResultItems}"
                     SelectedItem="{Binding WorkItemRelationTypes.SelectedItem}"               
                     FontSize="12"
@@ -114,7 +110,6 @@
                 <dxg:GridColumn FieldName="oppositeEndReferenceName" />-->
 
             </dxg:GridControl>
-
 
         </Grid>
         

@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"    
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
@@ -37,17 +39,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding Lists.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
 
-        <dxg:GridControl Grid.Row="1"
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Lists.ResultItems}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -58,8 +55,11 @@
             <dxg:GridColumn FieldName="id" />                        
             <dxg:GridColumn FieldName="type" />                        
             <dxg:GridColumn FieldName="isSuggestee" />                        
-            <dxg:GridColumn FieldName="url" />            
+            <!--<dxg:GridColumn FieldName="url" />-->            
         </dxg:GridControl>
+
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Processes.SelectedItem.url}"  
+                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
     

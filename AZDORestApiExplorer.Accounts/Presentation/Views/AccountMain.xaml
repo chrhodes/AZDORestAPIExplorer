@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.Accounts.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Accounts.Presentation.Views"
@@ -28,6 +30,7 @@
             <Setter Property="Background" Value="White" />
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
     <UserControl.Resources>
 
     </UserControl.Resources>
@@ -38,18 +41,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding Accounts.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
 
-        <dxg:GridControl Grid.Row="1"
-                    ItemsSource="{Binding Accounts.ResultItems}"
-                    SelectedItem="{Binding Accounts.SelectedItem}"               
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                    ItemsSource="{Binding Results.ResultItems}"
+                    SelectedItem="{Binding Results.SelectedItem}"               
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -58,7 +55,7 @@
             
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2" Text="{Binding Accounts.SelectedItem.url}"  
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
                       TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
         
     </Grid>

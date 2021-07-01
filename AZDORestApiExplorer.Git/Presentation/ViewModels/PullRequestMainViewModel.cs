@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetPullRequestsEvent>().Subscribe(GetPullRequests);
 
-            this.PullRequests.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -52,7 +52,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
         
-        public RESTResult<PullRequest> PullRequests { get; set; } = new RESTResult<PullRequest>();
+        public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
 
         #endregion Fields and Properties
 
@@ -92,13 +92,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PullRequestsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson);
 
-                        PullRequests.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        PullRequests.Count = PullRequests.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -122,7 +122,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Publish(PullRequests.SelectedItem);
+            EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

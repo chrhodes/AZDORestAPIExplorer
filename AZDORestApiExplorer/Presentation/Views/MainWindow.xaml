@@ -23,6 +23,12 @@
     Title="{Binding Title}"
     d:DesignHeight="800" d:DesignWidth="1200"         
 >
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
     <!--<Window.Resources>
 
             <Style x:Key="MyStyle" TargetType="{x:Type dx:DXTabControl}">

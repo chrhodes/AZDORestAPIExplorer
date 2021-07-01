@@ -7,6 +7,7 @@ using System.Net.Http;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Dashboard;
 using AZDORestApiExplorer.Domain;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -21,7 +22,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 {
-    public class DashboardMainViewModel : HTTPExchangeBase, IDashboardMainViewModel
+    public class DashboardMainViewModel : GridViewModelBase, IDashboardMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -46,10 +47,9 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
             InstanceCountVM++;
 
-
             EventAggregator.GetEvent<GetDashboardsEvent>().Subscribe(GetDashboards);
 
-            this.Dashboards.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             // TODO(crhodes)
             //
@@ -71,7 +71,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Domain.Dashboard.Dashboard> Dashboards { get; set; } = new RESTResult<Domain.Dashboard.Dashboard>();
+        public RESTResult<Domain.Dashboard.Dashboard> Results { get; set; } = new RESTResult<Domain.Dashboard.Dashboard>();
 
 
         #endregion
@@ -119,13 +119,13 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
                         Domain.Dashboard.DashboardsRoot resultRoot = JsonConvert.DeserializeObject<Domain.Dashboard.DashboardsRoot>(outJson);
 
-                        Dashboards.ResultItems = new ObservableCollection<Domain.Dashboard.Dashboard>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Domain.Dashboard.Dashboard>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Dashboards.Count = Dashboards.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -142,7 +142,7 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Publish(Dashboards.SelectedItem);
+            EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

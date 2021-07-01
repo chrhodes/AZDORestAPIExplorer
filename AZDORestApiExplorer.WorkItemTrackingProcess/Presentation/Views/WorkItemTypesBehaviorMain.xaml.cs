@@ -1,5 +1,7 @@
 ﻿using System;
 
+using DevExpress.Xpf.Grid;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -16,8 +18,18 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+            TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        private GridControl _targetGrid;
+
+        public GridControl TargetGrid
+        {
+            get => _targetGrid;
+            set => _targetGrid = value;
         }
 
         #region IInstanceCount

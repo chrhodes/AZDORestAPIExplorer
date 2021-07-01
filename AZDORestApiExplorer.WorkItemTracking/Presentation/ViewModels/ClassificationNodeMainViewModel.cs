@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class ClassificationNodeMainViewModel : HTTPExchangeBase, IClassificationNodeMainViewModel
+    public class ClassificationNodeMainViewModel : GridViewModelBase, IClassificationNodeMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetClassificationNodesEvent>().Subscribe(GetClassificationNodes);
 
-            this.ClassificationNodes.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<ClassificationNode> ClassificationNodes { get; set; } = new RESTResult<ClassificationNode>();
+        public RESTResult<ClassificationNode> Results { get; set; } = new RESTResult<ClassificationNode>();
 
         #endregion
 
@@ -112,13 +113,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         ClassificationNodesRoot resultRoot = JsonConvert.DeserializeObject<ClassificationNodesRoot>(outJson);
 
-                        ClassificationNodes.ResultItems = new ObservableCollection<ClassificationNode>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<ClassificationNode>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ClassificationNodes.Count = ClassificationNodes.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedClassificationNodeChangedEvent>().Publish(ClassificationNodes.SelectedItem);
+            EventAggregator.GetEvent<SelectedClassificationNodeChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

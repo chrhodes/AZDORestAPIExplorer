@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetTeamsEvent>().Subscribe(GetTeams);
 
-            this.Teams.PropertyChanged += PublishSelectedTeamChanged;
+            this.Results.PropertyChanged += PublishSelectedTeamChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -52,7 +52,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Publish(Teams.SelectedItem);
+            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -71,7 +71,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Team> Teams { get; set; } = new RESTResult<Team>();
+        public RESTResult<Team> Results { get; set; } = new RESTResult<Team>();
 
         #endregion
 
@@ -113,7 +113,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         TeamsRoot resultRoot = JsonConvert.DeserializeObject<TeamsRoot>(outJson);
 
-                        Teams.ResultItems = new ObservableCollection<Team>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Team>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
@@ -143,13 +143,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                                 TeamsRoot resultRootC = JsonConvert.DeserializeObject<TeamsRoot>(outJson2);
                                 var resultArray2C = resultRootC.value;
 
-                                Teams.ResultItems.AddRange(resultArray2C);
+                                Results.ResultItems.AddRange(resultArray2C);
 
                                 hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
                             }
                         }
 
-                        Teams.Count = Teams.ResultItems.Count();
+                        Results.Count = Results.ResultItems.Count();
                     }
                 }
             }

@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class ImportRequestMainViewModel : HTTPExchangeBase, IImportRequestMainViewModel
+    public class ImportRequestMainViewModel : GridViewModelBase, IImportRequestMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetImportRequestsEvent>().Subscribe(GetImportRequests);
 
-            this.ImportRequests.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<ImportRequest> ImportRequests { get; set; } = new RESTResult<ImportRequest>();
+        public RESTResult<ImportRequest> Results { get; set; } = new RESTResult<ImportRequest>();
 
         #endregion
 
@@ -112,13 +113,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         ImportRequestsRoot resultRoot = JsonConvert.DeserializeObject<ImportRequestsRoot>(outJson);
 
-                        ImportRequests.ResultItems = new ObservableCollection<ImportRequest>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<ImportRequest>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ImportRequests.Count = ImportRequests.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedImportRequestChangedEvent>().Publish(ImportRequests.SelectedItem);
+            EventAggregator.GetEvent<SelectedImportRequestChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

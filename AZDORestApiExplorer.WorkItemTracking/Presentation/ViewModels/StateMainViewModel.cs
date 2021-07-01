@@ -19,10 +19,11 @@ using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class StateMainViewModel : HTTPExchangeBase, IStateMainViewModel
+    public class StateMainViewModel : GridViewModelBase, IStateMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetStatesWITEvent>().Subscribe(GetStates);
 
-            this.States.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<State> States { get; set; } = new RESTResult<State>();
+        public RESTResult<State> Results { get; set; } = new RESTResult<State>();
 
         #endregion
 
@@ -110,13 +111,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         StatesRoot resultRoot = JsonConvert.DeserializeObject<StatesRoot>(outJson);
 
-                        States.ResultItems = new ObservableCollection<State>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<State>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        States.Count = States.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -133,7 +134,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedStateWITChangedEvent>().Publish(States.SelectedItem);
+            EventAggregator.GetEvent<SelectedStateWITChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

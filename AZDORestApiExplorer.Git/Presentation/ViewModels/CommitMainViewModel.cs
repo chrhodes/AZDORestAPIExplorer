@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,7 +23,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class CommitMainViewModel : HTTPExchangeBase, ICommitMainViewModel
+    public class CommitMainViewModel : GridViewModelBase, ICommitMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -44,7 +45,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetCommitsEvent>().Subscribe(GetCommits);
 
-            this.Commits.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +64,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Commit> Commits { get; set; } = new RESTResult<Commit>();
+        public RESTResult<Commit> Results { get; set; } = new RESTResult<Commit>();
 
         #endregion
 
@@ -112,13 +113,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         CommitsRoot resultRoot = JsonConvert.DeserializeObject<CommitsRoot>(outJson);
 
-                        Commits.ResultItems = new ObservableCollection<Commit>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Commit>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Commits.Count = Commits.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedCommitChangedEvent>().Publish(Commits.SelectedItem);
+            EventAggregator.GetEvent<SelectedCommitChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

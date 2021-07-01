@@ -23,6 +23,15 @@
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="600"
 >
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+
+    <UserControl.Resources>
+
+    </UserControl.Resources>
     <dxlc:LayoutGroup Header="Enter Orgnzation Information"
     	View="Group" Orientation="Horizontal" >
         

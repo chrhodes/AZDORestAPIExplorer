@@ -45,7 +45,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(Get_Projects);
 
-            this.Projects.PropertyChanged += PublishSelectedProjectChanged;
+            this.Results.PropertyChanged += PublishSelectedProjectChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +64,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Project> Projects { get; set; } = new RESTResult<Project>();
+        public RESTResult<Project> Results { get; set; } = new RESTResult<Project>();
 
         #endregion
 
@@ -107,7 +107,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                         ProjectsRoot resultRoot = JsonConvert.DeserializeObject<ProjectsRoot>(outJson);
 
-                        Projects.ResultItems = new ObservableCollection<Project>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Project>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
@@ -138,13 +138,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                                 ProjectsRoot projects2C = JsonConvert.DeserializeObject<ProjectsRoot>(outJson2);
 
-                                Projects.ResultItems.AddRange(projects2C.value);
+                                Results.ResultItems.AddRange(projects2C.value);
 
                                 hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
                             }
                         }
 
-                        Projects.Count = Projects.ResultItems.Count();
+                        Results.Count = Results.ResultItems.Count();
                     }
                 }
             }
@@ -161,7 +161,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Projects.SelectedItem);
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

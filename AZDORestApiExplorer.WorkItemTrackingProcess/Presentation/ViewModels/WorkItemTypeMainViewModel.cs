@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
-    public class WorkItemTypeMainViewModel : HTTPExchangeBase, IWorkItemTypeMainViewModel
+    public class WorkItemTypeMainViewModel : GridViewModelBase, IWorkItemTypeMainViewModel
     {
         #region Constructors, Initialization, and Load
 

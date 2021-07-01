@@ -8,6 +8,7 @@ using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
@@ -23,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemRelationTypeMainViewModel : HTTPExchangeBase, IWorkItemRelationTypeMainViewModel
+    public class WorkItemRelationTypeMainViewModel : GridViewModelBase, IWorkItemRelationTypeMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -45,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetWorkItemRelationTypesEvent>().Subscribe(GetWorkItemRelationTypes);
 
-            this.WorkItemRelationTypes.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<WorkItemRelationType> WorkItemRelationTypes { get; set; } = new RESTResult<WorkItemRelationType>();
+        public RESTResult<WorkItemRelationType> Results { get; set; } = new RESTResult<WorkItemRelationType>();
 
 
         private WorkItemRelationType.Attributes _aStuff;
@@ -129,13 +130,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         WorkItemRelationTypesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemRelationTypesRoot>(outJson);
 
-                        WorkItemRelationTypes.ResultItems = new ObservableCollection<WorkItemRelationType>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<WorkItemRelationType>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        WorkItemRelationTypes.Count = WorkItemRelationTypes.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -152,12 +153,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            if (WorkItemRelationTypes.SelectedItem is null)
+            if (Results.SelectedItem is null)
             {
                 return;
             }
-            EventAggregator.GetEvent<SelectedWorkItemRelationTypeChangedEvent>().Publish(WorkItemRelationTypes.SelectedItem);
-            AStuff = WorkItemRelationTypes.SelectedItem.attributes;
+
+            EventAggregator.GetEvent<SelectedWorkItemRelationTypeChangedEvent>().Publish(Results.SelectedItem);
+            AStuff = Results.SelectedItem.attributes;
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

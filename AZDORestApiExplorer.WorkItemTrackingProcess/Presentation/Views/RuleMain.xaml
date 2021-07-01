@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"    
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
     xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.Views"
@@ -28,6 +30,7 @@
             <Setter Property="Background" Value="White" />
         </Style>
     </d:DesignerProperties.DesignStyle>
+    
     <UserControl.Resources>
         <Style x:Key="OutlineBorder" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black" />
@@ -121,15 +124,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding Rules.Count}"
-                           Style="{StaticResource CountTextBlock}"/>
-            </StackPanel>
-        </Border>
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
-        <dxg:GridControl Grid.Row="1"
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Rules.ResultItems}"
                     SelectedItem="{Binding Rules.SelectedItem}"               
                     FontSize="12"

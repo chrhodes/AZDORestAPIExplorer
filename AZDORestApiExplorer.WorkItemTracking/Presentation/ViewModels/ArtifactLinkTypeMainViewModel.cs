@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
@@ -24,7 +25,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class ArtifactLinkTypeMainViewModel : HTTPExchangeBase, IArtifactLinkTypeMainViewModel
+    public class ArtifactLinkTypeMainViewModel : GridViewModelBase, IArtifactLinkTypeMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -46,7 +47,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetArtifactLinkTypesEvent>().Subscribe(GetArtifactLinkTypes);
 
-            this.ArtifactLinkTypes.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -65,7 +66,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<ArtifactLinkType> ArtifactLinkTypes { get; set; } = new RESTResult<ArtifactLinkType>();
+        public RESTResult<ArtifactLinkType> Results { get; set; } = new RESTResult<ArtifactLinkType>();
 
         #endregion
 
@@ -114,13 +115,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         ArtifactLinkTypesRoot resultRoot = JsonConvert.DeserializeObject<ArtifactLinkTypesRoot>(outJson);
 
-                        ArtifactLinkTypes.ResultItems = new ObservableCollection<ArtifactLinkType>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<ArtifactLinkType>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ArtifactLinkTypes.Count = ArtifactLinkTypes.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -137,7 +138,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedArtifactLinkTypeChangedEvent>().Publish(ArtifactLinkTypes.SelectedItem);
+            EventAggregator.GetEvent<SelectedArtifactLinkTypeChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

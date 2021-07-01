@@ -121,14 +121,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-            ItemsSource="{Binding Projects.ResultItems}"
-            SelectedItem="{Binding Projects.SelectedItem}"               
+            ItemsSource="{Binding Results.ResultItems}"
+            SelectedItem="{Binding Results.SelectedItem}"               
             FontSize="12"
             ScrollViewer.CanContentScroll="True"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -145,28 +144,9 @@
             
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2" Text="{Binding Projects.SelectedItem.url}"  
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
                       TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
         
-        <!--<Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <ContentControl Grid.Column="0" FontSize="12"
-                                Content="{Binding Projects.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateStackPanel}"/>
-
-            <ContentControl Grid.Column="1"  FontSize="12"
-                                Content="{Binding Projects.SelectedItem}"
-                                ContentTemplate="{StaticResource ProjectTemplateGrid}"/>
-
-        </Grid>-->
-
     </Grid>
 
 </vncmvvm:ViewBase>

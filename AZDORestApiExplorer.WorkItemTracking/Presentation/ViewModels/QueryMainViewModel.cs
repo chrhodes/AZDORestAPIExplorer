@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetQueriesEvent>().Subscribe(GetQueries);
 
-            this.Queries.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -65,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Query> Queries { get; set; } = new RESTResult<Query>();
+        public RESTResult<Query> Results { get; set; } = new RESTResult<Query>();
 
         #endregion
 
@@ -114,13 +114,13 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         QueriesRoot resultRoot = JsonConvert.DeserializeObject<QueriesRoot>(outJson);
 
-                        Queries.ResultItems = new ObservableCollection<Query>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Query>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Queries.Count = Queries.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -137,7 +137,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedQueryChangedEvent>().Publish(Queries.SelectedItem);
+            EventAggregator.GetEvent<SelectedQueryChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
