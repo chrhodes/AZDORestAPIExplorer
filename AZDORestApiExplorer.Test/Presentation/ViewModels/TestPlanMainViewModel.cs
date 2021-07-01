@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core;
@@ -14,6 +15,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Services;
@@ -28,7 +30,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 
         public TestPlanMainViewModel(
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator, messageDialogService)
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
 
@@ -91,10 +93,8 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
                 {
                     Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
+                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + $"testplan/plans"
                         + "?api-version=6.1-preview.1";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
@@ -107,7 +107,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        JObject o = JObject.Parse(outJson);
+                        //JObject o = JObject.Parse(outJson);
 
                         TestPlansRoot resultRoot = JsonConvert.DeserializeObject<TestPlansRoot>(outJson);
 
@@ -117,6 +117,37 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
+                        while (hasContinuationToken)
+                        {
+                            RequestResponseInfo exchange2 = new RequestResponseInfo();
+
+                            string continueToken = continuationHeaders.First();
+
+                            string requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/testplan/plans?api-version=6.1-preview.1&continuationToken={continueToken}";
+
+                            exchange2.Uri = requestUri2;
+                            exchange2.RequestHeadersX.AddRange(client.DefaultRequestHeaders);
+
+                            using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                            {
+                                exchange2.Response = response2;
+                                exchange2.ResponseHeadersX.AddRange(response2.Headers);
+
+                                RequestResponseExchange.Add(exchange2);
+
+                                response2.EnsureSuccessStatusCode();
+                                string outJson2 = await response2.Content.ReadAsStringAsync();
+
+                                //JObject oC = JObject.Parse(outJson2);
+
+                                TestPlansRoot resultRootC = JsonConvert.DeserializeObject<TestPlansRoot>(outJson2);
+
+                                Results.ResultItems.AddRange(resultRootC.value);
+
+                                hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                            }
+                        }
+
                         Results.Count = Results.ResultItems.Count;
                     }
                 }
@@ -124,7 +155,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_APPNAME);
-                MessageDialogService.ShowInfoDialog($"Error ({ex})");
+                ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
@@ -134,7 +165,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Publish($Results.SelectedItem);
+            EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

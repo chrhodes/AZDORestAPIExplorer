@@ -126,7 +126,30 @@
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
-            
+
+            <dxlc:LayoutGroup Header="Test"
+        	    View="GroupBox" Orientation="Vertical" 
+        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	    IsCollapsible="True"  IsCollapsed="False">
+
+                <dxlc:LayoutGroup Header="TestPlan"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource TestColor}">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTestPlan.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTestPlan.id}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
             <dxlc:LayoutGroup Header="Work Item Tracking Process"
         	    View="GroupBox" Orientation="Vertical" 
         	    VerticalAlignment="Top" HorizontalAlignment="Stretch"

@@ -40,7 +40,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
@@ -53,11 +52,20 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
             <dxg:GridColumn FieldName="name" />
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="project.name" />
+            <dxg:GridColumn FieldName="rootSuite.name" />
+            <dxg:GridColumn FieldName="revision" />
+            <dxg:GridColumn FieldName="areaPath" />
+            <dxg:GridColumn FieldName="iteration" />
+            <dxg:GridColumn FieldName="owner" />            
+            <dxg:GridColumn FieldName="state" />
+            <dxg:GridColumn FieldName="buildId" />
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2"
+        <!--<dxe:TextEdit Grid.Row="2"
             Text="{Binding Results.SelectedItem.url}"
-            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>-->
 
     </Grid>
 

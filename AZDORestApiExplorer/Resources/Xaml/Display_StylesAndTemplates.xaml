@@ -7,7 +7,7 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"    
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
-    xmlns:local="clr-namespace:VNCCodeCommandConsole"
+    xmlns:local="clr-namespace:AZDORestApiExplorer"
 
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,6 +26,7 @@
     <SolidColorBrush x:Key="TeamColor" Color="LightSalmon" />
     <SolidColorBrush x:Key="RepositoryColor" Color="#FFFF6400" />
     <SolidColorBrush x:Key="CommitColor" Color="#FFB64700" />
+    <SolidColorBrush x:Key="TestColor" Color="#FFB6007B" />
     <SolidColorBrush x:Key="WorkItemTypeColor" Color="#FFA68ADE" />
 
     <Style x:Key="OutlineBorder" TargetType="Border">

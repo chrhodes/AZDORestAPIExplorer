@@ -219,6 +219,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
 
+            // Test
+
+            GetTestsPlanCommand.RaiseCanExecuteChanged();
+
             // Work Item Tracking
 
             GetClassificationNodesCommand.RaiseCanExecuteChanged();
@@ -1121,8 +1125,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
-                new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
+            EventAggregator.GetEvent<Core.Events.Test.GetTestPlansEvent>().Publish(
+                new Core.Events.Test.GetTestPlansEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject
@@ -1133,10 +1137,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
     public bool GetTestsPlanCanExecute()
     {
-        // TODO(crhodes)
-        // Add any before button is enabled logic.
-        return true;
-    }
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
     #endregion
 

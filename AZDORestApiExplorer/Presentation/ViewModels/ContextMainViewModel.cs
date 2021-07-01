@@ -2,6 +2,7 @@
 
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
 using Prism.Events;
@@ -41,6 +42,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
+
+            EventAggregator.GetEvent<Core.Events.Test.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
@@ -117,6 +120,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void CommitChanged(Commit commit)
         {
             Context.SelectedCommit = commit;
+        }
+        private void TestPlanChanged(TestPlan testPlan)
+        {
+            Context.SelectedTestPlan = testPlan;
         }
 
         private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)

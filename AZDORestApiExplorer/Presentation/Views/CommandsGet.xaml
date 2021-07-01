@@ -99,9 +99,6 @@
                     		ToolTip="{Binding GetTestsPlanToolTip, FallbackValue='GetTestsPlan ToolTip' }" />
                     </dxlc:LayoutItem>
                     
-                    
-
-                    
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
@@ -134,9 +131,9 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Repository Level" 
-                    View="GroupBox"
-                    Orientation="Vertical"
-                    Background="{StaticResource RepositoryColor}">
+                        View="GroupBox"
+                        Orientation="Vertical"
+                        Background="{StaticResource RepositoryColor}">
         
                         <dxlc:LayoutItem>
                             <Button 
@@ -212,9 +209,6 @@
                             	Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
                             	ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
                             </dxlc:LayoutItem>
-
-
-
 
                         </dxlc:LayoutGroup>
 

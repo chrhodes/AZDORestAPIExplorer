@@ -1,5 +1,6 @@
 ﻿using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Test;
 
 using VNC.Core.Mvvm;
 
@@ -38,6 +39,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
         public Commit SelectedCommit
         {
             get { return GetValue<Commit>(); }
+            set { SetValue(value); }
+        }
+
+        public TestPlan SelectedTestPlan
+        {
+            get { return GetValue<TestPlan>(); }
             set { SetValue(value); }
         }
 
