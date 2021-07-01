@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
-    <Folder Include="Presentation\ModelWrappers\" />
-    <Folder Include="Presentation\ViewModels\Interfaces\" />
-    <Folder Include="Presentation\Views\Interfaces\" />
   </ItemGroup>
 
     <ItemGroup>
@@ -25,6 +22,7 @@
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>

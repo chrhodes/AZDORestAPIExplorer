@@ -45,7 +45,6 @@
     <Folder Include="ServiceHooks\" />
     <Folder Include="TestPlan\" />
     <Folder Include="TestResults\" />
-    <Folder Include="Test\" />
     <Folder Include="Tfvc\" />
     <Folder Include="TokenAdmin\" />
     <Folder Include="Wiki\" />

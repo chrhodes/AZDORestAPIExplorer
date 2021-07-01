@@ -84,9 +84,25 @@
                             Content="{Binding GetWidgetsContent, FallbackValue='Get Widgets' }"
                             ToolTip="{Binding GetWidgetsToolTip, FallbackValue='Get Widgets ToolTip' }" />
                     </dxlc:LayoutItem>
+                    
                 </dxlc:LayoutGroup>
 
+                <dxlc:LayoutGroup Header="Test - Organization Level"
+                    View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True"  IsCollapsed="False">
 
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding GetTestsPlanCommand }"
+                    		Content="{Binding GetTestsPlanContent, FallbackValue='GetTestsPlan' }"
+                    		ToolTip="{Binding GetTestsPlanToolTip, FallbackValue='GetTestsPlan ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
+                    
+
+                    
+                </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
 

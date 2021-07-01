@@ -7,6 +7,7 @@ using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Git;
 using AZDORestApiExplorer.Presentation.Views;
+using AZDORestApiExplorer.Test;
 using AZDORestApiExplorer.WorkItemTracking;
 using AZDORestApiExplorer.WorkItemTrackingProcess;
 
@@ -160,6 +161,8 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(DashboardModule));
 
             moduleCatalog.AddModule(typeof(GitModule));
+
+            moduleCatalog.AddModule(typeof(TestModule));
 
             moduleCatalog.AddModule(typeof(WorkItemTrackingModule));
 

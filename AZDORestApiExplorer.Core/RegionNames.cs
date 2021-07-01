@@ -96,6 +96,8 @@ namespace AZDORestApiExplorer.Core
         // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
         // public static string RepositoryDetailRegion = "RepositoryDetailRegion";
 
+        public static string TestPlanMainRegion = "TestPlanMainRegion";
+
         //
         // Work Item Tracking Category
         //

@@ -82,7 +82,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Git Category
 
+            #region Test Category
 
+            GetTestsPlanCommand = new DelegateCommand(GetTestsPlan, GetTestsPlanCanExecute);
+
+            #endregion
 
             #region Work Item Tracking Category
 
@@ -1048,9 +1052,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion GetRefs Command
-
-        // End Cut One
-
+        
         #region GetStats Command
 
         public DelegateCommand GetStatsCommand { get; set; }
@@ -1095,17 +1097,57 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetStats Command
 
-        // End Cut One
 
         #endregion Git Category
 
 
+        #region Test Category
 
-        #region Work Item Tracking Category
+        #region GetTestsPlan Command
 
-        #region GetArtifactLinkTypes Command
+        public DelegateCommand GetTestsPlanCommand { get; set; }
+        public string GetTestsPlanContent { get; set; } = "GetTestsPlan";
+        public string GetTestsPlanToolTip { get; set; } = "GetTestsPlan ToolTip";
 
-        public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
+        // Can get fancy and use Resources
+        //public string GetTestsPlanContent { get; set; } = "ViewName_GetTestsPlanContent";
+        //public string GetTestsPlanToolTip { get; set; } = "ViewName_GetTestsPlanContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTestsPlanContent">GetTestsPlan</system:String>
+        //    <system:String x:Key="ViewName_GetTestsPlanContentToolTip">GetTestsPlan ToolTip</system:String>  
+
+        public void GetTestsPlan()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.WorkItemTracking.GetArtifactLinkTypesEvent>().Publish(
+                new Core.Events.WorkItemTracking.GetArtifactLinkTypesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+    public bool GetTestsPlanCanExecute()
+    {
+        // TODO(crhodes)
+        // Add any before button is enabled logic.
+        return true;
+    }
+
+    #endregion
+
+
+    #endregion
+
+    #region Work Item Tracking Category
+
+    #region GetArtifactLinkTypes Command
+
+    public DelegateCommand GetArtifactLinkTypesCommand { get; set; }
         public string GetArtifactLinkTypesContent { get; set; } = "GetArtifactLinkTypes";
         public string GetArtifactLinkTypesToolTip { get; set; } = "GetArtifactLinkTypes ToolTip";
 

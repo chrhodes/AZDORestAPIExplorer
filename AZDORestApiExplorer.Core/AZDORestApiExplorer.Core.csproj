@@ -37,7 +37,6 @@
     <Folder Include="Events\Security\" />
     <Folder Include="Events\ServiceEndpoint\" />
     <Folder Include="Events\ServiceHooks\" />
-    <Folder Include="Events\TestPlan\" />
     <Folder Include="Events\TestResults\" />
     <Folder Include="Events\Test\" />
     <Folder Include="Events\Tfvc\" />

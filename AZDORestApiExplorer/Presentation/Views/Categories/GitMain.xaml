@@ -18,6 +18,7 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
+    
     <dxlc:LayoutGroup Header="Git"
         Orientation="Vertical"  View="Tabs">
 

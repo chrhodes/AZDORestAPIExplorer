@@ -161,6 +161,10 @@
                             <local:DashboardMain />
                         </dxdo:LayoutPanel>
 
+                        <dxdo:LayoutPanel Caption="Test" >
+                            <local:TestMain />
+                        </dxdo:LayoutPanel>
+                        
                         <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True" TabBackgroundColor="AliceBlue" >
                             <local:WorkItemTrackingMain />
                         </dxdo:LayoutPanel>
@@ -168,7 +172,6 @@
                         <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
-
 
                         <dxdo:LayoutPanel Caption="Future Output" AutoHidden="True">
 
@@ -196,21 +199,21 @@
                                         </Grid>
                                     </dxlc:LayoutGroup>
 
-                                    <dxlc:LayoutGroup Header="Artifacts" >
+                                    <dxdo:LayoutPanel Caption="Artifacts" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Audit" >
+                                    <dxdo:LayoutPanel Caption="Audit" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Build" >
+                                    <dxdo:LayoutPanel Caption="Build" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Cloud Load Test" >
+                                    <dxdo:LayoutPanel Caption="Cloud Load Test" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
                                     <!--<dxlc:LayoutGroup Header="Dashboard">
                                         <dxlc:LayoutGroup 
@@ -238,101 +241,93 @@
                                         </dxlc:LayoutGroup>
                                     </dxlc:LayoutGroup>-->
 
-                                    <dxlc:LayoutGroup Header="Distributed Task" >
+                                    <dxdo:LayoutPanel Caption="Distributed Task" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Extension Management" >
+                                    <dxdo:LayoutPanel Caption="Extension Management" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Graph" >
+                                    <dxdo:LayoutPanel Caption="Graph" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Identities" >
+                                    <dxdo:LayoutPanel Caption="Identities" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Member Entitlement Management" >
+                                    <dxdo:LayoutPanel Caption="Member Entitlement Management" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Notification" >
+                                    <dxdo:LayoutPanel Caption="Notification" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Operations" >
+                                    <dxdo:LayoutPanel Caption="Operations" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Permissions Report" >
+                                    <dxdo:LayoutPanel Caption="Permissions Report" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Pipelines" >
+                                    <dxdo:LayoutPanel Caption="Pipelines" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Policy" >
+                                    <dxdo:LayoutPanel Caption="Policy" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Profile" >
+                                    <dxdo:LayoutPanel Caption="Profile" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Release" >
+                                    <dxdo:LayoutPanel Caption="Release" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Search" >
+                                    <dxdo:LayoutPanel Caption="Search" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Security" >
+                                    <dxdo:LayoutPanel Caption="Security" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Service Endpoint" >
+                                    <dxdo:LayoutPanel Caption="Service Endpoint" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Service Hooks" >
+                                    <dxdo:LayoutPanel Caption="Service Hooks" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Status" >
+                                    <dxdo:LayoutPanel Caption="Status" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Symbol" >
+                                    <dxdo:LayoutPanel Caption="Symbol" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Test" >
+                                    <dxdo:LayoutPanel Caption="Tfvc" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Test" >
+                                    <dxdo:LayoutPanel Caption="Token Admin" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Tfvc" >
+                                    <dxdo:LayoutPanel Caption="Work" >
 
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
-                                    <dxlc:LayoutGroup Header="Token Admin" >
+                                    <dxdo:LayoutPanel Caption="Work Item Tracking Process Template" >
 
-                                    </dxlc:LayoutGroup>
-
-                                    <dxlc:LayoutGroup Header="Work" >
-
-                                    </dxlc:LayoutGroup>
-
-                                    <dxlc:LayoutGroup Header="Work Item Tracking Process Template" >
-
-                                    </dxlc:LayoutGroup>
+                                    </dxdo:LayoutPanel>
 
                                 </dxlc:LayoutGroup>
 
