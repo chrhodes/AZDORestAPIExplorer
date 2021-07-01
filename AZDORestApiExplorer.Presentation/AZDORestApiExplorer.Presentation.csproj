@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
@@ -26,7 +26,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Views\" />
+      <Page Update="Views\CommonGridHeader.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
     
 </Project>

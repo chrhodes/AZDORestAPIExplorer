@@ -44,7 +44,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetPushesEvent>().Subscribe(GetPushes);
 
-            this.Pushs.PropertyChanged += PublishSelectionChanged;
+            this.Pushes.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,7 +63,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Push> Pushs { get; set; } = new RESTResult<Push>();
+        public RESTResult<Push> Pushes { get; set; } = new RESTResult<Push>();
 
         #endregion
 
@@ -112,13 +112,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PushesRoot resultRoot = JsonConvert.DeserializeObject<PushesRoot>(outJson);
 
-                        Pushs.ResultItems = new ObservableCollection<Push>(resultRoot.value);
+                        Pushes.ResultItems = new ObservableCollection<Push>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Pushs.Count = Pushs.ResultItems.Count;
+                        Pushes.Count = Pushes.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +135,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedPushChangedEvent>().Publish(Pushs.SelectedItem);
+            EventAggregator.GetEvent<SelectedPushChangedEvent>().Publish(Pushes.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

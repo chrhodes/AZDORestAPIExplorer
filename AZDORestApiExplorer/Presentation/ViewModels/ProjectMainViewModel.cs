@@ -24,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProjectMainViewModel : HTTPExchangeBase, IProjectMainViewModel
+    public class ProjectMainViewModel : GridViewModelBase, IProjectMainViewModel
     {
         #region Constructors, Initialization, and Load
 

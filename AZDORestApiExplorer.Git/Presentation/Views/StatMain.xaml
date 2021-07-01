@@ -65,7 +65,7 @@
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"
-            Text="{Binding Stat.SelectedItem.url}"
+            Text="{Binding Stats.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
         <!--<Grid Grid.Row="3">

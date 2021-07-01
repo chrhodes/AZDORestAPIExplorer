@@ -191,6 +191,7 @@
         <ProjectReference Include="..\AZDORestApiExplorer.Dashboard\AZDORestApiExplorer.Dashboard.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Git\AZDORestApiExplorer.Git.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcess\AZDORestApiExplorer.WorkItemTrackingProcess.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTracking\AZDORestApiExplorer.WorkItemTracking.csproj" />
     </ItemGroup>

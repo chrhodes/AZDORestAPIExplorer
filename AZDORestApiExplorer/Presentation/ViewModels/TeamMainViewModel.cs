@@ -22,7 +22,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class TeamMainViewModel : HTTPExchangeBase, ITeamMainViewModel
+    public class TeamMainViewModel : GridViewModelBase, ITeamMainViewModel
     {
         #region Constructors, Initialization, and Load
 

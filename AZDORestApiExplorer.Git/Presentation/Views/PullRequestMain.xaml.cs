@@ -1,5 +1,7 @@
 using System;
 
+using DevExpress.Xpf.Grid;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -16,10 +18,20 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+            TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
+        private GridControl _targetGrid;
+
+        public GridControl TargetGrid
+        {
+            get => _targetGrid;
+            set => _targetGrid = value;
+        }
+        
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -32,40 +44,5 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 
         #endregion
 
-        private void ExportToExcel_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            grdResults.View.ExportToXlsx(@"C:\temp\grdResults.xlsx");
-        }
-
-        private void ExportToWord_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            grdResults.View.ExportToDocx(@"C:\temp\grdResults.docx");
-        }
-
-        private void ExportToHtml_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            grdResults.View.ExportToHtml(@"C:\temp\grdResults.html");
-        }
-
-        private void ExportToPdf(object sender, System.Windows.RoutedEventArgs e)
-        {
-            grdResults.View.ExportToPdf(@"C:\temp\grdResults.pdf");
-        }
-
-        private void Export_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var s = sender;
-            var rea = e;
-
-            int i = 42;
-        }
-
-        private void defaultClick(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var s = sender;
-            var rea = e;
-
-            int i = 42;
-        }
     }
 }

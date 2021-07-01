@@ -28,7 +28,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProcessMainViewModel : HTTPExchangeBase, IProcessMainViewModel
+    public class ProcessMainViewModel : GridViewModelBase, IProcessMainViewModel
     {
         #region Constructors, Initialization, and Load
 

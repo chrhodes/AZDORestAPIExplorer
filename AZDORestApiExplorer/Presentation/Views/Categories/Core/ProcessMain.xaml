@@ -14,6 +14,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+       
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
@@ -40,29 +42,7 @@
             <RowDefinition Height="Auto" />            
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0"
-                    HorizontalAlignment="Left" VerticalAlignment="Center">
-            <StackPanel Style="{StaticResource CountStackPanel}">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding PullRequests.Count}"
-                                Style="{StaticResource CountTextBlock}" />
-            </StackPanel>
-        </Border>
-
-        <dxlc:LayoutGroup
-        	View="Group" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-
-            <Button
-                Command="{Binding ExportGridCommand}"
-                CommandParameter="{Binding ElementName=grdResults}"
-                Content="{Binding ExportGridContent, FallbackValue='ExportGrid' }"
-                ToolTip="{Binding ExportGridToolTip, FallbackValue='ExportGrid ToolTip' }"
-                Width="75" VerticalAlignment="Center" />
-
-            <dxlc:LayoutItem  Label="Output Path:" VerticalAlignment="Center">
-                <dxe:TextEdit Text="{Binding OutputFileNameAndPath}"  Width="300" />
-            </dxlc:LayoutItem>
-        </dxlc:LayoutGroup>
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Processes.ResultItems}"

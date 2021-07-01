@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://www.codeplex.com/prism"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
@@ -31,30 +32,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource CountBorder}" Grid.Row="0"
-                    HorizontalAlignment="Left" VerticalAlignment="Center">
-            <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
-                <Label Content="Count:" />
-                <TextBlock Text="{Binding PullRequests.Count}"
-                                Style="{StaticResource CountTextBlock}" />
-            </StackPanel>
-        </Border>
-
-        <dxlc:LayoutGroup
-        	View="Group" Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-
-            <Button
-                Command="{Binding ExportGridCommand}"
-                CommandParameter="{Binding ElementName=grdResults}"
-                Content="{Binding ExportGridContent, FallbackValue='ExportGrid' }"
-                ToolTip="{Binding ExportGridToolTip, FallbackValue='ExportGrid ToolTip' }"
-                Width="85" VerticalAlignment="Center" />
-
-            <dxlc:LayoutItem  Label="Output Path:" VerticalAlignment="Center">
-                <dxe:TextEdit Text="{Binding OutputFileNameAndPath}"  Width="300" />
-            </dxlc:LayoutItem>
-        </dxlc:LayoutGroup>
-
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+        
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding PullRequests.ResultItems}"
                     SelectedItem="{Binding PullRequests.SelectedItem}"

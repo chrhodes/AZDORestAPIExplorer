@@ -44,14 +44,14 @@
         <Border Style="{StaticResource CountBorder}" Grid.Row="0">
             <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                 <Label Content="Count:" />
-                <TextBlock Text="{Binding Pushs.Count}"
+                <TextBlock Text="{Binding Pushes.Count}"
                            Style="{StaticResource CountTextBlock}"/>
             </StackPanel>
         </Border>
 
         <dxg:GridControl Grid.Row="1"
-                    ItemsSource="{Binding Pushs.ResultItems}"
-                    SelectedItem="{Binding Pushs.SelectedItem}"
+                    ItemsSource="{Binding Pushes.ResultItems}"
+                    SelectedItem="{Binding Pushes.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
