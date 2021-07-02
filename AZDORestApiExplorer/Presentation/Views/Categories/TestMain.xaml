@@ -44,6 +44,12 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Test Cases" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TestCaseMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutGroup>
     
 </UserControl>

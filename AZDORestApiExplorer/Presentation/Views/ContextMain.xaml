@@ -148,6 +148,22 @@
 
                 </dxlc:LayoutGroup>
 
+                <dxlc:LayoutGroup Header="Test Suite"
+            	    View="GroupBox" Orientation="Vertical" 
+            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	    IsCollapsible="True"  IsCollapsed="False"
+                    Background="{StaticResource TestColor}">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTestSuite.name}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <TextBlock Text="{Binding Context.SelectedTestSuite.id}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Work Item Tracking Process"

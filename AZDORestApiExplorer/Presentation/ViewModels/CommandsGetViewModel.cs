@@ -84,6 +84,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetTestPlansCommand = new DelegateCommand(GetTestPlans, GetTestPlansCanExecute);
             GetTestSuitesCommand = new DelegateCommand(GetTestSuites, GetTestSuitesCanExecute);
+            GetTestCasesCommand = new DelegateCommand(GetTestCases, GetTestCasesCanExecute);
 
             #endregion Test Category
 
@@ -142,6 +143,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
             EventAggregator.GetEvent<Core.Events.Test.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
+            EventAggregator.GetEvent<Core.Events.Test.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
@@ -244,11 +246,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
         }
 
-        private void RaiseTestPlanChanged(TestPlan testPlan)
-        {
-            GetTestSuitesCommand.RaiseCanExecuteChanged();
-        }
-
         private void RaiseRepositoryChanged(Repository repository)
         {
             GetPullRequestsCommand.RaiseCanExecuteChanged();
@@ -272,6 +269,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Work Item Tracking
 
             GetTemplatesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseTestPlanChanged(TestPlan testPlan)
+        {
+            GetTestSuitesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseTestSuiteChanged(TestSuite testSuite)
+        {
+            GetTestCasesCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
@@ -1204,6 +1211,53 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion GetTestSuites Command
+
+        #region GetTestCases Command
+
+        public DelegateCommand GetTestCasesCommand { get; set; }
+        public string GetTestCasesContent { get; set; } = "GetTestCases";
+        public string GetTestCasesToolTip { get; set; } = "GetTestCases ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTestCasesContent { get; set; } = "ViewName_GetTestCasesContent";
+        //public string GetTestCasesToolTip { get; set; } = "ViewName_GetTestCasesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTestCasesContent">GetTestCases</system:String>
+        //    <system:String x:Key="ViewName_GetTestCasesContentToolTip">GetTestCases ToolTip</system:String>
+
+        public void GetTestCases()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Core.Events.Test.GetTestCasesEvent>().Publish(
+                new Core.Events.Test.GetTestCasesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    TestPlan = _contextMainViewModel.Context.SelectedTestPlan,
+                    TestSuite = _contextMainViewModel.Context.SelectedTestSuite
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetTestCasesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedTestPlan is null
+                || _contextMainViewModel.Context.SelectedTestSuite is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion GetTestCases Command
+
+        // End Cut One
 
         #endregion Test Category
 

@@ -39,6 +39,9 @@ namespace AZDORestApiExplorer.Test
             containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();
             containerRegistry.RegisterSingleton<ITestSuiteMain, TestSuiteMain>();
 
+            containerRegistry.Register<ITestCaseMainViewModel, TestCaseMainViewModel>();
+            containerRegistry.RegisterSingleton<ITestCaseMain, TestCaseMain>();
+
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }
 
@@ -55,6 +58,8 @@ namespace AZDORestApiExplorer.Test
             _regionManager.RegisterViewWithRegion(RegionNames.TestPlanMainRegion, typeof(ITestPlanMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.TestSuiteMainRegion, typeof(ITestSuiteMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.TestCaseMainRegion, typeof(ITestCaseMain));
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
         }

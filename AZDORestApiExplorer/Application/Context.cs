@@ -12,8 +12,8 @@
         public Domain.Git.Commit SelectedCommit { get; set; }
 
         public Domain.Test.TestPlan SelectedTestPlan { get; set; }
-        //public Domain.Test.TestSuite SelectedTestSuite { get; set; }
-        //public Domain.Test.TestCase SelectedTestCase { get; set; }
+        public Domain.Test.TestSuite SelectedTestSuite { get; set; }
+        public Domain.Test.TestCase SelectedTestCase { get; set; }
 
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT { get; set; }
 
