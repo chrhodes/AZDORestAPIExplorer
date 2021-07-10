@@ -14,6 +14,13 @@ namespace AZDORestApiExplorer
 
         public const string cCONFIG_FILE = @"C:\temp\AZDORestApiExplorer_Config.xml";
 
+        private static string _runtimeVersion;
+        public static string RuntimeVersion
+        {
+            get => _runtimeVersion;
+            set => _runtimeVersion = value;
+        }
+
         public static event EventHandler AutoHideGroupSpeedChanged;
 
         private static int _AutoHideGroupSpeed = 250;

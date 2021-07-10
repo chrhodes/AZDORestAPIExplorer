@@ -18,12 +18,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 {
-    public class TestPlanMainViewModel : HTTPExchangeBase, ITestPlanMainViewModel
+    public class TestPlanMainViewModel : HTTPExchangeBase, ITestPlanMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -168,6 +169,18 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+      <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="VNC.Core" Version="1.1.0" />
-    <PackageReference Include="VNC.HttpHelper" Version="1.0.0" />
+    <PackageReference Include="VNC.HttpHelper" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>

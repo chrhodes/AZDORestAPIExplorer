@@ -18,12 +18,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
-    public class ListMainViewModel : GridViewModelBase, IListMainViewModel
+    public class ListMainViewModel : GridViewModelBase, IListMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -146,6 +147,18 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedListChangedEvent>().Publish(Lists.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

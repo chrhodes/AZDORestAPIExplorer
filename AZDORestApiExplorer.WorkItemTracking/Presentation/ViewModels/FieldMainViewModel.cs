@@ -22,12 +22,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class FieldMainViewModel : GridViewModelBase, IFieldMainViewModel
+    public class FieldMainViewModel : GridViewModelBase, IFieldMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -160,5 +161,17 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+
+        #endregion
     }
 }

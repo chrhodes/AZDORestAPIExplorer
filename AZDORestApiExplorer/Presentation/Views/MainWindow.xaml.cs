@@ -4,10 +4,11 @@ using System.Windows;
 using AZDORestApiExplorer.ViewModels;
 
 using VNC;
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IInstanceCountV
     {
         public MainWindowViewModel _viewModel;
 
@@ -15,6 +16,7 @@ namespace AZDORestApiExplorer.Presentation.Views
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_CATEGORY);
 
+            InstanceCountV++;
             InitializeComponent();
 
             _viewModel = viewModel;
@@ -22,5 +24,17 @@ namespace AZDORestApiExplorer.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        #endregion
     }
 }

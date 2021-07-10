@@ -24,7 +24,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProjectMainViewModel : GridViewModelBase, IProjectMainViewModel
+    public class ProjectMainViewModel : GridViewModelBase, IProjectMainViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -164,6 +164,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

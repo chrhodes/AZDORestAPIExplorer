@@ -16,13 +16,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 {
-    public class DashboardMainViewModel : GridViewModelBase, IDashboardMainViewModel
+    public class DashboardMainViewModel : GridViewModelBase, IDashboardMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -149,5 +149,16 @@ namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

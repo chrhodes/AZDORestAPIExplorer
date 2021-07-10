@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net48</TargetFramework>
+        <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
@@ -14,12 +14,14 @@
   </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DevExpress.Wpf.Core" Version="19.2.6" />
-        <PackageReference Include="DevExpress.Wpf.Grid" Version="19.2.6" />
-        <PackageReference Include="DevExpress.Wpf.Layout" Version="19.2.6" />
-        <PackageReference Include="DevExpress.Wpf.Navigation" Version="19.2.6" />
+        <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
         <PackageReference Include="VNC.Core" Version="1.1.0" />
-        <PackageReference Include="VNC.HttpHelper" Version="1.0.0" />
+        <PackageReference Include="VNC.HttpHelper" Version="1.1.0" />
     </ItemGroup>
 
     <ItemGroup>

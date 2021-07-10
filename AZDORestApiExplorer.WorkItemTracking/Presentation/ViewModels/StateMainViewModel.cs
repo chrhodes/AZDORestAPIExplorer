@@ -20,10 +20,11 @@ using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class StateMainViewModel : GridViewModelBase, IStateMainViewModel
+    public class StateMainViewModel : GridViewModelBase, IStateMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -137,6 +138,18 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedStateWITChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

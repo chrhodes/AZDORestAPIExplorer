@@ -23,12 +23,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProcessMainViewModel : GridViewModelBase, IProcessMainViewModel
+    public class ProcessMainViewModel : GridViewModelBase, IProcessMainViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -161,6 +162,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

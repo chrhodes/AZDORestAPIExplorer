@@ -18,12 +18,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class CommitChangeMainViewModel : GridViewModelBase, ICommitChangeMainViewModel
+    public class CommitChangeMainViewModel : GridViewModelBase, ICommitChangeMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -146,5 +147,16 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

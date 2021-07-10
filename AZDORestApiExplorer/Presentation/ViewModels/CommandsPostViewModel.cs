@@ -14,7 +14,7 @@ using VNC.WPF.Presentation.Dx.Views;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class CommandsPostViewModel : EventViewModelBase
+    public class CommandsPostViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -478,5 +478,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

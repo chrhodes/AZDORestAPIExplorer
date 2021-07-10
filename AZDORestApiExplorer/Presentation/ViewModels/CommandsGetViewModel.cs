@@ -16,7 +16,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class CommandsGetViewModel : EventViewModelBase
+    public class CommandsGetViewModel : EventViewModelBase, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -2188,5 +2188,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion Work Item Tracking Process Category
 
         #endregion Public Methods
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
+
+        #endregion
     }
 }

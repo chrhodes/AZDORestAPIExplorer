@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
@@ -255,6 +256,80 @@ namespace AZDORestApiExplorer
         #endregion
 
         #region Event Handlers
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+
+            try
+            {
+                VerifyApplicationPrerequisites();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.InnerException.ToString());
+            }
+
+            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void VerifyApplicationPrerequisites()
+        {
+            //TODO(crhodes)
+            // Add any necessary checks for config files, etc
+            // That are required by application
+
+            //if (!File.Exists(Common.cCONFIG_FILE))
+            //{
+            //    throw new FileNotFoundException($"Cannot find {Common.cCONFIG_FILE} - Aborting");
+            //}
+
+            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+
+            Common.RuntimeVersion = versionInfo.FileVersion;
+
+            //var v = versionInfo.Comments;
+            //var v1 = versionInfo.CompanyName;
+            //var v2 = versionInfo.FileDescription;
+            //var v3 = versionInfo.FileName;
+            //var v4 = versionInfo.FileVersion;
+            //var v5 = versionInfo.ProductVersion;
+            //var v6 = versionInfo.ProductName;
+        }
+
+        private void Application_Activated(object sender, EventArgs e)
+        {
+            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+
+
+            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Application_Deactivated(object sender, EventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+
+
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+
+
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+            long startTicks = Log.APPLICATION_END($"Enter: ReasonSessionEnding:({e.ReasonSessionEnding})", Common.LOG_CATEGORY);
+
+
+            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         private void Application_DispatcherUnhandledException(object sender,
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

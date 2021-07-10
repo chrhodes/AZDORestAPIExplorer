@@ -4,10 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:AZDORestApiExplorer"
     xmlns:prism="http://prismlibrary.com/"
+    
+    Startup="Application_Startup"
+    Activated="Application_Activated"    
+    Deactivated="Application_Deactivated"
+    Exit="Application_Exit"
+    SessionEnding="Application_SessionEnding"
     DispatcherUnhandledException="Application_DispatcherUnhandledException"
 >
     <Application.Resources>
+        
         <ResourceDictionary>
+            
             <ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />-->
@@ -24,7 +32,9 @@
                 <ResourceDictionary Source="/Resources/Xaml/Button_Styles.xaml" />
                 <ResourceDictionary Source="/Resources/Xaml/Layout_Styles.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
 
     </Application.Resources>
+    
 </prism:PrismApplication>
