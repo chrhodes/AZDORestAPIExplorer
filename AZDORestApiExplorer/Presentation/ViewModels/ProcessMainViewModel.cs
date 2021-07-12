@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
-
-using Microsoft.VisualStudio.Services.Client;
-using Microsoft.VisualStudio.Services.WebApi;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -50,18 +44,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
 
-            this.Results.PropertyChanged += PublishSelectedProcessChanged;
+            this.Results.PropertyChanged += PublishSelectedItemChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void PublishSelectedProcessChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Results.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -100,31 +85,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private async void GetProcesses(GetProcessesEventArgs args)
         {
-            //VssConnection connection = new VssConnection(
-            //    new Uri(args.Organization.Uri),
-            //    new VssClientCredentials());
-
-            //var username = @"Christopher.Rhodes@bd.com";
-            //var password = @"HappyH0jnacki08";
-
-            //var credentials = new NetworkCredential(username, password);
-            //var handler = new HttpClientHandler { Credentials = credentials };
-
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    //client.DefaultRequestHeaders.Accept.Add(
-                    //    new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //string base64PAT = Convert.ToBase64String(
-                    //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
-                    ////string base64PAT = Convert.ToBase64String(
-                    ////        ASCIIEncoding.ASCII.GetBytes(
-                    ////            string.Format("{0}:{1}", "", collection.PAT)));
-
-                    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
-
                     Core.Helpers.InitializeHttpClient(args.Organization, client);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/"
@@ -164,6 +128,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
         }
 
+        private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Results.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
         #endregion
 
         #region IInstanceCount
@@ -177,6 +149,5 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
-
     }
 }

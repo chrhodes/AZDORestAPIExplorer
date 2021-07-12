@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Core;
@@ -45,7 +44,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(Get_Projects);
 
-            this.Results.PropertyChanged += PublishSelectedProjectChanged;
+            this.Results.PropertyChanged += PublishSelectedItemChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -157,7 +156,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
         }
 
-        private void PublishSelectedProjectChanged(object sender, PropertyChangedEventArgs e)
+        private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 

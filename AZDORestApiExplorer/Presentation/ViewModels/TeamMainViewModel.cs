@@ -43,18 +43,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetTeamsEvent>().Subscribe(GetTeams);
 
-            this.Results.PropertyChanged += PublishSelectedTeamChanged;
+            this.Results.PropertyChanged += PublishSelectedItemChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void PublishSelectedTeamChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Publish(Results.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -160,6 +151,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+        }
+
+        private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Publish(Results.SelectedItem);
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
