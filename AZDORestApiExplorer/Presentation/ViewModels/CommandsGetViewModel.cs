@@ -394,12 +394,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
-                new Core.Events.Core.GetProcessesEventArgs()
+            //EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
+            //    new Core.Events.Core.GetProcessesEventArgs()
+            //    {
+            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
+            //    });
+
+            EventAggregator.GetEvent<Domain.Core.Events.GetProcessesEvent>().Publish(
+                new Domain.Core.Events.GetProcessesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
-
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 

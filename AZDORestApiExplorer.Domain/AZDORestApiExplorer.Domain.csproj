@@ -52,4 +52,8 @@
     <Folder Include="Work\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj" />
+  </ItemGroup>
+
 </Project>

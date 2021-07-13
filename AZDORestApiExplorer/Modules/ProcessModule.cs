@@ -1,6 +1,9 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core;
+
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.Presentation.Views;
@@ -36,7 +39,9 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IProcessMainViewModel, ProcessMainViewModel>();
+            //containerRegistry.Register<IProcessMainViewModel, ProcessMainViewModel>();
+            //containerRegistry.Register<IProcessMainViewModel, DomainViewModel<Process, GetProcessesEvent, GetProcessesEventArgs, SelectedProcessChangedEvent>>();
+
             containerRegistry.RegisterSingleton<IProcessMain, ProcessMain>();
 
             //containerRegistry.Register<IProcessNavigationViewModel, ProcessNavigationViewModel>();

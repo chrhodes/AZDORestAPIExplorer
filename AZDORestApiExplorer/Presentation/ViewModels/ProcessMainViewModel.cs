@@ -136,6 +136,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
         #endregion
 
         #region IInstanceCount
