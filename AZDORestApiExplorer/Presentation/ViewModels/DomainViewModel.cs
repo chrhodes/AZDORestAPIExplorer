@@ -110,38 +110,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 Results.ResultItems = almostResults.Result.ResultItems;
                 Results.Count = Results.ResultItems.Count();
-
-                //using (HttpClient client = new HttpClient())
-                //{
-                //    Core.Helpers.InitializeHttpClient(args.Organization, client);
-
-                //    var requestUri = $"{args.Organization.Uri}/_apis/"
-                //        + "process/processes?"
-                //        + "api-version=6.0-preview.1";
-
-                //    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
-
-                //    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                //    {
-                //        RecordExchangeResponse(response, exchange);
-
-                //        response.EnsureSuccessStatusCode();
-
-                //        string outJson = await response.Content.ReadAsStringAsync();
-
-                //        JObject o = JObject.Parse(outJson);
-
-                //        ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
-
-                //        Results.ResultItems = new ObservableCollection<Process>(resultRoot.value);
-
-                //        IEnumerable<string> continuationHeaders = default;
-
-                //        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                //        Results.Count = Results.ResultItems.Count();
-                //    }
-                //}
             }
             catch (Exception ex)
             {

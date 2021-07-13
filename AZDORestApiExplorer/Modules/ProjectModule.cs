@@ -36,7 +36,7 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IProjectMainViewModel, ProjectMainViewModel>();
+            //containerRegistry.Register<IProjectMainViewModel, ProjectMainViewModel>();
             containerRegistry.RegisterSingleton<IProjectMain, ProjectMain>();
 
             //containerRegistry.Register<IProjectNavigationViewModel, ProjectNavigationViewModel>();

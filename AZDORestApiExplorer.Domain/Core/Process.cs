@@ -46,12 +46,12 @@ namespace AZDORestApiExplorer.Domain.Core
         public string url { get; set; }
         public string name { get; set; }
 
+        public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
+
         public string CallMe()
         {
             return "You Called Process!";
         }
-
-        public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
         public async Task<RESTResult<Process>> GetList(GetProcessesEventArgs args)
         {
@@ -73,7 +73,7 @@ namespace AZDORestApiExplorer.Domain.Core
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    JObject o = JObject.Parse(outJson);
+                    //JObject o = JObject.Parse(outJson);
 
                     ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
 
@@ -109,6 +109,4 @@ namespace AZDORestApiExplorer.Domain.Core
         }
 
     }
-
-    
 }

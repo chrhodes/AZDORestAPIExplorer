@@ -36,7 +36,7 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<ITeamMainViewModel, TeamMainViewModel>();
+            //containerRegistry.Register<ITeamMainViewModel, TeamMainViewModel>();
             containerRegistry.RegisterSingleton<ITeamMain, TeamMain>();
 
             //containerRegistry.Register<ITeamNavigationViewModel, TeamNavigationViewModel>();

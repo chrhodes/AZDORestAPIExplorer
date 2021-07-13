@@ -405,6 +405,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
+
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -438,8 +439,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetProjectsEvent>().Publish(
-                new GetProjectsEventArgs()
+            //EventAggregator.GetEvent<GetProjectsEvent>().Publish(
+            //    new GetProjectsEventArgs()
+            //    {
+            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
+            //    });
+
+            EventAggregator.GetEvent<Domain.Core.Events.GetProjectsEvent>().Publish(
+                new Domain.Core.Events.GetProjectsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -477,8 +484,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetTeamsEvent>().Publish(
-                new GetTeamsEventArgs()
+            EventAggregator.GetEvent<Domain.Core.Events.GetTeamsEvent>().Publish(
+                new Domain.Core.Events.GetTeamsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });

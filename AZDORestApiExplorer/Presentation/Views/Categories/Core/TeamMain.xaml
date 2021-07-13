@@ -20,7 +20,7 @@
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
     xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >

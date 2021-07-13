@@ -1,17 +1,20 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Core.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
+using DevExpress.Xpf.Grid;
+
 using VNC;
 using VNC.Core.Mvvm;
-
-using AZDORestApiExplorer.Presentation.ViewModels;
-using DevExpress.Xpf.Grid;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
     public partial class ProjectMain : ViewBase, IProjectMain, IInstanceCountV
     {
 
-        public ProjectMain(IProjectMainViewModel viewModel)
+        public ProjectMain(DomainViewModel<Project, GetProjectsEvent, GetProjectsEventArgs, SelectedProjectChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -23,6 +26,19 @@ namespace AZDORestApiExplorer.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        //public ProjectMain(IProjectMainViewModel viewModel)
+        //{
+        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+        //    InstanceCountV++;
+        //    InitializeComponent();
+
+        //    ViewModel = viewModel;
+        //    TargetGrid = grdResults;
+
+        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         private GridControl _targetGrid;
 

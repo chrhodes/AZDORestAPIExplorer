@@ -36,9 +36,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProcessChangedEvent>().Subscribe(ProcessChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProjectChangedEvent>().Subscribe(ProjectChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedTeamChangedEvent>().Subscribe(TeamChanged);
 
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(CommitChanged);

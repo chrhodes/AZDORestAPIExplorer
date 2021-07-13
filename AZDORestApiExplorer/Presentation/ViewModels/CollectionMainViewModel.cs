@@ -64,6 +64,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private static string _PAT_BD_STS_QA2 = "";
 
+        private static string _PAT_BDTechnologySolutions = "";
+
         private static string _PAT_VNC_Development = "";
 
         public ObservableCollection<AvailableCollection> AvailableCollections { get; set; }
@@ -127,6 +129,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
+            // TODO(crhodes)
+            // Load this from App.Config
+
             AvailableCollections.Add(
                 new AvailableCollection
                 {
@@ -146,6 +151,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     {
                         Uri = @"https://dev.azure.com/BD-STS-QA2",
                         PAT = _PAT_BD_STS_QA2
+                    }
+                });
+
+            AvailableCollections.Add(
+                new AvailableCollection
+                {
+                    Name = "BDTechnologySolutions",
+                    Organization = new Organization
+                    {
+                        Uri = @"https://dev.azure.com/BDTechnologySolutions",
+                        PAT = _PAT_BDTechnologySolutions
                     }
                 });
 
