@@ -88,7 +88,7 @@ namespace AZDORestApiExplorer.Domain.Core
 
                         string requestUri2 = $"{args.Organization.Uri}/_apis/"
                             + "projects?"
-                            + "continuationToken={continueToken}"
+                            + $"continuationToken={continueToken}"
                             + "&api-version=6.1-preview.4";
 
                         //exchange2.Uri = requestUri2;

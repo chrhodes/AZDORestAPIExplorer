@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="VNC.Core" Version="1.1.0" />
+    <PackageReference Include="VNC.HttpHelper" Version="1.1.0" />      
   </ItemGroup>
 
     <ItemGroup>
@@ -50,10 +51,6 @@
     <Folder Include="Wiki\" />
     <Folder Include="WorkItemTrackingProcessTemplate\" />
     <Folder Include="Work\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj" />
   </ItemGroup>
 
 </Project>

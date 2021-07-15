@@ -176,6 +176,8 @@
         <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisDark" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisLight" Version="21.1.4" />        
         <PackageReference Include="EntityFramework" Version="6.4.4" />
         <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
         <PackageReference Include="Microsoft.VisualStudio.Services.InteractiveClient" Version="16.170.0" />

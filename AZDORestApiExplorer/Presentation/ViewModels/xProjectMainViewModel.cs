@@ -23,11 +23,11 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ProjectMainViewModel : GridViewModelBase, IProjectMainViewModel, IInstanceCountVM
+    public class xProjectMainViewModel : GridViewModelBase, IProjectMainViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
-        public ProjectMainViewModel(
+        public xProjectMainViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {

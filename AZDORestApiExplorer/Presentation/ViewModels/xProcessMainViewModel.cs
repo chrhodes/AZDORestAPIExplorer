@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection;
-using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Core;
@@ -25,18 +23,11 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    //public class DomainViewModel<DType, EType, EArgs, SIEvent> : GridViewModelBase, IProcessMainViewModel, IInstanceCountVM
-    //    where DType : class, new()
-    //    where EType : Prism.Events.PubSubEvent<EArgs>, new()
-    //    where SIEvent : Prism.Events.PubSubEvent<DType>, new()
-    public class DomainViewModel<DType, EType, EArgs, SIEvent> : GridViewModelBase, IInstanceCountVM
-        where DType : class, new()
-        where EType : Prism.Events.PubSubEvent<EArgs>, new()
-        where SIEvent : Prism.Events.PubSubEvent<DType>, new()
+    public class xProcessMainViewModel : GridViewModelBase, IProcessMainViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
-        public DomainViewModel(
+        public xProcessMainViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -51,7 +42,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<EType>().Subscribe(GetProcesses);
+            EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
@@ -60,56 +51,73 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Enums (none)
+        #region Enums
 
 
         #endregion
 
-        #region Structures (none)
+        #region Structures
 
 
         #endregion
 
         #region Fields and Properties
 
-        public RESTResult<DType> Results { get; set; } = new RESTResult<DType>();
+        public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
 
         #endregion
 
-        #region Public Methods (none)
+        #region Public Methods
 
         #endregion
 
-        #region Protected Methods (none)
+        #region Protected Methods
 
 
         #endregion
 
         #region Private Methods
 
-        private async void GetProcesses(EArgs args)
+        private async void GetProcesses(GetProcessesEventArgs args)
         {
             try
             {
-                var domainType = new DType();
+                using (HttpClient client = new HttpClient())
+                {
+                    Core.Helpers.InitializeHttpClient(args.Organization, client);
 
-                MethodInfo callMeMethod = domainType.GetType().GetMethod("CallMe");
+                    var requestUri = $"{args.Organization.Uri}/_apis/"
+                        + "process/processes?"
+                        + "api-version=6.0-preview.1";
 
-                var message = callMeMethod.Invoke(domainType, null);
+                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
-                MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
+                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                    {
+                        RecordExchangeResponse(response, exchange);
 
-                Task<RESTResult<DType>> almostResults = (Task < RESTResult < DType >> )getListMethod.Invoke(domainType, new object[] { args });
+                        response.EnsureSuccessStatusCode();
 
-                await almostResults;
+                        string outJson = await response.Content.ReadAsStringAsync();
 
-                Results.ResultItems = almostResults.Result.ResultItems;
-                Results.Count = Results.ResultItems.Count();
+                        JObject o = JObject.Parse(outJson);
+
+                        ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
+
+                        Results.ResultItems = new ObservableCollection<Process>(resultRoot.value);
+
+                        IEnumerable<string> continuationHeaders = default;
+
+                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                        Results.Count = Results.ResultItems.Count();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -124,7 +132,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

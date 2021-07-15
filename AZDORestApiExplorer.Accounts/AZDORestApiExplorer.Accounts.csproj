@@ -20,8 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <!--<ProjectReference Include="..\..\vnc\VNC.Core\VNC.Core.csproj" />
-      <ProjectReference Include="..\..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj" />-->
       <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
       <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
       <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
