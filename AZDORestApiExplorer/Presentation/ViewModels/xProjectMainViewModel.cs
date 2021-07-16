@@ -42,7 +42,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetProjectsEvent>().Subscribe(Get_Projects);
+            EventAggregator.GetEvent<xGetProjectsEvent>().Subscribe(Get_Projects);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
@@ -84,7 +84,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void Get_Projects(GetProjectsEventArgs args)
+        private async void Get_Projects(xGetProjectsEventArgs args)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Publish(Results.SelectedItem);
+            EventAggregator.GetEvent<xSelectedProjectChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

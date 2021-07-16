@@ -187,8 +187,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #endregion
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
+            EventAggregator.GetEvent<Core.Events.Core.xSelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<Core.Events.Core.xSelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -201,7 +201,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // Other commands that depend on more do not need to be added 
         // as the check is in all CanExecute methods
 
-        private void RaiseCollectionChanged()
+        private void RaiseCollectionChanged(SelectedCollectionChangedEventArgs args)
         {
 
             // Work Item Tracking

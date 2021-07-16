@@ -2,7 +2,7 @@
 
 namespace AZDORestApiExplorer.Core.Events.Core
 {
-    public class SelectedTeamChangedEventArgs
+    public class xSelectedTeamChangedEventArgs
     {
 
     }

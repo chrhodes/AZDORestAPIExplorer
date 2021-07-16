@@ -89,7 +89,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish();
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(new SelectedCollectionChangedEventArgs()
+            {
+                Collection = SelectedCollection
+            });
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

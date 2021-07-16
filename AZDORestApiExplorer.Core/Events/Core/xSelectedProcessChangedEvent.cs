@@ -1,9 +1,8 @@
 ﻿using AZDORestApiExplorer.Domain.Core;
 
+using Prism.Events;
+
 namespace AZDORestApiExplorer.Core.Events.Core
 {
-    public class SelectedProjectChangedEventArgs
-    {
-        public Project Project;
-    }
+    public class xSelectedProcessChangedEvent : PubSubEvent<Process> { }
 }

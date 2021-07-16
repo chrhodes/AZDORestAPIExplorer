@@ -22,6 +22,7 @@ namespace AZDORestApiExplorer.Presentation.Views
 
             ViewModel = viewModel;
             TargetGrid = grdResults;
+            //viewModel.OutputFileNameAndPath = @"C:\temp\ORG-Process";
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -2,5 +2,5 @@
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class GetTeamsEvent : PubSubEvent<GetTeamsEventArgs> { }
+    public class xGetTeamsEvent : PubSubEvent<xGetTeamsEventArgs> { }
 }

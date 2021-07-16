@@ -48,11 +48,6 @@ namespace AZDORestApiExplorer.Domain.Core
 
         public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
-        public string CallMe()
-        {
-            return "You Called Process!";
-        }
-
         public async Task<RESTResult<Process>> GetList(GetProcessesEventArgs args)
         {
             using (HttpClient client = new HttpClient())

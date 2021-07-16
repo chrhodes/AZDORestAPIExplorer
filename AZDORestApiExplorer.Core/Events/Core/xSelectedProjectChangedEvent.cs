@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events.Core
 {
-    public class SelectedTeamChangedEvent : PubSubEvent<Team> { }
+    public class xSelectedProjectChangedEvent : PubSubEvent<Project> { }
 }

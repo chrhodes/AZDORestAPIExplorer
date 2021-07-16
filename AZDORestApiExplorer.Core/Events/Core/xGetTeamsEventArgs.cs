@@ -2,7 +2,7 @@
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class GetTeamsEventArgs
+    public class xGetTeamsEventArgs
     {
         public Organization Organization;
     }

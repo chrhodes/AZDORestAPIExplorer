@@ -43,8 +43,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
 
-            EventAggregator.GetEvent<Core.Events.Test.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
-            EventAggregator.GetEvent<Core.Events.Test.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
+            //EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);

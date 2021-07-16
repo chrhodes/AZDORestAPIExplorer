@@ -1,8 +1,8 @@
 ﻿using AZDORestApiExplorer.Domain;
 
-namespace AZDORestApiExplorer.Core.Events.Core
+namespace AZDORestApiExplorer.Core.Events
 {
-    public class GetProcessesEventArgs
+    public class xGetProjectsEventArgs
     {
         public Organization Organization;
     }

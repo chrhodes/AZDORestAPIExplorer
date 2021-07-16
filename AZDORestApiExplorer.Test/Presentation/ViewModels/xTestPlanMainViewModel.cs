@@ -24,12 +24,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 {
-    public class TestPlanMainViewModel : HTTPExchangeBase, ITestPlanMainViewModel, IInstanceCountVM
+    public class xTestPlanMainViewModel : HTTPExchangeBase, ITestPlanMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public TestPlanMainViewModel(
+        public xTestPlanMainViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -44,7 +44,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetTestPlansEvent>().Subscribe(GetTestPlans);
+            EventAggregator.GetEvent<xGetTestPlansEvent>().Subscribe(GetTestPlans);
 
             this.Results.PropertyChanged += PublishSelectionChanged;
 
@@ -86,7 +86,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetTestPlans(GetTestPlansEventArgs args)
+        private async void GetTestPlans(xGetTestPlansEventArgs args)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Publish(Results.SelectedItem);
+            EventAggregator.GetEvent<xSelectedTestPlanChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

@@ -3,6 +3,7 @@
 using AZDORestApiExplorer.Core.Events;
 
 using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
@@ -135,14 +136,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
-            EventAggregator.GetEvent<Core.Events.Core.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
+            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
-            EventAggregator.GetEvent<Core.Events.Test.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
+            EventAggregator.GetEvent<Core.Events.Test.xSelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
             EventAggregator.GetEvent<Core.Events.Test.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
@@ -161,7 +162,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // Other commands that depend on more do not need to be added
         // as the check is in all CanExecute methods
 
-        private void RaiseCollectionChanged()
+        private void RaiseCollectionChanged(SelectedCollectionChangedEventArgs args)
         {
             GetCoreProcessesCommand.RaiseCanExecuteChanged();
             GetProjectsCommand.RaiseCanExecuteChanged();
@@ -1158,8 +1159,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Test.GetTestPlansEvent>().Publish(
-                new Core.Events.Test.GetTestPlansEventArgs()
+            EventAggregator.GetEvent<Domain.Test.Events.GetTestPlansEvent>().Publish(
+                new Domain.Test.Events.GetTestPlansEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject

@@ -33,7 +33,10 @@ namespace AZDORestApiExplorer.Test
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
 
-            containerRegistry.Register<ITestPlanMainViewModel, TestPlanMainViewModel>();
+            // NOTE(crhodes)
+            // Don't need ViewModels for basic View with Grid.  Use DomainViewModel
+
+            //containerRegistry.Register<ITestPlanMainViewModel, TestPlanMainViewModel>();
             containerRegistry.RegisterSingleton<ITestPlanMain, TestPlanMain>();
 
             containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();

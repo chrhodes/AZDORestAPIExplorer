@@ -1,20 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Net.Http;
-using System.Windows.Input;
-
-using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Git;
-using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Domain.Git;
 
 using DevExpress.Xpf.Grid;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 using Prism.Commands;
 using Prism.Events;
@@ -120,7 +106,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add some more context to name, e.g. Org, Team Project, ???
 
-            dialogParameters.Add("filenameandpath", OutputFileNameAndPath);
+            dialogParameters.Add("outputfilenameandpath", OutputFileNameAndPath);
 
             DialogService.Show("ExportGridDialog", dialogParameters, r =>
             {

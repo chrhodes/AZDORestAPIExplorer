@@ -43,6 +43,8 @@
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+        <!--<vncazdopv:CommonGridHeader x:Name="commonGridHeader" OutputFileNameAndPath="C:\temp\ORG-Process" Grid.Row="0" />-->
+        <!--<vncazdopv:CommonGridHeader x:Name="commonGridHeader" OutputFileNameAndPath="{Binding OutputFileNameAndPath}" Grid.Row="0" />-->
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"

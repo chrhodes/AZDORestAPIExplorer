@@ -1,6 +1,6 @@
 ﻿namespace AZDORestApiExplorer.Core.Events.Core
 {
-    public class SelectedProcessChangedEventArgs
+    public class xSelectedProcessChangedEventArgs
     {
 
     }

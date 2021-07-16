@@ -52,10 +52,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<EType>().Subscribe(GetList);
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            var domainType = new DType();
+
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-{domainType.GetType().Name}";
         }
 
         #endregion
@@ -98,13 +106,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             {
                 var domainType = new DType();
 
-                MethodInfo callMeMethod = domainType.GetType().GetMethod("CallMe");
+                //MethodInfo callMeMethod = domainType.GetType().GetMethod("CallMe");
 
-                var message = callMeMethod.Invoke(domainType, null);
+                //var message = callMeMethod.Invoke(domainType, null);
 
                 MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
 
-                Task<RESTResult<DType>> almostResults = (Task < RESTResult < DType >> )getListMethod.Invoke(domainType, new object[] { args });
+                Task<RESTResult<DType>> almostResults = (Task <RESTResult<DType>>)getListMethod.Invoke(domainType, new object[] { args });
 
                 await almostResults;
 

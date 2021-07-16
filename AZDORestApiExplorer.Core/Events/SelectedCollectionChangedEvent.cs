@@ -2,5 +2,5 @@
 
 namespace AZDORestApiExplorer.Core.Events
 {
-    public class SelectedCollectionChangedEvent : PubSubEvent { }
+    public class SelectedCollectionChangedEvent : PubSubEvent<SelectedCollectionChangedEventArgs> { }
 }
