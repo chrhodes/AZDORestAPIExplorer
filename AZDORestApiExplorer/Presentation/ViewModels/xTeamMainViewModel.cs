@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Core.Events;
 
 using Newtonsoft.Json;
 
@@ -41,7 +42,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<xGetTeamsEvent>().Subscribe(GetTeams);
+            EventAggregator.GetEvent<GetTeamsEvent>().Subscribe(GetTeams);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
@@ -82,7 +83,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetTeams(xGetTeamsEventArgs args)
+        private async void GetTeams(GetTeamsEventArgs args)
         {
             try
             {

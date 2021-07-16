@@ -2,7 +2,7 @@ using AZDORestApiExplorer.Domain;
 
 namespace AZDORestApiExplorer.Core.Events.Test
 {
-    public class GetTestCasesEventArgs
+    public class xGetTestCasesEventArgs
     {
         public Organization Organization;
 

@@ -4,5 +4,5 @@ using Prism.Events;
 
 namespace AZDORestApiExplorer.Core.Events.Test
 {
-    public class SelectedTestSuiteChangedEvent : PubSubEvent<TestSuite> { }
+    public class xSelectedTestSuiteChangedEvent : PubSubEvent<TestSuite> { }
 }

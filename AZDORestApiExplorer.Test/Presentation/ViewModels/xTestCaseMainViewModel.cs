@@ -23,12 +23,12 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 {
-    public class TestCaseMainViewModel : HTTPExchangeBase, ITestCaseMainViewModel, IInstanceCountVM
+    public class xTestCaseMainViewModel : HTTPExchangeBase, ITestCaseMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public TestCaseMainViewModel(
+        public xTestCaseMainViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<GetTestCasesEvent>().Subscribe(GetTestCases);
+            EventAggregator.GetEvent<xGetTestCasesEvent>().Subscribe(GetTestCases);
 
             this.Results.PropertyChanged += PublishSelectionChanged;
 
@@ -85,7 +85,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetTestCases(GetTestCasesEventArgs args)
+        private async void GetTestCases(xGetTestCasesEventArgs args)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace AZDORestApiExplorer.Test.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_APPNAME);
 
-            EventAggregator.GetEvent<SelectedTestCaseChangedEvent>().Publish(Results.SelectedItem);
+            EventAggregator.GetEvent<xSelectedTestCaseChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_APPNAME, startTicks);
         }

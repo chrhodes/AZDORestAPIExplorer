@@ -1,5 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="AZDORestApiExplorer.Presentation.Views.ProcessMain"
+    x:Name="thisTeamMain"     
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -39,7 +40,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />            
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
@@ -63,6 +65,28 @@
 
         <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
                       TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+
+
+        <DockPanel Grid.Row="3" >
+
+            <!--<StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
+                <Label Content=".NET Runtime: " />
+                <Label Content="{Binding RuntimeVersion}" />
+            </StackPanel>-->
+
+            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisTeamMain, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
 
     </Grid>
 

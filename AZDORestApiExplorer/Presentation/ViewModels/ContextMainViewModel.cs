@@ -44,7 +44,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
-            //EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestCaseChangedEvent>().Subscribe(TestCaseChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
@@ -132,6 +133,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void TestSuiteChanged(TestSuite testSuite)
         {
             Context.SelectedTestSuite = testSuite;
+        }
+
+        private void TestCaseChanged(TestCase testCase)
+        {
+            Context.SelectedTestCase = testCase;
         }
 
         private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)

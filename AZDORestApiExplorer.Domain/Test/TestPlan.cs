@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.Domain.Test
         public string name { get; set; }
         public object owner { get; set; }
         public Project project { get; set; }
-        public RESTResult<TestPlan> Results { get; set; } = new RESTResult<TestPlan>();
+
         public int revision { get; set; }
         public Rootsuite rootSuite { get; set; }
         public string state { get; set; }
@@ -71,6 +71,8 @@ namespace AZDORestApiExplorer.Domain.Test
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
         }
+
+        public RESTResult<TestPlan> Results { get; set; } = new RESTResult<TestPlan>();
 
         public async Task<RESTResult<TestPlan>> GetList(GetTestPlansEventArgs args)
         {

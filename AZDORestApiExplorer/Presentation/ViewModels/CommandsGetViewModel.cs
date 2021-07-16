@@ -6,6 +6,7 @@ using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
+using AZDORestApiExplorer.Domain.Test.Events;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
@@ -36,6 +37,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
 
         private void InitializeViewModel()
         {
@@ -110,6 +112,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesWITCommand = new DelegateCommand(GetWorkItemTypesWITExecute, GetWorkItemTypesWITCanExecute);
             GetWorkItemTypesFieldsCommand = new DelegateCommand(GetWorkItemTypesFieldsExecute, GetWorkItemTypesFieldsCanExecute);
 
+            GetWorkItemCommand = new DelegateCommand(GetWorkItem, GetWorkItemCanExecute);
+
             #endregion Work Item Tracking Category
 
             #region Work Item Tracking Process Category
@@ -143,8 +147,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
-            EventAggregator.GetEvent<Core.Events.Test.xSelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
-            EventAggregator.GetEvent<Core.Events.Test.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
+            EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
+            EventAggregator.GetEvent<SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
+            EventAggregator.GetEvent<SelectedTestCaseChangedEvent>().Subscribe(RaiseTestCaseChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
@@ -280,6 +285,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseTestSuiteChanged(TestSuite testSuite)
         {
             GetTestCasesCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaiseTestCaseChanged(TestCase testCase)
+        {
+            // TODO(crhodes)
+            // Add as things that depend on TestCase get added
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
@@ -1200,8 +1211,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Test.GetTestSuitesEvent>().Publish(
-                new Core.Events.Test.GetTestSuitesEventArgs()
+            EventAggregator.GetEvent<Domain.Test.Events.GetTestSuitesEvent>().Publish(
+                new Domain.Test.Events.GetTestSuitesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject,
@@ -1243,8 +1254,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Test.GetTestCasesEvent>().Publish(
-                new Core.Events.Test.GetTestCasesEventArgs()
+            EventAggregator.GetEvent<Domain.Test.Events.GetTestCasesEvent>().Publish(
+                new Domain.Test.Events.GetTestCasesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization,
                     Project = _contextMainViewModel.Context.SelectedProject,
@@ -1814,15 +1825,63 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetWorkItemTypesFields Command
 
-        #endregion Work Item Tracking Category
+        #region GetWorkItem Command
 
-        #endregion Commands
+        public DelegateCommand GetWorkItemCommand { get; set; }
+        public string GetWorkItemContent { get; set; } = "GetWorkItem";
+        public string GetWorkItemToolTip { get; set; } = "GetWorkItem ToolTip";
 
-        #region Work Item Tracking Process Category
+        // Can get fancy and use Resources
+        //public string GetWorkItemContent { get; set; } = "ViewName_GetWorkItemContent";
+        //public string GetWorkItemToolTip { get; set; } = "ViewName_GetWorkItemContentToolTip";
 
-        #region GetBehaviors Command
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetWorkItemContent">GetWorkItem</system:String>
+        //    <system:String x:Key="ViewName_GetWorkItemContentToolTip">GetWorkItem ToolTip</system:String>  
 
-        public DelegateCommand GetBehaviorsWITPCommand { get; set; }
+        public void GetWorkItem()
+        {
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetWorkItem";
+
+        // Uncomment this if you are telling someone else to handle this
+        // Common.EventAggregator.GetEvent<GetWorkItemEvent>().Publish();
+
+                // Start Cut Three - Put this in PrismEvents
+
+            //public class GetWorkItemEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetWorkItemEvent>().Subscribe(GetWorkItem);
+
+            // End Cut Four
+
+        }
+
+        public bool GetWorkItemCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+    #endregion
+
+    // End Cut One
+
+    #endregion Work Item Tracking Category
+
+    #endregion Commands
+
+    #region Work Item Tracking Process Category
+
+    #region GetBehaviors Command
+
+    public DelegateCommand GetBehaviorsWITPCommand { get; set; }
         public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors";
         public string GetBehaviorsWITPToolTip { get; set; } = "GetBehaviors ToolTip";
 

@@ -39,10 +39,10 @@ namespace AZDORestApiExplorer.Test
             //containerRegistry.Register<ITestPlanMainViewModel, TestPlanMainViewModel>();
             containerRegistry.RegisterSingleton<ITestPlanMain, TestPlanMain>();
 
-            containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();
+            //containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();
             containerRegistry.RegisterSingleton<ITestSuiteMain, TestSuiteMain>();
 
-            containerRegistry.Register<ITestCaseMainViewModel, TestCaseMainViewModel>();
+            //containerRegistry.Register<ITestCaseMainViewModel, TestCaseMainViewModel>();
             containerRegistry.RegisterSingleton<ITestCaseMain, TestCaseMain>();
 
             Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);

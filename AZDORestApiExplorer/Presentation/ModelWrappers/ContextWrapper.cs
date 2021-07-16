@@ -54,6 +54,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public TestCase SelectedTestCase
+        {
+            get { return GetValue<TestCase>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT
         {
             get { return GetValue<Domain.WorkItemTracking.WorkItemType>(); }

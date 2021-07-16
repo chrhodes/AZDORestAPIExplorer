@@ -301,18 +301,18 @@ namespace AZDORestApiExplorer
 
         private void Application_Activated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            //long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Deactivated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+            //long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

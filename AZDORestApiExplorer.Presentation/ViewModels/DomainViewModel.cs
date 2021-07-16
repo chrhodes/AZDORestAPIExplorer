@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Core;
 using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Domain.Core;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -21,7 +13,6 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
-using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -31,8 +22,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
     //    where SIEvent : Prism.Events.PubSubEvent<DType>, new()
     public class DomainViewModel<DType, EType, EArgs, SIEvent> : GridViewModelBase, IInstanceCountVM
         where DType : class, new()
-        where EType : Prism.Events.PubSubEvent<EArgs>, new()
-        where SIEvent : Prism.Events.PubSubEvent<DType>, new()
+        where EType : PubSubEvent<EArgs>, new()
+        where SIEvent : PubSubEvent<DType>, new()
     {
         #region Constructors, Initialization, and Load
 
@@ -50,6 +41,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             EventAggregator.GetEvent<EType>().Subscribe(GetList);
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
