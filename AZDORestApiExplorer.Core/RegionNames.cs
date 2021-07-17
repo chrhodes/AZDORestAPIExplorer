@@ -148,6 +148,8 @@ namespace AZDORestApiExplorer.Core
         // public static string WorkItemTypesFieldNavigationRegion = "WorkItemTypesFieldNavigationRegion";
         // public static string WorkItemTypesFieldDetailRegion = "WorkItemTypesFieldDetailRegion";
 
+        public static string WorkItemMainRegion = "WorkItemMainRegion";
+
         //
         // Work Item Type Tracking Process Category
         //

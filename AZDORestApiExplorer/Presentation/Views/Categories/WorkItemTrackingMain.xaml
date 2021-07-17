@@ -104,6 +104,10 @@
             </Grid>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="Work Items">
+            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemMainRegion}" />
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutGroup>
     
 </UserControl>

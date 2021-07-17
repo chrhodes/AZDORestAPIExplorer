@@ -15,7 +15,10 @@
         public Domain.Test.TestSuite SelectedTestSuite { get; set; }
         public Domain.Test.TestCase SelectedTestCase { get; set; }
 
+        public Domain.WorkItemTracking.WorkItem SelectedWorkItem { get; set; }
+
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT { get; set; }
+
 
         public Domain.WorkItemTrackingProcess.WorkItemType SelectedWorkItemTypeWITP { get; set; }
 

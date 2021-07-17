@@ -1,6 +1,7 @@
 ﻿using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 
 using VNC.Core.Mvvm;
 
@@ -42,6 +43,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public Domain.Dashboard.Dashboard SelectedDashboard
+        {
+            get { return GetValue<Domain.Dashboard.Dashboard>(); }
+            set { SetValue(value); }
+        }
+
         public TestPlan SelectedTestPlan
         {
             get { return GetValue<TestPlan>(); }
@@ -60,6 +67,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public WorkItem SelectedWorkItem
+        {
+            get { return GetValue<WorkItem>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT
         {
             get { return GetValue<Domain.WorkItemTracking.WorkItemType>(); }
@@ -72,10 +85,5 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-        public Domain.Dashboard.Dashboard SelectedDashboard
-        {
-            get { return GetValue<Domain.Dashboard.Dashboard>(); }
-            set { SetValue(value); }
-        }
     }
 }

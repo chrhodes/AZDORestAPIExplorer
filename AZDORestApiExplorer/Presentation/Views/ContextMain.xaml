@@ -1,6 +1,8 @@
 ﻿<vncmvvm:ViewBase
     x:Class="AZDORestApiExplorer.Presentation.Views.ContextMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -31,15 +33,15 @@
             <dxlc:LayoutGroup Orientation="Vertical">
 
                 <dxlc:LayoutGroup Header="Core"
-        	    View="GroupBox" Orientation="Vertical"
-        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	    IsCollapsible="True"  IsCollapsed="False">
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	        IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutGroup Header="Process"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource ProcessColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource ProcessColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedProcess.name}" />
@@ -51,10 +53,10 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Project"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource ProjectColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource ProjectColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedProject.name}" />
@@ -66,10 +68,10 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Team"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource TeamColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource TeamColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedTeam.name}" />
@@ -82,15 +84,15 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Git"
-        	    View="GroupBox" Orientation="Vertical"
-        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	    IsCollapsible="True"  IsCollapsed="False">
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	        IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutGroup Header="Repository"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource RepositoryColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource RepositoryColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedRepository.name}" />
@@ -102,10 +104,10 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Commit"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource CommitColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource CommitColor}">
 
                         <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
                         <TextBlock Text="{Binding Context.SelectedCommit.commitId}" />
@@ -168,38 +170,20 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Work Item Tracking Process"
+                <dxlc:LayoutGroup Header="Work Item Tracking"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
         	        IsCollapsible="True"  IsCollapsed="False">
 
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItem ID:" LabelPosition="Left">
+                        <dxe:TextEdit Text="{Binding Context.SelectedWorkItem.id}" />
+                    </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutGroup Header="Work Item Type"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource WorkItemTypeColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedWorkItemTypeWITP.referenceName}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Work Item Tracking"
-        	    View="GroupBox" Orientation="Vertical"
-        	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	    IsCollapsible="True"  IsCollapsed="False"
->
-
-                    <dxlc:LayoutGroup Header="Work Item Type"
-            	    View="GroupBox" Orientation="Vertical"
-            	    VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	    IsCollapsible="True"  IsCollapsed="False"
-                    Background="{StaticResource WorkItemTypeColor}">
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource WorkItemTypeColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedWorkItemTypeWIT.referenceName}" />
@@ -210,7 +194,31 @@
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
+                
+                <dxlc:LayoutGroup Header="Work Item Tracking Process"
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	        IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutGroup Header="Work Item Type"
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource WorkItemTypeColor}">
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
+                            <TextBlock Text="{Binding Context.SelectedWorkItemTypeWITP.referenceName}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                            <TextBlock Text="" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+             
             </dxlc:LayoutGroup>
+            
         </dxlc:LayoutControl>
+        
     </Grid>
 </vncmvvm:ViewBase>
