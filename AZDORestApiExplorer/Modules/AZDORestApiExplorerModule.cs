@@ -40,11 +40,8 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
             containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
 
-            // Figure out how to use one Type
-
-            //containerRegistry.Register<IFriendLookupDataService, LookupDataService>();
-            //containerRegistry.Register<IProgrammingLanguageLookupDataService, LookupDataService>();
-            //containerRegistry.Register<IMeetingLookupDataService, LookupDataService>();
+            containerRegistry.RegisterSingleton<IContextMainViewModel, ContextMainViewModel>();
+            containerRegistry.RegisterSingleton<IContextMain, ContextMain>();
 
             containerRegistry.RegisterSingleton<IShellService, ShellService>();
 
@@ -52,6 +49,10 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<CommandsPatch>();
             containerRegistry.RegisterSingleton<CommandsPost>();
             containerRegistry.RegisterSingleton<CommandsPut>();
+
+            containerRegistry.RegisterSingleton<IProcessMain, ProcessMain>();
+            containerRegistry.RegisterSingleton<IProjectMain, ProjectMain>();
+            containerRegistry.RegisterSingleton<ITeamMain, TeamMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -62,10 +63,17 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
+            _regionManager.RegisterViewWithRegion(RegionNames.CollectionMainRegion, typeof(ICollectionMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ContextMainRegion, typeof(IContextMain));
+
             _regionManager.RegisterViewWithRegion(RegionNames.CommandGetRegion, typeof(CommandsGet));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPatchRegion, typeof(CommandsPatch));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPostRegion, typeof(CommandsPost));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPutRegion, typeof(CommandsPut));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.ProcessMainRegion, typeof(IProcessMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(IProjectMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TeamMainRegion, typeof(ITeamMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

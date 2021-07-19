@@ -141,18 +141,6 @@ namespace AZDORestApiExplorer
 
             moduleCatalog.AddModule(typeof(AZDORestApiExplorerModule));
 
-            // Project, Process, Team depend on CollectionModule
-
-            moduleCatalog.AddModule(typeof(ProjectModule));
-
-            moduleCatalog.AddModule(typeof(ProcessModule));
-
-            moduleCatalog.AddModule(typeof(TeamModule));
-
-            moduleCatalog.AddModule(typeof(CollectionModule));
-
-            moduleCatalog.AddModule(typeof(ContextModule));
-
             moduleCatalog.AddModule(typeof(HTTPExchangeModule));
 
             // These come from other assemblies

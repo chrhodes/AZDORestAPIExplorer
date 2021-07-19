@@ -15,7 +15,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     xmlns:prism="http://prismlibrary.com/"
     
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
@@ -67,7 +67,7 @@
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
             <dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100" ShowHideButton="False">
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
             </dxdo:LayoutPanel>
         </dxlc:LayoutGroup>
         
@@ -89,11 +89,11 @@
 
                         <!--<dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100" ShowHideButton="False">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CollectionMainRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
                         </dxdo:LayoutPanel>-->
                  
                         <dxdo:LayoutPanel Caption="Commands (GET)">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandGetRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Test" >
@@ -106,7 +106,7 @@
                         <dxdo:LayoutPanel Caption="Context Level Providers" >
                             <dxlc:LayoutGroup>
                                 <Grid>
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContextMainRegion}" />
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
                                 </Grid>
                             </dxlc:LayoutGroup>
                         </dxdo:LayoutPanel>
@@ -138,19 +138,19 @@
                     <dxdo:AutoHideGroup DockType="Bottom">
                         
                         <dxdo:LayoutPanel Caption="HTTP Exchange" >
-                             <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.HTTPExchangeMainRegion}" />
+                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPatchRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (POST)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPostRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommandPutRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True" TabBackgroundColor="Red" >
@@ -191,7 +191,7 @@
 
                                     <dxlc:LayoutGroup Header="Accounts" >
                                         <Grid>
-                                            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.AccountMainRegion}" />
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
                                         </Grid>
                                     </dxlc:LayoutGroup>
 
@@ -225,13 +225,13 @@
                                             </dxlc:LayoutGroup.GroupBoxStyle>
                                             <dxlc:LayoutGroup Header="Dashboards">
                                                 <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.DashboardMainRegion}" />
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.DashboardMainRegion}" />
                                                 </Grid>
                                             </dxlc:LayoutGroup>
 
                                             <dxlc:LayoutGroup Header="Widgets">
                                                 <Grid>
-                                                    <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WidgetMainRegion}" />
+                                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WidgetMainRegion}" />
                                                 </Grid>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutGroup>
@@ -340,7 +340,7 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
-            <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatusBarRegion}" />
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
             <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>
 

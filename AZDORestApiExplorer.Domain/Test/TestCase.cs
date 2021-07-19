@@ -103,7 +103,7 @@ namespace AZDORestApiExplorer.Domain.Test
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
             //var username = @"Christopher.Rhodes@bd.com";
-            //var password = @"HappyH0jnacki08";
+            //var password = @"XXXXXXXX";
 
             //string base64PAT = Convert.ToBase64String(
             //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));

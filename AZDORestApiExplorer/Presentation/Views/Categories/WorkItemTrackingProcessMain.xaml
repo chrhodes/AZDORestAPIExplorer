@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
@@ -53,55 +53,55 @@
 
         <dxlc:LayoutGroup Header="Processes">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ProcessWITPMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ProcessWITPMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Lists">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ListMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ListMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Behaviors">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BehaviorMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BehaviorMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="WorkItemTypes">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypeWITPMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemTypeWITPMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Fields">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.FieldWITPMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FieldWITPMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Rules">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RuleMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RuleMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="States">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StateWITPMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StateWITPMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="System Controls">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.SystemControlMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SystemControlMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="WorkItemTypesBehaviors">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.WorkItemTypesBehaviorMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemTypesBehaviorMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
         

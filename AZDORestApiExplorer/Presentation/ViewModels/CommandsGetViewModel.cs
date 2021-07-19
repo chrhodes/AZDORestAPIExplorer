@@ -24,7 +24,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public CommandsGetViewModel(
             ICollectionMainViewModel collectionMainViewModel,
-            ContextMainViewModel contextMainViewModel,
+            IContextMainViewModel contextMainViewModel,
             IEventAggregator eventAggregator,
             DialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -42,6 +42,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             #region Core Category
 
@@ -1841,25 +1843,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public void GetWorkItem()
         {
-            // TODO(crhodes)
-            // Do something amazing.
-            //Message = "Cool, you called GetWorkItem";
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-        // Uncomment this if you are telling someone else to handle this
-        // Common.EventAggregator.GetEvent<GetWorkItemEvent>().Publish();
+            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Id = _contextMainViewModel.Context.Model.WorkItemId
+                });
 
-                // Start Cut Three - Put this in PrismEvents
-
-            //public class GetWorkItemEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<GetWorkItemEvent>().Subscribe(GetWorkItem);
-
-            // End Cut Four
-
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemCanExecute()

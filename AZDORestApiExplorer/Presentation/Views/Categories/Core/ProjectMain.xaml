@@ -3,7 +3,7 @@
     x:Name="thisProjectMain" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
@@ -20,7 +20,7 @@
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer"
+    xmlns:core="clr-namespace:AZDORestApiExplorer"
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"

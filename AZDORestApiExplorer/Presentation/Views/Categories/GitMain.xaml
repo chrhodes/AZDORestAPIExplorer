@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
@@ -34,67 +34,67 @@
 
         <dxlc:LayoutGroup Header="Repositories" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RepositoryMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup Header="Blobs" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.BlobMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BlobMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Commits" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommitMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Commit Changes" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.CommitChangeMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Import Requests" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ImportRequestMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Items" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ItemMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup Header="Merges" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.MergeMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MergeMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Pull Requests" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PullRequestMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Pushes" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.PushMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
         
         <dxlc:LayoutGroup Header="Refs" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.RefMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Stats" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.StatMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 

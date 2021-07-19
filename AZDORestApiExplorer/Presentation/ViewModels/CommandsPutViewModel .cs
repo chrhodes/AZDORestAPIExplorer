@@ -24,7 +24,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public CommandsPutViewModel(
             ICollectionMainViewModel collectionMainViewModel,
-            ContextMainViewModel contextMainViewModel,
+            IContextMainViewModel contextMainViewModel,
             IShellService shellService,
             IEventAggregator eventAggregator,
             DialogService dialogService) : base(eventAggregator, dialogService)

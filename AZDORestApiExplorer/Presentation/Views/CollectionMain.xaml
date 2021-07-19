@@ -1,8 +1,9 @@
 ﻿<vncmvvm:ViewBase
     x:Class="AZDORestApiExplorer.Presentation.Views.CollectionMain"
+        x:Name="thisCollectionMain"      
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
@@ -18,8 +19,9 @@
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="600"
 >
@@ -32,27 +34,49 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
-    <dxlc:LayoutGroup Header="Enter Orgnzation Information"
-    	View="Group" Orientation="Horizontal" >
-        
-        <dxlc:LayoutItem Label="Available Collections" >
-            <ComboBox
-                ItemsSource="{Binding AvailableCollections}"
-                DisplayMemberPath="Name"
-                SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
-            </ComboBox>
-        </dxlc:LayoutItem>
-        
-        <dxlc:LayoutItem Label="Uri">
-            <dxe:TextEdit Text="{Binding SelectedCollection.Organization.Uri }" />
-        </dxlc:LayoutItem>
-        
-        <dxlc:LayoutItem Label="PAT">
-            <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
-                     ToolTip="Paste in Personal Access Token (PAT)" 
-                     Background="{StaticResource OrganizationColor}" />
-        </dxlc:LayoutItem>
 
+    <dxlc:LayoutGroup Orientation="Vertical">
+        
+
+        <dxlc:LayoutGroup Header="Enter Orgnzation Information"
+    	    View="Group" Orientation="Horizontal" >
+        
+            <dxlc:LayoutItem Label="Available Collections" >
+                <ComboBox
+                    ItemsSource="{Binding AvailableCollections}"
+                    DisplayMemberPath="Name"
+                    SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
+                </ComboBox>
+            </dxlc:LayoutItem>
+        
+            <dxlc:LayoutItem Label="Uri">
+                <dxe:TextEdit Text="{Binding SelectedCollection.Organization.Uri }" />
+            </dxlc:LayoutItem>
+        
+            <dxlc:LayoutItem Label="PAT">
+                <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
+                         ToolTip="Paste in Personal Access Token (PAT)" 
+                         Background="{StaticResource OrganizationColor}" />
+            </dxlc:LayoutItem>
+ 
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup VerticalAlignment="Bottom">
+
+            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisCollectionMain, Path=InstanceCountV}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="VM:" />
+
+                    <Label Content="{Binding InstanceCountVM}" />
+                </StackPanel>
+            </StackPanel>
+
+        </dxlc:LayoutGroup>
+        
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

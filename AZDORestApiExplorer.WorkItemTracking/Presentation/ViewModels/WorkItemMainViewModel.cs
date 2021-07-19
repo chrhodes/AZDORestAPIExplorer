@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetWorkItemsEvent>().Subscribe(GetWorkItems);
+            EventAggregator.GetEvent<GetWorkItemEvent>().Subscribe(GetWorkItem);
 
             this.Results.PropertyChanged += PublishSelectionChanged;
 
@@ -85,7 +85,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetWorkItems(GetWorkItemsEventArgs args)
+        private async void GetWorkItem(GetWorkItemEventArgs args)
         {
             try
             {
@@ -95,9 +95,9 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"<UPDATE URI>"
-                        + "?api-version=6.1-preview.1";
+                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + $"wit/workitems/{args.Id}"
+                        + "?api-version=6.1-preview.3";
 
                     RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
@@ -108,8 +108,6 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                         response.EnsureSuccessStatusCode();
 
                         string outJson = await response.Content.ReadAsStringAsync();
-
-                        JObject o = JObject.Parse(outJson);
 
                         WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
 

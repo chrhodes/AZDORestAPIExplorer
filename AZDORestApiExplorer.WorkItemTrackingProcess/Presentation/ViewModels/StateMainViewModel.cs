@@ -49,7 +49,6 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             InstanceCountVM++;
 
-
             EventAggregator.GetEvent<GetStatesWITPEvent>().Subscribe(GetStates);
 
             this.States.PropertyChanged += PublishSelectionChanged;

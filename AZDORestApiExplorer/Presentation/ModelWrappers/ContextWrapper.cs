@@ -79,6 +79,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public int WorkItemId
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.WorkItemTrackingProcess.WorkItemType SelectedWorkItemTypeWITP
         {
             get { return GetValue<Domain.WorkItemTrackingProcess.WorkItemType>(); }

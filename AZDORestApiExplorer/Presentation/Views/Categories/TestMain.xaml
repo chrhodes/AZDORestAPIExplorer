@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:infra="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
     <d:DesignerProperties.DesignStyle>
@@ -34,19 +34,19 @@
 
         <dxlc:LayoutGroup Header="Test Plans" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TestPlanMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestPlanMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Test Suites" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TestSuiteMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestSuiteMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Test Cases" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.TestCaseMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestCaseMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 
