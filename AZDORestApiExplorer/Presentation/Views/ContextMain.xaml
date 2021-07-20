@@ -178,8 +178,8 @@
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
         	        IsCollapsible="True"  IsCollapsed="False">
 
-                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItem ID:" LabelPosition="Left">
-                        <dxe:TextEdit Text="{Binding Context.WorkItemId, Mode=TwoWay}" />
+                    <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="WorkItem ID:" LabelPosition="Left">
+                        <dxe:TextEdit Text="{Binding Context.WorkItemId, Mode=TwoWay}"/>
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutGroup Header="Work Item Type"

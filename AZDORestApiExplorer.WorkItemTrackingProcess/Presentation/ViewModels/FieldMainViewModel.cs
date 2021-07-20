@@ -52,7 +52,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetFieldsWITPEvent>().Subscribe(GetFields);
 
-            this.Fields.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             // TODO(crhodes)
             //
@@ -74,7 +74,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Field> Fields { get; set; } = new RESTResult<Field>();
+        public RESTResult<Field> Results { get; set; } = new RESTResult<Field>();
 
 
         #endregion
@@ -123,13 +123,13 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldsRoot>(outJson);
 
-                        Fields.ResultItems = new ObservableCollection<Field>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Field>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Fields.Count = Fields.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -146,7 +146,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedFieldChangedEvent>().Publish(Fields.SelectedItem);
+            EventAggregator.GetEvent<SelectedFieldChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

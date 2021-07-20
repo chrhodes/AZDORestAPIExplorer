@@ -1,14 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-
-using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
 using Newtonsoft.Json;
 
@@ -38,16 +28,19 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         public class SelectedWorkItemChangedEvent : PubSubEvent<WorkItem> { }
     }
 
-    public class WorkItemsRoot
-    {
-        public int count { get; set; }
-        public WorkItem[] value { get; set; }
-    }
-
     public class WorkItem
     {
 
     }
+
+    public class WorkItemsRoot
+    {
+        public int id { get; set; }
+        public int rev { get; set; }
+        public Fields fields { get; set; }
+        public _Links5 _links { get; set; }
+        public string url { get; set; }
+
 
     // TODO(crhodes)
     // PasteSpecial from Json result text
@@ -55,57 +48,127 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
     // Nest any additional classes inside class WorkItem
 
 
-    public class Rootobject
-    {
-        public int id { get; set; }
-        public int rev { get; set; }
-        public Fields fields { get; set; }
-        public _Links5 _links { get; set; }
-        public string url { get; set; }
-    }
-
     public class Fields
     {
+        [JsonProperty("System.AreaPath")]
         public string SystemAreaPath { get; set; }
+
+        [JsonProperty("System.TeamProject")]
         public string SystemTeamProject { get; set; }
+
+        [JsonProperty("System.IterationPath")]
         public string SystemIterationPath { get; set; }
+
+        [JsonProperty("System.WorkItemType")]
         public string SystemWorkItemType { get; set; }
+
+        [JsonProperty("System.State")]
         public string SystemState { get; set; }
+
+        [JsonProperty("System.Reason")]
         public string SystemReason { get; set; }
-        public SystemAssignedto SystemAssignedTo { get; set; }
-        public DateTime SystemCreatedDate { get; set; }
-        public SystemCreatedby SystemCreatedBy { get; set; }
-        public DateTime SystemChangedDate { get; set; }
-        public SystemChangedby SystemChangedBy { get; set; }
-        public int SystemCommentCount { get; set; }
-        public string SystemTitle { get; set; }
-        public string SystemBoardColumn { get; set; }
-        public bool SystemBoardColumnDone { get; set; }
-        public string MicrosoftVSTSCommonIssue { get; set; }
-        public DateTime MicrosoftVSTSCommonStateChangeDate { get; set; }
-        public DateTime MicrosoftVSTSCommonActivatedDate { get; set; }
-        public MicrosoftVSTSCommonActivatedby MicrosoftVSTSCommonActivatedBy { get; set; }
-        public DateTime MicrosoftVSTSCommonClosedDate { get; set; }
-        public MicrosoftVSTSCommonClosedby MicrosoftVSTSCommonClosedBy { get; set; }
-        public int MicrosoftVSTSCommonPriority { get; set; }
-        public string MicrosoftVSTSCommonTriage { get; set; }
-        public string MicrosoftVSTSCommonExitCriteria { get; set; }
-        public string MicrosoftVSTSCommonSeverity { get; set; }
-        public string MicrosoftVSTSCMMIBlocked { get; set; }
-        public string MicrosoftVSTSCMMIRequiresReview { get; set; }
-        public string MicrosoftVSTSCMMIRequiresTest { get; set; }
-        public string DevCustomWitVersion { get; set; }
-        public string DevCustomIsMilestone { get; set; }
-        public float MicrosoftVSTSCommonStackRank { get; set; }
-        public float MicrosoftVSTSSchedulingSize { get; set; }
-        public string WEF_C2C0461D0DDD48DC9681522EE9E34763_KanbanColumn { get; set; }
-        public string CFVSTSHasRequirements { get; set; }
-        public bool WEF_C2C0461D0DDD48DC9681522EE9E34763_KanbanColumnDone { get; set; }
-        public string MicrosoftVSTSCommonValueArea { get; set; }
-        public string CustomUserStoryReason { get; set; }
-        public string WEF_63985E4FD50B481A8B74B232BAE9BED1_KanbanColumn { get; set; }
-        public bool WEF_63985E4FD50B481A8B74B232BAE9BED1_KanbanColumnDone { get; set; }
-        public string SystemDescription { get; set; }
+
+            [JsonProperty("System.AssignedTo")]
+            public SystemAssignedto SystemAssignedTo { get; set; }
+
+            [JsonProperty("System.CreatedDate")]
+            public DateTime SystemCreatedDate { get; set; }
+
+            [JsonProperty("System.CreatedBy")]
+            public SystemCreatedby SystemCreatedBy { get; set; }
+
+            [JsonProperty("System.ChangedDate")]
+            public DateTime SystemChangedDate { get; set; }
+
+            [JsonProperty("System.ChangedBy")]
+            public SystemChangedby SystemChangedBy { get; set; }
+
+            [JsonProperty("System.CommentCount")]
+            public int SystemCommentCount { get; set; }
+
+            [JsonProperty("System.Title")]
+            public string SystemTitle { get; set; }
+
+            [JsonProperty("System.BoardColumn")]
+            public string SystemBoardColumn { get; set; }
+
+            [JsonProperty("System.BoardColumnDone")]
+            public bool SystemBoardColumnDone { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.Issue")]
+            public string MicrosoftVSTSCommonIssue { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.StateChangedDate")]
+            public DateTime MicrosoftVSTSCommonStateChangeDate { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ActivatedDate")]
+            public DateTime MicrosoftVSTSCommonActivatedDate { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ActivatedBy")]
+            public MicrosoftVSTSCommonActivatedby MicrosoftVSTSCommonActivatedBy { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ClosedDate")]
+            public DateTime MicrosoftVSTSCommonClosedDate { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ClosedBy")]
+            public MicrosoftVSTSCommonClosedby MicrosoftVSTSCommonClosedBy { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.Priority")]
+            public int MicrosoftVSTSCommonPriority { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.Triage")]
+            public string MicrosoftVSTSCommonTriage { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ExitCriteria")]
+            public string MicrosoftVSTSCommonExitCriteria { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.Severity")]
+            public string MicrosoftVSTSCommonSeverity { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.CMMI.Blocked")]
+            public string MicrosoftVSTSCMMIBlocked { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.CMMI.RequiresReview")]
+            public string MicrosoftVSTSCMMIRequiresReview { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.CMMI.RequiresTest")]
+            public string MicrosoftVSTSCMMIRequiresTest { get; set; }
+
+            [JsonProperty("DevCustom.WitVersion")]
+            public string DevCustomWitVersion { get; set; }
+
+            [JsonProperty("DevCustom.IsMilestone")]
+            public string DevCustomIsMilestone { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.StackRank")]
+            public float MicrosoftVSTSCommonStackRank { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Scheduling.Size")]
+            public float MicrosoftVSTSSchedulingSize { get; set; }
+
+            [JsonProperty("WEF_C2C0461D0DDD48DC9681522EE9E34763_Kanban.Column")]
+            public string WEF_C2C0461D0DDD48DC9681522EE9E34763_KanbanColumn { get; set; }
+
+            [JsonProperty("CF.VSTS.HasRequirements")]
+            public string CFVSTSHasRequirements { get; set; }
+
+            [JsonProperty("WEF_C2C0461D0DDD48DC9681522EE9E34763_Kanban.Column.Done")]
+            public bool WEF_C2C0461D0DDD48DC9681522EE9E34763_KanbanColumnDone { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ValueArea")]
+            public string MicrosoftVSTSCommonValueArea { get; set; }
+
+            [JsonProperty("Custom.UserStoryReason")]
+            public string CustomUserStoryReason { get; set; }
+
+            [JsonProperty("WEF_63985E4FD50B481A8B74B232BAE9BED1_Kanban.Column")]
+            public string WEF_63985E4FD50B481A8B74B232BAE9BED1_KanbanColumn { get; set; }
+
+            [JsonProperty("WEF_63985E4FD50B481A8B74B232BAE9BED1_Kanban.Column.Done")]
+            public bool WEF_63985E4FD50B481A8B74B232BAE9BED1_KanbanColumnDone { get; set; }
+
+            [JsonProperty("System.Description")]
+            public string SystemDescription { get; set; }
     }
 
     public class SystemAssignedto
@@ -259,5 +322,5 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         public string href { get; set; }
     }
 
-
+    }
 }

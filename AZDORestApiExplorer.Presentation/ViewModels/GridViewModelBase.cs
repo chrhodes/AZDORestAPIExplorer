@@ -1,5 +1,7 @@
 using System;
 
+using AZDORestApiExplorer.Core.Events;
+
 using DevExpress.Xpf.Grid;
 
 using Prism.Commands;
@@ -30,14 +32,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            //EventAggregator.GetEvent<GetPullRequestsEvent>().Subscribe(GetPullRequests);
-
-            //this.PullRequests.PropertyChanged += PublishSelectionChanged;
-
-
-            //OutputFileNameAndPath = @"C:\temp\PullRequests";
-
             ExportGridCommand = new DelegateCommand<GridControl>(ExportGrid, ExportGridCanExecute);
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -72,10 +68,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         #endregion Fields and Properties
 
         #region Event Handlers
+
+        public virtual void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-TYPE";
+        }
 
         #region ExportGrid Command
 

@@ -407,6 +407,20 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutGroup
+                            Header="Work ItemLevel"
+                            Orientation="Vertical"
+                            View="GroupBox">
+
+                            <dxlc:LayoutItem>
+                                <Button 
+		                        Command="{Binding GetWorkItemCommand }"
+		                        Content="{Binding GetWorkItemContent, FallbackValue='GetWorkItem' }"
+		                        ToolTip="{Binding GetWorkItemToolTip, FallbackValue='GetWorkItem ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup
                             Background="{StaticResource WorkItemTypeColor}"
                             Header="WorkItemType Level"
                             Orientation="Vertical"
@@ -445,19 +459,7 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup
-                        Header="Work ItemLevel"
-                        Orientation="Vertical"
-                        View="GroupBox">
 
-                        <dxlc:LayoutItem>
-                            <Button 
-		                        Command="{Binding GetWorkItemCommand }"
-		                        Content="{Binding GetWorkItemContent, FallbackValue='GetWorkItem' }"
-		                        ToolTip="{Binding GetWorkItemToolTip, FallbackValue='GetWorkItem ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 

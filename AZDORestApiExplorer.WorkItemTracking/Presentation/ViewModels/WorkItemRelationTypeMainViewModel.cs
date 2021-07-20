@@ -82,12 +82,16 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
 
         #endregion
 
         #region Event Handlers
 
+        public override void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-WorkItemRelationTypes";
+        }
 
         #endregion
 

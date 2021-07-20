@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetProcessesEvent>().Subscribe(GetProcesses);
 
-            this.Processes.PropertyChanged += PublishSelectedProcessChanged;
+            this.Results.PropertyChanged += PublishSelectedProcessChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -55,7 +55,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Processes.SelectedItem);
+            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -74,7 +74,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Process> Processes { get; set; } = new RESTResult<Process>();
+        public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
         #endregion
 
@@ -120,13 +120,13 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
 
-                        Processes.ResultItems = new ObservableCollection<Process>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Process>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Processes.Count = Processes.ResultItems.Count();
+                        Results.Count = Results.ResultItems.Count();
                     }
                 }
             }

@@ -38,7 +38,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -252,6 +251,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetStatesWITCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesWITCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
+
+            GetWorkItemCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseRepositoryChanged(Repository repository)
@@ -1858,8 +1859,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWorkItemCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
             return true;
         }
 

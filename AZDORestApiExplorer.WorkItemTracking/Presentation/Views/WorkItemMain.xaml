@@ -35,31 +35,185 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Label Content="Hello from WorkItemMain" />
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <!--Put in LayoutControl so can scoll -->
+    <dxlc:LayoutControl
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            Name="lc_Root"
+            Orientation="Vertical">
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+        <dxlc:LayoutGroup Orientation="Horizontal">
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
-                    SelectedItem="{Binding Results.SelectedItem}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="name" />
-        </dxg:GridControl>
+            <dxlc:LayoutGroup Header="Info"
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" 
+        	        IsCollapsible="True"  IsCollapsed="False">
 
-        <dxe:TextEdit Grid.Row="2"
-            Text="{Binding Results.SelectedItem.url}"
-            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>-->
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="id" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.id}" />
+                </dxlc:LayoutItem>
 
-    </Grid>
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="Title" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.SystemTitle}" Width="300" TextWrapping="Wrap" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="AreaPath" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.SystemAreaPath}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="IterationPath" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.SystemIterationPath}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="State" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.SystemState}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="Reason" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.SystemReason}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="CustomUserStoryReason" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.fields.CustomUserStoryReason}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="rev" LabelPosition="Left">
+                    <TextBlock Text="{Binding WorkItemInfo.rev}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup 
+            	View="Group" Orientation="Vertical" >
+            
+                <dxlc:LayoutGroup Header="Dates"
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" 
+        	            IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutGroup 
+                	    View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="Created" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemCreatedDate}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="By" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemCreatedBy.displayName}" />
+                        </dxlc:LayoutItem>
+                    
+                        <dxlc:LayoutItem HorizontalAlignment="Left" >
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemCreatedBy.uniqueName, StringFormat=({0})}" />
+                        </dxlc:LayoutItem>                    
+                    
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup 
+                	    View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="Changed" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemChangedDate}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="By" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemChangedBy.displayName}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" >
+                            <TextBlock Text="{Binding WorkItemInfo.fields.SystemChangedBy.uniqueName, StringFormat=({0})}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup 
+                	    View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="Activated" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonActivatedDate}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="By" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonActivatedBy.displayName}" />
+                        </dxlc:LayoutItem>
+                    
+                        <dxlc:LayoutItem HorizontalAlignment="Left" >
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonActivatedBy.uniqueName, StringFormat=({0})}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup 
+                	    View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="Closed" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonClosedDate}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="By" LabelPosition="Left">
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonClosedBy.displayName}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" >
+                            <TextBlock Text="{Binding WorkItemInfo.fields.MicrosoftVSTSCommonClosedBy.uniqueName, StringFormat=({0})}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="UI"
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" 
+        	            IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="BoardColumn" LabelPosition="Left">
+                        <TextBlock Text="{Binding WorkItemInfo.fields.SystemBoardColumn}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" Label="BoardColumnDone" LabelPosition="Left">
+                        <TextBlock Text="{Binding WorkItemInfo.fields.SystemBoardColumnDone}" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Links"
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" 
+        	        IsCollapsible="True"  IsCollapsed="False">
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemType" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemType.href}" Style="{StaticResource SelectableText}" />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemRevisions" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemRevisions.href}" Style="{StaticResource SelectableText}"  />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemComments" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemComments.href}" Style="{StaticResource SelectableText}"  />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="Fields" LabelPosition="Left">
+                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.fields.href}" Style="{StaticResource SelectableText}" />
+                </dxlc:LayoutItem>
+                
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+
 
 </vncmvvm:ViewBase>

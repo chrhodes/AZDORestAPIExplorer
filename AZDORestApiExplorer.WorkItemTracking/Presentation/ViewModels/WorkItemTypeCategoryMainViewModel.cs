@@ -73,6 +73,10 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Event Handlers
 
+        public override void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-WorkItemTypeCategories";
+        }
 
         #endregion
 

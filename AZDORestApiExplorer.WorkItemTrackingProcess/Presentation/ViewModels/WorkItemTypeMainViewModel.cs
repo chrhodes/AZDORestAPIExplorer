@@ -45,7 +45,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetWorkItemTypesWITPEvent>().Subscribe(GetWorkItemTypes);
 
-            this.WorkItemTypes.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -54,7 +54,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedWorkItemTypeWITPChangedEvent>().Publish(WorkItemTypes.SelectedItem);
+            EventAggregator.GetEvent<SelectedWorkItemTypeWITPChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -73,7 +73,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<WorkItemType> WorkItemTypes { get; set; } = new RESTResult<WorkItemType>();
+        public RESTResult<WorkItemType> Results { get; set; } = new RESTResult<WorkItemType>();
 
         #endregion
 
@@ -127,8 +127,8 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         WorkItemTypesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypesRoot>(outJson);
 
-                        WorkItemTypes.ResultItems = new ObservableCollection<WorkItemType>(resultRoot.value); ;
-                        WorkItemTypes.Count = WorkItemTypes.ResultItems.Count;
+                        Results.ResultItems = new ObservableCollection<WorkItemType>(resultRoot.value); ;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }

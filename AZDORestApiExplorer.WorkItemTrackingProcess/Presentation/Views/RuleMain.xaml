@@ -127,8 +127,8 @@
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                    ItemsSource="{Binding Rules.ResultItems}"
-                    SelectedItem="{Binding Rules.SelectedItem}"               
+                    ItemsSource="{Binding Results.ResultItems}"
+                    SelectedItem="{Binding Results.SelectedItem}"               
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -190,7 +190,7 @@
                                 ContentTemplate="{StaticResource ProjectTemplateGrid}"/>-->
 
             <dxg:GridControl Grid.Column="0"
-                ItemsSource="{Binding Rules.SelectedItem.conditions}"
+                ItemsSource="{Binding Results.SelectedItem.conditions}"
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -202,7 +202,7 @@
             </dxg:GridControl>
             
             <dxg:GridControl Grid.Column="1"
-                ItemsSource="{Binding Rules.SelectedItem.actions}"            
+                ItemsSource="{Binding Results.SelectedItem.actions}"            
                 FontSize="12"
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"

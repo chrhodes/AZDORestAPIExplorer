@@ -45,7 +45,7 @@
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                    ItemsSource="{Binding Lists.ResultItems}"
+                    ItemsSource="{Binding Results.ResultItems}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -58,7 +58,7 @@
             <!--<dxg:GridColumn FieldName="url" />-->            
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2" Text="{Binding Processes.SelectedItem.url}"  
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
                       TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
     </Grid>

@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetSystemControlsEvent>().Subscribe(GetSystemControls);
 
-            this.SystemControls.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -65,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<SystemControl> SystemControls { get; set; } = new RESTResult<SystemControl>();
+        public RESTResult<SystemControl> Results { get; set; } = new RESTResult<SystemControl>();
 
         #endregion
 
@@ -114,13 +114,13 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         SystemControlsRoot resultRoot = JsonConvert.DeserializeObject<SystemControlsRoot>(outJson);
 
-                        SystemControls.ResultItems = new ObservableCollection<SystemControl>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<SystemControl>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        SystemControls.Count = SystemControls.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -137,7 +137,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedSystemControlChangedEvent>().Publish(SystemControls.SelectedItem);
+            EventAggregator.GetEvent<SelectedSystemControlChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

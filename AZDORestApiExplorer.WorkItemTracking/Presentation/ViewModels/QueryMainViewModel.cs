@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
@@ -25,7 +26,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class QueryMainViewModel : HTTPExchangeBase, IQueryMainViewModel, IInstanceCountVM
+    public class QueryMainViewModel : GridViewModelBase, IQueryMainViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -72,6 +73,10 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Event Handlers
 
+        public override void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-Queries";
+        }
 
         #endregion
 

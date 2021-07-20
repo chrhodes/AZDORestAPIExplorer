@@ -63,7 +63,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        // public RESTResult<WorkItem> WorkItems { get; set; } = new RESTResult<WorkItem>();
+        // public RESTResult<WorkItem> Results { get; set; } = new RESTResult<WorkItem>();
 
         #endregion
 

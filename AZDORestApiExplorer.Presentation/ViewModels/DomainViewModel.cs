@@ -45,14 +45,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             InstanceCountVM++;
 
             EventAggregator.GetEvent<EType>().Subscribe(GetList);
-            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
+            //EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        public override void CollectionChanged(SelectedCollectionChangedEventArgs args)
         {
             var domainType = new DType();
 

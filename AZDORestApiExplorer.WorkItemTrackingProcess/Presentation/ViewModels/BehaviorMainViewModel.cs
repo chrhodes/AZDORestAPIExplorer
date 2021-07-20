@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
             EventAggregator.GetEvent<GetBehaviorsEvent>().Subscribe(GetBehaviors);
 
-            this.Behaviors.PropertyChanged += PublishSelectionChanged;
+            this.Results.PropertyChanged += PublishSelectionChanged;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -65,7 +65,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<Behavior> Behaviors { get; set; } = new RESTResult<Behavior>();
+        public RESTResult<Behavior> Results { get; set; } = new RESTResult<Behavior>();
 
         #endregion
 
@@ -112,13 +112,13 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 
                         BehaviorsRoot resultRoot = JsonConvert.DeserializeObject<BehaviorsRoot>(outJson);
 
-                        Behaviors.ResultItems = new ObservableCollection<Behavior>(resultRoot.value);
+                        Results.ResultItems = new ObservableCollection<Behavior>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        Behaviors.Count = Behaviors.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -135,7 +135,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedBehaviorChangedEvent>().Publish(Behaviors.SelectedItem);
+            EventAggregator.GetEvent<SelectedBehaviorChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }

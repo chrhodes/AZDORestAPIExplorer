@@ -66,6 +66,23 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         public RESTResult<WorkItem> Results { get; set; } = new RESTResult<WorkItem>();
 
+
+
+        private WorkItemsRoot _workItemInfo;
+
+        public WorkItemsRoot WorkItemInfo
+        {
+            get => _workItemInfo;
+            set
+            {
+                if (_workItemInfo == value)
+                    return;
+                _workItemInfo = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
         #endregion
 
         #region Event Handlers
@@ -109,15 +126,17 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
+                        //WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
 
-                        Results.ResultItems = new ObservableCollection<WorkItem>(resultRoot.value);
+                        WorkItemInfo = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
 
-                        IEnumerable<string> continuationHeaders = default;
+                        //Results.ResultItems = new ObservableCollection<WorkItem>(resultRoot.value);
 
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                        //IEnumerable<string> continuationHeaders = default;
 
-                        Results.Count = Results.ResultItems.Count;
+                        //bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                        //Results.Count = Results.ResultItems.Count;
                     }
                 }
             }

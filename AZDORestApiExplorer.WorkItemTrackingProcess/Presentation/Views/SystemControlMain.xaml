@@ -45,8 +45,8 @@
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                    ItemsSource="{Binding SystemControls.ResultItems}"
-                    SelectedItem="{Binding SystemControls.SelectedItem}"               
+                    ItemsSource="{Binding Results.ResultItems}"
+                    SelectedItem="{Binding Results.SelectedItem}"               
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
