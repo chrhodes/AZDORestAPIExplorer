@@ -2,6 +2,10 @@
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     public class QueriesRoot
     {
         public int count { get; set; }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     class WorkItemRevision
     {
     }

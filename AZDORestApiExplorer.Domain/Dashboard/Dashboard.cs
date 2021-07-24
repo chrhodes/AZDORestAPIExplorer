@@ -1,5 +1,9 @@
 ﻿namespace AZDORestApiExplorer.Domain.Dashboard
 {
+    namespace Events
+    {
+
+    }
     public class DashboardsRoot
     {
         public int count { get; set; }

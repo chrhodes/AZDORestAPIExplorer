@@ -3,11 +3,9 @@
 using AZDORestApiExplorer.Core.Events;
 
 using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.Core.Events;
+
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
-using AZDORestApiExplorer.Domain.Test.Events;
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -44,7 +42,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            #region Core Category
+            #region Core Area
 
             GetCoreProcessesCommand = new DelegateCommand(GetCoreProcessesExecute, GetCoreProcessesCanExecute);
             GetProjectsCommand = new DelegateCommand(GetProjectsExecute, GetProjectsCanExecute);
@@ -52,13 +50,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Core Category
 
-            #region Accounts Category
+            #region Accounts Area
 
             GetAccountsCommand = new DelegateCommand(GetAccountsExecute, GetAccountsCanExecute);
 
             #endregion Accounts Category
 
-            #region Dashboard Category
+            #region Artifacts Area
+
+            GetFeedsCommand = new DelegateCommand(GetFeeds, GetFeedsCanExecute);
+
+            #endregion
+
+            #region Dashboard Area
 
             GetDashboardsCommand = new DelegateCommand(GetDashboardsExecute, GetDashboardsCanExecute);
 
@@ -66,7 +70,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Dashboard Category
 
-            #region Git Category
+            #region Git Area
 
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
             GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
@@ -141,16 +145,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
-            EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
-            EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
-            EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
             EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
-            EventAggregator.GetEvent<SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
-            EventAggregator.GetEvent<SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
-            EventAggregator.GetEvent<SelectedTestCaseChangedEvent>().Subscribe(RaiseTestCaseChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
+            EventAggregator.GetEvent<Domain.Test.Events.SelectedTestCaseChangedEvent>().Subscribe(RaiseTestCaseChanged);
 
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
@@ -174,26 +178,44 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetTeamsCommand.RaiseCanExecuteChanged();
 
+            // Accounts
+
+            GetAccountsCommand.RaiseCanExecuteChanged();
+
+            // TODO(crhodes)
+            // Move these under appropriate Category
+
             GetWidgetsCommand.RaiseCanExecuteChanged();
 
-            GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
+
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
 
-            GetProcessesWITPCommand.RaiseCanExecuteChanged();
+
 
             // Git
 
             GetRepositoriesCommand.RaiseCanExecuteChanged();
 
-            // Work Item Tracking
+            // Work Item Tracking (WIT)
+
             GetArtifactLinkTypesCommand.RaiseCanExecuteChanged();
             GetOrganizationFieldsWITCommand.RaiseCanExecuteChanged();
             GetWorkItemIconsCommand.RaiseCanExecuteChanged();
             GetWorkItemRelationTypesCommand.RaiseCanExecuteChanged();
 
-            // Work Item Tracking Process
+            // Work Item Tracking Process (WITP)
+
+            // TODO(crhodes)
+            // Decide if want to have a naming convention
+            // VERBAreaResource
+            // e.g. GetWITPBehaviorsCommand
+            // GetWITPListsCommand
+            // Get WITPProcessesCommand
+
+            GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetListsCommand.RaiseCanExecuteChanged();
+            GetProcessesWITPCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseCommitChanged(Commit commit)
@@ -364,8 +386,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Accounts.GetAccountsEvent>().Publish(
-                new Core.Events.Accounts.GetAccountsEventArgs()
+            EventAggregator.GetEvent<Domain.Accounts.Events.GetAccountsEvent>().Publish(
+                new Domain.Accounts.Events.GetAccountsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     //, Project = _contextMainViewModel.Context.SelectedProject
@@ -379,23 +401,38 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Accounts Category
 
-        #region Core
+        #region Artifacts Area
 
-        #region GetCoreProcesses Command
+        #region GetFeeds Command
 
-        public DelegateCommand GetCoreProcessesCommand { get; set; }
-        public string GetCoreProcessesContent { get; set; } = "Get Processes";
-        public string GetCoreProcessesToolTip { get; set; } = "Get Processes ToolTip";
+
+
+        public DelegateCommand GetFeedsCommand { get; set; }
+        public string GetFeedsContent { get; set; } = "GetFeeds";
+        public string GetFeedsToolTip { get; set; } = "GetFeeds ToolTip";
 
         // Can get fancy and use Resources
-        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
-        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
+        //public string GetFeedsContent { get; set; } = "ViewName_GetFeedsContent";
+        //public string GetFeedsToolTip { get; set; } = "ViewName_GetFeedsContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+        //    <system:String x:Key="ViewName_GetFeedsContent">GetFeeds</system:String>
+        //    <system:String x:Key="ViewName_GetFeedsContentToolTip">GetFeeds ToolTip</system:String>  
 
-        public bool GetCoreProcessesCanExecute()
+        public void GetFeeds()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Artifacts.Events.GetFeedsEvent>().Publish(
+                new Domain.Core.Events.GetFeedsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetFeedsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null)
             {
@@ -405,26 +442,57 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        public void GetCoreProcessesExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        #endregion
 
-            //EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
-            //    new Core.Events.Core.GetProcessesEventArgs()
-            //    {
-            //        Organization = _collectionMainViewModel.SelectedCollection.Organization
-            //    });
 
-            EventAggregator.GetEvent<Domain.Core.Events.GetProcessesEvent>().Publish(
-                new Domain.Core.Events.GetProcessesEventArgs()
+        #endregion
+
+        #region Core
+
+        #region GetCoreProcesses Command
+
+        public DelegateCommand GetCoreProcessesCommand { get; set; }
+            public string GetCoreProcessesContent { get; set; } = "Get Processes";
+            public string GetCoreProcessesToolTip { get; set; } = "Get Processes ToolTip";
+
+            // Can get fancy and use Resources
+            //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
+            //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
+
+            // Put these in Resource File
+            //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
+            //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+
+            public bool GetCoreProcessesCanExecute()
+            {
+                if (_collectionMainViewModel.SelectedCollection is null)
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                });
+                    return false;
+                }
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+                return true;
+            }
 
-        #endregion GetCoreProcesses Command
+            public void GetCoreProcessesExecute()
+            {
+                Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+                //EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
+                //    new Core.Events.Core.GetProcessesEventArgs()
+                //    {
+                //        Organization = _collectionMainViewModel.SelectedCollection.Organization
+                //    });
+
+                EventAggregator.GetEvent<Domain.Core.Events.GetProcessesEvent>().Publish(
+                    new Domain.Core.Events.GetProcessesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    });
+
+                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+
+            #endregion GetCoreProcesses Command
 
         #region GetCoreProjects Command
 
@@ -1522,8 +1590,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetTagsEvent>().Publish(
-                new GetTagsEventArgs()
+            EventAggregator.GetEvent<WorkItemTracking.Core.Events.GetTagsEvent>().Publish(
+                new WorkItemTracking.Core.Events.GetTagsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1564,8 +1632,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetTemplatesEvent>().Publish(
-                new GetTemplatesEventArgs()
+            EventAggregator.GetEvent<WorkItemTracking.Core.Events.GetTemplatesEvent>().Publish(
+                new WorkItemTracking.Core.Events.GetTemplatesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1607,8 +1675,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetWorkItemIconsEvent>().Publish(
-                new GetWorkItemIconsEventArgs()
+            EventAggregator.GetEvent<WorkItemTracking.Core.Events.GetWorkItemIconsEvent>().Publish(
+                new WorkItemTracking.Core.Events.GetWorkItemIconsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -1646,8 +1714,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetWorkItemRelationTypesEvent>().Publish(
-                new GetWorkItemRelationTypesEventArgs()
+            EventAggregator.GetEvent<WorkItemTracking.Core.Events.GetWorkItemRelationTypesEvent>().Publish(
+                new WorkItemTracking.Core.Events.GetWorkItemRelationTypesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });

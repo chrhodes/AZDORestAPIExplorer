@@ -99,14 +99,18 @@
                         <!--Put the area of current interest here 
                             until we figure out how to make this easy to navigate-->
 
-
                         <dxdo:LayoutPanel Caption="Work Item Tracking" >
                             <local:WorkItemTrackingMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Artifacts" >
+                            <local:ArtifactsMain />
                         </dxdo:LayoutPanel>
 
                     </dxdo:LayoutGroup>
 
                     <dxdo:LayoutGroup  MinWidth="375" ItemWidth="400">
+                        
                         <dxdo:LayoutPanel Caption="Context Level Providers" >
                             <dxlc:LayoutGroup>
                                 <Grid>
@@ -136,14 +140,6 @@
                     </dxdo:AutoHideGroup>
 
                     <dxdo:AutoHideGroup DockType="Right">
-  
-                    </dxdo:AutoHideGroup>
-
-                    <dxdo:AutoHideGroup DockType="Bottom">
-                        
-                        <dxdo:LayoutPanel Caption="HTTP Exchange" >
-                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
-                        </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
@@ -155,6 +151,18 @@
 
                         <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
+                        </dxdo:LayoutPanel>
+                        
+                    </dxdo:AutoHideGroup>
+
+                    <dxdo:AutoHideGroup DockType="Bottom">
+                        
+                        <dxdo:LayoutPanel Caption="HTTP Exchange" >
+                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Accounts" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True" TabBackgroundColor="Red" >
@@ -169,7 +177,10 @@
                             <local:TestMain />
                         </dxdo:LayoutPanel>
 
-                        
+                        <dxdo:LayoutPanel Caption="Work Item Tracking" >
+                            <local:WorkItemTrackingMain />
+                        </dxdo:LayoutPanel>
+
                         <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
                             <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
@@ -193,16 +204,6 @@
                                             <Setter Property="TitleVisibility" Value="Collapsed" />
                                         </Style>
                                     </dxlc:LayoutGroup.GroupBoxStyle>
-
-                                    <dxlc:LayoutGroup Header="Accounts" >
-                                        <Grid>
-                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
-                                        </Grid>
-                                    </dxlc:LayoutGroup>
-
-                                    <dxlc:LayoutGroup Header="Artifacts" >
-
-                                    </dxlc:LayoutGroup>
 
                                     <dxlc:LayoutGroup Header="Audit" >
 

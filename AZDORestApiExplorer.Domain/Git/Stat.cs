@@ -3,6 +3,10 @@ using System;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+
+    }
     public class StatsRoot
     {
         public int count { get; set; }

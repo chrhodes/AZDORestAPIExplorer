@@ -33,7 +33,7 @@ namespace AZDORestApiExplorer.Accounts
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IAccountMainViewModel, AccountMainViewModel>();
+            //containerRegistry.Register<IAccountMainViewModel, xAccountMainViewModel>();
             containerRegistry.RegisterSingleton<IAccountMain, AccountMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);

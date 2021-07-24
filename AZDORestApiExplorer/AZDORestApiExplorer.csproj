@@ -205,6 +205,52 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy %282%29 - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain - Copy (2).xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy %282%29.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsPackageTypesMain.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy %282%29.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain - Copy.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain - Copy - Copy.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain - Copy.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ArtifactsMain.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\BuildMain - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>BuildMain.xaml.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Views\Areas\ProfileMain - Copy.xaml.cs">
+        <SubType>Code</SubType>
+        <DependentUpon>ProfileMain.xaml.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Presentation\Views\Areas\ArtifactsPackageTypesMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Presentation\Views\Areas\CloudLoadTestMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
       <Page Update="Presentation\Views\CommandsPatch.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>

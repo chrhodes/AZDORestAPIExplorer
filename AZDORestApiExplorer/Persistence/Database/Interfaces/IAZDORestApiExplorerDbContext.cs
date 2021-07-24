@@ -8,6 +8,6 @@ namespace AZDORestApiExplorer.Persistence.Data
     {
         int SaveChanges();
 
-        DbSet<Cat> CatsSet { get; set; }
+        //DbSet<Cat> CatsSet { get; set; }
     }
 }

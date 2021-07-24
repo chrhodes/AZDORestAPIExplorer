@@ -1,5 +1,9 @@
 ﻿namespace AZDORestApiExplorer.Domain.WorkItemTrackingProcess
 {
+    namespace Events
+    {
+
+    }
     public class ListsRoot
     {
         public int count { get; set; }

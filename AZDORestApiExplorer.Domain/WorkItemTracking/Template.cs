@@ -8,6 +8,10 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     public class TemplatesRoot
     {
     }

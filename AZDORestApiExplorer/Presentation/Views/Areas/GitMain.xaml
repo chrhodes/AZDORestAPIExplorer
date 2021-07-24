@@ -1,0 +1,113 @@
+﻿<UserControl 
+    x:Class="AZDORestApiExplorer.Presentation.Views.GitMain"
+    x:Name="thisGitMain"    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
+
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+    
+    d:DesignWidth="300" d:DesignHeight="200" 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>
+    <!--<d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>-->
+
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    
+    <dxlc:LayoutGroup Header="Git"
+        Orientation="Vertical"  View="Tabs">
+
+        <dxlc:LayoutGroup.GroupBoxStyle>
+            <Style TargetType="dxlc:GroupBox">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="TitleVisibility" Value="Collapsed" />
+            </Style>
+        </dxlc:LayoutGroup.GroupBoxStyle>
+
+        <dxlc:LayoutGroup Header="Repositories" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryMainRegion}" />
+        </dxlc:LayoutGroup>
+
+        <!--<dxlc:LayoutGroup Header="Blobs" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BlobMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>-->
+
+        <dxlc:LayoutGroup Header="Commits" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Commit Changes" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Import Requests" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Items" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <!--<dxlc:LayoutGroup Header="Merges" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MergeMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>-->
+
+        <dxlc:LayoutGroup Header="Pull Requests" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Pushes" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup Header="Refs" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Stats" >
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutGroup>
+    
+</UserControl>

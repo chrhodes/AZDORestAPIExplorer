@@ -1,6 +1,10 @@
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+
+    }
     public class BlobsRoot
     {
         public int count { get; set; }

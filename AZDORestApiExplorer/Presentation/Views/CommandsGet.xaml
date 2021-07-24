@@ -1,15 +1,25 @@
 ﻿<vncmvvm:ViewBase
     x:Class="AZDORestApiExplorer.Presentation.Views.CommandsGet"
-    x:Name="thisCommandsGet"      
+    x:Name="thisCommandsGet"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-    mc:Ignorable="d"
-    d:DesignHeight="650"
-    d:DesignWidth="800">
+    xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
+
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+    
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -17,8 +27,13 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources />
-    
-    <ScrollViewer>
+
+    <dxlc:LayoutControl
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            Name="lc_Root"
+            Orientation="Vertical">
 
         <dxlc:LayoutGroup Orientation="Vertical">
 
@@ -26,14 +41,8 @@
 
                 <dxlc:LayoutGroup Orientation="Vertical">
 
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Core - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
+                    <dxlc:LayoutGroup Header="Core - Organization Level" IsCollapsed="False"
+                                      Style="{StaticResource GetLayoutGroup}" >
 
                         <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                             <Button
@@ -55,16 +64,11 @@
                                 Content="{Binding GetTeamsContent, FallbackValue='Get Teams' }"
                                 ToolTip="{Binding GetTeamsToolTip, FallbackValue='Get Teams ToolTip' }" />
                         </dxlc:LayoutItem>
+                        
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Accounts - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
+                    <dxlc:LayoutGroup Header="Accounts - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
 
                         <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                             <Button
@@ -72,16 +76,50 @@
                                 Content="{Binding GetAccountsContent, FallbackValue='Get Accounts' }"
                                 ToolTip="{Binding GetAccountsToolTip, FallbackValue='Get Accounts ToolTip' }" />
                         </dxlc:LayoutItem>
+                        
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Dashboard - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
+                    <dxlc:LayoutGroup Header="Approvals and Checks"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Artifacts"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                             <Button 
+ 		                        Command="{Binding GetFeedsCommand }"
+ 		                        Content="{Binding GetFeedsContent, FallbackValue='GetFeeds' }"
+ 		                        ToolTip="{Binding GetFeedsToolTip, FallbackValue='GetFeeds ToolTip' }" />
+                         </dxlc:LayoutItem>
+ 
+ 
+
+ 
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Artifacts Package Types"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Audit"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Build"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Cloud Load Test"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Dashboard - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
 
                         <dxlc:LayoutItem>
                             <Button
@@ -96,78 +134,20 @@
                                 Content="{Binding GetWidgetsContent, FallbackValue='Get Widgets' }"
                                 ToolTip="{Binding GetWidgetsToolTip, FallbackValue='Get Widgets ToolTip' }" />
                         </dxlc:LayoutItem>
+                        
                     </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Test - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
-
-                        <!-- Enbled at Organization and Project Level -->
-
-                        <dxlc:LayoutGroup
-                            Background="{StaticResource ProjectColor}"
-                            Header="Project Level"
-                            Orientation="Vertical"
-                            View="GroupBox">
-
-                            <dxlc:LayoutItem>
-                                <Button
-                                    Command="{Binding GetTestPlansCommand }"
-                                    Content="{Binding GetTestPlansContent, FallbackValue='Get Test Plans' }"
-                                    ToolTip="{Binding GetTestPlansToolTip, FallbackValue='Get Test Plans ToolTip' }" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutGroup
-                                Background="{StaticResource TestColor}"
-                                Header="Test Plan Level"
-                                Orientation="Vertical"
-                                View="GroupBox">
-
-                                <dxlc:LayoutItem>
-                                    <Button
-                                        Command="{Binding GetTestSuitesCommand }"
-                                        Content="{Binding GetTestSuitesContent, FallbackValue='Get Test Suites' }"
-                                        ToolTip="{Binding GetTestSuitesToolTip, FallbackValue='Get Test Suites ToolTip' }" />
-                                </dxlc:LayoutItem>
-
-                                <dxlc:LayoutGroup
-                                    Background="{StaticResource TestColor}"
-                                    Header="Test Suite Level"
-                                    Orientation="Vertical"
-                                    View="GroupBox">
-
-                                    <dxlc:LayoutItem>
-                                        <Button
-                                            Command="{Binding GetTestCasesCommand }"
-                                            Content="{Binding GetTestCasesContent, FallbackValue='GetTestCases' }"
-                                            ToolTip="{Binding GetTestCasesToolTip, FallbackValue='GetTestCases ToolTip' }" />
-                                    </dxlc:LayoutItem>
-
-                                </dxlc:LayoutGroup>
-
-                            </dxlc:LayoutGroup>
-
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:LayoutGroup>
-
+                        
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Orientation="Vertical">
 
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Git - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
+                    <dxlc:LayoutGroup Header="Extension Management" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
 
                         <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                             <Button
@@ -176,9 +156,8 @@
                                 ToolTip="{Binding GetRepositoriesToolTip, FallbackValue='Get Repositories ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup
+                        <dxlc:LayoutGroup Header="Project Level"
                             Background="{StaticResource ProjectColor}"
-                            Header="Project Level"
                             Orientation="Vertical"
                             View="GroupBox">
 
@@ -190,9 +169,8 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutGroup
+                        <dxlc:LayoutGroup Header="Repository Level"
                             Background="{StaticResource RepositoryColor}"
-                            Header="Repository Level"
                             Orientation="Vertical"
                             View="GroupBox">
 
@@ -259,9 +237,8 @@
                                     ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutGroup
+                            <dxlc:LayoutGroup Header="Commit Level"
                                 Background="{StaticResource CommitColor}"
-                                Header="Commit Level"
                                 Orientation="Vertical"
                                 View="GroupBox">
 
@@ -271,569 +248,460 @@
                                         Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
                                         ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
                                 </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Graph"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Identities"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Member Entitlement Management"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Notification" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Operations" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Permissions Report"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Pipelines"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Policy" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Profile"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Release" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Search" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+
+                    <dxlc:LayoutGroup Header="Security" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Security Roles" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Service Endpoint"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Service Hooks"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutGroup Header="Status"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Symbols"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Task Agent"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Test - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
+
+                        <!-- Enbled at Organization and Project Level -->
+
+                        <dxlc:LayoutGroup Header="Project Level"
+                            Background="{StaticResource ProjectColor}"
+                            Orientation="Vertical"
+                            View="GroupBox">
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                    Command="{Binding GetTestPlansCommand }"
+                                    Content="{Binding GetTestPlansContent, FallbackValue='Get Test Plans' }"
+                                    ToolTip="{Binding GetTestPlansToolTip, FallbackValue='Get Test Plans ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup Header="Test Plan Level"
+                                Background="{StaticResource TestColor}"
+                                Orientation="Vertical"
+                                View="GroupBox">
+
+                                <dxlc:LayoutItem>
+                                    <Button
+                                        Command="{Binding GetTestSuitesCommand }"
+                                        Content="{Binding GetTestSuitesContent, FallbackValue='Get Test Suites' }"
+                                        ToolTip="{Binding GetTestSuitesToolTip, FallbackValue='Get Test Suites ToolTip' }" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutGroup Header="Test Suite Level"
+                                    Background="{StaticResource TestColor}"
+                                    Orientation="Vertical"
+                                    View="GroupBox">
+
+                                    <dxlc:LayoutItem>
+                                        <Button
+                                            Command="{Binding GetTestCasesCommand }"
+                                            Content="{Binding GetTestCasesContent, FallbackValue='GetTestCases' }"
+                                            ToolTip="{Binding GetTestCasesToolTip, FallbackValue='GetTestCases ToolTip' }" />
+                                    </dxlc:LayoutItem>
+
+                                </dxlc:LayoutGroup>
+
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Test Plan"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Test Reults"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Tfvc" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Token Admin"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Tokens"
+                             Style="{StaticResource GetLayoutGroup}" IsCollapsed="True">
+                        <TextBlock Text="Not Implemented Yet" />
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                
+                <dxlc:LayoutGroup Orientation="Vertical">
+
+                    <dxlc:LayoutGroup Header="Work - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
+
+                        <!--<dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                    <Button
+                        Command="{Binding GetBacklogsCommand }"
+                        Content="{Binding GetBacklogsContent, FallbackValue='Get Backlogs' }"
+                        ToolTip="{Binding GetBacklogsToolTip, FallbackValue='Get Backlogs ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                        <Button
+                            Command="{Binding GetBoardsCommand }"
+                            Content="{Binding GetBoardsContent, FallbackValue='Get Boards' }"
+                            ToolTip="{Binding GetBoardsToolTip, FallbackValue='Get Boards ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                        <Button
+                            Command="{Binding GetBoardColumnsCommand }"
+                            Content="{Binding GetBoardColumnsContent, FallbackValue='Get BoardColumns' }"
+                            ToolTip="{Binding GetBoardColumnsToolTip, FallbackValue='Get BoardColumns ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                        <Button
+                            Command="{Binding GetBoardRowsCommand }"
+                            Content="{Binding GetBoardRowsContent, FallbackValue='Get BoardRows' }"
+                            ToolTip="{Binding GetBoardRowsToolTip, FallbackValue='Get BoardRows ToolTip' }" />
+                    </dxlc:LayoutItem>-->
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Work Item Tracking - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
+
+                        <!-- Enbled at Organization Level -->
+
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                            <Button
+                            Command="{Binding GetArtifactLinkTypesCommand }"
+                            Content="{Binding GetArtifactLinkTypesContent, FallbackValue='Get ArtifactLinkTypes' }"
+                            ToolTip="{Binding GetArtifactLinkTypesToolTip, FallbackValue='Get ArtifactLinkTypes ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                            <Button
+                            Command="{Binding GetWorkItemIconsCommand }"
+                            Content="{Binding GetWorkItemIconsContent, FallbackValue='Get WorkItem Icons' }"
+                            ToolTip="{Binding GetWorkItemIconsToolTip, FallbackValue='Get WorkItem Icons ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                            <Button
+                            Command="{Binding GetWorkItemRelationTypesCommand }"
+                            Content="{Binding GetWorkItemRelationTypesContent, FallbackValue='Get WorkItem RelationTypes' }"
+                            ToolTip="{Binding GetWorkItemRelationTypesToolTip, FallbackValue='Get WorkItem RelationTypes ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button
+                            Command="{Binding GetOrganizationFieldsWITCommand }"
+                            Content="{Binding GetOrganizationFieldsWITContent, FallbackValue='Get Fields (Organization)' }"
+                            ToolTip="{Binding GetOrganizationFieldsWITToolTip, FallbackValue='Get Fields (Organization) ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup Header="Project Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
+
+                            <!-- Enbled at Organization and Project Level -->
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetClassificationNodesCommand }"
+                                Content="{Binding GetClassificationNodesContent, FallbackValue='Get ClassificationNodes' }"
+                                ToolTip="{Binding GetClassificationNodesToolTip, FallbackValue='Get ClassificationNodes ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetProjectFieldsWITCommand }"
+                                Content="{Binding GetProjectFieldsWITContent, FallbackValue='Get Fields (Project)' }"
+                                ToolTip="{Binding GetProjectFieldsWITToolTip, FallbackValue='Get Fields (Project) ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetQueriesCommand }"
+                                Content="{Binding GetQueriesContent, FallbackValue='Get Queries' }"
+                                ToolTip="{Binding GetQueriesToolTip, FallbackValue='Get Queries ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetTagsCommand }"
+                                Content="{Binding GetTagsContent, FallbackValue='Get Tags' }"
+                                ToolTip="{Binding GetTagsToolTip, FallbackValue='Get Tags ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetWorkItemTypeCategoriesCommand }"
+                                Content="{Binding GetWorkItemTypeCategoriesContent, FallbackValue='Get WorkItem TypeCategories' }"
+                                ToolTip="{Binding GetWorkItemTypeCategoriesToolTip, FallbackValue='Get WorkItem TypeCategories ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem>
+                                <Button
+                                Command="{Binding GetWorkItemTypesWITCommand }"
+                                Content="{Binding GetWorkItemTypesWITContent, FallbackValue='Get WorkItem Types' }"
+                                ToolTip="{Binding GetWorkItemTypesWITToolTip, FallbackValue='Get WorkItem Types ToolTip' }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup Header="Work ItemLevel"
+                                Orientation="Vertical"
+                                View="GroupBox">
+
+                                <dxlc:LayoutItem>
+                                    <Button
+		                        Command="{Binding GetWorkItemCommand }"
+		                        Content="{Binding GetWorkItemContent, FallbackValue='GetWorkItem' }"
+		                        ToolTip="{Binding GetWorkItemToolTip, FallbackValue='GetWorkItem ToolTip' }" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Header="WorkItemType Level"
+                                Background="{StaticResource WorkItemTypeColor}"
+                                Orientation="Vertical"
+                                View="GroupBox">
+
+                                <dxlc:LayoutItem>
+                                    <Button
+                                    Command="{Binding GetStatesWITCommand }"
+                                    Content="{Binding GetStatesWITContent, FallbackValue='Get States (WIT)' }"
+                                    ToolTip="{Binding GetStatesWITToolTip, FallbackValue='Get States (WIT) ToolTip' }" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem>
+                                    <Button
+                                    Command="{Binding GetWorkItemTypesFieldsCommand }"
+                                    Content="{Binding GetWorkItemTypesFieldsContent, FallbackValue='Get WorkItemTypes Fields' }"
+                                    ToolTip="{Binding GetWorkItemTypesFieldsToolTip, FallbackValue='Get WorkItemTypes Fields ToolTip' }" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <!-- Enbled at Organization, Project, and Team Level -->
+
+                            <dxlc:LayoutGroup Header="Team Level"
+                                Background="{StaticResource TeamColor}"
+                                Orientation="Vertical"
+                                View="GroupBox">
+
+                                <dxlc:LayoutItem>
+                                    <Button
+                                    Command="{Binding GetTemplatesCommand }"
+                                    Content="{Binding GetTemplatesContent, FallbackValue='Get Templates' }"
+                                    ToolTip="{Binding GetTemplatesToolTip, FallbackValue='Get Templates ToolTip' }" />
+                                </dxlc:LayoutItem>
+                                
                             </dxlc:LayoutGroup>
                             
                         </dxlc:LayoutGroup>
                         
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Work - Organization Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
+                    <dxlc:LayoutGroup Header="Work Item Tracking Process - Organization Level" IsCollapsed="True"
+                                      Style="{StaticResource GetLayoutGroup}" >
 
-                    <!--<dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                    <Button
-                        Command="{Binding GetBacklogsCommand }"
-                        Content="{Binding GetBacklogsContent, FallbackValue='Get Backlogs' }"
-                        ToolTip="{Binding GetBacklogsToolTip, FallbackValue='Get Backlogs ToolTip' }" />
-                </dxlc:LayoutItem>
+                        <!-- Enbled at Organization Level -->
 
-                <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                    <Button
-                        Command="{Binding GetBoardsCommand }"
-                        Content="{Binding GetBoardsContent, FallbackValue='Get Boards' }"
-                        ToolTip="{Binding GetBoardsToolTip, FallbackValue='Get Boards ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                    <Button
-                        Command="{Binding GetBoardColumnsCommand }"
-                        Content="{Binding GetBoardColumnsContent, FallbackValue='Get BoardColumns' }"
-                        ToolTip="{Binding GetBoardColumnsToolTip, FallbackValue='Get BoardColumns ToolTip' }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                    <Button
-                        Command="{Binding GetBoardRowsCommand }"
-                        Content="{Binding GetBoardRowsContent, FallbackValue='Get BoardRows' }"
-                        ToolTip="{Binding GetBoardRowsToolTip, FallbackValue='Get BoardRows ToolTip' }" />
-                </dxlc:LayoutItem>-->
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top"
-                    Header="Work Item Tracking - Organization Level"
-                    IsCollapsed="False"
-                    IsCollapsible="True"
-                    Orientation="Vertical"
-                    View="GroupBox">
-
-                    <!-- Enbled at Organization Level -->
-
-                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
-                            Command="{Binding GetArtifactLinkTypesCommand }"
-                            Content="{Binding GetArtifactLinkTypesContent, FallbackValue='Get ArtifactLinkTypes' }"
-                            ToolTip="{Binding GetArtifactLinkTypesToolTip, FallbackValue='Get ArtifactLinkTypes ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
-                            Command="{Binding GetWorkItemIconsCommand }"
-                            Content="{Binding GetWorkItemIconsContent, FallbackValue='Get WorkItem Icons' }"
-                            ToolTip="{Binding GetWorkItemIconsToolTip, FallbackValue='Get WorkItem Icons ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
-                            Command="{Binding GetWorkItemRelationTypesCommand }"
-                            Content="{Binding GetWorkItemRelationTypesContent, FallbackValue='Get WorkItem RelationTypes' }"
-                            ToolTip="{Binding GetWorkItemRelationTypesToolTip, FallbackValue='Get WorkItem RelationTypes ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <Button
-                            Command="{Binding GetOrganizationFieldsWITCommand }"
-                            Content="{Binding GetOrganizationFieldsWITContent, FallbackValue='Get Fields (Organization)' }"
-                            ToolTip="{Binding GetOrganizationFieldsWITToolTip, FallbackValue='Get Fields (Organization) ToolTip' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup
-                        Background="{StaticResource ProjectColor}"
-                        Header="Project Level"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox">
-
-                        <!-- Enbled at Organization and Project Level -->
-
-                        <dxlc:LayoutItem>
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
                             <Button
-                                Command="{Binding GetClassificationNodesCommand }"
-                                Content="{Binding GetClassificationNodesContent, FallbackValue='Get ClassificationNodes' }"
-                                ToolTip="{Binding GetClassificationNodesToolTip, FallbackValue='Get ClassificationNodes ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button
-                                Command="{Binding GetProjectFieldsWITCommand }"
-                                Content="{Binding GetProjectFieldsWITContent, FallbackValue='Get Fields (Project)' }"
-                                ToolTip="{Binding GetProjectFieldsWITToolTip, FallbackValue='Get Fields (Project) ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button
-                                Command="{Binding GetQueriesCommand }"
-                                Content="{Binding GetQueriesContent, FallbackValue='Get Queries' }"
-                                ToolTip="{Binding GetQueriesToolTip, FallbackValue='Get Queries ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button
-                                Command="{Binding GetTagsCommand }"
-                                Content="{Binding GetTagsContent, FallbackValue='Get Tags' }"
-                                ToolTip="{Binding GetTagsToolTip, FallbackValue='Get Tags ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button
-                                Command="{Binding GetWorkItemTypeCategoriesCommand }"
-                                Content="{Binding GetWorkItemTypeCategoriesContent, FallbackValue='Get WorkItem TypeCategories' }"
-                                ToolTip="{Binding GetWorkItemTypeCategoriesToolTip, FallbackValue='Get WorkItem TypeCategories ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button
-                                Command="{Binding GetWorkItemTypesWITCommand }"
-                                Content="{Binding GetWorkItemTypesWITContent, FallbackValue='Get WorkItem Types' }"
-                                ToolTip="{Binding GetWorkItemTypesWITToolTip, FallbackValue='Get WorkItem Types ToolTip' }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutGroup
-                            Header="Work ItemLevel"
-                            Orientation="Vertical"
-                            View="GroupBox">
-
-                            <dxlc:LayoutItem>
-                                <Button 
-		                        Command="{Binding GetWorkItemCommand }"
-		                        Content="{Binding GetWorkItemContent, FallbackValue='GetWorkItem' }"
-		                        ToolTip="{Binding GetWorkItemToolTip, FallbackValue='GetWorkItem ToolTip' }" />
-                            </dxlc:LayoutItem>
-
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup
-                            Background="{StaticResource WorkItemTypeColor}"
-                            Header="WorkItemType Level"
-                            Orientation="Vertical"
-                            View="GroupBox">
-
-                            <dxlc:LayoutItem>
-                                <Button
-                                    Command="{Binding GetStatesWITCommand }"
-                                    Content="{Binding GetStatesWITContent, FallbackValue='Get States (WIT)' }"
-                                    ToolTip="{Binding GetStatesWITToolTip, FallbackValue='Get States (WIT) ToolTip' }" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem>
-                                <Button
-                                    Command="{Binding GetWorkItemTypesFieldsCommand }"
-                                    Content="{Binding GetWorkItemTypesFieldsContent, FallbackValue='Get WorkItemTypes Fields' }"
-                                    ToolTip="{Binding GetWorkItemTypesFieldsToolTip, FallbackValue='Get WorkItemTypes Fields ToolTip' }" />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <!-- Enbled at Organization, Project, and Team Level -->
-
-                        <dxlc:LayoutGroup
-                            Background="{StaticResource TeamColor}"
-                            Header="Team Level"
-                            Orientation="Vertical"
-                            View="GroupBox">
-
-                            <dxlc:LayoutItem>
-                                <Button
-                                    Command="{Binding GetTemplatesCommand }"
-                                    Content="{Binding GetTemplatesContent, FallbackValue='Get Templates' }"
-                                    ToolTip="{Binding GetTemplatesToolTip, FallbackValue='Get Templates ToolTip' }" />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:LayoutGroup>
-
-
-
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top"
-                    Header="Work Item Tracking Process - Organization Level"
-                    IsCollapsed="False"
-                    IsCollapsible="True"
-                    Orientation="Vertical"
-                    View="GroupBox">
-
-                    <!-- Enbled at Organization Level -->
-
-                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
                             Command="{Binding GetProcessesWITPCommand }"
                             Content="{Binding GetProcessesWITPContent, FallbackValue='Get Processes' }"
                             ToolTip="{Binding GetProcessesWITPToolTip, FallbackValue='Get Processes ToolTip' }" />
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
-                        <Button
+                        <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
+                            <Button
                             Command="{Binding GetListsCommand }"
                             Content="{Binding GetListsContent, FallbackValue='Get Lists' }"
                             ToolTip="{Binding GetListsToolTip, FallbackValue='Get Lists ToolTip' }" />
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
 
-                    <!-- Enbled at Organization and Process Level -->
+                        <!-- Enbled at Organization and Process Level -->
 
-                    <dxlc:LayoutGroup
-                        Header="Process Level"
-                        Orientation="Vertical"
-                        View="GroupBox">
+                        <dxlc:LayoutGroup Header="Process Level"
+                            Orientation="Vertical"
+                            View="GroupBox">
 
-                        <dxlc:LayoutItem Background="{StaticResource ProcessColor}">
-                            <Button
+                            <dxlc:LayoutItem Background="{StaticResource ProcessColor}">
+                                <Button
                                 Command="{Binding GetBehaviorsWITPCommand }"
                                 Content="{Binding GetBehaviorsWITPContent, FallbackValue='Get Behaviors' }"
                                 ToolTip="{Binding GetBehaviorsWITPToolTip, FallbackValue='Get Behaviors ToolTip' }" />
-                        </dxlc:LayoutItem>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Background="{StaticResource ProcessColor}">
-                            <Button
+                            <dxlc:LayoutItem Background="{StaticResource ProcessColor}">
+                                <Button
                                 Command="{Binding GetWorkItemTypesWITPCommand }"
                                 Content="{Binding GetWorkItemTypesWITPContent, FallbackValue='Get WorkItemTypes' }"
                                 ToolTip="{Binding GetWorkItemTypesWITPToolTip, FallbackValue='Get WorkItemTypes ToolTip' }" />
-                        </dxlc:LayoutItem>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup
-                            Header="WorkItemType Level"
-                            Orientation="Vertical"
-                            View="GroupBox">
-                            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                                <Button
+                            <dxlc:LayoutGroup Header="WorkItemType Level"
+                                Orientation="Vertical"
+                                View="GroupBox">
+
+                                <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
+                                    <Button
                                     Command="{Binding GetFieldsWITPCommand }"
                                     Content="{Binding GetFieldsWITPContent, FallbackValue='Get Fields' }"
                                     ToolTip="{Binding GetFieldsWITPToolTip, FallbackValue='Get Fields ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                                <Button
+                                <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
+                                    <Button
                                     Command="{Binding GetRulesCommand }"
                                     Content="{Binding GetRulesContent, FallbackValue='Get Rules' }"
                                     ToolTip="{Binding GetRulesToolTip, FallbackValue='Get Rules ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                                <Button
+                                <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
+                                    <Button
                                     Command="{Binding GetStatesWITPCommand }"
                                     Content="{Binding GetStatesWITPContent, FallbackValue='Get States (WITP)' }"
                                     ToolTip="{Binding GetStatesWITPToolTip, FallbackValue='Get States (WITP) ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                                <Button
+                                <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
+                                    <Button
                                     Command="{Binding GetSystemControlsCommand }"
                                     Content="{Binding GetSystemControlsContent, FallbackValue='Get SystemControls' }"
                                     ToolTip="{Binding GetSystemControlsToolTip, FallbackValue='Get SystemControls ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
-                                <Button
+                                <dxlc:LayoutItem Background="{StaticResource WorkItemTypeColor}">
+                                    <Button
                                     Command="{Binding GetWorkItemTypesBehaviorsCommand }"
                                     Content="{Binding GetWorkItemTypesBehaviorsContent, FallbackValue='Get WorkItemTypes Behaviors' }"
                                     ToolTip="{Binding GetWorkItemTypesBehaviorsToolTip, FallbackValue='Get WorkItemTypes Behaviors ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+
                         </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Work Item Tracking Process Template" IsCollapsed="True"
+                             Style="{StaticResource GetLayoutGroup}" >
+
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
-                <!--<dxlc:LayoutItem>
-                <Button
-                    Command="{Binding GetControlsCommand }"
-                    Content="{Binding GetControlsContent, FallbackValue='Get Controls' }"
-                    ToolTip="{Binding GetControlsToolTip, FallbackValue='Get Controls ToolTip' }" />
-            </dxlc:LayoutItem>-->
-
-                <!--Wrap Everything else in a  WrapPanel until we add at least one control-->
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Header="Not Implemented Yet"
-                IsCollapsed="True"
-                IsCollapsible="True"
-                Orientation="Vertical"
-                View="GroupBox">
-                <WrapPanel>
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Artifacts"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Audit"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Build"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Cloud Load Test"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Distributed Task"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Extension Management"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Graph"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Identities"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Member Entitlement Management"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Notification"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Operations"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Permissions Report"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Pipelines"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Policy"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Profile"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Release"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Search"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Security"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Service Endpoint"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Service Hooks"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Status"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Symbol"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Test"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Tfvc"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Token Admin"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Work Item Tracking"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-
-                    <dxlc:LayoutGroup
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Header="Work Item Tracking Process Template"
-                        IsCollapsed="False"
-                        IsCollapsible="True"
-                        Orientation="Vertical"
-                        View="GroupBox" />
-                </WrapPanel>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup VerticalAlignment="Bottom">
 
-                    <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <Label Content="V:" />
-                            <Label Content="{Binding ElementName=thisCommandsGet, Path=InstanceCountV}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <Label Content="VM:" />
-
-                            <Label Content="{Binding InstanceCountVM}" />
-                        </StackPanel>
+                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="V:" />
+                        <Label Content="{Binding ElementName=thisCommandsGet, Path=InstanceCountV}" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Content="VM:" />
 
+                        <Label Content="{Binding InstanceCountVM}" />
+                    </StackPanel>
+                </StackPanel>
+                
             </dxlc:LayoutGroup>
-            
-        </dxlc:LayoutGroup>
+                
+        </dxlc:LayoutGroup>            
         
-    </ScrollViewer>
-    
+    </dxlc:LayoutControl>
+        
 </vncmvvm:ViewBase>

@@ -2,6 +2,10 @@ using System;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     public class ClassificationNodesRoot
     {
         public int count { get; set; }

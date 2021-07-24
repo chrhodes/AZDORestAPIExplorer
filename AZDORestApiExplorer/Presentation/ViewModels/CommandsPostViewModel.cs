@@ -187,8 +187,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #endregion
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
-            EventAggregator.GetEvent<Core.Events.Core.xSelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
-            EventAggregator.GetEvent<Core.Events.Core.xSelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
+            EventAggregator.GetEvent<Domain.Core.Events.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

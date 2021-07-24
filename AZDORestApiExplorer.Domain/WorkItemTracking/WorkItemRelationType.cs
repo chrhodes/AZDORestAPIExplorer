@@ -1,5 +1,9 @@
 ﻿namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     public class WorkItemRelationTypesRoot
     {
         public int count { get; set; }

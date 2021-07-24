@@ -6,6 +6,93 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Events\ArtifactsPackageTypes\**" />
+    <Compile Remove="Events\Artifacts\**" />
+    <Compile Remove="Events\Audit\**" />
+    <Compile Remove="Events\Build\**" />
+    <Compile Remove="Events\Dashbard\**" />
+    <Compile Remove="Events\DistributedTask\**" />
+    <Compile Remove="Events\ExtenstionManagement\**" />
+    <Compile Remove="Events\Graph\**" />
+    <Compile Remove="Events\Identities\**" />
+    <Compile Remove="Events\MemberEntitlementManagement\**" />
+    <Compile Remove="Events\Notification\**" />
+    <Compile Remove="Events\Operations\**" />
+    <Compile Remove="Events\PermissionsReport\**" />
+    <Compile Remove="Events\Pipelines\**" />
+    <Compile Remove="Events\Policy\**" />
+    <Compile Remove="Events\Profile\**" />
+    <Compile Remove="Events\Release\**" />
+    <Compile Remove="Events\Search\**" />
+    <Compile Remove="Events\SecurityRoles\**" />
+    <Compile Remove="Events\Security\**" />
+    <Compile Remove="Events\ServiceEndpoint\**" />
+    <Compile Remove="Events\ServiceHooks\**" />
+    <Compile Remove="Events\TestResults\**" />
+    <Compile Remove="Events\Test\**" />
+    <Compile Remove="Events\Tfvc\**" />
+    <Compile Remove="Events\TokenAdmin\**" />
+    <Compile Remove="Events\Wiki\**" />
+    <Compile Remove="Events\Work\**" />
+    <EmbeddedResource Remove="Events\ArtifactsPackageTypes\**" />
+    <EmbeddedResource Remove="Events\Artifacts\**" />
+    <EmbeddedResource Remove="Events\Audit\**" />
+    <EmbeddedResource Remove="Events\Build\**" />
+    <EmbeddedResource Remove="Events\Dashbard\**" />
+    <EmbeddedResource Remove="Events\DistributedTask\**" />
+    <EmbeddedResource Remove="Events\ExtenstionManagement\**" />
+    <EmbeddedResource Remove="Events\Graph\**" />
+    <EmbeddedResource Remove="Events\Identities\**" />
+    <EmbeddedResource Remove="Events\MemberEntitlementManagement\**" />
+    <EmbeddedResource Remove="Events\Notification\**" />
+    <EmbeddedResource Remove="Events\Operations\**" />
+    <EmbeddedResource Remove="Events\PermissionsReport\**" />
+    <EmbeddedResource Remove="Events\Pipelines\**" />
+    <EmbeddedResource Remove="Events\Policy\**" />
+    <EmbeddedResource Remove="Events\Profile\**" />
+    <EmbeddedResource Remove="Events\Release\**" />
+    <EmbeddedResource Remove="Events\Search\**" />
+    <EmbeddedResource Remove="Events\SecurityRoles\**" />
+    <EmbeddedResource Remove="Events\Security\**" />
+    <EmbeddedResource Remove="Events\ServiceEndpoint\**" />
+    <EmbeddedResource Remove="Events\ServiceHooks\**" />
+    <EmbeddedResource Remove="Events\TestResults\**" />
+    <EmbeddedResource Remove="Events\Test\**" />
+    <EmbeddedResource Remove="Events\Tfvc\**" />
+    <EmbeddedResource Remove="Events\TokenAdmin\**" />
+    <EmbeddedResource Remove="Events\Wiki\**" />
+    <EmbeddedResource Remove="Events\Work\**" />
+    <None Remove="Events\ArtifactsPackageTypes\**" />
+    <None Remove="Events\Artifacts\**" />
+    <None Remove="Events\Audit\**" />
+    <None Remove="Events\Build\**" />
+    <None Remove="Events\Dashbard\**" />
+    <None Remove="Events\DistributedTask\**" />
+    <None Remove="Events\ExtenstionManagement\**" />
+    <None Remove="Events\Graph\**" />
+    <None Remove="Events\Identities\**" />
+    <None Remove="Events\MemberEntitlementManagement\**" />
+    <None Remove="Events\Notification\**" />
+    <None Remove="Events\Operations\**" />
+    <None Remove="Events\PermissionsReport\**" />
+    <None Remove="Events\Pipelines\**" />
+    <None Remove="Events\Policy\**" />
+    <None Remove="Events\Profile\**" />
+    <None Remove="Events\Release\**" />
+    <None Remove="Events\Search\**" />
+    <None Remove="Events\SecurityRoles\**" />
+    <None Remove="Events\Security\**" />
+    <None Remove="Events\ServiceEndpoint\**" />
+    <None Remove="Events\ServiceHooks\**" />
+    <None Remove="Events\TestResults\**" />
+    <None Remove="Events\Test\**" />
+    <None Remove="Events\Tfvc\**" />
+    <None Remove="Events\TokenAdmin\**" />
+    <None Remove="Events\Wiki\**" />
+    <None Remove="Events\Work\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="VNC.Core" Version="1.1.0" />
     <PackageReference Include="VNC.HttpHelper" Version="1.1.0" />
   </ItemGroup>
@@ -15,35 +102,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\ArtifactsPackageTypes\" />
-    <Folder Include="Events\Artifacts\" />
-    <Folder Include="Events\Audit\" />
-    <Folder Include="Events\Build\" />
-    <Folder Include="Events\Dashbard\" />
-    <Folder Include="Events\DistributedTask\" />
-    <Folder Include="Events\ExtenstionManagement\" />
-    <Folder Include="Events\Graph\" />
-    <Folder Include="Events\Identities\" />
-    <Folder Include="Events\MemberEntitlementManagement\" />
-    <Folder Include="Events\Notification\" />
-    <Folder Include="Events\Operations\" />
-    <Folder Include="Events\PermissionsReport\" />
-    <Folder Include="Events\Pipelines\" />
-    <Folder Include="Events\Policy\" />
-    <Folder Include="Events\Profile\" />
-    <Folder Include="Events\Release\" />
-    <Folder Include="Events\Search\" />
-    <Folder Include="Events\SecurityRoles\" />
-    <Folder Include="Events\Security\" />
-    <Folder Include="Events\ServiceEndpoint\" />
-    <Folder Include="Events\ServiceHooks\" />
-    <Folder Include="Events\TestResults\" />
-    <Folder Include="Events\Test\" />
-    <Folder Include="Events\Tfvc\" />
-    <Folder Include="Events\TokenAdmin\" />
-    <Folder Include="Events\Wiki\" />
     <Folder Include="Events\WorkItemTrackingProcessTemplate\" />
-    <Folder Include="Events\Work\" />
   </ItemGroup>
   
 </Project>

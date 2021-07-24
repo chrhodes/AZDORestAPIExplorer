@@ -1,6 +1,10 @@
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+
+    }
     public class MergesRoot
     {
         public int count { get; set; }

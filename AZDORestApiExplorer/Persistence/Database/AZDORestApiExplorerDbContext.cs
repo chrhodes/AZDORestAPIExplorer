@@ -20,10 +20,10 @@ namespace AZDORestApiExplorer.Persistence.Data
         // TODO(crhodes)
         // Add additional DbSet<TYPE> as needed.
 
-        public DbSet<Cat> CatsSet { get; set; }
-        public DbSet<CatPhoneNumber> CatPhoneNumbersSet { get; set; }
+        //public DbSet<Cat> CatsSet { get; set; }
+        //public DbSet<CatPhoneNumber> CatPhoneNumbersSet { get; set; }
 
-        public DbSet<Food> FoodsSet { get; set; }
+        //public DbSet<Food> FoodsSet { get; set; }
 
         // Name of connection string in Config
 

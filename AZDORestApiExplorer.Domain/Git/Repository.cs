@@ -10,6 +10,11 @@ using VNC.Core.DomainServices;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+
+    }
+
     // TODO(crhodes)
     // PasteSpecial from Json result text
 

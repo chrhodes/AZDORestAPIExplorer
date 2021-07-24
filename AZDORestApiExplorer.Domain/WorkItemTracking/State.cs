@@ -1,6 +1,10 @@
 ﻿
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
+    namespace Events
+    {
+
+    }
     public class StatesRoot
     {
         public int count { get; set; }

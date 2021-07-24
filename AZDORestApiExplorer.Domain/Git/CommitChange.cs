@@ -3,6 +3,10 @@ using System;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+
+    }
     //public class CommitChangesRoot
     //{
     //    public int count { get; set; }

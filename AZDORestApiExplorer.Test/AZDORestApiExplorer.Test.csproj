@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
+    <Folder Include="Presentation\ViewModels\" />
   </ItemGroup>
 
     <ItemGroup>
