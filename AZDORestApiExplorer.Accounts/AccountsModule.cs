@@ -1,6 +1,5 @@
 ﻿using System;
 
-using AZDORestApiExplorer.Accounts.Presentation.ViewModels;
 using AZDORestApiExplorer.Accounts.Presentation.Views;
 using AZDORestApiExplorer.Core;
 

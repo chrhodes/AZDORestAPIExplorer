@@ -19,9 +19,9 @@
     xmlns:local="clr-namespace:AZDORestApiExplorer.Accounts.Presentation.Views"
     
     xmlns:views="clr-namespace:AZDORestApiExplorer.Accounts.Presentation.Views"
-    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Accounts.Presentation.ViewModels"
+
     xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >

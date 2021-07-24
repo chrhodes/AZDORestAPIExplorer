@@ -2,6 +2,6 @@
 {
     public class Common
     {
-        public const string LOG_APPNAME = "AZDORestApiExplorerSearch";
+        public const string LOG_CATEGORY = "AZDORestApiExplorerSearch";
     }
 }

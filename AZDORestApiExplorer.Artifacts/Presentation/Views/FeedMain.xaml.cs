@@ -1,7 +1,7 @@
 using System;
 
-using AZDORestApiExplorer.Domain.Test;
-using AZDORestApiExplorer.Domain.Test.Events;
+using AZDORestApiExplorer.Domain.Artifacts;
+using AZDORestApiExplorer.Domain.Artifacts.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using DevExpress.Xpf.Grid;
@@ -9,11 +9,12 @@ using DevExpress.Xpf.Grid;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace AZDORestApiExplorer.Test.Presentation.Views
+namespace AZDORestApiExplorer.Artifacts.Presentation.Views
 {
-    public partial class TestCaseMain : ViewBase, ITestCaseMain, IInstanceCountV
+    public partial class FeedMain : ViewBase, IFeedMain, IInstanceCountV
     {
-        public TestCaseMain(DomainViewModel<TestCase, GetTestCasesEvent, GetTestCasesEventArgs, SelectedTestCaseChangedEvent> viewModel)
+
+        public FeedMain(DomainViewModel<Feed, GetFeedsEvent, GetFeedsEventArgs, SelectedFeedChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -21,20 +22,10 @@ namespace AZDORestApiExplorer.Test.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+            TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        //public TestCaseMain(ViewModels.ITestCaseMainViewModel viewModel)
-        //{
-        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
-
-        //    InstanceCountV++;
-        //    InitializeComponent();
-
-        //    ViewModel = viewModel;
-
-        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
 
         private GridControl _targetGrid;
 

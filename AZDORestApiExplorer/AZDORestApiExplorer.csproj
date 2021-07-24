@@ -189,6 +189,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Artifacts\AZDORestApiExplorer.Artifacts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Dashboard\AZDORestApiExplorer.Dashboard.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />

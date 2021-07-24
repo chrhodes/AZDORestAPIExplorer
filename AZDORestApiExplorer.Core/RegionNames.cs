@@ -15,10 +15,6 @@ namespace AZDORestApiExplorer.Core
         public static string CombinedNavigationRegion = "CombinedNavigationRegion";
         public static string CombinedDetailRegion = "CombinedDetailRegion";
 
-        public static string CatMainRegion = "CatMainRegion";
-        public static string CatNavigationRegion = "CatNavigationRegion";
-        public static string CatDetailRegion = "CatDetailRegion";
-
         public static string CollectionMainRegion = "CollectionMainRegion";
         public static string CollectionNavigationRegion = "CollectionNavigationRegion";
         public static string CollectionDetailRegion = "CollectionDetailRegion";
@@ -37,7 +33,7 @@ namespace AZDORestApiExplorer.Core
         // public static string HTTPExchangeDetailRegion = "HTTPExchangeDetailRegion";
 
         //
-        // Core Category
+        // Core Area
         //
 
         public static string ProcessMainRegion = "ProcessMainRegion";
@@ -53,7 +49,7 @@ namespace AZDORestApiExplorer.Core
         public static string TeamDetailRegion = "TeamDetailRegion";
 
         //
-        // Accounts Category
+        // Accounts Area
         //
 
         public static string AccountMainRegion = "AccountMainRegion";
@@ -61,7 +57,13 @@ namespace AZDORestApiExplorer.Core
         // public static string AccountDetailRegion = "AccountDetailRegion";
 
         //
-        // Dashboard Category
+        // Artifacts Area
+        //
+
+        public static string FeedMainRegion = "FeedMainRegion";
+
+        //
+        // Dashboard Area
         //
 
         public static string DashboardMainRegion = "DashboardMainRegion";
@@ -77,7 +79,7 @@ namespace AZDORestApiExplorer.Core
         // public static string FieldDetailRegion = "FieldDetailRegion";
 
         //
-        // Git Category
+        // Git Area
         //
 
         public static string RepositoryMainRegion = "RepositoryMainRegion";
@@ -101,7 +103,7 @@ namespace AZDORestApiExplorer.Core
         public static string TestCaseMainRegion = "TestCaseMainRegion";
 
         //
-        // Work Item Tracking Category
+        // Work Item Tracking Area
         //
 
         public static string ArtifactLinkTypeMainRegion = "ArtifactLinkTypeMainRegion";
@@ -151,7 +153,7 @@ namespace AZDORestApiExplorer.Core
         public static string WorkItemMainRegion = "WorkItemMainRegion";
 
         //
-        // Work Item Type Tracking Process Category
+        // Work Item Type Tracking Process Area
         //
 
         public static string BehaviorMainRegion = "BehaviorMainRegion";

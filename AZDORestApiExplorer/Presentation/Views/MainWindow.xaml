@@ -20,7 +20,7 @@
     
     xmlns:local="clr-namespace:AZDORestApiExplorer.Presentation.Views"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     Title="{Binding Title}"
     d:DesignHeight="800" d:DesignWidth="1200"         
 >
@@ -98,10 +98,6 @@
 
                         <!--Put the area of current interest here 
                             until we figure out how to make this easy to navigate-->
-
-                        <dxdo:LayoutPanel Caption="Work Item Tracking" >
-                            <local:WorkItemTrackingMain />
-                        </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Artifacts" >
                             <local:ArtifactsMain />

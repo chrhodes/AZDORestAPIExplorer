@@ -50,24 +50,24 @@ namespace AZDORestApiExplorer.DomainServices
 
         //public override async Task<WorkItemType> FindByIdAsync(int id)
         //{
-        //    Int64 startTicks = Log.DOMAINSERVICES("(WorkItemTypeDataService) Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.DOMAINSERVICES("(WorkItemTypeDataService) Enter", Common.LOG_CATEGORY);
 
         //    var result = await Context.WorkItemTypesSet
         //        .Include(f => f.PhoneNumbers)
         //        .SingleAsync(f => f.Id == id);
 
-        //    Log.DOMAINSERVICES("(WorkItemTypeDataService) Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.DOMAINSERVICES("(WorkItemTypeDataService) Exit", Common.LOG_CATEGORY, startTicks);
 
         //    return result;
         //}
 
         //public void RemovePhoneNumber(WorkItemTypePhoneNumber model)
         //{
-        //    Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_CATEGORY);
 
         //    Context.WorkItemTypePhoneNumbersSet.Remove(model);
 
-        //    Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.DOMAINSERVICES("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
 

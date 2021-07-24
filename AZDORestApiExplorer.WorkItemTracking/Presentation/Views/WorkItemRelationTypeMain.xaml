@@ -22,7 +22,7 @@
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels"
     xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
     
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >

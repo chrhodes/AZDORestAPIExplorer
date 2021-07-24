@@ -64,11 +64,11 @@ namespace AZDORestApiExplorer.DomainServices
 
         //public void RemovePhoneNumber(CollectionPhoneNumber model)
         //{
-        //    Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.DOMAINSERVICES("Enter", Common.LOG_CATEGORY);
 
         //    Context.CollectionPhoneNumbersSet.Remove(model);
 
-        //    Log.DOMAINSERVICES("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.DOMAINSERVICES("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
 

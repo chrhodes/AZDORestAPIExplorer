@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 
 using AZDORestApiExplorer.Accounts;
+using AZDORestApiExplorer.Artifacts;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Git;
@@ -122,11 +123,11 @@ namespace AZDORestApiExplorer
 
         //protected override void ConfigureServiceLocator()
         //{
-        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
         //    base.ConfigureServiceLocator();
 
-        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
         // 07 - Configure the catalog of modules
@@ -146,6 +147,8 @@ namespace AZDORestApiExplorer
             // These come from other assemblies
 
             moduleCatalog.AddModule(typeof(AccountsModule));
+
+            moduleCatalog.AddModule(typeof(ArtifactsModule));
 
             moduleCatalog.AddModule(typeof(DashboardModule));
 

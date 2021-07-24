@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="ArtifactsPackageTypes\" />
-    <Folder Include="Artifacts\" />
     <Folder Include="Audit\" />
     <Folder Include="Build\" />
     <Folder Include="DistributedTask\" />

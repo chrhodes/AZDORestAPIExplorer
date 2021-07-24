@@ -20,18 +20,18 @@ namespace AZDORestApiExplorer.Test
 
         public TestModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_APPNAME, startTicks);
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // Don't need ViewModels for basic View with Grid.  Use DomainViewModel
@@ -45,14 +45,14 @@ namespace AZDORestApiExplorer.Test
             //containerRegistry.Register<ITestCaseMainViewModel, TestCaseMainViewModel>();
             containerRegistry.RegisterSingleton<ITestCaseMain, TestCaseMain>();
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_APPNAME);
+            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // using typeof(TYPE) calls constructor
@@ -64,7 +64,7 @@ namespace AZDORestApiExplorer.Test
 
             _regionManager.RegisterViewWithRegion(RegionNames.TestCaseMainRegion, typeof(ITestCaseMain));
 
-            Log.MODULE("Exit", Common.LOG_APPNAME, startTicks);
+            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

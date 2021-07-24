@@ -24,11 +24,11 @@ namespace AZDORestApiExplorer.Presentation.Views
 
         //private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         //{
-        //    Int64 startTicks = Log.EVENT_HANDLER("(ContextMain) Enter", Common.LOG_APPNAME);
+        //    Int64 startTicks = Log.EVENT_HANDLER("(ContextMain) Enter", Common.LOG_CATEGORY);
 
         //    //await ((ViewModels.IContextMainViewModel)ViewModel).LoadAsync();
 
-        //    Log.EVENT_HANDLER("(ContextMain) Exit", Common.LOG_APPNAME, startTicks);
+        //    Log.EVENT_HANDLER("(ContextMain) Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
         #region IInstanceCount

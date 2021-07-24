@@ -424,7 +424,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Artifacts.Events.GetFeedsEvent>().Publish(
-                new Domain.Core.Events.GetFeedsEventArgs()
+                new Domain.Artifacts.Events.GetFeedsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });

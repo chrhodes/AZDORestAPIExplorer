@@ -2,6 +2,6 @@
 {
     public class Common
     {
-        public const string LOG_APPNAME = "AZDORestApiExplorerPermissionsReport";
+        public const string LOG_CATEGORY = "AZDORestApiExplorerPermissionsReport";
     }
 }
