@@ -66,7 +66,6 @@
             public InProgress[] InProgress { get; set; }
         }
 
-
         public class TeamReview
         {
             public string to { get; set; }
@@ -835,10 +834,4 @@ public class Child
     public object actions { get; set; }
 }
 
-
-//public class Rootobject
-//{
-//    public string to { get; set; }
-//    public string[] actions { get; set; }
-//}
 
