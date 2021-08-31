@@ -1,2 +1,181 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="AZDORestApiExplorer.Domain.Git.Blob">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Blob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.BlobsRoot" Collapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Blob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.CommitsRoot">
+    <Position X="0.5" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Commit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Commit">
+    <Position X="0.5" Y="3.75" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.Git.Commit.Author" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\Commit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.Commit.Committer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\Commit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.Commit.Changecounts" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\Commit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAAAQAIAAAAAIAAAAQAAgACAAAAA=</HashCode>
+      <FileName>Git\Commit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.CommitChange">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\CommitChange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.ItemsRoot">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Item">
+    <Position X="3.75" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAABIAAQAAAAAACAAAAA=</HashCode>
+      <FileName>Git\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.PullRequestsRoot">
+    <Position X="0.5" Y="9.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\PullRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest">
+    <Position X="0.5" Y="11" Width="4.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Reviewer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Createdby" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Lastmergesourcecommit" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Avatar" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Project" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Lastmergetargetcommit" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest._Links" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Avatar2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Autocompletesetby" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest._Links1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Lastmergecommit" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Repository" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Completionoptions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest.Avatar1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest._Links2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\PullRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EgYAAUAQQAACAAQAIAAAAABBAAAIQAACAACAAUAAAGA=</HashCode>
+      <FileName>Git\PullRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.RepositoriesRoot">
+    <Position X="5.5" Y="19.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Repository">
+    <Position X="5.25" Y="21.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAQAAAAAAIAAAAIAAAgMAIAAAAAhAAAAAgA=</HashCode>
+      <FileName>Git\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -40,6 +40,9 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
             containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
 
+            containerRegistry.RegisterSingleton<StatusBarViewModel>();
+            containerRegistry.RegisterSingleton<IStatusBar, StatusBar>();
+
             containerRegistry.RegisterSingleton<IContextMainViewModel, ContextMainViewModel>();
             containerRegistry.RegisterSingleton<IContextMain, ContextMain>();
 
@@ -65,6 +68,7 @@ namespace AZDORestApiExplorer
 
             _regionManager.RegisterViewWithRegion(RegionNames.CollectionMainRegion, typeof(ICollectionMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ContextMainRegion, typeof(IContextMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(IStatusBar));
 
             _regionManager.RegisterViewWithRegion(RegionNames.CommandGetRegion, typeof(CommandsGet));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPatchRegion, typeof(CommandsPatch));

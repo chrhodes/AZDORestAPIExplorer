@@ -68,8 +68,6 @@ namespace AZDORestApiExplorer.Domain.Core
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    //JObject o = JObject.Parse(outJson);
-
                     ProcessesRoot resultRoot = JsonConvert.DeserializeObject<ProcessesRoot>(outJson);
 
                     Results.ResultItems = new ObservableCollection<Process>(resultRoot.value);

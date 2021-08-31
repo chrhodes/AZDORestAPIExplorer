@@ -343,7 +343,6 @@
 
         <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
-            <Label Content="lg_Footer Stuff Goes Here" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup VerticalAlignment="Bottom">
