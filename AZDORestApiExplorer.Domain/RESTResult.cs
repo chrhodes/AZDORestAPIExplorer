@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 using VNC.HttpHelper;
 
@@ -9,7 +12,6 @@ namespace AZDORestApiExplorer.Domain
     public class RESTResult<T> : INotifyPropertyChanged where T : class
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
 
         private int _count;
 
@@ -63,39 +65,79 @@ namespace AZDORestApiExplorer.Domain
             }
         }
 
-        private string _requestUri;
+        // NOTE(crhodes)
+        // 2021.08.31 HACK
+        //private string _requestUri;
 
-        public string RequestUri
+        //public string RequestUri
+        //{
+        //    get => _requestUri;
+        //    set
+        //    {
+        //        if (_requestUri == value)
+        //            return;
+        //        _requestUri = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RequestUri)));
+        //    }
+        //}
+
+        public ObservableCollection<RequestResponseInfo> RequestResponseExchange { get; set; }
+            = new ObservableCollection<RequestResponseInfo>();
+
+        public void InitializeHttpClient(Organization collection, HttpClient client)
         {
-            get => _requestUri;
-            set
-            {
-                if (_requestUri == value)
-                    return;
-                _requestUri = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RequestUri)));
-            }
-        }
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-        private RequestResponseInfo _hTTPExchange;
+            //var username = @"Christopher.Rhodes@bd.com";
+            //var password = @"HappyH0jnacki08";
 
-        public RequestResponseInfo HTTPExchange
-        {
-            get => _hTTPExchange;
-            set
-            {
-                if (_hTTPExchange == value)
-                    return;
-                _hTTPExchange = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HTTPExchange)));
-            }
+            //string base64PAT = Convert.ToBase64String(
+            //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
+            string base64PAT = Convert.ToBase64String(
+                    ASCIIEncoding.ASCII.GetBytes(
+                        string.Format("{0}:{1}", "", collection.PAT)));
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
         }
 
         public RequestResponseInfo InitializeExchange(HttpClient client, string requestUri)
         {
-            RequestUri = requestUri;
+            // NOTE(crhodes)
+            // 2021.08.31 HACK
+            //RequestUri = requestUri;
 
-            RequestResponseExchange.Clear();
+            //RequestResponseExchange.Clear();
+            RequestResponseInfo exchange = new RequestResponseInfo();
+
+            exchange.Uri = requestUri;
+            exchange.RequestHeaders.AddRange(client.DefaultRequestHeaders);
+
+            return exchange;
+        }
+
+        public void RecordExchangeResponse(HttpResponseMessage response, RequestResponseInfo exchange)
+        {
+            var statusCode = response.StatusCode;
+            var statusCode2 = (int)response.StatusCode;
+
+            exchange.Response = response;
+            exchange.ResponseStatusCode = statusCode2;
+
+            exchange.ResponseContentHeaders.AddRange(response.Content.Headers);
+            exchange.ResponseHeaders.AddRange(response.Headers);
+
+            RequestResponseExchange.Add(exchange);
+        }
+
+        public RequestResponseInfo ContinueExchange(HttpClient client, string requestUri)
+        {
+            // NOTE(crhodes)
+            // 2021.08.31 HACK
+            //RequestUri = requestUri;
+
+            //RequestResponseExchange.Clear();
             RequestResponseInfo exchange = new RequestResponseInfo();
 
             exchange.Uri = requestUri;

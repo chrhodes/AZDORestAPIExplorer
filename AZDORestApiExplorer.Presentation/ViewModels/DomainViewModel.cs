@@ -102,13 +102,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 // NOTE(crhodes)
                 // This is easy
 
-                //var domainType = new DType();
+                var domainType = new DType();
 
                 // Until we want to pass arguments to the DType Constructor
 
-                Type dType = typeof(DType);
+                //Type dType = typeof(DType);
 
-                var domainType = Activator.CreateInstance(dType, new object[] { EventAggregator, DialogService });
+                //var domainType = Activator.CreateInstance(dType, new object[] { EventAggregator, DialogService });
 
 
 
@@ -121,7 +121,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 Results.ResultItems = almostResults.Result.ResultItems;
                 Results.Count = Results.ResultItems.Count();
-                Results.RequestUri = almostResults.Result.RequestUri;
+                //Results.RequestUri = almostResults.Result.RequestUri;
+                Results.RequestResponseExchange = almostResults.Result.RequestResponseExchange;
 
             }
             catch (Exception ex)
@@ -130,8 +131,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
-            EventAggregator.GetEvent<HttpUriEvent>().Publish(Results.RequestUri);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            //EventAggregator.GetEvent<HttpUriEvent>().Publish(Results.RequestUri);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain.Core.Events;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 
 using Prism.Events;
-using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Domain.Core
 {
@@ -74,17 +68,19 @@ namespace AZDORestApiExplorer.Domain.Core
 
             using (HttpClient client = new HttpClient())
             {
-                InitializeHttpClient(args.Organization, client);
+                Results.InitializeHttpClient(args.Organization, client);
 
                 var requestUri = $"{args.Organization.Uri}/_apis/"
                     + "process/processes?"
                     + "api-version=6.0-preview.1";
 
-                Results.HTTPExchange = InitializeExchange(client, requestUri);
+               var exchange = Results.InitializeExchange(client, requestUri);
+                //Results.HTTPExchange = InitializeExchange(client, requestUri);
                 //RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
+                    Results.RecordExchangeResponse(response, exchange);
                     //RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
@@ -104,31 +100,31 @@ namespace AZDORestApiExplorer.Domain.Core
 
                 Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
 
-                HTTPExchange = exchange;
+                //HTTPExchange = exchange;
 
-                Results.RequestUri = requestUri;
+                //Results.RequestUri = requestUri;
 
                 return Results;
             }
         }
 
-        public static void InitializeHttpClient(Organization collection, HttpClient client)
-        {
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+        //public static void InitializeHttpClient(Organization collection, HttpClient client)
+        //{
+        //    client.DefaultRequestHeaders.Accept.Add(
+        //        new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //var username = @"Christopher.Rhodes@bd.com";
-            //var password = @"HappyH0jnacki08";
+        //    //var username = @"Christopher.Rhodes@bd.com";
+        //    //var password = @"HappyH0jnacki08";
 
-            //string base64PAT = Convert.ToBase64String(
-            //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
-            string base64PAT = Convert.ToBase64String(
-                    ASCIIEncoding.ASCII.GetBytes(
-                        string.Format("{0}:{1}", "", collection.PAT)));
+        //    //string base64PAT = Convert.ToBase64String(
+        //    //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
+        //    string base64PAT = Convert.ToBase64String(
+        //            ASCIIEncoding.ASCII.GetBytes(
+        //                string.Format("{0}:{1}", "", collection.PAT)));
 
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
-        }
+        //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
+        //    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
+        //}
 
     }
 }

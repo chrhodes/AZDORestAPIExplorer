@@ -35,8 +35,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             InstanceCountVM++;
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Subscribe(NewHttpExchange);
-            EventAggregator.GetEvent<HttpUriEvent>().Subscribe(NewHttpUri);
-
+            //EventAggregator.GetEvent<HttpUriEvent>().Subscribe(NewHttpUri);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -112,10 +111,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
         }
-        private void NewHttpUri(string uri)
-        {
-            CurrentHTTPRequest = uri;
-        }
+
+        //private void NewHttpUri(string uri)
+        //{
+        //    CurrentHTTPRequest = uri;
+        //}
 
         #endregion
 

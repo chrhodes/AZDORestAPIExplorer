@@ -42,5 +42,21 @@
       <FileName>Core\Team.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="AZDORestApiExplorer.Domain.HTTPExchange">
+    <Position X="5.75" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAiAAAABEQAAAEAIAAEAAAFAAAAAAA=</HashCode>
+      <FileName>HTTPExchange.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.RESTResult&lt;T&gt;">
+    <Position X="5" Y="5.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAgAAACQAQAgRAAAAAAEBCAAAIAAAA=</HashCode>
+      <FileName>RESTResult.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
