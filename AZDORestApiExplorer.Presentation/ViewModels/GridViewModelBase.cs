@@ -13,7 +13,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class GridViewModelBase : HTTPExchangeBase
+    public class GridViewModelBase : HTTPExchangeViewModelBase
     {
         #region Constructors, Initialization, and Load
 

@@ -1,18 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -23,7 +19,7 @@ using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemMainViewModel : HTTPExchangeBase, IWorkItemMainViewModel
+    public class WorkItemMainViewModel : HTTPExchangeViewModelBase, IWorkItemMainViewModel
     {
 
         #region Constructors, Initialization, and Load

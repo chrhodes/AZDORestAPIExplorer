@@ -14,7 +14,9 @@ using Newtonsoft.Json.Linq;
 
 
 using Prism.Events;
+using Prism.Services.Dialogs;
 
+using VNC;
 using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Domain.Core
@@ -37,8 +39,24 @@ namespace AZDORestApiExplorer.Domain.Core
         public Process[] value { get; set; }
     }
 
-    public class Process
+    public class Process //: HTTPExchangeBase
     {
+        //private static IEventAggregator _eventAggregator;
+        //private static IDialogService _dialogService;
+
+        //public Process() : base(_eventAggregator, _dialogService)
+        //{
+        //    var i = 0;
+        //}
+
+        //public Process(IEventAggregator eventAggregator,
+        //    IDialogService dialogService) : base(eventAggregator, dialogService)
+        //{
+        //    var i = 0;
+        //    _eventAggregator = eventAggregator;
+        //    _dialogService = dialogService;
+        //}
+
         public string id { get; set; }
         public string description { get; set; }
         public bool isDefault { get; set; }
@@ -48,8 +66,12 @@ namespace AZDORestApiExplorer.Domain.Core
 
         public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
+        //public RequestResponseInfo HTTPExchange { get; set; }
+
         public async Task<RESTResult<Process>> GetList(GetProcessesEventArgs args)
         {
+            Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
+
             using (HttpClient client = new HttpClient())
             {
                 InitializeHttpClient(args.Organization, client);
@@ -58,6 +80,7 @@ namespace AZDORestApiExplorer.Domain.Core
                     + "process/processes?"
                     + "api-version=6.0-preview.1";
 
+                Results.HTTPExchange = InitializeExchange(client, requestUri);
                 //RequestResponseInfo exchange = InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
@@ -78,6 +101,12 @@ namespace AZDORestApiExplorer.Domain.Core
 
                     Results.Count = Results.ResultItems.Count();
                 }
+
+                Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
+
+                HTTPExchange = exchange;
+
+                Results.RequestUri = requestUri;
 
                 return Results;
             }

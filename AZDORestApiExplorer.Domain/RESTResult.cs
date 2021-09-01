@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
+
+using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.Domain
 {
@@ -60,19 +63,46 @@ namespace AZDORestApiExplorer.Domain
             }
         }
 
-        //private string _requestUri;
+        private string _requestUri;
 
-        //public string RequestUri
-        //{
-        //    get => _requestUri;
-        //    set
-        //    {
-        //        if (_requestUri == value)
-        //            return;
-        //        _requestUri = value;
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RequestUri)));
-        //    }
-        //}
+        public string RequestUri
+        {
+            get => _requestUri;
+            set
+            {
+                if (_requestUri == value)
+                    return;
+                _requestUri = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RequestUri)));
+            }
+        }
+
+        private RequestResponseInfo _hTTPExchange;
+
+        public RequestResponseInfo HTTPExchange
+        {
+            get => _hTTPExchange;
+            set
+            {
+                if (_hTTPExchange == value)
+                    return;
+                _hTTPExchange = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HTTPExchange)));
+            }
+        }
+
+        public RequestResponseInfo InitializeExchange(HttpClient client, string requestUri)
+        {
+            RequestUri = requestUri;
+
+            RequestResponseExchange.Clear();
+            RequestResponseInfo exchange = new RequestResponseInfo();
+
+            exchange.Uri = requestUri;
+            exchange.RequestHeaders.AddRange(client.DefaultRequestHeaders);
+
+            return exchange;
+        }
 
     }
 }

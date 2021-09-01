@@ -20,8 +20,8 @@
         <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
-        <PackageReference Include="VNC.Core" Version="1.1.0" />
-        <PackageReference Include="VNC.HttpHelper" Version="1.1.0" />
+        <PackageReference Include="VNC.Core" Version="1.2.0" />
+        <PackageReference Include="VNC.HttpHelper" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>

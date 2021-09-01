@@ -14,6 +14,8 @@ using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 
+using VNC;
+
 namespace AZDORestApiExplorer.Domain.Core
 {
     namespace Events
@@ -54,6 +56,8 @@ namespace AZDORestApiExplorer.Domain.Core
 
         public async Task<RESTResult<Project>> GetList(GetProjectsEventArgs args)
         {
+            Int64 startTicks = Log.DOMAIN("Enter(Project)", Common.LOG_CATEGORY);
+
             using (HttpClient client = new HttpClient())
             {
                 InitializeHttpClient(args.Organization, client);
@@ -117,6 +121,8 @@ namespace AZDORestApiExplorer.Domain.Core
                     Results.Count = Results.ResultItems.Count();
                 }
             }
+
+            Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
 
             return Results;
         }

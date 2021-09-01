@@ -95,13 +95,23 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private async void GetList(EArgs args)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             try
             {
-                var domainType = new DType();
+                // NOTE(crhodes)
+                // This is easy
 
-                //MethodInfo callMeMethod = domainType.GetType().GetMethod("CallMe");
+                //var domainType = new DType();
 
-                //var message = callMeMethod.Invoke(domainType, null);
+                // Until we want to pass arguments to the DType Constructor
+
+                Type dType = typeof(DType);
+
+                var domainType = Activator.CreateInstance(dType, new object[] { EventAggregator, DialogService });
+
+
+
 
                 MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
 
@@ -111,6 +121,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 Results.ResultItems = almostResults.Result.ResultItems;
                 Results.Count = Results.ResultItems.Count();
+                Results.RequestUri = almostResults.Result.RequestUri;
+
             }
             catch (Exception ex)
             {
@@ -119,6 +131,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+            EventAggregator.GetEvent<HttpUriEvent>().Publish(Results.RequestUri);
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
