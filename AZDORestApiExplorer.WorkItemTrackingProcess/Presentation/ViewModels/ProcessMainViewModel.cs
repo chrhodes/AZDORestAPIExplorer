@@ -21,7 +21,7 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
-using VNC.HttpHelper;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
@@ -100,17 +100,17 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Results.InitializeHttpClient(client, args.Organization.PAT);
 
                     var requestUri = $"{args.Organization.Uri}/_apis"
                         + "/work/processes"
                         + "?api-version=6.0-preview.2";
 
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                    var exchange = Results.InitializeExchange(client, requestUri);
 
                     using (HttpResponseMessage response = await client.GetAsync(requestUri))
                     {
-                        RecordExchangeResponse(response, exchange);
+                        Results.RecordExchangeResponse(response, exchange);
 
                         response.EnsureSuccessStatusCode();
 
@@ -136,7 +136,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
         }
 
         #endregion

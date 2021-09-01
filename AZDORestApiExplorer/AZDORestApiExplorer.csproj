@@ -183,7 +183,6 @@
         <PackageReference Include="Microsoft.VisualStudio.Services.InteractiveClient" Version="16.170.0" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
         <PackageReference Include="VNC.Core" Version="1.2.0" />
-        <PackageReference Include="VNC.HttpHelper" Version="1.2.0" />
     </ItemGroup>
 
     <ItemGroup>

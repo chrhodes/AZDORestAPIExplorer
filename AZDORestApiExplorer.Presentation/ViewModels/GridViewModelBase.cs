@@ -9,11 +9,11 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.HttpHelper;
+using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class GridViewModelBase : HTTPExchangeViewModelBase
+    public class GridViewModelBase : EventViewModelBase
     {
         #region Constructors, Initialization, and Load
 

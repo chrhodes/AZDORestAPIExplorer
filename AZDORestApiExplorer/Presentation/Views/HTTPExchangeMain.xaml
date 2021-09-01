@@ -15,6 +15,7 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
+    Background="Wheat"
 >
 
     <d:DesignerProperties.DesignStyle>
@@ -28,10 +29,15 @@
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"  />
+            <RowDefinition Height="*"  />
 
-                    <Border Style="{StaticResource CountBorder}" >
+        </Grid.RowDefinitions>
+        <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>-->
+
+                    <Border Style="{StaticResource CountBorder}" Grid.Row="0" >
                         <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                             <Label Content="Count:" />
                             <TextBlock Text="{Binding RequestResponseExchange.Count}" 
@@ -39,7 +45,7 @@
                         </StackPanel>
                     </Border>
 
-                    <DataGrid
+                    <DataGrid Grid.Row="1"
                         ItemsSource="{Binding RequestResponseExchange}"
                         AutoGenerateColumns="False" 
                         CanUserAddRows="False"
@@ -47,6 +53,7 @@
                         ScrollViewer.CanContentScroll="True"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        
                         <DataGrid.Columns>
 
                             <DataGridTemplateColumn Header="Request">
@@ -62,7 +69,7 @@
                                             <Label Content="Request Headers" />
 
                                             <DataGrid
-                                                ItemsSource="{Binding RequestHeadersX}"                
+                                                ItemsSource="{Binding RequestHeaders}"                
                                                 AutoGenerateColumns="False" 
                                                 CanUserAddRows="False"
                                                 FrozenColumnCount="1"
@@ -179,7 +186,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DataGrid
-                                            ItemsSource="{Binding ResponseHeadersX}"                
+                                            ItemsSource="{Binding ResponseHeaders}"                
                                             AutoGenerateColumns="False" 
                                             CanUserAddRows="False"
                                             FrozenColumnCount="1"                                    
@@ -224,8 +231,8 @@
 
                     </DataGrid>
 
-                </StackPanel>
-            </ScrollViewer>
+                <!--</StackPanel>
+            </ScrollViewer>-->
 
     </Grid>
 </vncmvvm:ViewBase>

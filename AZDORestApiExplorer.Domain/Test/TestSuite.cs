@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 
 using Prism.Events;
 
+using VNC.Core.Net;
+
 namespace AZDORestApiExplorer.Domain.Test
 {
     namespace Events
@@ -64,7 +66,7 @@ namespace AZDORestApiExplorer.Domain.Test
         {
             using (HttpClient client = new HttpClient())
             {
-                InitializeHttpClient(args.Organization, client);
+                Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 // TODO(crhodes)
                 // Update Uri  Use args for parameters.
@@ -72,11 +74,11 @@ namespace AZDORestApiExplorer.Domain.Test
                     + $"testplan/plans/{args.TestPlan.id}/suites"
                     + "?api-version=6.1-preview.1";
 
-                //RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                //var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
-                    //RecordExchangeResponse(response, exchange);
+                    //Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 

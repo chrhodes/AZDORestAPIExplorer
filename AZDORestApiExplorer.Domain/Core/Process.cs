@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Prism.Events;
 
 using VNC;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.Core
 {
@@ -68,7 +69,7 @@ namespace AZDORestApiExplorer.Domain.Core
 
             using (HttpClient client = new HttpClient())
             {
-                Results.InitializeHttpClient(args.Organization, client);
+                Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 var requestUri = $"{args.Organization.Uri}/_apis/"
                     + "process/processes?"
@@ -76,12 +77,12 @@ namespace AZDORestApiExplorer.Domain.Core
 
                var exchange = Results.InitializeExchange(client, requestUri);
                 //Results.HTTPExchange = InitializeExchange(client, requestUri);
-                //RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                //var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
                     Results.RecordExchangeResponse(response, exchange);
-                    //RecordExchangeResponse(response, exchange);
+                    //Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 

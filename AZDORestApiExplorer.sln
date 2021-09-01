@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer", "AZDORestApiExplorer\AZDORestApiExplorer.csproj", "{446ED15A-F123-40B8-AD89-14B2CE51FB06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.HttpHelper", "..\vnc\VNC.HttpHelper\VNC.HttpHelper.csproj", "{134816AC-87EC-43AF-A524-ACC367313983}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Domain", "AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj", "{D1EAB69F-4E5D-4CCC-BE85-06A63BA80CD2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Core", "AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj", "{9B33E1AA-0E4B-4114-A06F-BE9FF098D712}"
@@ -81,10 +79,6 @@ Global
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446ED15A-F123-40B8-AD89-14B2CE51FB06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{134816AC-87EC-43AF-A524-ACC367313983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{134816AC-87EC-43AF-A524-ACC367313983}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{134816AC-87EC-43AF-A524-ACC367313983}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{134816AC-87EC-43AF-A524-ACC367313983}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1EAB69F-4E5D-4CCC-BE85-06A63BA80CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1EAB69F-4E5D-4CCC-BE85-06A63BA80CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1EAB69F-4E5D-4CCC-BE85-06A63BA80CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU

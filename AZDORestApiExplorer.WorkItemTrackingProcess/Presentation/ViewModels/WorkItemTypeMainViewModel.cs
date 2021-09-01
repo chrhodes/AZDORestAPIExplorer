@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
@@ -19,8 +17,8 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Core.Net;
 using VNC.Core.Services;
-using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
@@ -100,18 +98,18 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Results.InitializeHttpClient(client, args.Organization.PAT);
 
                     var requestUri = $"{args.Organization.Uri}/_apis/"
                         + $"/work/processes/{args.Process.id}"
                         + "/workitemtypes"
                         + "?api-version=6.1-preview.2";
 
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                    var exchange = Results.InitializeExchange(client, requestUri);
 
                     using (HttpResponseMessage response = await client.GetAsync(requestUri))
                     {
-                        RecordExchangeResponse(response, exchange);
+                        Results.RecordExchangeResponse(response, exchange);
 
                         response.EnsureSuccessStatusCode();
 
@@ -138,7 +136,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
 
         }
 

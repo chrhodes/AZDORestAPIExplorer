@@ -1,10 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Threading.Tasks;
 
+using AZDORestApiExplorer.Domain.Core;
+using AZDORestApiExplorer.Domain.Git.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
 namespace AZDORestApiExplorer.Domain.Git
 {
     namespace Events
     {
+        public class GetRefsEvent : PubSubEvent<GetRefsEventArgs> { }
 
+        public class GetRefsEventArgs
+        {
+            public Organization Organization;
+
+            // public Domain.Core.Process Process;
+
+            public Domain.Core.Project Project;
+
+            public Domain.Git.Repository Repository;
+
+            // public Domain.Core.Team Team;
+
+            // public WorkItemType WorkItemType;
+        }
+
+        public class SelectedRefChangedEvent : PubSubEvent<Ref> { }
     }
+
     public class RefsRoot
     {
         public int count { get; set; }

@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 
 using Newtonsoft.Json.Linq;
 
@@ -12,12 +12,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
+using VNC.Core.Mvvm;
+using VNC.Core.Net;
 using VNC.Core.Services;
-using VNC.HttpHelper;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class CreateWorkItemMainViewModel : HTTPExchangeViewModelBase, ICreateWorkItemMainViewModel
+    public class CreateWorkItemMainViewModel : EventViewModelBase, ICreateWorkItemMainViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -58,7 +59,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 
         #region Fields and Properties
 
-        // public RESTResult<WorkItem> Results { get; set; } = new RESTResult<WorkItem>();
+        public RESTResult<WorkItem> Results { get; set; } = new RESTResult<WorkItem>();
 
         #endregion
 
@@ -85,7 +86,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Results.InitializeHttpClient(client, args.Organization.PAT);
 
                     // TODO(crhodes)
                     // Update Uri  Use args for parameters.
@@ -93,11 +94,11 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                         + $"<UPDATE URI>"
                         + "?api-version=6.1-preview.1";
 
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                    var exchange = Results.InitializeExchange(client, requestUri);
 
                     using (HttpResponseMessage response = await client.GetAsync(requestUri))
                     {
-                        RecordExchangeResponse(response, exchange);
+                        Results.RecordExchangeResponse(response, exchange);
 
                         response.EnsureSuccessStatusCode();
 
@@ -123,7 +124,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
 
             EventAggregator.GetEvent<CreateWorkItemEvent>().Publish(new CreateWorkItemEventArgs());
         }

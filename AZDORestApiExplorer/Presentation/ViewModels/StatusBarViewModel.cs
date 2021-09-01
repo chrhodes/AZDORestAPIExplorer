@@ -8,7 +8,7 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.HttpHelper;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {

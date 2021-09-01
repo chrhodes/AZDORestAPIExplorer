@@ -22,7 +22,7 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
-using VNC.HttpHelper;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
@@ -98,17 +98,17 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    Helpers.InitializeHttpClient(args.Organization, client);
+                    Results.InitializeHttpClient(client, args.Organization.PAT);
 
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + "wit/workitemtypecategories"
                         + "?api-version=4.1";
 
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                    var exchange = Results.InitializeExchange(client, requestUri);
 
                     using (HttpResponseMessage response = await client.GetAsync(requestUri))
                     {
-                        RecordExchangeResponse(response, exchange);
+                        Results.RecordExchangeResponse(response, exchange);
 
                         response.EnsureSuccessStatusCode();
 
@@ -134,7 +134,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
         }
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)

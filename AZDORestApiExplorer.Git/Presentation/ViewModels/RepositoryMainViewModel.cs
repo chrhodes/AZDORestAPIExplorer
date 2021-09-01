@@ -20,7 +20,7 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
-using VNC.HttpHelper;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
@@ -87,99 +87,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Private Methods
 
-        private async void GetRepositories(GetRepositoriesEventArgs args)
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    Helpers.InitializeHttpClient(args.Organization, client);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/_apis/"
-                        + $"git/repositories"
-                        + "?api-version=6.1-preview.1";
-
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        JObject o = JObject.Parse(outJson);
-
-                        RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
-
-                        Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        Results.Count = Results.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-                ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
-        }
-
-        private async void GetProjectRepositories(GetProjectRepositoriesEventArgs args)
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    Helpers.InitializeHttpClient(args.Organization, client);
-
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories"
-                        + "?api-version=6.1-preview.1";
-
-                    RequestResponseInfo exchange = InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        JObject o = JObject.Parse(outJson);
-
-                        RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
-
-                        Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        Results.Count = Results.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-                ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(RequestResponseExchange);
-        }
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
         {

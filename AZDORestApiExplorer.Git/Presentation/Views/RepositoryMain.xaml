@@ -53,8 +53,8 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
             <dxg:GridColumn FieldName="id" />
             <dxg:GridColumn FieldName="name" />
-            <dxg:GridColumn FieldName="url" />
-            <dxg:GridColumn FieldName="project" />
+            <!--<dxg:GridColumn FieldName="url" />-->
+            <dxg:GridColumn FieldName="project.name" />
             <dxg:GridColumn FieldName="defaultBranch" />
             <dxg:GridColumn FieldName="size" />
             <dxg:GridColumn FieldName="remoteUrl" />

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain.Accounts.Events;
@@ -14,7 +9,7 @@ using Newtonsoft.Json;
 
 using Prism.Events;
 
-using VNC.Core.DomainServices;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.Accounts
 {
@@ -50,7 +45,7 @@ namespace AZDORestApiExplorer.Domain.Accounts
         {
             using (HttpClient client = new HttpClient())
             {
-                InitializeHttpClient(args.Organization, client);
+                Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 // TODO(crhodes)
                 // Update Uri  
@@ -62,11 +57,11 @@ namespace AZDORestApiExplorer.Domain.Accounts
                     + "accounts"
                     + "?api-version=6.1-preview.1";
 
-                //RequestResponseInfo exchange = InitializeExchange(client, requestUri);
+                //var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
-                    //RecordExchangeResponse(response, exchange);
+                    //Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 
@@ -85,24 +80,6 @@ namespace AZDORestApiExplorer.Domain.Accounts
 
                 return Results;
             }
-        }
-
-        public static void InitializeHttpClient(Organization collection, HttpClient client)
-        {
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            //var username = @"Christopher.Rhodes@bd.com";
-            //var password = @"HappyH0jnacki08";
-
-            //string base64PAT = Convert.ToBase64String(
-            //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
-            string base64PAT = Convert.ToBase64String(
-                    ASCIIEncoding.ASCII.GetBytes(
-                        string.Format("{0}:{1}", "", collection.PAT)));
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
         }
 
     }

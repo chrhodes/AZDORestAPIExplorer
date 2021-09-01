@@ -2,7 +2,7 @@
 
 using Prism.Events;
 
-using VNC.HttpHelper;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Core.Events
 {

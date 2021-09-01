@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="VNC.Core" Version="1.2.0" />
-    <PackageReference Include="VNC.HttpHelper" Version="1.2.0" />      
+    <!--<PackageReference Include="VNC.HttpHelper" Version="1.2.0" />-->      
   </ItemGroup>
 
     <ItemGroup>
