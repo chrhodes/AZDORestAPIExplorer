@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.Domain.Git
         public Commit[] value { get; set; }
     }
 
-    public class Commit
+    public partial class Commit
     {
         public Author author { get; set; }
         public Changecounts changeCounts { get; set; }
@@ -97,25 +97,11 @@ namespace AZDORestApiExplorer.Domain.Git
             return Results;
         }
 
-        public class Author
-        {
-            public DateTime date { get; set; }
-            public string email { get; set; }
-            public string name { get; set; }
-        }
-
         public class Changecounts
         {
             public int Add { get; set; }
             public int Delete { get; set; }
             public int Edit { get; set; }
-        }
-
-        public class Committer
-        {
-            public DateTime date { get; set; }
-            public string email { get; set; }
-            public string name { get; set; }
         }
     }
 }

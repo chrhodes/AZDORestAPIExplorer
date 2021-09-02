@@ -24,6 +24,7 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="200" d:DesignWidth="600"
+    Background="LightGreen"
 >
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -35,30 +36,26 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutGroup Orientation="Vertical">
+    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Stretch" >
         
-    <dxlc:LayoutItem Label="Current HTTP Request">
-        <dxe:TextEdit
-		    Text="{Binding CurrentHTTPRequest }">
-        </dxe:TextEdit>
-    </dxlc:LayoutItem>    
-
-        <dxlc:LayoutGroup VerticalAlignment="Bottom">
-
-            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="V:" />
-                    <Label Content="{Binding ElementName=thisStatusBar, Path=InstanceCountV}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="VM:" />
-
-                    <Label Content="{Binding InstanceCountVM}" />
-                </StackPanel>
+        <dxlc:LayoutItem Label="Current HTTP Request" VerticalAlignment="Center" Margin="5,0,0,0">
+            <dxe:TextEdit
+		            Text="{Binding CurrentHTTPRequest }">
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>
+            
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisStatusBar, Path=InstanceCountV}" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
 
-        </dxlc:LayoutGroup>
-        
-    </dxlc:LayoutGroup>
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
+
+    </dxlc:LayoutGroup>        
 
 </vncmvvm:ViewBase>

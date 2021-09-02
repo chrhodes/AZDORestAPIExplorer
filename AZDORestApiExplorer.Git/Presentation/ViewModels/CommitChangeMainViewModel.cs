@@ -65,7 +65,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<CommitChange> Results { get; set; } = new RESTResult<CommitChange>();
+        public RESTResult<Change> Results { get; set; } = new RESTResult<Change>();
 
         #endregion
 
@@ -88,6 +88,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
         private async void GetCommitChanges(GetCommitChangesEventArgs args)
         {
+            Int64 startTicks = Log.VIEWMODEL("Enter(CommitChanges)", Common.LOG_CATEGORY);
+
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -110,20 +112,15 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        JObject o = JObject.Parse(outJson);
-
                         CommitChangesRoot resultRoot = JsonConvert.DeserializeObject<CommitChangesRoot>(outJson);
 
-                        // TODO(crhodes)
-                        // Need to handle this differently as there is just one result
+                        Results.ResultItems = new ObservableCollection<Change>(resultRoot.changes);
 
-                        //Results.ResultItems = new ObservableCollection<CommitChange>(resultRoot.value);
+                        IEnumerable<string> continuationHeaders = default;
 
-                        //IEnumerable<string> continuationHeaders = default;
+                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        //bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        //Results.Count = Results.ResultItems.Count;
+                        Results.Count = Results.ResultItems.Count;
                     }
                 }
             }
@@ -134,6 +131,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             }
 
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+
+            Log.VIEWMODEL("Exit(CommitChanges)", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)

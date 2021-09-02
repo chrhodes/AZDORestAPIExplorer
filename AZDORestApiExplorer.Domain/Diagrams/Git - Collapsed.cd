@@ -1,66 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="AZDORestApiExplorer.Domain.Git.Blob">
-    <Position X="0.5" Y="1" Width="1.5" />
+  <Class Name="AZDORestApiExplorer.Domain.Git.Blob" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Git\Blob.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.BlobsRoot" Collapsed="true">
-    <Position X="2.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Git\Blob.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.CommitsRoot">
-    <Position X="0.5" Y="2" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Git\Commit.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.Commit">
-    <Position X="7.75" Y="3.25" Width="4.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Class Name="AZDORestApiExplorer.Domain.Git.Commit.Changecounts">
-        <TypeIdentifier>
-          <NewMemberFileName>Git\Commit.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAIAAAAAAAQAIAACAAIAAAAQAAgACAAAAI=</HashCode>
-      <FileName>Git\Commit.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.ItemsRoot">
-    <Position X="4" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Git\Item.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.Item">
-    <Position X="3.75" Y="8" Width="2.5" />
+  <Class Name="AZDORestApiExplorer.Domain.Git.Item" Collapsed="true">
+    <Position X="7.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAABIAAQAAAAAACAAAAg=</HashCode>
       <FileName>Git\Item.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.PullRequestsRoot">
-    <Position X="0.5" Y="9.5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Git\PullRequest.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest">
-    <Position X="0.5" Y="11" Width="4.25" />
+  <Class Name="AZDORestApiExplorer.Domain.Git.PullRequest" Collapsed="true">
+    <Position X="7.5" Y="6" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -146,18 +101,80 @@
       <FileName>Git\PullRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.RepositoriesRoot">
-    <Position X="5.5" Y="19.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Git\Repository.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AZDORestApiExplorer.Domain.Git.Repository">
-    <Position X="5.25" Y="21.75" Width="4.75" />
+  <Class Name="AZDORestApiExplorer.Domain.Git.Repository" Collapsed="true">
+    <Position X="7.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAQAAAAAAIAAAAIACAgMAIAAAAAhAAAAAgI=</HashCode>
       <FileName>Git\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.ImportRequest" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAACAAAABAAAAAAACAAKAAAAAAAAAACAAAI=</HashCode>
+      <FileName>Git\ImportRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Merge" Collapsed="true">
+    <Position X="1" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Git\Merge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Ref" Collapsed="true">
+    <Position X="1" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Git\Ref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Stat" Collapsed="true">
+    <Position X="3.75" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.Git.Stat.Commit">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\Stat.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QABAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Git\Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Commit" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.Git.Commit.Changecounts" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Git\Commit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAAAQAIAACAAIAAAAQAAgACAAAAI=</HashCode>
+      <FileName>Git\Commit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Author" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Git\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Domain.Git.Committer" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Git\Committer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

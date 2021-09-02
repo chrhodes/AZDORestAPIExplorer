@@ -4,9 +4,9 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.ModelWrappers
 {
-    public class CommitChangeWrapper : ModelWrapper<CommitChange>
+    public class CommitChangeWrapper : ModelWrapper<Change>
     {
-        public CommitChangeWrapper(CommitChange model) : base(model)
+        public CommitChangeWrapper(Change model) : base(model)
         {
         }
     }
