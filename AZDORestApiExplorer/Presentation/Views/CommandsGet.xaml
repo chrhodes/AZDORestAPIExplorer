@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
@@ -146,7 +148,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="False"
                                       Style="{StaticResource GetLayoutGroup}" >
 
                         <dxlc:LayoutItem Background="{StaticResource OrganizationColor}">
@@ -195,12 +197,46 @@
                                     ToolTip="{Binding GetImportRequestsToolTip, FallbackValue='GetImportRequests ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem>
-                                <Button
+                            <dxlc:LayoutGroup Header="Items"
+                                Background="{StaticResource RepositoryColor}"
+                                Orientation="Vertical"
+                                View="GroupBox">
+                                
+                                <dxlc:LayoutItem Label="ScopePath">
+                                    <dxe:TextEdit
+                                		Text="{Binding ScopePath }"
+                                    	ToolTip="{Binding ScopePathtoolTip }">
+                                    </dxe:TextEdit>                                    
+                                </dxlc:LayoutItem>
+
+                                 <dxlc:LayoutItem Label="RecursionLevel"
+                                 	LabelPosition="Left">
+                                    <dxe:ComboBoxEdit x:Name="cbeRecursionLevel"                                 
+                                        EditValue="{Binding
+                                        	Path=RecursionLevel,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged }" >
+                                        <dxe:ComboBoxEdit.StyleSettings>
+                                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                            <dxe:RadioComboBoxStyleSettings/>
+                                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                            <!--<dxe:TokenComboBoxStyleSettings/>-->
+                                        </dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:ComboBoxEditItem Content="None" />
+                                        <dxe:ComboBoxEditItem Content="OneLevel" />
+                                        <dxe:ComboBoxEditItem Content="Full" />
+                                    </dxe:ComboBoxEdit>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem>
+                                    <Button
                                     Command="{Binding GetItemsCommand }"
                                     Content="{Binding GetItemsContent, FallbackValue='GetItems' }"
                                     ToolTip="{Binding GetItemsToolTip, FallbackValue='GetItems ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
 
                             <dxlc:LayoutItem>
                                 <Button

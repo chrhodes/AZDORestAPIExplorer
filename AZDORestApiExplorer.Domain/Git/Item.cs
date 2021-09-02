@@ -29,6 +29,10 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Git.Repository Repository;
 
+            public string ScopePath;
+
+            public string RecursionLevel;
+
             // public Domain.Core.Team Team;
 
             // public WorkItemType WorkItemType;

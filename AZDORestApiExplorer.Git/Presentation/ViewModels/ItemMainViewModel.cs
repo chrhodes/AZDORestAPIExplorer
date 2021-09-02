@@ -95,10 +95,13 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                     Results.InitializeHttpClient(client, args.Organization.PAT);
 
                     // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
+                    // Extend GetItemsEventArgs to add Optional Parameters, e.g. recursionLevel and scopePath
+                    // Clean up on way in or here.
+
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + $"git/repositories/{args.Repository.id}/items"
-                        + "?api-version=6.1-preview.1";
+                        + $"?scopePath={args.ScopePath}&recursionLevel={args.RecursionLevel}"
+                        + "&api-version=6.1-preview.1";
 
                     var exchange = Results.InitializeExchange(client, requestUri);
 

@@ -347,6 +347,40 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private CollectionMainViewModel _collectionMainViewModel;
         private ContextMainViewModel _contextMainViewModel;
 
+        #region Git.Items
+
+        private string _ScopePath = "/";
+
+        public string ScopePath
+        {
+            get => _ScopePath;
+            set
+            {
+                if (_ScopePath == value) return;
+                _ScopePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SourcePathToolTip { get; set; }
+
+        private string _RecursionLevel;
+
+        public string RecursionLevel
+        {
+            get => _RecursionLevel;
+            set
+            {
+                if (_RecursionLevel == value) return;
+                _RecursionLevel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string RecursionLevelToolTip { get; set; }
+
+        #endregion
+
         #endregion Fields and Properties
 
         #region Public Methods
@@ -961,14 +995,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
+            // TODO(crhodes)
+            // Make ScopePath and RecursionLevel fancier
+            // For now just pass strings
             EventAggregator.GetEvent<Domain.Git.Events.GetItemsEvent>().Publish(
                 new Domain.Git.Events.GetItemsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Project = _contextMainViewModel.Context.SelectedProject
+                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    , ScopePath = ScopePath
+                    , RecursionLevel = RecursionLevel
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
