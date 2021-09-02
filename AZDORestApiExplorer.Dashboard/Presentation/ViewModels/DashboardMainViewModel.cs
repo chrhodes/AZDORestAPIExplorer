@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Dashboard;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
@@ -19,6 +18,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.Core.Net;
+using AZDORestApiExplorer.Domain.Dashboard.Events;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 {

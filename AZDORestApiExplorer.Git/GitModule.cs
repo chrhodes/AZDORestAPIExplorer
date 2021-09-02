@@ -37,13 +37,13 @@ namespace AZDORestApiExplorer.Git
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
+            //containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
             containerRegistry.RegisterSingleton<IRepositoryMain, RepositoryMain>();
 
             containerRegistry.Register<IBlobMainViewModel, BlobMainViewModel>();
             containerRegistry.RegisterSingleton<IBlobMain, BlobMain>();
 
-            containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();
+            //containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();
             containerRegistry.RegisterSingleton<ICommitMain, CommitMain>();
 
             containerRegistry.Register<ICommitChangeMainViewModel, CommitChangeMainViewModel>();
@@ -58,7 +58,7 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.Register<IMergeMainViewModel, MergeMainViewModel>();
             containerRegistry.RegisterSingleton<IMergeMain, MergeMain>();
 
-            containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
+            //containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<IPullRequestMain, PullRequestMain>();
 
             containerRegistry.Register<IPushMainViewModel, PushMainViewModel>();

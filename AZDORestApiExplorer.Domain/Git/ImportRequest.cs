@@ -87,11 +87,18 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public string href { get; set; }
         }
+
+        public RESTResult<ImportRequest> Results { get; set; } = new RESTResult<ImportRequest>();
+
+        public async Task<RESTResult<ImportRequest>> GetList(GetImportRequestsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(ImportRequest)", Common.LOG_CATEGORY);
+
+
+
+            Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
+
+            return Results;
+        }
     }
-
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Nest any additional classes inside class ImportRequest
-
 }

@@ -47,11 +47,17 @@ namespace AZDORestApiExplorer.Domain.Git
     public class Blob
     {
 
+        public RESTResult<Blob> Results { get; set; } = new RESTResult<Blob>();
+
+        public async Task<RESTResult<Blob>> GetList(GetBlobsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(Project)", Common.LOG_CATEGORY);
+
+
+
+            Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
+
+            return Results;
+        }
     }
-
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Nest any additional classes inside class Blob
-
 }

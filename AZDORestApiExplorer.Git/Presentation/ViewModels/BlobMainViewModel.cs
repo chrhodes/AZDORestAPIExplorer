@@ -4,11 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Git;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
@@ -19,8 +17,8 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Core.Net;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
@@ -94,8 +92,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 {
                     Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                        + $"git/repositories/{args.Repository.id}/blobs"
                        + "?api-version=6.1-preview.1";

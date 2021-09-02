@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;

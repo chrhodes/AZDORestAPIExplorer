@@ -149,8 +149,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Core.Events.SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<Domain.Core.Events.SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
 
-            EventAggregator.GetEvent<Core.Events.Git.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
-            EventAggregator.GetEvent<Core.Events.Git.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
@@ -159,7 +159,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(RaiseWorkItemTypeWITChanged);
             EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(RaiseWorkItemTypeWITPChanged);
 
-            EventAggregator.GetEvent<Core.Events.Dashboard.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
+            EventAggregator.GetEvent<Domain.Dashboard.Events.SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -612,8 +612,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Dashboard.GetDashboardsEvent>().Publish(
-                new Core.Events.Dashboard.GetDashboardsEventArgs()
+            EventAggregator.GetEvent<Domain.Dashboard.Events.GetDashboardsEvent>().Publish(
+                new Domain.Dashboard.Events.GetDashboardsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -657,8 +657,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetWidgetsEvent>().Publish(
-                new GetWidgetsEventArgs()
+            EventAggregator.GetEvent<Domain.Dashboard.Events.GetWidgetsEvent>().Publish(
+                new Domain.Dashboard.Events.GetWidgetsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
@@ -700,8 +700,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetRepositoriesEvent>().Publish(
-                new Core.Events.Git.GetRepositoriesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetRepositoriesEvent>().Publish(
+                new Domain.Git.Events.GetRepositoriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     //, Project = _contextMainViewModel.Context.SelectedProject
@@ -742,8 +742,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetProjectRepositoriesEvent>().Publish(
-                new Core.Events.Git.GetProjectRepositoriesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetProjectRepositoriesEvent>().Publish(
+                new Domain.Git.Events.GetProjectRepositoriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -774,8 +774,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetBlobsEvent>().Publish(
-                new Core.Events.Git.GetBlobsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetBlobsEvent>().Publish(
+                new Domain.Git.Events.GetBlobsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -820,8 +820,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetCommitsEvent>().Publish(
-                new Core.Events.Git.GetCommitsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetCommitsEvent>().Publish(
+                new Domain.Git.Events.GetCommitsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -866,8 +866,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetCommitChangesEvent>().Publish(
-                new Core.Events.Git.GetCommitChangesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetCommitChangesEvent>().Publish(
+                new Domain.Git.Events.GetCommitChangesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -915,8 +915,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetImportRequestsEvent>().Publish(
-                new Core.Events.Git.GetImportRequestsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetImportRequestsEvent>().Publish(
+                new Domain.Git.Events.GetImportRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -961,8 +961,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetItemsEvent>().Publish(
-                new Core.Events.Git.GetItemsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetItemsEvent>().Publish(
+                new Domain.Git.Events.GetItemsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1007,8 +1007,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetMergesEvent>().Publish(
-                new Core.Events.Git.GetMergesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetMergesEvent>().Publish(
+                new Domain.Git.Events.GetMergesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1053,8 +1053,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetPullRequestsEvent>().Publish(
-                new Core.Events.Git.GetPullRequestsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1099,8 +1099,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetPushesEvent>().Publish(
-                new Core.Events.Git.GetPushesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetPushesEvent>().Publish(
+                new Domain.Git.Events.GetPushesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1145,8 +1145,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetRefsEvent>().Publish(
-                new Core.Events.Git.GetRefsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetRefsEvent>().Publish(
+                new Domain.Git.Events.GetRefsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,
@@ -1191,8 +1191,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Core.Events.Git.GetStatsEvent>().Publish(
-                new Core.Events.Git.GetStatsEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetStatsEvent>().Publish(
+                new Domain.Git.Events.GetStatsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,

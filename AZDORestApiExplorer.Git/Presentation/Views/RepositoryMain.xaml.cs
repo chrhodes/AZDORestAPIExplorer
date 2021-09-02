@@ -1,7 +1,7 @@
 using System;
 
-using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using DevExpress.Xpf.Grid;
@@ -14,7 +14,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
     public partial class RepositoryMain : ViewBase, IRepositoryMain, IInstanceCountV
     {
 
-        public RepositoryMain(DomainViewModel<Repository, GetRepositoryEvent, GetRepositoryEventArgs, SelectedRepositoryChangedEvent> viewModel)
+        public RepositoryMain(DomainViewModel<Repository, GetRepositoriesEvent, GetRepositoriesEventArgs, SelectedRepositoryChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

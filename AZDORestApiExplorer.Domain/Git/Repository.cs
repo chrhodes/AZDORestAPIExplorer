@@ -66,12 +66,16 @@ namespace AZDORestApiExplorer.Domain.Git
         public string name { get; set; }
         public Project project { get; set; }
         public string remoteUrl { get; set; }
-        public RESTResult<Repository> Results { get; set; } = new RESTResult<Repository>();
+
         public int size { get; set; }
         public string sshUrl { get; set; }
         public string url { get; set; }
         public string webUrl { get; set; }
 
+        public RESTResult<Repository> Results { get; set; } = new RESTResult<Repository>();
+
+        // TODO(crhodes)
+        // Not sure how this can be called.
         public async Task<RESTResult<Repository>> GetProjectRepositories(GetProjectRepositoriesEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
@@ -111,7 +115,7 @@ namespace AZDORestApiExplorer.Domain.Git
             return Results;
         }
 
-        public async Task<RESTResult<Repository>> GetRepositories(GetRepositoriesEventArgs args)
+        public async Task<RESTResult<Repository>> GetList(GetRepositoriesEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
 

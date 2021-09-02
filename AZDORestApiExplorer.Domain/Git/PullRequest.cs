@@ -177,11 +177,48 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public string href { get; set; }
         }
+
+        public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
+
+        public async Task<RESTResult<PullRequest>> GetList(GetPullRequestsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(PullRequest)", Common.LOG_CATEGORY);
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                // TODO(crhodes)
+                // Update Uri  Use args for parameters.
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all"
+                    + "&api-version=6.1-preview.1";
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    PullRequestsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
+
+                    IEnumerable<string> continuationHeaders = default;
+
+                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+            }
+
+            Log.DOMAIN("Exit(PullRequest)", Common.LOG_CATEGORY, startTicks);
+
+            return Results;
+        }
     }
-
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Nest any additional classes inside class PullRequest
-
 }

@@ -6,7 +6,6 @@ using System.Net.Http;
 
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.Git;
 using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Presentation.ViewModels;
@@ -21,6 +20,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.Core.Net;
+using AZDORestApiExplorer.Domain.Git.Events;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {

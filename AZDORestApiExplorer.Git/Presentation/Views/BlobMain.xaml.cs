@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,8 +13,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class BlobMain : ViewBase, IBlobMain, IInstanceCountV
     {
-
-        public BlobMain(ViewModels.IBlobMainViewModel viewModel)
+        public BlobMain(DomainViewModel<Blob, GetBlobsEvent, GetBlobsEventArgs, SelectedBlobChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -18,6 +21,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+            TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
