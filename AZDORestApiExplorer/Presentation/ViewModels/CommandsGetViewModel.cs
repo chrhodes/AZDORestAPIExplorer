@@ -742,8 +742,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<Domain.Git.Events.GetProjectRepositoriesEvent>().Publish(
-                new Domain.Git.Events.GetProjectRepositoriesEventArgs()
+            EventAggregator.GetEvent<Domain.Git.Events.GetRepositoriesEvent>().Publish(
+                new Domain.Git.Events.GetRepositoriesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,

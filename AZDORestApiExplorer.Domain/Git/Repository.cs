@@ -18,20 +18,20 @@ namespace AZDORestApiExplorer.Domain.Git
 {
     namespace Events
     {
-        public class GetProjectRepositoriesEvent : PubSubEvent<GetProjectRepositoriesEventArgs> { }
+        public class GetProjectRepositoriesEvent : PubSubEvent<GetRepositoriesEventArgs> { }
 
-        public class GetProjectRepositoriesEventArgs
-        {
-            public Organization Organization;
+        //public class GetProjectRepositoriesEventArgs
+        //{
+        //    public Organization Organization;
 
-            // public Domain.Core.Process Process;
+        //    // public Domain.Core.Process Process;
 
-            public Domain.Core.Project Project;
+        //    public Domain.Core.Project Project;
 
-            // public Domain.Core.Team Team;
+        //    // public Domain.Core.Team Team;
 
-            // public WorkItemType WorkItemType;
-        }
+        //    // public WorkItemType WorkItemType;
+        //}
 
         public class GetRepositoriesEvent : PubSubEvent<GetRepositoriesEventArgs> { }
 
@@ -41,7 +41,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             // public Domain.Core.Process Process;
 
-            //public Domain.Core.Project Project;
+            public Domain.Core.Project Project;
 
             // public Domain.Core.Team Team;
 
@@ -74,46 +74,46 @@ namespace AZDORestApiExplorer.Domain.Git
 
         public RESTResult<Repository> Results { get; set; } = new RESTResult<Repository>();
 
-        // TODO(crhodes)
-        // Not sure how this can be called.
-        public async Task<RESTResult<Repository>> GetProjectRepositories(GetProjectRepositoriesEventArgs args)
-        {
-            Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
+        //// TODO(crhodes)
+        //// Not sure how this can be called.
+        //public async Task<RESTResult<Repository>> GetProjectRepositories(GetProjectRepositoriesEventArgs args)
+        //{
+        //    Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
 
-            using (HttpClient client = new HttpClient())
-            {
-                Results.InitializeHttpClient(client, args.Organization.PAT);
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"git/repositories"
-                    + "?api-version=6.1-preview.1";
+        //        var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+        //            + $"git/repositories"
+        //            + "?api-version=6.1-preview.1";
 
-                var exchange = Results.InitializeExchange(client, requestUri);
+        //        var exchange = Results.InitializeExchange(client, requestUri);
 
-                using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                {
-                    Results.RecordExchangeResponse(response, exchange);
+        //        using (HttpResponseMessage response = await client.GetAsync(requestUri))
+        //        {
+        //            Results.RecordExchangeResponse(response, exchange);
 
-                    response.EnsureSuccessStatusCode();
+        //            response.EnsureSuccessStatusCode();
 
-                    string outJson = await response.Content.ReadAsStringAsync();
+        //            string outJson = await response.Content.ReadAsStringAsync();
 
-                    RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
+        //            RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
 
-                    Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
+        //            Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
 
-                    IEnumerable<string> continuationHeaders = default;
+        //            IEnumerable<string> continuationHeaders = default;
 
-                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+        //            bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                    Results.Count = Results.ResultItems.Count;
-                }
-            }
+        //            Results.Count = Results.ResultItems.Count;
+        //        }
+        //    }
 
-            Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
+        //    Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
 
-            return Results;
-        }
+        //    return Results;
+        //}
 
         public async Task<RESTResult<Repository>> GetList(GetRepositoriesEventArgs args)
         {
@@ -124,10 +124,23 @@ namespace AZDORestApiExplorer.Domain.Git
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 // TODO(crhodes)
-                // Update Uri  Use args for parameters.
-                var requestUri = $"{args.Organization.Uri}/_apis/"
+                // Make this cleaner
+
+                string requestUri;
+
+                if (args.Project != null)
+                {
+                    requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + $"git/repositories"
+                        + "?api-version=6.1-preview.1";
+                }
+                else
+                {
+                    requestUri = $"{args.Organization.Uri}/_apis/"
                     + $"git/repositories"
                     + "?api-version=6.1-preview.1";
+
+                }
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 
