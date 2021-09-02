@@ -20,6 +20,7 @@ $folders = @(
     , "azdorestapiexplorer.permissionsreport"
     , "azdorestapiexplorer.pipelines"
     , "azdorestapiexplorer.policy"
+    , "azdorestapiexplorer.presentation"
     , "azdorestapiexplorer.profile"
     , "azdorestapiexplorer.release"
     , "azdorestapiexplorer.search"
