@@ -43,6 +43,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public PullRequest SelectedPullRequest
+        {
+            get { return GetValue<PullRequest>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.Dashboard.Dashboard SelectedDashboard
         {
             get { return GetValue<Domain.Dashboard.Dashboard>(); }

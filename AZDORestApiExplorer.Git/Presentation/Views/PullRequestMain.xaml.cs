@@ -1,9 +1,5 @@
 using System;
 
-using AZDORestApiExplorer.Domain.Git;
-using AZDORestApiExplorer.Domain.Git.Events;
-using AZDORestApiExplorer.Presentation.ViewModels;
-
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -14,7 +10,11 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
     public partial class PullRequestMain : ViewBase, IPullRequestMain, IInstanceCountV
     {
 
-        public PullRequestMain(DomainViewModel<PullRequest, GetPullRequestsEvent, GetPullRequestsEventArgs, SelectedPullRequestChangedEvent> viewModel)
+        // NOTE(crhodes)
+        // Got back to using specific ViewModel has PullRequestMain has lots of complexity.
+        // No longer single Grid.
+
+        public PullRequestMain(ViewModels.IPullRequestMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -26,6 +26,19 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        //public PullRequestMain(DomainViewModel<PullRequest, GetPullRequestsEvent, GetPullRequestsEventArgs, SelectedPullRequestChangedEvent> viewModel)
+        //{
+        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+        //    InstanceCountV++;
+        //    InitializeComponent();
+
+        //    ViewModel = viewModel;
+        //    TargetGrid = grdResults;
+
+        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         private GridControl _targetGrid;
 

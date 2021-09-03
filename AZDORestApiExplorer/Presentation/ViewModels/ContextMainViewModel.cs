@@ -42,6 +42,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(PullRequestChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
@@ -123,6 +124,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void CommitChanged(Commit commit)
         {
             Context.SelectedCommit = commit;
+        }
+
+        private void PullRequestChanged(PullRequest pullRequest)
+        {
+            Context.SelectedPullRequest = pullRequest;
         }
 
         private void TestPlanChanged(TestPlan testPlan)
