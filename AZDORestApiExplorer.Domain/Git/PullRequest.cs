@@ -43,6 +43,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Git.Repository Repository;
 
+            public Domain.Git.PullRequest PullRequest;
             // public Domain.Core.Team Team;
 
             // public WorkItemType WorkItemType;
@@ -191,6 +192,15 @@ namespace AZDORestApiExplorer.Domain.Git
             public string href { get; set; }
         }
 
+        //---
+
+
+
+
+
+
+        //---
+
         public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
 
         public async Task<RESTResult<PullRequest>> GetList(GetPullRequestsEventArgs args)
@@ -233,5 +243,38 @@ namespace AZDORestApiExplorer.Domain.Git
 
             return Results;
         }
+
     }
+
+    public class ReviewersRoot
+        {
+            public int count { get; set; }
+            public Value[] value { get; set; }
+
+            public class Value
+            {
+                public string reviewerUrl { get; set; }
+                public int vote { get; set; }
+                public bool hasDeclined { get; set; }
+                public bool isFlagged { get; set; }
+                public string displayName { get; set; }
+                public string url { get; set; }
+                public _Links _links { get; set; }
+                public string id { get; set; }
+                public string uniqueName { get; set; }
+                public string imageUrl { get; set; }
+                public bool isRequired { get; set; }
+            }
+
+            public class _Links
+            {
+                public Avatar avatar { get; set; }
+            }
+
+            public class Avatar
+            {
+                public string href { get; set; }
+            }
+        }
+
 }

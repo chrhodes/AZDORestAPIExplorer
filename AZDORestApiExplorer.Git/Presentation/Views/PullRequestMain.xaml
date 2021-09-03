@@ -37,7 +37,7 @@
             </Style>
         </dxlc:LayoutGroup.GroupBoxStyle>
 
-        <dxlc:LayoutGroup Header="Repository" >
+        <dxlc:LayoutGroup Header="Pull Requests" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -277,14 +277,12 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="title" />
-                    <dxg:GridColumn FieldName="description" />
-                    <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="codeReviewId" />
-                    <dxg:GridColumn FieldName="status" />
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                    <dxg:GridColumn FieldName="creationDate" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
+                    <dxg:GridColumn FieldName="displayName" />
+                    <dxg:GridColumn FieldName="uniqueName" />
+                    <dxg:GridColumn FieldName="isRequired" />
+                    <dxg:GridColumn FieldName="vote" />
+                    <dxg:GridColumn FieldName="hasDeclined" />
+                    <dxg:GridColumn FieldName="isFlagged" />
                 </dxg:GridControl>
 
                 <dxe:TextEdit Grid.Row="2"
