@@ -85,15 +85,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
 
-            GetPullRequestAttachmentsCommand = new DelegateCommand(GetPullRequestAttachments, GetPullRequestsCanExecute);
-            GetPullRequestCommitsCommand = new DelegateCommand(GetPullRequestCommits, GetPullRequestsCanExecute);
-            GetPullRequestIterationsCommand = new DelegateCommand(GetPullRequestIterations, GetPullRequestsCanExecute);
-            GetPullRequestLabelsCommand = new DelegateCommand(GetPullRequestLabels, GetPullRequestsCanExecute);
-            GetPullRequestPropertiesCommand = new DelegateCommand(GetPullRequestProperties, GetPullRequestsCanExecute);
-            GetPullRequestReviewersCommand = new DelegateCommand(GetPullRequestReviewers, GetPullRequestsCanExecute);
-            GetPullRequestStatusesCommand = new DelegateCommand(GetPullRequestStatuses, GetPullRequestsCanExecute);
-            GetPullRequestThreadsCommand = new DelegateCommand(GetPullRequestThreads, GetPullRequestsCanExecute);
-            GetPullRequestWorkItemsCommand = new DelegateCommand(GetPullRequestWorkItems, GetPullRequestsCanExecute);
+            GetPullRequestAttachmentsCommand = new DelegateCommand(GetPullRequestAttachments, GetPullRequestInfoCanExecute);
+            GetPullRequestCommitsCommand = new DelegateCommand(GetPullRequestCommits, GetPullRequestInfoCanExecute);
+            GetPullRequestIterationsCommand = new DelegateCommand(GetPullRequestIterations, GetPullRequestInfoCanExecute);
+            GetPullRequestLabelsCommand = new DelegateCommand(GetPullRequestLabels, GetPullRequestInfoCanExecute);
+            GetPullRequestPropertiesCommand = new DelegateCommand(GetPullRequestProperties, GetPullRequestInfoCanExecute);
+            GetPullRequestReviewersCommand = new DelegateCommand(GetPullRequestReviewers, GetPullRequestInfoCanExecute);
+            GetPullRequestStatusesCommand = new DelegateCommand(GetPullRequestStatuses, GetPullRequestInfoCanExecute);
+            GetPullRequestThreadsCommand = new DelegateCommand(GetPullRequestThreads, GetPullRequestInfoCanExecute);
+            GetPullRequestWorkItemsCommand = new DelegateCommand(GetPullRequestWorkItems, GetPullRequestInfoCanExecute);
 
 
             GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute);
@@ -165,6 +165,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(RaisePullRequestChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
@@ -230,6 +231,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetListsCommand.RaiseCanExecuteChanged();
             GetProcessesWITPCommand.RaiseCanExecuteChanged();
+        }
+
+        private void RaisePullRequestChanged(PullRequest pullRequest)
+        {
+            GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
+            GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
+            GetPullRequestIterationsCommand.RaiseCanExecuteChanged();
+            GetPullRequestLabelsCommand.RaiseCanExecuteChanged();
+            GetPullRequestPropertiesCommand.RaiseCanExecuteChanged();
+            GetPullRequestReviewersCommand.RaiseCanExecuteChanged();
+            GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
+            GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
+            GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
         }
 
         private void RaiseCommitChanged(Commit commit)
@@ -313,6 +327,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
         }
+
 
         private void RaiseTeamChanged(Team team)
         {
@@ -1324,6 +1339,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPullRequestInfoCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedRepository is null
+                || _contextMainViewModel.Context.SelectedPullRequest is null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public DelegateCommand GetPullRequestStatusesCommand { get; set; }
