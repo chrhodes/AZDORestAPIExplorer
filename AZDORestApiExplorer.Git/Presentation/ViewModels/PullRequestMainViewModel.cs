@@ -67,7 +67,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         public RESTResult<PullRequestCommitsRoot.Value> ResultsCommits { get; set; } = new RESTResult<PullRequestCommitsRoot.Value>();
         public RESTResult<PullRequestIterations.Value> ResultsIterations { get; set; } = new RESTResult<PullRequestIterations.Value>();
         public RESTResult<PullRequest> ResultsLabels { get; set; } = new RESTResult<PullRequest>();
-        public RESTResult<PullRequestProperties.Value> ResultsProperties { get; set; } = new RESTResult<PullRequestProperties.Value>();
+        public RESTResult<PullRequestProperties> ResultsProperties { get; set; } = new RESTResult<PullRequestProperties>();
         public RESTResult<ReviewersRoot.Value> ResultsReviewers { get; set; } = new RESTResult<ReviewersRoot.Value>();
         public RESTResult<PullRequest> ResultsStatuses { get; set; } = new RESTResult<PullRequest>();
         public RESTResult<PullRequest> ResultsThreads { get; set; } = new RESTResult<PullRequest>();
@@ -408,7 +408,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PullRequestProperties resultRoot = JsonConvert.DeserializeObject<PullRequestProperties>(outJson);
 
-                        //ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties.Value>(resultRoot.value);
+                        ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties.Value>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
