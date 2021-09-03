@@ -20,6 +20,19 @@ namespace AZDORestApiExplorer.Domain.Git
     {
         public class GetPullRequestsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
 
+        public class GetPullRequestAttachmentsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestCommitsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestIterationsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestLabelsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestPropertiesEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestReviewersEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestStatusesEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestThreadsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+        public class GetPullRequestWorkItemsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
+
+        // TODO(crhodes)
+        // Add stuff to this or create custom ones and use above
+
         public class GetPullRequestsEventArgs
         {
             public Organization Organization;

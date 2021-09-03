@@ -86,7 +86,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderAttachments" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsAttachments" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsAttachments.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -123,7 +123,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsCommits" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsCommits.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -160,7 +160,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsIterations" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsIterations.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -197,7 +197,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderLabels" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsLabels" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsLabels.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -234,7 +234,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderProperties" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsProperties" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsProperties.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -271,7 +271,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderReviewers" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsReviewers" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsReviewers.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -308,7 +308,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderStatuses" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsStatuses" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsStatuses.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -345,7 +345,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderThreads" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsThreads" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsThreads.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
@@ -382,7 +382,7 @@
                 <vncazdopv:CommonGridHeader x:Name="commonGridHeaderWorkItems" Grid.Row="0" />
 
                 <dxg:GridControl x:Name="grdResultsWorkItems" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
+                    ItemsSource="{Binding ResultsWorkItems.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"

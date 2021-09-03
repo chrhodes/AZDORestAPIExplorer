@@ -82,7 +82,21 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetImportRequestsCommand = new DelegateCommand(GetImportRequests, GetImportRequestsCanExecute);
             GetItemsCommand = new DelegateCommand(GetItems, GetItemsCanExecute);
             GetMergesCommand = new DelegateCommand(GetMerges, GetMergesCanExecute);
-            GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute); GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
+
+            GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
+
+            GetPullRequestAttachmentsCommand = new DelegateCommand(GetPullRequestAttachments, GetPullRequestsCanExecute);
+            GetPullRequestCommitsCommand = new DelegateCommand(GetPullRequestCommits, GetPullRequestsCanExecute);
+            GetPullRequestIterationsCommand = new DelegateCommand(GetPullRequestIterations, GetPullRequestsCanExecute);
+            GetPullRequestLabelsCommand = new DelegateCommand(GetPullRequestLabels, GetPullRequestsCanExecute);
+            GetPullRequestPropertiesCommand = new DelegateCommand(GetPullRequestProperties, GetPullRequestsCanExecute);
+            GetPullRequestReviewersCommand = new DelegateCommand(GetPullRequestReviewers, GetPullRequestsCanExecute);
+            GetPullRequestStatusesCommand = new DelegateCommand(GetPullRequestStatuses, GetPullRequestsCanExecute);
+            GetPullRequestThreadsCommand = new DelegateCommand(GetPullRequestThreads, GetPullRequestsCanExecute);
+            GetPullRequestWorkItemsCommand = new DelegateCommand(GetPullRequestWorkItems, GetPullRequestsCanExecute);
+
+
+            GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute);
             GetStatsCommand = new DelegateCommand(GetStats, GetStatsCanExecute);
             GetRefsCommand = new DelegateCommand(GetRefs, GetRefsCanExecute);
 
@@ -280,6 +294,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseRepositoryChanged(Repository repository)
         {
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+            GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
+            GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
+            GetPullRequestIterationsCommand.RaiseCanExecuteChanged();
+            GetPullRequestLabelsCommand.RaiseCanExecuteChanged();
+            GetPullRequestPropertiesCommand.RaiseCanExecuteChanged();
+            GetPullRequestReviewersCommand.RaiseCanExecuteChanged();
+            GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
+            GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
+            GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
 
             GetBlobsCommand.RaiseCanExecuteChanged();
             GetCommitsCommand.RaiseCanExecuteChanged();
@@ -1114,6 +1137,276 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             return true;
+        }
+
+        public DelegateCommand GetPullRequestAttachmentsCommand { get; set; }
+        public string GetPullRequestAttachmentsContent { get; set; } = "Get PR Attachments";
+        public string GetPullRequestAttachmentsToolTip { get; set; } = "Get PR Attachments ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestAttachments()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestCommitsCommand { get; set; }
+        public string GetPullRequestCommitsContent { get; set; } = "Get PR Commits";
+        public string GetPullRequestCommitsToolTip { get; set; } = "Get PR Commits ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestCommits()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestIterationsCommand { get; set; }
+        public string GetPullRequestIterationsContent { get; set; } = "Get PR Iterations";
+        public string GetPullRequestIterationsToolTip { get; set; } = "Get PR Iterations ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestIterations()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestLabelsCommand { get; set; }
+        public string GetPullRequestLabelsContent { get; set; } = "Get PR Labels";
+        public string GetPullRequestLabelsToolTip { get; set; } = "Get PR Labels ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestLabels()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestPropertiesCommand { get; set; }
+        public string GetPullRequestPropertiesContent { get; set; } = "Get PR Properties";
+        public string GetPullRequestPropertiesToolTip { get; set; } = "Get PR Properties ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestProperties()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestReviewersCommand { get; set; }
+        public string GetPullRequestReviewersContent { get; set; } = "Get PR Reviewers";
+        public string GetPullRequestReviewersToolTip { get; set; } = "Get PR Reviewers ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestReviewers()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestStatusesCommand { get; set; }
+        public string GetPullRequestStatusesContent { get; set; } = "Get PR Statuses";
+        public string GetPullRequestStatusesToolTip { get; set; } = "Get PR Statuses ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestStatuses()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestThreadsCommand { get; set; }
+        public string GetPullRequestThreadsContent { get; set; } = "Get PR Threads";
+        public string GetPullRequestThreadsToolTip { get; set; } = "Get PR Threads ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestThreads()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestWorkItemsCommand { get; set; }
+        public string GetPullRequestWorkItemsContent { get; set; } = "Get PR WorkItems";
+        public string GetPullRequestWorkItemsToolTip { get; set; } = "Get PR WorkItems ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+
+        public void GetPullRequestWorkItems()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion GetPullRequests Command

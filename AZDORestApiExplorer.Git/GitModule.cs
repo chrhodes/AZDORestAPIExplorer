@@ -58,7 +58,7 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.Register<IMergeMainViewModel, MergeMainViewModel>();
             containerRegistry.RegisterSingleton<IMergeMain, MergeMain>();
 
-            //containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
+            containerRegistry.Register<IPullRequestMainViewModel, PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<IPullRequestMain, PullRequestMain>();
 
             containerRegistry.Register<IPushMainViewModel, PushMainViewModel>();
