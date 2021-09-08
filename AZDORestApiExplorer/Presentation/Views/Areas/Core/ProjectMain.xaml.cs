@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class ProjectMain : ViewBase, IProjectMain, IInstanceCountV
+    public partial class ProjectMain : ViewBase, IView, IInstanceCountV
     {
 
         public ProjectMain(DomainViewModel<Project, GetProjectsEvent, GetProjectsEventArgs, SelectedProjectChangedEvent> viewModel)

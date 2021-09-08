@@ -21,8 +21,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Constructors, Initialization, and Load
 
         public CommandsGetViewModel(
-            ICollectionMainViewModel collectionMainViewModel,
-            IContextMainViewModel contextMainViewModel,
+            CollectionMainViewModel collectionMainViewModel,
+            ContextMainViewModel contextMainViewModel,
             IEventAggregator eventAggregator,
             DialogService dialogService) : base(eventAggregator, dialogService)
         {

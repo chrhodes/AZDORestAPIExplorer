@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class RepositoryMain : ViewBase, IRepositoryMain, IInstanceCountV
+    public partial class RepositoryMain : ViewBase, IInstanceCountV
     {
 
         public RepositoryMain(DomainViewModel<Repository, GetRepositoriesEvent, GetRepositoriesEventArgs, SelectedRepositoryChangedEvent> viewModel)

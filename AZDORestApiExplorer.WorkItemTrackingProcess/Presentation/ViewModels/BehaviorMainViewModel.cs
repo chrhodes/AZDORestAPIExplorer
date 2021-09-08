@@ -22,7 +22,7 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
-    public class BehaviorMainViewModel : GridViewModelBase, IBehaviorMainViewModel, IInstanceCountVM
+    public class BehaviorMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

@@ -13,7 +13,7 @@ using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class HTTPExchangeMainViewModel : EventViewModelBase, IHTTPExchangeMainViewModel, IInstanceCountVM
+    public class HTTPExchangeMainViewModel : EventViewModelBase, IInstanceCountVM //, IHTTPExchangeMainViewModel
     {
 
         #region Constructors, Initialization, and Load

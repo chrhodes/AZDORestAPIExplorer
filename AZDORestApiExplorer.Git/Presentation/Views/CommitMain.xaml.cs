@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class CommitMain : ViewBase, ICommitMain, IInstanceCountV
+    public partial class CommitMain : ViewBase, IInstanceCountV
     {
         public CommitMain(DomainViewModel<Commit, GetCommitsEvent, GetCommitsEventArgs, SelectedCommitChangedEvent> viewModel)
         {

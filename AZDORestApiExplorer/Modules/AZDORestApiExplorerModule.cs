@@ -37,14 +37,14 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.RegisterSingleton<ICollectionMainViewModel, CollectionMainViewModel>();
-            containerRegistry.RegisterSingleton<ICollectionMain, CollectionMain>();
+            containerRegistry.RegisterSingleton<CollectionMainViewModel, CollectionMainViewModel>();
+            containerRegistry.RegisterSingleton<CollectionMain>();
 
             containerRegistry.RegisterSingleton<StatusBarViewModel>();
-            containerRegistry.RegisterSingleton<IStatusBar, StatusBar>();
+            containerRegistry.RegisterSingleton<StatusBar>();
 
-            containerRegistry.RegisterSingleton<IContextMainViewModel, ContextMainViewModel>();
-            containerRegistry.RegisterSingleton<IContextMain, ContextMain>();
+            containerRegistry.RegisterSingleton<ContextMainViewModel, ContextMainViewModel>();
+            containerRegistry.RegisterSingleton<ContextMain>();
 
             containerRegistry.RegisterSingleton<IShellService, ShellService>();
 
@@ -53,9 +53,9 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<CommandsPost>();
             containerRegistry.RegisterSingleton<CommandsPut>();
 
-            containerRegistry.RegisterSingleton<IProcessMain, ProcessMain>();
-            containerRegistry.RegisterSingleton<IProjectMain, ProjectMain>();
-            containerRegistry.RegisterSingleton<ITeamMain, TeamMain>();
+            containerRegistry.RegisterSingleton<ProcessMain>();
+            containerRegistry.RegisterSingleton<ProjectMain>();
+            containerRegistry.RegisterSingleton<TeamMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -66,18 +66,18 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            _regionManager.RegisterViewWithRegion(RegionNames.CollectionMainRegion, typeof(ICollectionMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.ContextMainRegion, typeof(IContextMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(IStatusBar));
+            _regionManager.RegisterViewWithRegion(RegionNames.CollectionMainRegion, typeof(CollectionMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ContextMainRegion, typeof(ContextMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(StatusBar));
 
             _regionManager.RegisterViewWithRegion(RegionNames.CommandGetRegion, typeof(CommandsGet));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPatchRegion, typeof(CommandsPatch));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPostRegion, typeof(CommandsPost));
             _regionManager.RegisterViewWithRegion(RegionNames.CommandPutRegion, typeof(CommandsPut));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.ProcessMainRegion, typeof(IProcessMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(IProjectMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.TeamMainRegion, typeof(ITeamMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ProcessMainRegion, typeof(ProcessMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ProjectMainRegion, typeof(ProjectMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TeamMainRegion, typeof(TeamMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -4,10 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
@@ -18,13 +17,12 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Core.Net;
-using AZDORestApiExplorer.Domain.Git.Events;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class MergeMainViewModel : GridViewModelBase, IMergeMainViewModel, IInstanceCountVM
+    public class MergeMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

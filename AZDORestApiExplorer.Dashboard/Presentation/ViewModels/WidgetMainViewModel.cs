@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.Dashboard;
+using AZDORestApiExplorer.Domain.Dashboard.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json.Linq;
@@ -15,13 +15,12 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Core.Net;
-using AZDORestApiExplorer.Domain.Dashboard.Events;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.ViewModels
 {
-    public class WidgetMainViewModel : GridViewModelBase, IWidgetMainViewModel, IInstanceCountVM
+    public class WidgetMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

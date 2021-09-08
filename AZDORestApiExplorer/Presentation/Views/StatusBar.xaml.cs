@@ -5,7 +5,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class StatusBar : ViewBase, IStatusBar, IInstanceCountV
+    public partial class StatusBar : ViewBase, IInstanceCountV
     {
 
         public StatusBar(ViewModels.StatusBarViewModel viewModel)

@@ -1,9 +1,5 @@
 using System;
 
-using AZDORestApiExplorer.Domain.Git;
-using AZDORestApiExplorer.Domain.Git.Events;
-using AZDORestApiExplorer.Presentation.ViewModels;
-
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -11,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class RefMain : ViewBase, IRefMain, IInstanceCountV
+    public partial class RefMain : ViewBase, IInstanceCountV
     {
 
-        public RefMain(ViewModels.IRefMainViewModel viewModel)
+        public RefMain(ViewModels.RefMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

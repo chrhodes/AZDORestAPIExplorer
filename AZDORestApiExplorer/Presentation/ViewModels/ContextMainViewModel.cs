@@ -14,7 +14,7 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class ContextMainViewModel : EventViewModelBase, IContextMainViewModel, IInstanceCountVM
+    public class ContextMainViewModel : EventViewModelBase, IInstanceCountVM //, IContextMainViewModel
     {
 
         #region Constructors, Initialization, and Load

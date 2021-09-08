@@ -7,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Dashboard.Presentation.Views
 {
-    public partial class DashboardMain : ViewBase, IDashboardMain, IInstanceCountV
+    public partial class DashboardMain : ViewBase, IInstanceCountV
     {
 
-        public DashboardMain(ViewModels.IDashboardMainViewModel viewModel)
+        public DashboardMain(ViewModels.DashboardMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

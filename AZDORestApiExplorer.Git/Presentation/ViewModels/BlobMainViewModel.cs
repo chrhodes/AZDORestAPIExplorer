@@ -22,7 +22,7 @@ using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class BlobMainViewModel : GridViewModelBase, IBlobMainViewModel, IInstanceCountVM
+    public class BlobMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

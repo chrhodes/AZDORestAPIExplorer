@@ -33,7 +33,7 @@ namespace AZDORestApiExplorer.Accounts
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.Register<IAccountMainViewModel, xAccountMainViewModel>();
-            containerRegistry.RegisterSingleton<IAccountMain, AccountMain>();
+            containerRegistry.RegisterSingleton<AccountMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -49,7 +49,7 @@ namespace AZDORestApiExplorer.Accounts
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.AccountMainRegion, typeof(IAccountMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.AccountMainRegion, typeof(AccountMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

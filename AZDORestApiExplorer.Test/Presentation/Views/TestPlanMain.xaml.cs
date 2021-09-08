@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Test.Presentation.Views
 {
-    public partial class TestPlanMain : ViewBase, ITestPlanMain, IInstanceCountV
+    public partial class TestPlanMain : ViewBase, IInstanceCountV
     {
         public TestPlanMain(DomainViewModel<TestPlan, GetTestPlansEvent, GetTestPlansEventArgs, SelectedTestPlanChangedEvent> viewModel)
         {

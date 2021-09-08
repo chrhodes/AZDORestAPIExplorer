@@ -37,13 +37,13 @@ namespace AZDORestApiExplorer.Test
             // Don't need ViewModels for basic View with Grid.  Use DomainViewModel
 
             //containerRegistry.Register<ITestPlanMainViewModel, TestPlanMainViewModel>();
-            containerRegistry.RegisterSingleton<ITestPlanMain, TestPlanMain>();
+            containerRegistry.RegisterSingleton<TestPlanMain>();
 
             //containerRegistry.Register<ITestSuiteMainViewModel, TestSuiteMainViewModel>();
-            containerRegistry.RegisterSingleton<ITestSuiteMain, TestSuiteMain>();
+            containerRegistry.RegisterSingleton<TestSuiteMain>();
 
             //containerRegistry.Register<ITestCaseMainViewModel, TestCaseMainViewModel>();
-            containerRegistry.RegisterSingleton<ITestCaseMain, TestCaseMain>();
+            containerRegistry.RegisterSingleton<TestCaseMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -58,11 +58,11 @@ namespace AZDORestApiExplorer.Test
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            _regionManager.RegisterViewWithRegion(RegionNames.TestPlanMainRegion, typeof(ITestPlanMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TestPlanMainRegion, typeof(TestPlanMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.TestSuiteMainRegion, typeof(ITestSuiteMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TestSuiteMainRegion, typeof(TestSuiteMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.TestCaseMainRegion, typeof(ITestCaseMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TestCaseMainRegion, typeof(TestCaseMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

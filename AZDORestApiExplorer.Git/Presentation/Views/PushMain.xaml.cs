@@ -7,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class PushMain : ViewBase, IPushMain, IInstanceCountV
+    public partial class PushMain : ViewBase, IInstanceCountV
     {
 
-        public PushMain(ViewModels.IPushMainViewModel viewModel)
+        public PushMain(ViewModels.PushMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

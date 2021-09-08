@@ -33,47 +33,47 @@ namespace AZDORestApiExplorer.WorkItemTracking
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IArtifactLinkTypeMainViewModel, ArtifactLinkTypeMainViewModel>();
-            containerRegistry.RegisterSingleton<IArtifactLinkTypeMain, ArtifactLinkTypeMain>();
+            containerRegistry.Register<ArtifactLinkTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<ArtifactLinkTypeMain>();
 
-            containerRegistry.Register<IClassificationNodeMainViewModel, ClassificationNodeMainViewModel>();
-            containerRegistry.RegisterSingleton<IClassificationNodeMain, ClassificationNodeMain>();
+            containerRegistry.Register<ClassificationNodeMainViewModel>();
+            containerRegistry.RegisterSingleton<ClassificationNodeMain>();
 
-            containerRegistry.Register<IFieldMainViewModel, FieldMainViewModel>();
-            containerRegistry.RegisterSingleton<IFieldMain, FieldMain>();
+            containerRegistry.Register<FieldMainViewModel>();
+            containerRegistry.RegisterSingleton<FieldMain>();
 
-            containerRegistry.Register<IQueryMainViewModel, QueryMainViewModel>();
-            containerRegistry.RegisterSingleton<IQueryMain, QueryMain>();
+            containerRegistry.Register<QueryMainViewModel>();
+            containerRegistry.RegisterSingleton<QueryMain>();
 
-            containerRegistry.Register<ITagMainViewModel, TagMainViewModel>();
-            containerRegistry.RegisterSingleton<ITagMain, TagMain>();
+            containerRegistry.Register<TagMainViewModel>();
+            containerRegistry.RegisterSingleton<TagMain>();
 
-            containerRegistry.Register<ITemplateMainViewModel, TemplateMainViewModel>();
-            containerRegistry.RegisterSingleton<ITemplateMain, TemplateMain>();
+            containerRegistry.Register<TemplateMainViewModel>();
+            containerRegistry.RegisterSingleton<TemplateMain>();
 
-            containerRegistry.Register<IWorkItemIconMainViewModel, WorkItemIconMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemIconMain, WorkItemIconMain>();
+            containerRegistry.Register<WorkItemIconMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemIconMain>();
 
-            containerRegistry.Register<IWorkItemRelationTypeMainViewModel, WorkItemRelationTypeMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemRelationTypeMain, WorkItemRelationTypeMain>();
+            containerRegistry.Register<WorkItemRelationTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemRelationTypeMain>();
 
-            containerRegistry.Register<IWorkItemTypeMainViewModel, WorkItemTypeMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemTypeMain, WorkItemTypeMain>();
+            containerRegistry.Register<WorkItemTypeMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemTypeMain>();
 
-            containerRegistry.Register<IWorkItemTypeCategoryMainViewModel, WorkItemTypeCategoryMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemTypeCategoryMain, WorkItemTypeCategoryMain>();
+            containerRegistry.Register<WorkItemTypeCategoryMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemTypeCategoryMain>();
 
-            containerRegistry.Register<IStateMainViewModel, StateMainViewModel>();
-            containerRegistry.RegisterSingleton<IStateMain, StateMain>();
+            containerRegistry.Register<StateMainViewModel>();
+            containerRegistry.RegisterSingleton<StateMain>();
 
-            containerRegistry.Register<IWorkItemTypesFieldMainViewModel, WorkItemTypesFieldMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemTypesFieldMain, WorkItemTypesFieldMain>();
+            containerRegistry.Register<WorkItemTypesFieldMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemTypesFieldMain>();
 
-            containerRegistry.Register<ICreateWorkItemMainViewModel, CreateWorkItemMainViewModel>();
-            containerRegistry.RegisterSingleton<ICreateWorkItemMain, CreateWorkItemMain>();
+            containerRegistry.Register<CreateWorkItemMainViewModel>();
+            containerRegistry.RegisterSingleton<CreateWorkItemMain>();
 
-            containerRegistry.Register<IWorkItemMainViewModel, WorkItemMainViewModel>();
-            containerRegistry.RegisterSingleton<IWorkItemMain, WorkItemMain>();
+            containerRegistry.Register<WorkItemMainViewModel>();
+            containerRegistry.RegisterSingleton<WorkItemMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -90,20 +90,20 @@ namespace AZDORestApiExplorer.WorkItemTracking
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.ArtifactLinkTypeMainRegion, typeof(IArtifactLinkTypeMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.ClassificationNodeMainRegion, typeof(IClassificationNodeMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.FieldWITMainRegion, typeof(IFieldMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.QueryMainRegion, typeof(IQueryMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.TagMainRegion, typeof(ITagMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.TemplateMainRegion, typeof(ITemplateMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemIconMainRegion, typeof(IWorkItemIconMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemRelationTypeMainRegion, typeof(IWorkItemRelationTypeMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITMainRegion, typeof(IWorkItemTypeMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeCategoryMainRegion, typeof(IWorkItemTypeCategoryMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.StateWITMainRegion, typeof(IStateMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(IWorkItemTypesFieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ArtifactLinkTypeMainRegion, typeof(ArtifactLinkTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ClassificationNodeMainRegion, typeof(ClassificationNodeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.FieldWITMainRegion, typeof(FieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.QueryMainRegion, typeof(QueryMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TagMainRegion, typeof(TagMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.TemplateMainRegion, typeof(TemplateMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemIconMainRegion, typeof(WorkItemIconMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemRelationTypeMainRegion, typeof(WorkItemRelationTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITMainRegion, typeof(WorkItemTypeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeCategoryMainRegion, typeof(WorkItemTypeCategoryMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StateWITMainRegion, typeof(StateMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(WorkItemTypesFieldMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemMainRegion, typeof(IWorkItemMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemMainRegion, typeof(WorkItemMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

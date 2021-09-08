@@ -7,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class CommitChangeMain : ViewBase, ICommitChangeMain, IInstanceCountV
+    public partial class CommitChangeMain : ViewBase, IInstanceCountV
     {
 
-        public CommitChangeMain(ViewModels.ICommitChangeMainViewModel viewModel)
+        public CommitChangeMain(ViewModels.CommitChangeMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

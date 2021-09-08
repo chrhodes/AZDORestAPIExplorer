@@ -5,10 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
@@ -20,12 +18,12 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Core.Net;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
 {
-    public class ProcessMainViewModel : GridViewModelBase, IProcessMainViewModel, IInstanceCountVM
+    public class ProcessMainViewModel : GridViewModelBase, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 

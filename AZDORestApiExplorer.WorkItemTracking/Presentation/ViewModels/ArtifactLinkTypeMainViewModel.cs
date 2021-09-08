@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.Presentation.ViewModels;
 using AZDORestApiExplorer.WorkItemTracking.Core.Events;
@@ -22,11 +20,10 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Net;
 using VNC.Core.Services;
-using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class ArtifactLinkTypeMainViewModel : GridViewModelBase, IArtifactLinkTypeMainViewModel, IInstanceCountVM
+    public class ArtifactLinkTypeMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

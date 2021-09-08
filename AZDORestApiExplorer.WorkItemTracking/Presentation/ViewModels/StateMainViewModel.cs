@@ -4,7 +4,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
+using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Core.Events.WorkItemTracking;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,18 +16,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Services;
-using VNC.Core.Net;
-using AZDORestApiExplorer.Domain;
-using AZDORestApiExplorer.Core.Events.WorkItemTracking;
-using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Presentation.ViewModels;
 using VNC.Core.Mvvm;
+using VNC.Core.Net;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class StateMainViewModel : GridViewModelBase, IStateMainViewModel, IInstanceCountVM
+    public class StateMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Artifacts.Presentation.Views
 {
-    public partial class FeedMain : ViewBase, IFeedMain, IInstanceCountV
+    public partial class FeedMain : ViewBase, IInstanceCountV
     {
 
         public FeedMain(DomainViewModel<Feed, GetFeedsEvent, GetFeedsEventArgs, SelectedFeedChangedEvent> viewModel)

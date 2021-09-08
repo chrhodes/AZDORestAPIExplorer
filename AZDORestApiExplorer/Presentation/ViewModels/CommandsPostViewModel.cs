@@ -20,8 +20,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Constructors, Initialization, and Load
 
         public CommandsPostViewModel(
-            ICollectionMainViewModel collectionMainViewModel,
-            IContextMainViewModel contextMainViewModel,
+            CollectionMainViewModel collectionMainViewModel,
+            ContextMainViewModel contextMainViewModel,
             IShellService shellService,
             IEventAggregator eventAggregator,
             DialogService dialogService) : base(eventAggregator, dialogService)

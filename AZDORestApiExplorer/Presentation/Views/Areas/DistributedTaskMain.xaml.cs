@@ -2,7 +2,6 @@
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-
     public partial class DistributedTaskMain : UserControl
     {
         public DistributedTaskMain()

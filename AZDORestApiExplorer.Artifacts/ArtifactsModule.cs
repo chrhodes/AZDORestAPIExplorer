@@ -33,7 +33,7 @@ namespace AZDORestApiExplorer.Artifacts
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             //containerRegistry.Register<IFeedMainViewModel, FeedMainViewModel>();
-            containerRegistry.RegisterSingleton<IFeedMain, FeedMain>();
+            containerRegistry.RegisterSingleton<FeedMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -48,7 +48,7 @@ namespace AZDORestApiExplorer.Artifacts
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            _regionManager.RegisterViewWithRegion(RegionNames.FeedMainRegion, typeof(IFeedMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.FeedMainRegion, typeof(FeedMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

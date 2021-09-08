@@ -7,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
-    public partial class TemplateMain : ViewBase, ITemplateMain, IInstanceCountV
+    public partial class TemplateMain : ViewBase, IInstanceCountV
     {
 
-        public TemplateMain(ViewModels.ITemplateMainViewModel viewModel)
+        public TemplateMain(ViewModels.TemplateMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

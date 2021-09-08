@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Presentation\ViewModels\Interfaces\" />
+      <Folder Include="Presentation\ViewModels\" />
     </ItemGroup>
     
 </Project>

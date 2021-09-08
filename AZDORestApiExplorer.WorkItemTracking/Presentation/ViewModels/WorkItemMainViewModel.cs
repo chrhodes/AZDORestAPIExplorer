@@ -2,9 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
@@ -14,13 +12,13 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Services;
-using VNC.Core.Net;
 using VNC.Core.Mvvm;
+using VNC.Core.Net;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class WorkItemMainViewModel : EventViewModelBase, IWorkItemMainViewModel
+    public class WorkItemMainViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
@@ -153,6 +151,18 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedWorkItemChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountVM;
+
+        public int InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
         }
 
         #endregion

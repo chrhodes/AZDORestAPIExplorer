@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class BlobMain : ViewBase, IBlobMain, IInstanceCountV
+    public partial class BlobMain : ViewBase, IInstanceCountV
     {
         public BlobMain(DomainViewModel<Blob, GetBlobsEvent, GetBlobsEventArgs, SelectedBlobChangedEvent> viewModel)
         {

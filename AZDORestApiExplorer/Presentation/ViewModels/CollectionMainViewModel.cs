@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Domain;
 
-using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
-    public class CollectionMainViewModel : EventViewModelBase, ICollectionMainViewModel, IInstanceCountVM
+    public class CollectionMainViewModel : EventViewModelBase, IInstanceCountVM //, ICollectionMainViewModel
     {
 
         #region Constructors, Initialization, and Load

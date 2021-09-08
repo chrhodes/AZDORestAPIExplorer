@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class TeamMain : ViewBase, ITeamMain, IInstanceCountV
+    public partial class TeamMain : ViewBase, IView, IInstanceCountV
     {
 
         public TeamMain(DomainViewModel<Team, GetTeamsEvent, GetTeamsEventArgs, SelectedTeamChangedEvent> viewModel)

@@ -7,10 +7,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
-    public partial class WorkItemRelationTypeMain : ViewBase, IWorkItemRelationTypeMain, IInstanceCountV
+    public partial class WorkItemRelationTypeMain : ViewBase, IInstanceCountV
     {
 
-        public WorkItemRelationTypeMain(ViewModels.IWorkItemRelationTypeMainViewModel viewModel)
+        public WorkItemRelationTypeMain(ViewModels.WorkItemRelationTypeMainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

@@ -36,11 +36,8 @@ namespace AZDORestApiExplorer
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.RegisterSingleton<IHTTPExchangeMainViewModel, HTTPExchangeMainViewModel>();
-            containerRegistry.RegisterSingleton<IHTTPExchangeMain, HTTPExchangeMain>();
-
-            // containerRegistry.RegisterSingleton<IHTTPExchangeLookupDataService, HTTPExchangeLookupDataService>();
-            // containerRegistry.Register<IHTTPExchangeDataService, HTTPExchangeDataService>();
+            containerRegistry.RegisterSingleton<HTTPExchangeMainViewModel>();
+            containerRegistry.RegisterSingleton<HTTPExchangeMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -56,7 +53,7 @@ namespace AZDORestApiExplorer
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads HTTPExchangeMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.HTTPExchangeMainRegion, typeof(IHTTPExchangeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.HTTPExchangeMainRegion, typeof(HTTPExchangeMain));
 
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);

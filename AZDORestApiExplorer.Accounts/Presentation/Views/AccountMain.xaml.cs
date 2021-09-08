@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Accounts.Presentation.Views
 {
-    public partial class AccountMain : ViewBase, IAccountMain, IInstanceCountV
+    public partial class AccountMain : ViewBase, IInstanceCountV
     {
 
         public AccountMain(DomainViewModel<Account, GetAccountsEvent, GetAccountsEventArgs, SelectedAccountChangedEvent> viewModel)

@@ -4,31 +4,25 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 
-using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Core.Events;
 using AZDORestApiExplorer.Core.Events.WorkItemTracking;
-using AZDORestApiExplorer.Domain;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.Presentation.ViewModels;
-using AZDORestApiExplorer.WorkItemTracking.Presentation.Views;
-
-using DevExpress.XtraPrinting;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Core.Net;
+using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels
 {
-    public class FieldMainViewModel : GridViewModelBase, IFieldMainViewModel, IInstanceCountVM
+    public class FieldMainViewModel : GridViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load

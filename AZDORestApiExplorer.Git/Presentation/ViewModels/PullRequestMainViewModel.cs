@@ -21,7 +21,7 @@ using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
-    public class PullRequestMainViewModel : GridViewModelBase, IPullRequestMainViewModel, IInstanceCountVM
+    public class PullRequestMainViewModel : GridViewModelBase, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 

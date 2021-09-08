@@ -33,12 +33,12 @@ namespace AZDORestApiExplorer.Dashboard
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<IDashboardMainViewModel, DashboardMainViewModel>();
-            containerRegistry.RegisterSingleton<IDashboardMain, DashboardMain>();
+            containerRegistry.Register<DashboardMainViewModel>();
+            containerRegistry.RegisterSingleton<DashboardMain>();
 
 
-            containerRegistry.Register<IWidgetMainViewModel, WidgetMainViewModel>();
-            containerRegistry.RegisterSingleton<IWidgetMain, WidgetMain>();
+            containerRegistry.Register<WidgetMainViewModel>();
+            containerRegistry.RegisterSingleton<WidgetMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -54,8 +54,8 @@ namespace AZDORestApiExplorer.Dashboard
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            _regionManager.RegisterViewWithRegion(RegionNames.DashboardMainRegion, typeof(IDashboardMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WidgetMainRegion, typeof(IWidgetMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.DashboardMainRegion, typeof(DashboardMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WidgetMainRegion, typeof(WidgetMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
