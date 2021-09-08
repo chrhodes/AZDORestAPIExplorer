@@ -11,7 +11,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
     {
 
         // NOTE(crhodes)
-        // Got back to using specific ViewModel has PullRequestMain has lots of complexity.
+        // Go back to using specific ViewModel as PullRequestMain has lots of complexity.
         // No longer single Grid.
 
         public PullRequestMain(ViewModels.IPullRequestMainViewModel viewModel)

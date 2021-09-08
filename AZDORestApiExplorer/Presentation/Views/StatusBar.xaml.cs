@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -17,7 +16,6 @@ namespace AZDORestApiExplorer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            //Loaded += UserControl_Loaded;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

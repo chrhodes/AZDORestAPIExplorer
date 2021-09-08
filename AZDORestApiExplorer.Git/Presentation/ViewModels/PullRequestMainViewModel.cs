@@ -178,7 +178,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsAttachments.Count = Results.ResultItems.Count;
+                        ResultsAttachments.Count = ResultsAttachments.ResultItems.Count;
                     }
                 }
             }
@@ -195,7 +195,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsAttachments.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequesAttachments)", Common.LOG_CATEGORY, startTicks);
         }
@@ -237,7 +237,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsCommits.Count = Results.ResultItems.Count;
+                        ResultsCommits.Count = ResultsCommits.ResultItems.Count;
                     }
                 }
             }
@@ -254,7 +254,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsCommits.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestCommits)", Common.LOG_CATEGORY, startTicks);
         }
@@ -296,7 +296,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsIterations.Count = Results.ResultItems.Count;
+                        ResultsIterations.Count = ResultsIterations.ResultItems.Count;
                     }
                 }
             }
@@ -313,7 +313,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsIterations.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestIterations)", Common.LOG_CATEGORY, startTicks);
         }
@@ -355,7 +355,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsLabels.Count = Results.ResultItems.Count;
+                        ResultsLabels.Count = ResultsLabels.ResultItems.Count;
                     }
                 }
             }
@@ -372,7 +372,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsLabels.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestWorkLabels)", Common.LOG_CATEGORY, startTicks);
         }
@@ -408,13 +408,15 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PullRequestProperties resultRoot = JsonConvert.DeserializeObject<PullRequestProperties>(outJson);
 
-                        ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties.Value>(resultRoot.value);
+                        // TODO(crhodes)
+                        // Handle Results with Single Value not a Collection
+                        //ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties.Value>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsProperties.Count = Results.ResultItems.Count;
+                        ResultsProperties.Count = ResultsProperties.ResultItems.Count;
                     }
                 }
             }
@@ -431,7 +433,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsProperties.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestProperties)", Common.LOG_CATEGORY, startTicks);
         }
@@ -473,7 +475,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsReviewers.Count = Results.ResultItems.Count;
+                        ResultsReviewers.Count = ResultsReviewers.ResultItems.Count;
                     }
                 }
             }
@@ -490,7 +492,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsReviewers.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestReviewers)", Common.LOG_CATEGORY, startTicks);
         }
@@ -532,7 +534,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsStatuses.Count = Results.ResultItems.Count;
+                        ResultsStatuses.Count = ResultsStatuses.ResultItems.Count;
                     }
                 }
             }
@@ -549,7 +551,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsStatuses.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestStatuses)", Common.LOG_CATEGORY, startTicks);
         }
@@ -591,7 +593,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsThreads.Count = Results.ResultItems.Count;
+                        ResultsThreads.Count = ResultsThreads.ResultItems.Count;
                     }
                 }
             }
@@ -608,7 +610,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsThreads.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestThreads)", Common.LOG_CATEGORY, startTicks);
         }
@@ -650,7 +652,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
-                        ResultsWorkItems.Count = Results.ResultItems.Count;
+                        ResultsWorkItems.Count = ResultsWorkItems.ResultItems.Count;
                     }
                 }
             }
@@ -667,7 +669,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 });
             }
 
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsWorkItems.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestWorkItems)", Common.LOG_CATEGORY, startTicks);
         }

@@ -112,8 +112,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 //var domainType = Activator.CreateInstance(dType, new object[] { EventAggregator, DialogService });
 
 
-
-
                 MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
 
                 Task<RESTResult<DType>> almostResults = (Task <RESTResult<DType>>)getListMethod.Invoke(domainType, new object[] { args });

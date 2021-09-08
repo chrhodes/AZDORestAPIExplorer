@@ -1,11 +1,7 @@
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-
-using VNC;
-using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
@@ -18,6 +14,7 @@ namespace AZDORestApiExplorer.Presentation.Views
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -25,6 +22,8 @@ namespace AZDORestApiExplorer.Presentation.Views
 
         #region Dependency Properties
 
+        // NOTE(crhodes)
+        // Old approach was to have DependencyProperty here.  Now we search tree in Xaml to FindAncestor
         //#region OutputFileNameAndPath
 
         //public static readonly DependencyProperty OutputFileNameAndPathProperty = DependencyProperty.Register("OutputFileNameAndPath",
@@ -51,6 +50,32 @@ namespace AZDORestApiExplorer.Presentation.Views
         //}
 
         //#endregion
+
+        #region Count
+
+        public static readonly DependencyProperty CountProperty = DependencyProperty.Register("Count",
+            typeof(string), typeof(CommonGridHeader), new PropertyMetadata(null, new PropertyChangedCallback(OnCountChanged)));
+
+        private static void OnCountChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            CommonGridHeader commonGridHeader = o as CommonGridHeader;
+            if (commonGridHeader != null)
+                commonGridHeader.OnCountChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual void OnCountChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        public string Count
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(CountProperty);
+            set => SetValue(CountProperty, value);
+        }
+
+        #endregion
 
         #endregion
 
