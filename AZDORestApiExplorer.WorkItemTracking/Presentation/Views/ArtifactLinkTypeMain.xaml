@@ -41,7 +41,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
+                                    Count="{Binding Results.Count, Mode=TwoWay}"/>
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"

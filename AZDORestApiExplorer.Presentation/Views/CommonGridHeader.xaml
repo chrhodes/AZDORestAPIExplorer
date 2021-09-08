@@ -48,8 +48,10 @@
                 HorizontalAlignment="Left" VerticalAlignment="Center">
             <StackPanel Style="{StaticResource CountStackPanel}" Margin="2">
                 <Label Content="Count:" />
-                <TextBlock Text="{Binding Results.Count}"
-                           Style="{StaticResource CountTextBlock}" />
+                <!--<TextBlock Text="{Binding Results.Count}"
+                           Style="{StaticResource CountTextBlock}" />-->
+                <TextBlock x:Name="tbCount" Text="{Binding Count}"
+                           Style="{StaticResource CountTextBlock}" />                
             </StackPanel>
         </Border>
 

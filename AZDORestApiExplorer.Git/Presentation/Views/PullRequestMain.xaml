@@ -46,7 +46,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" 
+                                            Count="{Binding Results.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
@@ -69,7 +70,7 @@
                     Text="{Binding Results.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
             </Grid>
             
         </dxlc:LayoutGroup>
@@ -83,7 +84,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderAttachments" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderAttachments" Grid.Row="0" 
+                                            Count="{Binding ResultsAttachments.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsAttachments" Grid.Row="1"
                     ItemsSource="{Binding ResultsAttachments.ResultItems}"
@@ -106,7 +108,7 @@
                     Text="{Binding ResultsAttachments.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
             </Grid>
 
         </dxlc:LayoutGroup>
@@ -120,7 +122,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0"
+                                            Count="{Binding ResultsCommits.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsCommits" Grid.Row="1"
                     ItemsSource="{Binding ResultsCommits.ResultItems}"
@@ -140,7 +143,7 @@
                     Text="{Binding ResultsCommits.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
             </Grid>
 
         </dxlc:LayoutGroup>
@@ -154,7 +157,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" 
+                                            Count="{Binding ResultsIterations.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsIterations" Grid.Row="1"
                     ItemsSource="{Binding ResultsIterations.ResultItems}"
@@ -179,7 +183,7 @@
                     Text="{Binding ResultsIterations.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
             </Grid>
 
         </dxlc:LayoutGroup>
@@ -193,7 +197,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderLabels" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderLabels" Grid.Row="0" 
+                                            Count="{Binding ResultsLabels.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsLabels" Grid.Row="1"
                     ItemsSource="{Binding ResultsLabels.ResultItems}"
@@ -216,7 +221,7 @@
                     Text="{Binding ResultsLabels.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
             </Grid>
 
         </dxlc:LayoutGroup>
@@ -230,7 +235,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderProperties" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderProperties" Grid.Row="0"
+                                            Count="{Binding ResultsProperties.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsProperties" Grid.Row="1"
                     ItemsSource="{Binding ResultsProperties.ResultItems}"
@@ -267,7 +273,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderReviewers" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderReviewers" Grid.Row="0"
+                                            Count="{Binding ResultsReviewers.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsReviewers" Grid.Row="1"
                     ItemsSource="{Binding ResultsReviewers.ResultItems}"
@@ -302,7 +309,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderStatuses" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderStatuses" Grid.Row="0" 
+                                            Count="{Binding ResultsStatuses.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsStatuses" Grid.Row="1"
                     ItemsSource="{Binding ResultsStatuses.ResultItems}"
@@ -339,7 +347,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderThreads" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderThreads" Grid.Row="0"
+                                            Count="{Binding ResultsThreads.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsThreads" Grid.Row="1"
                     ItemsSource="{Binding ResultsThreads.ResultItems}"
@@ -376,7 +385,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderWorkItems" Grid.Row="0" />
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderWorkItems" Grid.Row="0"
+                                            Count="{Binding ResultsWorkItems.Count, Mode=TwoWay}"/>
 
                 <dxg:GridControl x:Name="grdResultsWorkItems" Grid.Row="1"
                     ItemsSource="{Binding ResultsWorkItems.ResultItems}"

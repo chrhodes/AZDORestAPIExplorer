@@ -10,6 +10,7 @@ namespace AZDORestApiExplorer.Presentation.Views
         public CommonGridHeader()
         {
             InitializeComponent();
+            tbCount.DataContext = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,11 +61,14 @@ namespace AZDORestApiExplorer.Presentation.Views
         {
             CommonGridHeader commonGridHeader = o as CommonGridHeader;
             if (commonGridHeader != null)
-                commonGridHeader.OnCountChanged((string)e.OldValue, (string)e.NewValue);
+                        commonGridHeader.OnCountChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnCountChanged(string oldValue, string newValue)
         {
+            //Count = newValue;
+            tbCount.Text = newValue;
+
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 

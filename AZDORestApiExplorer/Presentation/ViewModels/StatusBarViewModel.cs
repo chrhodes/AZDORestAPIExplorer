@@ -57,7 +57,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private string _currentHTTPRequest;
         private string _title = "StatusBar";
 
-
         public string Title
         {
             get => _title;
@@ -69,7 +68,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
         
         public string CurrentHTTPRequest
         {
@@ -82,7 +80,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         #endregion
 
