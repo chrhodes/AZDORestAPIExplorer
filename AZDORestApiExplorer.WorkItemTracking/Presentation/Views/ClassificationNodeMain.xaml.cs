@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -10,7 +14,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
     public partial class ClassificationNodeMain : ViewBase, IInstanceCountV
     {
 
-        public ClassificationNodeMain(ViewModels.ClassificationNodeMainViewModel viewModel)
+        public ClassificationNodeMain(
+            DomainViewModel<ClassificationNode, GetClassificationNodesEvent, GetClassificationNodesEventArgs, SelectedClassificationNodeChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -22,6 +27,19 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        //public ClassificationNodeMain(ViewModels.ClassificationNodeMainViewModel viewModel)
+        //{
+        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+        //    InstanceCountV++;
+        //    InitializeComponent();
+
+        //    ViewModel = viewModel;
+        //    TargetGrid = grdResults;
+
+        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         private GridControl _targetGrid;
 

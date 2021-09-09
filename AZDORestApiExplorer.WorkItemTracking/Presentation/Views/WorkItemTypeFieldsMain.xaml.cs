@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -7,10 +11,10 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
-    public partial class WorkItemTypesFieldMain : ViewBase, IInstanceCountV
+    public partial class WorkItemTypeFieldsMain : ViewBase, IInstanceCountV
     {
-
-        public WorkItemTypesFieldMain(ViewModels.WorkItemTypesFieldMainViewModel viewModel)
+        public WorkItemTypeFieldsMain(
+            DomainViewModel<WorkItemTypesField, GetWorkItemTypesFieldsEvent, GetWorkItemTypesFieldsEventArgs, SelectedWorkItemTypesFieldChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

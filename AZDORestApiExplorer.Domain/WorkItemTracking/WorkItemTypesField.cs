@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain.Core.Events;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
 using Newtonsoft.Json;
 
@@ -18,9 +19,9 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     namespace Events
     {
-        public class GetWorkItemTypesFieldsWITEvent : PubSubEvent<GetWorkItemTypesFieldsWITEventArgs> { }
+        public class GetWorkItemTypesFieldsEvent : PubSubEvent<GetWorkItemTypesFieldsEventArgs> { }
 
-        public class GetWorkItemTypesFieldsWITEventArgs
+        public class GetWorkItemTypesFieldsEventArgs
         {
             public Domain.Organization Organization;
 
@@ -59,5 +60,44 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         }
 
         public RESTResult<WorkItemTypesField> Results { get; set; } = new RESTResult<WorkItemTypesField>();
+
+        public async Task<RESTResult<WorkItemTypesField>> GetList(GetWorkItemTypesFieldsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + $"wit/workitemtypes/{args.WorkItemType.referenceName}/fields"
+                    + "?$Expand=All&api-version=6.0";
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    WorkItemTypesFieldsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypesFieldsRoot>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<WorkItemTypesField>(resultRoot.value);
+
+                    IEnumerable<string> continuationHeaders = default;
+
+                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+
+                Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
+
+                return Results;
+            }
+        }
     }
 }

@@ -2255,8 +2255,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<GetWorkItemTypesFieldsWITEvent>().Publish(
-                new GetWorkItemTypesFieldsWITEventArgs()
+            EventAggregator.GetEvent<GetWorkItemTypesFieldsEvent>().Publish(
+                new GetWorkItemTypesFieldsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     ,

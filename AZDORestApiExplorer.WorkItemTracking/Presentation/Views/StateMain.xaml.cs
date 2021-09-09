@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -10,7 +14,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
     public partial class StateMain : ViewBase, IInstanceCountV
     {
 
-        public StateMain(ViewModels.StateMainViewModel viewModel)
+        public StateMain(DomainViewModel<State, GetStatesWITEvent, GetStatesWITEventArgs, SelectedStateWITChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -42,6 +46,5 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
         }
 
         #endregion
-
     }
 }

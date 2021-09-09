@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,8 +13,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
     public partial class TemplateMain : ViewBase, IInstanceCountV
     {
-
-        public TemplateMain(ViewModels.TemplateMainViewModel viewModel)
+        public TemplateMain(
+            DomainViewModel<Template, GetTemplatesEvent, GetTemplatesEventArgs, SelectedTemplateChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

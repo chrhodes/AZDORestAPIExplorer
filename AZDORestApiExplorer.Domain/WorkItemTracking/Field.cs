@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain.Core.Events;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
 using Newtonsoft.Json;
 
@@ -62,5 +63,55 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         }
 
         public RESTResult<Field> Results { get; set; } = new RESTResult<Field>();
+
+        public async Task<RESTResult<Field>> GetList(GetFieldsWITEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
+
+            string requestUri;
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                if (args.Project is null)
+                {
+                    requestUri = $"{args.Organization.Uri}/_apis"
+                        + "/wit/fields"
+                        + "?api-version=4.1";
+                }
+                else
+                {
+                    requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis"
+                        + "/wit/fields"
+                        + "?api-version=4.1";
+                }
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    FieldsRoot resultRoot = JsonConvert.DeserializeObject<FieldsRoot>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<Field>(resultRoot.value);
+
+                    IEnumerable<string> continuationHeaders = default;
+
+                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+
+                Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
+
+                return Results;
+            }
+        }
     }
 }

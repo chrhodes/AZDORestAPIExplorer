@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain.Core.Events;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 
 using Newtonsoft.Json;
 
@@ -56,5 +57,44 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         }
 
         public RESTResult<WorkItemTypeCategory> Results { get; set; } = new RESTResult<WorkItemTypeCategory>();
+
+        public async Task<RESTResult<WorkItemTypeCategory>> GetList(GetWorkItemTypeCategoriesEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + "wit/workitemtypecategories"
+                    + "?api-version=4.1";
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    WorkItemTypeCategoriesRoot resultRoot = JsonConvert.DeserializeObject<WorkItemTypeCategoriesRoot>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<WorkItemTypeCategory>(resultRoot.value);
+
+                    IEnumerable<string> continuationHeaders = default;
+
+                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+
+                Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
+
+                return Results;
+            }
+        }
     }
 }

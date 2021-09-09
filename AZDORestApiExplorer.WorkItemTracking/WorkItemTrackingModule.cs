@@ -33,41 +33,31 @@ namespace AZDORestApiExplorer.WorkItemTracking
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            containerRegistry.Register<ArtifactLinkTypeMainViewModel>();
             containerRegistry.RegisterSingleton<ArtifactLinkTypeMain>();
 
-            containerRegistry.Register<ClassificationNodeMainViewModel>();
             containerRegistry.RegisterSingleton<ClassificationNodeMain>();
 
-            containerRegistry.Register<FieldMainViewModel>();
             containerRegistry.RegisterSingleton<FieldMain>();
 
             containerRegistry.Register<QueryMainViewModel>();
             containerRegistry.RegisterSingleton<QueryMain>();
 
-            containerRegistry.Register<TagMainViewModel>();
             containerRegistry.RegisterSingleton<TagMain>();
 
-            containerRegistry.Register<TemplateMainViewModel>();
             containerRegistry.RegisterSingleton<TemplateMain>();
 
-            containerRegistry.Register<WorkItemIconMainViewModel>();
             containerRegistry.RegisterSingleton<WorkItemIconMain>();
 
-            containerRegistry.Register<WorkItemRelationTypeMainViewModel>();
             containerRegistry.RegisterSingleton<WorkItemRelationTypeMain>();
 
             containerRegistry.Register<WorkItemTypeMainViewModel>();
             containerRegistry.RegisterSingleton<WorkItemTypeMain>();
 
-            containerRegistry.Register<WorkItemTypeCategoryMainViewModel>();
             containerRegistry.RegisterSingleton<WorkItemTypeCategoryMain>();
 
-            containerRegistry.Register<StateMainViewModel>();
             containerRegistry.RegisterSingleton<StateMain>();
 
-            containerRegistry.Register<WorkItemTypesFieldMainViewModel>();
-            containerRegistry.RegisterSingleton<WorkItemTypesFieldMain>();
+            containerRegistry.RegisterSingleton<WorkItemTypeFieldsMain>();
 
             containerRegistry.Register<CreateWorkItemMainViewModel>();
             containerRegistry.RegisterSingleton<CreateWorkItemMain>();
@@ -101,7 +91,7 @@ namespace AZDORestApiExplorer.WorkItemTracking
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeWITMainRegion, typeof(WorkItemTypeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypeCategoryMainRegion, typeof(WorkItemTypeCategoryMain));
             _regionManager.RegisterViewWithRegion(RegionNames.StateWITMainRegion, typeof(StateMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(WorkItemTypesFieldMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WorkItemTypesFieldMainRegion, typeof(WorkItemTypeFieldsMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemMainRegion, typeof(WorkItemMain));
 

@@ -53,8 +53,8 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 var requestUri = $"{args.Organization.Uri}/_apis/"
-                    + "process/processes?"
-                    + "api-version=6.0-preview.1";
+                    + "wit/artifactlinktypes"
+                    + "?api-version=4.1-preview.1";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 

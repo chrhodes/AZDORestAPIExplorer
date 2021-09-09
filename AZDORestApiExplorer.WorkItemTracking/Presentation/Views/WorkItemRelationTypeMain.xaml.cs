@@ -1,5 +1,9 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Domain.WorkItemTracking;
+using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,8 +13,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
     public partial class WorkItemRelationTypeMain : ViewBase, IInstanceCountV
     {
-
-        public WorkItemRelationTypeMain(ViewModels.WorkItemRelationTypeMainViewModel viewModel)
+        public WorkItemRelationTypeMain(
+            DomainViewModel<WorkItemRelationType, GetWorkItemRelationTypesEvent, GetWorkItemRelationTypesEventArgs, SelectedWorkItemRelationTypeChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -31,6 +35,7 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
             set => _targetGrid = value;
 
         }
+
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -42,6 +47,5 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
         }
 
         #endregion
-
     }
 }
