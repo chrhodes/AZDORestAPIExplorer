@@ -1,11 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using AZDORestApiExplorer.Domain.Core.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     namespace Events
     {
+        public class GetQueriesEvent : PubSubEvent<GetQueriesEventArgs> { }
+
+        public class GetQueriesEventArgs
+        {
+            public Organization Organization;
+
+            public Domain.Core.Project Project;
+        }
+
+        public class SelectedQueryChangedEvent : PubSubEvent<Query> { }
 
     }
+
     public class QueriesRoot
     {
         public int count { get; set; }

@@ -5,9 +5,21 @@
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Presentation\ModelWrappers\BehaviorWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\FieldWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\ListWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\RuleWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\StateWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\SystemControlWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\WorkItemTypesBehaviorWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\WorkItemTypeWrapper.cs" />
+    </ItemGroup>
     
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
+    <Folder Include="Presentation\ModelWrappers\" />
   </ItemGroup>
 
     <ItemGroup>

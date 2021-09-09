@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class ProcessMain : ViewBase, IView, IInstanceCountV
+    public partial class ProcessMain : ViewBase, IInstanceCountV
     {
         public ProcessMain(DomainViewModel<Process, GetProcessesEvent, GetProcessesEventArgs, SelectedProcessChangedEvent> viewModel)
         {

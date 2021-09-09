@@ -1,9 +1,33 @@
-﻿namespace AZDORestApiExplorer.Domain.WorkItemTrackingProcess
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using AZDORestApiExplorer.Domain.Core.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
+
+namespace AZDORestApiExplorer.Domain.WorkItemTrackingProcess
 {
     namespace Events
     {
+        public class GetProcessesWITPEvent : PubSubEvent<GetProcessesWITPEventArgs> { }
 
+        public class GetProcessesWITPEventArgs
+        {
+            public Domain.Organization Organization;
+        }
+
+        public class SelectedProcessWITPChangedEvent : PubSubEvent<Process> { }
     }
+
     public class ProcessesRoot
     {
         public int count { get; set; }

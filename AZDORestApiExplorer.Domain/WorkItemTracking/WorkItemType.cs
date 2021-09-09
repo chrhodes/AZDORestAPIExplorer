@@ -1,9 +1,35 @@
-﻿namespace AZDORestApiExplorer.Domain.WorkItemTracking
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using AZDORestApiExplorer.Domain.Core.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
+
+namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     namespace Events
     {
+        public class GetWorkItemTypesWITEvent : PubSubEvent<GetWorkItemTypesWITEventArgs> { }
 
+        public class GetWorkItemTypesWITEventArgs
+        {
+            public Organization Organization;
+
+            public Domain.Core.Project Project;
+        }
+
+        public class SelectedWorkItemTypeWITChangedEvent : PubSubEvent<WorkItemType> { }
     }
+
     public class WorkItemTypesRoot
     {
         public int count { get; set; }
@@ -272,6 +298,8 @@
             public string color { get; set; }
             public string category { get; set; }
         }
+
+        public RESTResult<WorkItemType> Results { get; set; } = new RESTResult<WorkItemType>();
 
     }
 }

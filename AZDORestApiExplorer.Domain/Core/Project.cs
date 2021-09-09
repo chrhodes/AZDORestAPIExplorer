@@ -63,7 +63,6 @@ namespace AZDORestApiExplorer.Domain.Core
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
-                    //Results.RecordExchangeResponse(response, exchange);
                     Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
@@ -80,8 +79,6 @@ namespace AZDORestApiExplorer.Domain.Core
 
                     while (hasContinuationToken)
                     {
-                        //RequestResponseInfo exchange2 = new RequestResponseInfo();
-
                         string continueToken = continuationHeaders.First();
 
                         string requestUri2 = $"{args.Organization.Uri}/_apis/"
@@ -91,16 +88,8 @@ namespace AZDORestApiExplorer.Domain.Core
 
                         var exchange2 = Results.ContinueExchange(client, requestUri2);
 
-                        //exchange2.Uri = requestUri2;
-                        //exchange2.RequestHeadersX.AddRange(client.DefaultRequestHeaders);
-
                         using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
                         {
-                        //    exchange2.Response = response2;
-                        //    exchange2.ResponseHeadersX.AddRange(response2.Headers);
-
-                            //RequestResponseExchange.Add(exchange2);
-
                             Results.RecordExchangeResponse(response2, exchange2);
 
                             response2.EnsureSuccessStatusCode();

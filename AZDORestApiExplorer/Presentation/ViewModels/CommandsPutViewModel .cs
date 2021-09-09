@@ -4,15 +4,12 @@ using AZDORestApiExplorer.Core.Events;
 
 using AZDORestApiExplorer.Domain.Core;
 
-using AZDORestApiExplorer.WorkItemTracking.Core.Events;
-
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.WPF.Presentation.Dx.Views;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 
 using Prism.Events;
 
+using VNC;
 using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.Accounts
@@ -43,6 +45,8 @@ namespace AZDORestApiExplorer.Domain.Accounts
 
         public async Task<RESTResult<Account>> GetList(GetAccountsEventArgs args)
         {
+            Int64 startTicks = Log.DOMAIN("Enter(Account)", Common.LOG_CATEGORY);
+
             using (HttpClient client = new HttpClient())
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
@@ -57,11 +61,11 @@ namespace AZDORestApiExplorer.Domain.Accounts
                     + "accounts"
                     + "?api-version=6.1-preview.1";
 
-                //var exchange = Results.InitializeExchange(client, requestUri);
+                var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
-                    //Results.RecordExchangeResponse(response, exchange);
+                    Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 
@@ -78,10 +82,10 @@ namespace AZDORestApiExplorer.Domain.Accounts
                     Results.Count = Results.ResultItems.Count;
                 }
 
+                Log.DOMAIN("Exit(Account)", Common.LOG_CATEGORY, startTicks);
+
                 return Results;
             }
         }
-
     }
-
 }

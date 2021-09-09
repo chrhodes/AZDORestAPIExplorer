@@ -35,48 +35,42 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutGroup Orientation="Vertical">
-        
+    <dxlc:LayoutGroup Orientation="Vertical" Margin="5,0,0,0">
 
         <dxlc:LayoutGroup Header="Enter Orgnzation Information"
     	    View="Group" Orientation="Horizontal" >
-        
-            <dxlc:LayoutItem Label="Available Collections" >
+
+            <dxlc:LayoutItem Label="Available Collections:" Width="300" >
                 <ComboBox
                     ItemsSource="{Binding AvailableCollections}"
                     DisplayMemberPath="Name"
                     SelectedItem="{Binding SelectedCollection, Mode=TwoWay}">
                 </ComboBox>
             </dxlc:LayoutItem>
-        
-            <dxlc:LayoutItem Label="Uri">
+
+            <dxlc:LayoutItem Label="Uri:" Width="400">
                 <dxe:TextEdit Text="{Binding SelectedCollection.Organization.Uri }" />
             </dxlc:LayoutItem>
-        
-            <dxlc:LayoutItem Label="PAT">
+
+            <dxlc:LayoutItem Label="PAT:" Width="500">
                 <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
                          ToolTip="Paste in Personal Access Token (PAT)" 
                          Background="{StaticResource OrganizationColor}" />
             </dxlc:LayoutItem>
- 
-        </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup VerticalAlignment="Bottom">
-
-            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisCollectionMain, Path=InstanceCountV}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="VM:" />
-
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
             </StackPanel>
-
+            
         </dxlc:LayoutGroup>
-        
+
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

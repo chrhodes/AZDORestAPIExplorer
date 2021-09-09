@@ -46,7 +46,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             InstanceCountVM++;
 
             EventAggregator.GetEvent<EType>().Subscribe(GetList);
-            //EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             this.Results.PropertyChanged += PublishSelectedItemChanged;
 
@@ -111,7 +110,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 //var domainType = Activator.CreateInstance(dType, new object[] { EventAggregator, DialogService });
 
-
                 MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
 
                 Task<RESTResult<DType>> almostResults = (Task <RESTResult<DType>>)getListMethod.Invoke(domainType, new object[] { args });
@@ -120,7 +118,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 Results.ResultItems = almostResults.Result.ResultItems;
                 Results.Count = Results.ResultItems.Count();
-                //Results.RequestUri = almostResults.Result.RequestUri;
                 Results.RequestResponseExchange = almostResults.Result.RequestResponseExchange;
 
             }
@@ -129,20 +126,32 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 Log.Error(ex, Common.LOG_CATEGORY);
                 ExceptionDialogService.DisplayExceptionDialog(DialogService, ex);
             }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
-            //EventAggregator.GetEvent<HttpUriEvent>().Publish(Results.RequestUri);
+            finally
+            {
+                // NOTE(crhodes)
+                // Always publish the exchange so we can see what we were trying to access
+                // TODO(crhodes)
+                // May need to catch exceptions in getListMethod so can always return Results.
+                EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
+            }
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (! (Results.SelectedItem is null))
+            {
+                Int64 startTicks = Log.EVENT($"Enter:({Results.SelectedItem.GetType()})", Common.LOG_CATEGORY);
+                EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
+                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+            else
+            {
+                Int64 startTicks = Log.EVENT($"Enter(null)", Common.LOG_CATEGORY);
+                EventAggregator.GetEvent<SIEvent>().Publish(null);
+                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            }
         }
 
         #endregion

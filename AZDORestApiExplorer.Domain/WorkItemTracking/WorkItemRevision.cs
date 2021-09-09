@@ -1,8 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
+
+using AZDORestApiExplorer.Domain.Core.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
@@ -28,6 +38,8 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         public Fields fields { get; set; }
         public string url { get; set; }
         public Commentversionref commentVersionRef { get; set; }
+
+        public RESTResult<Value> Results { get; set; } = new RESTResult<Value>();
     }
 
     public class Fields

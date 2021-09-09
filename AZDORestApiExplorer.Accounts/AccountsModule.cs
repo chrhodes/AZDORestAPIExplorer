@@ -8,6 +8,8 @@ using Prism.Modularity;
 using Prism.Regions;
 
 using VNC;
+using VNC.Core.Presentation.ViewModels;
+using VNC.Core.Presentation.Views;
 
 namespace AZDORestApiExplorer.Accounts
 {
@@ -34,6 +36,8 @@ namespace AZDORestApiExplorer.Accounts
 
             //containerRegistry.Register<IAccountMainViewModel, xAccountMainViewModel>();
             containerRegistry.RegisterSingleton<AccountMain>();
+
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

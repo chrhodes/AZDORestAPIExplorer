@@ -5,8 +5,8 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;

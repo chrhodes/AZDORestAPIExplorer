@@ -6,11 +6,22 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Presentation\ViewModels\Interfaces\**" />
+      <Compile Remove="Presentation\Views\Interfaces\**" />
+      <EmbeddedResource Remove="Presentation\ViewModels\Interfaces\**" />
+      <EmbeddedResource Remove="Presentation\Views\Interfaces\**" />
+      <None Remove="Presentation\ViewModels\Interfaces\**" />
+      <None Remove="Presentation\Views\Interfaces\**" />
+      <Page Remove="Presentation\ViewModels\Interfaces\**" />
+      <Page Remove="Presentation\Views\Interfaces\**" />
+    </ItemGroup>
+
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
     <Folder Include="Presentation\ModelWrappers\" />
-    <Folder Include="Presentation\ViewModels\Interfaces\" />
-    <Folder Include="Presentation\Views\Interfaces\" />
+    <Folder Include="Presentation\ViewModels\" />
+    <Folder Include="Presentation\Views\" />
   </ItemGroup>
 
     <ItemGroup>

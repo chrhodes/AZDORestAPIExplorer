@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="AZDORestApiExplorer.Presentation.Common">
+    <Position X="0.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Presentation.ViewModels.DomainViewModel&lt;DType, EType, EArgs, SIEvent&gt;">
+    <Position X="2.75" Y="1.25" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAgAAAgAAACAAIAAAAAAAAEAAAAAI=</HashCode>
+      <FileName>ViewModels\DomainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AZDORestApiExplorer.Presentation.ViewModels.GridViewModelBase">
+    <Position X="2.75" Y="5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAgAQAAAAIAAQQFAAgIAAgAAA=</HashCode>
+      <FileName>ViewModels\GridViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AZDORestApiExplorer.Presentation.Views.CommonGridHeader">
+    <Position X="0.5" Y="9.25" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAIAAAAAQAgAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Views\CommonGridHeader.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

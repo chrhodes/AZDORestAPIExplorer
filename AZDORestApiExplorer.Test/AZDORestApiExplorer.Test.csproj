@@ -6,8 +6,15 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Presentation\ModelWrappers\TestCaseWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\TestPlanWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\TestSuiteWrapper.cs" />
+    </ItemGroup>
+
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
+    <Folder Include="Presentation\ModelWrappers\" />
     <Folder Include="Presentation\ViewModels\" />
   </ItemGroup>
 

@@ -164,9 +164,20 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Remove="Presentation\ModelWrappers\CollectionWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\DashboardWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\HTTPExchangeWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\ProcessWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\ProjectWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\TeamWrapper.cs" />
+      <Compile Remove="Presentation\ModelWrappers\WidgetWrapper.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Remove=".editorconfig" />
         <None Remove=".gitattributes" />
         <None Remove=".gitignore" />
+        <None Remove="Presentation\ModelWrappers\ReadMe.txt" />
     </ItemGroup>
 
     <ItemGroup>
@@ -263,5 +274,9 @@
       <Page Update="Presentation\Views\CommandsPut.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Presentation\ModelWrappers\" />
     </ItemGroup>
 </Project>

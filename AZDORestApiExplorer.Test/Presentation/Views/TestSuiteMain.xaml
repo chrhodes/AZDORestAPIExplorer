@@ -1,6 +1,6 @@
 <vncmvvm:ViewBase
     x:Class="AZDORestApiExplorer.Test.Presentation.Views.TestSuiteMain"
-    x:Name="thisTestPlan"   
+    x:Name="thisTestSuite"   
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://prismlibrary.com/"
@@ -64,9 +64,9 @@
             <dxg:GridColumn FieldName="inheritDefaultConfiguration" />
         </dxg:GridControl>
 
-        <!--<dxe:TextEdit Grid.Row="2"
-            Text="{Binding Results.SelectedItem.url}"
-            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>-->
+        <dxe:TextEdit Grid.Row="2"
+            Text="{Binding Results.SelectedItem._links._self.href}"
+            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
         <DockPanel Grid.Row="3" >
 
@@ -75,14 +75,13 @@
                 <Label Content="{Binding RuntimeVersion}" />
             </StackPanel>-->
 
-            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
+            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Right">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisTestSuite, Path=InstanceCountV}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <Label Content="VM:" />
-
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
             </StackPanel>

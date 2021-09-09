@@ -205,7 +205,7 @@
                                 <dxlc:LayoutItem Label="ScopePath">
                                     <dxe:TextEdit
                                 		Text="{Binding ScopePath }"
-                                    	ToolTip="{Binding ScopePathtoolTip }">
+                                    	ToolTip="{Binding ScopePathToolTip }">
                                     </dxe:TextEdit>                                    
                                 </dxlc:LayoutItem>
 

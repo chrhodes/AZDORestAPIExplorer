@@ -69,7 +69,6 @@ namespace AZDORestApiExplorer.Domain.Core
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
                     Results.RecordExchangeResponse(response, exchange);
-                    //Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 

@@ -13,6 +13,8 @@ using Unity;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Core.Presentation.ViewModels;
+using VNC.Core.Presentation.Views;
 
 namespace AZDORestApiExplorer
 {
@@ -56,6 +58,8 @@ namespace AZDORestApiExplorer
             containerRegistry.RegisterSingleton<ProcessMain>();
             containerRegistry.RegisterSingleton<ProjectMain>();
             containerRegistry.RegisterSingleton<TeamMain>();
+
+            containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

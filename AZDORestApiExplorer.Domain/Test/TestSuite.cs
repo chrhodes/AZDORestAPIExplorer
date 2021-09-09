@@ -68,23 +68,19 @@ namespace AZDORestApiExplorer.Domain.Test
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                // TODO(crhodes)
-                // Update Uri  Use args for parameters.
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"testplan/plans/{args.TestPlan.id}/suites"
                     + "?api-version=6.1-preview.1";
 
-                //var exchange = Results.InitializeExchange(client, requestUri);
+                var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
-                    //Results.RecordExchangeResponse(response, exchange);
+                    Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 
                     string outJson = await response.Content.ReadAsStringAsync();
-
-                    //JObject o = JObject.Parse(outJson);
 
                     TestSuitesRoot resultRoot = JsonConvert.DeserializeObject<TestSuitesRoot>(outJson);
 
@@ -99,24 +95,6 @@ namespace AZDORestApiExplorer.Domain.Test
             }
 
             return Results;
-        }
-
-        public static void InitializeHttpClient(Organization collection, HttpClient client)
-        {
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            //var username = @"Christopher.Rhodes@bd.com";
-            //var password = @"HappyH0jnacki08";
-
-            //string base64PAT = Convert.ToBase64String(
-            //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
-            string base64PAT = Convert.ToBase64String(
-                    ASCIIEncoding.ASCII.GetBytes(
-                        string.Format("{0}:{1}", "", collection.PAT)));
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
         }
 
         public class Lastupdatedby

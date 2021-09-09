@@ -61,8 +61,6 @@ namespace AZDORestApiExplorer.Domain.Core
 
         public RESTResult<Process> Results { get; set; } = new RESTResult<Process>();
 
-        //public RequestResponseInfo HTTPExchange { get; set; }
-
         public async Task<RESTResult<Process>> GetList(GetProcessesEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
@@ -76,13 +74,10 @@ namespace AZDORestApiExplorer.Domain.Core
                     + "api-version=6.0-preview.1";
 
                var exchange = Results.InitializeExchange(client, requestUri);
-                //Results.HTTPExchange = InitializeExchange(client, requestUri);
-                //var exchange = Results.InitializeExchange(client, requestUri);
 
                 using (HttpResponseMessage response = await client.GetAsync(requestUri))
                 {
                     Results.RecordExchangeResponse(response, exchange);
-                    //Results.RecordExchangeResponse(response, exchange);
 
                     response.EnsureSuccessStatusCode();
 
@@ -101,31 +96,8 @@ namespace AZDORestApiExplorer.Domain.Core
 
                 Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
 
-                //HTTPExchange = exchange;
-
-                //Results.RequestUri = requestUri;
-
                 return Results;
             }
         }
-
-        //public static void InitializeHttpClient(Organization collection, HttpClient client)
-        //{
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //        new MediaTypeWithQualityHeaderValue("application/json"));
-
-        //    //var username = @"Christopher.Rhodes@bd.com";
-        //    //var password = @"HappyH0jnacki08";
-
-        //    //string base64PAT = Convert.ToBase64String(
-        //    //        ASCIIEncoding.ASCII.GetBytes($"{username}:{password}"));
-        //    string base64PAT = Convert.ToBase64String(
-        //            ASCIIEncoding.ASCII.GetBytes(
-        //                string.Format("{0}:{1}", "", collection.PAT)));
-
-        //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64PAT);
-        //    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("NTLM");
-        //}
-
     }
 }

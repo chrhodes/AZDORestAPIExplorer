@@ -170,13 +170,14 @@
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource TestColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI name:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedTestCase.workItem.name}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI id:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedTestCase.workItem.id}" />
                         </dxlc:LayoutItem>
+
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 

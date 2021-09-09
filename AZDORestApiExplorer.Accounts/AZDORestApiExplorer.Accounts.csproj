@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Presentation\ModelWrappers\AccountWrapper.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Docking" Version="21.1.4" />
@@ -37,6 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Presentation\ModelWrappers\" />
       <Folder Include="Presentation\ViewModels\" />
     </ItemGroup>
     

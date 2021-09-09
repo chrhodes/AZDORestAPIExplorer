@@ -48,8 +48,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestCaseChangedEvent>().Subscribe(TestCaseChanged);
 
-            EventAggregator.GetEvent<Core.Events.WorkItemTracking.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
-            EventAggregator.GetEvent<Core.Events.WorkItemTrackingProcess.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
+            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
+            EventAggregator.GetEvent<Domain.WorkItemTrackingProcess.Events.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

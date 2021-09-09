@@ -1,26 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-using VNC.Core.DomainServices;
+using AZDORestApiExplorer.Domain.Core.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.WorkItemTracking
 {
     namespace Events
     {
+        public class GetTemplatesEvent : PubSubEvent<GetTemplatesEventArgs> { }
 
+        public class GetTemplatesEventArgs
+        {
+            public Organization Organization;
+
+            public Domain.Core.Project Project;
+
+            public Domain.Core.Team Team;
+        }
+
+        public class SelectedTemplateChangedEvent : PubSubEvent<Template> { }
     }
+
+
     public class TemplatesRoot
     {
     }
+
     public class Template
     {
-    }
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
 
-    // Rename classes to use TYPEsRoot and TYPE classes
+        public RESTResult<Template> Results { get; set; } = new RESTResult<Template>();
+    }
 
 }

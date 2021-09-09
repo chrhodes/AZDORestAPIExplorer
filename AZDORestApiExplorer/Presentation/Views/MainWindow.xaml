@@ -96,27 +96,45 @@
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
+                        <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Commands (POST)" AutoHidden="True">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
+                        </dxdo:LayoutPanel>
+
                         <!--Put the area of current interest here 
                             until we figure out how to make this easy to navigate-->
 
-                        <dxdo:LayoutPanel Caption="Git" >
+                        <dxdo:LayoutPanel Caption="Git" AutoHidden="True">
                             <local:GitMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Test" AutoHidden="True" >
+                            <local:TestMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Work Item Tracking"  >
+                            <local:WorkItemTrackingMain />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
+                            <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
                     </dxdo:LayoutGroup>
 
-                    <!--<dxdo:LayoutGroup  MinWidth="375" ItemWidth="400">-->
-
-
-
-                    <!--</dxdo:LayoutGroup>-->
-
                     <dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" >
-                        <dxlc:LayoutGroup>
-                            <Grid>
+                        <!--<dxlc:LayoutGroup>
+                            <Grid>-->
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
-                            </Grid>
-                        </dxlc:LayoutGroup>
+                            <!--</Grid>
+                        </dxlc:LayoutGroup>-->
                     </dxdo:LayoutPanel>
 
                 </dxdo:LayoutGroup>
@@ -142,18 +160,6 @@
                     </dxdo:AutoHideGroup>
 
                     <dxdo:AutoHideGroup DockType="Right">
-
-                        <dxdo:LayoutPanel Caption="Commands (PATCH)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
-                        </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutPanel Caption="Commands (POST)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
-                        </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
-                        </dxdo:LayoutPanel>
                         
                     </dxdo:AutoHideGroup>
 
@@ -163,32 +169,16 @@
                              <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel Caption="Accounts" >
+                        <dxdo:LayoutPanel Caption="Accounts" AutoHidden="True" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Artifacts" >
+                        <dxdo:LayoutPanel Caption="Artifacts" AutoHidden="True"  >
                             <local:ArtifactsMain />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True" TabBackgroundColor="Red" >
                             <local:DashboardMain />
-                        </dxdo:LayoutPanel>
-
-                        <!--<dxdo:LayoutPanel Caption="Git" AutoHidden="True" >
-                            <local:GitMain />
-                        </dxdo:LayoutPanel>-->
-
-                        <dxdo:LayoutPanel Caption="Test" AutoHidden="True" >
-                            <local:TestMain />
-                        </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutPanel Caption="Work Item Tracking" >
-                            <local:WorkItemTrackingMain />
-                        </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
-                            <local:WorkItemTrackingProcessMain />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Future Output" AutoHidden="True">

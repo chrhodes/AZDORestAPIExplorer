@@ -5,8 +5,8 @@ using System.ComponentModel;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Core.Events.WorkItemTrackingProcess;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess;
+using AZDORestApiExplorer.Domain.WorkItemTrackingProcess.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using Newtonsoft.Json;
@@ -144,7 +144,7 @@ namespace AZDORestApiExplorer.WorkItemTrackingProcess.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            EventAggregator.GetEvent<SelectedStateChangedEvent>().Publish(Results.SelectedItem);
+            EventAggregator.GetEvent<SelectedStateWITPChangedEvent>().Publish(Results.SelectedItem);
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
