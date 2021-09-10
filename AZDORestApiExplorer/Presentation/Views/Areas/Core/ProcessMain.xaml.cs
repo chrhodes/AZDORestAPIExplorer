@@ -13,7 +13,10 @@ namespace AZDORestApiExplorer.Presentation.Views
 {
     public partial class ProcessMain : ViewBase, IInstanceCountV
     {
-        public ProcessMain(DomainViewModel<Process, GetProcessesEvent, GetProcessesEventArgs, SelectedProcessChangedEvent> viewModel)
+        public ProcessMain(
+            DomainViewModel<Process, 
+                GetProcessesEvent, GetProcessesEventArgs, 
+                SelectedProcessChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

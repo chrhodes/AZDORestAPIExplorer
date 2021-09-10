@@ -7,20 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Presentation\ModelWrappers\BlobWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\CommitChangeWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\CommitWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\ImportRequestWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\ItemWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\MergeWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\PullRequestWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\PushWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\RefWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\RepositoryWrapper.cs" />
-    <Compile Remove="Presentation\ModelWrappers\StatWrapper.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
     <Folder Include="Presentation\ModelWrappers\" />
   </ItemGroup>

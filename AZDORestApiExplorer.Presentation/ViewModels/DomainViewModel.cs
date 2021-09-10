@@ -95,7 +95,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private async void GetList(EArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.EVENT_HANDLER($"Enter: ({args.GetType()})", Common.LOG_CATEGORY);
 
             try
             {
@@ -112,7 +112,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 MethodInfo getListMethod = domainType.GetType().GetMethod("GetList");
 
-                Task<RESTResult<DType>> almostResults = (Task <RESTResult<DType>>)getListMethod.Invoke(domainType, new object[] { args });
+                Task<RESTResult<DType>> almostResults = (Task<RESTResult<DType>>)getListMethod.Invoke(domainType, new object[] { args });
 
                 await almostResults;
 
@@ -142,7 +142,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (! (Results.SelectedItem is null))
             {
-                Int64 startTicks = Log.EVENT($"Enter:({Results.SelectedItem.GetType()})", Common.LOG_CATEGORY);
+                Int64 startTicks = Log.EVENT($"Enter:({typeof(SIEvent).Name})", Common.LOG_CATEGORY);
                 EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
                 Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
             }

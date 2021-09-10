@@ -54,6 +54,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private string _title = "GoGoGo";
 
+        // TODO(crhodes)
+        // Load these from somewhere
+
         private static string _PAT_BD_STS_PROD = "";
 
         private static string _PAT_BD_STS_QA2 = "";

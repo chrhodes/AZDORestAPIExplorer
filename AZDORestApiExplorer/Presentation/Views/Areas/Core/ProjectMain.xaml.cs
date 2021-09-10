@@ -11,10 +11,13 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Presentation.Views
 {
-    public partial class ProjectMain : ViewBase, IView, IInstanceCountV
+    public partial class ProjectMain : ViewBase, IInstanceCountV
     {
 
-        public ProjectMain(DomainViewModel<Project, GetProjectsEvent, GetProjectsEventArgs, SelectedProjectChangedEvent> viewModel)
+        public ProjectMain(
+            DomainViewModel<Project, 
+                GetProjectsEvent, GetProjectsEventArgs, 
+                SelectedProjectChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

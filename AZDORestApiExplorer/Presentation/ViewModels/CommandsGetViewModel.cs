@@ -160,6 +160,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Work Item Tracking Process Category
 
+            #region Context Enablement
+
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(RaiseCollectionChanged);
 
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
@@ -179,6 +181,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
+            #endregion
+
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -186,12 +190,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // RaiseCanExecuteChanged for any Command that is dependent on Context.
         // N.B. Need to add to each Context Item for button to be enabled.
 
-        // Add Commands that only depend on Organization Context here
+        //++ Add Commands that only depend on Organization Context here
+
         // Other commands that depend on more do not need to be added
         // as the check is in all CanExecute methods
 
         private void RaiseCollectionChanged(SelectedCollectionChangedEventArgs args)
         {
+            Int64 startTicks = Log.EVENT_HANDLER($"Enter: ({args.GetType()}) {args.Collection.Name}", Common.LOG_CATEGORY);
+
             GetCoreProcessesCommand.RaiseCanExecuteChanged();
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetTeamsCommand.RaiseCanExecuteChanged();
@@ -200,16 +207,30 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetAccountsCommand.RaiseCanExecuteChanged();
 
+            // Approvals and Checks
+
+            // Artifacts
+
+            // Artifacts Package Types
+
+            // Audit
+
+            // Build
+
+            // Cloud Load Test
+
+            // Dashboard
+
+            GetDashboardsCommand.RaiseCanExecuteChanged();
+            GetWidgetsCommand.RaiseCanExecuteChanged();
+
             // TODO(crhodes)
             // Move these under appropriate Category
 
             GetWidgetsCommand.RaiseCanExecuteChanged();
 
-
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
-
-
 
             // Git
 
@@ -234,10 +255,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetListsCommand.RaiseCanExecuteChanged();
             GetProcessesWITPCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaisePullRequestChanged(PullRequest pullRequest)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
             GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
             GetPullRequestIterationsCommand.RaiseCanExecuteChanged();
@@ -247,29 +272,45 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseCommitChanged(Commit commit)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetCommitChangesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseDashboardChanged(Domain.Dashboard.Dashboard dashboard)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetWorkItemTypesWITPCommand.RaiseCanExecuteChanged();
 
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseProjectChanged(Project project)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetProjectsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
@@ -306,10 +347,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
 
             GetWorkItemCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseRepositoryChanged(Repository repository)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetPullRequestsCommand.RaiseCanExecuteChanged();
             GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
             GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
@@ -329,11 +374,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPushesCommand.RaiseCanExecuteChanged();
             GetRefsCommand.RaiseCanExecuteChanged();
             GetStatsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
         private void RaiseTeamChanged(Team team)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetTeamsCommand.RaiseCanExecuteChanged();
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
@@ -341,26 +390,42 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Work Item Tracking
 
             GetTemplatesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseTestPlanChanged(TestPlan testPlan)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetTestSuitesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseTestSuiteChanged(TestSuite testSuite)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetTestCasesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseTestCaseChanged(TestCase testCase)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             // TODO(crhodes)
             // Add as things that depend on TestCase get added
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseWorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetProjectFieldsWITCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
             GetStatesWITPCommand.RaiseCanExecuteChanged();
@@ -370,15 +435,21 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
             GetStatesWITCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RaiseWorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             GetFieldsWITPCommand.RaiseCanExecuteChanged();
             GetRulesCommand.RaiseCanExecuteChanged();
             GetStatesWITPCommand.RaiseCanExecuteChanged();
             GetSystemControlsCommand.RaiseCanExecuteChanged();
             GetWorkItemTypesBehaviorsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion Constructors, Initialization, and Load
@@ -527,47 +598,41 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetCoreProcesses Command
 
         public DelegateCommand GetCoreProcessesCommand { get; set; }
-            public string GetCoreProcessesContent { get; set; } = "Get Processes";
-            public string GetCoreProcessesToolTip { get; set; } = "Get Processes ToolTip";
+        public string GetCoreProcessesContent { get; set; } = "Get Processes";
+        public string GetCoreProcessesToolTip { get; set; } = "Get Processes ToolTip";
 
-            // Can get fancy and use Resources
-            //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
-            //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
+        // Can get fancy and use Resources
+        //public string GetProcessesContent { get; set; } = "ViewName_GetProcessesContent";
+        //public string GetProcessesToolTip { get; set; } = "ViewName_GetProcessesContentToolTip";
 
-            // Put these in Resource File
-            //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
-            //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetProcessesContent">GetProcesses</system:String>
+        //    <system:String x:Key="ViewName_GetProcessesContentToolTip">GetProcesses ToolTip</system:String>
 
-            public bool GetCoreProcessesCanExecute()
+        public bool GetCoreProcessesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
-                if (_collectionMainViewModel.SelectedCollection is null)
+                return false;
+            }
+
+            return true;
+        }
+
+        public void GetCoreProcessesExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Core.Events.GetProcessesEvent>().Publish(
+                new Domain.Core.Events.GetProcessesEventArgs()
                 {
-                    return false;
-                }
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
 
-                return true;
-            }
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
-            public void GetCoreProcessesExecute()
-            {
-                Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-                //EventAggregator.GetEvent<Core.Events.Core.GetProcessesEvent>().Publish(
-                //    new Core.Events.Core.GetProcessesEventArgs()
-                //    {
-                //        Organization = _collectionMainViewModel.SelectedCollection.Organization
-                //    });
-
-                EventAggregator.GetEvent<Domain.Core.Events.GetProcessesEvent>().Publish(
-                    new Domain.Core.Events.GetProcessesEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    });
-
-                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-            }
-
-            #endregion GetCoreProcesses Command
+        #endregion GetCoreProcesses Command
 
         #region GetCoreProjects Command
 
@@ -718,9 +783,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public bool GetWidgetsCanExecute()
         {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedTeam is null)
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
                 return false;
             }

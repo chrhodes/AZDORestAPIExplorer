@@ -103,57 +103,101 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void ProcessChanged(Process process)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedProcess = process;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ProjectChanged(Project project)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedProject = project;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TeamChanged(Team team)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedTeam = team;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RepositoryChanged(Repository repository)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedRepository = repository;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void CommitChanged(Commit commit)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedCommit = commit;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PullRequestChanged(PullRequest pullRequest)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedPullRequest = pullRequest;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TestPlanChanged(TestPlan testPlan)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedTestPlan = testPlan;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TestSuiteChanged(TestSuite testSuite)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedTestSuite = testSuite;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TestCaseChanged(TestCase testCase)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedTestCase = testCase;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void WorkItemTypeWITChanged(Domain.WorkItemTracking.WorkItemType workItemType)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedWorkItemTypeWIT = workItemType;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void WorkItemTypeWITPChanged(Domain.WorkItemTrackingProcess.WorkItemType workItemType)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedWorkItemTypeWITP = workItemType;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

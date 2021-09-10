@@ -32,6 +32,5 @@ namespace AZDORestApiExplorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

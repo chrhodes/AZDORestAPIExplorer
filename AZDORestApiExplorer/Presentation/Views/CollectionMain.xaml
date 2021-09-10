@@ -23,7 +23,6 @@
     
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
-    d:DesignHeight="200" d:DesignWidth="600"
 >
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -35,10 +34,11 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutGroup Orientation="Vertical" Margin="5,0,0,0">
+    <dxlc:LayoutGroup Orientation="Vertical" >
 
         <dxlc:LayoutGroup Header="Enter Orgnzation Information"
-    	    View="Group" Orientation="Horizontal" >
+    	    View="Group" Orientation="Horizontal"
+            Background="{StaticResource OrganizationColor}" Padding="5" >
 
             <dxlc:LayoutItem Label="Available Collections:" Width="300" >
                 <ComboBox
@@ -49,21 +49,20 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Uri:" Width="400">
-                <dxe:TextEdit Text="{Binding SelectedCollection.Organization.Uri }" />
+                <dxe:TextEdit Text="{Binding SelectedCollection.Organization.Uri }"  />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="PAT:" Width="500">
+            <dxlc:LayoutItem Label="PAT:" Width="400">
                 <TextBox Text="{Binding SelectedCollection.Organization.PAT }" 
-                         ToolTip="Paste in Personal Access Token (PAT)" 
-                         Background="{StaticResource OrganizationColor}" />
+                         ToolTip="Paste in Personal Access Token (PAT)"  />
             </dxlc:LayoutItem>
 
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" >
                     <Label Content="V:" />
                     <Label Content="{Binding ElementName=thisCollectionMain, Path=InstanceCountV}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
                     <Label Content="VM:" />
                     <Label Content="{Binding InstanceCountVM}" />
                 </StackPanel>
