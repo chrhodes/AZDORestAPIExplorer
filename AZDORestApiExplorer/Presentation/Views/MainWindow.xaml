@@ -142,7 +142,7 @@
                 <dxdo:DockLayoutManager.FloatGroups>
                     <dxdo:FloatGroup>
 
-                        <dxdo:LayoutPanel Caption="HTTP Exchange">
+                        <dxdo:LayoutPanel Caption="HTTP Exchange" MinWidth="400">
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>
                         

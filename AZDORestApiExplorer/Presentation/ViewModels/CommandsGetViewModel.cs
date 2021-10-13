@@ -111,6 +111,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetTestSuitesCommand = new DelegateCommand(GetTestSuites, GetTestSuitesCanExecute);
             GetTestCasesCommand = new DelegateCommand(GetTestCases, GetTestCasesCanExecute);
 
+            GetTestPointsCommand = new DelegateCommand(GetTestPoints, GetTestPointsCanExecute);
+
             #endregion Test Category
 
             #region Work Item Tracking Category
@@ -1788,6 +1790,47 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion GetTestCases Command
+
+        #region GetTestPoints Command
+
+        public DelegateCommand GetTestPointsCommand { get; set; }
+        public string GetTestPointsContent { get; set; } = "GetTestPoints";
+        public string GetTestPointsToolTip { get; set; } = "GetTestPoints ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTestPointsContent { get; set; } = "ViewName_GetTestPointsContent";
+        //public string GetTestPointsToolTip { get; set; } = "ViewName_GetTestPointsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTestPointsContent">GetTestPoints</system:String>
+        //    <system:String x:Key="ViewName_GetTestPointsContentToolTip">GetTestPoints ToolTip</system:String>  
+
+        public void GetTestPoints()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Test.Events.GetTestPointsEvent>().Publish(
+                new Domain.Test.Events.GetTestPointsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    TestPlan = _contextMainViewModel.Context.SelectedTestPlan.id,
+                    TestSuite = _contextMainViewModel.Context.SelectedTestSuite.id,
+                    //TestPlan = _contextMainViewModel.Context.SelectedTestPlan,
+                    //TestSuite = _contextMainViewModel.Context.SelectedTestSuite
+                });
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetTestPointsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
 
         // End Cut One
 

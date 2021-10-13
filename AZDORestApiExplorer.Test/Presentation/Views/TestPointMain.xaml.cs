@@ -1,8 +1,8 @@
 using System;
 
 using AZDORestApiExplorer.Domain.Test;
-using AZDORestApiExplorer.Domain.Test.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
+using AZDORestApiExplorer.Domain.Test.Events;
 
 using DevExpress.Xpf.Grid;
 
@@ -11,9 +11,22 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Test.Presentation.Views
 {
-    public partial class TestPlanMain : ViewBase, IInstanceCountV
+    public partial class TestPointMain : ViewBase, IInstanceCountV
     {
-        public TestPlanMain(DomainViewModel<TestPlan, GetTestPlansEvent, GetTestPlansEventArgs, SelectedTestPlanChangedEvent> viewModel)
+        //public TestPointMain(DomainViewModel<TestPoint, GetTestPointsEvent, GetTestPointsEventArgs, SelectedTestPointChangedEvent> viewModel)
+        //{
+        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+        //    InstanceCountV++;
+        //    InitializeComponent();
+
+        //    ViewModel = viewModel;
+        //    TargetGrid = grdResults;
+
+        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        public TestPointMain(DomainViewModel<Value, GetTestPointsEvent, GetTestPointsEventArgs, SelectedTestPointChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

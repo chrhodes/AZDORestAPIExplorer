@@ -499,6 +499,13 @@
                                             ToolTip="{Binding GetTestCasesToolTip, FallbackValue='GetTestCases ToolTip' }" />
                                     </dxlc:LayoutItem>
 
+                                    <dxlc:LayoutItem>
+                                        <Button 
+                                    		Command="{Binding GetTestPointsCommand }"
+                                    		Content="{Binding GetTestPointsContent, FallbackValue='GetTestPoints' }"
+                                    		ToolTip="{Binding GetTestPointsToolTip, FallbackValue='GetTestPoints ToolTip' }" />
+                                    </dxlc:LayoutItem>
+
                                 </dxlc:LayoutGroup>
 
                             </dxlc:LayoutGroup>
@@ -512,7 +519,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Test Reults *" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Test Results *" IsCollapsed="True"
                              Style="{StaticResource GetLayoutGroup}">
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
@@ -786,14 +793,13 @@
 
             <dxlc:LayoutGroup VerticalAlignment="Bottom">
 
-                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel  Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0">
                         <Label Content="V:" />
                         <Label Content="{Binding ElementName=thisCommandsGet, Path=InstanceCountV}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                         <Label Content="VM:" />
-
                         <Label Content="{Binding InstanceCountVM}" />
                     </StackPanel>
                 </StackPanel>

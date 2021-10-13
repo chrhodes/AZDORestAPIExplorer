@@ -23,7 +23,6 @@
     
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
-    d:DesignHeight="200" d:DesignWidth="600"
     Background="LightGreen"
 >
     <d:DesignerProperties.DesignStyle>
