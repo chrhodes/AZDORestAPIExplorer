@@ -38,8 +38,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="400" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="400" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -54,10 +56,22 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
             <dxg:GridColumn FieldName="testPlan.name" />
+            <dxg:GridColumn FieldName="testPlan.id" />
             <dxg:GridColumn FieldName="project.name" />
             <dxg:GridColumn FieldName="testSuite.name" />
+            <dxg:GridColumn FieldName="testSuite.id" />
             <dxg:GridColumn FieldName="workItem.id" />
             <dxg:GridColumn FieldName="workItem.name" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[0].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[1].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[2].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[3].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[4].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[5].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[6].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[7].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[8].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[9].AutomationStatus" />
             <dxg:GridColumn FieldName="order" />
         </dxg:GridControl>
 
@@ -65,7 +79,21 @@
             Text="{Binding Results.SelectedItem.links._self.href}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
-        <DockPanel Grid.Row="3" >
+        <dxe:TextEdit Grid.Row="3"
+            Text="{Binding Results.SelectedItem.links.testPoints}"
+            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+
+        <dxg:GridControl Grid.Row="4"
+                    ItemsSource="{Binding Results.SelectedItem.workItem.workItemFields}"
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <dxg:GridColumn FieldName="Microsoft.VSTS.TCM.AutomationStatus" />
+            <dxg:GridColumn FieldName="testPlan.name" />
+        </dxg:GridControl>
+
+        <DockPanel Grid.Row="5" >
 
             <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
                 <StackPanel Orientation="Horizontal" Margin="5">

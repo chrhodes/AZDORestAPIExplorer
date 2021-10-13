@@ -96,21 +96,48 @@ namespace AZDORestApiExplorer.Domain.Test
         {
             public int id { get; set; }
             public string name { get; set; }
+            //public Workitemfield workItemFields { get; set; }
+            //public List<Workitemfield> workItemFields { get; set; }
+            //public List<string> workItemFields { get; set; }
             public Workitemfield[] workItemFields { get; set; }
         }
 
         public class Workitemfield
         {
+            [JsonProperty("Microsoft.VSTS.TCM.Steps")]
             public string MicrosoftVSTSTCMSteps { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ActivatedBy")]
             public string MicrosoftVSTSCommonActivatedBy { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.ActivatedDate")]
             public DateTime MicrosoftVSTSCommonActivatedDate { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.TCM.AutomationStatus")]
             public string MicrosoftVSTSTCMAutomationStatus { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.TCM.LocalDataSource")]
+            public string MicrosoftVSTSTCMLocalDataSource { get; set; }
+
+            [JsonProperty("System.Description")]
             public string SystemDescription { get; set; }
+
+            [JsonProperty("System.State")]
             public string SystemState { get; set; }
+
+            [JsonProperty("System.AssignedTo")]
             public string SystemAssignedTo { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.Priority")]
             public int MicrosoftVSTSCommonPriority { get; set; }
+
+            [JsonProperty("Microsoft.VSTS.Common.StateChangeDate")]
             public DateTime MicrosoftVSTSCommonStateChangeDate { get; set; }
+
+            [JsonProperty("System.WorkItemType")]
             public string SystemWorkItemType { get; set; }
+
+            [JsonProperty("System.Rev")]
             public int SystemRev { get; set; }
         }
 
