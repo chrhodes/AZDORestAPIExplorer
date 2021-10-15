@@ -81,6 +81,12 @@ namespace AZDORestApiExplorer.Domain.Test
 
                     Results.ResultItems = new ObservableCollection<TestCase>(resultRoot.value);
 
+                    var workItem = Results.ResultItems[0].workItem;
+                    var workItemFields = workItem.workItemFields;
+                    var workItemField = workItemFields[0];
+
+                    var to = workItemFields.GetType();
+
                     IEnumerable<string> continuationHeaders = default;
 
                     bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
@@ -96,10 +102,16 @@ namespace AZDORestApiExplorer.Domain.Test
         {
             public int id { get; set; }
             public string name { get; set; }
+
+            // This is what JSON to classes produces
+            //public Workitemfield[] workItemFields { get; set; }
+
+            // These are things I've tried to get back a sensible something.
+            public object[] workItemFields { get; set; }
+
             //public Workitemfield workItemFields { get; set; }
             //public List<Workitemfield> workItemFields { get; set; }
             //public List<string> workItemFields { get; set; }
-            public Workitemfield[] workItemFields { get; set; }
         }
 
         public class Workitemfield

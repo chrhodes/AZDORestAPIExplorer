@@ -535,8 +535,16 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Tokens *" IsCollapsed="True"
-                             Style="{StaticResource GetLayoutGroup}">
-                        <TextBlock Text="Not Implemented Yet" />
+                        Style="{StaticResource GetLayoutGroup}"
+                        Background="{StaticResource OrganizationColor}">
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetPatsCommand }"
+                        		Content="{Binding GetPatsContent, FallbackValue='GetPats' }"
+                        		ToolTip="{Binding GetPatsToolTip, FallbackValue='GetPats ToolTip' }" />
+                        </dxlc:LayoutItem>
+
                     </dxlc:LayoutGroup>
                     
                     <dxlc:LayoutGroup Header="Work - Organization Level" IsCollapsed="True"

@@ -6,6 +6,8 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
 
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
@@ -23,7 +25,7 @@
 
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
-    d:DesignHeight="450" d:DesignWidth="800"
+    d:DesignWidth="800"
 >
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -38,10 +40,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="400" />
+            <RowDefinition Height="300" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="400" />
+            <RowDefinition Height="300" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -62,16 +64,17 @@
             <dxg:GridColumn FieldName="testSuite.id" />
             <dxg:GridColumn FieldName="workItem.id" />
             <dxg:GridColumn FieldName="workItem.name" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[0].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[1].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[2].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[3].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[4].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[5].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[6].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[7].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[8].AutomationStatus" />
-            <dxg:GridColumn FieldName="workItem.workItemFields[9].AutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields.MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[0].MicrosoftVSTSTCMAutomationStatus" />            
+            <dxg:GridColumn FieldName="workItem.workItemFields[1].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[2].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[3].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[4].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[5].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[6].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[7].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[8].MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="workItem.workItemFields[9].MicrosoftVSTSTCMAutomationStatus" />
             <dxg:GridColumn FieldName="order" />
         </dxg:GridControl>
 
@@ -88,9 +91,17 @@
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="Microsoft.VSTS.TCM.AutomationStatus" />
-            <dxg:GridColumn FieldName="testPlan.name" />
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         AutoGenerateColumns="AddNew">
+            <!--<dxg:GridColumn FieldName="workItemFields[0]" />
+            <dxg:GridColumn FieldName="MicrosoftVSTSTCMAutomationStatus" />
+            <dxg:GridColumn FieldName="MicrosoftVSTSCommonActivatedBy" />
+            <dxg:GridColumn FieldName="MicrosoftVSTSCommonActivatedDate" />
+            <dxg:GridColumn FieldName="MicrosoftVSTSTCMLocalDataSource" />
+            <dxg:GridColumn FieldName="SystemDescription" />
+            <dxg:GridColumn FieldName="SystemState" />
+            <dxg:GridColumn FieldName="SystemAssignedTo" />
+            <dxg:GridColumn FieldName="MicrosoftVSTSCommonPriority" />-->
         </dxg:GridControl>
 
         <DockPanel Grid.Row="5" >

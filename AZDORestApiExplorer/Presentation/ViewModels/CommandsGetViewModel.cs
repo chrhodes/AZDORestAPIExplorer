@@ -115,6 +115,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #endregion Test Category
 
+            #region Tokens Area
+
+            GetPatsCommand = new DelegateCommand(GetPats, GetPatsCanExecute);
+
+            #endregion
+
             #region Work Item Tracking Category
 
             // Organization Level
@@ -1660,6 +1666,64 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Git Category
 
+        #region Tokens Category
+
+        #region GetPats Command
+
+        public DelegateCommand GetPatsCommand { get; set; }
+        public string GetPatsContent { get; set; } = "GetPats";
+        public string GetPatsToolTip { get; set; } = "GetPats ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPatsContent { get; set; } = "ViewName_GetPatsContent";
+        //public string GetPatsToolTip { get; set; } = "ViewName_GetPatsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPatsContent">GetPats</system:String>
+        //    <system:String x:Key="ViewName_GetPatsContentToolTip">GetPats ToolTip</system:String>  
+
+        public void GetPats()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called GetPats";
+
+            // Uncomment this if you are telling someone else to handle this
+            // Common.EventAggregator.GetEvent<GetPatsEvent>().Publish();
+
+            EventAggregator.GetEvent<GetPatsEvent>().Publish(
+                new GetPatsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetPatsEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetPatsEvent>().Subscribe(GetPats);
+
+            // End Cut Four
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPatsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
         #region Test Category
 
         #region GetTestsPlan Command
@@ -1831,8 +1895,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
-
-        // End Cut One
 
         #endregion Test Category
 
@@ -2440,6 +2502,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
         //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>
 
+        public void GetBehaviorsWITPExecute()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBehaviorsEvent>().Publish(
+                new GetBehaviorsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Process = _contextMainViewModel.Context.SelectedProcess
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         public bool GetBehaviorsWITPCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
@@ -2449,21 +2525,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
 
             return true;
-        }
-
-        public void GetBehaviorsWITPExecute()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<GetBehaviorsEvent>().Publish(
-                new GetBehaviorsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Process = _contextMainViewModel.Context.SelectedProcess
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion GetBehaviors Command

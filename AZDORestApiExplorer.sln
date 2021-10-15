@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation.Dx", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Presentation", "AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj", "{62F2573E-02B9-4CB8-A492-AD28A08D91FC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Tokens", "AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj", "{7EA0CDC3-B6E3-429E-82DB-456035B96485}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -203,6 +205,10 @@ Global
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

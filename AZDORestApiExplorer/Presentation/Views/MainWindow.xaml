@@ -56,6 +56,7 @@
                     <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
                 </StackPanel>
             </dxdo:LayoutPanel>
+            
             <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
                 <StackPanel>
                     <Label Content="lp_OptStuff2 Goes Here" />
@@ -63,13 +64,13 @@
                 </StackPanel>
             </dxdo:LayoutPanel>
         </dxlc:LayoutControl.AvailableItems>
-        
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+
+        <!--<dxlc:LayoutGroup Name="lg_Header" VerticalAlignment="Top" >
             <dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="100" ShowHideButton="False">
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
             </dxdo:LayoutPanel>
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
         
         <dxlc:LayoutGroup Name="lg_Body">
 
@@ -92,7 +93,7 @@
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
                         </dxdo:LayoutPanel>-->
                  
-                        <dxdo:LayoutPanel Caption="Commands (GET)">
+                        <!--<dxdo:LayoutPanel Caption="Commands (GET)">
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
                         </dxdo:LayoutPanel>
 
@@ -106,7 +107,7 @@
 
                         <dxdo:LayoutPanel Caption="Commands (PUT)" AutoHidden="True">
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                         <!--Put the area of current interest here 
                             until we figure out how to make this easy to navigate-->
@@ -115,7 +116,7 @@
                             <local:GitMain />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Test" AutoHidden="True" >
+                        <dxdo:LayoutPanel Caption="Test" >
                             <local:TestMain />
                         </dxdo:LayoutPanel>
 
@@ -129,17 +130,55 @@
 
                     </dxdo:LayoutGroup>
 
-                    <dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" >
-                        <!--<dxlc:LayoutGroup>
-                            <Grid>-->
+                    <!--<dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" >
+                        --><!--<dxlc:LayoutGroup>
+                            <Grid>--><!--
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
-                            <!--</Grid>
-                        </dxlc:LayoutGroup>-->
-                    </dxdo:LayoutPanel>
+                            --><!--</Grid>
+                        </dxlc:LayoutGroup>--><!--
+                    </dxdo:LayoutPanel>-->
 
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.FloatGroups>
+                    
+                    <dxdo:FloatGroup MinWidth="800" Orientation="Vertical">
+
+                        <dxdo:LayoutPanel Caption="Collections"                     
+                            ItemHeight="65"  ShowCollapseButton="True" ShowCloseButton="False">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
+                        </dxdo:LayoutPanel>
+
+                        <dxdo:LayoutGroup Orientation="Horizontal">
+                            
+                            <dxdo:TabbedGroup>
+
+                                <dxdo:LayoutPanel Caption="Commands (GET)">
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
+                                </dxdo:LayoutPanel>
+
+                                <dxdo:LayoutPanel Caption="Commands (PATCH)" >
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
+                                </dxdo:LayoutPanel>
+
+                                <dxdo:LayoutPanel Caption="Commands (POST)">
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
+                                </dxdo:LayoutPanel>
+
+                                <dxdo:LayoutPanel Caption="Commands (PUT)" >
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
+                                </dxdo:LayoutPanel>
+
+                            </dxdo:TabbedGroup>
+
+                            <dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
+                            </dxdo:LayoutPanel>
+
+                        </dxdo:LayoutGroup>
+
+                    </dxdo:FloatGroup>
+                    
                     <dxdo:FloatGroup>
 
                         <dxdo:LayoutPanel Caption="HTTP Exchange" MinWidth="400">
@@ -147,6 +186,7 @@
                         </dxdo:LayoutPanel>
                         
                     </dxdo:FloatGroup>
+                    
                 </dxdo:DockLayoutManager.FloatGroups>
                 
                 <dxdo:DockLayoutManager.AutoHideGroups>
@@ -341,7 +381,7 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer" Orientation="Vertical">
+        <dxlc:LayoutGroup Name="lg_Footer" VerticalAlignment="Top" Orientation="Vertical">
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
         </dxlc:LayoutGroup>
 
