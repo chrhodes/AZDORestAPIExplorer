@@ -206,6 +206,7 @@
         <ProjectReference Include="..\AZDORestApiExplorer.Git\AZDORestApiExplorer.Git.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Test\AZDORestApiExplorer.Test.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcess\AZDORestApiExplorer.WorkItemTrackingProcess.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTracking\AZDORestApiExplorer.WorkItemTracking.csproj" />
     </ItemGroup>

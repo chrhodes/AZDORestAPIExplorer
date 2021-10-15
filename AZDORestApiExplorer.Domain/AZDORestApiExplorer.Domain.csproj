@@ -31,7 +31,6 @@
     <Folder Include="DistributedTask\" />
     <Folder Include="DomainServices\" />
     <Folder Include="ExtenstionManagement\" />
-    <Folder Include="Tokens\" />
     <Folder Include="TestPlan\" />
     <Folder Include="TestResults\" />
     <Folder Include="Tfvc\" />

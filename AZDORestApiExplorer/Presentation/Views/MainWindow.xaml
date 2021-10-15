@@ -120,6 +120,10 @@
                             <local:TestMain />
                         </dxdo:LayoutPanel>
 
+                        <dxdo:LayoutPanel Caption="Tokens" >
+                            <local:TokensMain />
+                        </dxdo:LayoutPanel>
+
                         <dxdo:LayoutPanel Caption="Work Item Tracking"  >
                             <local:WorkItemTrackingMain />
                         </dxdo:LayoutPanel>
@@ -142,7 +146,7 @@
 
                 <dxdo:DockLayoutManager.FloatGroups>
                     
-                    <dxdo:FloatGroup MinWidth="800" Orientation="Vertical">
+                    <dxdo:FloatGroup MinWidth="1200" MinHeight="800" Orientation="Vertical">
 
                         <dxdo:LayoutPanel Caption="Collections"                     
                             ItemHeight="65"  ShowCollapseButton="True" ShowCloseButton="False">

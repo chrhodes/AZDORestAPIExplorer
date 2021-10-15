@@ -1,5 +1,8 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Tokens.Presentation.Views;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -29,8 +32,8 @@ namespace AZDORestApiExplorer.Tokens
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            //containerRegistry.Register<IPatMainViewModel, PatMainViewModel>();
+            containerRegistry.RegisterSingleton<PatMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -45,8 +48,7 @@ namespace AZDORestApiExplorer.Tokens
             // using typeof(TYPE) calls constructor
             // using typeof(ITYPE) resolves type (see RegisterTypes)
 
-            //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
-            //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PatMainRegion, typeof(PatMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

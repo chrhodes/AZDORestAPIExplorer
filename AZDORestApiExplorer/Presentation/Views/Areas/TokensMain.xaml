@@ -31,7 +31,7 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutGroup Header="Test"
+    <dxlc:LayoutGroup Header="Tokens"
         Orientation="Vertical"  View="Tabs">
 
         <dxlc:LayoutGroup.GroupBoxStyle>
@@ -44,21 +44,9 @@
             </Style>
         </dxlc:LayoutGroup.GroupBoxStyle>
 
-        <dxlc:LayoutGroup Header="Test Plans" >
+        <dxlc:LayoutGroup Header="Pats" >
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestPlanMainRegion}" />
-            </Grid>
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Test Suites" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestSuiteMainRegion}" />
-            </Grid>
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Test Cases" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TestCaseMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PatMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 

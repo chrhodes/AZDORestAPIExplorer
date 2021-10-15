@@ -98,10 +98,20 @@ namespace AZDORestApiExplorer.Core
         // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
         // public static string RepositoryDetailRegion = "RepositoryDetailRegion";
 
+        //
+        // Test Area
+        //
+
         public static string TestPlanMainRegion = "TestPlanMainRegion";
         public static string TestSuiteMainRegion = "TestSuiteMainRegion";
         public static string TestCaseMainRegion = "TestCaseMainRegion";
         public static string TestPointMainRegion = "TestPointMainRegion";
+
+        //
+        // Tokens Area
+        //
+        
+        public static string PatMainRegion = "PatMainRegion";
 
         //
         // Work Item Tracking Area

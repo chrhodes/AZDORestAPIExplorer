@@ -135,10 +135,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             AvailableCollections.Add(
                 new AvailableCollection
                 {
-                    Name = "BD_STS_PROD",
-                    Organization = new Organization
+                    Name = "BD-STS-PROD",
+                    Organization = new Organization("BD-STS-PROD")
                     {
-                        Uri = @"https://dev.azure.com/BD-STS-PROD",
+                        //Uri = @"https://dev.azure.com/BD-STS-PROD",
                         PAT = _PAT_BD_STS_PROD
                     }
                 });
@@ -146,10 +146,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             AvailableCollections.Add(
                 new AvailableCollection
                 {
-                    Name = "BD_STS_QA2",
-                    Organization = new Organization
+                    Name = "BD-STS-QA2",
+                    Organization = new Organization("BD-STS-QA2")
                     {
-                        Uri = @"https://dev.azure.com/BD-STS-QA2",
+                        //Uri = @"https://dev.azure.com/BD-STS-QA2",
                         PAT = _PAT_BD_STS_QA2
                     }
                 });
@@ -158,9 +158,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new AvailableCollection
                 {
                     Name = "BDTechnologySolutions",
-                    Organization = new Organization
+                    Organization = new Organization("BDTechnologySolutions")
                     {
-                        Uri = @"https://dev.azure.com/BDTechnologySolutions",
+                        //Uri = @"https://dev.azure.com/BDTechnologySolutions",
                         PAT = _PAT_BDTechnologySolutions
                     }
                 });
@@ -169,9 +169,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new AvailableCollection
                 {
                     Name = "VNC-Development",
-                    Organization = new Organization
+                    Organization = new Organization("VNC-Development")
                     {
-                        Uri = @"https://dev.azure.com/VNC-Development",
+                        //Uri = @"https://dev.azure.com/VNC-Development",
                         PAT = _PAT_VNC_Development
                     }
                 });

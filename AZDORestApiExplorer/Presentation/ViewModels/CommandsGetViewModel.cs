@@ -7,6 +7,7 @@ using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.Domain.Dashboard.Events;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
+using AZDORestApiExplorer.Domain.Tokens.Events;
 using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess.Events;
 
@@ -1687,7 +1688,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called GetPats";
+            //Message = "Cool, you called GetPats";
 
             // Uncomment this if you are telling someone else to handle this
             // Common.EventAggregator.GetEvent<GetPatsEvent>().Publish();
