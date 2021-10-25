@@ -14,7 +14,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
     public partial class TagMain : ViewBase, IInstanceCountV
     {
 
-        public TagMain(DomainViewModel<Tag, GetTagsEvent, GetTagsEventArgs, SelectedTagChangedEvent> viewModel)
+        public TagMain(
+            DomainViewModel<Tag, GetTagsEvent, GetTagsEventArgs, SelectedTagChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

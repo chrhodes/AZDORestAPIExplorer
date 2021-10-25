@@ -62,15 +62,15 @@
             </Grid>
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="ClassificationNodes">
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ClassificationNodeMainRegion}" />
-            </Grid>
-        </dxlc:LayoutGroup>
-
         <dxlc:LayoutGroup Header="Fields">
             <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FieldWITMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="ClassificationNodes">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ClassificationNodeMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 

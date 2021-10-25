@@ -93,10 +93,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="VNC.Core" Version="1.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
     <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
   </ItemGroup>
 

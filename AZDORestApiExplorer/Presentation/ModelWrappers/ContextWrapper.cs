@@ -31,6 +31,18 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public string ClassificationNodeIds
+        {
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
+        }
+
+        public int ClassificationNodeDepth
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
         public Repository SelectedRepository
         {
             get { return GetValue<Repository>(); }

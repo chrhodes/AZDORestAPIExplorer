@@ -37,15 +37,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+
             <RowDefinition Height="*" />            
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                     Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="2"
+        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"               
                     FontSize="12"
@@ -55,14 +56,14 @@
             
             <dxg:GridColumn FieldName="name" />
             <dxg:GridColumn FieldName="referenceName" />
-            <dxg:GridColumn FieldName="defaultWorkItemType" />            
+            <!--<dxg:GridColumn FieldName="defaultWorkItemType" />-->
             <dxg:GridColumn FieldName="defaultWorkItemType.name" />
-            <dxg:GridColumn FieldName="workItemTypes" />
+            <!--<dxg:GridColumn FieldName="workItemTypes" />-->
             
             <!--<dxg:GridColumn FieldName="url" />-->
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="1" Text="{Binding Results.SelectedItem.url}"  
+        <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
                       TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
         <Grid Grid.Row="3">

@@ -13,7 +13,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
     public partial class WorkItemIconMain : ViewBase, IInstanceCountV
     {
-        public WorkItemIconMain(DomainViewModel<WorkItemIcon, GetWorkItemIconsEvent, GetWorkItemIconsEventArgs, SelectedWorkItemIconChangedEvent> viewModel)
+        public WorkItemIconMain(
+            DomainViewModel<WorkItemIcon, GetWorkItemIconsEvent, GetWorkItemIconsEventArgs, SelectedWorkItemIconChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

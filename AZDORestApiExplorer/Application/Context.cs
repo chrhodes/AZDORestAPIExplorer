@@ -3,10 +3,26 @@
     public class Context
     {
         public Domain.Core.Process SelectedProcess { get; set; }
-        public Domain.Core.Project SelectedProject { 
-            get; 
-            set; }
+
+        public Domain.Core.Project SelectedProject 
+        { 
+            get;
+            set;
+        }
+
         public Domain.Core.Team SelectedTeam { get; set; }
+
+        public string ClassificationNodeIds
+        {
+            get;
+            set;
+        }
+
+        public int ClassificationNodeDepth
+        {
+            get;
+            set;
+        }
 
         public Domain.Dashboard.Dashboard SelectedDashboard { get; set; }
 
@@ -22,9 +38,11 @@
 
         public Domain.WorkItemTracking.WorkItemType SelectedWorkItemTypeWIT { get; set; }
 
-        public int WorkItemId {
-            get; 
-            set; }
+        public int WorkItemId
+        {
+            get;
+            set;
+        }
 
         public Domain.WorkItemTrackingProcess.WorkItemType SelectedWorkItemTypeWITP { get; set; }
 

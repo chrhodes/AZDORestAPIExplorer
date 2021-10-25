@@ -13,7 +13,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
     public partial class ArtifactLinkTypeMain : ViewBase, IInstanceCountV
     {
-        public ArtifactLinkTypeMain(DomainViewModel<ArtifactLinkType, GetArtifactLinkTypesEvent, GetArtifactLinkTypesEventArgs, SelectedArtifactLinkTypeChangedEvent> viewModel)
+        public ArtifactLinkTypeMain(
+            DomainViewModel<ArtifactLinkType, GetArtifactLinkTypesEvent, GetArtifactLinkTypesEventArgs, SelectedArtifactLinkTypeChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

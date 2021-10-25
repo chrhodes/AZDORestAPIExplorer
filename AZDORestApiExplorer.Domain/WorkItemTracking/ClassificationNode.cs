@@ -29,6 +29,10 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
 
             public Domain.Core.Project Project;
 
+            public string IDs = "";
+
+            public int Depth = 1;
+
             // public Team Team;
 
             // public WorkItemType WorkItemType;
@@ -70,9 +74,23 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + "wit/classificationnodes"
-                    + "?api-version=4.1";
+                string requestUri = "";
+
+                if (string.IsNullOrEmpty(args.IDs))
+                {
+                    requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + "wit/classificationnodes"
+                        + "?api-version=6.1-preview.2";
+                }
+                else
+                {
+                    requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                        + "wit/classificationnodes?"
+                        //+ $"ids={args.IDs}"
+                        + $"depth={args.Depth}"
+                        + "&api-version=6.1-preview.2";
+                }
+
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 

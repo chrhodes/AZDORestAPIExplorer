@@ -13,7 +13,8 @@ namespace AZDORestApiExplorer.WorkItemTracking.Presentation.Views
 {
     public partial class FieldMain : ViewBase, IInstanceCountV
     {
-        public FieldMain(DomainViewModel<Field, GetFieldsWITEvent, GetFieldsWITEventArgs, SelectedFieldWITChangedEvent> viewModel)
+        public FieldMain(
+            DomainViewModel<Field, GetFieldsWITEvent, GetFieldsWITEventArgs, SelectedFieldWITChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

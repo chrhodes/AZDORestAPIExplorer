@@ -83,6 +83,14 @@
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
                             <TextBlock Text="{Binding Context.SelectedTeam.id}" />
                         </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="ClassificationNode IDs:" LabelPosition="Left" ToolTip="Separate With Comma.  Blank for Root Nodes Only">
+                            <dxe:TextEdit Text="{Binding Context.ClassificationNodeId, Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="Depth" LabelPosition="Left" >
+                            <dxe:SpinEdit Value="{Binding Context.ClassificationNodeDepth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 

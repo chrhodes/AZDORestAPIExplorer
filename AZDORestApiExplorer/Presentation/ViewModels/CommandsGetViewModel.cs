@@ -1973,9 +1973,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<GetClassificationNodesEvent>().Publish(
                 new GetClassificationNodesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    IDs = _contextMainViewModel.Context.ClassificationNodeIds,
+                    Depth = _contextMainViewModel.Context.ClassificationNodeDepth
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
