@@ -54,6 +54,7 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
         public string name { get; set; }
         public string structureType { get; set; }
         public bool hasChildren { get; set; }
+        public ClassificationNode[] children { get; set; }
         public string path { get; set; }
         public string url { get; set; }
         public Attributes attributes { get; set; }
@@ -80,17 +81,17 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
                 {
                     requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + "wit/classificationnodes"
-                        + "?api-version=6.1-preview.2";
+                        + (args.Depth > 0 ? $"?$depth={args.Depth}&" : "?")
+                        + "api-version=6.1-preview.2";
                 }
                 else
                 {
                     requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + "wit/classificationnodes?"
-                        //+ $"ids={args.IDs}"
-                        + $"depth={args.Depth}"
-                        + "&api-version=6.1-preview.2";
+                        + "wit/classificationnodes"
+                        + $"?ids={args.IDs}"
+                        + (args.Depth > 0 ? $"&$depth={args.Depth}&" : "&")
+                        + "api-version=6.1-preview.2";
                 }
-
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 
@@ -119,4 +120,81 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
             }
         }
     }
+
+    // This is with Depth = 2
+
+    //public class Rootobject
+    //{
+    //    public int count { get; set; }
+    //    public Value[] value { get; set; }
+    //}
+
+    //public class Value
+    //{
+    //    public int id { get; set; }
+    //    public string identifier { get; set; }
+    //    public string name { get; set; }
+    //    public string structureType { get; set; }
+    //    public bool hasChildren { get; set; }
+    //    public Child[] children { get; set; }
+    //    public string path { get; set; }
+    //    public string url { get; set; }
+    //}
+
+    //public class Child
+    //{
+    //    public int id { get; set; }
+    //    public string identifier { get; set; }
+    //    public string name { get; set; }
+    //    public string structureType { get; set; }
+    //    public bool hasChildren { get; set; }
+    //    public Child1[] children { get; set; }
+    //    public string path { get; set; }
+    //    public string url { get; set; }
+    //    public Attributes attributes { get; set; }
+    //}
+
+    //public class Attributes
+    //{
+    //    public DateTime startDate { get; set; }
+    //    public DateTime finishDate { get; set; }
+    //}
+
+    //public class Child1
+    //{
+    //    public int id { get; set; }
+    //    public string identifier { get; set; }
+    //    public string name { get; set; }
+    //    public string structureType { get; set; }
+    //    public bool hasChildren { get; set; }
+    //    public string path { get; set; }
+    //    public string url { get; set; }
+    //    public Child2[] children { get; set; }
+    //    public Attributes1 attributes { get; set; }
+    //}
+
+    //public class Attributes1
+    //{
+    //    public DateTime startDate { get; set; }
+    //    public DateTime finishDate { get; set; }
+    //}
+
+    //public class Child2
+    //{
+    //    public int id { get; set; }
+    //    public string identifier { get; set; }
+    //    public string name { get; set; }
+    //    public string structureType { get; set; }
+    //    public bool hasChildren { get; set; }
+    //    public string path { get; set; }
+    //    public string url { get; set; }
+    //    public Attributes2 attributes { get; set; }
+    //}
+
+    //public class Attributes2
+    //{
+    //    public DateTime startDate { get; set; }
+    //    public DateTime finishDate { get; set; }
+    //}
+
 }

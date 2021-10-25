@@ -85,7 +85,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="ClassificationNode IDs:" LabelPosition="Left" ToolTip="Separate With Comma.  Blank for Root Nodes Only">
-                            <dxe:TextEdit Text="{Binding Context.ClassificationNodeId, Mode=TwoWay}"/>
+                            <dxe:TextEdit Text="{Binding Context.ClassificationNodeIds, Mode=TwoWay}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="Depth" LabelPosition="Left" >

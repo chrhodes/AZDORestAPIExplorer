@@ -38,9 +38,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="125" />
             <RowDefinition Height="Auto" />
-            <!--<RowDefinition Height="*" />-->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
@@ -68,6 +70,60 @@
         <dxe:TextEdit Grid.Row="2"
             Text="{Binding Results.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+
+        <dxg:GridControl x:Name="grdChildren1" Grid.Row="3"
+                    ItemsSource="{Binding Results.SelectedItem.children}"
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <dxg:GridColumn FieldName="name"  BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="identifier" />
+            <dxg:GridColumn FieldName="structureType" />
+            <dxg:GridColumn FieldName="hasChildren" />
+            <dxg:GridColumn FieldName="path" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="attributes.startDate" />
+            <dxg:GridColumn FieldName="attributes.finishDate" />
+            <!--<dxg:GridColumn FieldName="url" />-->
+        </dxg:GridControl>
+
+        <dxg:GridControl x:Name="grdChildren2" Grid.Row="4"
+                ItemsSource="{Binding ElementName=grdChildren1, Path=SelectedItem.children}"
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <dxg:GridColumn FieldName="name"  BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="identifier" />
+            <dxg:GridColumn FieldName="structureType" />
+            <dxg:GridColumn FieldName="hasChildren" />
+            <dxg:GridColumn FieldName="path" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="attributes.startDate" />
+            <dxg:GridColumn FieldName="attributes.finishDate" />
+            <!--<dxg:GridColumn FieldName="url" />-->
+        </dxg:GridControl>
+
+        <dxg:GridControl x:Name="grdChildren3" Grid.Row="5"
+                ItemsSource="{Binding ElementName=grdChildren2, Path=SelectedItem.children}"
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <dxg:GridColumn FieldName="name"  BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="identifier" />
+            <dxg:GridColumn FieldName="structureType" />
+            <dxg:GridColumn FieldName="hasChildren" />
+            <dxg:GridColumn FieldName="path" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="attributes.startDate" />
+            <dxg:GridColumn FieldName="attributes.finishDate" />
+            <!--<dxg:GridColumn FieldName="url" />-->
+        </dxg:GridControl>
 
     </Grid>
 
