@@ -52,7 +52,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.WorkItemTrackingProcess.Events.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
 
             Context.ClassificationNodeDepth = 2;
-            ssification
+
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
