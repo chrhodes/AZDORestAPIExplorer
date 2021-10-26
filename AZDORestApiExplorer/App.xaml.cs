@@ -5,6 +5,7 @@ using System.Windows;
 
 using AZDORestApiExplorer.Accounts;
 using AZDORestApiExplorer.Artifacts;
+using AZDORestApiExplorer.Build;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Git;
@@ -112,7 +113,6 @@ namespace AZDORestApiExplorer
 
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
             containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
-
             containerRegistry.RegisterDialog<ExportGridDialog, ExportGridDialogViewModel>("ExportGridDialog");
 
             // Add the new UI elements
@@ -150,6 +150,7 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(AccountsModule));
 
             moduleCatalog.AddModule(typeof(ArtifactsModule));
+            moduleCatalog.AddModule(typeof(BuildModule));
 
             moduleCatalog.AddModule(typeof(DashboardModule));
 
@@ -234,17 +235,17 @@ namespace AZDORestApiExplorer
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
 
-        #region Fields and Properties
+        #region Fields and Properties (none)
 
 
         #endregion

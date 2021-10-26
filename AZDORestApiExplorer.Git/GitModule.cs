@@ -1,7 +1,5 @@
 ﻿using System;
 
-using AZDORestApiExplorer.Git.Presentation.Views;
-
 using AZDORestApiExplorer.Core;
 using AZDORestApiExplorer.Git.Presentation.ViewModels;
 using AZDORestApiExplorer.Git.Presentation.Views;
@@ -11,8 +9,8 @@ using Prism.Modularity;
 using Prism.Regions;
 
 using VNC;
-using VNC.Core.Presentation.Views;
 using VNC.Core.Presentation.ViewModels;
+using VNC.Core.Presentation.Views;
 
 namespace AZDORestApiExplorer.Git
 {
@@ -40,7 +38,7 @@ namespace AZDORestApiExplorer.Git
             //containerRegistry.Register<IRepositoryMainViewModel, RepositoryMainViewModel>();
             containerRegistry.RegisterSingleton<RepositoryMain>();
 
-            containerRegistry.Register<BlobMainViewModel>();
+            //containerRegistry.Register<BlobMainViewModel>();
             containerRegistry.RegisterSingleton<BlobMain>();
 
             //containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();

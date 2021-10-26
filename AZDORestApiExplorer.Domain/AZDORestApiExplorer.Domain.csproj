@@ -33,7 +33,6 @@
   <ItemGroup>
     <Folder Include="ArtifactsPackageTypes\" />
     <Folder Include="Audit\" />
-    <Folder Include="Build\" />
     <Folder Include="DistributedTask\" />
     <Folder Include="DomainServices\" />
     <Folder Include="ExtenstionManagement\" />

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace AZDORestApiExplorer.Presentation
+namespace AZDORestApiExplorer.Presentation.Views
 {
     public partial class BuildMain : UserControl
     {

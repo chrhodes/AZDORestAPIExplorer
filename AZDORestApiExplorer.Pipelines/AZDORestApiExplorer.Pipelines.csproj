@@ -26,6 +26,7 @@
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />        
         <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
 

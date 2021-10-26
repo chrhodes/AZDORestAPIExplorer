@@ -6,13 +6,6 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="DomainServices\Interfaces\" />
-    <Folder Include="Presentation\ModelWrappers\" />
-    <Folder Include="Presentation\ViewModels\Interfaces\" />
-    <Folder Include="Presentation\Views\Interfaces\" />
-  </ItemGroup>
-
     <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
@@ -26,6 +19,7 @@
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />        
         <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
 

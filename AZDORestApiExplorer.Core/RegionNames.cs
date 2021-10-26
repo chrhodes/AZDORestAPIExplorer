@@ -63,6 +63,12 @@ namespace AZDORestApiExplorer.Core
         public static string FeedMainRegion = "FeedMainRegion";
 
         //
+        // Build Area
+        //
+
+        public static string BuildMainRegion = "BuildMainRegion";
+
+        //
         // Dashboard Area
         //
 

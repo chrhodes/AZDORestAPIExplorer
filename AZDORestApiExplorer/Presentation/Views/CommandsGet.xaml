@@ -105,7 +105,15 @@
 
                     <dxlc:LayoutGroup Header="Build *" IsCollapsed="True"
                              Style="{StaticResource GetLayoutGroup}">
-                        <TextBlock Text="Not Implemented Yet" />
+                        
+                        <dxlc:LayoutGroup Header="Project Level" IsCollapsed="False"
+                            Orientation="Vertical" View="GroupBox"
+                            Background="{StaticResource ProjectColor}">
+
+                            <!-- Add Buttons as Needed -->
+                            
+                        </dxlc:LayoutGroup>
+                        
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Cloud Load Test *" IsCollapsed="True"
