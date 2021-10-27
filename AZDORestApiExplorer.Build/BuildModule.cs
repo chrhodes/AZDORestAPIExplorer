@@ -36,6 +36,7 @@ namespace AZDORestApiExplorer.Build
             containerRegistry.RegisterSingleton<AuthorizedResourceMain>();
             //containerRegistry.Register<BuildMainViewModel>();
             containerRegistry.RegisterSingleton<BuildMain>();
+            containerRegistry.RegisterSingleton<ControllerMain>();
             containerRegistry.RegisterSingleton<DefinitionMain>();
 
             //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
@@ -59,6 +60,7 @@ namespace AZDORestApiExplorer.Build
 
             _regionManager.RegisterViewWithRegion(RegionNames.AuthorizedResourceMainRegion, typeof(AuthorizedResourceMain));
             _regionManager.RegisterViewWithRegion(RegionNames.BuildMainRegion, typeof(BuildMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.ControllerMainRegion, typeof(ControllerMain));
             _regionManager.RegisterViewWithRegion(RegionNames.DefinitionMainRegion, typeof(DefinitionMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);

@@ -70,6 +70,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             
             GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
+            GetControllersCommand = new DelegateCommand(GetControllers, GetControllersCanExecute);
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
 
             #endregion
@@ -233,6 +234,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Audit
 
             // Build
+
+            GetControllersCommand.RaiseCanExecuteChanged();
 
             // Cloud Load Test
 
@@ -807,8 +810,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        // End Cut One
-
         #region GetBuilds Command
 
         public DelegateCommand GetBuildsCommand { get; set; }
@@ -862,6 +863,66 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetControllers Command
+
+        public DelegateCommand GetControllersCommand { get; set; }
+        public string GetControllersContent { get; set; } = "GetControllers";
+        public string GetControllersToolTip { get; set; } = "GetControllers ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetControllersContent { get; set; } = "ViewName_GetControllersContent";
+        //public string GetControllersToolTip { get; set; } = "ViewName_GetControllersContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetControllersContent">GetControllers</system:String>
+        //    <system:String x:Key="ViewName_GetControllersContentToolTip">GetControllers ToolTip</system:String>  
+
+        public void GetControllers()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            // Message = "Cool, you called GetControllers";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetControllersEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetControllersEvent>().Publish(
+                new GetControllersEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetControllersEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetControllersEvent>().Subscribe(GetControllers);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetControllersCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null)
             {
                 return false;
             }
@@ -933,7 +994,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        // End Cut One
         #endregion
 
         #region Dashboard Category

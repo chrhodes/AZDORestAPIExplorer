@@ -103,9 +103,16 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Build" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Build - Organization Level" IsCollapsed="True"
                              Style="{StaticResource GetLayoutGroup}">
-                        
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetControllersCommand }"
+                        		Content="{Binding GetControllersContent, FallbackValue='GetControllers' }"
+                        		ToolTip="{Binding GetControllersToolTip, FallbackValue='GetControllers ToolTip' }" />
+                        </dxlc:LayoutItem>
+
                         <dxlc:LayoutGroup Header="Project Level" IsCollapsed="False"
                             Orientation="Vertical" View="GroupBox"
                             Background="{StaticResource ProjectColor}">
