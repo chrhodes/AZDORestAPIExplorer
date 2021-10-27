@@ -1,4 +1,5 @@
-﻿using AZDORestApiExplorer.Domain.Core;
+﻿using AZDORestApiExplorer.Domain.Build;
+using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.Domain.WorkItemTracking;
@@ -38,6 +39,30 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
         }
 
         public int ClassificationNodeDepth
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
+        public Domain.Build.Build SelectedBuild
+        {
+            get { return GetValue<Domain.Build.Build>(); }
+            set { SetValue(value); }
+        }
+
+        public int BuildId
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
+        public Definition SelectedDefinition
+        {
+            get { return GetValue<Definition>(); }
+            set { SetValue(value); }
+        }
+
+        public int DefinitionId
         {
             get { return GetValue<int>(); }
             set { SetValue(value); }

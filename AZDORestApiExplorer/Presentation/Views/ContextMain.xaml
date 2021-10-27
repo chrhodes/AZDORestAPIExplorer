@@ -94,6 +94,43 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
+                <dxlc:LayoutGroup Header="Build"
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	        IsCollapsible="True"  IsCollapsed="False">
+
+                    <dxlc:LayoutGroup Header="Build"
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource BuildColor}">
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                            <TextBlock Text="{Binding Context.SelectedBuild.buildNumber}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                            <TextBlock Text="{Binding Context.SelectedBuild.id}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Definition"
+            	        View="GroupBox" Orientation="Vertical"
+            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	        IsCollapsible="True"  IsCollapsed="False"
+                        Background="{StaticResource DefinitionColor}">
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                            <TextBlock Text="{Binding Context.SelectedDefinition.name}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                            <TextBlock Text="{Binding Context.SelectedDefinition.id}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
                 <dxlc:LayoutGroup Header="Git"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
@@ -135,6 +172,7 @@
                             <TextBlock Text="{Binding Context.SelectedPullRequest.pullRequestId}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
+                    
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Test"

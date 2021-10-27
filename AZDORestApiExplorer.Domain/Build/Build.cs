@@ -345,6 +345,5 @@ namespace AZDORestApiExplorer.Domain.Build
                 return Results;
             }
         }
-
     }
 }

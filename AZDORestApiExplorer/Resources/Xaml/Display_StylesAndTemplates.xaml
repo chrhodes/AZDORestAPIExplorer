@@ -27,6 +27,10 @@
     <SolidColorBrush x:Key="ProcessColor" Color="LightGreen" />
     <SolidColorBrush x:Key="ProjectColor" Color="LightBlue" />
     <SolidColorBrush x:Key="TeamColor" Color="LightSalmon" />
+
+    <SolidColorBrush x:Key="BuildColor" Color="#FF00FF00" />
+    <SolidColorBrush x:Key="DefinitionColor" Color="#FF0000FF" />
+    
     <SolidColorBrush x:Key="RepositoryColor" Color="#FFFF6400" />
     <SolidColorBrush x:Key="CommitColor" Color="#FFB64700" />
     <SolidColorBrush x:Key="TestColor" Color="#FFB6007B" />
