@@ -66,6 +66,7 @@ namespace AZDORestApiExplorer.Core
         // Build Area
         //
 
+        public static string AuthorizedResourceMainRegion = "AuthorizedResourceMainRegion";
         public static string BuildMainRegion = "BuildMainRegion";
         public static string DefinitionMainRegion = "DefinitionMainRegion";
 

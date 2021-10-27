@@ -44,6 +44,10 @@
             </Style>
         </dxlc:LayoutGroup.GroupBoxStyle>
 
+        <dxlc:LayoutGroup Header="Authorized Resources" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AuthorizedResourceMainRegion}" />
+        </dxlc:LayoutGroup>
+        
         <dxlc:LayoutGroup Header="Builds" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BuildMainRegion}" />
         </dxlc:LayoutGroup>

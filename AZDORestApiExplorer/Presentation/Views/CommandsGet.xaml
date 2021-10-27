@@ -112,6 +112,13 @@
 
                             <dxlc:LayoutItem>
                                 <Button 
+                            		Command="{Binding GetAuthorizedResourcesCommand }"
+                            		Content="{Binding GetAuthorizedResourcesContent, FallbackValue='GetAuthorizedResources' }"
+                            		ToolTip="{Binding GetAuthorizedResourcesToolTip, FallbackValue='GetAuthorizedResources ToolTip' }" />
+                            </dxlc:LayoutItem>
+                            
+                            <dxlc:LayoutItem>
+                                <Button 
                             		Command="{Binding GetBuildsCommand }"
                             		Content="{Binding GetBuildsContent, FallbackValue='GetBuilds' }"
                             		ToolTip="{Binding GetBuildsToolTip, FallbackValue='GetBuilds ToolTip' }" />

@@ -69,7 +69,7 @@ namespace AZDORestApiExplorer.Domain.Build
         public string url { get; set; }
         public Definition definition { get; set; }
         public int buildNumberRevision { get; set; }
-        public Project1 project { get; set; }
+        public Project project { get; set; }
         public string uri { get; set; }
         public string sourceBranch { get; set; }
         public string sourceVersion { get; set; }
@@ -161,17 +161,17 @@ namespace AZDORestApiExplorer.Domain.Build
             public DateTime lastUpdateTime { get; set; }
         }
 
-        public class Project1
-        {
-            public string id { get; set; }
-            public string name { get; set; }
-            public string description { get; set; }
-            public string url { get; set; }
-            public string state { get; set; }
-            public int revision { get; set; }
-            public string visibility { get; set; }
-            public DateTime lastUpdateTime { get; set; }
-        }
+        //public class Project1
+        //{
+        //    public string id { get; set; }
+        //    public string name { get; set; }
+        //    public string description { get; set; }
+        //    public string url { get; set; }
+        //    public string state { get; set; }
+        //    public int revision { get; set; }
+        //    public string visibility { get; set; }
+        //    public DateTime lastUpdateTime { get; set; }
+        //}
 
         public class Queue
         {
@@ -276,6 +276,7 @@ namespace AZDORestApiExplorer.Domain.Build
         {
             public string planId { get; set; }
         }
+
         public RESTResult<Build> Results { get; set; } = new RESTResult<Build>();
 
         public async Task<RESTResult<Build>> GetList(GetBuildsEventArgs args)

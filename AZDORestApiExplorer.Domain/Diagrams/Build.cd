@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="AZDORestApiExplorer.Domain.Build.Build">
+    <Position X="1.25" Y="1" Width="4" />
+    <NestedTypes>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Triggerinfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build._Links" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Plan" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Requestedby" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Pool" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Self" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Sourceversiondisplayuri" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build._Links3" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build._Links1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Avatar1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Web" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Properties" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Orchestrationplan" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Definition" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Project" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Avatar" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Repository" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Badge" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build._Links2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Logs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Requestedfor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Timeline" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Lastchangedby" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Avatar2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="AZDORestApiExplorer.Domain.Build.Build.Queue" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\Build.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAYBAAhIAwQCEQAApAhggAACCgkJAAAAAQBAAAGAAwI=</HashCode>
+      <FileName>Build\Build.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

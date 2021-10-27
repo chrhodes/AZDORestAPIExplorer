@@ -32,6 +32,8 @@ namespace AZDORestApiExplorer.Build
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
+            //containerRegistry.Register<IAuthorizedResourceMainViewModel, AuthorizedResourceMainViewModel>();
+            containerRegistry.RegisterSingleton<AuthorizedResourceMain>();
             //containerRegistry.Register<BuildMainViewModel>();
             containerRegistry.RegisterSingleton<BuildMain>();
             containerRegistry.RegisterSingleton<DefinitionMain>();
@@ -55,6 +57,7 @@ namespace AZDORestApiExplorer.Build
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
             //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
 
+            _regionManager.RegisterViewWithRegion(RegionNames.AuthorizedResourceMainRegion, typeof(AuthorizedResourceMain));
             _regionManager.RegisterViewWithRegion(RegionNames.BuildMainRegion, typeof(BuildMain));
             _regionManager.RegisterViewWithRegion(RegionNames.DefinitionMainRegion, typeof(DefinitionMain));
 

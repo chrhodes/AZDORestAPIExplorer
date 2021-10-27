@@ -67,7 +67,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #endregion
 
             #region Build Area
-
+            
+            GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
 
@@ -334,6 +335,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             // Build
 
+            GetAuthorizedResourcesCommand.RaiseCanExecuteChanged();
             GetBuildsCommand.RaiseCanExecuteChanged();
             GetDefinitionsCommand.RaiseCanExecuteChanged();
 
@@ -743,6 +745,70 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Build Area
 
+        #region GetAuthorizedResources Command
+
+        public DelegateCommand GetAuthorizedResourcesCommand { get; set; }
+        public string GetAuthorizedResourcesContent { get; set; } = "GetAuthorizedResources";
+        public string GetAuthorizedResourcesToolTip { get; set; } = "GetAuthorizedResources ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetAuthorizedResourcesContent { get; set; } = "ViewName_GetAuthorizedResourcesContent";
+        //public string GetAuthorizedResourcesToolTip { get; set; } = "ViewName_GetAuthorizedResourcesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetAuthorizedResourcesContent">GetAuthorizedResources</system:String>
+        //    <system:String x:Key="ViewName_GetAuthorizedResourcesContentToolTip">GetAuthorizedResources ToolTip</system:String>  
+
+        public void GetAuthorizedResources()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetAuthorizedResources";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetAuthorizedResourcesEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetAuthorizedResourcesEvent>().Publish(
+                new GetAuthorizedResourcesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetAuthorizedResourcesEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetAuthorizedResourcesEvent>().Subscribe(GetAuthorizedResources);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetAuthorizedResourcesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One
+
         #region GetBuilds Command
 
         public DelegateCommand GetBuildsCommand { get; set; }
@@ -806,8 +872,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion
 
         #region GetDefinitions Command
-
-
 
         public DelegateCommand GetDefinitionsCommand { get; set; }
         public string GetDefinitionsContent { get; set; } = "GetDefinitions";
