@@ -72,6 +72,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
             GetControllersCommand = new DelegateCommand(GetControllers, GetControllersCanExecute);
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
+            GetGeneralSettingsCommand = new DelegateCommand(GetGeneralSettings, GetGeneralSettingsCanExecute);
 
             #endregion
 
@@ -341,6 +342,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetAuthorizedResourcesCommand.RaiseCanExecuteChanged();
             GetBuildsCommand.RaiseCanExecuteChanged();
             GetDefinitionsCommand.RaiseCanExecuteChanged();
+            GetGeneralSettingsCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -982,6 +984,68 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         public bool GetDefinitionsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetGeneralSettings Command
+
+        public DelegateCommand GetGeneralSettingsCommand { get; set; }
+        public string GetGeneralSettingsContent { get; set; } = "GetGeneralSettings";
+        public string GetGeneralSettingsToolTip { get; set; } = "GetGeneralSettings ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetGeneralSettingsContent { get; set; } = "ViewName_GetGeneralSettingsContent";
+        //public string GetGeneralSettingsToolTip { get; set; } = "ViewName_GetGeneralSettingsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetGeneralSettingsContent">GetGeneralSettings</system:String>
+        //    <system:String x:Key="ViewName_GetGeneralSettingsContentToolTip">GetGeneralSettings ToolTip</system:String>  
+
+        public void GetGeneralSettings()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            // Message = "Cool, you called GetGeneralSettings";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetGeneralSettingsEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetGeneralSettingsEvent>().Publish(
+                new GetGeneralSettingsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetGeneralSettingsEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetGeneralSettingsEvent>().Subscribe(GetGeneralSettings);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetGeneralSettingsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
@@ -2753,11 +2817,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
     #endregion Work Item Tracking Category
 
-    #endregion Commands
+        #region Work Item Tracking Process Category
 
-    #region Work Item Tracking Process Category
-
-    #region GetBehaviors Command
+        #region GetBehaviors Command
 
     public DelegateCommand GetBehaviorsWITPCommand { get; set; }
         public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors";
@@ -3135,6 +3197,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion GetWorkItemTypesBehaviors Command
 
         #endregion Work Item Tracking Process Category
+
+        #endregion
 
         #endregion Public Methods
 

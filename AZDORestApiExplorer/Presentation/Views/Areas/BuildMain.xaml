@@ -60,6 +60,10 @@
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.DefinitionMainRegion}" />
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="General Settings" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.GeneralSettingMainRegion}" />
+        </dxlc:LayoutGroup>
+
     </dxlc:LayoutGroup>
 
 </UserControl>

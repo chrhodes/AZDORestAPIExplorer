@@ -32,15 +32,11 @@ namespace AZDORestApiExplorer.Build
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            //containerRegistry.Register<IAuthorizedResourceMainViewModel, AuthorizedResourceMainViewModel>();
             containerRegistry.RegisterSingleton<AuthorizedResourceMain>();
-            //containerRegistry.Register<BuildMainViewModel>();
             containerRegistry.RegisterSingleton<BuildMain>();
             containerRegistry.RegisterSingleton<ControllerMain>();
             containerRegistry.RegisterSingleton<DefinitionMain>();
-
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.RegisterSingleton<GeneralSettingMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -62,6 +58,7 @@ namespace AZDORestApiExplorer.Build
             _regionManager.RegisterViewWithRegion(RegionNames.BuildMainRegion, typeof(BuildMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ControllerMainRegion, typeof(ControllerMain));
             _regionManager.RegisterViewWithRegion(RegionNames.DefinitionMainRegion, typeof(DefinitionMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.GeneralSettingMainRegion, typeof(GeneralSettingMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

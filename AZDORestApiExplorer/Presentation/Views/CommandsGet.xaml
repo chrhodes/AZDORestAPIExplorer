@@ -137,7 +137,14 @@
 		                            Content="{Binding GetDefinitionsContent, FallbackValue='GetDefinitions' }"
 		                            ToolTip="{Binding GetDefinitionsToolTip, FallbackValue='GetDefinitions ToolTip' }" />
                             </dxlc:LayoutItem>
-
+                            
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding GetGeneralSettingsCommand }"
+                            		Content="{Binding GetGeneralSettingsContent, FallbackValue='GetGeneralSettings' }"
+                            		ToolTip="{Binding GetGeneralSettingsToolTip, FallbackValue='GetGeneralSettings ToolTip' }" />
+                            </dxlc:LayoutItem>
+ 
                         </dxlc:LayoutGroup>
                         
                     </dxlc:LayoutGroup>
