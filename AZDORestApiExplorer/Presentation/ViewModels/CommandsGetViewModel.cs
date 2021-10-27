@@ -69,6 +69,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Build Area
 
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
+            GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
 
             #endregion
 
@@ -334,6 +335,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             // Build
 
             GetBuildsCommand.RaiseCanExecuteChanged();
+            GetDefinitionsCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -397,7 +399,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
 
         private void RaiseTeamChanged(Team team)
         {
@@ -801,9 +802,74 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             return true;
         }
-                            
+
         #endregion
 
+        #region GetDefinitions Command
+
+
+
+        public DelegateCommand GetDefinitionsCommand { get; set; }
+        public string GetDefinitionsContent { get; set; } = "GetDefinitions";
+        public string GetDefinitionsToolTip { get; set; } = "GetDefinitions ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetDefinitionsContent { get; set; } = "ViewName_GetDefinitionsContent";
+        //public string GetDefinitionsToolTip { get; set; } = "ViewName_GetDefinitionsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetDefinitionsContent">GetDefinitions</system:String>
+        //    <system:String x:Key="ViewName_GetDefinitionsContentToolTip">GetDefinitions ToolTip</system:String>  
+
+        public void GetDefinitions()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetDefinitions";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetDefinitionsEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetDefinitionsEvent>().Publish(
+                new GetDefinitionsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetDefinitionsEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetDefinitionsEvent>().Subscribe(GetDefinitions);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetDefinitionsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One
         #endregion
 
         #region Dashboard Category

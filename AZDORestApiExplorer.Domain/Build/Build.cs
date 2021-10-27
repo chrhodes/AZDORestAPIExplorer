@@ -310,6 +310,32 @@ namespace AZDORestApiExplorer.Domain.Build
 
                     bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
+                    while (hasContinuationToken)
+                    {
+                        string continueToken = continuationHeaders.First();
+
+                        string requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                            + $"build/builds?"
+                            + $"continuationToken={continueToken}"
+                            + "&api-version=6.1-preview.7";
+
+                        var exchange2 = Results.ContinueExchange(client, requestUri2);
+
+                        using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                        {
+                            Results.RecordExchangeResponse(response2, exchange2);
+
+                            response2.EnsureSuccessStatusCode();
+                            string outJson2 = await response2.Content.ReadAsStringAsync();
+
+                            BuildsRoot resultRootC = JsonConvert.DeserializeObject<BuildsRoot>(outJson2);
+
+                            Results.ResultItems.AddRange(resultRootC.value);
+
+                            hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                        }
+                    }
+
                     Results.Count = Results.ResultItems.Count;
                 }
 
