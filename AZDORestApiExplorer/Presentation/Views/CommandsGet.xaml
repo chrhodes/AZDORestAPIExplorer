@@ -103,15 +103,20 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Build *" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Build" IsCollapsed="True"
                              Style="{StaticResource GetLayoutGroup}">
                         
                         <dxlc:LayoutGroup Header="Project Level" IsCollapsed="False"
                             Orientation="Vertical" View="GroupBox"
                             Background="{StaticResource ProjectColor}">
 
-                            <!-- Add Buttons as Needed -->
-                            
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding GetBuildsCommand }"
+                            		Content="{Binding GetBuildsContent, FallbackValue='GetBuilds' }"
+                            		ToolTip="{Binding GetBuildsToolTip, FallbackValue='GetBuilds ToolTip' }" />
+                            </dxlc:LayoutItem>
+                                                        
                         </dxlc:LayoutGroup>
                         
                     </dxlc:LayoutGroup>

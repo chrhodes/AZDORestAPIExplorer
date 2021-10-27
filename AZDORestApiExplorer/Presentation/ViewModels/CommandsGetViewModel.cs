@@ -1,7 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
-
+using AZDORestApiExplorer.Domain.Build.Events;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.Domain.Dashboard.Events;
@@ -63,6 +63,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Artifacts Area
 
             GetFeedsCommand = new DelegateCommand(GetFeeds, GetFeedsCanExecute);
+
+            #endregion
+
+            #region Build Area
+
+            GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
 
             #endregion
 
@@ -321,8 +327,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             GetProjectsCommand.RaiseCanExecuteChanged();
+
             GetDashboardsCommand.RaiseCanExecuteChanged();
             GetWidgetsCommand.RaiseCanExecuteChanged();
+
+            // Build
+
+            GetBuildsCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -511,7 +522,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // TODO(crhodes)
         // Decide if these need to be public, perhaps just private
 
-        #region Accounts Category
+        #region Accounts Area
 
         #region GetAccounts Command
 
@@ -729,6 +740,72 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Core
 
+        #region Build Area
+
+        #region GetBuilds Command
+
+        public DelegateCommand GetBuildsCommand { get; set; }
+        public string GetBuildsContent { get; set; } = "GetBuilds";
+        public string GetBuildsToolTip { get; set; } = "GetBuilds ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetBuildsContent { get; set; } = "ViewName_GetBuildsContent";
+        //public string GetBuildsToolTip { get; set; } = "ViewName_GetBuildsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBuildsContent">GetBuilds</system:String>
+        //    <system:String x:Key="ViewName_GetBuildsContentToolTip">GetBuilds ToolTip</system:String>  
+
+        public void GetBuilds()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            //Message = "Cool, you called GetBuilds";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetBuildsEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetBuildsEvent>().Publish(
+                new GetBuildsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetBuildsEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetBuildsEvent>().Subscribe(GetBuilds);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBuildsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+                            
+        #endregion
+
+        #endregion
+
         #region Dashboard Category
 
         #region GetDashboards Command
@@ -817,7 +894,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Dashboard Category
 
-        #region Git Category
+        #region Git Area
 
         #region GetRepositories Command
 
