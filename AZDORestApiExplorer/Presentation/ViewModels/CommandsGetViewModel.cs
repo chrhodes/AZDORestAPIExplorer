@@ -113,7 +113,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestThreadsCommand = new DelegateCommand(GetPullRequestThreads, GetPullRequestInfoCanExecute);
             GetPullRequestWorkItemsCommand = new DelegateCommand(GetPullRequestWorkItems, GetPullRequestInfoCanExecute);
 
-
             GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute);
             GetStatsCommand = new DelegateCommand(GetStats, GetStatsCanExecute);
             GetRefsCommand = new DelegateCommand(GetRefs, GetRefsCanExecute);
@@ -2271,9 +2270,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
-
-        // End Cut One
-
 
         #endregion
 

@@ -228,7 +228,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="False"
                         Style="{StaticResource GetLayoutGroup}"
                         Background="{StaticResource OrganizationColor}">
 
@@ -397,7 +397,20 @@
                                         Content="{Binding GetPullRequestWorkItemsContent, FallbackValue='Get PR WorkItems' }"
                                         ToolTip="{Binding GetPullRequestWorkItemsToolTip, FallbackValue='Get PR WorkItems ToolTip' }" />
                                 </dxlc:LayoutItem>
-                                
+
+                                <dxlc:LayoutGroup Header="Pull Request Level" IsCollapsed="True"
+                                    Orientation="Vertical" View="GroupBox"
+                                    Background="{StaticResource PullRequestColor}">
+
+                                    <dxlc:LayoutItem>
+                                        <Button 
+                                    		Command="{Binding GetPullRequestWorkItemsCommand }"
+                                    		Content="{Binding GetPullRequestWorkItemsContent, FallbackValue='GetPullRequestWorkItems' }"
+                                    		ToolTip="{Binding GetPullRequestWorkItemsToolTip, FallbackValue='GetPullRequestWorkItems ToolTip' }" />
+                                    </dxlc:LayoutItem>
+
+                                </dxlc:LayoutGroup>
+
                             </dxlc:LayoutGroup>
 
                             <dxlc:LayoutItem>

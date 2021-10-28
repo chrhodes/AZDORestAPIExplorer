@@ -49,63 +49,47 @@
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup Header="Blobs" >
-            <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BlobMainRegion}" />
-            </Grid>
         </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Commits" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Commit Changes" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Import Requests" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Items" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
         </dxlc:LayoutGroup>
 
         <!--<dxlc:LayoutGroup Header="Merges" >
-            <Grid>
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MergeMainRegion}" />
-            </Grid>
         </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Pull Requests" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Pushes" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
         </dxlc:LayoutGroup>
-        
+
         <dxlc:LayoutGroup Header="Refs" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Stats" >
-            <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
-            </Grid>
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="PR Work Items" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestWorkItemMainRegion}" />
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>

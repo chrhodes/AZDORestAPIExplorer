@@ -107,6 +107,7 @@ namespace AZDORestApiExplorer.Core
         public static string PushMainRegion = "PushMainRegion";
         public static string StatMainRegion = "StatMainRegion";
         public static string RefMainRegion = "RefMainRegion";
+        public static string PullRequestWorkItemMainRegion = "PullRequestWorkItemMainRegion";
 
         //
         // Graph Area

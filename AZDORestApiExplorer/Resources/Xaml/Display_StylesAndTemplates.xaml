@@ -32,6 +32,7 @@
     <SolidColorBrush x:Key="DefinitionColor" Color="#FF0000FF" />
     
     <SolidColorBrush x:Key="RepositoryColor" Color="#FFFF6400" />
+    <SolidColorBrush x:Key="PullRequestColor" Color="#FF6400" />
     <SolidColorBrush x:Key="CommitColor" Color="#FFB64700" />
     <SolidColorBrush x:Key="TestColor" Color="#FFB6007B" />
     <SolidColorBrush x:Key="WorkItemTypeColor" Color="#FFA68ADE" />

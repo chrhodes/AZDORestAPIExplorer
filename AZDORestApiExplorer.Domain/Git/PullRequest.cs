@@ -34,16 +34,10 @@ namespace AZDORestApiExplorer.Domain.Git
         public class GetPullRequestsEventArgs
         {
             public Organization Organization;
-
-            // public Domain.Core.Process Process;
-
             public Domain.Core.Project Project;
 
             public Domain.Git.PullRequest PullRequest;
             public Domain.Git.Repository Repository;
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
         }
 
         public class GetPullRequestStatusesEvent : PubSubEvent<GetPullRequestsEventArgs> { }
