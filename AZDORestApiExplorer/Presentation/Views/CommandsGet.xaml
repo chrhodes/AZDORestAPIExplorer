@@ -448,7 +448,14 @@
  		                        Content="{Binding GetGroupsContent, FallbackValue='GetGroups' }"
  		                        ToolTip="{Binding GetGroupsToolTip, FallbackValue='GetGroups ToolTip' }" />
                          </dxlc:LayoutItem>
-      
+                        
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding GetUsersCommand }"
+                        		Content="{Binding GetUsersContent, FallbackValue='GetUsers' }"
+                        		ToolTip="{Binding GetUsersToolTip, FallbackValue='GetUsers ToolTip' }" />
+                        </dxlc:LayoutItem>
+                        
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Identities *" IsCollapsed="True"

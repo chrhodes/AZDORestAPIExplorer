@@ -33,6 +33,7 @@ namespace AZDORestApiExplorer.Graph
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.RegisterSingleton<GroupMain>();
+            containerRegistry.RegisterSingleton<UserMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -51,6 +52,7 @@ namespace AZDORestApiExplorer.Graph
             //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.GroupMainRegion, typeof(GroupMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.UserMainRegion, typeof(UserMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -113,6 +113,7 @@ namespace AZDORestApiExplorer.Core
         //
 
         public static string GroupMainRegion = "GroupMainRegion";
+        public static string UserMainRegion = "UserMainRegion";
 
         // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
         // public static string RepositoryDetailRegion = "RepositoryDetailRegion";

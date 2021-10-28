@@ -1,5 +1,5 @@
 <vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Graph.Presentation.Views.GroupMain"
+    x:Class="AZDORestApiExplorer.Graph.Presentation.Views.UserMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://www.codeplex.com/prism"
@@ -39,7 +39,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <!--<RowDefinition Height="*" />-->
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
@@ -52,15 +51,17 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <dxg:GridColumn FieldName="origin" />
             <dxg:GridColumn FieldName="displayName" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="principalName" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="subjectKind" />
             <dxg:GridColumn FieldName="mailAddress" />
-            <dxg:GridColumn FieldName="origin" />
             <dxg:GridColumn FieldName="desciptor" />
             <dxg:GridColumn FieldName="isCrossProject" />
             <dxg:GridColumn FieldName="description" />
             <dxg:GridColumn FieldName="_links.memberships.href" />
+
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"

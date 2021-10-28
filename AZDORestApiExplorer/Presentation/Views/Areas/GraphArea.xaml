@@ -44,8 +44,12 @@
             </Style>
         </dxlc:LayoutGroup.GroupBoxStyle>
 
-        <dxlc:LayoutGroup Header="Group" >
+        <dxlc:LayoutGroup Header="Groups" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.GroupMainRegion}" />
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Users" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.UserMainRegion}" />
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
