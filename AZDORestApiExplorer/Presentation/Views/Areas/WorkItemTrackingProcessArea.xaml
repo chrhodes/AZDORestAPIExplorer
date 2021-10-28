@@ -1,0 +1,122 @@
+﻿<UserControl
+    x:Class="AZDORestApiExplorer.Presentation.Views.WorkItemTrackingProcessArea"
+    x:Name="thisWorkItemTrackingProcessArea"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:views="clr-namespace:AZDORestApiExplorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Presentation.ViewModels"
+
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+    
+    d:DesignWidth="300" d:DesignHeight="200" 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>
+    <!--<d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>-->
+
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+    <dxlc:LayoutGroup Header="Work Item Tracking Process"
+            Orientation="Vertical"  View="Tabs">
+        <!--<dxlc:LayoutGroup.Resources>
+                                                -->
+        <!--<DataTemplate x:Key="{dxt:DXTabControlThemeKey ResourceKey=BackgroundTemplate, ThemeName=Office2010Black}">
+                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
+                                                </DataTemplate>-->
+        <!--
+                                                <DataTemplate x:Key="foobar">
+                                                    <Border Background="Yellow" BorderBrush="#FF484848" BorderThickness="1" />
+                                                </DataTemplate>
+                                            </dxlc:LayoutGroup.Resources>
+                                            <dxlc:LayoutGroup.TabsStyle>
+                                                <Style TargetType="dx:DXTabControl">
+                                                    <Setter Property="Padding" Value="5" />
+                                                </Style>
+                                            </dxlc:LayoutGroup.TabsStyle>
+                                            <dxlc:LayoutGroup.TabStyle>
+                                                <Style TargetType="dx:DXTabItem">
+                                                    <Setter Property="Padding" Value="0" />
+                                                    <Setter Property="HeaderTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <Border Background="Black" BorderBrush="Red" BorderThickness="1,1,1,0" Margin="0,-1,0,0" Padding="9,3,9,3">
+                                                                    <TextBlock Text="{Binding}" Foreground="Yellow" />
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </dxlc:LayoutGroup.TabStyle>-->
+
+        <dxlc:LayoutGroup Header="Processes">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ProcessWITPMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Lists">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ListMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Behaviors">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BehaviorMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="WorkItemTypes">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemTypeWITPMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Fields">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.FieldWITPMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="Rules">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RuleMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="States">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StateWITPMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="System Controls">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.SystemControlMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup Header="WorkItemTypesBehaviors">
+            <Grid>
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemTypesBehaviorMainRegion}" />
+            </Grid>
+        </dxlc:LayoutGroup>
+        
+    </dxlc:LayoutGroup>
+    
+</UserControl>

@@ -9,6 +9,7 @@ using AZDORestApiExplorer.Build;
 using AZDORestApiExplorer.Dashboard;
 using AZDORestApiExplorer.DomainServices;
 using AZDORestApiExplorer.Git;
+using AZDORestApiExplorer.Graph;
 using AZDORestApiExplorer.Presentation.Views;
 using AZDORestApiExplorer.Test;
 using AZDORestApiExplorer.Tokens;
@@ -150,11 +151,14 @@ namespace AZDORestApiExplorer
             moduleCatalog.AddModule(typeof(AccountsModule));
 
             moduleCatalog.AddModule(typeof(ArtifactsModule));
+
             moduleCatalog.AddModule(typeof(BuildModule));
 
             moduleCatalog.AddModule(typeof(DashboardModule));
 
             moduleCatalog.AddModule(typeof(GitModule));
+
+            moduleCatalog.AddModule(typeof(GraphModule));
 
             moduleCatalog.AddModule(typeof(TestModule));
 
@@ -340,17 +344,17 @@ namespace AZDORestApiExplorer
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods (none)
 
 
         #endregion

@@ -206,6 +206,7 @@
         <ProjectReference Include="..\AZDORestApiExplorer.Dashboard\AZDORestApiExplorer.Dashboard.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Git\AZDORestApiExplorer.Git.csproj" />
+        <ProjectReference Include="..\AZDORestApiExplorer.Graph\AZDORestApiExplorer.Graph.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Test\AZDORestApiExplorer.Test.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj" />
@@ -228,7 +229,7 @@
         <SubType>Code</SubType>
         <DependentUpon>ArtifactsMain.xaml.cs</DependentUpon>
       </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsPackageTypesMain.xaml.cs">
+      <Compile Update="Presentation\Views\Areas\ArtifactsPackageTypesArea.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
       <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy %282%29.xaml.cs">
@@ -258,11 +259,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Presentation\Views\Areas\ArtifactsPackageTypesMain.xaml">
+      <Page Update="Presentation\Views\Areas\ArtifactsPackageTypesArea.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Presentation\Views\Areas\CloudLoadTestMain.xaml">
+      <Page Update="Presentation\Views\Areas\CloudLoadTestArea.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
