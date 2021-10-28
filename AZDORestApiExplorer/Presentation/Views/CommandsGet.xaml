@@ -151,7 +151,26 @@
                             		Content="{Binding GetOptionsContent, FallbackValue='GetOptions' }"
                             		ToolTip="{Binding GetOptionsToolTip, FallbackValue='GetOptions ToolTip' }" />
                             </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup Header="Build Level" IsCollapsed="False"
+                                Orientation="Vertical" View="GroupBox"
+                                Background="{StaticResource BuildColor}">
+
+                            </dxlc:LayoutGroup>
                             
+                            <dxlc:LayoutGroup Header="Definition Level" IsCollapsed="False"
+                                Orientation="Vertical" View="GroupBox"
+                                Background="{StaticResource DefinitionColor}">
+                                
+                                <dxlc:LayoutItem>
+                                    <Button 
+                            		Command="{Binding GetResourcesCommand }"
+                            		Content="{Binding GetResourcesContent, FallbackValue='GetResources' }"
+                            		ToolTip="{Binding GetResourcesToolTip, FallbackValue='GetResources ToolTip' }" />
+                                </dxlc:LayoutItem>
+                                
+                            </dxlc:LayoutGroup>
+                        
                         </dxlc:LayoutGroup>
                         
                     </dxlc:LayoutGroup>

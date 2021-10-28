@@ -287,8 +287,6 @@ namespace AZDORestApiExplorer.Domain.Build
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                // TODO(crhodes)
-                // Update Uri  Use args for parameters.
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"build/builds?"
                     + "api-version=6.1-preview.7";

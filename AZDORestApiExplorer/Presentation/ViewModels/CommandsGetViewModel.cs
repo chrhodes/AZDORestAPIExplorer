@@ -74,6 +74,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
             GetGeneralSettingsCommand = new DelegateCommand(GetGeneralSettings, GetGeneralSettingsCanExecute);
             GetOptionsCommand = new DelegateCommand(GetOptions, GetOptionsCanExecute);
+            GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
 
             #endregion
 
@@ -187,6 +188,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<SelectedProcessChangedEvent>().Subscribe(RaiseProcessChanged);
             EventAggregator.GetEvent<SelectedProjectChangedEvent>().Subscribe(RaiseProjectChanged);
             EventAggregator.GetEvent<SelectedTeamChangedEvent>().Subscribe(RaiseTeamChanged);
+
+            EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(RaiseBuildChanged);
+
+            EventAggregator.GetEvent<SelectedDefinitionChangedEvent>().Subscribe(RaiseDefinitionChanged);
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
@@ -345,6 +350,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetDefinitionsCommand.RaiseCanExecuteChanged();
             GetGeneralSettingsCommand.RaiseCanExecuteChanged();
             GetOptionsCommand.RaiseCanExecuteChanged();
+            GetResourcesCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -378,6 +384,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesFieldsCommand.RaiseCanExecuteChanged();
 
             GetWorkItemCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaiseBuildChanged(Domain.Build.Build build)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaiseDefinitionChanged(Domain.Build.Definition definition)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetResourcesCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1062,7 +1084,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetOptions Command
 
-
         public DelegateCommand GetOptionsCommand { get; set; }
         public string GetOptionsContent { get; set; } = "GetOptions";
         public string GetOptionsToolTip { get; set; } = "GetOptions ToolTip";
@@ -1114,6 +1135,70 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetResources Command
+
+        public DelegateCommand GetResourcesCommand { get; set; }
+        public string GetResourcesContent { get; set; } = "GetResources";
+        public string GetResourcesToolTip { get; set; } = "GetResources ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetResourcesContent { get; set; } = "ViewName_GetResourcesContent";
+        //public string GetResourcesToolTip { get; set; } = "ViewName_GetResourcesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetResourcesContent">GetResources</system:String>
+        //    <system:String x:Key="ViewName_GetResourcesContentToolTip">GetResources ToolTip</system:String>  
+
+        public void GetResources()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            // Message = "Cool, you called GetResources";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<GetResourcesEvent>().Publish();
+
+            // May want EventArgs
+
+            EventAggregator.GetEvent<GetResourcesEvent>().Publish(
+                new GetResourcesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Definition = _contextMainViewModel.Context.SelectedDefinition
+                });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class GetResourcesEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<GetResourcesEvent>().Subscribe(GetResources);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetResourcesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedDefinition is null)
             {
                 return false;
             }
