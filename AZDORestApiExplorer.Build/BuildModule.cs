@@ -39,6 +39,7 @@ namespace AZDORestApiExplorer.Build
             containerRegistry.RegisterSingleton<GeneralSettingMain>();
             containerRegistry.RegisterSingleton<OptionMain>();
             containerRegistry.RegisterSingleton<ResourceMain>();
+            containerRegistry.RegisterSingleton<SettingMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -63,6 +64,7 @@ namespace AZDORestApiExplorer.Build
             _regionManager.RegisterViewWithRegion(RegionNames.GeneralSettingMainRegion, typeof(GeneralSettingMain));
             _regionManager.RegisterViewWithRegion(RegionNames.OptionMainRegion, typeof(OptionMain));
             _regionManager.RegisterViewWithRegion(RegionNames.ResourceMainRegion, typeof(ResourceMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.SettingMainRegion, typeof(SettingMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }

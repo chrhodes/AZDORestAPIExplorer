@@ -73,6 +73,7 @@ namespace AZDORestApiExplorer.Core
         public static string GeneralSettingMainRegion = "GeneralSettingMainRegion";
         public static string OptionMainRegion = "OptionMainRegion";
         public static string ResourceMainRegion = "ResourceMainRegion";
+        public static string SettingMainRegion = "SettingMainRegion";
 
         //
         // Dashboard Area

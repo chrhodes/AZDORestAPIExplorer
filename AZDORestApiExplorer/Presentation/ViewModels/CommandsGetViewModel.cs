@@ -75,6 +75,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetGeneralSettingsCommand = new DelegateCommand(GetGeneralSettings, GetGeneralSettingsCanExecute);
             GetOptionsCommand = new DelegateCommand(GetOptions, GetOptionsCanExecute);
             GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
+            GetSettingsCommand = new DelegateCommand(GetSettings, GetSettingsCanExecute);
 
             #endregion
 
@@ -351,6 +352,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetGeneralSettingsCommand.RaiseCanExecuteChanged();
             GetOptionsCommand.RaiseCanExecuteChanged();
             GetResourcesCommand.RaiseCanExecuteChanged();
+            GetSettingsCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -1179,18 +1181,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Definition = _contextMainViewModel.Context.SelectedDefinition
                 });
 
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class GetResourcesEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<GetResourcesEvent>().Subscribe(GetResources);
-
-            // End Cut Four
-
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -1199,6 +1189,47 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
                 || _contextMainViewModel.Context.SelectedDefinition is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetSettings Command
+
+        public DelegateCommand GetSettingsCommand { get; set; }
+        public string GetSettingsContent { get; set; } = "GetSettings";
+        public string GetSettingsToolTip { get; set; } = "GetSettings ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetSettingsContent { get; set; } = "ViewName_GetSettingsContent";
+        //public string GetSettingsToolTip { get; set; } = "ViewName_GetSettingsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetSettingsContent">GetSettings</system:String>
+        //    <system:String x:Key="ViewName_GetSettingsContentToolTip">GetSettings ToolTip</system:String>  
+
+        public void GetSettings()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetSettingsEvent>().Publish(
+                new GetSettingsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetSettingsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
             {
                 return false;
             }

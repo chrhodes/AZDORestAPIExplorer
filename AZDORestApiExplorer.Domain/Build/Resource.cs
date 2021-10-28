@@ -32,11 +32,6 @@ namespace AZDORestApiExplorer.Domain.Build
         public class SelectedResourceChangedEvent : PubSubEvent<Resource> { }
     }
 
-    // TODO(crhodes)
-    // PasteSpecial from Json result text
-
-    // Nest any additional classes inside class Resource
-
     public class ResourcesRoot
     {
         public int count { get; set; }
@@ -60,7 +55,6 @@ namespace AZDORestApiExplorer.Domain.Build
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                //GET https://dev.azure.com/{organization}/{project}/_apis/build/definitions/{definitionId}/resources?api-version=6.1-preview.1
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"build/definitions/{args.Definition.id}/resources?"
                     + "api-version=6.1-preview.1";
