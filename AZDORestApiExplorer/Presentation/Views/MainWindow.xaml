@@ -100,7 +100,7 @@
                         </dxdo:LayoutPanel>-->
 
                         <dxdo:LayoutPanel Caption="Graph" >
-
+                            <local:GraphArea />
                         </dxdo:LayoutPanel>
 
                     </dxdo:LayoutGroup>
@@ -163,7 +163,18 @@
                         </dxdo:LayoutPanel>
                         
                     </dxdo:FloatGroup>
-                    
+
+                    <dxdo:FloatGroup>
+
+                        <dxdo:LayoutPanel Caption="Commands and Context" MinWidth="1200" MinHeight="800" AllowClose="False">
+                            <dxdo:LayoutGroup Orientation="Vertical">
+
+                            </dxdo:LayoutGroup>
+                            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />-->
+                        </dxdo:LayoutPanel>
+
+                    </dxdo:FloatGroup>
+
                 </dxdo:DockLayoutManager.FloatGroups>
                 
                 <dxdo:DockLayoutManager.AutoHideGroups>

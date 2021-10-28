@@ -439,8 +439,16 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Graph *" IsCollapsed="True"
-                             Style="{StaticResource GetLayoutGroup}">
-                        <TextBlock Text="Not Implemented Yet" />
+                             Style="{StaticResource GetLayoutGroup}"
+                             Background="{StaticResource OrganizationColor}">
+
+                         <dxlc:LayoutItem>
+                             <Button 
+ 		                        Command="{Binding GetGroupsCommand }"
+ 		                        Content="{Binding GetGroupsContent, FallbackValue='GetGroups' }"
+ 		                        ToolTip="{Binding GetGroupsToolTip, FallbackValue='GetGroups ToolTip' }" />
+                         </dxlc:LayoutItem>
+      
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Identities *" IsCollapsed="True"

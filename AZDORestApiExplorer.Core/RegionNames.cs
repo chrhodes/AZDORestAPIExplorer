@@ -108,6 +108,12 @@ namespace AZDORestApiExplorer.Core
         public static string StatMainRegion = "StatMainRegion";
         public static string RefMainRegion = "RefMainRegion";
 
+        //
+        // Graph Area
+        //
+
+        public static string GroupMainRegion = "GroupMainRegion";
+
         // public static string RepositoryNavigationRegion = "RepositoryNavigationRegion";
         // public static string RepositoryDetailRegion = "RepositoryDetailRegion";
 

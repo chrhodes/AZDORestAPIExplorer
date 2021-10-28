@@ -44,12 +44,8 @@
             </Style>
         </dxlc:LayoutGroup.GroupBoxStyle>
 
-        <dxlc:LayoutGroup Header="Resource1" >
-            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryMainRegion}" />-->
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Resource2" >
-            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryMainRegion}" />-->
+        <dxlc:LayoutGroup Header="Group" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.GroupMainRegion}" />
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>

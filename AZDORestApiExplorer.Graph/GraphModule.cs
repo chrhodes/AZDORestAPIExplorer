@@ -1,5 +1,8 @@
 ﻿using System;
 
+using AZDORestApiExplorer.Core;
+using AZDORestApiExplorer.Graph.Presentation.Views;
+
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -29,8 +32,7 @@ namespace AZDORestApiExplorer.Graph
         {
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
-            //containerRegistry.Register<ITYPEMainViewModel, TYPEMainViewModel>();
-            //containerRegistry.RegisterSingleton<ITYPE, TYPE>();
+            containerRegistry.RegisterSingleton<GroupMain>();
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -47,6 +49,8 @@ namespace AZDORestApiExplorer.Graph
 
             //this loads AccountMain into the Shell loaded in CreateShell() in App.Xaml.cs
             //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.GroupMainRegion, typeof(GroupMain));
 
             Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
         }
