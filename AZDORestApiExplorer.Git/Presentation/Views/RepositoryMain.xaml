@@ -20,6 +20,8 @@
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
     xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Git.Presentation.ViewModels"
+    
+        xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
 
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
@@ -35,41 +37,50 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                     Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="id" />
-            <dxg:GridColumn FieldName="name" />
-            <!--<dxg:GridColumn FieldName="url" />-->
-            <dxg:GridColumn FieldName="project.name" />
-            <dxg:GridColumn FieldName="defaultBranch" />
-            <dxg:GridColumn FieldName="size" />
-            <dxg:GridColumn FieldName="remoteUrl" />
-            <dxg:GridColumn FieldName="sshUrl" />
-            <dxg:GridColumn FieldName="webUrl" />
-            <dxg:GridColumn FieldName="isDisabled" />
-            <dxg:GridColumn FieldName="isFork" />
-            
-        </dxg:GridControl>
+                    <dxg:GridColumn FieldName="name" BestFitModeOnSourceChange="VisibleRows"/>
+                    <!--<dxg:GridColumn FieldName="id" />-->
+                    <!--<dxg:GridColumn FieldName="url" />-->
+                    <dxg:GridColumn FieldName="project.name" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="defaultBranch" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="size" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="isDisabled" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="isFork" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="sshUrl" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="webUrl" BestFitModeOnSourceChange="VisibleRows"/>
 
-        <dxe:TextEdit Grid.Row="2"
+                </dxg:GridControl>
+
+                <dxe:TextEdit Grid.Row="2"
             Text="{Binding Results.SelectedItem.url}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
 
-    </Grid>
+            </Grid>
+        </dxlc:LayoutGroup>
+
+        <!--<dxlc:LayoutGroup Header="Pull Requests" >
+            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
+        </dxlc:LayoutGroup>-->
+
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

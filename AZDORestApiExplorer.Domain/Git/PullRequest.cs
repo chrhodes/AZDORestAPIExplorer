@@ -234,9 +234,9 @@ namespace AZDORestApiExplorer.Domain.Git
     public class PullRequestCommitsRoot
     {
         public int count { get; set; }
-        public Value[] value { get; set; }
+        public Commit[] value { get; set; }
 
-        public class Value
+        public class Commit
         {
             public Author author { get; set; }
             public string comment { get; set; }
@@ -354,38 +354,6 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public string id { get; set; }
             public string url { get; set; }
-        }
-    }
-
-
-    public class PullRequestProperties
-    {
-        public int count { get; set; }
-        public Value value { get; set; }
-
-        public class Value
-        {
-            public MicrosoftGitPullrequestIsdraft MicrosoftGitPullRequestIsDraft { get; set; }
-            public MicrosoftGitPullrequestSourcerefname MicrosoftGitPullRequestSourceRefName { get; set; }
-            public MicrosoftGitPullrequestTargetrefname MicrosoftGitPullRequestTargetRefName { get; set; }
-        }
-
-        public class MicrosoftGitPullrequestIsdraft
-        {
-            public string type { get; set; }
-            public string value { get; set; }
-        }
-
-        public class MicrosoftGitPullrequestSourcerefname
-        {
-            public string type { get; set; }
-            public string value { get; set; }
-        }
-
-        public class MicrosoftGitPullrequestTargetrefname
-        {
-            public string type { get; set; }
-            public string value { get; set; }
         }
     }
 }

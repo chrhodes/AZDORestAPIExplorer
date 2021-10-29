@@ -19,6 +19,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Net;
 
+using static AZDORestApiExplorer.Domain.Git.PullRequestProperties;
+
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
     public class PullRequestMainViewModel : GridViewModelBase, IInstanceCountVM
@@ -60,11 +62,40 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         #endregion Constructors, Initialization, and Load
 
         #region Fields and Properties
-        
+
         public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
 
         public RESTResult<PullRequest> ResultsAttachments { get; set; } = new RESTResult<PullRequest>();
-        public RESTResult<PullRequestCommitsRoot.Value> ResultsCommits { get; set; } = new RESTResult<PullRequestCommitsRoot.Value>();
+        public RESTResult<PullRequestCommitsRoot.Commit> ResultsCommits { get; set; } = new RESTResult<PullRequestCommitsRoot.Commit>();
+
+        private PullRequestCommitsRoot.Commit _selectedCommit;
+
+        public PullRequestCommitsRoot.Commit SelectedCommit
+        {
+            get => _selectedCommit;
+            set
+            {
+                if (_selectedCommit == value)
+                    return;
+
+                // HACK(crhodes)
+                // Until we figure out what to do with different class definitions of a (likely) common thing.
+                // new up a Domain.Git commit and pass it along
+
+                Domain.Git.Commit commit = new Domain.Git.Commit();
+
+                commit.author = value.author;
+                commit.comment = value.comment;
+                commit.committer = value.committer;
+                commit.commitId = value.commitId;
+                commit.url = value.url;
+
+                EventAggregator.GetEvent<SelectedCommitChangedEvent>().Publish(commit);
+                //_selectedCommit = value;
+                //OnPropertyChanged();
+            }
+        }
+
         public RESTResult<PullRequestIterations.Value> ResultsIterations { get; set; } = new RESTResult<PullRequestIterations.Value>();
         public RESTResult<PullRequest> ResultsLabels { get; set; } = new RESTResult<PullRequest>();
         public RESTResult<PullRequestProperties> ResultsProperties { get; set; } = new RESTResult<PullRequestProperties>();
@@ -231,7 +262,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         PullRequestCommitsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestCommitsRoot>(outJson);
 
-                        ResultsCommits.ResultItems = new ObservableCollection<PullRequestCommitsRoot.Value>(resultRoot.value);
+                        ResultsCommits.ResultItems = new ObservableCollection<PullRequestCommitsRoot.Commit>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
@@ -406,11 +437,18 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        PullRequestProperties resultRoot = JsonConvert.DeserializeObject<PullRequestProperties>(outJson);
+                        //PullRequestProperties resultRoot = JsonConvert.DeserializeObject<PullRequestProperties>(outJson);
 
-                        // TODO(crhodes)
-                        // Handle Results with Single Value not a Collection
+                        // NOTE(crhodes)
+                        // There is only one item coming back.  Hack it into the collection.
+
                         //ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties.Value>(resultRoot.value);
+
+                        PullRequestProperties result = JsonConvert.DeserializeObject<PullRequestProperties>(outJson);
+
+                        ResultsProperties.ResultItems = new ObservableCollection<PullRequestProperties>();
+
+                        ResultsProperties.ResultItems.Add(result);
 
                         IEnumerable<string> continuationHeaders = default;
 
@@ -555,7 +593,7 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
             Log.VIEWMODEL("Exit(PullRequestStatuses)", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         private async void GetPullRequestThreads(GetPullRequestsEventArgs args)
         {
             Int64 startTicks = Log.VIEWMODEL("Enter(PullRequestThreads)", Common.LOG_CATEGORY);

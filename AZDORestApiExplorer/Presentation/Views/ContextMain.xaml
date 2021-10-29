@@ -147,7 +147,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedRepository.id}" />
+                            <TextBox Text="{Binding Context.SelectedRepository.id}" IsReadOnly="True" BorderThickness="0"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 

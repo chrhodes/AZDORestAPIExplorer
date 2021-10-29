@@ -82,7 +82,9 @@
 
                 <dxdo:LayoutGroup Orientation="Horizontal">
 
-                    <dxdo:LayoutPanel Caption="Core" MinWidth="300" ItemWidth="350">
+                    <dxdo:LayoutPanel Caption="Core" 
+                                      Style="{StaticResource DragableLayoutPanel}"
+                                      MinWidth="300" ItemWidth="350">
                         <local:CoreArea />
                     </dxdo:LayoutPanel>
                     
@@ -99,80 +101,81 @@
                             <local:GitMain />
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel Caption="Graph" >
+                        <dxdo:LayoutPanel Caption="Graph" 
+                                          Style="{StaticResource DragableLayoutPanel}" >
                             <local:GraphArea />
                         </dxdo:LayoutPanel>
 
                     </dxdo:LayoutGroup>
-
-                    <!--<dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" >
-                        --><!--<dxlc:LayoutGroup>
-                            <Grid>--><!--
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
-                            --><!--</Grid>
-                        </dxlc:LayoutGroup>--><!--
-                    </dxdo:LayoutPanel>-->
 
                 </dxdo:LayoutGroup>
 
                 <dxdo:DockLayoutManager.FloatGroups>
                     
                     <!--This contains the Collections and Commands and Context Views-->
-                    
-                    <dxdo:FloatGroup MinWidth="1200" MinHeight="800" Orientation="Vertical">
-                       
-                        <dxdo:LayoutPanel Caption="Collections"                     
-                            ItemHeight="65"  ShowCollapseButton="True" ShowCloseButton="False" AllowDrag="False">                            
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
+
+                    <dxdo:FloatGroup Orientation="Vertical">
+
+                        <dxdo:LayoutPanel Caption="Commands and Context"
+                                          Style="{StaticResource DragableLayoutPanel}"                                         
+                                          MinWidth="1200" MinHeight="800" >
+                            <dxdo:LayoutPanel.CaptionTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Background="LightGray" Width="1200">
+                                        <TextBlock Text="{Binding}" Margin="10,3,3,3" Foreground="Black" FontSize="16"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxdo:LayoutPanel.CaptionTemplate>
+                            
+                            <dxlc:LayoutControl Orientation="Vertical" >
+
+                                <dxdo:LayoutPanel Caption="Collections" Style="{StaticResource NotDragableLayoutPanel}"  
+                                                  VerticalAlignment="Top" >
+                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CollectionMainRegion}" />
+                                </dxdo:LayoutPanel>
+
+                                <dxdo:LayoutGroup Orientation="Horizontal">
+
+                                    <dxdo:TabbedGroup AllowDrag="False">
+
+                                        <dxdo:LayoutPanel Caption="Commands (GET)" Style="{StaticResource NotDragableLayoutPanel}" >
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
+                                        </dxdo:LayoutPanel>
+
+                                        <dxdo:LayoutPanel Caption="Commands (PATCH)" Style="{StaticResource NotDragableLayoutPanel}" >
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
+                                        </dxdo:LayoutPanel>
+
+                                        <dxdo:LayoutPanel Caption="Commands (POST)" Style="{StaticResource NotDragableLayoutPanel}" >
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
+                                        </dxdo:LayoutPanel>
+
+                                        <dxdo:LayoutPanel Caption="Commands (PUT)" Style="{StaticResource NotDragableLayoutPanel}" >
+                                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
+                                        </dxdo:LayoutPanel>
+
+                                    </dxdo:TabbedGroup>
+
+                                    <dxdo:LayoutPanel Caption="Context Level Providers" Style="{StaticResource NotDragableLayoutPanel}" 
+                                                      MinWidth="375" ItemWidth="400">
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
+                                    </dxdo:LayoutPanel>
+
+                                </dxdo:LayoutGroup>
+
+                            </dxlc:LayoutControl>
+
                         </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutGroup Orientation="Horizontal">
-
-                            <dxdo:TabbedGroup AllowDrag="False">
-
-                                <dxdo:LayoutPanel Caption="Commands (GET)" AllowDrag="False" AllowClose="False" >
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandGetRegion}" />
-                                </dxdo:LayoutPanel>
-
-                                <dxdo:LayoutPanel Caption="Commands (PATCH)" AllowClose="False" AllowDrag="False" >
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPatchRegion}" />
-                                </dxdo:LayoutPanel>
-
-                                <dxdo:LayoutPanel Caption="Commands (POST)" AllowClose="False" AllowDrag="False" >
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPostRegion}" />
-                                </dxdo:LayoutPanel>
-
-                                <dxdo:LayoutPanel Caption="Commands (PUT)" AllowClose="False" AllowDrag="False" >
-                                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommandPutRegion}" />
-                                </dxdo:LayoutPanel>
-
-                            </dxdo:TabbedGroup>
-
-                            <dxdo:LayoutPanel Caption="Context Level Providers"  MinWidth="375" ItemWidth="400" AllowClose="False" AllowDrag="False">
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
-                            </dxdo:LayoutPanel>
-
-                        </dxdo:LayoutGroup>
 
                     </dxdo:FloatGroup>
                     
                     <dxdo:FloatGroup>
 
-                        <dxdo:LayoutPanel Caption="HTTP Exchange" MinWidth="500" AllowClose="False">
+                        <dxdo:LayoutPanel Caption="HTTP Exchange" Style="{StaticResource DragableLayoutPanel}" 
+                                          MinWidth="500" >
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>
                         
-                    </dxdo:FloatGroup>
-
-                    <dxdo:FloatGroup>
-
-                        <dxdo:LayoutPanel Caption="Commands and Context" MinWidth="1200" MinHeight="800" AllowClose="False">
-                            <dxdo:LayoutGroup Orientation="Vertical">
-
-                            </dxdo:LayoutGroup>
-                            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />-->
-                        </dxdo:LayoutPanel>
-
                     </dxdo:FloatGroup>
 
                 </dxdo:DockLayoutManager.FloatGroups>
@@ -206,39 +209,39 @@
                              <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel Caption="Accounts" AutoHidden="True" >
+                        <dxdo:LayoutPanel Caption="Accounts" Style="{StaticResource HiddenDragableLayoutPanel}" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Artifacts" AutoHidden="True"  >
+                        <dxdo:LayoutPanel Caption="Artifacts" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:ArtifactsArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Build" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Build" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:BuildArea />
-                        </dxdo:LayoutPanel>                   
+                        </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Dashboard" AutoHidden="True" TabBackgroundColor="Red" >
+                        <dxdo:LayoutPanel Caption="Dashboard" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:DashboardArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Git" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:GitArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Test" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Test" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:TestArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Tokens" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Tokens" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:TokensArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Work Item Tracking" AutoHidden="True" >
+                        <dxdo:LayoutPanel Caption="Work Item Tracking" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:WorkItemTrackingArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Work Item Tracking Process" AutoHidden="True">
+                        <dxdo:LayoutPanel Caption="Work Item Tracking Process" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:WorkItemTrackingProcessArea />
                         </dxdo:LayoutPanel>
 

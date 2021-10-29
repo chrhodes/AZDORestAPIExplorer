@@ -39,7 +39,6 @@ namespace AZDORestApiExplorer.Domain.Build
         public class SelectedBuildChangedEvent : PubSubEvent<Build> { }
     }
 
-
     // Nest any additional classes inside class Build
 
     public class BuildsRoot

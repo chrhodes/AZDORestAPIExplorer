@@ -88,9 +88,9 @@
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="PR Work Items" >
+        <!--<dxlc:LayoutGroup Header="PR Work Items" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestWorkItemMainRegion}" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
     </dxlc:LayoutGroup>
     
