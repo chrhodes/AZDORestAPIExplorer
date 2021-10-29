@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+
 using System.Threading.Tasks;
 
 using AZDORestApiExplorer.Domain;
@@ -127,10 +128,18 @@ namespace AZDORestApiExplorer.Domain.Build
 
         public class Triggerinfo
         {
+            [JsonProperty("ci.sourceBranch")]
             public string cisourceBranch { get; set; }
+
+            [JsonProperty("ci.sourceSha")]
             public string cisourceSha { get; set; }
+
+            [JsonProperty("ci.message")]
             public string cimessage { get; set; }
+
+            [JsonProperty("ci.triggerRepository")]
             public string citriggerRepository { get; set; }
+
             public string scheduleName { get; set; }
         }
 

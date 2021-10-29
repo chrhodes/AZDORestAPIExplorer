@@ -116,12 +116,13 @@
 
                     <dxdo:FloatGroup Orientation="Vertical">
 
-                        <dxdo:LayoutPanel Caption="Commands and Context"
+                        <dxdo:LayoutPanel x:Name="lpCommandsAndContext"  Caption="Commands and Context"
                                           Style="{StaticResource DragableLayoutPanel}"                                         
                                           MinWidth="1200" MinHeight="800" >
                             <dxdo:LayoutPanel.CaptionTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Background="LightGray" Width="1200">
+                                    <StackPanel Orientation="Horizontal" Background="LightGray" 
+                                                Width="1200">
                                         <TextBlock Text="{Binding}" Margin="10,3,3,3" Foreground="Black" FontSize="16"/>
                                     </StackPanel>
                                 </DataTemplate>
