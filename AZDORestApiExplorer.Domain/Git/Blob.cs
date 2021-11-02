@@ -28,7 +28,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
+            public Domain.Git.GitRepository Repository;
 
             // public Domain.Core.Team Team;
 

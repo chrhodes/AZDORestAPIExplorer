@@ -4,7 +4,7 @@
     {
         public int ClassificationNodeDepth { get; set; }
         public string ClassificationNodeIds { get; set; }
-        public Domain.Git.Commit SelectedCommit { get; set; }
+
         public Domain.Dashboard.Dashboard SelectedDashboard { get; set; }
         public Domain.Core.Process SelectedProcess { get; set; }
 
@@ -19,8 +19,11 @@
 
         // Repository
 
+        // Git
+
+        public Domain.Git.Commit SelectedCommit { get; set; }
         public Domain.Git.PullRequest SelectedPullRequest { get; set; }
-        public Domain.Git.Repository SelectedRepository { get; set; }
+        public Domain.Git.GitRepository SelectedGitRepository { get; set; }
 
         public Domain.Core.Team SelectedTeam { get; set; }
 

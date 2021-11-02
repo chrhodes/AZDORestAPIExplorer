@@ -93,8 +93,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 {
                     Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + $"git/repositories/{args.Repository.id}/commits/{args.Commit.commitId}/changes"
                         + "?api-version=6.1-preview.1";

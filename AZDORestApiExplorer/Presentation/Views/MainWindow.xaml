@@ -94,17 +94,18 @@
                             until we figure out how to make this easy to navigate-->
 
                         <!--<dxdo:LayoutPanel Caption="Build">
-                            <local:BuildMain />
-                        </dxdo:LayoutPanel>
-
-                        <dxdo:LayoutPanel Caption="Git">
-                            <local:GitMain />
+                            <local:BuildArea />
                         </dxdo:LayoutPanel>-->
 
-                        <dxdo:LayoutPanel Caption="Graph" 
+                        <dxdo:LayoutPanel Caption="Git"
+                                            Style="{StaticResource DragableLayoutPanel}" >
+                            <local:GitArea />
+                        </dxdo:LayoutPanel>
+
+                        <!--<dxdo:LayoutPanel Caption="Graph" 
                                           Style="{StaticResource DragableLayoutPanel}" >
                             <local:GraphArea />
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                     </dxdo:LayoutGroup>
 
@@ -226,9 +227,9 @@
                             <local:DashboardArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
+                        <!--<dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:GitArea />
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                         <dxdo:LayoutPanel Caption="Test" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:TestArea />

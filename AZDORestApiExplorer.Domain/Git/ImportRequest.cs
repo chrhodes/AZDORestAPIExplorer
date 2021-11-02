@@ -27,7 +27,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
+            public Domain.Git.GitRepository Repository;
 
             // public Domain.Core.Team Team;
 
@@ -46,7 +46,7 @@ namespace AZDORestApiExplorer.Domain.Git
     public class ImportRequest
     {
         public int importRequestId { get; set; }
-        public Repository repository { get; set; }
+        public GitRepository repository { get; set; }
         public Parameters parameters { get; set; }
         public string status { get; set; }
         public Detailedstatus detailedStatus { get; set; }

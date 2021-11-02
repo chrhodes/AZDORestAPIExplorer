@@ -52,9 +52,9 @@
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BlobMainRegion}" />
         </dxlc:LayoutGroup>-->
 
-        <dxlc:LayoutGroup Header="Commits" >
+        <!--<dxlc:LayoutGroup Header="Commits" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Commit Changes" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
@@ -72,9 +72,9 @@
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MergeMainRegion}" />
         </dxlc:LayoutGroup>-->
 
-        <dxlc:LayoutGroup Header="Pull Requests" >
+        <!--<dxlc:LayoutGroup Header="Pull Requests" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Header="Pushes" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />

@@ -29,7 +29,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
+            public Domain.Git.GitRepository Repository;
 
             // public Domain.Core.Team Team;
 
@@ -53,6 +53,8 @@ namespace AZDORestApiExplorer.Domain.Git
         public int behindCount { get; set; }
         public bool isBaseVersion { get; set; }
 
+        #region Nested Classes
+
         public class Commit
         {
             public string commitId { get; set; }
@@ -64,5 +66,7 @@ namespace AZDORestApiExplorer.Domain.Git
             public string[] parents { get; set; }
             public bool commentTruncated { get; set; }
         }
+
+        #endregion
     }
 }

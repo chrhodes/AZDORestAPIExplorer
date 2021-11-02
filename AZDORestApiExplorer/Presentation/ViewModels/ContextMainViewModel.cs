@@ -152,11 +152,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void RepositoryChanged(Repository repository)
+        private void RepositoryChanged(GitRepository repository)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Context.SelectedRepository = repository;
+            Context.SelectedGitRepository = repository;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

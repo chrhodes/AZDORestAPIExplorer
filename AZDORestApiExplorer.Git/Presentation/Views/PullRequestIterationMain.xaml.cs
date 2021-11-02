@@ -11,10 +11,11 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class RepositoryMain : ViewBase, IInstanceCountV
+    public partial class PullRequestIterationMain : ViewBase, IInstanceCountV
     {
 
-        public RepositoryMain(DomainViewModel<GitRepository, GetRepositoriesEvent, GetRepositoriesEventArgs, SelectedRepositoryChangedEvent> viewModel)
+        public PullRequestIterationMain(
+            DomainViewModel<PullRequestIteration, GetPullRequestIterationsEvent, GetPullRequestIterationsEventArgs, SelectedPullRequestIterationChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

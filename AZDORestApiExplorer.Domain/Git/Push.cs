@@ -24,15 +24,9 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public Organization Organization;
 
-            // public Domain.Core.Process Process;
-
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
-
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
+            public Domain.Git.GitRepository Repository;
         }
 
         public class SelectedPushChangedEvent : PubSubEvent<Push> { }
@@ -45,7 +39,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
     public class Push
     {
-        public Repository repository { get; set; }
+        public GitRepository repository { get; set; }
         public Pushedby pushedBy { get; set; }
         public int pushId { get; set; }
         public DateTime date { get; set; }

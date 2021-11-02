@@ -418,7 +418,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void RaiseRepositoryChanged(Repository repository)
+        private void RaiseRepositoryChanged(GitRepository repository)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
@@ -1452,7 +1452,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ,
                     Project = _contextMainViewModel.Context.SelectedProject
                     ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1463,7 +1463,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1498,7 +1498,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ,
                     Project = _contextMainViewModel.Context.SelectedProject
                     ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1509,7 +1509,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1544,7 +1544,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ,
                     Project = _contextMainViewModel.Context.SelectedProject
                     ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     ,
                     Commit = _contextMainViewModel.Context.SelectedCommit
                     //, Team = _contextMainViewModel.Context.SelectedTeam
@@ -1557,7 +1557,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null
+                || _contextMainViewModel.Context.SelectedGitRepository is null
                 || _contextMainViewModel.Context.SelectedCommit is null)
             {
                 return false;
@@ -1589,11 +1589,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetImportRequestsEvent>().Publish(
                 new Domain.Git.Events.GetImportRequestsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1604,7 +1602,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1640,7 +1638,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
                     , ScopePath = ScopePath
                     , RecursionLevel = RecursionLevel
                     //, Team = _contextMainViewModel.Context.SelectedTeam
@@ -1653,7 +1651,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1688,7 +1686,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     ,
                     Project = _contextMainViewModel.Context.SelectedProject
                     ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1699,7 +1697,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1732,7 +1730,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -1743,7 +1741,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -1772,7 +1770,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedRepository
+                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
                     , PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -1797,16 +1795,12 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestCommitsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
@@ -1829,14 +1823,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestIterationsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -1863,12 +1854,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -1895,12 +1883,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -1925,14 +1910,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestReviewersEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -1944,7 +1926,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null
+                || _contextMainViewModel.Context.SelectedGitRepository is null
                 || _contextMainViewModel.Context.SelectedPullRequest is null)
             {
                 return false;
@@ -1972,12 +1954,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -2004,12 +1983,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -2034,14 +2010,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestWorkItemsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestWorkItemsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -2072,11 +2045,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPushesEvent>().Publish(
                 new Domain.Git.Events.GetPushesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -2087,7 +2058,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -2118,11 +2089,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetRefsEvent>().Publish(
                 new Domain.Git.Events.GetRefsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -2133,7 +2102,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }
@@ -2164,11 +2133,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetStatsEvent>().Publish(
                 new Domain.Git.Events.GetStatsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedRepository
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -2179,7 +2146,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedRepository is null)
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
             {
                 return false;
             }

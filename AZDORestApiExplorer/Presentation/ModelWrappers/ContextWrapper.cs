@@ -68,9 +68,9 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
-        public Repository SelectedRepository
+        public GitRepository SelectedGitRepository
         {
-            get { return GetValue<Repository>(); }
+            get { return GetValue<GitRepository>(); }
             set { SetValue(value); }
         }
 

@@ -20,44 +20,25 @@ namespace AZDORestApiExplorer.Domain.Git
     {
         public class GetProjectRepositoriesEvent : PubSubEvent<GetRepositoriesEventArgs> { }
 
-        //public class GetProjectRepositoriesEventArgs
-        //{
-        //    public Organization Organization;
-
-        //    // public Domain.Core.Process Process;
-
-        //    public Domain.Core.Project Project;
-
-        //    // public Domain.Core.Team Team;
-
-        //    // public WorkItemType WorkItemType;
-        //}
-
         public class GetRepositoriesEvent : PubSubEvent<GetRepositoriesEventArgs> { }
 
         public class GetRepositoriesEventArgs
         {
             public Organization Organization;
 
-            // public Domain.Core.Process Process;
-
             public Domain.Core.Project Project;
-
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
         }
 
-        public class SelectedRepositoryChangedEvent : PubSubEvent<Repository> { }
+        public class SelectedRepositoryChangedEvent : PubSubEvent<GitRepository> { }
     }
 
-    public class RepositoriesRoot
+    public class GitRepositories
     {
         public int count { get; set; }
-        public Repository[] value { get; set; }
+        public GitRepository[] value { get; set; }
     }
 
-    public class Repository
+    public class GitRepository
     {
         public string defaultBranch { get; set; }
         public string id { get; set; }
@@ -72,50 +53,9 @@ namespace AZDORestApiExplorer.Domain.Git
         public string url { get; set; }
         public string webUrl { get; set; }
 
-        public RESTResult<Repository> Results { get; set; } = new RESTResult<Repository>();
+        public RESTResult<GitRepository> Results { get; set; } = new RESTResult<GitRepository>();
 
-        //// TODO(crhodes)
-        //// Not sure how this can be called.
-        //public async Task<RESTResult<Repository>> GetProjectRepositories(GetProjectRepositoriesEventArgs args)
-        //{
-        //    Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
-
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        Results.InitializeHttpClient(client, args.Organization.PAT);
-
-        //        var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-        //            + $"git/repositories"
-        //            + "?api-version=6.1-preview.1";
-
-        //        var exchange = Results.InitializeExchange(client, requestUri);
-
-        //        using (HttpResponseMessage response = await client.GetAsync(requestUri))
-        //        {
-        //            Results.RecordExchangeResponse(response, exchange);
-
-        //            response.EnsureSuccessStatusCode();
-
-        //            string outJson = await response.Content.ReadAsStringAsync();
-
-        //            RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
-
-        //            Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
-
-        //            IEnumerable<string> continuationHeaders = default;
-
-        //            bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-        //            Results.Count = Results.ResultItems.Count;
-        //        }
-        //    }
-
-        //    Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
-
-        //    return Results;
-        //}
-
-        public async Task<RESTResult<Repository>> GetList(GetRepositoriesEventArgs args)
+        public async Task<RESTResult<GitRepository>> GetList(GetRepositoriesEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
 
@@ -152,9 +92,9 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    RepositoriesRoot resultRoot = JsonConvert.DeserializeObject<RepositoriesRoot>(outJson);
+                    GitRepositories resultRoot = JsonConvert.DeserializeObject<GitRepositories>(outJson);
 
-                    Results.ResultItems = new ObservableCollection<Repository>(resultRoot.value);
+                    Results.ResultItems = new ObservableCollection<GitRepository>(resultRoot.value);
 
                     IEnumerable<string> continuationHeaders = default;
 

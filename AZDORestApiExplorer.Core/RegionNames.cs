@@ -103,11 +103,16 @@ namespace AZDORestApiExplorer.Core
         public static string ImportRequestMainRegion = "ImportRequestMainRegion";
         public static string ItemMainRegion = "ItemMainRegion";
         public static string MergeMainRegion = "MergeMainRegion";
+
         public static string PullRequestMainRegion = "PullRequestMainRegion";
+        public static string PullRequestCommitMainRegion = "PullRequestCommitMainRegion";
+        public static string PullRequestIterationMainRegion = "PullRequestIterationMainRegion";
+        public static string PullRequestReviewerMainRegion = "PullRequestReviewerMainRegion";
+        public static string PullRequestWorkItemMainRegion = "PullRequestWorkItemMainRegion";
+
         public static string PushMainRegion = "PushMainRegion";
         public static string StatMainRegion = "StatMainRegion";
         public static string RefMainRegion = "RefMainRegion";
-        public static string PullRequestWorkItemMainRegion = "PullRequestWorkItemMainRegion";
 
         //
         // Graph Area

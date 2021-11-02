@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
+            public Domain.Git.GitRepository Repository;
 
             // public Domain.Core.Team Team;
 
@@ -64,11 +65,9 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                // TODO(crhodes)
-                // Update Uri  Use args for parameters.
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"git/repositories/{args.Repository.id}/commits"
-                    + "?api-version=6.1-preview.1";
+                    + $"git/repositories/{args.Repository.id}/commits?$top=100"
+                    + "&api-version=6.1-preview.1";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 
@@ -84,9 +83,47 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     Results.ResultItems = new ObservableCollection<Commit>(resultRoot.value);
 
-                    IEnumerable<string> continuationHeaders = default;
+                    IEnumerable<string> resonseHeaderValues;
 
-                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                    bool hasMoreResults = false;
+
+                    if (response.Headers.TryGetValues("link", out resonseHeaderValues))
+                    {
+                        hasMoreResults = resonseHeaderValues.First().Contains("next");
+                    }
+
+                    int itemsToSkip = 100;
+
+                    while (hasMoreResults)
+                    {
+                        var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                            + $"git/repositories/{args.Repository.id}/commits?$top=100&$skip={itemsToSkip}"
+                            + "&api-version=6.1-preview.1";
+
+                        var exchange2 = Results.ContinueExchange(client, requestUri2);
+
+                        using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                        {
+                            Results.RecordExchangeResponse(response2, exchange2);
+
+                            response2.EnsureSuccessStatusCode();
+                            string outJson2 = await response2.Content.ReadAsStringAsync();
+
+                            CommitsRoot resultRoot2C = JsonConvert.DeserializeObject<CommitsRoot>(outJson2);
+
+                            Results.ResultItems.AddRange(resultRoot2C.value);
+
+                            if (response2.Headers.TryGetValues("link", out resonseHeaderValues))
+                            {
+                                hasMoreResults = resonseHeaderValues.First().Contains("next");
+                                itemsToSkip += 100;
+                            }
+                            else
+                            {
+                                hasMoreResults = false;
+                            }
+                        }
+                    }
 
                     Results.Count = Results.ResultItems.Count;
                 }

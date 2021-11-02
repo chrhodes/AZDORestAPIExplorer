@@ -61,7 +61,7 @@ namespace AZDORestApiExplorer.Domain.Core
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 var requestUri = $"{args.Organization.Uri}/_apis/"
-                    + "teams?$top=500"
+                    + "teams?$top=100"
                     + "&api-version=6.1-preview.3";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
@@ -78,38 +78,43 @@ namespace AZDORestApiExplorer.Domain.Core
 
                     Results.ResultItems = new ObservableCollection<Team>(resultRoot.value);
 
-                    IEnumerable<string> continuationHeaders = default;
+                    bool hasMoreResults = false;
 
-                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                    while (hasContinuationToken)
+                    if (resultRoot.count == 100)
                     {
-                        //RequestResponseInfo exchange2 = new RequestResponseInfo();
+                        hasMoreResults = true;
+                    }
 
-                        string continueToken = continuationHeaders.First();
+                    int itemsToSkip = 100;
 
-                        string requestUri2 = $"{args.Organization.Uri}/_apis/"
-                            + "projects?continuationToken={continueToken}"
-                            + "&api-version=6.1-preview.4";
+                    while (hasMoreResults)
+                    {
+                        var requestUri2 = $"{args.Organization.Uri}/_apis/"
+                            + $"teams?$top=100&$skip={itemsToSkip}"
+                            + "&api-version=6.1-preview.3";
 
-                        //exchange2.Uri = requestUri2;
-                        //exchange2.RequestHeadersX.AddRange(client.DefaultRequestHeaders);
+                        var exchange2 = Results.ContinueExchange(client, requestUri2);
 
                         using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
                         {
-                            //exchange2.Response = response2;
-                            //exchange2.ResponseHeadersX.AddRange(response2.Headers);
-
-                            //RequestResponseExchange.Add(exchange2);
+                            Results.RecordExchangeResponse(response2, exchange2);
 
                             response2.EnsureSuccessStatusCode();
                             string outJson2 = await response2.Content.ReadAsStringAsync();
 
-                            TeamsRoot resultRootC = JsonConvert.DeserializeObject<TeamsRoot>(outJson2);
+                            TeamsRoot resultRoot2C = JsonConvert.DeserializeObject<TeamsRoot>(outJson2);
 
-                            Results.ResultItems.AddRange(resultRootC.value);
+                            Results.ResultItems.AddRange(resultRoot2C.value);
 
-                            hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                            if (resultRoot2C.count == 100)
+                            {
+                                hasMoreResults = true;
+                                itemsToSkip += 100;
+                            }
+                            else
+                            {
+                                hasMoreResults = false;
+                            }
                         }
                     }
 

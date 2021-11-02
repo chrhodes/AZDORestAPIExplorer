@@ -59,6 +59,11 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.Register<PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<PullRequestMain>();
 
+            containerRegistry.RegisterSingleton<PullRequestCommitMain>();
+            containerRegistry.RegisterSingleton<PullRequestIterationMain>();
+            containerRegistry.RegisterSingleton<PullRequestReviewerMain>();
+            containerRegistry.RegisterSingleton<PullRequestWorkItemMain>();
+
             containerRegistry.Register<PushMainViewModel>();
             containerRegistry.RegisterSingleton<PushMain>();
 
@@ -102,6 +107,10 @@ namespace AZDORestApiExplorer.Git
             _regionManager.RegisterViewWithRegion(RegionNames.MergeMainRegion, typeof(MergeMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestMainRegion, typeof(PullRequestMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestCommitMainRegion, typeof(PullRequestCommitMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestIterationMainRegion, typeof(PullRequestIterationMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestReviewerMainRegion, typeof(PullRequestReviewerMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestWorkItemMainRegion, typeof(PullRequestWorkItemMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.PushMainRegion, typeof(PushMain));
 

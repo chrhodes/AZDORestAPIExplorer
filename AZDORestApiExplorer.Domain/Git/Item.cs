@@ -23,19 +23,13 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public Organization Organization;
 
-            // public Domain.Core.Process Process;
-
             public Domain.Core.Project Project;
 
-            public Domain.Git.Repository Repository;
+            public Domain.Git.GitRepository Repository;
 
             public string ScopePath;
 
             public string RecursionLevel;
-
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
         }
 
         public class SelectedItemChangedEvent : PubSubEvent<Item> { }

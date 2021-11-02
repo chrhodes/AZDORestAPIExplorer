@@ -256,12 +256,12 @@
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource RepositoryColor}">
 
-                            <dxlc:LayoutItem>
+                            <!--<dxlc:LayoutItem>
                                 <Button
                                     Command="{Binding GetBlobsCommand }"
                                     Content="{Binding GetBlobsContent, FallbackValue='GetBlobs' }"
                                     ToolTip="{Binding GetBlobsToolTip, FallbackValue='GetBlobs ToolTip' }" />
-                            </dxlc:LayoutItem>
+                            </dxlc:LayoutItem>-->
 
                             <dxlc:LayoutItem>
                                 <Button
@@ -302,7 +302,7 @@
                                             <!--<dxe:RadioTokenComboBoxStyleSettings />-->
                                             <!--<dxe:TokenComboBoxStyleSettings />-->
                                         </dxe:ComboBoxEdit.StyleSettings>
-                                        <dxe:ComboBoxEditItem Content="None" />
+                                        <dxe:ComboBoxEditItem Content="None" IsSelected="True" />
                                         <dxe:ComboBoxEditItem Content="OneLevel" />
                                         <dxe:ComboBoxEditItem Content="Full" />
                                     </dxe:ComboBoxEdit>
@@ -324,7 +324,7 @@
                                     ToolTip="{Binding GetMergesToolTip, FallbackValue='GetMerges ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutGroup Header="Pull Requests" IsCollapsed="True" IsCollapsible="True"
+                            <dxlc:LayoutGroup Header="Pull Requests" IsCollapsed="False" IsCollapsible="True"
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource CommitColor}">
 

@@ -10,6 +10,9 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
+    
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
@@ -26,393 +29,284 @@
 
     <dxlc:LayoutControl Orientation="Vertical">
 
-    <dxlc:LayoutGroup Header="Pull Requests" >
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <!--<RowDefinition Height="Auto" />-->
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" 
+            <dxlc:LayoutGroup Header="Pull Requests" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <!--<RowDefinition Height="Auto" />-->
+                    </Grid.RowDefinitions>
+
+                    <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" 
                                             Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-            <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                    ItemsSource="{Binding Results.ResultItems}"
-                    SelectedItem="{Binding Results.SelectedItem}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="pullRequestId" />
-                <dxg:GridColumn FieldName="codeReviewId" />
-                <dxg:GridColumn FieldName="status" />
-                <dxg:GridColumn FieldName="createdBy.uniqueName" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="creationDate" />
-                <!--<dxg:GridColumn FieldName="url" />-->
-            </dxg:GridControl>
+                    <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                        ItemsSource="{Binding Results.ResultItems}"
+                        SelectedItem="{Binding Results.SelectedItem}"
+                        FontSize="12"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <dxe:TextEdit Grid.Row="2"
+                        <dxg:GridColumn FieldName="pullRequestId" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="codeReviewId" />
+                        <dxg:GridColumn FieldName="status" BestFitModeOnSourceChange="VisibleRows" />
+                        <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <!--<dxg:GridColumn FieldName="url" />-->
+                        
+                    </dxg:GridControl>
+
+                    <dxe:TextEdit Grid.Row="2"
                     Text="{Binding Results.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
-        </Grid>
+                </Grid>
 
-    </dxlc:LayoutGroup>
-    
-    <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs">
-        
-        <dxlc:LayoutGroup.GroupBoxStyle>
-            <Style TargetType="dxlc:GroupBox">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="TitleVisibility" Value="Collapsed" />
-            </Style>
-        </dxlc:LayoutGroup.GroupBoxStyle>
+            </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Attachments" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical"  View="Tabs" >
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderAttachments" Grid.Row="0" 
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="TitleVisibility" Value="Collapsed" />
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+
+                <dxlc:LayoutGroup Header="Attachments" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderAttachments" Grid.Row="0" 
                                             Count="{Binding ResultsAttachments.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsAttachments" Grid.Row="1"
+                        <dxg:GridControl x:Name="grdResultsAttachments" Grid.Row="1"
                     ItemsSource="{Binding ResultsAttachments.ResultItems}"
                     SelectedItem="{Binding ResultsAttachments.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="title" />
-                    <dxg:GridColumn FieldName="description" />
-                    <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="codeReviewId" />
-                    <dxg:GridColumn FieldName="status" />
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                    <dxg:GridColumn FieldName="creationDate" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+                            
+                            <dxg:GridColumn FieldName="pullRequestId" />                            
+                            <dxg:GridColumn FieldName="title" />
+                            <dxg:GridColumn FieldName="description" />
+                            <dxg:GridColumn FieldName="codeReviewId" />
+                            <dxg:GridColumn FieldName="status" />
+                            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+                            <dxg:GridColumn FieldName="creationDate" Header="Creation Date">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <!--<dxg:GridColumn FieldName="url" />-->
+                        </dxg:GridControl>
 
-                <dxe:TextEdit Grid.Row="2"
+                        <dxe:TextEdit Grid.Row="2"
                     Text="{Binding ResultsAttachments.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
-            </Grid>
+                        <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
+                    </Grid>
 
-        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Commits" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <dxlc:LayoutGroup Header="Commits" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitMainRegion}" />
+                </dxlc:LayoutGroup>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0"
-                                            Count="{Binding ResultsCommits.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsCommits" Grid.Row="1"
-                    ItemsSource="{Binding ResultsCommits.ResultItems}"
-                    SelectedItem="{Binding SelectedCommit}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="commitId" />
-                        <dxg:GridColumn FieldName="author.name" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="committer.name" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="comment" BestFitModeOnSourceChange="VisibleRows"/>
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+                <dxlc:LayoutGroup Header="Iterations" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationMainRegion}" />
+                </dxlc:LayoutGroup>
+                
+                <dxlc:LayoutGroup Header="Labels" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <dxe:TextEdit Grid.Row="2"
-                    Text="{Binding ResultsCommits.SelectedItem.url}"
-                    TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
-
-                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
-            </Grid>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Iterations" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" 
-                                            Count="{Binding ResultsIterations.Count, Mode=TwoWay}"/>
-
-                <dxg:GridControl x:Name="grdResultsIterations" Grid.Row="1"
-                    ItemsSource="{Binding ResultsIterations.ResultItems}"
-                    SelectedItem="{Binding ResultsIterations.SelectedItem}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <dxg:GridColumn FieldName="author.uniqueName" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="commonRefCommit.commitId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="createdDate" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="hasMoreCommits" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="id" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="push.pushId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="reason" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="updatedDate" BestFitModeOnSourceChange="VisibleRows"/>
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
-
-                <dxe:TextEdit Grid.Row="2"
-                    Text="{Binding ResultsIterations.SelectedItem.url}"
-                    TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
-
-                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
-            </Grid>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Labels" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderLabels" Grid.Row="0" 
+                        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderLabels" Grid.Row="0" 
                                             Count="{Binding ResultsLabels.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsLabels" Grid.Row="1"
+                        <dxg:GridControl x:Name="grdResultsLabels" Grid.Row="1"
                     ItemsSource="{Binding ResultsLabels.ResultItems}"
                     SelectedItem="{Binding ResultsLabels.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="title" />
-                    <dxg:GridColumn FieldName="description" />
-                    <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="codeReviewId" />
-                    <dxg:GridColumn FieldName="status" />
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                    <dxg:GridColumn FieldName="creationDate" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+                            <dxg:GridColumn FieldName="title" />
+                            <dxg:GridColumn FieldName="description" />
+                            <dxg:GridColumn FieldName="pullRequestId" />
+                            <dxg:GridColumn FieldName="codeReviewId" />
+                            <dxg:GridColumn FieldName="status" />
+                            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+                            <dxg:GridColumn FieldName="creationDate" />
+                            <!--<dxg:GridColumn FieldName="url" />-->
+                        </dxg:GridControl>
 
-                <dxe:TextEdit Grid.Row="2"
+                        <dxe:TextEdit Grid.Row="2"
                     Text="{Binding ResultsLabels.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
-            </Grid>
+                        <!--<TextBlock Text="{Binding Message}" Grid.Row="3" />-->
+                    </Grid>
 
-        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Properties" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <dxlc:LayoutGroup Header="Properties" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderProperties" Grid.Row="0"
+                        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderProperties" Grid.Row="0"
                                             Count="{Binding ResultsProperties.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsProperties" Grid.Row="1"
+                        <dxg:GridControl x:Name="grdResultsProperties" Grid.Row="1"
                     ItemsSource="{Binding ResultsProperties.ResultItems}"
                     SelectedItem="{Binding ResultsProperties.SelectedItem.value}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <dxg:GridColumn FieldName="value.MicrosoftGitPullRequestIsDraft.type" />
-                        <dxg:GridColumn FieldName="value.MicrosoftGitPullRequestIsDraft.value" />
-                        <dxg:GridColumn FieldName="MicrosoftGitPullRequestSourceRefName.type" />
-                        <dxg:GridColumn FieldName="MicrosoftGitPullRequestSourceRefName.value" />
-                        <dxg:GridColumn FieldName="MicrosoftGitPullRequestTargetRefName.type" />
-                        <dxg:GridColumn FieldName="MicrosoftGitPullRequestTargetRefName.value" />                    
+                            <dxg:GridColumn FieldName="value.MicrosoftGitPullRequestIsDraft.type" />
+                            <dxg:GridColumn FieldName="value.MicrosoftGitPullRequestIsDraft.value" />
+                            <dxg:GridColumn FieldName="MicrosoftGitPullRequestSourceRefName.type" />
+                            <dxg:GridColumn FieldName="MicrosoftGitPullRequestSourceRefName.value" />
+                            <dxg:GridColumn FieldName="MicrosoftGitPullRequestTargetRefName.type" />
+                            <dxg:GridColumn FieldName="MicrosoftGitPullRequestTargetRefName.value" />
 
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+                            <!--<dxg:GridColumn FieldName="url" />-->
+                        </dxg:GridControl>
 
-                <dxe:TextEdit Grid.Row="2"
+                        <dxe:TextEdit Grid.Row="2"
                     Text="{Binding ResultsProperties.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
-            </Grid>
+                        <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                    </Grid>
 
-        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Reviewers" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <dxlc:LayoutGroup Header="Reviewers" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestReviewerMainRegion}" />
+                </dxlc:LayoutGroup>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderReviewers" Grid.Row="0"
-                                            Count="{Binding ResultsReviewers.Count, Mode=TwoWay}"/>
+                <dxlc:LayoutGroup Header="Statuses" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <dxg:GridControl x:Name="grdResultsReviewers" Grid.Row="1"
-                    ItemsSource="{Binding ResultsReviewers.ResultItems}"
-                    SelectedItem="{Binding ResultsReviewers.SelectedItem}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    
-                    <dxg:GridColumn FieldName="displayName" />
-                    <dxg:GridColumn FieldName="uniqueName" />
-                    <dxg:GridColumn FieldName="isRequired" />
-                    <dxg:GridColumn FieldName="vote" />
-                    <dxg:GridColumn FieldName="hasDeclined" />
-                    <dxg:GridColumn FieldName="isFlagged" />
-                    
-                </dxg:GridControl>
-
-                <dxe:TextEdit Grid.Row="2"
-                    Text="{Binding ResultsReviewers.SelectedItem.url}"
-                    TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
-
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
-            </Grid>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup Header="Statuses" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderStatuses" Grid.Row="0" 
+                        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderStatuses" Grid.Row="0" 
                                             Count="{Binding ResultsStatuses.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsStatuses" Grid.Row="1"
+                        <dxg:GridControl x:Name="grdResultsStatuses" Grid.Row="1"
                     ItemsSource="{Binding ResultsStatuses.ResultItems}"
                     SelectedItem="{Binding ResultsStatuses.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    
-                    <dxg:GridColumn FieldName="title" />
-                    <dxg:GridColumn FieldName="description" />
-                    <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="codeReviewId" />
-                    <dxg:GridColumn FieldName="status" />
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                    <dxg:GridColumn FieldName="creationDate" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                    
-                </dxg:GridControl>
 
-                <dxe:TextEdit Grid.Row="2"
+                            <dxg:GridColumn FieldName="title" />
+                            <dxg:GridColumn FieldName="description" />
+                            <dxg:GridColumn FieldName="pullRequestId" />
+                            <dxg:GridColumn FieldName="codeReviewId" />
+                            <dxg:GridColumn FieldName="status" />
+                            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+                            <dxg:GridColumn FieldName="creationDate" />
+                            <!--<dxg:GridColumn FieldName="url" />-->
+
+                        </dxg:GridControl>
+
+                        <dxe:TextEdit Grid.Row="2"
                     Text="{Binding ResultsStatuses.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
-            </Grid>
+                        <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                    </Grid>
 
-        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Threads" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <dxlc:LayoutGroup Header="Threads" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderThreads" Grid.Row="0"
+                        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderThreads" Grid.Row="0"
                                             Count="{Binding ResultsThreads.Count, Mode=TwoWay}"/>
 
-                <dxg:GridControl x:Name="grdResultsThreads" Grid.Row="1"
+                        <dxg:GridControl x:Name="grdResultsThreads" Grid.Row="1"
                     ItemsSource="{Binding ResultsThreads.ResultItems}"
                     SelectedItem="{Binding ResultsThreads.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="title" />
-                    <dxg:GridColumn FieldName="description" />
-                    <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="codeReviewId" />
-                    <dxg:GridColumn FieldName="status" />
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                    <dxg:GridColumn FieldName="creationDate" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+                            <dxg:GridColumn FieldName="title" />
+                            <dxg:GridColumn FieldName="description" />
+                            <dxg:GridColumn FieldName="pullRequestId" />
+                            <dxg:GridColumn FieldName="codeReviewId" />
+                            <dxg:GridColumn FieldName="status" />
+                            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+                            <dxg:GridColumn FieldName="creationDate" />
+                            <!--<dxg:GridColumn FieldName="url" />-->
+                        </dxg:GridControl>
 
-                <dxe:TextEdit Grid.Row="2"
+                        <dxe:TextEdit Grid.Row="2"
                     Text="{Binding ResultsThreads.SelectedItem.url}"
                     TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
 
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
-            </Grid>
+                        <TextBlock Text="{Binding Message}" Grid.Row="3" />
+                    </Grid>
 
-        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="WorkItems" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <dxlc:LayoutGroup Header="WorkItems" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestWorkItemMainRegion}" />
+                </dxlc:LayoutGroup>
 
-                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderWorkItems" Grid.Row="0"
-                                            Count="{Binding ResultsWorkItems.Count, Mode=TwoWay}"/>
+            </dxlc:LayoutGroup>
 
-                <dxg:GridControl x:Name="grdResultsWorkItems" Grid.Row="1"
-                    ItemsSource="{Binding ResultsWorkItems.ResultItems}"
-                    SelectedItem="{Binding ResultsWorkItems.SelectedItem}"
-                    FontSize="12"
-                    ScrollViewer.CanContentScroll="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <dxg:GridColumn FieldName="id" />
-                    <!--<dxg:GridColumn FieldName="url" />-->
-                </dxg:GridControl>
+        </Grid>
 
-                <dxe:TextEdit Grid.Row="2"
-                    Text="{Binding ResultsWorkItems.SelectedItem.url}"
-                    TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto" />
-
-                <TextBlock Text="{Binding Message}" Grid.Row="3" />
-            </Grid>
-
-        </dxlc:LayoutGroup>
-
-    </dxlc:LayoutGroup>
-    
     </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

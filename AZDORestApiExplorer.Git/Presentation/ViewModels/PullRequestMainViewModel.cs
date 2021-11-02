@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 
 using AZDORestApiExplorer.Core.Events;
@@ -18,8 +19,6 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Core.Net;
-
-using static AZDORestApiExplorer.Domain.Git.PullRequestProperties;
 
 namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 {
@@ -45,14 +44,12 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             EventAggregator.GetEvent<GetPullRequestsEvent>().Subscribe(GetPullRequests);
 
             EventAggregator.GetEvent<GetPullRequestAttachmentsEvent>().Subscribe(GetPullRequestAttachments);
-            EventAggregator.GetEvent<GetPullRequestCommitsEvent>().Subscribe(GetPullRequestCommits);
-            EventAggregator.GetEvent<GetPullRequestIterationsEvent>().Subscribe(GetPullRequestIterations);
+
             EventAggregator.GetEvent<GetPullRequestLabelsEvent>().Subscribe(GetPullRequestLabels);
             EventAggregator.GetEvent<GetPullRequestPropertiesEvent>().Subscribe(GetPullRequestProperties);
-            EventAggregator.GetEvent<GetPullRequestReviewersEvent>().Subscribe(GetPullRequestReviewers);
+
             EventAggregator.GetEvent<GetPullRequestStatusesEvent>().Subscribe(GetPullRequestStatuses);
             EventAggregator.GetEvent<GetPullRequestThreadsEvent>().Subscribe(GetPullRequestThreads);
-            EventAggregator.GetEvent<GetPullRequestWorkItemsEvent>().Subscribe(GetPullRequestWorkItems);
 
             this.Results.PropertyChanged += PublishSelectionChanged;
 
@@ -66,43 +63,44 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
         public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
 
         public RESTResult<PullRequest> ResultsAttachments { get; set; } = new RESTResult<PullRequest>();
-        public RESTResult<PullRequestCommitsRoot.Commit> ResultsCommits { get; set; } = new RESTResult<PullRequestCommitsRoot.Commit>();
 
-        private PullRequestCommitsRoot.Commit _selectedCommit;
+        //public RESTResult<PullRequestCommit> ResultsCommits { get; set; } = new RESTResult<PullRequestCommit>();
 
-        public PullRequestCommitsRoot.Commit SelectedCommit
-        {
-            get => _selectedCommit;
-            set
-            {
-                if (_selectedCommit == value)
-                    return;
+        //private PullRequestCommit _selectedCommit;
 
-                // HACK(crhodes)
-                // Until we figure out what to do with different class definitions of a (likely) common thing.
-                // new up a Domain.Git commit and pass it along
+        //public PullRequestCommitsRoot.Commit SelectedCommit
+        //{
+        //    get => _selectedCommit;
+        //    set
+        //    {
+        //        if (_selectedCommit == value)
+        //            return;
 
-                Domain.Git.Commit commit = new Domain.Git.Commit();
+        //        // HACK(crhodes)
+        //        // Until we figure out what to do with different class definitions of a (likely) common thing.
+        //        // new up a Domain.Git commit and pass it along
 
-                commit.author = value.author;
-                commit.comment = value.comment;
-                commit.committer = value.committer;
-                commit.commitId = value.commitId;
-                commit.url = value.url;
+        //        Domain.Git.Commit commit = new Domain.Git.Commit();
 
-                EventAggregator.GetEvent<SelectedCommitChangedEvent>().Publish(commit);
-                //_selectedCommit = value;
-                //OnPropertyChanged();
-            }
-        }
+        //        commit.author = value.author;
+        //        commit.comment = value.comment;
+        //        commit.committer = value.committer;
+        //        commit.commitId = value.commitId;
+        //        commit.url = value.url;
 
-        public RESTResult<PullRequestIterations.Value> ResultsIterations { get; set; } = new RESTResult<PullRequestIterations.Value>();
+        //        EventAggregator.GetEvent<SelectedCommitChangedEvent>().Publish(commit);
+        //        //_selectedCommit = value;
+        //        //OnPropertyChanged();
+        //    }
+        //}
+
+        public RESTResult<PullRequestIterations> ResultsIterations { get; set; } = new RESTResult<PullRequestIterations>();
         public RESTResult<PullRequest> ResultsLabels { get; set; } = new RESTResult<PullRequest>();
         public RESTResult<PullRequestProperties> ResultsProperties { get; set; } = new RESTResult<PullRequestProperties>();
-        public RESTResult<ReviewersRoot.Value> ResultsReviewers { get; set; } = new RESTResult<ReviewersRoot.Value>();
+        public RESTResult<PullRequestReviewer> ResultsReviewers { get; set; } = new RESTResult<PullRequestReviewer>();
         public RESTResult<PullRequest> ResultsStatuses { get; set; } = new RESTResult<PullRequest>();
         public RESTResult<PullRequest> ResultsThreads { get; set; } = new RESTResult<PullRequest>();
-        public RESTResult<WorkItemsRoot.Value> ResultsWorkItems { get; set; } = new RESTResult<WorkItemsRoot.Value>();
+        public RESTResult<PullRequestWorkItem> ResultsWorkItems { get; set; } = new RESTResult<PullRequestWorkItem>();
 
         #endregion Fields and Properties
 
@@ -124,10 +122,8 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 {
                     Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all"
+                        + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100"
                         + "&api-version=6.1-preview.1";
 
                     var exchange = Results.InitializeExchange(client, requestUri);
@@ -140,15 +136,49 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        JObject o = JObject.Parse(outJson);
-
                         PullRequestsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson);
 
                         Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
 
-                        IEnumerable<string> continuationHeaders = default;
+                        bool hasMoreResults = false;
 
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                        if (resultRoot.count == 100)
+                        {
+                            hasMoreResults = true;
+                        }
+
+                        int itemsToSkip = 100;
+
+                        while (hasMoreResults)
+                        {
+                            var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                                + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100&$skip={itemsToSkip}"
+                                + "&api-version=6.1-preview.1";
+
+                            var exchange2 = Results.ContinueExchange(client, requestUri2);
+
+                            using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                            {
+                                Results.RecordExchangeResponse(response2, exchange2);
+
+                                response2.EnsureSuccessStatusCode();
+                                string outJson2 = await response2.Content.ReadAsStringAsync();
+
+                                PullRequestsRoot resultRoot2C = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson2);
+
+                                Results.ResultItems.AddRange(resultRoot2C.value);
+
+                                if (resultRoot2C.count == 100)
+                                {
+                                    hasMoreResults = true;
+                                    itemsToSkip += 100;
+                                }
+                                else
+                                {
+                                    hasMoreResults = false;
+                                }
+                            }
+                        }
 
                         Results.Count = Results.ResultItems.Count;
                     }
@@ -184,8 +214,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 {
                     ResultsAttachments.InitializeHttpClient(client, args.Organization.PAT);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + $"git/repositories/{args.Repository.id}/pullrequests"
                         + $"/{args.PullRequest.pullRequestId}/attachments"
@@ -229,124 +257,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsAttachments.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequesAttachments)", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void GetPullRequestCommits(GetPullRequestsEventArgs args)
-        {
-            Int64 startTicks = Log.VIEWMODEL("Enter(PullRequestCommits)", Common.LOG_CATEGORY);
-
-            OutputFileNameAndPath = $@"C:\temp\{args.Project.name}-{args.Repository.name}-PullRequests";
-
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    ResultsCommits.InitializeHttpClient(client, args.Organization.PAT);
-
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories/{args.Repository.id}/pullrequests"
-                        + $"/{args.PullRequest.pullRequestId}/commits"
-                        + "?api-version=6.1-preview.1";
-
-                    var exchange = Results.InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        ResultsCommits.RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        PullRequestCommitsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestCommitsRoot>(outJson);
-
-                        ResultsCommits.ResultItems = new ObservableCollection<PullRequestCommitsRoot.Commit>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        ResultsCommits.Count = ResultsCommits.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-
-                var dialogParameters = new DialogParameters();
-                dialogParameters.Add("message", $"Error ({ex})");
-                dialogParameters.Add("title", "Exception");
-
-                DialogService.Show("NotificationDialog", dialogParameters, r =>
-                {
-                });
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsCommits.RequestResponseExchange);
-
-            Log.VIEWMODEL("Exit(PullRequestCommits)", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void GetPullRequestIterations(GetPullRequestsEventArgs args)
-        {
-            Int64 startTicks = Log.VIEWMODEL("Enter(PullRequestIterations)", Common.LOG_CATEGORY);
-
-            OutputFileNameAndPath = $@"C:\temp\{args.Project.name}-{args.Repository.name}-PullRequests";
-
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    ResultsIterations.InitializeHttpClient(client, args.Organization.PAT);
-
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories/{args.Repository.id}/pullrequests"
-                        + $"/{args.PullRequest.pullRequestId}/iterations"
-                        + "?api-version=6.1-preview.1";
-
-                    var exchange = Results.InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        ResultsIterations.RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        PullRequestIterations resultRoot = JsonConvert.DeserializeObject<PullRequestIterations>(outJson);
-
-                        ResultsIterations.ResultItems = new ObservableCollection<PullRequestIterations.Value>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        ResultsIterations.Count = ResultsIterations.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-
-                var dialogParameters = new DialogParameters();
-                dialogParameters.Add("message", $"Error ({ex})");
-                dialogParameters.Add("title", "Exception");
-
-                DialogService.Show("NotificationDialog", dialogParameters, r =>
-                {
-                });
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsIterations.RequestResponseExchange);
-
-            Log.VIEWMODEL("Exit(PullRequestIterations)", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void GetPullRequestLabels(GetPullRequestsEventArgs args)
@@ -505,9 +415,9 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
 
                         string outJson = await response.Content.ReadAsStringAsync();
 
-                        ReviewersRoot resultRoot = JsonConvert.DeserializeObject<ReviewersRoot>(outJson);
+                        PullRequestReviewers resultRoot = JsonConvert.DeserializeObject<PullRequestReviewers>(outJson);
 
-                        ResultsReviewers.ResultItems = new ObservableCollection<ReviewersRoot.Value>(resultRoot.value);
+                        ResultsReviewers.ResultItems = new ObservableCollection<PullRequestReviewer>(resultRoot.value);
 
                         IEnumerable<string> continuationHeaders = default;
 
@@ -606,8 +516,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
                 {
                     ResultsThreads.InitializeHttpClient(client, args.Organization.PAT);
 
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
                     var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                         + $"git/repositories/{args.Repository.id}/pullrequests"
                         + $"/{args.PullRequest.pullRequestId}/threads"
@@ -651,65 +559,6 @@ namespace AZDORestApiExplorer.Git.Presentation.ViewModels
             EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsThreads.RequestResponseExchange);
 
             Log.VIEWMODEL("Exit(PullRequestThreads)", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void GetPullRequestWorkItems(GetPullRequestsEventArgs args)
-        {
-            Int64 startTicks = Log.VIEWMODEL("Enter(PullRequestWorkItems)", Common.LOG_CATEGORY);
-
-            OutputFileNameAndPath = $@"C:\temp\{args.Project.name}-{args.Repository.name}-PullRequests";
-
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    ResultsWorkItems.InitializeHttpClient(client, args.Organization.PAT);
-
-                    // TODO(crhodes)
-                    // Update Uri  Use args for parameters.
-                    var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                        + $"git/repositories/{args.Repository.id}/pullrequests"
-                        + $"/{args.PullRequest.pullRequestId}/workitems"
-                        + "?api-version=6.1-preview.1";
-
-                    var exchange = Results.InitializeExchange(client, requestUri);
-
-                    using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                    {
-                        ResultsWorkItems.RecordExchangeResponse(response, exchange);
-
-                        response.EnsureSuccessStatusCode();
-
-                        string outJson = await response.Content.ReadAsStringAsync();
-
-                        WorkItemsRoot resultRoot = JsonConvert.DeserializeObject<WorkItemsRoot>(outJson);
-
-                        ResultsWorkItems.ResultItems = new ObservableCollection<WorkItemsRoot.Value>(resultRoot.value);
-
-                        IEnumerable<string> continuationHeaders = default;
-
-                        bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                        ResultsWorkItems.Count = ResultsWorkItems.ResultItems.Count;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-
-                var dialogParameters = new DialogParameters();
-                dialogParameters.Add("message", $"Error ({ex})");
-                dialogParameters.Add("title", "Exception");
-
-                DialogService.Show("NotificationDialog", dialogParameters, r =>
-                {
-                });
-            }
-
-            EventAggregator.GetEvent<HttpExchangeEvent>().Publish(ResultsWorkItems.RequestResponseExchange);
-
-            Log.VIEWMODEL("Exit(PullRequestWorkItems)", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PublishSelectionChanged(object sender, PropertyChangedEventArgs e)
