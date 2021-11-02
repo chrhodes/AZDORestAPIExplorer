@@ -97,43 +97,6 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     Results.ResultItems = new ObservableCollection<PullRequestReviewer>(resultRoot.value);
 
-                    //// TODO(crhodes)
-                    //// Remove this if not using continuationHeaders
-
-                    //#region ContinuationHeaders
-
-                    //IEnumerable<string> continuationHeaders = default;
-
-                    //bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                    //while (hasContinuationToken)
-                    //{
-                    //    string continueToken = continuationHeaders.First();
-
-                    //    var requestUri2 = $"{args.Organization.Uri}/_apis/"
-                    //        + $"<UPDATE URI>"
-                    //        + $"continuationToken={continueToken}"
-                    //        + "?api-version=6.1-preview.1";
-
-                    //    var exchange2 = Results.ContinueExchange(client, requestUri2);
-
-                    //    using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
-                    //    {
-                    //        Results.RecordExchangeResponse(response2, exchange2);
-
-                    //        response2.EnsureSuccessStatusCode();
-                    //        string outJson2 = await response2.Content.ReadAsStringAsync();
-
-                    //        PullRequestReviewersRoot resultRootC = JsonConvert.DeserializeObject<PullRequestReviewersRoot>(outJson2);
-
-                    //        Results.ResultItems.AddRange(resultRootC.value);
-
-                    //        hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-                    //    }
-                    //}
-
-                    //#endregion
-
                     Results.Count = Results.ResultItems.Count;
                 }
 

@@ -8,6 +8,7 @@ using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git.Events;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using Prism.Events;
 
@@ -23,21 +24,15 @@ namespace AZDORestApiExplorer.Domain.Git
         {
             public Organization Organization;
 
-            // public Domain.Core.Process Process;
-
             public Domain.Core.Project Project;
 
             public Domain.Git.GitRepository Repository;
-
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
         }
 
         public class SelectedImportRequestChangedEvent : PubSubEvent<ImportRequest> { }
     }
 
-    public class ImportRequestsRoot
+    public class ImportRequests
     {
         public int count { get; set; }
         public ImportRequest[] value { get; set; }
@@ -52,6 +47,8 @@ namespace AZDORestApiExplorer.Domain.Git
         public Detailedstatus detailedStatus { get; set; }
         public _Links _links { get; set; }
         public string url { get; set; }
+
+        #region Nested Classes
 
         public class Parameters
         {
@@ -88,17 +85,44 @@ namespace AZDORestApiExplorer.Domain.Git
             public string href { get; set; }
         }
 
+        #endregion
+
         public RESTResult<ImportRequest> Results { get; set; } = new RESTResult<ImportRequest>();
 
         public async Task<RESTResult<ImportRequest>> GetList(GetImportRequestsEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(ImportRequest)", Common.LOG_CATEGORY);
 
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + $"git/repositories/{args.Repository.id}/importRequests?"
+                    + "api-version=6.1-preview.1";
 
-            Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
+                var exchange = Results.InitializeExchange(client, requestUri);
 
-            return Results;
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    JObject o = JObject.Parse(outJson);
+
+                    ImportRequests resultRoot = JsonConvert.DeserializeObject<ImportRequests>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<ImportRequest>(resultRoot.value);
+                    Results.Count = Results.ResultItems.Count;
+                }
+
+                Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
+
+                return Results;
+            }
         }
     }
 }

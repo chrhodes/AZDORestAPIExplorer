@@ -11,30 +11,9 @@ using VNC.Core.Mvvm;
 
 namespace AZDORestApiExplorer.Git.Presentation.Views
 {
-    public partial class PullRequestMain : ViewBase, IInstanceCountV
+    public partial class PullRequestStatusMain : ViewBase, IInstanceCountV
     {
-
-        // NOTE(crhodes)
-        // Go back to using DomainViewModel!
-
-        //// NOTE(crhodes)
-        //// Go back to using specific ViewModel as PullRequestMain has lots of complexity.
-        //// No longer single Grid.
-
-        //public PullRequestMain(ViewModels.PullRequestMainViewModel viewModel)
-        //{
-        //    Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
-
-        //    InstanceCountV++;
-        //    InitializeComponent();
-
-        //    ViewModel = viewModel;
-        //    TargetGrid = grdResults;
-
-        //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        public PullRequestMain(DomainViewModel<PullRequest, GetPullRequestsEvent, GetPullRequestsEventArgs, SelectedPullRequestChangedEvent> viewModel)
+        public PullRequestStatusMain(DomainViewModel<PullRequestStatus, GetPullRequestStatusesEvent, GetPullRequestStatusesEventArgs, SelectedPullRequestStatusChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -53,8 +32,9 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
         {
             get => _targetGrid;
             set => _targetGrid = value;
+
         }
-        
+
         #region IInstanceCount
 
         private static int _instanceCountV;

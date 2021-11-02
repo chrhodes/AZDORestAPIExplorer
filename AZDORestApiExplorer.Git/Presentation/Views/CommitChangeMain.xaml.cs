@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,19 +13,19 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class CommitChangeMain : ViewBase, IInstanceCountV
     {
-
-        public CommitChangeMain(ViewModels.CommitChangeMainViewModel viewModel)
+        public CommitChangeMain(DomainViewModel<CommitChange, GetCommitChangesEvent, GetCommitChangesEventArgs, SelectedCommitChangeChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-            TargetGrid = grdResults;
 
             ViewModel = viewModel;
+            TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
 
         private GridControl _targetGrid;
 

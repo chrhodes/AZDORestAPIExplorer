@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git.Events;
 
 using Newtonsoft.Json;
@@ -18,46 +18,62 @@ namespace AZDORestApiExplorer.Domain.Git
 {
     namespace Events
     {
-        public class GetCommitsEvent : PubSubEvent<GetCommitsEventArgs> { }
+        public class GetPushesEvent : PubSubEvent<GetPushesEventArgs> { }
 
-        public class GetCommitsEventArgs
+        public class GetPushesEventArgs
         {
             public Organization Organization;
-
-            // public Domain.Core.Process Process;
 
             public Domain.Core.Project Project;
 
             public Domain.Git.GitRepository Repository;
-
-            // public Domain.Core.Team Team;
-
-            // public WorkItemType WorkItemType;
         }
 
-        public class SelectedCommitChangedEvent : PubSubEvent<Commit> { }
+        public class SelectedPushChangedEvent : PubSubEvent<Push> { }
     }
 
-    public class CommitsRoot
+    public class Pushes
     {
         public int count { get; set; }
-        public Commit[] value { get; set; }
+        public Push[] value { get; set; }
     }
 
-    public partial class Commit
+    public class Push
     {
-        public Author author { get; set; }
-        public Changecounts changeCounts { get; set; }
-        public string comment { get; set; }
-        public bool commentTruncated { get; set; }
-        public string commitId { get; set; }
-        public Committer committer { get; set; }
-        public string remoteUrl { get; set; }
+        public GitRepository repository { get; set; }
+        public Pushedby pushedBy { get; set; }
+        public int pushId { get; set; }
+        public DateTime date { get; set; }
         public string url { get; set; }
 
-        public RESTResult<Commit> Results { get; set; } = new RESTResult<Commit>();
+        #region Nested Classes
 
-        public async Task<RESTResult<Commit>> GetList(GetCommitsEventArgs args)
+        public class Pushedby
+        {
+            public string displayName { get; set; }
+            public string url { get; set; }
+            public _Links _links { get; set; }
+            public string id { get; set; }
+            public string uniqueName { get; set; }
+            public string imageUrl { get; set; }
+            public string descriptor { get; set; }
+        }
+
+        public class _Links
+        {
+            public Avatar avatar { get; set; }
+        }
+
+        public class Avatar
+        {
+            public string href { get; set; }
+        }
+
+        #endregion
+
+        public RESTResult<Push> Results { get; set; } = new RESTResult<Push>();
+
+        public async Task<RESTResult<Push>> GetList(GetPushesEventArgs args)
         {
             Int64 startTicks = Log.DOMAIN("Enter(Repository)", Common.LOG_CATEGORY);
 
@@ -66,8 +82,8 @@ namespace AZDORestApiExplorer.Domain.Git
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"git/repositories/{args.Repository.id}/commits?$top=100"
-                    + "&api-version=6.1-preview.1";
+                    + $"git/repositories/{args.Repository.id}/pushes?$top=100"
+                    + "&api-version=6.1-preview.2";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 
@@ -79,17 +95,15 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    CommitsRoot resultRoot = JsonConvert.DeserializeObject<CommitsRoot>(outJson);
+                    Pushes resultRoot = JsonConvert.DeserializeObject<Pushes>(outJson);
 
-                    Results.ResultItems = new ObservableCollection<Commit>(resultRoot.value);
-
-                    IEnumerable<string> resonseHeaderValues;
+                    Results.ResultItems = new ObservableCollection<Push>(resultRoot.value);
 
                     bool hasMoreResults = false;
 
-                    if (response.Headers.TryGetValues("link", out resonseHeaderValues))
+                    if (resultRoot.count == 100)
                     {
-                        hasMoreResults = resonseHeaderValues.First().Contains("next");
+                        hasMoreResults = true;
                     }
 
                     int itemsToSkip = 100;
@@ -97,7 +111,7 @@ namespace AZDORestApiExplorer.Domain.Git
                     while (hasMoreResults)
                     {
                         var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                            + $"git/repositories/{args.Repository.id}/commits?$top=100&$skip={itemsToSkip}"
+                            + $"git/repositories/{args.Repository.id}/pushes?$top=100&$skip={itemsToSkip}"
                             + "&api-version=6.1-preview.1";
 
                         var exchange2 = Results.ContinueExchange(client, requestUri2);
@@ -109,13 +123,13 @@ namespace AZDORestApiExplorer.Domain.Git
                             response2.EnsureSuccessStatusCode();
                             string outJson2 = await response2.Content.ReadAsStringAsync();
 
-                            CommitsRoot resultRoot2C = JsonConvert.DeserializeObject<CommitsRoot>(outJson2);
+                            Pushes resultRoot2C = JsonConvert.DeserializeObject<Pushes>(outJson2);
 
                             Results.ResultItems.AddRange(resultRoot2C.value);
 
-                            if (response2.Headers.TryGetValues("link", out resonseHeaderValues))
+                            if (resultRoot2C.count == 100)
                             {
-                                hasMoreResults = resonseHeaderValues.First().Contains("next");
+                                hasMoreResults = true;
                                 itemsToSkip += 100;
                             }
                             else
@@ -132,13 +146,6 @@ namespace AZDORestApiExplorer.Domain.Git
             Log.DOMAIN("Exit(Project)", Common.LOG_CATEGORY, startTicks);
 
             return Results;
-        }
-
-        public class Changecounts
-        {
-            public int Add { get; set; }
-            public int Delete { get; set; }
-            public int Edit { get; set; }
         }
     }
 }

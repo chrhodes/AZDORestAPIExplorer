@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,8 +13,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class ImportRequestMain : ViewBase, IInstanceCountV
     {
-
-        public ImportRequestMain(ViewModels.ImportRequestMainViewModel viewModel)
+        public ImportRequestMain(DomainViewModel<ImportRequest, GetImportRequestsEvent, GetImportRequestsEventArgs, SelectedImportRequestChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

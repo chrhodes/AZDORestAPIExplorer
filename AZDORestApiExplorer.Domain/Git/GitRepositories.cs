@@ -96,9 +96,8 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     Results.ResultItems = new ObservableCollection<GitRepository>(resultRoot.value);
 
-                    IEnumerable<string> continuationHeaders = default;
-
-                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
+                    // NOTE(crhodes)
+                    // Hard to belive there is not paging mechanism
 
                     Results.Count = Results.ResultItems.Count;
                 }

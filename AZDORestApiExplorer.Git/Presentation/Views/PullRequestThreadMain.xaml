@@ -1,8 +1,8 @@
 <vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.Git.Presentation.Views.StatMain"
+    x:Class="AZDORestApiExplorer.Git.Presentation.Views.PullRequestThreadMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:prism="http://prismlibrary.com/"
+    xmlns:prism="http://www.codeplex.com/prism"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
@@ -19,9 +19,8 @@
     xmlns:local="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
-    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Git.Presentation.ViewModels"
 
-    prism:ViewModelLocator.AutoWireViewModel="False"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
@@ -53,24 +52,14 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <dxg:GridColumn FieldName="name" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commit.commitId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commit.author.name" Header="Author" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commit.author.date" Header="Authored Date" BestFitModeOnSourceChange="VisibleRows" >
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
-            <dxg:GridColumn FieldName="commit.committer.name" Header="Committer" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commit.committer.date" Header="Committed Date" BestFitModeOnSourceChange="VisibleRows" >
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
-            <dxg:GridColumn FieldName="aheadCount" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="behindCount" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="isBaseVersion" BestFitModeOnSourceChange="VisibleRows"/>
-
+            <dxg:GridColumn FieldName="title" />
+            <dxg:GridColumn FieldName="description" />
+            <dxg:GridColumn FieldName="pullRequestId" />
+            <dxg:GridColumn FieldName="codeReviewId" />
+            <dxg:GridColumn FieldName="status" />
+            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+            <dxg:GridColumn FieldName="creationDate" />
+            
         </dxg:GridControl>
 
         <dxe:TextEdit Grid.Row="2"

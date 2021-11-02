@@ -542,7 +542,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public string ScopePathToolTip { get; set; }
 
-        private string _RecursionLevel;
+        private string _RecursionLevel = "None";
 
         public string RecursionLevel
         {
@@ -1766,7 +1766,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestAttachmentsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestAttachmentsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                     , Project = _contextMainViewModel.Context.SelectedProject
@@ -1852,7 +1852,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestLabelsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
                     Project = _contextMainViewModel.Context.SelectedProject                    ,
@@ -1881,7 +1881,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
                     Project = _contextMainViewModel.Context.SelectedProject                    ,
@@ -1952,7 +1952,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestStatusesEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
                     Project = _contextMainViewModel.Context.SelectedProject                    ,
@@ -1981,7 +1981,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
+                new Domain.Git.Events.GetPullRequestThreadsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
                     Project = _contextMainViewModel.Context.SelectedProject                    ,

@@ -52,10 +52,16 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="repository" />
-            <dxg:GridColumn FieldName="pushedBy" />
-            <dxg:GridColumn FieldName="pushId" />
-            <dxg:GridColumn FieldName="date" />
+            
+            <!--<dxg:GridColumn FieldName="repository.name" Header="Repository" />-->
+            <dxg:GridColumn FieldName="pushId" BestFitModeOnSourceChange="VisibleRows" />            
+            <dxg:GridColumn FieldName="pushedBy.displayName" Header="Pushed By" BestFitModeOnSourceChange="VisibleRows" />
+
+            <dxg:GridColumn FieldName="date"  BestFitModeOnSourceChange="VisibleRows">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
 
         </dxg:GridControl>
 

@@ -18,12 +18,6 @@ namespace AZDORestApiExplorer.Domain.Git
 {
     namespace Events
     {
-        public class GetPullRequestAttachmentsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
-
-        public class GetPullRequestLabelsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
-
-        public class GetPullRequestPropertiesEvent : PubSubEvent<GetPullRequestsEventArgs> { }
-
         public class GetPullRequestsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
 
         public class GetPullRequestsEventArgs
@@ -35,16 +29,12 @@ namespace AZDORestApiExplorer.Domain.Git
             public GitRepository Repository;
         }
 
-        public class GetPullRequestStatusesEvent : PubSubEvent<GetPullRequestsEventArgs> { }
-
-        public class GetPullRequestThreadsEvent : PubSubEvent<GetPullRequestsEventArgs> { }
-
         // TODO(crhodes)
         // Add stuff to this or create custom ones and use above
         public class SelectedPullRequestChangedEvent : PubSubEvent<PullRequest> { }
     }
 
-    public class PullRequestsRoot
+    public class PullRequests
     {
         public int count { get; set; }
         public PullRequest[] value { get; set; }
@@ -97,17 +87,15 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    PullRequestsRoot resultRoot = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson);
+                    PullRequests resultRoot = JsonConvert.DeserializeObject<PullRequests>(outJson);
 
                     Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
 
-                    IEnumerable<string> resonseHeaderValues;
-
                     bool hasMoreResults = false;
 
-                    if (response.Headers.TryGetValues("link", out resonseHeaderValues))
+                    if (resultRoot.count == 100)
                     {
-                        hasMoreResults = resonseHeaderValues.First().Contains("next");
+                        hasMoreResults = true;
                     }
 
                     int itemsToSkip = 100;
@@ -127,13 +115,13 @@ namespace AZDORestApiExplorer.Domain.Git
                             response2.EnsureSuccessStatusCode();
                             string outJson2 = await response2.Content.ReadAsStringAsync();
 
-                            PullRequestsRoot resultRoot2C = JsonConvert.DeserializeObject<PullRequestsRoot>(outJson2);
+                            PullRequests resultRoot2C = JsonConvert.DeserializeObject<PullRequests>(outJson2);
 
                             Results.ResultItems.AddRange(resultRoot2C.value);
 
-                            if (response2.Headers.TryGetValues("link", out resonseHeaderValues))
+                            if (resultRoot2C.count == 100)
                             {
-                                hasMoreResults = resonseHeaderValues.First().Contains("next");
+                                hasMoreResults = true;
                                 itemsToSkip += 100;
                             }
                             else

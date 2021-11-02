@@ -13,8 +13,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class ItemMain : ViewBase, IInstanceCountV
     {
-
-        public ItemMain(ViewModels.ItemMainViewModel viewModel)
+        public ItemMain(DomainViewModel<Item, GetItemsEvent, GetItemsEventArgs, SelectedItemChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

@@ -43,34 +43,29 @@ namespace AZDORestApiExplorer.Git
 
             //containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();
             containerRegistry.RegisterSingleton<CommitMain>();
-
-            containerRegistry.Register<CommitChangeMainViewModel>();
             containerRegistry.RegisterSingleton<CommitChangeMain>();
 
-            containerRegistry.Register<ImportRequestMainViewModel>();
             containerRegistry.RegisterSingleton<ImportRequestMain>();
 
-            containerRegistry.Register<ItemMainViewModel>();
             containerRegistry.RegisterSingleton<ItemMain>();
 
-            containerRegistry.Register<MergeMainViewModel>();
             containerRegistry.RegisterSingleton<MergeMain>();
 
-            containerRegistry.Register<PullRequestMainViewModel>();
             containerRegistry.RegisterSingleton<PullRequestMain>();
-
+            containerRegistry.RegisterSingleton<PullRequestAttachmentMain>();
             containerRegistry.RegisterSingleton<PullRequestCommitMain>();
             containerRegistry.RegisterSingleton<PullRequestIterationMain>();
+            containerRegistry.RegisterSingleton<PullRequestLabelMain>();
+            containerRegistry.RegisterSingleton<PullRequestPropertyMain>();
             containerRegistry.RegisterSingleton<PullRequestReviewerMain>();
+            containerRegistry.RegisterSingleton<PullRequestStatusMain>();
+            containerRegistry.RegisterSingleton<PullRequestThreadMain>();
             containerRegistry.RegisterSingleton<PullRequestWorkItemMain>();
 
-            containerRegistry.Register<PushMainViewModel>();
             containerRegistry.RegisterSingleton<PushMain>();
 
-            containerRegistry.Register<StatMainViewModel>();
             containerRegistry.RegisterSingleton<StatMain>();
 
-            containerRegistry.Register<RefMainViewModel>();
             containerRegistry.RegisterSingleton<RefMain>();
 
             // containerRegistry.RegisterSingleton<IRepositoryLookupDataService, RepositoryLookupDataService>();
@@ -107,9 +102,14 @@ namespace AZDORestApiExplorer.Git
             _regionManager.RegisterViewWithRegion(RegionNames.MergeMainRegion, typeof(MergeMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestMainRegion, typeof(PullRequestMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestAttachmentMainRegion, typeof(PullRequestAttachmentMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestCommitMainRegion, typeof(PullRequestCommitMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestIterationMainRegion, typeof(PullRequestIterationMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestLabelMainRegion, typeof(PullRequestLabelMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestPropertyMainRegion, typeof(PullRequestPropertyMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestReviewerMainRegion, typeof(PullRequestReviewerMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestStatusMainRegion, typeof(PullRequestStatusMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestThreadMainRegion, typeof(PullRequestThreadMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestWorkItemMainRegion, typeof(PullRequestWorkItemMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.PushMainRegion, typeof(PushMain));

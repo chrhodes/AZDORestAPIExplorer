@@ -1,5 +1,9 @@
 using System;
 
+using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Presentation.ViewModels;
+
 using DevExpress.Xpf.Grid;
 
 using VNC;
@@ -9,8 +13,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class PushMain : ViewBase, IInstanceCountV
     {
-
-        public PushMain(ViewModels.PushMainViewModel viewModel)
+        public PushMain(DomainViewModel<Push, GetPushesEvent, GetPushesEventArgs, SelectedPushChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

@@ -1,9 +1,37 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using AZDORestApiExplorer.Domain.Git.Events;
+
+using Newtonsoft.Json;
+
+using Prism.Events;
+
+using VNC;
+using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
+    namespace Events
+    {
+        public class GetPullRequestThreadsEvent : PubSubEvent<GetPullRequestThreadsEventArgs> { }
+
+        public class GetPullRequestThreadsEventArgs
+        {
+            public Organization Organization;
+            public Domain.Core.Project Project;
+
+            public PullRequest PullRequest;
+            public GitRepository Repository;
+        }
+
+        public class SelectedPullRequestThreadChangedEvent : PubSubEvent<PullRequestThread> { }
+    }
+
     public class PullRequestThreads
     {
         public int count { get; set; }
@@ -205,5 +233,43 @@ namespace AZDORestApiExplorer.Domain.Git
         }
 
         #endregion
+
+        public RESTResult<PullRequestThread> Results { get; set; } = new RESTResult<PullRequestThread>();
+
+        public async Task<RESTResult<PullRequestThread>> GetList(GetPullRequestThreadsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(PullRequestThread)", Common.LOG_CATEGORY);
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + $"git/repositories/{args.Repository.id}/pullrequests"
+                    + $"/{args.PullRequest.pullRequestId}/workitems"
+                    + "?api-version=6.1-preview.1";
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    PullRequestThreads resultRoot = JsonConvert.DeserializeObject<PullRequestThreads>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<PullRequestThread>(resultRoot.value);
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+
+                Log.DOMAIN("Exit(PullRequestThread)", Common.LOG_CATEGORY, startTicks);
+
+                return Results;
+            }
+        }
     }
 }

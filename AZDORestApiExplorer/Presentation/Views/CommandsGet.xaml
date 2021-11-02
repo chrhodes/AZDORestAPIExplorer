@@ -270,6 +270,19 @@
                                     ToolTip="{Binding GetCommitsToolTip, FallbackValue='GetCommits ToolTip' }" />
                             </dxlc:LayoutItem>
 
+                            <dxlc:LayoutGroup Header="Commit Level" IsCollapsed="True" IsCollapsible="True"
+                                Orientation="Vertical" View="GroupBox"
+                                Background="{StaticResource CommitColor}">
+
+                                <dxlc:LayoutItem>
+                                    <Button
+                                        Command="{Binding GetCommitChangesCommand }"
+                                        Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
+                                        ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+
                             <dxlc:LayoutItem>
                                 <Button
                                     Command="{Binding GetImportRequestsCommand }"
@@ -302,7 +315,7 @@
                                             <!--<dxe:RadioTokenComboBoxStyleSettings />-->
                                             <!--<dxe:TokenComboBoxStyleSettings />-->
                                         </dxe:ComboBoxEdit.StyleSettings>
-                                        <dxe:ComboBoxEditItem Content="None" IsSelected="True" />
+                                        <dxe:ComboBoxEditItem Content="None" />
                                         <dxe:ComboBoxEditItem Content="OneLevel" />
                                         <dxe:ComboBoxEditItem Content="Full" />
                                     </dxe:ComboBoxEdit>
@@ -426,19 +439,6 @@
                                     Content="{Binding GetStatsContent, FallbackValue='Get Stats' }"
                                     ToolTip="{Binding GetStatsToolTip, FallbackValue='Get Stats ToolTip' }" />
                             </dxlc:LayoutItem>
-
-                            <dxlc:LayoutGroup Header="Commit Level" IsCollapsed="True" IsCollapsible="True"
-                                Orientation="Vertical" View="GroupBox"
-                                Background="{StaticResource CommitColor}">
-
-                                <dxlc:LayoutItem>
-                                    <Button
-                                        Command="{Binding GetCommitChangesCommand }"
-                                        Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
-                                        ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
-                                </dxlc:LayoutItem>
-                                
-                            </dxlc:LayoutGroup>
                             
                         </dxlc:LayoutGroup>
                         

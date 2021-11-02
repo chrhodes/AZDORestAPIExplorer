@@ -37,15 +37,15 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutControl Orientation="Vertical">
+    <dxlc:LayoutControl Orientation="Vertical" >
 
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <dxlc:LayoutGroup Grid.Row="0">
+            <dxlc:LayoutGroup Grid.Row="0" View="GroupBox" IsCollapsible="True" IsCollapsed="False" VerticalAlignment="Top">
                 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -87,7 +87,7 @@
                 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical"  View="Tabs">
+            <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical"  View="Tabs" VerticalAlignment="Stretch">
 
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">
@@ -99,20 +99,20 @@
                     </Style>
                 </dxlc:LayoutGroup.GroupBoxStyle>
 
-                <!--<dxlc:LayoutGroup Header="Blobs" >
-                    
-                </dxlc:LayoutGroup>-->
+                <dxlc:LayoutGroup Header="Blobs" >
+                    <Label Content="Not Implemented" />
+                </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Commits" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Import Requests" >
-
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Items" >
-
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Merges" >
@@ -124,15 +124,15 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Pushes" >
-
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Refs" >
-
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Stats" >
-
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>

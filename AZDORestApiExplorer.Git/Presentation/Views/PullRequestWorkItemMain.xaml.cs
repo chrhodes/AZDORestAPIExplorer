@@ -13,7 +13,6 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class PullRequestWorkItemMain : ViewBase, IInstanceCountV
     {
-
         public PullRequestWorkItemMain(DomainViewModel<PullRequestWorkItem, GetPullRequestWorkItemsEvent, GetPullRequestWorkItemsEventArgs, SelectedPullRequestWorkItemChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);

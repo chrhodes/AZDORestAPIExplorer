@@ -40,6 +40,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
@@ -69,18 +70,24 @@
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
 
-            <dxg:GridColumn FieldName="comment" Width="300"/>
-            <dxg:GridColumn FieldName="changeCounts.Add" Header="Adds" Width="50"/>
-            <dxg:GridColumn FieldName="changeCounts.Delete" Header="Deletes" Width="50"/>
-            <dxg:GridColumn FieldName="changeCounts.Edit" Header="Edits" Width="50"/>
-            <dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commentTruncated" />
+            <dxg:GridColumn FieldName="changeCounts.Add" Header="Adds" Width="50" />
+            <dxg:GridColumn FieldName="changeCounts.Delete" Header="Deletes" Width="50" />
+            <dxg:GridColumn FieldName="changeCounts.Edit" Header="Edits" Width="50" />
+            <dxg:GridColumn FieldName="comment" Width="*"/>
+            <dxg:GridColumn FieldName="commentTruncated" />            
+            <!--<dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>-->
             
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2"
-            Text="{Binding Results.SelectedItem.url}"
-            TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical">
+            <dxlc:LayoutItem Label="Url" >
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="RemoteUrl" >
+                <dxe:TextEdit Text="{Binding Results.SelectedItem.remoteUrl}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
 
     </Grid>
 
