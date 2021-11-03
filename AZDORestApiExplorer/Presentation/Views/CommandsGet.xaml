@@ -158,7 +158,14 @@
                             		Content="{Binding GetSettingsContent, FallbackValue='GetSettings' }"
                             		ToolTip="{Binding GetSettingsToolTip, FallbackValue='GetSettings ToolTip' }" />
                             </dxlc:LayoutItem>
-                            
+
+                            <dxlc:LayoutItem>
+                                <Button 
+                            		Command="{Binding GetBuildTagsCommand }"
+                            		Content="{Binding GetBuildTagsContent, FallbackValue='GetBuildTags' }"
+                            		ToolTip="{Binding GetBuildTagsToolTip, FallbackValue='GetBuildTags ToolTip' }" />
+                            </dxlc:LayoutItem>
+
                             <dxlc:LayoutGroup Header="Build Level" IsCollapsed="False"
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource BuildColor}">
@@ -171,9 +178,9 @@
                                 
                                 <dxlc:LayoutItem>
                                     <Button 
-                            		Command="{Binding GetResourcesCommand }"
-                            		Content="{Binding GetResourcesContent, FallbackValue='GetResources' }"
-                            		ToolTip="{Binding GetResourcesToolTip, FallbackValue='GetResources ToolTip' }" />
+                            		    Command="{Binding GetResourcesCommand }"
+                            		    Content="{Binding GetResourcesContent, FallbackValue='GetResources' }"
+                            		    ToolTip="{Binding GetResourcesToolTip, FallbackValue='GetResources ToolTip' }" />
                                 </dxlc:LayoutItem>
                                 
                             </dxlc:LayoutGroup>

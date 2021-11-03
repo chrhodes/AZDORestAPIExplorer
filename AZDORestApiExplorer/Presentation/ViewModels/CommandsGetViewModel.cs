@@ -77,6 +77,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetOptionsCommand = new DelegateCommand(GetOptions, GetOptionsCanExecute);
             GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
             GetSettingsCommand = new DelegateCommand(GetSettings, GetSettingsCanExecute);
+            GetBuildTagsCommand = new DelegateCommand(GetBuildTags, GetBuildTagsCanExecute);
 
             #endregion
 
@@ -365,6 +366,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetOptionsCommand.RaiseCanExecuteChanged();
             GetResourcesCommand.RaiseCanExecuteChanged();
             GetSettingsCommand.RaiseCanExecuteChanged();
+            GetBuildTagsCommand.RaiseCanExecuteChanged();
 
             // Git
 
@@ -616,8 +618,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region Artifacts Area
 
         #region GetFeeds Command
-
-
 
         public DelegateCommand GetFeedsCommand { get; set; }
         public string GetFeedsContent { get; set; } = "GetFeeds";
@@ -1239,6 +1239,48 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         public bool GetSettingsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+
+        #region GetBuildTags Command
+
+        public DelegateCommand GetBuildTagsCommand { get; set; }
+        public string GetBuildTagsContent { get; set; } = "GetTags";
+        public string GetBuildTagsToolTip { get; set; } = "GetTags ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetTagsContent { get; set; } = "ViewName_GetTagsContent";
+        //public string GetTagsToolTip { get; set; } = "ViewName_GetTagsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetTagsContent">GetTags</system:String>
+        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>  
+
+        public void GetBuildTags()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBuildTagsEvent>().Publish(
+                new GetBuildTagsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBuildTagsCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)

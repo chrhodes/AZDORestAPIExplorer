@@ -1,7 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core;
-using AZDORestApiExplorer.Git.Presentation.ViewModels;
+
 using AZDORestApiExplorer.Git.Presentation.Views;
 
 using Prism.Ioc;

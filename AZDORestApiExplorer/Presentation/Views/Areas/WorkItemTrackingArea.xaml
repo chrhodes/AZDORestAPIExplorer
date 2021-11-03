@@ -82,7 +82,7 @@
 
         <dxlc:LayoutGroup Header="Tags">
             <Grid>
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TagMainRegion}" />
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WITTagMainRegion}" />
             </Grid>
         </dxlc:LayoutGroup>
 

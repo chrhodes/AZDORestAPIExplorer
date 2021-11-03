@@ -19,7 +19,6 @@
     xmlns:local="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.Git.Presentation.Views"
-    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.Git.Presentation.ViewModels"
 
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"

@@ -1,13 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Net.Http;
 using System.Threading.Tasks;
 
-using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git.Events;
-
-using Newtonsoft.Json;
 
 using Prism.Events;
 

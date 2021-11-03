@@ -74,6 +74,7 @@ namespace AZDORestApiExplorer.Core
         public static string OptionMainRegion = "OptionMainRegion";
         public static string ResourceMainRegion = "ResourceMainRegion";
         public static string SettingMainRegion = "SettingMainRegion";
+        public static string BuildTagMainRegion = "BuildTagMainRegion";
 
         //
         // Dashboard Area
@@ -160,7 +161,7 @@ namespace AZDORestApiExplorer.Core
         // public static string QueryNavigationRegion = "QueryNavigationRegion";
         // public static string QueryDetailRegion = "QueryDetailRegion";
 
-        public static string TagMainRegion = "TagMainRegion";
+        public static string WITTagMainRegion = "WITTagMainRegion";
         // public static string TagNavigationRegion = "TagNavigationRegion";
         // public static string TagDetailRegion = "TagDetailRegion";
 

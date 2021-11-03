@@ -84,7 +84,7 @@ namespace AZDORestApiExplorer.WorkItemTracking
             _regionManager.RegisterViewWithRegion(RegionNames.ClassificationNodeMainRegion, typeof(ClassificationNodeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.FieldWITMainRegion, typeof(FieldMain));
             _regionManager.RegisterViewWithRegion(RegionNames.QueryMainRegion, typeof(QueryMain));
-            _regionManager.RegisterViewWithRegion(RegionNames.TagMainRegion, typeof(TagMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.WITTagMainRegion, typeof(TagMain));
             _regionManager.RegisterViewWithRegion(RegionNames.TemplateMainRegion, typeof(TemplateMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemIconMainRegion, typeof(WorkItemIconMain));
             _regionManager.RegisterViewWithRegion(RegionNames.WorkItemRelationTypeMainRegion, typeof(WorkItemRelationTypeMain));

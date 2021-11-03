@@ -36,7 +36,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
         public class SelectedMergeChangedEvent : PubSubEvent<Merge> { }
     }
-        public class Merges
+    public class Merges
     {
         public int count { get; set; }
         public Merge[] value { get; set; }
@@ -77,7 +77,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     Merges resultRoot = JsonConvert.DeserializeObject<Merges>(outJson);
 
-                     Results.ResultItems = new ObservableCollection<Merge>(resultRoot.value);
+                    Results.ResultItems = new ObservableCollection<Merge>(resultRoot.value);
                     Results.Count = Results.ResultItems.Count;
                 }
 

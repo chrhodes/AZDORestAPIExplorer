@@ -78,8 +78,10 @@
 
             </dxlc:LayoutGroup>
 
-            <!--This shows the items dependent on a Pull Request in separate tabs
-            The particular information is in a separate view.-->
+            <!--
+                This shows the items dependent on a Pull Request in separate tabs
+                The particular information is in a separate view.
+            -->
             
             <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical"  View="Tabs" >
 

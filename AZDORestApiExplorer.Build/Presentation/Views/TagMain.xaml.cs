@@ -1,7 +1,7 @@
 using System;
 
-using AZDORestApiExplorer.Domain.Git;
-using AZDORestApiExplorer.Domain.Git.Events;
+using AZDORestApiExplorer.Domain.Build;
+using AZDORestApiExplorer.Domain.Build.Events;
 using AZDORestApiExplorer.Presentation.ViewModels;
 
 using DevExpress.Xpf.Grid;
@@ -9,11 +9,12 @@ using DevExpress.Xpf.Grid;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace AZDORestApiExplorer.Git.Presentation.Views
+namespace AZDORestApiExplorer.Build.Presentation.Views
 {
-    public partial class MergeMain : ViewBase, IInstanceCountV
+    public partial class TagMain : ViewBase, IInstanceCountV
     {
-        public MergeMain(DomainViewModel<Merge, GetMergesEvent, GetMergesEventArgs, SelectedMergeChangedEvent> viewModel)
+
+        public TagMain(DomainViewModel<Tag, GetBuildTagsEvent, GetBuildTagsEventArgs, SelectedBuildTagChangedEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

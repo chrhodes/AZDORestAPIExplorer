@@ -1,12 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
-using AZDORestApiExplorer.Domain.Core.Events;
-using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
+using AZDORestApiExplorer.Domain.Build.Events;
 
 using Newtonsoft.Json;
 
@@ -15,23 +16,28 @@ using Prism.Events;
 using VNC;
 using VNC.Core.Net;
 
-namespace AZDORestApiExplorer.Domain.WorkItemTracking
+namespace AZDORestApiExplorer.Domain.Build
 {
     namespace Events
     {
-        public class GetTagsEvent : PubSubEvent<GetTagsEventArgs> { }
+        public class GetBuildTagsEvent : PubSubEvent<GetBuildTagsEventArgs> { }
 
-        public class GetTagsEventArgs
+        public class GetBuildTagsEventArgs
         {
             public Organization Organization;
 
-            public Domain.Core.Project Project;
-
+            public Core.Project Project;
         }
-        public class SelectedTagChangedEvent : PubSubEvent<Tag> { }
+
+        public class SelectedBuildTagChangedEvent : PubSubEvent<Tag> { }
     }
 
-    public class TagsRoot
+    // TODO(crhodes)
+    // PasteSpecial from Json result text
+
+    // Nest any additional classes inside class Tag
+
+    public class Tags
     {
         public int count { get; set; }
         public Tag[] value { get; set; }
@@ -39,23 +45,23 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
 
     public class Tag
     {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string url { get; set; }
+        #region Nested Classes
+
+        #endregion
 
         public RESTResult<Tag> Results { get; set; } = new RESTResult<Tag>();
 
-        public async Task<RESTResult<Tag>> GetList(GetTagsEventArgs args)
+        public async Task<RESTResult<Tag>> GetList(GetBuildTagsEventArgs args)
         {
-            Int64 startTicks = Log.DOMAIN("Enter(Process)", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.DOMAIN("Enter(Tag)", Common.LOG_CATEGORY);
 
             using (HttpClient client = new HttpClient())
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + "/wit/tags"
-                    + "?api-version=6.1-preview.1";
+                    + $"build/tags?"
+                    + "?api-version=6.1-preview.3";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 
@@ -67,18 +73,14 @@ namespace AZDORestApiExplorer.Domain.WorkItemTracking
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    TagsRoot resultRoot = JsonConvert.DeserializeObject<TagsRoot>(outJson);
+                    Tags resultRoot = JsonConvert.DeserializeObject<Tags>(outJson);
 
                     Results.ResultItems = new ObservableCollection<Tag>(resultRoot.value);
-
-                    IEnumerable<string> continuationHeaders = default;
-
-                    bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
 
                     Results.Count = Results.ResultItems.Count;
                 }
 
-                Log.DOMAIN("Exit(Process)", Common.LOG_CATEGORY, startTicks);
+                Log.DOMAIN("Exit(Tag)", Common.LOG_CATEGORY, startTicks);
 
                 return Results;
             }
