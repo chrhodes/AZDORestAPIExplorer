@@ -38,7 +38,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />            
+            <!--<RowDefinition Height="Auto" />-->            
         </Grid.RowDefinitions>
 
         <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
@@ -57,6 +57,12 @@
             <dxg:GridColumn FieldName="category" />
 
         </dxg:GridControl>
+
+        <!--        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+            <dxlc:LayoutItem Label="Url" >
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>-->
 
     </Grid>
     

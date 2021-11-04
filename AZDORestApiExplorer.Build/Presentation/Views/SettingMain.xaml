@@ -1,8 +1,8 @@
-﻿<vncmvvm:ViewBase
-    x:Class="AZDORestApiExplorer.WorkItemTracking.Presentation.Views.TemplateMain"
+<vncmvvm:ViewBase
+    x:Class="AZDORestApiExplorer.Build.Presentation.Views.SettingMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:prism="http://prismlibrary.com/"
+    xmlns:prism="http://www.codeplex.com/prism"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 
@@ -12,16 +12,15 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-    
+
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
     
-    xmlns:local="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
-    
-    xmlns:views="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.Views"
-    xmlns:viewModels="clr-namespace:AZDORestApiExplorer.WorkItemTracking.Presentation.ViewModels"
+    xmlns:local="clr-namespace:AZDORestApiExplorer.Build.Presentation.Views"
 
-    prism:ViewModelLocator.AutoWireViewModel="False"
+    xmlns:views="clr-namespace:AZDORestApiExplorer.Build.Presentation.Views"
+
+    prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
@@ -39,20 +38,32 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />            
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0" 
+        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                     Count="{Binding Results.Count, Mode=TwoWay}"/>
 
         <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
-                    SelectedItem="{Binding Results.SelectedItem}"               
+                    SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="name" />
+
+            <dxg:GridColumn FieldName="daysToKeepDeletedBuildsBeforeDestroy" />
+            
+            <dxg:GridColumn FieldName="defaultRetentionPolicy.daysToKeep" />
+            <dxg:GridColumn FieldName="defaultRetentionPolicy.minimumToKeep" />
+            <dxg:GridColumn FieldName="defaultRetentionPolicy.deleteBuildRecord" />
+            <dxg:GridColumn FieldName="defaultRetentionPolicy.deleteTestResults" />
+            
+            <dxg:GridColumn FieldName="maximumRetentionPolicy.daysToKeep" />
+            <dxg:GridColumn FieldName="maximumRetentionPolicy.minimumToKeep" />
+            <dxg:GridColumn FieldName="maximumRetentionPolicy.deleteBuildRecord" />
+            <dxg:GridColumn FieldName="maximumRetentionPolicy.deleteTestResults" />
+            
         </dxg:GridControl>
 
                 <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
@@ -62,5 +73,5 @@
         </dxlc:LayoutGroup>
 
     </Grid>
-    
+
 </vncmvvm:ViewBase>

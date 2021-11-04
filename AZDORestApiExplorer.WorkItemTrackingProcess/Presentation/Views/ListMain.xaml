@@ -59,8 +59,11 @@
             <!--<dxg:GridColumn FieldName="url" />-->            
         </dxg:GridControl>
 
-        <dxe:TextEdit Grid.Row="2" Text="{Binding Results.SelectedItem.url}"  
-                      TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+            <dxlc:LayoutItem Label="Url" >
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
 
     </Grid>
     

@@ -13,6 +13,8 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
+        xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
     
@@ -95,16 +97,22 @@
 
                         <dxg:GridColumn FieldName="parameters" />
                         <dxg:GridColumn FieldName="reason" />
-                        <dxg:GridColumn FieldName="triggerInfo.cimessage" BestFitModeOnSourceChange="VisibleRows"/>
+                        <!--<dxg:GridColumn FieldName="triggerInfo.cimessage" BestFitModeOnSourceChange="VisibleRows"/>-->
                         <dxg:GridColumn FieldName="triggerInfo.cisourceBranch" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="triggerInfo.cisourceSha" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="triggerInfo.citriggerRepository" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="triggerInfo.scheduleName" BestFitModeOnSourceChange="VisibleRows"/>
                     </dxg:GridControl>
 
-                    <dxe:TextEdit Grid.Row="2"
-                        Text="{Binding Results.SelectedItem.url}"
-                        TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>
+                    <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                        <dxlc:LayoutItem Label="Url" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="CI Message" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.triggerInfo.cimessage}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
 
                 </Grid>
 
@@ -127,8 +135,20 @@
                     </Style>
                 </dxlc:LayoutGroup.GroupBoxStyle>
 
+                <dxlc:LayoutGroup Header="Build Info" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BuildInfoMainRegion}" />
+                </dxlc:LayoutGroup>
+                
                 <dxlc:LayoutGroup Header="Build Changes" >
-                    <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestAttachmentMainRegion}" />-->
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BuildChangeMainRegion}" />
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Build Logs" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BuildLogMainRegion}" />
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="WorkItem Refs" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BuildWorkItemRefMainRegion}" />
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>

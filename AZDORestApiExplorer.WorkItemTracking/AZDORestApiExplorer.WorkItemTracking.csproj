@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
-    <Folder Include="Presentation\ModelWrappers\" />
   </ItemGroup>
 
     <ItemGroup>

@@ -103,7 +103,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Build - Organization Level" IsCollapsed="True"
+                    <dxlc:LayoutGroup Header="Build - Organization Level" IsCollapsed="False"
                              Style="{StaticResource GetLayoutGroup}">
 
                         <dxlc:LayoutItem>
@@ -123,13 +123,47 @@
                             		Content="{Binding GetAuthorizedResourcesContent, FallbackValue='GetAuthorizedResources' }"
                             		ToolTip="{Binding GetAuthorizedResourcesToolTip, FallbackValue='GetAuthorizedResources ToolTip' }" />
                             </dxlc:LayoutItem>
-                            
+
                             <dxlc:LayoutItem>
                                 <Button 
                             		Command="{Binding GetBuildsCommand }"
                             		Content="{Binding GetBuildsContent, FallbackValue='GetBuilds' }"
                             		ToolTip="{Binding GetBuildsToolTip, FallbackValue='GetBuilds ToolTip' }" />
                             </dxlc:LayoutItem>
+                            
+                            <dxlc:LayoutGroup Header="Build Level" IsCollapsed="False"
+                                Orientation="Vertical" View="GroupBox"
+                                Background="{StaticResource BuildColor}">
+
+                                <dxlc:LayoutItem>
+                                    <Button 
+                                		Command="{Binding GetBuildInfoCommand }"
+                                		Content="{Binding GetBuildInfoContent, FallbackValue='GetBuildInfo' }"
+                                		ToolTip="{Binding GetBuildInfoToolTip, FallbackValue='GetBuildInfo ToolTip' }" />
+                                </dxlc:LayoutItem>                                
+                                
+                                <dxlc:LayoutItem>
+                                    <Button 
+                                		Command="{Binding GetBuildChangesCommand }"
+                                		Content="{Binding GetBuildChangesContent, FallbackValue='GetBuildChanges' }"
+                                		ToolTip="{Binding GetBuildChangesToolTip, FallbackValue='GetBuildChanges ToolTip' }" />
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem>
+                                    <Button 
+		                                Command="{Binding GetBuildLogsCommand }"
+		                                Content="{Binding GetBuildLogsContent, FallbackValue='GetBuildLogs' }"
+		                                ToolTip="{Binding GetBuildLogsToolTip, FallbackValue='GetBuildLogs ToolTip' }" />
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem>
+                                    <Button 
+                                		Command="{Binding GetBuildWorkItemRefsCommand }"
+                                		Content="{Binding GetBuildWorkItemRefsContent, FallbackValue='GetBuildWorkItemRefs' }"
+                                		ToolTip="{Binding GetBuildWorkItemRefsToolTip, FallbackValue='GetBuildWorkItemRefs ToolTip' }" />
+                                </dxlc:LayoutItem>
+                                
+                            </dxlc:LayoutGroup>
 
                             <dxlc:LayoutItem>
                                 <Button 
@@ -166,12 +200,6 @@
                             		ToolTip="{Binding GetBuildTagsToolTip, FallbackValue='GetBuildTags ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutGroup Header="Build Level" IsCollapsed="False"
-                                Orientation="Vertical" View="GroupBox"
-                                Background="{StaticResource BuildColor}">
-
-                            </dxlc:LayoutGroup>
-                            
                             <dxlc:LayoutGroup Header="Definition Level" IsCollapsed="False"
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource DefinitionColor}">
@@ -235,7 +263,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="False" IsCollapsible="True"
+                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="True" IsCollapsible="True"
                         Style="{StaticResource GetLayoutGroup}"
                         Background="{StaticResource OrganizationColor}">
 

@@ -91,19 +91,22 @@
                     <dxdo:LayoutGroup Name="lg_Body_dlm_lg" Orientation="Vertical" >
 
                         <!--Put the area of current interest here 
-                            until we figure out how to make this easy to navigate-->
+                            until we figure out how to make this easy to navigate
+                            
+                            Style should be DragableLayoutPanel
+                            
+                            Comment out Below to avoid region errors.
+                        -->
 
-                        <!--<dxdo:LayoutPanel Caption="Build">
+                        <dxdo:LayoutPanel Caption="Build" Style="{StaticResource DragableLayoutPanel}">
                             <local:BuildArea />
-                        </dxdo:LayoutPanel>-->
-
-                        <dxdo:LayoutPanel Caption="Git"
-                                            Style="{StaticResource DragableLayoutPanel}" >
-                            <local:GitArea />
                         </dxdo:LayoutPanel>
 
-                        <!--<dxdo:LayoutPanel Caption="Graph" 
-                                          Style="{StaticResource DragableLayoutPanel}" >
+                        <!--<dxdo:LayoutPanel Caption="Git" Style="{StaticResource DragableLayoutPanel}" >
+                            <local:GitArea />
+                        </dxdo:LayoutPanel>-->
+
+                        <!--<dxdo:LayoutPanel Caption="Graph" Style="{StaticResource DragableLayoutPanel}" >
                             <local:GraphArea />
                         </dxdo:LayoutPanel>-->
 
@@ -200,9 +203,9 @@
                         Put the Implemented Panels here 
                         unitl we figure out how to better do this
                     
-                        Area of current foucs goes above
+                        Area of current foucs goes above.  Comment out below.
                         
-                        These should be AutoHidden="True"
+                        These should be HiddenDragableLayoutPanel
                     -->
                     
                     <dxdo:AutoHideGroup DockType="Bottom">
@@ -219,17 +222,17 @@
                             <local:ArtifactsArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Build" Style="{StaticResource HiddenDragableLayoutPanel}" >
+                        <!--<dxdo:LayoutPanel Caption="Build" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:BuildArea />
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                         <dxdo:LayoutPanel Caption="Dashboard" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:DashboardArea />
                         </dxdo:LayoutPanel>
 
-                        <!--<dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
+                        <dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:GitArea />
-                        </dxdo:LayoutPanel>-->
+                        </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Test" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:TestArea />

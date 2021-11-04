@@ -43,6 +43,7 @@
                     <dxlc:LayoutGroup Header="Process"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource ProcessColor}">
 
@@ -58,6 +59,7 @@
                     <dxlc:LayoutGroup Header="Project"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource ProjectColor}">
 
@@ -73,6 +75,7 @@
                     <dxlc:LayoutGroup Header="Team"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource TeamColor}">
 
@@ -97,6 +100,7 @@
                 <dxlc:LayoutGroup Header="Build"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  ItemLabelsAlignment="Local"
         	        IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutGroup Header="Build"
@@ -117,6 +121,7 @@
                     <dxlc:LayoutGroup Header="Definition"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource DefinitionColor}">
 
@@ -134,6 +139,7 @@
                 <dxlc:LayoutGroup Header="Git"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  ItemLabelsAlignment="Local"
         	        IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutGroup Header="Repository"
@@ -154,6 +160,7 @@
                     <dxlc:LayoutGroup Header="Commit"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource CommitColor}">
 
@@ -165,6 +172,7 @@
                     <dxlc:LayoutGroup Header="Pull Request"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource CommitColor}">
 
@@ -178,11 +186,13 @@
                 <dxlc:LayoutGroup Header="Test"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  ItemLabelsAlignment="Local"
         	        IsCollapsible="True"  IsCollapsed="False">
 
                     <dxlc:LayoutGroup Header="TestPlan"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource TestColor}">
 
@@ -198,6 +208,7 @@
                     <dxlc:LayoutGroup Header="Test Suite"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource TestColor}">
 
@@ -213,6 +224,7 @@
                     <dxlc:LayoutGroup Header="Test Case"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource TestColor}">
 

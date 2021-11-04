@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Presentation\ModelWrappers\FeedWrapper.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Docking" Version="21.1.4" />
@@ -31,11 +27,6 @@
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Presentation\ModelWrappers\" />
-      <Folder Include="Presentation\ViewModels\" />
     </ItemGroup>
     
 </Project>

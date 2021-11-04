@@ -86,7 +86,6 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     Results.ResultItems.Add(result);
 
-
                     Results.Count = Results.ResultItems.Count;
                 }
 

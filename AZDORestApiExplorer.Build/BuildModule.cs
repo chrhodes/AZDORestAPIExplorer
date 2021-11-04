@@ -33,7 +33,13 @@ namespace AZDORestApiExplorer.Build
             Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
 
             containerRegistry.RegisterSingleton<AuthorizedResourceMain>();
+
             containerRegistry.RegisterSingleton<BuildMain>();
+            containerRegistry.RegisterSingleton<BuildInfoMain>();
+            containerRegistry.RegisterSingleton<BuildChangeMain>();
+            containerRegistry.RegisterSingleton<BuildLogMain>();
+            containerRegistry.RegisterSingleton<BuildWorkItemRefMain>();
+
             containerRegistry.RegisterSingleton<ControllerMain>();
             containerRegistry.RegisterSingleton<DefinitionMain>();
             containerRegistry.RegisterSingleton<GeneralSettingMain>();
@@ -59,7 +65,13 @@ namespace AZDORestApiExplorer.Build
             //_regionManager.RegisterViewWithRegion(RegionNames.TYPEMainRegion, typeof(ITYPEMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.AuthorizedResourceMainRegion, typeof(AuthorizedResourceMain));
+
             _regionManager.RegisterViewWithRegion(RegionNames.BuildMainRegion, typeof(BuildMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.BuildInfoMainRegion, typeof(BuildInfoMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.BuildChangeMainRegion, typeof(BuildChangeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.BuildLogMainRegion, typeof(BuildLogMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.BuildWorkItemRefMainRegion, typeof(BuildWorkItemRefMain));
+
             _regionManager.RegisterViewWithRegion(RegionNames.ControllerMainRegion, typeof(ControllerMain));
             _regionManager.RegisterViewWithRegion(RegionNames.DefinitionMainRegion, typeof(DefinitionMain));
             _regionManager.RegisterViewWithRegion(RegionNames.GeneralSettingMainRegion, typeof(GeneralSettingMain));

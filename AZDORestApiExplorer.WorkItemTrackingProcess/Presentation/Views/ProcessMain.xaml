@@ -63,6 +63,12 @@
             <dxg:GridColumn FieldName="customizationType" />
         </dxg:GridControl>
 
+        <!--        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+            <dxlc:LayoutItem Label="Url" >
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>-->
+
     </Grid>
 
 </vncmvvm:ViewBase>

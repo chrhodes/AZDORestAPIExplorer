@@ -70,14 +70,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Build Area
             
             GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
+
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
+            GetBuildInfoCommand = new DelegateCommand(GetBuildInfo, GetBuildInfoCanExecute);
+            GetBuildChangesCommand = new DelegateCommand(GetBuildChanges, GetBuildChangesCanExecute);
+            GetBuildTagsCommand = new DelegateCommand(GetBuildTags, GetBuildTagsCanExecute);
+            GetBuildLogsCommand = new DelegateCommand(GetBuildLogs, GetBuildLogsCanExecute);
+            GetBuildWorkItemRefsCommand = new DelegateCommand(GetBuildWorkItemRefs, GetBuildWorkItemRefsCanExecute);
+
             GetControllersCommand = new DelegateCommand(GetControllers, GetControllersCanExecute);
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
             GetGeneralSettingsCommand = new DelegateCommand(GetGeneralSettings, GetGeneralSettingsCanExecute);
             GetOptionsCommand = new DelegateCommand(GetOptions, GetOptionsCanExecute);
             GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
             GetSettingsCommand = new DelegateCommand(GetSettings, GetSettingsCanExecute);
-            GetBuildTagsCommand = new DelegateCommand(GetBuildTags, GetBuildTagsCanExecute);
 
             #endregion
 
@@ -300,23 +306,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void RaisePullRequestChanged(PullRequest pullRequest)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
-            GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
-            GetPullRequestIterationsCommand.RaiseCanExecuteChanged();
-            GetPullRequestLabelsCommand.RaiseCanExecuteChanged();
-            GetPullRequestPropertiesCommand.RaiseCanExecuteChanged();
-            GetPullRequestReviewersCommand.RaiseCanExecuteChanged();
-            GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
-            GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
-            GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         private void RaiseCommitChanged(Commit commit)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -407,6 +396,28 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void RaiseBuildChanged(Domain.Build.Build build)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetBuildInfoCommand.RaiseCanExecuteChanged();
+            GetBuildChangesCommand.RaiseCanExecuteChanged();
+            GetBuildLogsCommand.RaiseCanExecuteChanged();
+            GetBuildWorkItemRefsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaisePullRequestChanged(PullRequest pullRequest)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
+            GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
+            GetPullRequestIterationsCommand.RaiseCanExecuteChanged();
+            GetPullRequestLabelsCommand.RaiseCanExecuteChanged();
+            GetPullRequestPropertiesCommand.RaiseCanExecuteChanged();
+            GetPullRequestReviewersCommand.RaiseCanExecuteChanged();
+            GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
+            GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
+            GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -867,15 +878,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         public void GetBuilds()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            //Message = "Cool, you called GetBuilds";
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<GetBuildsEvent>().Publish();
-
-            // May want EventArgs
 
             EventAggregator.GetEvent<GetBuildsEvent>().Publish(
                 new GetBuildsEventArgs()
@@ -884,18 +886,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Project = _contextMainViewModel.Context.SelectedProject
                 });
 
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class GetBuildsEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<GetBuildsEvent>().Subscribe(GetBuilds);
-
-            // End Cut Four
-
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -903,6 +893,179 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetBuildInfo Command
+
+        public DelegateCommand GetBuildInfoCommand { get; set; }
+        public string GetBuildInfoContent { get; set; } = "GetBuildInfo";
+        public string GetBuildInfoToolTip { get; set; } = "GetBuildInfo ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetBuildInfoContent { get; set; } = "ViewName_GetBuildInfoContent";
+        //public string GetBuildInfoToolTip { get; set; } = "ViewName_GetBuildInfoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBuildInfoContent">GetBuildInfo</system:String>
+        //    <system:String x:Key="ViewName_GetBuildInfoContentToolTip">GetBuildInfo ToolTip</system:String>  
+
+        public void GetBuildInfo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBuildInfoEvent>().Publish(
+                new GetBuildInfoEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Build = _contextMainViewModel.Context.SelectedBuild
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBuildInfoCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedBuild is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One        
+        #region GetBuildChanges Command
+
+        public DelegateCommand GetBuildChangesCommand { get; set; }
+        public string GetBuildChangesContent { get; set; } = "GetBuildChanges";
+        public string GetBuildChangesToolTip { get; set; } = "GetBuildChanges ToolTip";
+                                
+        // Can get fancy and use Resources
+        //public string GetBuildChangesContent { get; set; } = "ViewName_GetBuildChangesContent";
+        //public string GetBuildChangesToolTip { get; set; } = "ViewName_GetBuildChangesContentToolTip";
+                                
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBuildChangesContent">GetBuildChanges</system:String>
+        //    <system:String x:Key="ViewName_GetBuildChangesContentToolTip">GetBuildChanges ToolTip</system:String>  
+                                
+        public void GetBuildChanges()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBuildChangesEvent>().Publish(
+                new GetBuildChangesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Build = _contextMainViewModel.Context.SelectedBuild
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+                                
+        public bool GetBuildChangesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedBuild is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetBuildLogs Command
+
+        public DelegateCommand GetBuildLogsCommand { get; set; }
+        public string GetBuildLogsContent { get; set; } = "GetBuildLogs";
+        public string GetBuildLogsToolTip { get; set; } = "GetBuildLogs ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetBuildLogsContent { get; set; } = "ViewName_GetBuildLogsContent";
+        //public string GetBuildLogsToolTip { get; set; } = "ViewName_GetBuildLogsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBuildLogsContent">GetBuildLogs</system:String>
+        //    <system:String x:Key="ViewName_GetBuildLogsContentToolTip">GetBuildLogs ToolTip</system:String>  
+
+        public void GetBuildLogs()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBuildLogsEvent>().Publish(
+                new GetBuildLogsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Build = _contextMainViewModel.Context.SelectedBuild
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBuildLogsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedBuild is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region GetBuildWorkItemRefs Command
+
+        public DelegateCommand GetBuildWorkItemRefsCommand { get; set; }
+        public string GetBuildWorkItemRefsContent { get; set; } = "GetBuildWorkItemRefs";
+        public string GetBuildWorkItemRefsToolTip { get; set; } = "GetBuildWorkItemRefs ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetBuildWorkItemRefsContent { get; set; } = "ViewName_GetBuildWorkItemRefsContent";
+        //public string GetBuildWorkItemRefsToolTip { get; set; } = "ViewName_GetBuildWorkItemRefsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetBuildWorkItemRefsContent">GetBuildWorkItemRefs</system:String>
+        //    <system:String x:Key="ViewName_GetBuildWorkItemRefsContentToolTip">GetBuildWorkItemRefs ToolTip</system:String>  
+
+        public void GetBuildWorkItemRefs()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetBuildWorkItemRefsEvent>().Publish(
+                new GetBuildWorkItemRefsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Build = _contextMainViewModel.Context.SelectedBuild
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetBuildWorkItemRefsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedBuild is null)
             {
                 return false;
             }
@@ -1251,7 +1414,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-
         #region GetBuildTags Command
 
         public DelegateCommand GetBuildTagsCommand { get; set; }
@@ -1295,7 +1457,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Dashboard Category
+        #region Dashboard Area
 
         #region GetDashboards Command
 
@@ -2282,7 +2444,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Tokens Category
+        #region Tokens Area
 
         #region GetPats Command
 

@@ -64,6 +64,12 @@
             <dxg:GridColumn FieldName="inheritDefaultConfiguration" />
         </dxg:GridControl>
 
+        <!--        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+            <dxlc:LayoutItem Label="Url" >
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>-->
+        
         <dxe:TextEdit Grid.Row="2"
             Text="{Binding Results.SelectedItem._links._self.href}"
             TextWrapping="Wrap"  VerticalScrollBarVisibility="Auto"/>

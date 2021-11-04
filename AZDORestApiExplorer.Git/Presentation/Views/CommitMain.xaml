@@ -78,7 +78,7 @@
             
         </dxg:GridControl>
 
-        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical">
+                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
             </dxlc:LayoutItem>
