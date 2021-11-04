@@ -33,7 +33,6 @@ namespace AZDORestApiExplorer.Build.Presentation.Views
         {
             get => _targetGrid;
             set => _targetGrid = value;
-
         }
 
         #region IInstanceCount

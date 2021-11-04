@@ -22,7 +22,8 @@ namespace AZDORestApiExplorer.Build.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            TargetGrid = grdResults;
+            //TargetGrid = grdResults;
+            //lgTopLevel.DataContext = viewModel.Results;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -33,7 +34,6 @@ namespace AZDORestApiExplorer.Build.Presentation.Views
         {
             get => _targetGrid;
             set => _targetGrid = value;
-
         }
 
         #region IInstanceCount

@@ -149,11 +149,11 @@
                         Background="{StaticResource RepositoryColor}">
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedRepository.name}" />
+                            <TextBlock Text="{Binding Context.SelectedGitRepository.name}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBox Text="{Binding Context.SelectedRepository.id}" IsReadOnly="True" BorderThickness="0"/>
+                            <TextBox Text="{Binding Context.SelectedGitRepository.id}" IsReadOnly="True" BorderThickness="0"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 

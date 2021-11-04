@@ -34,48 +34,38 @@ namespace AZDORestApiExplorer.Domain.Build
         public class SelectedBuildInfoChangedEvent : PubSubEvent<BuildInfo> { }
     }
 
-    //public class BuildBuilds
-    //{
-    //    public int count { get; set; }
-    //    public BuildInfo[] value { get; set; }
-    //}
-
     public class BuildInfo
     {
-        public _Links _links { get; set; }
-        public Properties properties { get; set; }
-        public object[] tags { get; set; }
-        public object[] validationResults { get; set; }
-        public Plan[] plans { get; set; }
-        public Triggerinfo triggerInfo { get; set; }
-        public int id { get; set; }
-        public string buildNumber { get; set; }
-        public string status { get; set; }
-        public string result { get; set; }
-        public DateTime queueTime { get; set; }
-        public DateTime startTime { get; set; }
-        public DateTime finishTime { get; set; }
-        public string url { get; set; }
-        public Definition definition { get; set; }
-        public int buildNumberRevision { get; set; }
-        public Project1 project { get; set; }
-        public string uri { get; set; }
-        public string sourceBranch { get; set; }
-        public string sourceVersion { get; set; }
-        public Queue queue { get; set; }
-        public string priority { get; set; }
-        public string reason { get; set; }
-        public Requestedfor requestedFor { get; set; }
-        public Requestedby requestedBy { get; set; }
-        public DateTime lastChangedDate { get; set; }
-        public Lastchangedby lastChangedBy { get; set; }
-        public Orchestrationplan orchestrationPlan { get; set; }
-        public Logs logs { get; set; }
-        public Repository repository { get; set; }
-        public bool retainedByRelease { get; set; }
-        public object triggeredByBuild { get; set; }
-
-        #region Nested Classes
+            public _Links _links { get; set; }
+            public Properties properties { get; set; }
+            public object[] tags { get; set; }
+            public object[] validationResults { get; set; }
+            public Plan[] plans { get; set; }
+            public Triggerinfo triggerInfo { get; set; }
+            public int id { get; set; }
+            public string buildNumber { get; set; }
+            public string status { get; set; }
+            public DateTime queueTime { get; set; }
+            public DateTime startTime { get; set; }
+            public string url { get; set; }
+            public Definition definition { get; set; }
+            public int buildNumberRevision { get; set; }
+            public Project1 project { get; set; }
+            public string uri { get; set; }
+            public string sourceBranch { get; set; }
+            public string sourceVersion { get; set; }
+            public Queue queue { get; set; }
+            public string priority { get; set; }
+            public string reason { get; set; }
+            public Requestedfor requestedFor { get; set; }
+            public Requestedby requestedBy { get; set; }
+            public DateTime lastChangedDate { get; set; }
+            public Lastchangedby lastChangedBy { get; set; }
+            public Orchestrationplan orchestrationPlan { get; set; }
+            public Logs logs { get; set; }
+            public Repository repository { get; set; }
+            public bool retainedByRelease { get; set; }
+            public object triggeredByBuild { get; set; }
 
         public class _Links
         {
@@ -265,9 +255,10 @@ namespace AZDORestApiExplorer.Domain.Build
             public string planId { get; set; }
         }
 
-        #endregion
-
-        public RESTResult<BuildInfo> Results { get; set; } = new RESTResult<BuildInfo>();
+        public RESTResult<BuildInfo> Results {
+            get; 
+            set; 
+        } = new RESTResult<BuildInfo>();
 
         public async Task<RESTResult<BuildInfo>> GetList(GetBuildInfoEventArgs args)
         {
@@ -302,11 +293,16 @@ namespace AZDORestApiExplorer.Domain.Build
                     BuildInfo result = JsonConvert.DeserializeObject<BuildInfo>(outJson);
 
                     //Results.ResultItems = new ObservableCollection<BuildInfo>(resultRoot.value);
-                    Results.ResultItems = new ObservableCollection<BuildInfo>();
 
-                    Results.ResultItems.Add(result);
+                    Results.ResultItem = result;
+                    //Results.SelectedItem = result;
 
-                    Results.Count = Results.ResultItems.Count;
+                    //Results.ResultItems = new ObservableCollection<BuildInfo>();
+
+                    //Results.ResultItems.Add(result);
+
+                    //Results.Count = Results.ResultItems.Count;
+                    Results.Count = 1;
                 }
 
                 Log.DOMAIN("Exit(BuildBuild)", Common.LOG_CATEGORY, startTicks);

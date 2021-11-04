@@ -50,9 +50,6 @@ namespace AZDORestApiExplorer.Domain.Build
 
     public class Build
     {
-
-        //public class Value
-        //{
         public _Links _links { get; set; }
         public Properties properties { get; set; }
         public object[] tags { get; set; }
@@ -86,7 +83,6 @@ namespace AZDORestApiExplorer.Domain.Build
         public bool retainedByRelease { get; set; }
         public object triggeredByBuild { get; set; }
         public string parameters { get; set; }
-        //}
 
         public class _Links
         {

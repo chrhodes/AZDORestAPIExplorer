@@ -22,7 +22,7 @@
 
     xmlns:views="clr-namespace:AZDORestApiExplorer.Build.Presentation.Views"
 
-    prism:ViewModelLocator.AutoWireViewModel="True"
+    prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
 >
@@ -36,39 +36,39 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <dxlc:LayoutGroup x:Name="lgTopLevel" Orientation="Vertical" DataContext="{Binding Results.ResultItem}">
+            <dxlc:LayoutItem Label="id" >
+                <dxe:TextEdit  Text="{Binding id}" />
+            </dxlc:LayoutItem>
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
+            <dxlc:LayoutItem Label="url" >
+                <dxe:TextEdit  Text="{Binding url}" />
+            </dxlc:LayoutItem>
+
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                     Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-            ItemsSource="{Binding Results.ResultItems}"
-            SelectedItem="{Binding Results.SelectedItem}"
-            FontSize="12"
-            ScrollViewer.CanContentScroll="True"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    
-            <dxg:GridColumn FieldName="id" Header="id" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="date" Header="Date" Width="150">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
-            
-        </dxg:GridControl>
+            <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                ItemsSource="{Binding Results.ResultItems}"
+                FontSize="12"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-        <dxlc:LayoutGroup Grid.Row="2" Header="Selected Item Details" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" >
-            <dxlc:LayoutItem Label="Url" >
-                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
-            </dxlc:LayoutItem>
-        </dxlc:LayoutGroup>
+                <dxg:GridColumn FieldName="id" Header="id" BestFitModeOnSourceChange="VisibleRows"/>
+                <dxg:GridColumn FieldName="url" Header="url" BestFitModeOnSourceChange="VisibleRows"/>
 
-    </Grid>
+            </dxg:GridControl>
+
+        </Grid>-->
+
+    </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

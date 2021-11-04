@@ -73,7 +73,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public RESTResult<DType> Results { get; set; } = new RESTResult<DType>();
+        public RESTResult<DType> Results { 
+            get; 
+            set; 
+        } = new RESTResult<DType>();
+        //public RESTResult<DType> Results { get; set; } = new RESTResult<DType>();
 
         #endregion
 
@@ -117,6 +121,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 await almostResults;
 
                 Results.ResultItems = almostResults.Result.ResultItems;
+
+                // NOTE(crhodes)
+                // Magic
+                Results.ResultItem = almostResults.Result.ResultItem;
+
                 Results.Count = Results.ResultItems.Count();
                 Results.RequestResponseExchange = almostResults.Result.RequestResponseExchange;
 
