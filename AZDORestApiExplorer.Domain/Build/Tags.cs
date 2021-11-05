@@ -59,9 +59,11 @@ namespace AZDORestApiExplorer.Domain.Build
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                // https://dev.azure.com/{organization}/{project}/_apis/build/tags?api-version=6.1-preview.3
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"build/tags?"
-                    + "?api-version=6.1-preview.3";
+                    + "api-version=6.1-preview.3";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 

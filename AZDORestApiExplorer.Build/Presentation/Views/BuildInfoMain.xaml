@@ -36,15 +36,119 @@
 
     </UserControl.Resources>
 
-        <dxlc:LayoutGroup x:Name="lgTopLevel" Orientation="Vertical" DataContext="{Binding Results.ResultItem}">
+        <dxlc:LayoutGroup x:Name="lgTopLevel" Orientation="Horizontal" DataContext="{Binding Results.ResultItem}"
+                          ItemLabelsAlignment="Local">
+            <dxlc:LayoutGroup 
+            	View="Group" Orientation="Vertical" >
+                
             <dxlc:LayoutItem Label="id" >
                 <dxe:TextEdit  Text="{Binding id}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Build Number" >
+                <dxe:TextEdit  Text="{Binding buildNumber}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Priority" >
+                <dxe:TextEdit  Text="{Binding priority}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Requested For" >
+                <dxe:TextEdit  Text="{Binding requestedFor.displayName}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Requested By" >
+                <dxe:TextEdit  Text="{Binding requestedBy.displayName}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Last Changed By" >
+                <dxe:TextEdit  Text="{Binding lastChangedBy.displayName}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Last Changed" >
+                <dxe:TextEdit  Text="{Binding lastChangedDate}" DisplayFormatString="yyyy/MM/dd hh:mm:ss tt"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Reason" >
+                <dxe:TextEdit  Text="{Binding reason}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Build Number Revision" >
+                <dxe:TextEdit  Text="{Binding buildNumberRevision}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Status" >
+                <dxe:TextEdit  Text="{Binding status}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Queue Time" >
+                <dxe:TextEdit  Text="{Binding queueTime}" DisplayFormatString="yyyy/MM/dd hh:mm:ss tt" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Start Time" >
+                <dxe:TextEdit  Text="{Binding startTime}" DisplayFormatString="yyyy/MM/dd hh:mm:ss tt" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="uri" >
+                <dxe:TextEdit  Text="{Binding uri}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Repository" >
+                <dxe:TextEdit  Text="{Binding repository.name}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Repository Type" >
+                <dxe:TextEdit  Text="{Binding repository.type}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Source Branch" >
+                <dxe:TextEdit  Text="{Binding sourceBranch}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Source Version" >
+                <dxe:TextEdit  Text="{Binding sourceVersion}" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="url" >
                 <dxe:TextEdit  Text="{Binding url}" />
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem Label="CI Source Branch" >
+                <dxe:TextEdit  Text="{Binding triggerInfo.cisourceBranch}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="CI Source Sha" >
+                <dxe:TextEdit  Text="{Binding triggerInfo.cisourceSha}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="CI Trigger Repository" >
+                <dxe:TextEdit  Text="{Binding triggerInfo.citriggerRepository}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="CI Message" >
+                <dxe:TextEdit  Text="{Binding triggerInfo.cimessage}" />
+            </dxlc:LayoutItem>                
+            <dxlc:LayoutItem Label="Orchestration Plan ID" >
+                <dxe:TextEdit  Text="{Binding orchestrationPlan.planId}" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+
+
+        <dxlc:LayoutGroup 
+            	View="Group" Orientation="Vertical" >
+
+
+        <dxlc:LayoutItem Label="Log Id" >
+            <dxe:TextEdit  Text="{Binding logs.id}" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Log type" >
+            <dxe:TextEdit  Text="{Binding logs.type}" />
+        </dxlc:LayoutItem>
+
+
+        <dxlc:LayoutItem Label="Log Url" >
+            <dxe:TextEdit  Text="{Binding logs.url}" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem Label="Link Self" >
+            <dxe:TextEdit  Text="{Binding _links.self.href}" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Link Web" >
+            <dxe:TextEdit  Text="{Binding _links.web.href}" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Link SourceVersionDisplayUri" >
+            <dxe:TextEdit  Text="{Binding _links.sourceVersionDisplayUri.href}" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Link Timeline" >
+            <dxe:TextEdit  Text="{Binding _links.timeline.href}" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Link Badge" >
+            <dxe:TextEdit  Text="{Binding _links.badge.href}" />
+        </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
         <!--<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

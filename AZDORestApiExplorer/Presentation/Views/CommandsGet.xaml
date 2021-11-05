@@ -165,12 +165,25 @@
                                 
                             </dxlc:LayoutGroup>
 
-                            <dxlc:LayoutItem>
-                                <Button 
+                            <dxlc:LayoutGroup Header="Definition Level" IsCollapsed="False"
+                                Orientation="Vertical" View="GroupBox"
+                                Background="{StaticResource DefinitionColor}">
+
+                                <dxlc:LayoutItem>
+                                    <Button 
 		                            Command="{Binding GetDefinitionsCommand }"
 		                            Content="{Binding GetDefinitionsContent, FallbackValue='GetDefinitions' }"
 		                            ToolTip="{Binding GetDefinitionsToolTip, FallbackValue='GetDefinitions ToolTip' }" />
-                            </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem>
+                                    <Button 
+                            		    Command="{Binding GetResourcesCommand }"
+                            		    Content="{Binding GetResourcesContent, FallbackValue='GetResources' }"
+                            		    ToolTip="{Binding GetResourcesToolTip, FallbackValue='GetResources ToolTip' }" />
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>                         
                             
                             <dxlc:LayoutItem>
                                 <Button 
@@ -200,18 +213,7 @@
                             		ToolTip="{Binding GetBuildTagsToolTip, FallbackValue='GetBuildTags ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutGroup Header="Definition Level" IsCollapsed="False"
-                                Orientation="Vertical" View="GroupBox"
-                                Background="{StaticResource DefinitionColor}">
-                                
-                                <dxlc:LayoutItem>
-                                    <Button 
-                            		    Command="{Binding GetResourcesCommand }"
-                            		    Content="{Binding GetResourcesContent, FallbackValue='GetResources' }"
-                            		    ToolTip="{Binding GetResourcesToolTip, FallbackValue='GetResources ToolTip' }" />
-                                </dxlc:LayoutItem>
-                                
-                            </dxlc:LayoutGroup>
+
                         
                         </dxlc:LayoutGroup>
                         

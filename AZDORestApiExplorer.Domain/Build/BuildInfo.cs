@@ -107,9 +107,16 @@ namespace AZDORestApiExplorer.Domain.Build
 
         public class Triggerinfo
         {
+            [JsonProperty("ci.sourceBranch")]
             public string cisourceBranch { get; set; }
+
+            [JsonProperty("ci.sourceSha")]
             public string cisourceSha { get; set; }
+
+            [JsonProperty("ci.message")]
             public string cimessage { get; set; }
+
+            [JsonProperty("ci.triggerRepository")]
             public string citriggerRepository { get; set; }
         }
 
@@ -268,7 +275,8 @@ namespace AZDORestApiExplorer.Domain.Build
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                // GET https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=6.1-preview.7
+            // https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?api-version=6.1-preview.7
+            // https://dev.azure.com/{organization}/{project}/_apis/build/builds/{buildId}?propertyFilters={propertyFilters}&api-version=6.1-preview.7
 
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"build/builds/{args.Build.id}?"
@@ -284,24 +292,15 @@ namespace AZDORestApiExplorer.Domain.Build
 
                     string outJson = await response.Content.ReadAsStringAsync();
 
-                    // HACK(crhodes)
                     // There is only one item coming back, not a count and collection.
-                    // Hack it into the collection.
 
                     //BuildBuilds resultRoot = JsonConvert.DeserializeObject<BuildBuilds>(outJson);
+                    //Results.ResultItems = new ObservableCollection<BuildInfo>(resultRoot.value);
 
                     BuildInfo result = JsonConvert.DeserializeObject<BuildInfo>(outJson);
 
-                    //Results.ResultItems = new ObservableCollection<BuildInfo>(resultRoot.value);
-
                     Results.ResultItem = result;
-                    //Results.SelectedItem = result;
-
-                    //Results.ResultItems = new ObservableCollection<BuildInfo>();
-
-                    //Results.ResultItems.Add(result);
-
-                    //Results.Count = Results.ResultItems.Count;
+    
                     Results.Count = 1;
                 }
 

@@ -120,9 +120,9 @@
 
                     <dxdo:FloatGroup Orientation="Vertical">
 
-                        <dxdo:LayoutPanel x:Name="lpCommandsAndContext"  Caption="Commands and Context"
+                        <dxdo:LayoutPanel x:Name="lpCommandsAndContext"  Caption="Context and Commands"
                                           Style="{StaticResource DragableLayoutPanel}"                                         
-                                          MinWidth="1200" MinHeight="800" >
+                                          MinWidth="1500" MinHeight="1000" >
                             <dxdo:LayoutPanel.CaptionTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Background="LightGray" 
@@ -140,6 +140,11 @@
                                 </dxdo:LayoutPanel>
 
                                 <dxdo:LayoutGroup Orientation="Horizontal">
+
+                                    <dxdo:LayoutPanel Caption="Context Level Providers" Style="{StaticResource NotDragableLayoutPanel}" 
+                                                      MinWidth="500" ItemWidth="600">
+                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
+                                    </dxdo:LayoutPanel>
 
                                     <dxdo:TabbedGroup AllowDrag="False">
 
@@ -160,11 +165,6 @@
                                         </dxdo:LayoutPanel>
 
                                     </dxdo:TabbedGroup>
-
-                                    <dxdo:LayoutPanel Caption="Context Level Providers" Style="{StaticResource NotDragableLayoutPanel}" 
-                                                      MinWidth="375" ItemWidth="400">
-                                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContextMainRegion}" />
-                                    </dxdo:LayoutPanel>
 
                                 </dxdo:LayoutGroup>
 

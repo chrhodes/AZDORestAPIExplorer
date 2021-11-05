@@ -128,19 +128,15 @@ namespace AZDORestApiExplorer.Domain.Build
                     string outJson = await response.Content.ReadAsStringAsync();
 
                     //SettingsRoot resultRoot = JsonConvert.DeserializeObject<SettingsRoot>(outJson);
+                    //Results.ResultItems = new ObservableCollection<Build>(resultRoot.value);
 
                     // NOTE(crhodes)
-                    // There is only one item coming back.  Hack it into the collection.
-
-                    //Results.ResultItems = new ObservableCollection<Build>(resultRoot.value);
+                    // There is only one item coming back.
 
                     Setting result = JsonConvert.DeserializeObject<Setting>(outJson);
 
-                    Results.ResultItems = new ObservableCollection<Setting>();
-
-                    Results.ResultItems.Add(result);
-
-                    Results.Count = Results.ResultItems.Count;
+                    Results.ResultItem = result;
+                    Results.Count = 1;
                 }
 
                 Log.DOMAIN("Exit(Setting)", Common.LOG_CATEGORY, startTicks);

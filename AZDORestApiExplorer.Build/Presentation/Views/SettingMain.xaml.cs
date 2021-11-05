@@ -22,7 +22,7 @@ namespace AZDORestApiExplorer.Build.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
-            TargetGrid = grdResults;
+            //TargetGrid = grdResults;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

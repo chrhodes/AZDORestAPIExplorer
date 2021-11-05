@@ -1,6 +1,7 @@
 ﻿using System;
 
 using AZDORestApiExplorer.Core.Events;
+using AZDORestApiExplorer.Domain.Build;
 using AZDORestApiExplorer.Domain.Build.Events;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Core.Events;
@@ -9,6 +10,7 @@ using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Graph.Events;
 using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.Domain.Tokens.Events;
+using AZDORestApiExplorer.Domain.WorkItemTracking;
 using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
 using AZDORestApiExplorer.Domain.WorkItemTrackingProcess.Events;
 
@@ -72,14 +74,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
 
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
+
             GetBuildInfoCommand = new DelegateCommand(GetBuildInfo, GetBuildInfoCanExecute);
+            // Trigger calls to other Build Related stuff anytime a new Build is selected
+            EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(CallBuildDependentStuff);
+
             GetBuildChangesCommand = new DelegateCommand(GetBuildChanges, GetBuildChangesCanExecute);
             GetBuildTagsCommand = new DelegateCommand(GetBuildTags, GetBuildTagsCanExecute);
             GetBuildLogsCommand = new DelegateCommand(GetBuildLogs, GetBuildLogsCanExecute);
             GetBuildWorkItemRefsCommand = new DelegateCommand(GetBuildWorkItemRefs, GetBuildWorkItemRefsCanExecute);
 
             GetControllersCommand = new DelegateCommand(GetControllers, GetControllersCanExecute);
+
             GetDefinitionsCommand = new DelegateCommand(GetDefinitions, GetDefinitionsCanExecute);
+            // Trigger a GetResources call anytime a new Definition is selected
+            EventAggregator.GetEvent<SelectedDefinitionChangedEvent>().Subscribe(CallGetResources);
+
             GetGeneralSettingsCommand = new DelegateCommand(GetGeneralSettings, GetGeneralSettingsCanExecute);
             GetOptionsCommand = new DelegateCommand(GetOptions, GetOptionsCanExecute);
             GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
@@ -171,6 +181,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemTypesFieldsCommand = new DelegateCommand(GetWorkItemTypesFieldsExecute, GetWorkItemTypesFieldsCanExecute);
 
             GetWorkItemCommand = new DelegateCommand(GetWorkItem, GetWorkItemCanExecute);
+            // Trigger a GetWorkItem call anytime a new WorkItem is selected or entered
+            EventAggregator.GetEvent<SelectedBuildWorkItemRefChangedEvent>().Subscribe(CallGetWorkItem);
 
             #endregion Work Item Tracking Category
 
@@ -931,6 +943,52 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void CallBuildDependentStuff(Domain.Build.Build build)
+        {
+            if (! (build is null))
+            {
+                // Info about Build
+
+                EventAggregator.GetEvent<GetBuildInfoEvent>().Publish(
+                    new GetBuildInfoEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about Changes
+
+                EventAggregator.GetEvent<GetBuildChangesEvent>().Publish(
+                    new GetBuildChangesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about Logs
+
+                EventAggregator.GetEvent<GetBuildLogsEvent>().Publish(
+                    new GetBuildLogsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about WorkItemRefs
+
+                EventAggregator.GetEvent<GetBuildWorkItemRefsEvent>().Publish(
+                    new GetBuildWorkItemRefsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+            }
+        }
+
         public bool GetBuildInfoCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
@@ -944,8 +1002,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
-
-        // End Cut One        
+      
         #region GetBuildChanges Command
 
         public DelegateCommand GetBuildChangesCommand { get; set; }
@@ -1357,6 +1414,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void CallGetResources(Domain.Build.Definition definition)
+        {
+            if (!(definition is null))
+            {
+                EventAggregator.GetEvent<GetResourcesEvent>().Publish(
+                    new GetResourcesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Definition = definition
+                    });
+            }
         }
 
         public bool GetResourcesCanExecute()
@@ -2502,7 +2573,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Test Category
+        #region Test Area
 
         #region GetTestsPlan Command
 
@@ -2676,7 +2747,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion Test Category
 
-        #region Work Item Tracking Category
+        #region Work Item Tracking Area
 
         #region GetArtifactLinkTypes Command
 
@@ -3246,6 +3317,36 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void CallGetWorkItem(WorkItem workItem)
+        {
+            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Id = _contextMainViewModel.Context.Model.WorkItemId
+                });
+        }
+
+        private void CallGetWorkItem(BuildWorkItemRef workItemRef)
+        {
+            if (!(workItemRef is null))
+            {
+                int workItemId = 0;
+
+                if (int.TryParse(workItemRef.id, out workItemId))
+                {
+                    EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                        new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                        {
+                            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                            Project = _contextMainViewModel.Context.SelectedProject,
+                            Id = workItemId
+                        });
+                }
+            }
+        }
+
         public bool GetWorkItemCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
@@ -3259,11 +3360,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
     #endregion
 
-    // End Cut One
+        #endregion Work Item Tracking Category
 
-    #endregion Work Item Tracking Category
-
-        #region Work Item Tracking Process Category
+        #region Work Item Tracking Process Area
 
         #region GetBehaviors Command
 

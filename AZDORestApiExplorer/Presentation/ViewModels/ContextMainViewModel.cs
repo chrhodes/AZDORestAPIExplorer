@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZDORestApiExplorer.Domain.Build;
+using System;
 
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
@@ -30,6 +31,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void BuildWorkItemRefChanged(BuildWorkItemRef workItemRef)
+        {
+            int workItemId = 0;
+
+            if (! (workItemRef is null)
+                && int.TryParse(workItemRef.id, out workItemId))
+            {
+                Context.WorkItemId = int.Parse(workItemRef.id);
+            }
+        }
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -52,6 +64,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestCaseChangedEvent>().Subscribe(TestCaseChanged);
 
+            EventAggregator.GetEvent<Domain.Build.Events.SelectedBuildWorkItemRefChangedEvent>().Subscribe(BuildWorkItemRefChanged);
             EventAggregator.GetEvent<Domain.WorkItemTracking.Events.SelectedWorkItemTypeWITChangedEvent>().Subscribe(WorkItemTypeWITChanged);
             EventAggregator.GetEvent<Domain.WorkItemTrackingProcess.Events.SelectedWorkItemTypeWITPChangedEvent>().Subscribe(WorkItemTypeWITPChanged);
 

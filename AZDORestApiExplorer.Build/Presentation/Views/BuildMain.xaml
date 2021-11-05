@@ -104,14 +104,15 @@
                         <dxg:GridColumn FieldName="triggerInfo.scheduleName" BestFitModeOnSourceChange="VisibleRows"/>
                     </dxg:GridControl>
 
-                    <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                    <dxlc:LayoutGroup Grid.Row="2" Header="Selected Item Details"
+                                      Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox"  >
                         <dxlc:LayoutItem Label="Url" >
                             <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="CI Message" >
+                        <!--<dxlc:LayoutItem Label="CI Message" >
                             <dxe:TextEdit  Text="{Binding Results.SelectedItem.triggerInfo.cimessage}" />
-                        </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>-->
                     </dxlc:LayoutGroup>
 
                 </Grid>

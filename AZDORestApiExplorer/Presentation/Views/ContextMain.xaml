@@ -22,6 +22,7 @@
     </d:DesignerProperties.DesignStyle>
 
     <UserControl.Resources>
+        
     </UserControl.Resources>
 
     <Grid>
@@ -33,258 +34,271 @@
             Name="lc_Root"
             Orientation="Vertical">
             
-            <dxlc:LayoutGroup Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal" >
 
-                <dxlc:LayoutGroup Header="Core"
+                <dxlc:LayoutGroup Orientation="Vertical">
+
+                    <dxlc:LayoutGroup Header="Core"
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	            IsCollapsible="True"  IsCollapsed="False">
+
+                        <dxlc:LayoutGroup Header="Process"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource ProcessColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedProcess.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedProcess.id}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup Header="Project"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource ProjectColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedProject.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedProject.id}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup Header="Team"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource TeamColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTeam.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTeam.id}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="ClassificationNode IDs:" LabelPosition="Left" ToolTip="Separate With Comma.  Blank for Root Nodes Only">
+                                <dxe:TextEdit Text="{Binding Context.ClassificationNodeIds, Mode=TwoWay}"/>
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="Depth" LabelPosition="Left" >
+                                <dxe:SpinEdit Value="{Binding Context.ClassificationNodeDepth, Mode=TwoWay}" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Work Item Tracking"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
         	        IsCollapsible="True"  IsCollapsed="False">
 
-                    <dxlc:LayoutGroup Header="Process"
+                        <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="WorkItem ID:" LabelPosition="Left">
+                            <dxe:TextEdit Text="{Binding Context.WorkItemId, Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup Header="Work Item Type"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource ProcessColor}">
+                        Background="{StaticResource WorkItemTypeColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedProcess.name}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedWorkItemTypeWIT.referenceName}" />
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedProcess.id}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Project"
+                    <dxlc:LayoutGroup Header="Work Item Tracking Process"
+        	        View="GroupBox" Orientation="Vertical"
+        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+        	        IsCollapsible="True"  IsCollapsed="False">
+
+                        <dxlc:LayoutGroup Header="Work Item Type"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource ProjectColor}">
+                        Background="{StaticResource WorkItemTypeColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedProject.name}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedWorkItemTypeWITP.referenceName}" />
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedProject.id}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Team"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource TeamColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTeam.name}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTeam.id}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="ClassificationNode IDs:" LabelPosition="Left" ToolTip="Separate With Comma.  Blank for Root Nodes Only">
-                            <dxe:TextEdit Text="{Binding Context.ClassificationNodeIds, Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="Depth" LabelPosition="Left" >
-                            <dxe:SpinEdit Value="{Binding Context.ClassificationNodeDepth, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Build"
-        	        View="GroupBox" Orientation="Vertical"
-        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                  ItemLabelsAlignment="Local"
-        	        IsCollapsible="True"  IsCollapsed="False">
+                <dxlc:LayoutGroup Orientation="Vertical">
 
                     <dxlc:LayoutGroup Header="Build"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource BuildColor}">
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                        ItemLabelsAlignment="Local"
+        	            IsCollapsible="True"  IsCollapsed="False">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedBuild.buildNumber}" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Header="Build"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource BuildColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedBuild.id}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedBuild.buildNumber}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedBuild.id}" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup Header="Definition"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource DefinitionColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedDefinition.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedDefinition.id}" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Definition"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource DefinitionColor}">
+                    <dxlc:LayoutGroup Header="Git"
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                        ItemLabelsAlignment="Local"
+        	            IsCollapsible="True"  IsCollapsed="False">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedDefinition.name}" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Header="Repository"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource RepositoryColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedDefinition.id}" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedGitRepository.name}" />
+                            </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBox Text="{Binding Context.SelectedGitRepository.id}" IsReadOnly="True" BorderThickness="0"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Git"
-        	        View="GroupBox" Orientation="Vertical"
-        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                  ItemLabelsAlignment="Local"
-        	        IsCollapsible="True"  IsCollapsed="False">
+                        <dxlc:LayoutGroup Header="Commit"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource CommitColor}">
 
-                    <dxlc:LayoutGroup Header="Repository"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource RepositoryColor}">
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="commitId:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedCommit.commitId}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedGitRepository.name}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBox Text="{Binding Context.SelectedGitRepository.id}" IsReadOnly="True" BorderThickness="0"/>
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup Header="Commit"
+                        <dxlc:LayoutGroup Header="Pull Request"
             	        View="GroupBox" Orientation="Vertical"
             	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                       ItemLabelsAlignment="Local"
             	        IsCollapsible="True"  IsCollapsed="False"
                         Background="{StaticResource CommitColor}">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="commitId:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedCommit.commitId}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestId:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedPullRequest.pullRequestId}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Pull Request"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource CommitColor}">
+                    <dxlc:LayoutGroup Header="Test"
+        	            View="GroupBox" Orientation="Vertical"
+        	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                        ItemLabelsAlignment="Local"
+        	            IsCollapsible="True"  IsCollapsed="False">
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestId:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedPullRequest.pullRequestId}" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Header="TestPlan"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource TestColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestPlan.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestPlan.id}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup Header="Test Suite"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource TestColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestSuite.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestSuite.id}" />
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup Header="Test Case"
+            	            View="GroupBox" Orientation="Vertical"
+            	            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            ItemLabelsAlignment="Local"
+            	            IsCollapsible="True"  IsCollapsed="False"
+                            Background="{StaticResource TestColor}">
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI name:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestCase.workItem.name}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI id:" LabelPosition="Left">
+                                <TextBlock Text="{Binding Context.SelectedTestCase.workItem.id}" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+                        
                     </dxlc:LayoutGroup>
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Test"
-        	        View="GroupBox" Orientation="Vertical"
-        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                  ItemLabelsAlignment="Local"
-        	        IsCollapsible="True"  IsCollapsed="False">
-
-                    <dxlc:LayoutGroup Header="TestPlan"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource TestColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestPlan.name}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestPlan.id}" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup Header="Test Suite"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource TestColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestSuite.name}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestSuite.id}" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup Header="Test Case"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                                      ItemLabelsAlignment="Local"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource TestColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI name:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestCase.workItem.name}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="WI id:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedTestCase.workItem.id}" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Work Item Tracking"
-        	        View="GroupBox" Orientation="Vertical"
-        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	        IsCollapsible="True"  IsCollapsed="False">
-
-                    <dxlc:LayoutItem HorizontalAlignment="Stretch" Label="WorkItem ID:" LabelPosition="Left">
-                        <dxe:TextEdit Text="{Binding Context.WorkItemId, Mode=TwoWay}"/>
-                    </dxlc:LayoutItem>
-                    
-                    <dxlc:LayoutGroup Header="Work Item Type"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource WorkItemTypeColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedWorkItemTypeWIT.referenceName}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-                
-                <dxlc:LayoutGroup Header="Work Item Tracking Process"
-        	        View="GroupBox" Orientation="Vertical"
-        	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-        	        IsCollapsible="True"  IsCollapsed="False">
-
-                    <dxlc:LayoutGroup Header="Work Item Type"
-            	        View="GroupBox" Orientation="Vertical"
-            	        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            	        IsCollapsible="True"  IsCollapsed="False"
-                        Background="{StaticResource WorkItemTypeColor}">
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="referenceName:" LabelPosition="Left">
-                            <TextBlock Text="{Binding Context.SelectedWorkItemTypeWITP.referenceName}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="id:" LabelPosition="Left">
-                            <TextBlock Text="" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-             
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup VerticalAlignment="Bottom">

@@ -34,7 +34,63 @@
 
     </UserControl.Resources>
 
-    <Grid>
+    <dxlc:LayoutGroup x:Name="lgTopLevel" Orientation="Vertical" DataContext="{Binding Results.ResultItem}"
+                          ItemLabelsAlignment="Local">
+
+        <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+            <dxe:TextEdit  Text="{Binding daysToKeepDeletedBuildsBeforeDestroy}" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutGroup 
+        	View="Group" Orientation="Horizontal" >
+            
+            <dxlc:LayoutGroup 
+        	    View="GroupBox" Header="Default Retention Policy" Orientation="Vertical" >        
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding defaultRetentionPolicy.daysToKeep}" />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding defaultRetentionPolicy.minimumToKeep}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding defaultRetentionPolicy.deleteBuildRecord}" />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding defaultRetentionPolicy.deleteTestResults}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup 
+        	    View="GroupBox" Header="Maximum Retention Policy" Orientation="Vertical" >
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding maximumRetentionPolicy.daysToKeep}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding maximumRetentionPolicy.minimumToKeep}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding maximumRetentionPolicy.deleteBuildRecord}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="daysToKeepDeletedBuildsBeforeDestroy" >
+                    <dxe:TextEdit  Text="{Binding maximumRetentionPolicy.deleteTestResults}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+        
+    </dxlc:LayoutGroup>
+
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -72,6 +128,6 @@
             </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
 
-    </Grid>
+    </Grid>-->
 
 </vncmvvm:ViewBase>
