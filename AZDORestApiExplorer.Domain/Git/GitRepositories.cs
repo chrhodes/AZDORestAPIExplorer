@@ -63,6 +63,10 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories?includeLinks={includeLinks}&includeAllUrls={includeAllUrls}&includeHidden={includeHidden}&api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}?api-version=6.1-preview.1
+
                 // TODO(crhodes)
                 // Make this cleaner
 

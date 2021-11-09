@@ -180,38 +180,41 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="Links"
+
+        </dxlc:LayoutGroup>
+
+
+        <dxlc:LayoutGroup Header="Links"
         	        View="GroupBox" Orientation="Vertical"
         	        VerticalAlignment="Top" 
         	        IsCollapsible="True"  IsCollapsed="False">
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemType" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemType.href}" Style="{StaticResource SelectableText}" />
-                </dxlc:LayoutItem>
-                
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemType" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemType.href}" Style="{StaticResource SelectableText}" />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemRevisions" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemRevisions.href}" Style="{StaticResource SelectableText}"  />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemComments" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemComments.href}" Style="{StaticResource SelectableText}"  />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemRevisions" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemRevisions.href}" Style="{StaticResource SelectableText}"  />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
-                </dxlc:LayoutItem>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemComments" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemComments.href}" Style="{StaticResource SelectableText}"  />
+            </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="Fields" LabelPosition="Left">
-                    <dxe:TextEdit Text="{Binding WorkItemInfo._links.fields.href}" Style="{StaticResource SelectableText}" />
-                </dxlc:LayoutItem>
-                
-            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="WorkItemUpdates" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.workItemUpdates.href}" Style="{StaticResource SelectableText}"  />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="Fields" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding WorkItemInfo._links.fields.href}" Style="{StaticResource SelectableText}" />
+            </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
+
 
     </dxlc:LayoutControl>
 

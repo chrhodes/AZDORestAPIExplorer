@@ -36,16 +36,15 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutControl Orientation="Vertical" >
+    <dxlc:LayoutControl Orientation="Vertical" VerticalAlignment="Stretch">
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="23*" />
-            </Grid.RowDefinitions>
+        <dxlc:LayoutGroup Orientation="Vertical" >
 
-            <dxlc:LayoutGroup Grid.Row="0" View="GroupBox" IsCollapsible="True" IsCollapsed="False" VerticalAlignment="Top">
-                
+            <dxlc:LayoutGroup View="GroupBox"
+                              Collapsed="Repositories_LayoutGroup_ExpansionChanged" 
+                              Expanded="Repositories_LayoutGroup_ExpansionChanged"
+                              IsCollapsible="True" IsCollapsed="False" >
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -63,7 +62,7 @@
                         ScrollViewer.CanContentScroll="True"
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        
+
                         <dxg:GridColumn FieldName="name" Header="Repository Name" BestFitModeOnSourceChange="VisibleRows"/>
                         <!--<dxg:GridColumn FieldName="id" />-->
                         <!--<dxg:GridColumn FieldName="url" />-->
@@ -72,23 +71,35 @@
                         <dxg:GridColumn FieldName="size" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="isDisabled" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="isFork" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>
+                        <!--<dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>
                         <dxg:GridColumn FieldName="sshUrl" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="webUrl" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="webUrl" BestFitModeOnSourceChange="VisibleRows"/>-->
 
                     </dxg:GridControl>
 
-                            <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                    <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
                         <dxlc:LayoutItem Label="Url" >
                             <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Remote Url" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.remoteUrl}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="SSH Url" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.sshUrl}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Web Url" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.webUrl}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
                 </Grid>
-                
-            </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Grid.Row="1" Orientation="Vertical"  View="Tabs" VerticalAlignment="Stretch">
+            </dxlc:LayoutGroup>         
+
+            <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" >
 
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">
@@ -117,7 +128,7 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Merges" >
-
+                    <Label Content="Not Implemented" />
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Header="Pull Requests" >
@@ -136,9 +147,9 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
                 </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>
-
-        </Grid>
+            </dxlc:LayoutGroup>            
+            
+        </dxlc:LayoutGroup>
         
     </dxlc:LayoutControl>
 

@@ -98,13 +98,13 @@
                             Comment out Below to avoid region errors.
                         -->
 
-                        <dxdo:LayoutPanel Caption="Build" Style="{StaticResource DragableLayoutPanel}">
+                        <!--<dxdo:LayoutPanel Caption="Build" Style="{StaticResource DragableLayoutPanel}">
                             <local:BuildArea />
-                        </dxdo:LayoutPanel>
-
-                        <!--<dxdo:LayoutPanel Caption="Git" Style="{StaticResource DragableLayoutPanel}" >
-                            <local:GitArea />
                         </dxdo:LayoutPanel>-->
+
+                        <dxdo:LayoutPanel Caption="Git" Style="{StaticResource DragableLayoutPanel}" >
+                            <local:GitArea />
+                        </dxdo:LayoutPanel>
 
                         <!--<dxdo:LayoutPanel Caption="Graph" Style="{StaticResource DragableLayoutPanel}" >
                             <local:GraphArea />
@@ -195,10 +195,6 @@
                                         
                     </dxdo:AutoHideGroup>
 
-                    <dxdo:AutoHideGroup DockType="Right">
-                        
-                    </dxdo:AutoHideGroup>
-
                     <!--
                         Put the Implemented Panels here 
                         unitl we figure out how to better do this
@@ -206,33 +202,30 @@
                         Area of current foucs goes above.  Comment out below.
                         
                         These should be HiddenDragableLayoutPanel
+
                     -->
                     
-                    <dxdo:AutoHideGroup DockType="Bottom">
-                        
-                        <!--<dxdo:LayoutPanel Caption="HTTP Exchange" >
-                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
-                        </dxdo:LayoutPanel>-->
+                    <dxdo:AutoHideGroup DockType="Right" >
 
                         <dxdo:LayoutPanel Caption="Accounts" Style="{StaticResource HiddenDragableLayoutPanel}" >
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AccountMainRegion}" />
                         </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Artifacts" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:ArtifactsArea />
                         </dxdo:LayoutPanel>
 
-                        <!--<dxdo:LayoutPanel Caption="Build" Style="{StaticResource HiddenDragableLayoutPanel}" >
+                        <dxdo:LayoutPanel Caption="Build" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:BuildArea />
-                        </dxdo:LayoutPanel>-->
+                        </dxdo:LayoutPanel>
 
                         <dxdo:LayoutPanel Caption="Dashboard" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:DashboardArea />
                         </dxdo:LayoutPanel>
 
-                        <dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
+                        <!--<dxdo:LayoutPanel Caption="Git" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:GitArea />
-                        </dxdo:LayoutPanel>
+                        </dxdo:LayoutPanel>-->
 
                         <dxdo:LayoutPanel Caption="Test" Style="{StaticResource HiddenDragableLayoutPanel}" >
                             <local:TestArea />
@@ -251,7 +244,7 @@
                         </dxdo:LayoutPanel>
 
                         <!--This is where the Future Output Placeholders are kept until we start working on them-->
-                        
+
                         <dxdo:LayoutPanel Caption="Future Output" AutoHidden="True">
 
                             <dxlc:LayoutControl
@@ -275,8 +268,6 @@
                                     <dxlc:LayoutGroup Header="Audit" >
 
                                     </dxlc:LayoutGroup>
-
-
 
                                     <dxlc:LayoutGroup Header="Cloud Load Test" >
 
@@ -397,6 +388,14 @@
                             </dxlc:LayoutControl>
 
                         </dxdo:LayoutPanel>
+                    </dxdo:AutoHideGroup>
+                
+                    <dxdo:AutoHideGroup DockType="Bottom">
+                        
+                        <!--<dxdo:LayoutPanel Caption="HTTP Exchange" >
+                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
+                        </dxdo:LayoutPanel>-->
+
                         
                     </dxdo:AutoHideGroup>
 

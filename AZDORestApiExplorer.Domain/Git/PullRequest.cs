@@ -73,6 +73,15 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&includeCommits={includeCommits}&includeWorkItemRefs={includeWorkItemRefs}&api-version=6.1-preview.1
+
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
+
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100"
                     + "&api-version=6.1-preview.1";

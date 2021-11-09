@@ -63,6 +63,9 @@ namespace AZDORestApiExplorer.Domain.Git
                 // Extend GetItemsEventArgs to add Optional Parameters, e.g. recursionLevel and scopePath
                 // Clean up on way in or here.
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/items?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/items?scopePath={scopePath}&recursionLevel={recursionLevel}&includeContentMetadata={includeContentMetadata}&latestProcessedChange={latestProcessedChange}&download={download}&includeLinks={includeLinks}&$format={$format}&versionDescriptor.version={versionDescriptor.version}&versionDescriptor.versionOptions={versionDescriptor.versionOptions}&versionDescriptor.versionType={versionDescriptor.versionType}&api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/items"
                     + $"?scopePath={args.ScopePath}&recursionLevel={args.RecursionLevel}"

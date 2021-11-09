@@ -7,6 +7,7 @@ using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Core.Events;
 using AZDORestApiExplorer.Domain.Dashboard.Events;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
 using AZDORestApiExplorer.Domain.Graph.Events;
 using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.Domain.Tokens.Events;
@@ -43,6 +44,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -70,14 +72,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #endregion
 
             #region Build Area
-            
+
+            // Trigger calls to other Build Related stuff anytime a new Build is selected
+            EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(CallBuildDependentStuff);
+
             GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
 
             GetBuildsCommand = new DelegateCommand(GetBuilds, GetBuildsCanExecute);
 
             GetBuildInfoCommand = new DelegateCommand(GetBuildInfo, GetBuildInfoCanExecute);
-            // Trigger calls to other Build Related stuff anytime a new Build is selected
-            EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(CallBuildDependentStuff);
 
             GetBuildChangesCommand = new DelegateCommand(GetBuildChanges, GetBuildChangesCanExecute);
             GetBuildTagsCommand = new DelegateCommand(GetBuildTags, GetBuildTagsCanExecute);
@@ -106,6 +109,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #endregion Dashboard Category
 
             #region Git Area
+
+            EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Subscribe(CallPullRequestDependentStuff);
 
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
             GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
@@ -183,6 +188,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetWorkItemCommand = new DelegateCommand(GetWorkItem, GetWorkItemCanExecute);
             // Trigger a GetWorkItem call anytime a new WorkItem is selected or entered
             EventAggregator.GetEvent<SelectedBuildWorkItemRefChangedEvent>().Subscribe(CallGetWorkItem);
+            EventAggregator.GetEvent<SelectedPullRequestWorkItemChangedEvent>().Subscribe(CallGetWorkItem);
 
             #endregion Work Item Tracking Category
 
@@ -811,6 +817,52 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Build Area
 
+        private void CallBuildDependentStuff(Domain.Build.Build build)
+        {
+            if (!(build is null))
+            {
+                // Info about Build
+
+                EventAggregator.GetEvent<GetBuildInfoEvent>().Publish(
+                    new GetBuildInfoEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about Changes
+
+                EventAggregator.GetEvent<GetBuildChangesEvent>().Publish(
+                    new GetBuildChangesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about Logs
+
+                EventAggregator.GetEvent<GetBuildLogsEvent>().Publish(
+                    new GetBuildLogsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+
+                // Info about WorkItemRefs
+
+                EventAggregator.GetEvent<GetBuildWorkItemRefsEvent>().Publish(
+                    new GetBuildWorkItemRefsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Build = build
+                    });
+            }
+        }
+
         #region GetAuthorizedResources Command
 
         public DelegateCommand GetAuthorizedResourcesCommand { get; set; }
@@ -941,52 +993,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void CallBuildDependentStuff(Domain.Build.Build build)
-        {
-            if (! (build is null))
-            {
-                // Info about Build
-
-                EventAggregator.GetEvent<GetBuildInfoEvent>().Publish(
-                    new GetBuildInfoEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Build = build
-                    });
-
-                // Info about Changes
-
-                EventAggregator.GetEvent<GetBuildChangesEvent>().Publish(
-                    new GetBuildChangesEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Build = build
-                    });
-
-                // Info about Logs
-
-                EventAggregator.GetEvent<GetBuildLogsEvent>().Publish(
-                    new GetBuildLogsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Build = build
-                    });
-
-                // Info about WorkItemRefs
-
-                EventAggregator.GetEvent<GetBuildWorkItemRefsEvent>().Publish(
-                    new GetBuildWorkItemRefsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Build = build
-                    });
-            }
         }
 
         public bool GetBuildInfoCanExecute()
@@ -1617,6 +1623,109 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #endregion Dashboard Category
 
         #region Git Area
+
+        private void CallPullRequestDependentStuff(Domain.Git.PullRequest pullRequest)
+        {
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            if (!(pullRequest is null))
+            {
+
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestWorkItemsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestWorkItemsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                return;
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestAttachmentsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestAttachmentsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestCommitsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestIterationsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestLabelsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestReviewersEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestStatusesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestThreadsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                //EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestWorkItemsEvent>().Publish(
+                //    new Domain.Git.Events.GetPullRequestWorkItemsEventArgs()
+                //    {
+                //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                //        Project = _contextMainViewModel.Context.SelectedProject,
+                //        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                //        PullRequest = pullRequest
+                //    });
+
+                Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+        }
 
         #region GetRepositories Command
 
@@ -3302,21 +3411,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetWorkItemContent">GetWorkItem</system:String>
         //    <system:String x:Key="ViewName_GetWorkItemContentToolTip">GetWorkItem ToolTip</system:String>  
 
-        public void GetWorkItem()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
-                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Id = _contextMainViewModel.Context.Model.WorkItemId
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         private void CallGetWorkItem(WorkItem workItem)
         {
             EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
@@ -3345,6 +3439,40 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                         });
                 }
             }
+        }
+
+        private void CallGetWorkItem(PullRequestWorkItem pullRequestWorkItem)
+        {
+            if (!(pullRequestWorkItem is null))
+            {
+                int workItemId = 0;
+
+                if (int.TryParse(pullRequestWorkItem.id, out workItemId))
+                {
+                    EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                        new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                        {
+                            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                            Project = _contextMainViewModel.Context.SelectedProject,
+                            Id = workItemId
+                        });
+                }
+            }
+        }
+
+        public void GetWorkItem()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Id = _contextMainViewModel.Context.Model.WorkItemId
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool GetWorkItemCanExecute()

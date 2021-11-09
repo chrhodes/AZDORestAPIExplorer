@@ -54,7 +54,23 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             get => _targetGrid;
             set => _targetGrid = value;
         }
-        
+
+        private void PullRequests_LayoutGroup_ExpansionChanged(object sender, EventArgs e)
+        {
+            var lg = (DevExpress.Xpf.LayoutControl.LayoutGroup)sender;
+
+            if (lg.IsCollapsed)
+            {
+                lg.Header = "Pull Request Selected - Expand to see Pull Requests Grid";
+            }
+            else
+            {
+                lg.Header = "";
+            }
+
+            var ea = e;
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountV;

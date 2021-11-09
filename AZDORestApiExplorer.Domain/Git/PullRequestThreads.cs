@@ -69,61 +69,81 @@ namespace AZDORestApiExplorer.Domain.Git
 
         public class Codereviewthreadtype
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewvoteresult
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewvotedbyidentity
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewvotedbyinitiatoridentity
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewpolicytype
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Linkedworkitems
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatus
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatusupdateassociatedcommit
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Bypasspolicy
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatusupdatedbyidentity
         {
+            [JsonProperty("$type")]
             public string type { get; set; }
+            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
@@ -244,9 +264,14 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads?$iteration={$iteration}&$baseIteration={$baseIteration}&api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads/{threadId}?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads/{threadId}?$iteration={$iteration}&$baseIteration={$baseIteration}&api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/pullrequests"
-                    + $"/{args.PullRequest.pullRequestId}/workitems"
+                    + $"/{args.PullRequest.pullRequestId}/threads"
                     + "?api-version=6.1-preview.1";
 
                 var exchange = Results.InitializeExchange(client, requestUri);

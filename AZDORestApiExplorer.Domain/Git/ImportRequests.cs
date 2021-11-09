@@ -97,6 +97,8 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/importRequests/{importRequestId}?api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/importRequests?"
                     + "api-version=6.1-preview.1";

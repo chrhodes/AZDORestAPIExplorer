@@ -52,12 +52,13 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <dxg:GridColumn FieldName="title" />
-            <dxg:GridColumn FieldName="description" />
-            <dxg:GridColumn FieldName="pullRequestId" />
-            <dxg:GridColumn FieldName="codeReviewId" />
+            <dxg:GridColumn FieldName="id" />
+            <dxg:GridColumn FieldName="publishedDate" />
+            <dxg:GridColumn FieldName="lastUpdatedDate" />
+            <dxg:GridColumn FieldName="properties.CodeReviewThreadType.type" />
+            <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" />
             <dxg:GridColumn FieldName="status" />
-            <dxg:GridColumn FieldName="createdBy.uniqueName" />
+            <dxg:GridColumn FieldName="isDeleted" />
             <dxg:GridColumn FieldName="creationDate" />
             
         </dxg:GridControl>

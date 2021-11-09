@@ -69,6 +69,9 @@ namespace AZDORestApiExplorer.Domain.Core
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/_apis/process/processes?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/_apis/process/processes/{processId}?api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/_apis/"
                     + "process/processes?"
                     + "api-version=6.0-preview.1";

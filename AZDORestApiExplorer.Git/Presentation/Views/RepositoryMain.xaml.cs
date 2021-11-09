@@ -46,7 +46,23 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             set => _instanceCountV = value;
         }
 
+
         #endregion
 
+        private void Repositories_LayoutGroup_ExpansionChanged(object sender, EventArgs e)
+        {
+            var lg = (DevExpress.Xpf.LayoutControl.LayoutGroup)sender;
+
+            if (lg.IsCollapsed)
+            {
+                lg.Header = "Repository Selected - Expand to see Repositories Grid";
+            }
+            else
+            {
+                lg.Header = "";
+            }
+
+            var ea = e;
+        }
     }
 }

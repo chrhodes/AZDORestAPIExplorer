@@ -59,6 +59,9 @@ namespace AZDORestApiExplorer.Domain.Git
                 // TODO(crhodes)
                 // Need to figure out how to get Merge Id
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryNameOrId}/merges/{mergeOperationId}?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryNameOrId}/merges/{mergeOperationId}?includeLinks={includeLinks}&api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/merges/{args.Merge.id}?"
                     + "api-version=6.1-preview.1";

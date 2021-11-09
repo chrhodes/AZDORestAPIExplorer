@@ -56,6 +56,8 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/workitems?api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/pullrequests"
                     + $"/{args.PullRequest.pullRequestId}/workitems"
@@ -74,43 +76,6 @@ namespace AZDORestApiExplorer.Domain.Git
                     PullRequestWorkItems resultRoot = JsonConvert.DeserializeObject<PullRequestWorkItems>(outJson);
 
                     Results.ResultItems = new ObservableCollection<PullRequestWorkItem>(resultRoot.value);
-
-                    //// TODO(crhodes)
-                    //// Remove this if not using continuationHeaders
-
-                    //#region ContinuationHeaders
-
-                    //IEnumerable<string> continuationHeaders = default;
-
-                    //bool hasContinuationToken = response.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-
-                    //while (hasContinuationToken)
-                    //{
-                    //    string continueToken = continuationHeaders.First();
-
-                    //    var requestUri2 = $"{args.Organization.Uri}/_apis/"
-                    //        + $"<UPDATE URI>"
-                    //        + $"continuationToken={continueToken}"
-                    //        + "?api-version=6.1-preview.1";
-
-                    //    var exchange2 = Results.ContinueExchange(client, requestUri2);
-
-                    //    using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
-                    //    {
-                    //        Results.RecordExchangeResponse(response2, exchange2);
-
-                    //        response2.EnsureSuccessStatusCode();
-                    //        string outJson2 = await response2.Content.ReadAsStringAsync();
-
-                    //        PullRequestWorkItems resultRootC = JsonConvert.DeserializeObject<PullRequestWorkItems>(outJson2);
-
-                    //        Results.ResultItems.AddRange(resultRootC.value);
-
-                    //        hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
-                    //    }
-                    //}
-
-                    //#endregion
 
                     Results.Count = Results.ResultItems.Count;
                 }

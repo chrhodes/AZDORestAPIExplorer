@@ -60,6 +60,14 @@ namespace AZDORestApiExplorer.Domain.Core
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                //GET https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams/{teamId}?api-version=6.1-preview.3
+                //GET https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams/{teamId}?$expandIdentity={$expandIdentity}&api-version=6.1-preview.3
+
+                //GET https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams?api-version=6.1-preview.3
+                //GET https://dev.azure.com/{organization}/_apis/projects/{projectId}/teams?$mine={$mine}&$top={$top}&$skip={$skip}&$expandIdentity={$expandIdentity}&api-version=6.1-preview.3
+                //GET https://dev.azure.com/{organization}/_apis/teams?api-version=6.1-preview.3
+                //GET https://dev.azure.com/{organization}/_apis/teams?$mine={$mine}&$top={$top}&$skip={$skip}&$expandIdentity={$expandIdentity}&api-version=6.1-preview.3
+
                 var requestUri = $"{args.Organization.Uri}/_apis/"
                     + "teams?$top=100"
                     + "&api-version=6.1-preview.3";
