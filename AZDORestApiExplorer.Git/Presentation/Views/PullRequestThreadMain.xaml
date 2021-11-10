@@ -53,20 +53,88 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <dxg:GridColumn FieldName="id" />
-            <dxg:GridColumn FieldName="publishedDate" />
-            <dxg:GridColumn FieldName="lastUpdatedDate" />
+            <dxg:GridColumn FieldName="publishedDate" >
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="lastUpdatedDate" >
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
             <dxg:GridColumn FieldName="properties.CodeReviewThreadType.type" />
-            <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" />
-            <dxg:GridColumn FieldName="status" />
+            <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" Header="CodeReviewThreadType"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewVoteResult.value" Header="CodeReviewVoteResult"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewVotedByIdentity.value" Header="CodeReviewVotedByIdentity"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewVotedByInitiatorIdentity.value" Header="CodeReviewVotedByInitiatorIdentity"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewPolicyType.value" Header="CodeReviewPolicyType"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewStatus.value" Header="CodeReviewStatus"/>
+            <dxg:GridColumn FieldName="properties.LinkedWorkItems.value" Header="LinkedWorkItems"/>
+            <dxg:GridColumn FieldName="properties.CodeReviewStatusUpdateAssociatedCommit.value" Header="CodeReviewStatusUpdateAssociatedCommit"/>
+            <dxg:GridColumn FieldName="properties.BypassPolicy.value" Header="BypassPolicy"/>
             <dxg:GridColumn FieldName="isDeleted" />
-            <dxg:GridColumn FieldName="creationDate" />
+
             
         </dxg:GridControl>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
             </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Height="400">                
+
+            <dxg:GridControl
+                    ItemsSource="{Binding Results.SelectedItem.comments}"
+                    FontSize="12"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <dxg:GridColumn FieldName="id" />
+                <dxg:GridColumn FieldName="parentCommentId" />
+                    <dxg:GridColumn FieldName="author.displayName" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="content" BestFitModeOnSourceChange="VisibleRows" />
+                <dxg:GridColumn FieldName="commentType" />
+                
+                <dxg:GridColumn FieldName="publishedDate" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="lastUpdatedDate" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="lastContentUpdatedDate" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+
+                    <!--<dxg:GridColumn FieldName="properties.CodeReviewThreadType.type" />
+                <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" Header="CodeReviewThreadType"/>
+                <dxg:GridColumn FieldName="properties.CodeReviewVoteResult.value" Header="CodeReviewVoteResult"/>
+                <dxg:GridColumn FieldName="properties.CodeReviewVotedByIdentity.value" Header="CodeReviewVotedByIdentity"/>
+                <dxg:GridColumn FieldName="properties.CodeReviewVotedByInitiatorIdentity.value" Header="CodeReviewVotedByInitiatorIdentity"/>
+                <dxg:GridColumn FieldName="properties.CodeReviewPolicyType.value" Header="CodeReviewPolicyType"/>
+                <dxg:GridColumn FieldName="properties.CodeReviewStatus.value" Header="CodeReviewStatus"/>
+                <dxg:GridColumn FieldName="properties.Linkedworkitems.value" Header="Linkedworkitems"/>
+                <dxg:GridColumn FieldName="properties.Codereviewstatus.value" Header="Codereviewstatus"/>
+                <dxg:GridColumn FieldName="properties.Codereviewstatusupdateassociatedcommit.value" Header="Codereviewstatusupdateassociatedcommit"/>
+
+                <dxg:GridColumn FieldName="properties.Bypasspolicy.value" Header="Bypasspolicy"/>
+
+                <dxg:GridColumn FieldName="properties.Codereviewstatusupdatedbyidentity.value" Header="Codereviewstatusupdatedbyidentity"/>
+                <dxg:GridColumn FieldName="status" />
+                <dxg:GridColumn FieldName="isDeleted" />-->
+
+
+            </dxg:GridControl>
+            </dxlc:LayoutItem>
+
         </dxlc:LayoutGroup>
 
     </Grid>

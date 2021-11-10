@@ -44,7 +44,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -57,19 +56,19 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetProjectsCommand = new DelegateCommand(GetProjectsExecute, GetProjectsCanExecute);
             GetTeamsCommand = new DelegateCommand(GetTeamsExecute, GetTeamsCanExecute);
 
-            #endregion Core Category
+            #endregion Core Area
 
             #region Accounts Area
 
             GetAccountsCommand = new DelegateCommand(GetAccountsExecute, GetAccountsCanExecute);
 
-            #endregion Accounts Category
+            #endregion Accounts Area
 
             #region Artifacts Area
 
             GetFeedsCommand = new DelegateCommand(GetFeeds, GetFeedsCanExecute);
 
-            #endregion
+            #endregion Artifacts Area
 
             #region Build Area
 
@@ -98,7 +97,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetResourcesCommand = new DelegateCommand(GetResources, GetResourcesCanExecute);
             GetSettingsCommand = new DelegateCommand(GetSettings, GetSettingsCanExecute);
 
-            #endregion
+            #endregion Build Area
 
             #region Dashboard Area
 
@@ -106,7 +105,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetWidgetsCommand = new DelegateCommand(GetWidgetsExecute, GetWidgetsCanExecute);
 
-            #endregion Dashboard Category
+            #endregion Dashboard Area
 
             #region Git Area
 
@@ -118,6 +117,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetBlobsCommand = new DelegateCommand(GetBlobs, GetBlobsCanExecute);
             GetCommitsCommand = new DelegateCommand(GetCommits, GetCommitsCanExecute);
             GetCommitChangesCommand = new DelegateCommand(GetCommitChanges, GetCommitChangesCanExecute);
+
+            // Trigger a GetCommitChanges call anytime a new Commit is selected
+            EventAggregator.GetEvent<SelectedCommitChangedEvent>().Subscribe(CallGetCommitChange);
+            EventAggregator.GetEvent<SelectedPullRequestCommitChangedEvent>().Subscribe(CallGetCommitChange);
 
             GetImportRequestsCommand = new DelegateCommand(GetImportRequests, GetImportRequestsCanExecute);
             GetItemsCommand = new DelegateCommand(GetItems, GetItemsCanExecute);
@@ -139,14 +142,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetStatsCommand = new DelegateCommand(GetStats, GetStatsCanExecute);
             GetRefsCommand = new DelegateCommand(GetRefs, GetRefsCanExecute);
 
-            #endregion Git Category
+            #endregion Git Area
 
             #region Graph Area
 
             GetGroupsCommand = new DelegateCommand(GetGroups, GetGroupsCanExecute);
             GetUsersCommand = new DelegateCommand(GetUsers, GetUsersCanExecute);
 
-            #endregion
+            #endregion Graph Area
 
             #region Test Category
 
@@ -162,7 +165,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetPatsCommand = new DelegateCommand(GetPats, GetPatsCanExecute);
 
-            #endregion
+            #endregion Tokens Area
 
             #region Work Item Tracking Category
 
@@ -239,7 +242,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedDashboardChangedEvent>().Subscribe(RaiseDashboardChanged);
 
-            #endregion
+            #endregion Context Enablement
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -252,6 +255,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Other commands that depend on more do not need to be added
         // as the check is in all CanExecute methods
+
+        private void RaiseBuildChanged(Domain.Build.Build build)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetBuildInfoCommand.RaiseCanExecuteChanged();
+            GetBuildChangesCommand.RaiseCanExecuteChanged();
+            GetBuildLogsCommand.RaiseCanExecuteChanged();
+            GetBuildWorkItemRefsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         private void RaiseCollectionChanged(SelectedCollectionChangedEventArgs args)
         {
@@ -342,6 +357,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void RaiseDefinitionChanged(Domain.Build.Definition definition)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetResourcesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         private void RaiseProcessChanged(Domain.Core.Process process)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -411,18 +435,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void RaiseBuildChanged(Domain.Build.Build build)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            GetBuildInfoCommand.RaiseCanExecuteChanged();
-            GetBuildChangesCommand.RaiseCanExecuteChanged();
-            GetBuildLogsCommand.RaiseCanExecuteChanged();
-            GetBuildWorkItemRefsCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         private void RaisePullRequestChanged(PullRequest pullRequest)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -436,15 +448,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void RaiseDefinitionChanged(Domain.Build.Definition definition)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            GetResourcesCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -491,6 +494,16 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void RaiseTestCaseChanged(TestCase testCase)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Add as things that depend on TestCase get added
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         private void RaiseTestPlanChanged(TestPlan testPlan)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -505,16 +518,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             GetTestCasesCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void RaiseTestCaseChanged(TestCase testCase)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Add as things that depend on TestCase get added
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -558,22 +561,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region Git.Items
 
-        private string _ScopePath = "/";
-
-        public string ScopePath
-        {
-            get => _ScopePath;
-            set
-            {
-                if (_ScopePath == value) return;
-                _ScopePath = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ScopePathToolTip { get; set; }
-
         private string _RecursionLevel = "None";
+        private string _ScopePath = "/";
 
         public string RecursionLevel
         {
@@ -588,7 +577,20 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public string RecursionLevelToolTip { get; set; }
 
-        #endregion
+        public string ScopePath
+        {
+            get => _ScopePath;
+            set
+            {
+                if (_ScopePath == value) return;
+                _ScopePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ScopePathToolTip { get; set; }
+
+        #endregion Git.Items
 
         #endregion Fields and Properties
 
@@ -642,7 +644,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetAccounts Command
 
-        #endregion Accounts Category
+        #endregion Accounts Area
 
         #region Artifacts Area
 
@@ -658,7 +660,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetFeedsContent">GetFeeds</system:String>
-        //    <system:String x:Key="ViewName_GetFeedsContentToolTip">GetFeeds ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetFeedsContentToolTip">GetFeeds ToolTip</system:String>
 
         public void GetFeeds()
         {
@@ -683,10 +685,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetFeeds Command
 
-
-        #endregion
+        #endregion Artifacts Area
 
         #region Core
 
@@ -875,7 +876,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetAuthorizedResourcesContent">GetAuthorizedResources</system:String>
-        //    <system:String x:Key="ViewName_GetAuthorizedResourcesContentToolTip">GetAuthorizedResources ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetAuthorizedResourcesContentToolTip">GetAuthorizedResources ToolTip</system:String>
 
         public void GetAuthorizedResources()
         {
@@ -923,7 +924,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetAuthorizedResources Command
 
         #region GetBuilds Command
 
@@ -937,7 +938,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetBuildsContent">GetBuilds</system:String>
-        //    <system:String x:Key="ViewName_GetBuildsContentToolTip">GetBuilds ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetBuildsContentToolTip">GetBuilds ToolTip</system:String>
 
         public void GetBuilds()
         {
@@ -964,7 +965,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetBuilds Command
 
         #region GetBuildInfo Command
 
@@ -978,7 +979,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetBuildInfoContent">GetBuildInfo</system:String>
-        //    <system:String x:Key="ViewName_GetBuildInfoContentToolTip">GetBuildInfo ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetBuildInfoContentToolTip">GetBuildInfo ToolTip</system:String>
 
         public void GetBuildInfo()
         {
@@ -1007,22 +1008,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
-      
+        #endregion GetBuildInfo Command
+
         #region GetBuildChanges Command
 
         public DelegateCommand GetBuildChangesCommand { get; set; }
         public string GetBuildChangesContent { get; set; } = "GetBuildChanges";
         public string GetBuildChangesToolTip { get; set; } = "GetBuildChanges ToolTip";
-                                
+
         // Can get fancy and use Resources
         //public string GetBuildChangesContent { get; set; } = "ViewName_GetBuildChangesContent";
         //public string GetBuildChangesToolTip { get; set; } = "ViewName_GetBuildChangesContentToolTip";
-                                
+
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetBuildChangesContent">GetBuildChanges</system:String>
-        //    <system:String x:Key="ViewName_GetBuildChangesContentToolTip">GetBuildChanges ToolTip</system:String>  
-                                
+        //    <system:String x:Key="ViewName_GetBuildChangesContentToolTip">GetBuildChanges ToolTip</system:String>
+
         public void GetBuildChanges()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
@@ -1037,7 +1038,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
-                                
+
         public bool GetBuildChangesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
@@ -1050,7 +1051,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetBuildChanges Command
 
         #region GetBuildLogs Command
 
@@ -1064,7 +1065,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetBuildLogsContent">GetBuildLogs</system:String>
-        //    <system:String x:Key="ViewName_GetBuildLogsContentToolTip">GetBuildLogs ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetBuildLogsContentToolTip">GetBuildLogs ToolTip</system:String>
 
         public void GetBuildLogs()
         {
@@ -1093,7 +1094,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetBuildLogs Command
 
         #region GetBuildWorkItemRefs Command
 
@@ -1107,7 +1108,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetBuildWorkItemRefsContent">GetBuildWorkItemRefs</system:String>
-        //    <system:String x:Key="ViewName_GetBuildWorkItemRefsContentToolTip">GetBuildWorkItemRefs ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetBuildWorkItemRefsContentToolTip">GetBuildWorkItemRefs ToolTip</system:String>
 
         public void GetBuildWorkItemRefs()
         {
@@ -1136,7 +1137,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetBuildWorkItemRefs Command
 
         #region GetControllers Command
 
@@ -1150,7 +1151,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetControllersContent">GetControllers</system:String>
-        //    <system:String x:Key="ViewName_GetControllersContentToolTip">GetControllers ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetControllersContentToolTip">GetControllers ToolTip</system:String>
 
         public void GetControllers()
         {
@@ -1196,7 +1197,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetControllers Command
 
         #region GetDefinitions Command
 
@@ -1210,7 +1211,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetDefinitionsContent">GetDefinitions</system:String>
-        //    <system:String x:Key="ViewName_GetDefinitionsContentToolTip">GetDefinitions ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetDefinitionsContentToolTip">GetDefinitions ToolTip</system:String>
 
         public void GetDefinitions()
         {
@@ -1258,7 +1259,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetDefinitions Command
 
         #region GetGeneralSettings Command
 
@@ -1272,7 +1273,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetGeneralSettingsContent">GetGeneralSettings</system:String>
-        //    <system:String x:Key="ViewName_GetGeneralSettingsContentToolTip">GetGeneralSettings ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetGeneralSettingsContentToolTip">GetGeneralSettings ToolTip</system:String>
 
         public void GetGeneralSettings()
         {
@@ -1320,7 +1321,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetGeneralSettings Command
 
         #region GetOptions Command
 
@@ -1334,7 +1335,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetOptionsContent">GetOptions</system:String>
-        //    <system:String x:Key="ViewName_GetOptionsContentToolTip">GetOptions ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetOptionsContentToolTip">GetOptions ToolTip</system:String>
 
         public void GetOptions()
         {
@@ -1382,7 +1383,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetOptions Command
 
         #region GetResources Command
 
@@ -1396,7 +1397,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetResourcesContent">GetResources</system:String>
-        //    <system:String x:Key="ViewName_GetResourcesContentToolTip">GetResources ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetResourcesContentToolTip">GetResources ToolTip</system:String>
 
         public void GetResources()
         {
@@ -1422,6 +1423,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        public bool GetResourcesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedDefinition is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void CallGetResources(Domain.Build.Definition definition)
         {
             if (!(definition is null))
@@ -1436,19 +1449,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
         }
 
-        public bool GetResourcesCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedDefinition is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
+        #endregion GetResources Command
 
         #region GetSettings Command
 
@@ -1462,7 +1463,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetSettingsContent">GetSettings</system:String>
-        //    <system:String x:Key="ViewName_GetSettingsContentToolTip">GetSettings ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetSettingsContentToolTip">GetSettings ToolTip</system:String>
 
         public void GetSettings()
         {
@@ -1489,7 +1490,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetSettings Command
 
         #region GetBuildTags Command
 
@@ -1503,7 +1504,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTagsContent">GetTags</system:String>
-        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetTagsContentToolTip">GetTags ToolTip</system:String>
 
         public void GetBuildTags()
         {
@@ -1530,9 +1531,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetBuildTags Command
 
-        #endregion
+        #endregion Build Area
 
         #region Dashboard Area
 
@@ -1620,7 +1621,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetWidgets Command
 
-        #endregion Dashboard Category
+        #endregion Dashboard Area
 
         #region Git Area
 
@@ -1630,7 +1631,41 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             if (!(pullRequest is null))
             {
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestCommitsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
 
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestIterationsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestReviewersEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestThreadsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
 
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestWorkItemsEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestWorkItemsEventArgs()
@@ -1642,6 +1677,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     });
 
                 return;
+
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestAttachmentsEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestAttachmentsEventArgs()
                     {
@@ -1906,16 +1942,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetCommitChanges Command
 
         public DelegateCommand GetCommitChangesCommand { get; set; }
+
         public string GetCommitChangesContent { get; set; } = "GetCommitChanges";
+
         public string GetCommitChangesToolTip { get; set; } = "GetCommitChanges ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetCommitChangesContent { get; set; } = "ViewName_GetCommitChangesContent";
-        //public string GetCommitChangesToolTip { get; set; } = "ViewName_GetCommitChangesContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetCommitChangesContent">GetCommitChanges</system:String>
-        //    <system:String x:Key="ViewName_GetCommitChangesContentToolTip">GetCommitChanges ToolTip</system:String>
 
         public void GetCommitChanges()
         {
@@ -1924,19 +1954,18 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetCommitChangesEvent>().Publish(
                 new Domain.Git.Events.GetCommitChangesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository
-                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     Commit = _contextMainViewModel.Context.SelectedCommit
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetCommitChangesContent">GetCommitChanges</system:String>
+        //    <system:String x:Key="ViewName_GetCommitChangesContentToolTip">GetCommitChanges ToolTip</system:String>
         public bool GetCommitChangesCanExecute()
         {
             if (_collectionMainViewModel.SelectedCollection is null
@@ -1949,6 +1978,34 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             return true;
         }
+
+        private void CallGetCommitChange(Commit commit)
+        {
+            // TODO(crhodes)
+            // Call GetCommitChanges
+            //throw new NotImplementedException();
+        }
+
+        private void CallGetCommitChange(PullRequestCommit commit)
+        {
+            if (!(commit is null))
+            {
+                var newCommit = new Domain.Git.Commit() { commitId = commit.commitId };
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetCommitChangesEvent>().Publish(
+                    new Domain.Git.Events.GetCommitChangesEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        Commit = newCommit
+                    });
+            }   
+        }
+
+        // Can get fancy and use Resources
+        //public string GetCommitChangesContent { get; set; } = "ViewName_GetCommitChangesContent";
+        //public string GetCommitChangesToolTip { get; set; } = "ViewName_GetCommitChangesContentToolTip";
 
         #endregion GetCommitChanges Command
 
@@ -2021,10 +2078,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Domain.Git.Events.GetItemsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
-                    , ScopePath = ScopePath
-                    , RecursionLevel = RecursionLevel
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
+                    ,
+                    ScopePath = ScopePath
+                    ,
+                    RecursionLevel = RecursionLevel
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
@@ -2066,12 +2127,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetMergesEvent>().Publish(
                 new Domain.Git.Events.GetMergesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject
-                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
@@ -2093,8 +2151,29 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #region GetPullRequests Command
 
+        public DelegateCommand GetPullRequestAttachmentsCommand { get; set; }
+        public string GetPullRequestAttachmentsContent { get; set; } = "Get PR Attachments";
+        public string GetPullRequestAttachmentsToolTip { get; set; } = "Get PR Attachments ToolTip";
+        public DelegateCommand GetPullRequestCommitsCommand { get; set; }
+        public string GetPullRequestCommitsContent { get; set; } = "Get PR Commits";
+        public string GetPullRequestCommitsToolTip { get; set; } = "Get PR Commits ToolTip";
+        public DelegateCommand GetPullRequestIterationsCommand { get; set; }
+        public string GetPullRequestIterationsContent { get; set; } = "Get PR Iterations";
+        public string GetPullRequestIterationsToolTip { get; set; } = "Get PR Iterations ToolTip";
+        public DelegateCommand GetPullRequestLabelsCommand { get; set; }
+        public string GetPullRequestLabelsContent { get; set; } = "Get PR Labels";
+        public string GetPullRequestLabelsToolTip { get; set; } = "Get PR Labels ToolTip";
+        public DelegateCommand GetPullRequestPropertiesCommand { get; set; }
+        public string GetPullRequestPropertiesContent { get; set; } = "Get PR Properties";
+        public string GetPullRequestPropertiesToolTip { get; set; } = "Get PR Properties ToolTip";
+        public DelegateCommand GetPullRequestReviewersCommand { get; set; }
+        public string GetPullRequestReviewersContent { get; set; } = "Get PR Reviewers";
+        public string GetPullRequestReviewersToolTip { get; set; } = "Get PR Reviewers ToolTip";
         public DelegateCommand GetPullRequestsCommand { get; set; }
         public string GetPullRequestsContent { get; set; } = "GetPullRequests";
+        public DelegateCommand GetPullRequestStatusesCommand { get; set; }
+        public string GetPullRequestStatusesContent { get; set; } = "Get PR Statuses";
+        public string GetPullRequestStatusesToolTip { get; set; } = "Get PR Statuses ToolTip";
         public string GetPullRequestsToolTip { get; set; } = "GetPullRequests ToolTip";
 
         // Can get fancy and use Resources
@@ -2105,45 +2184,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
         //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
 
-        public void GetPullRequests()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        public DelegateCommand GetPullRequestThreadsCommand { get; set; }
 
-            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
-                });
+        public string GetPullRequestThreadsContent { get; set; } = "Get PR Threads";
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        public string GetPullRequestThreadsToolTip { get; set; } = "Get PR Threads ToolTip";
 
-        public bool GetPullRequestsCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null
-                || _contextMainViewModel.Context.SelectedGitRepository is null)
-            {
-                return false;
-            }
+        public DelegateCommand GetPullRequestWorkItemsCommand { get; set; }
 
-            return true;
-        }
+        public string GetPullRequestWorkItemsContent { get; set; } = "Get PR WorkItems";
 
-        public DelegateCommand GetPullRequestAttachmentsCommand { get; set; }
-        public string GetPullRequestAttachmentsContent { get; set; } = "Get PR Attachments";
-        public string GetPullRequestAttachmentsToolTip { get; set; } = "Get PR Attachments ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        public string GetPullRequestWorkItemsToolTip { get; set; } = "Get PR WorkItems ToolTip";
 
         public void GetPullRequestAttachments()
         {
@@ -2153,26 +2204,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 new Domain.Git.Events.GetPullRequestAttachmentsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
-                    , Project = _contextMainViewModel.Context.SelectedProject
-                    , Repository = _contextMainViewModel.Context.SelectedGitRepository
-                    , PullRequest = _contextMainViewModel.Context.SelectedPullRequest
+                    ,
+                    Project = _contextMainViewModel.Context.SelectedProject
+                    ,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
+                    ,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        public DelegateCommand GetPullRequestCommitsCommand { get; set; }
-        public string GetPullRequestCommitsContent { get; set; } = "Get PR Commits";
-        public string GetPullRequestCommitsToolTip { get; set; } = "Get PR Commits ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
 
         public void GetPullRequestCommits()
         {
@@ -2185,122 +2227,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Project = _contextMainViewModel.Context.SelectedProject,
                     Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public DelegateCommand GetPullRequestIterationsCommand { get; set; }
-        public string GetPullRequestIterationsContent { get; set; } = "Get PR Iterations";
-        public string GetPullRequestIterationsToolTip { get; set; } = "Get PR Iterations ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
-
-        public void GetPullRequestIterations()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestIterationsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
-                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public DelegateCommand GetPullRequestLabelsCommand { get; set; }
-        public string GetPullRequestLabelsContent { get; set; } = "Get PR Labels";
-        public string GetPullRequestLabelsToolTip { get; set; } = "Get PR Labels ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
-
-        public void GetPullRequestLabels()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestLabelsEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
-                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public DelegateCommand GetPullRequestPropertiesCommand { get; set; }
-        public string GetPullRequestPropertiesContent { get; set; } = "Get PR Properties";
-        public string GetPullRequestPropertiesToolTip { get; set; } = "Get PR Properties ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
-
-        public void GetPullRequestProperties()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
-                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public DelegateCommand GetPullRequestReviewersCommand { get; set; }
-        public string GetPullRequestReviewersContent { get; set; } = "Get PR Reviewers";
-        public string GetPullRequestReviewersToolTip { get; set; } = "Get PR Reviewers ToolTip";
-
-        // Can get fancy and use Resources
-        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
-        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
-        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
-
-        public void GetPullRequestReviewers()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-
-            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
-                new Domain.Git.Events.GetPullRequestReviewersEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
@@ -2319,10 +2245,143 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        public DelegateCommand GetPullRequestStatusesCommand { get; set; }
-        public string GetPullRequestStatusesContent { get; set; } = "Get PR Statuses";
-        public string GetPullRequestStatusesToolTip { get; set; } = "Get PR Statuses ToolTip";
+        public void GetPullRequestIterations()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestIterationsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void GetPullRequestLabels()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestLabelsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void GetPullRequestProperties()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void GetPullRequestReviewers()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestReviewersEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest
+                    //, Team = _contextMainViewModel.Context.SelectedTeam
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void GetPullRequests()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestsEvent>().Publish(
+                new Domain.Git.Events.GetPullRequestsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPullRequestsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedGitRepository is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
+        // Can get fancy and use Resources
+        //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
+        //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestsContent">GetPullRequests</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestsContentToolTip">GetPullRequests ToolTip</system:String>
         // Can get fancy and use Resources
         //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
         //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";
@@ -2338,19 +2397,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestStatusesEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        public DelegateCommand GetPullRequestThreadsCommand { get; set; }
-        public string GetPullRequestThreadsContent { get; set; } = "Get PR Threads";
-        public string GetPullRequestThreadsToolTip { get; set; } = "Get PR Threads ToolTip";
 
         // Can get fancy and use Resources
         //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
@@ -2367,19 +2422,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
                 new Domain.Git.Events.GetPullRequestThreadsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
-                    Repository = _contextMainViewModel.Context.SelectedGitRepository                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        public DelegateCommand GetPullRequestWorkItemsCommand { get; set; }
-        public string GetPullRequestWorkItemsContent { get; set; } = "Get PR WorkItems";
-        public string GetPullRequestWorkItemsToolTip { get; set; } = "Get PR WorkItems ToolTip";
 
         // Can get fancy and use Resources
         //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
@@ -2473,8 +2524,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetRefsEvent>().Publish(
                 new Domain.Git.Events.GetRefsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
                     Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -2517,8 +2568,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.GetStatsEvent>().Publish(
                 new Domain.Git.Events.GetStatsEventArgs()
                 {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization                    ,
-                    Project = _contextMainViewModel.Context.SelectedProject                    ,
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
                     Repository = _contextMainViewModel.Context.SelectedGitRepository
                     //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
@@ -2540,7 +2591,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetStats Command
 
-        #endregion Git Category
+        #endregion Git Area
 
         #region Graph Area
 
@@ -2556,7 +2607,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetGroupsContent">GetGroups</system:String>
-        //    <system:String x:Key="ViewName_GetGroupsContentToolTip">GetGroups ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetGroupsContentToolTip">GetGroups ToolTip</system:String>
 
         public void GetGroups()
         {
@@ -2581,7 +2632,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetGroups Command
 
         #region GetUsers Command
 
@@ -2595,7 +2646,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetUsersContent">GetUsers</system:String>
-        //    <system:String x:Key="ViewName_GetUsersContentToolTip">GetUsers ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetUsersContentToolTip">GetUsers ToolTip</system:String>
 
         public void GetUsers()
         {
@@ -2620,9 +2671,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetUsers Command
 
-        #endregion
+        #endregion Graph Area
 
         #region Tokens Area
 
@@ -2638,35 +2689,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetPatsContent">GetPats</system:String>
-        //    <system:String x:Key="ViewName_GetPatsContentToolTip">GetPats ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetPatsContentToolTip">GetPats ToolTip</system:String>
 
         public void GetPats()
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            //Message = "Cool, you called GetPats";
-
-            // Uncomment this if you are telling someone else to handle this
-            // Common.EventAggregator.GetEvent<GetPatsEvent>().Publish();
 
             EventAggregator.GetEvent<GetPatsEvent>().Publish(
                 new GetPatsEventArgs()
                 {
                     Organization = _collectionMainViewModel.SelectedCollection.Organization
                 });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class GetPatsEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<GetPatsEvent>().Subscribe(GetPats);
-
-            // End Cut Four
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -2678,9 +2711,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetPats Command
 
-        #endregion
+        #endregion Tokens Area
 
         #region Test Area
 
@@ -2825,7 +2858,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetTestPointsContent">GetTestPoints</system:String>
-        //    <system:String x:Key="ViewName_GetTestPointsContentToolTip">GetTestPoints ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetTestPointsContentToolTip">GetTestPoints ToolTip</system:String>
 
         public void GetTestPoints()
         {
@@ -2852,9 +2885,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             return true;
         }
 
-        #endregion
+        #endregion GetTestPoints Command
 
-        #endregion Test Category
+        #endregion Test Area
 
         #region Work Item Tracking Area
 
@@ -3409,7 +3442,33 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetWorkItemContent">GetWorkItem</system:String>
-        //    <system:String x:Key="ViewName_GetWorkItemContentToolTip">GetWorkItem ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_GetWorkItemContentToolTip">GetWorkItem ToolTip</system:String>
+
+        public void GetWorkItem()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
+                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Id = _contextMainViewModel.Context.Model.WorkItemId
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetWorkItemCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         private void CallGetWorkItem(WorkItem workItem)
         {
@@ -3460,41 +3519,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             }
         }
 
-        public void GetWorkItem()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        #endregion GetWorkItem Command
 
-            EventAggregator.GetEvent<Domain.WorkItemTracking.Events.GetWorkItemEvent>().Publish(
-                new Domain.WorkItemTracking.Events.GetWorkItemEventArgs()
-                {
-                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                    Project = _contextMainViewModel.Context.SelectedProject,
-                    Id = _contextMainViewModel.Context.Model.WorkItemId
-                });
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool GetWorkItemCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProject is null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-    #endregion
-
-        #endregion Work Item Tracking Category
+        #endregion Work Item Tracking Area
 
         #region Work Item Tracking Process Area
 
         #region GetBehaviors Command
 
-    public DelegateCommand GetBehaviorsWITPCommand { get; set; }
+        public DelegateCommand GetBehaviorsWITPCommand { get; set; }
         public string GetBehaviorsWITPContent { get; set; } = "GetBehaviors";
         public string GetBehaviorsWITPToolTip { get; set; } = "GetBehaviors ToolTip";
 
@@ -3505,6 +3538,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_BehaviorContent">Behavior</system:String>
         //    <system:String x:Key="ViewName_BehaviorContentToolTip">Behavior ToolTip</system:String>
+
+        public bool GetBehaviorsWITPCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProcess is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void GetBehaviorsWITPExecute()
         {
@@ -3518,17 +3562,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool GetBehaviorsWITPCanExecute()
-        {
-            if (_collectionMainViewModel.SelectedCollection is null
-                || _contextMainViewModel.Context.SelectedProcess is null)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         #endregion GetBehaviors Command
@@ -3869,9 +3902,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         #endregion GetWorkItemTypesBehaviors Command
 
-        #endregion Work Item Tracking Process Category
+        #endregion Work Item Tracking Process Area
 
-        #endregion
+        #endregion Commands
 
         #endregion Public Methods
 
@@ -3885,6 +3918,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             set => _instanceCountVM = value;
         }
 
-        #endregion
+        #endregion IInstanceCount
     }
 }

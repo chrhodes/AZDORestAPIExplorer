@@ -176,11 +176,22 @@
                     
                     <dxdo:FloatGroup>
 
-                        <dxdo:LayoutPanel Caption="HTTP Exchange" Style="{StaticResource DragableLayoutPanel}" 
+                        <dxdo:LayoutPanel Caption="HTTP Exchange" 
+                                          Style="{StaticResource DragableLayoutPanel}" 
                                           MinWidth="500" >
                             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>
                         
+                    </dxdo:FloatGroup>
+
+                    <dxdo:FloatGroup FloatSize="600,1000">
+
+                        <dxdo:LayoutPanel Caption="WorkItem Details" 
+                                          Style="{StaticResource DragableLayoutPanel}" 
+                                          MinWidth="400" MinHeight="600"  >
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemMainRegion}" />
+                        </dxdo:LayoutPanel>
+
                     </dxdo:FloatGroup>
 
                 </dxdo:DockLayoutManager.FloatGroups>

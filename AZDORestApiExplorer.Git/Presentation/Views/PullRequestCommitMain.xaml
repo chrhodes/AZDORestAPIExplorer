@@ -12,6 +12,8 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"    
 
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
@@ -34,36 +36,92 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <dxlc:LayoutControl Orientation="Vertical" >
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0"
-                                        Count="{Binding ResultsCommits.Count, Mode=TwoWay}"/>
+        <dxlc:LayoutGroup Orientation="Vertical" >
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                ItemsSource="{Binding Results.ResultItems}"
-                SelectedItem="{Binding Results.SelectedItem}"
-                FontSize="12"
-                ScrollViewer.CanContentScroll="True"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="commitId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="author.name" Header="Author" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="committer.name" Header="Commiter" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="comment" BestFitModeOnSourceChange="VisibleRows"/>
-            <!--<dxg:GridColumn FieldName="url" />-->
-        </dxg:GridControl>
+            <dxlc:LayoutGroup View="GroupBox"
+                              Collapsed="LayoutGroup_ExpansionChanged" 
+                              Expanded="LayoutGroup_ExpansionChanged"
+                              IsCollapsible="True" IsCollapsed="False" >
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
-            <dxlc:LayoutItem Label="Url" >
-                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
-            </dxlc:LayoutItem>
-        </dxlc:LayoutGroup>
+                    <vncazdopv:CommonGridHeader x:Name="commonGridHeaderCommits" Grid.Row="0"
+                                                    Count="{Binding Results.Count, Mode=TwoWay}"/>
+
+                    <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                            ItemsSource="{Binding Results.ResultItems}"
+                            SelectedItem="{Binding Results.SelectedItem}"
+                            FontSize="12"
+                            ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                                    <dxg:GridColumn FieldName="commitId" BestFitModeOnSourceChange="VisibleRows"/>
+
+                                    <dxg:GridColumn FieldName="author.name" Header="Author" BestFitModeOnSourceChange="VisibleRows"/>
+                                    <dxg:GridColumn FieldName="author.date" Header="Authored Date" Width="150">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+
+                                    <dxg:GridColumn FieldName="committer.name" Header="Committer" BestFitModeOnSourceChange="VisibleRows"/>
+                                    <dxg:GridColumn FieldName="committer.date" Header="Committer Date" Width="150">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+
+                                    <dxg:GridColumn FieldName="changeCounts.Add" Header="Adds" Width="50" />
+                                    <dxg:GridColumn FieldName="changeCounts.Delete" Header="Deletes" Width="50" />
+                                    <dxg:GridColumn FieldName="changeCounts.Edit" Header="Edits" Width="50" />
+                                    <dxg:GridColumn FieldName="comment" Width="*"/>
+                                    <dxg:GridColumn FieldName="commentTruncated" />
+                                    <!--<dxg:GridColumn FieldName="url" />-->
+                    </dxg:GridControl>
+
+                    <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                        <dxlc:LayoutItem Label="Url" >
+                            <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
         
-    </Grid>
+                </Grid>
+
+            </dxlc:LayoutGroup>
+
+            <!--
+                This shows the items dependent on a Pull Request in separate tabs
+                The particular information is in a separate view.
+            -->
+
+            <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs" >
+
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="TitleVisibility" Value="Collapsed" />
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+
+                <dxlc:LayoutGroup Header="Commit Changes" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

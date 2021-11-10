@@ -31,7 +31,7 @@
 
         <dxlc:LayoutGroup Header="Core" View="GroupBox" IsCollapsed="False" IsCollapsible="True">
                   
-                <dxlc:LayoutGroup Header="Core"
+            <dxlc:LayoutGroup Header="Core"
                     Orientation="Vertical"  View="Tabs">
             
                 <dxlc:LayoutGroup.GroupBoxStyle>
@@ -60,9 +60,9 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="Work Item Detail" View="GroupBox" IsCollapsed="False" IsCollapsible="True">
+        <!--<dxlc:LayoutGroup Header="Work Item Detail" View="GroupBox" IsCollapsed="False" IsCollapsible="True">
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.WorkItemMainRegion}" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
     </dxlc:LayoutGroup>
 

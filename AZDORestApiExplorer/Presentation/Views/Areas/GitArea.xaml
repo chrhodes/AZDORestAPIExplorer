@@ -48,6 +48,10 @@
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryMainRegion}" />
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Header="???" >
+            <Label Content="Not Sure what else goes at top level of Git Area" />
+        </dxlc:LayoutGroup>
+
         <!--<dxlc:LayoutGroup Header="Blobs" >
                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.BlobMainRegion}" />
         </dxlc:LayoutGroup>-->
@@ -56,9 +60,9 @@
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
         </dxlc:LayoutGroup>-->
 
-        <dxlc:LayoutGroup Header="Commit Changes" >
+        <!--<dxlc:LayoutGroup Header="Commit Changes" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
-        </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>-->
 
         <!--<dxlc:LayoutGroup Header="Import Requests" >
             <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />

@@ -34,6 +34,22 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             set => _targetGrid = value;
         }
 
+        private void LayoutGroup_ExpansionChanged(object sender, EventArgs e)
+        {
+            var lg = (DevExpress.Xpf.LayoutControl.LayoutGroup)sender;
+
+            if (lg.IsCollapsed)
+            {
+                lg.Header = "Commit Selected - Expand to see Commits Grid";
+            }
+            else
+            {
+                lg.Header = "";
+            }
+
+            var ea = e;
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountV;

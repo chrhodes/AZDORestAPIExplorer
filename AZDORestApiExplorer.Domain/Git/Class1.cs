@@ -1,155 +1,189 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-
-using AZDORestApiExplorer.Domain.Git.Events;
-
-using Newtonsoft.Json;
-
-using Prism.Events;
-
-using VNC;
-using VNC.Core.Net;
 
 namespace AZDORestApiExplorer.Domain.Git
 {
-    namespace Events
+    class Class1
     {
-        public class GetPullRequestThreadsEvent : PubSubEvent<GetPullRequestThreadsEventArgs> { }
 
-        public class GetPullRequestThreadsEventArgs
+        public class Rootobject
         {
-            public Organization Organization;
-            public Domain.Core.Project Project;
-
-            public PullRequest PullRequest;
-            public GitRepository Repository;
+            public Value[] value { get; set; }
+            public int count { get; set; }
         }
 
-        public class SelectedPullRequestThreadChangedEvent : PubSubEvent<PullRequestThread> { }
-    }
-
-    public class PullRequestThreads
-    {
-        public int count { get; set; }
-        public PullRequestThread[] value { get; set; }
-    }
-
-    public class PullRequestThread
-    {
-        public object pullRequestThreadContext { get; set; }
-        public int id { get; set; }
-        public DateTime publishedDate { get; set; }
-        public DateTime lastUpdatedDate { get; set; }
-        public Comment[] comments { get; set; }
-        public object threadContext { get; set; }
-        public Properties properties { get; set; }
-        public Identities identities { get; set; }
-        public bool isDeleted { get; set; }
-        public _Links1 _links { get; set; }
-
-        #region Nested Classes
+        public class Value
+        {
+            public object pullRequestThreadContext { get; set; }
+            public int id { get; set; }
+            public DateTime publishedDate { get; set; }
+            public DateTime lastUpdatedDate { get; set; }
+            public Comment[] comments { get; set; }
+            public object threadContext { get; set; }
+            public Properties properties { get; set; }
+            public Identities identities { get; set; }
+            public bool isDeleted { get; set; }
+            public _Links2 _links { get; set; }
+        }
 
         public class Properties
         {
             public Codereviewthreadtype CodeReviewThreadType { get; set; }
+            public Codereviewreviewersupdatednumadded CodeReviewReviewersUpdatedNumAdded { get; set; }
+            public Codereviewreviewersupdatednumremoved CodeReviewReviewersUpdatedNumRemoved { get; set; }
+            public Codereviewreviewersupdatednumchanged CodeReviewReviewersUpdatedNumChanged { get; set; }
+            public Codereviewreviewersupdatednumdeclined CodeReviewReviewersUpdatedNumDeclined { get; set; }
+            public Codereviewreviewersupdatedaddedidentity CodeReviewReviewersUpdatedAddedIdentity { get; set; }
+            public Codereviewreviewersupdatedbyidentity CodeReviewReviewersUpdatedByIdentity { get; set; }
+            public Codereviewautocompletenowset CodeReviewAutoCompleteNowSet { get; set; }
+            public Codereviewautocompleteupdatedbyidentity CodeReviewAutoCompleteUpdatedByIdentity { get; set; }
             public Codereviewvoteresult CodeReviewVoteResult { get; set; }
             public Codereviewvotedbyidentity CodeReviewVotedByIdentity { get; set; }
             public Codereviewvotedbyinitiatoridentity CodeReviewVotedByInitiatorIdentity { get; set; }
+            public Codereviewreviewersupdatedremovedidentity CodeReviewReviewersUpdatedRemovedIdentity { get; set; }
+            public Codereviewreviewersupdatedchangedtorequired CodeReviewReviewersUpdatedChangedToRequired { get; set; }
+            public Codereviewreviewersupdatedchangedidentity CodeReviewReviewersUpdatedChangedIdentity { get; set; }
             public Codereviewpolicytype CodeReviewPolicyType { get; set; }
             public Linkedworkitems LinkedWorkItems { get; set; }
             public Codereviewstatus CodeReviewStatus { get; set; }
             public Codereviewstatusupdateassociatedcommit CodeReviewStatusUpdateAssociatedCommit { get; set; }
             public Bypasspolicy BypassPolicy { get; set; }
-            public Codereviewstatusupdatedbyidentity BypassPolicy { get; set; }
+            public Codereviewstatusupdatedbyidentity CodeReviewStatusUpdatedByIdentity { get; set; }
         }
 
         public class Codereviewthreadtype
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
+            public string value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatednumadded
+        {
+            public string type { get; set; }
+            public int value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatednumremoved
+        {
+            public string type { get; set; }
+            public int value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatednumchanged
+        {
+            public string type { get; set; }
+            public int value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatednumdeclined
+        {
+            public string type { get; set; }
+            public int value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatedaddedidentity
+        {
+            public string type { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatedbyidentity
+        {
+            public string type { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Codereviewautocompletenowset
+        {
+            public string type { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Codereviewautocompleteupdatedbyidentity
+        {
+            public string type { get; set; }
             public string value { get; set; }
         }
 
         public class Codereviewvoteresult
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewvotedbyidentity
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewvotedbyinitiatoridentity
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
+            public string value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatedremovedidentity
+        {
+            public string type { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatedchangedtorequired
+        {
+            public string type { get; set; }
+            public string value { get; set; }
+        }
+
+        public class Codereviewreviewersupdatedchangedidentity
+        {
+            public string type { get; set; }
             public string value { get; set; }
         }
 
         public class Codereviewpolicytype
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Linkedworkitems
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatus
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatusupdateassociatedcommit
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Bypasspolicy
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Codereviewstatusupdatedbyidentity
         {
-            [JsonProperty("$type")]
             public string type { get; set; }
-            [JsonProperty("$value")]
             public string value { get; set; }
         }
 
         public class Identities
         {
             public _1 _1 { get; set; }
+            public _2 _2 { get; set; }
         }
 
         public class _1
@@ -173,7 +207,28 @@ namespace AZDORestApiExplorer.Domain.Git
             public string href { get; set; }
         }
 
+        public class _2
+        {
+            public string displayName { get; set; }
+            public string url { get; set; }
+            public _Links1 _links { get; set; }
+            public string id { get; set; }
+            public string uniqueName { get; set; }
+            public string imageUrl { get; set; }
+            public string descriptor { get; set; }
+        }
+
         public class _Links1
+        {
+            public Avatar1 avatar { get; set; }
+        }
+
+        public class Avatar1
+        {
+            public string href { get; set; }
+        }
+
+        public class _Links2
         {
             public Self self { get; set; }
             public Repository repository { get; set; }
@@ -200,31 +255,31 @@ namespace AZDORestApiExplorer.Domain.Git
             public DateTime lastContentUpdatedDate { get; set; }
             public string commentType { get; set; }
             public object[] usersLiked { get; set; }
-            public _Links3 _links { get; set; }
+            public _Links4 _links { get; set; }
         }
 
         public class Author
         {
             public string displayName { get; set; }
             public string url { get; set; }
-            public _Links2 _links { get; set; }
+            public _Links3 _links { get; set; }
             public string id { get; set; }
             public string uniqueName { get; set; }
             public string imageUrl { get; set; }
             public string descriptor { get; set; }
         }
 
-        public class _Links2
+        public class _Links3
         {
-            public Avatar1 avatar { get; set; }
+            public Avatar2 avatar { get; set; }
         }
 
-        public class Avatar1
+        public class Avatar2
         {
             public string href { get; set; }
         }
 
-        public class _Links3
+        public class _Links4
         {
             public Self1 self { get; set; }
             public Repository1 repository { get; set; }
@@ -252,49 +307,5 @@ namespace AZDORestApiExplorer.Domain.Git
             public string href { get; set; }
         }
 
-        #endregion
-
-        public RESTResult<PullRequestThread> Results { get; set; } = new RESTResult<PullRequestThread>();
-
-        public async Task<RESTResult<PullRequestThread>> GetList(GetPullRequestThreadsEventArgs args)
-        {
-            Int64 startTicks = Log.DOMAIN("Enter(PullRequestThread)", Common.LOG_CATEGORY);
-
-            using (HttpClient client = new HttpClient())
-            {
-                Results.InitializeHttpClient(client, args.Organization.PAT);
-
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads?api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads?$iteration={$iteration}&$baseIteration={$baseIteration}&api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads/{threadId}?api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/threads/{threadId}?$iteration={$iteration}&$baseIteration={$baseIteration}&api-version=6.1-preview.1
-
-                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"git/repositories/{args.Repository.id}/pullrequests"
-                    + $"/{args.PullRequest.pullRequestId}/threads"
-                    + "?api-version=6.1-preview.1";
-
-                var exchange = Results.InitializeExchange(client, requestUri);
-
-                using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                {
-                    Results.RecordExchangeResponse(response, exchange);
-
-                    response.EnsureSuccessStatusCode();
-
-                    string outJson = await response.Content.ReadAsStringAsync();
-
-                    PullRequestThreads resultRoot = JsonConvert.DeserializeObject<PullRequestThreads>(outJson);
-
-                    Results.ResultItems = new ObservableCollection<PullRequestThread>(resultRoot.value);
-
-                    Results.Count = Results.ResultItems.Count;
-                }
-
-                Log.DOMAIN("Exit(PullRequestThread)", Common.LOG_CATEGORY, startTicks);
-
-                return Results;
-            }
-        }
     }
 }
