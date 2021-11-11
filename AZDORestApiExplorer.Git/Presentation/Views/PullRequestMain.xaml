@@ -36,14 +36,15 @@
         
     </UserControl.Resources>
 
-    <dxlc:LayoutControl Orientation="Vertical" >
+    <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
 
         <!--<dxlc:LayoutGroup Orientation="Vertical" >-->
 
             <dxlc:LayoutGroup View="GroupBox"
                               Collapsed="LayoutGroup_ExpansionChanged" 
                               Expanded="LayoutGroup_ExpansionChanged"
-                              IsCollapsible="True" IsCollapsed="False" >
+                              IsCollapsible="True" IsCollapsed="False" 
+                              dxlc:LayoutControl.AllowVerticalSizing="True" >
                    
                     <Grid>
                         <Grid.RowDefinitions>
@@ -99,7 +100,7 @@
                 The particular information is in a separate view.
             -->
 
-        <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs" >
+        <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" >
 
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">

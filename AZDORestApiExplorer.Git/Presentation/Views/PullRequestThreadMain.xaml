@@ -145,7 +145,7 @@
                 The particular information is in a separate view.
             -->
 
-            <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" Height="300">
+            <!--<dxlc:LayoutGroup Orientation="Vertical" View="Tabs" Height="300">
 
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">
@@ -161,7 +161,7 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestThreadCommentMainRegion}" />
                 </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>-->
 
         </dxlc:LayoutGroup>
 

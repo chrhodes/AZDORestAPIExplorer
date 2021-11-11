@@ -25,6 +25,7 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800"
+    Background="AliceBlue"
 >
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
@@ -36,14 +37,14 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutControl Orientation="Vertical" VerticalAlignment="Stretch">
-
-        <dxlc:LayoutGroup Orientation="Vertical" >
+    <dxlc:LayoutControl Orientation="Vertical" VerticalAlignment="Stretch"
+                        Padding="0">
 
             <dxlc:LayoutGroup View="GroupBox"
                               Collapsed="Repositories_LayoutGroup_ExpansionChanged" 
                               Expanded="Repositories_LayoutGroup_ExpansionChanged"
-                              IsCollapsible="True" IsCollapsed="False" >
+                              IsCollapsible="True" IsCollapsed="False"
+                              dxlc:LayoutControl.AllowVerticalSizing="True">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -97,60 +98,58 @@
 
                 </Grid>
 
-            </dxlc:LayoutGroup>         
+            </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" >
+        <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" >
 
-                <dxlc:LayoutGroup.GroupBoxStyle>
-                    <Style TargetType="dxlc:GroupBox">
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="TitleVisibility" Value="Collapsed" />
-                    </Style>
-                </dxlc:LayoutGroup.GroupBoxStyle>
+            <dxlc:LayoutGroup.GroupBoxStyle>
+                <Style TargetType="dxlc:GroupBox">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                </Style>
+            </dxlc:LayoutGroup.GroupBoxStyle>
 
-                <dxlc:LayoutGroup Header="Blobs" >
-                    <Label Content="Not Implemented" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Blobs" >
+                <Label Content="Not Implemented" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Commits" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Commits" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RepositoryCommitMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Import Requests" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Import Requests" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ImportRequestMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Items" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Items" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ItemMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Merges" >
-                    <Label Content="Not Implemented" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Merges" >
+                <Label Content="Not Implemented" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Pull Requests" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Pull Requests" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Pushes" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Pushes" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PushMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Refs" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Refs" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.RefMainRegion}" />
+            </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Stats" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Stats" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatMainRegion}" />
+            </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>            
-            
         </dxlc:LayoutGroup>
-        
+
     </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

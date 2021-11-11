@@ -33,18 +33,21 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
-    <dxlc:LayoutGroup Header="Iterations" >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" 
+    <dxlc:LayoutControl Orientation="Vertical" >
+
+        <dxlc:LayoutGroup Header="Iterations" dxlc:LayoutControl.AllowVerticalSizing="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <vncazdopv:CommonGridHeader x:Name="commonGridHeaderIterations" Grid.Row="0" 
                                             Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-            <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+                <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
@@ -52,32 +55,93 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-                <dxg:GridColumn FieldName="id" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="author.uniqueName" BestFitModeOnSourceChange="VisibleRows" Header="Author"/>
-                <dxg:GridColumn FieldName="commonRefCommit.commitId" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="createdDate" BestFitModeOnSourceChange="VisibleRows" >
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="hasMoreCommits" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="id" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="author.uniqueName" BestFitModeOnSourceChange="VisibleRows" Header="Author"/>
+                    <dxg:GridColumn FieldName="commonRefCommit.commitId" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="createdDate" BestFitModeOnSourceChange="VisibleRows" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="hasMoreCommits" BestFitModeOnSourceChange="VisibleRows"/>
 
-                <dxg:GridColumn FieldName="push.pushId" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="reason" BestFitModeOnSourceChange="VisibleRows"/>
-                <dxg:GridColumn FieldName="updatedDate" BestFitModeOnSourceChange="VisibleRows"/>
-                <!--<dxg:GridColumn FieldName="url" />-->
-                
-            </dxg:GridControl>
+                    <dxg:GridColumn FieldName="push.pushId" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="reason" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="updatedDate" BestFitModeOnSourceChange="VisibleRows"/>
+                    <!--<dxg:GridColumn FieldName="url" />-->
 
-                    <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
-                <dxlc:LayoutItem Label="Url" >
-                    <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
-                </dxlc:LayoutItem>
+                </dxg:GridControl>
+
+                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                    <dxlc:LayoutItem Label="Url" >
+                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+            </Grid>
+
+        </dxlc:LayoutGroup>
+
+        <!--
+                This shows the items dependent on a Iteration in separate tabs
+                The particular information is in a separate view.
+            -->
+
+        <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs" >
+
+            <dxlc:LayoutGroup.GroupBoxStyle>
+                <Style TargetType="dxlc:GroupBox">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                </Style>
+            </dxlc:LayoutGroup.GroupBoxStyle>
+
+            <dxlc:LayoutGroup Header="Iteration Changes" Height="300" >
+                <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitChangeMainRegion}" />-->
+                <dxg:GridControl
+                                    ItemsSource="{Binding Results.SelectedItem.comments}"
+                                    FontSize="12"
+                                    ScrollViewer.CanContentScroll="True"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    <dxg:GridColumn FieldName="id" />
+                    <dxg:GridColumn FieldName="parentCommentId" />
+                    <dxg:GridColumn FieldName="author.displayName" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="content" BestFitModeOnSourceChange="VisibleRows" />
+                    <dxg:GridColumn FieldName="commentType" />
+
+                    <dxg:GridColumn FieldName="publishedDate" BestFitModeOnSourceChange="VisibleRows">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="lastUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="lastContentUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+
+                </dxg:GridControl>
             </dxlc:LayoutGroup>
-            
-        </Grid>
 
-    </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Iteration Commits" >
+                <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitChangeMainRegion}" />-->
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+
+        <!--</dxlc:LayoutGroup>-->
+
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

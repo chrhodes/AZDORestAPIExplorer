@@ -29,6 +29,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public GitRepository Repository;
             public PullRequest PullRequest;
+            public Boolean IncludeCommits;
         }
 
         public class SelectedPullRequestIterationChangedEvent : PubSubEvent<PullRequestIteration> { }
@@ -112,7 +113,8 @@ namespace AZDORestApiExplorer.Domain.Git
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/pullrequests"
                     + $"/{args.PullRequest.pullRequestId}/iterations"
-                    + "?api-version=6.1-preview.1";
+                    + (args.IncludeCommits ? "?includeCommits=True&" : "?")
+                    + "api-version=6.1-preview.1";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
 

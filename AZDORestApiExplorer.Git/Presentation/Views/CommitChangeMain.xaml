@@ -54,17 +54,19 @@
 
             <!--<dxg:GridColumn FieldName="item.commitId" />-->
 
-            <dxg:GridColumn FieldName="item.path" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="item.isFolder" />
             <dxg:GridColumn FieldName="changeType" />
-            <dxg:GridColumn FieldName="item.objectId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="item.originalObjectId" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="item.path" Header="Path" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="item.isFolder" Header="Is Folder" />
+            <dxg:GridColumn FieldName="item.gitObjectType" Header="Git ObjectType"/>
+
+            <dxg:GridColumn FieldName="item.objectId" Header="ObjectId" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="item.originalObjectId" Header="Original ObjectId" BestFitModeOnSourceChange="VisibleRows"/>
 
         </dxg:GridControl>
 
         <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
-                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                <dxe:TextEdit  Text="{Binding Results.SelectedItem.item.url}" />
             </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
 

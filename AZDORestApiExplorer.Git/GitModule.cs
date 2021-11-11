@@ -43,7 +43,7 @@ namespace AZDORestApiExplorer.Git
 
             //containerRegistry.Register<ICommitMainViewModel, CommitMainViewModel>();
             containerRegistry.RegisterSingleton<CommitMain>();
-            containerRegistry.RegisterSingleton<CommitChangeMain>();
+            containerRegistry.Register<CommitChangeMain>();
 
             containerRegistry.RegisterSingleton<ImportRequestMain>();
 
@@ -55,6 +55,7 @@ namespace AZDORestApiExplorer.Git
             containerRegistry.RegisterSingleton<PullRequestAttachmentMain>();
             containerRegistry.RegisterSingleton<PullRequestCommitMain>();
             containerRegistry.RegisterSingleton<PullRequestIterationMain>();
+            containerRegistry.RegisterSingleton<PullRequestIterationChangeMain>();
             containerRegistry.RegisterSingleton<PullRequestLabelMain>();
             containerRegistry.RegisterSingleton<PullRequestPropertyMain>();
             containerRegistry.RegisterSingleton<PullRequestReviewerMain>();
@@ -92,9 +93,9 @@ namespace AZDORestApiExplorer.Git
 
             _regionManager.RegisterViewWithRegion(RegionNames.BlobMainRegion, typeof(BlobMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.CommitMainRegion, typeof(CommitMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.RepositoryCommitMainRegion, typeof(CommitMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.CommitChangeMainRegion, typeof(CommitChangeMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.RepositoryCommitChangeMainRegion, typeof(CommitChangeMain));
 
             _regionManager.RegisterViewWithRegion(RegionNames.ImportRequestMainRegion, typeof(ImportRequestMain));
 
@@ -105,7 +106,9 @@ namespace AZDORestApiExplorer.Git
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestMainRegion, typeof(PullRequestMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestAttachmentMainRegion, typeof(PullRequestAttachmentMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestCommitMainRegion, typeof(PullRequestCommitMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestCommitChangeMainRegion, typeof(CommitChangeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestIterationMainRegion, typeof(PullRequestIterationMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.PullRequestIterationChangeMainRegion, typeof(PullRequestIterationChangeMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestLabelMainRegion, typeof(PullRequestLabelMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestPropertyMainRegion, typeof(PullRequestPropertyMain));
             _regionManager.RegisterViewWithRegion(RegionNames.PullRequestReviewerMainRegion, typeof(PullRequestReviewerMain));

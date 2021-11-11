@@ -115,7 +115,7 @@
                 </dxlc:LayoutGroup.GroupBoxStyle>
 
                 <dxlc:LayoutGroup Header="Commit Changes" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CommitChangeMainRegion}" />
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitChangeMainRegion}" />
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>

@@ -408,12 +408,29 @@
                                             ToolTip="{Binding GetPullRequestCommitsToolTip, FallbackValue='Get PR Commits ToolTip' }" />
                                     </dxlc:LayoutItem>
 
-                                    <dxlc:LayoutItem>
-                                        <Button
-                                            Command="{Binding GetPullRequestIterationsCommand }"
-                                            Content="{Binding GetPullRequestIterationsContent, FallbackValue='Get PR Iterations' }"
-                                            ToolTip="{Binding GetPullRequestIterationsToolTip, FallbackValue='Get PR Iterations ToolTip' }" />
-                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup Header="Iterations" IsCollapsed="False" IsCollapsible="True"
+                                        Orientation="Vertical" View="GroupBox"
+                                        Background="{StaticResource PullRequestColor}">
+
+                                        <dxlc:LayoutItem Label="Include Commits">
+                                            <dxe:CheckEdit IsChecked="{Binding IncludePullRequestIterationCommits}"/>
+                                        </dxlc:LayoutItem>
+                                        
+                                        <dxlc:LayoutItem>
+                                            <Button
+                                                Command="{Binding GetPullRequestIterationsCommand }"
+                                                Content="{Binding GetPullRequestIterationsContent, FallbackValue='Get PR Iterations' }"
+                                                ToolTip="{Binding GetPullRequestIterationsToolTip, FallbackValue='Get PR Iterations ToolTip' }" />
+                                        </dxlc:LayoutItem>
+
+                                        <dxlc:LayoutItem>
+                                            <Button 
+		                                        Command="{Binding GetPullRequestIterationChangesCommand }"
+		                                        Content="{Binding GetPullRequestIterationChangesContent, FallbackValue='GetPullRequestIterationChanges' }"
+		                                        ToolTip="{Binding GetPullRequestIterationChangesToolTip, FallbackValue='GetPullRequestIterationChanges ToolTip' }" />
+                                        </dxlc:LayoutItem>
+
+                                    </dxlc:LayoutGroup>     
 
                                     <dxlc:LayoutItem>
                                         <Button
