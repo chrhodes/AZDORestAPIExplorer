@@ -120,6 +120,7 @@ namespace AZDORestApiExplorer.Core
         public static string PullRequestReviewerMainRegion = "PullRequestReviewerMainRegion";
         public static string PullRequestStatusMainRegion = "PullRequestStatusMainRegion";
         public static string PullRequestThreadMainRegion = "PullRequestThreadMainRegion";
+        public static string PullRequestThreadCommentMainRegion = "PullRequestThreadCommentMainRegion";
         public static string PullRequestWorkItemMainRegion = "PullRequestWorkItemMainRegion";
 
         public static string PushMainRegion = "PushMainRegion";

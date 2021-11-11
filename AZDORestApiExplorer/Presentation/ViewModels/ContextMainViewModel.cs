@@ -1,6 +1,6 @@
-﻿using AZDORestApiExplorer.Domain.Build;
-using System;
+﻿using System;
 
+using AZDORestApiExplorer.Domain.Build;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Test;
@@ -11,7 +11,6 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 
 namespace AZDORestApiExplorer.Presentation.ViewModels
 {
@@ -58,9 +57,10 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(CommitChanged);
-            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestCommitChangedEvent>().Subscribe(CommitChanged);
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(PullRequestChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestCommitChangedEvent>().Subscribe(CommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestThreadChangedEvent>().Subscribe(PullRequestThreadChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(TestSuiteChanged);
@@ -206,6 +206,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Context.SelectedPullRequest = pullRequest;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PullRequestThreadChanged(PullRequestThread pullRequestThread)
+        {
+            Context.SelectedPullRequestThread = pullRequestThread;
         }
 
         private void TestPlanChanged(TestPlan testPlan)

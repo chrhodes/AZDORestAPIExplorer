@@ -24,6 +24,7 @@
         public Domain.Git.Commit SelectedCommit { get; set; }
         public Domain.Git.PullRequest SelectedPullRequest { get; set; }
         public Domain.Git.GitRepository SelectedGitRepository { get; set; }
+        public Domain.Git.PullRequestThread SelectedPullRequestThread { get; set; }
 
         public Domain.Core.Team SelectedTeam { get; set; }
 

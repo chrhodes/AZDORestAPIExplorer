@@ -103,7 +103,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Build - Organization Level" IsCollapsed="False"
+                    <dxlc:LayoutGroup Header="Build - Organization Level" IsCollapsed="True"
                              Style="{StaticResource GetLayoutGroup}">
 
                         <dxlc:LayoutItem>
@@ -265,7 +265,7 @@
                         <TextBlock Text="Not Implemented Yet" />
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="True" IsCollapsible="True"
+                    <dxlc:LayoutGroup Header="Git - Organization Level" IsCollapsed="False" IsCollapsible="True"
                         Style="{StaticResource GetLayoutGroup}"
                         Background="{StaticResource OrganizationColor}">
 
@@ -289,7 +289,7 @@
                             
                         </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutGroup Header="Repository Level" IsCollapsed="True" IsCollapsible="True"
+                        <dxlc:LayoutGroup Header="Repository Level" IsCollapsible="True" IsCollapsed="False"
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource RepositoryColor}">
 
@@ -300,24 +300,29 @@
                                     ToolTip="{Binding GetBlobsToolTip, FallbackValue='GetBlobs ToolTip' }" />
                             </dxlc:LayoutItem>-->
 
-                            <dxlc:LayoutItem>
-                                <Button
-                                    Command="{Binding GetCommitsCommand }"
-                                    Content="{Binding GetCommitsContent, FallbackValue='GetCommits' }"
-                                    ToolTip="{Binding GetCommitsToolTip, FallbackValue='GetCommits ToolTip' }" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutGroup Header="Commit Level" IsCollapsed="True" IsCollapsible="True"
-                                Orientation="Vertical" View="GroupBox"
-                                Background="{StaticResource CommitColor}">
-
+                            <dxlc:LayoutGroup Header="Commits" IsCollapsible="True" IsCollapsed="False"
+                                Orientation="Vertical" View="GroupBox" >
+                           
                                 <dxlc:LayoutItem>
                                     <Button
-                                        Command="{Binding GetCommitChangesCommand }"
-                                        Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
-                                        ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
+                                        Command="{Binding GetCommitsCommand }"
+                                        Content="{Binding GetCommitsContent, FallbackValue='GetCommits' }"
+                                        ToolTip="{Binding GetCommitsToolTip, FallbackValue='GetCommits ToolTip' }" />
                                 </dxlc:LayoutItem>
 
+                                <dxlc:LayoutGroup Header="Commit Level" IsCollapsible="True" IsCollapsed="True"
+                                    Orientation="Vertical" View="GroupBox"
+                                    Background="{StaticResource CommitColor}">
+
+                                    <dxlc:LayoutItem>
+                                        <Button
+                                            Command="{Binding GetCommitChangesCommand }"
+                                            Content="{Binding GetCommitChangesContent, FallbackValue='GetCommitChanges' }"
+                                            ToolTip="{Binding GetCommitChangesToolTip, FallbackValue='GetCommitChanges ToolTip' }" />
+                                    </dxlc:LayoutItem>
+
+                                </dxlc:LayoutGroup>
+                                
                             </dxlc:LayoutGroup>
 
                             <dxlc:LayoutItem>
@@ -327,7 +332,7 @@
                                     ToolTip="{Binding GetImportRequestsToolTip, FallbackValue='GetImportRequests ToolTip' }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutGroup Header="Items" IsCollapsed="True" IsCollapsible="True"
+                            <dxlc:LayoutGroup Header="Items" IsCollapsible="True" IsCollapsed="True"
                                 Orientation="Vertical" View="GroupBox"
                                 Background="{StaticResource RepositoryColor}">
 
@@ -438,13 +443,31 @@
                                             ToolTip="{Binding GetPullRequestStatusesToolTip, FallbackValue='Get PR Statuses ToolTip' }" />
                                     </dxlc:LayoutItem>
 
-                                    <dxlc:LayoutItem>
-                                        <Button
+                                    <dxlc:LayoutGroup Header="Threads" IsCollapsed="False" IsCollapsible="True"
+                                        Orientation="Vertical" View="GroupBox"
+                                        Background="{StaticResource PullRequestColor}">
+                                        <dxlc:LayoutItem>
+                                            <Button
                                             Command="{Binding GetPullRequestThreadsCommand }"
                                             Content="{Binding GetPullRequestThreadsContent, FallbackValue='Get PR Threads' }"
                                             ToolTip="{Binding GetPullRequestThreadsToolTip, FallbackValue='Get PR Threads ToolTip' }" />
-                                    </dxlc:LayoutItem>
+                                        </dxlc:LayoutItem>
 
+                                        <dxlc:LayoutGroup Header="Thread Level" IsCollapsed="False" IsCollapsible="True"
+                                            Orientation="Vertical" View="GroupBox"
+                                            Background="{StaticResource PullRequestColor}">
+                                            
+                                            <dxlc:LayoutItem>
+                                                <Button 
+		                                            Command="{Binding GetPullRequestThreadCommentsCommand }"
+		                                            Content="{Binding GetPullRequestThreadCommentsContent, FallbackValue='GetPullRequestThreadComments' }"
+		                                            ToolTip="{Binding GetPullRequestThreadCommentsToolTip, FallbackValue='GetPullRequestThreadComments ToolTip' }" />
+                                            </dxlc:LayoutItem>
+
+                                        </dxlc:LayoutGroup>
+                                        
+                                    </dxlc:LayoutGroup>
+                                    
                                     <dxlc:LayoutItem>
                                         <Button
                                             Command="{Binding GetPullRequestWorkItemsCommand }"

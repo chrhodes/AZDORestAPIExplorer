@@ -195,15 +195,15 @@
                     </dxdo:FloatGroup>
 
                 </dxdo:DockLayoutManager.FloatGroups>
-                
+
                 <dxdo:DockLayoutManager.AutoHideGroups>
 
                     <dxdo:AutoHideGroup DockType="Top">
 
                     </dxdo:AutoHideGroup>
-                    
+
                     <dxdo:AutoHideGroup DockType="Left">
-                                        
+
                     </dxdo:AutoHideGroup>
 
                     <!--
@@ -215,7 +215,7 @@
                         These should be HiddenDragableLayoutPanel
 
                     -->
-                    
+
                     <dxdo:AutoHideGroup DockType="Right" >
 
                         <dxdo:LayoutPanel Caption="Accounts" Style="{StaticResource HiddenDragableLayoutPanel}" >
@@ -400,14 +400,14 @@
 
                         </dxdo:LayoutPanel>
                     </dxdo:AutoHideGroup>
-                
+
                     <dxdo:AutoHideGroup DockType="Bottom">
-                        
+
                         <!--<dxdo:LayoutPanel Caption="HTTP Exchange" >
                              <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HTTPExchangeMainRegion}" />
                         </dxdo:LayoutPanel>-->
 
-                        
+
                     </dxdo:AutoHideGroup>
 
                 </dxdo:DockLayoutManager.AutoHideGroups>

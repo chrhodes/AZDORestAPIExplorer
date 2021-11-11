@@ -55,7 +55,7 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
             set => _targetGrid = value;
         }
 
-        private void PullRequests_LayoutGroup_ExpansionChanged(object sender, EventArgs e)
+        private void LayoutGroup_ExpansionChanged(object sender, EventArgs e)
         {
             var lg = (DevExpress.Xpf.LayoutControl.LayoutGroup)sender;
 

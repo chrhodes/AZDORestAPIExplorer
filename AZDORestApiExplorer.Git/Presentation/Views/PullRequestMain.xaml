@@ -38,11 +38,11 @@
 
     <dxlc:LayoutControl Orientation="Vertical" >
 
-        <dxlc:LayoutGroup Orientation="Vertical" >
+        <!--<dxlc:LayoutGroup Orientation="Vertical" >-->
 
             <dxlc:LayoutGroup View="GroupBox"
-                              Collapsed="PullRequests_LayoutGroup_ExpansionChanged" 
-                              Expanded="PullRequests_LayoutGroup_ExpansionChanged"
+                              Collapsed="LayoutGroup_ExpansionChanged" 
+                              Expanded="LayoutGroup_ExpansionChanged"
                               IsCollapsible="True" IsCollapsed="False" >
                    
                     <Grid>
@@ -65,16 +65,22 @@
 
                             <dxg:GridColumn FieldName="pullRequestId" BestFitModeOnSourceChange="VisibleRows"/>
                             <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
-                            <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
-                            <dxg:GridColumn FieldName="codeReviewId" />
-                            <dxg:GridColumn FieldName="status" BestFitModeOnSourceChange="VisibleRows" />
-                            <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="VisibleRows"/>
-                            <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <!--<dxg:GridColumn FieldName="url" />-->
+                        <dxg:GridColumn FieldName="description" Width="300" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings TextWrapping="Wrap"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+
+                        <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="status" BestFitModeOnSourceChange="VisibleRows" />
+                        <dxg:GridColumn FieldName="codeReviewId" />
+
+                        <!--<dxg:GridColumn FieldName="url" />-->
                         
                         </dxg:GridControl>
 
@@ -92,8 +98,8 @@
                 This shows the items dependent on a Pull Request in separate tabs
                 The particular information is in a separate view.
             -->
-            
-            <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs" >
+
+        <dxlc:LayoutGroup Orientation="Vertical"  View="Tabs" >
 
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">
@@ -135,7 +141,7 @@
 
             </dxlc:LayoutGroup>
 
-        </dxlc:LayoutGroup>
+        <!--</dxlc:LayoutGroup>-->
 
     </dxlc:LayoutControl>
 

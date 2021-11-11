@@ -86,6 +86,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        public PullRequestThread SelectedPullRequestThread
+        {
+            get { return GetValue<PullRequestThread>(); }
+            set { SetValue(value); }
+        }
+
         public Domain.Dashboard.Dashboard SelectedDashboard
         {
             get { return GetValue<Domain.Dashboard.Dashboard>(); }

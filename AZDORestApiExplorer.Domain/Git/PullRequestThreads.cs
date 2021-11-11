@@ -27,6 +27,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public PullRequest PullRequest;
             public GitRepository Repository;
+            public PullRequestThread PullRequestThread;
         }
 
         public class SelectedPullRequestThreadChangedEvent : PubSubEvent<PullRequestThread> { }
@@ -64,7 +65,7 @@ namespace AZDORestApiExplorer.Domain.Git
             public Codereviewstatus CodeReviewStatus { get; set; }
             public Codereviewstatusupdateassociatedcommit CodeReviewStatusUpdateAssociatedCommit { get; set; }
             public Bypasspolicy BypassPolicy { get; set; }
-            public Codereviewstatusupdatedbyidentity BypassPolicy { get; set; }
+            public Codereviewstatusupdatedbyidentity CodeReviewStatusUpdatedByIdentity { get; set; }
         }
 
         public class Codereviewthreadtype

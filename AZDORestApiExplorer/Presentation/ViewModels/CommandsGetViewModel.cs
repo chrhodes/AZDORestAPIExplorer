@@ -135,7 +135,13 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestPropertiesCommand = new DelegateCommand(GetPullRequestProperties, GetPullRequestInfoCanExecute);
             GetPullRequestReviewersCommand = new DelegateCommand(GetPullRequestReviewers, GetPullRequestInfoCanExecute);
             GetPullRequestStatusesCommand = new DelegateCommand(GetPullRequestStatuses, GetPullRequestInfoCanExecute);
+
             GetPullRequestThreadsCommand = new DelegateCommand(GetPullRequestThreads, GetPullRequestInfoCanExecute);
+
+            // Trigger a GetPullRequestThreadComments call anytime a new thead is selected
+
+            EventAggregator.GetEvent<SelectedPullRequestThreadChangedEvent>().Subscribe(CallGetThreadChange);
+            GetPullRequestThreadCommentsCommand = new DelegateCommand(GetPullRequestThreadComments, GetPullRequestThreadCommentsCanExecute);
             GetPullRequestWorkItemsCommand = new DelegateCommand(GetPullRequestWorkItems, GetPullRequestInfoCanExecute);
 
             GetPushesCommand = new DelegateCommand(GetPushes, GetPushesCanExecute);
@@ -232,6 +238,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(RaisePullRequestChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestThreadChangedEvent>().Subscribe(RaisePullRequestThreadChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestSuiteChangedEvent>().Subscribe(RaiseTestSuiteChanged);
@@ -448,6 +455,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaisePullRequestThreadChanged(PullRequestThread obj)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetPullRequestThreadCommentsCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1631,6 +1647,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             if (!(pullRequest is null))
             {
+                // NOTE(crhodes)
+                // When Pull Request changes, clear out Context that depends on Pull Request
+
+                _contextMainViewModel.Context.SelectedPullRequestThread = null;
+
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestCommitsEventArgs()
                     {
@@ -1687,44 +1708,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                         PullRequest = pullRequest
                     });
 
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestCommitsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
-
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestIterationsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
-
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestLabelsEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestLabelsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
 
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
-
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestReviewersEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestReviewersEventArgs()
                     {
                         Organization = _collectionMainViewModel.SelectedCollection.Organization,
                         Project = _contextMainViewModel.Context.SelectedProject,
@@ -1740,24 +1726,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                         Repository = _contextMainViewModel.Context.SelectedGitRepository,
                         PullRequest = pullRequest
                     });
-
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestThreadsEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestThreadsEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
-
-                //EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestWorkItemsEvent>().Publish(
-                //    new Domain.Git.Events.GetPullRequestWorkItemsEventArgs()
-                //    {
-                //        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                //        Project = _contextMainViewModel.Context.SelectedProject,
-                //        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                //        PullRequest = pullRequest
-                //    });
 
                 Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
             }
@@ -2426,12 +2394,84 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     Project = _contextMainViewModel.Context.SelectedProject,
                     Repository = _contextMainViewModel.Context.SelectedGitRepository,
                     PullRequest = _contextMainViewModel.Context.SelectedPullRequest
-                    //, Team = _contextMainViewModel.Context.SelectedTeam
                 });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        #region GetPullRequestThreadComments Command
+
+        private void CallGetThreadChange(PullRequestThread pullRequestThread)
+        {
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // We cleared out the context but for some reason pullRequestThread is set
+            // so check both for not null
+
+            if (! (pullRequestThread is null)
+                && !(_contextMainViewModel.Context.SelectedPullRequestThread is null))
+            {
+                EventAggregator.GetEvent<GetPullRequestThreadCommentsEvent>().Publish(
+                    new GetPullRequestThreadCommentsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = _contextMainViewModel.Context.SelectedPullRequest,
+                        PullRequestThread = pullRequestThread
+                    });
+            }
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public DelegateCommand GetPullRequestThreadCommentsCommand { get; set; }
+        public string GetPullRequestThreadCommentsContent { get; set; } = "GetPullRequestThreadComments";
+        public string GetPullRequestThreadCommentsToolTip { get; set; } = "GetPullRequestThreadComments ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestThreadCommentsContent { get; set; } = "ViewName_GetPullRequestThreadCommentsContent";
+        //public string GetPullRequestThreadCommentsToolTip { get; set; } = "ViewName_GetPullRequestThreadCommentsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestThreadCommentsContent">GetPullRequestThreadComments</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestThreadCommentsContentToolTip">GetPullRequestThreadComments ToolTip</system:String>  
+
+        public void GetPullRequestThreadComments()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetPullRequestThreadCommentsEvent>().Publish(
+                new GetPullRequestThreadCommentsEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest,
+                    PullRequestThread = _contextMainViewModel.Context.SelectedPullRequestThread
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPullRequestThreadCommentsCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedGitRepository is null
+                || _contextMainViewModel.Context.SelectedPullRequest is null
+                || _contextMainViewModel.Context.SelectedPullRequestThread is null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One
         // Can get fancy and use Resources
         //public string GetPullRequestsContent { get; set; } = "ViewName_GetPullRequestsContent";
         //public string GetPullRequestsToolTip { get; set; } = "ViewName_GetPullRequestsContentToolTip";

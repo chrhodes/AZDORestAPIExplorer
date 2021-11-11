@@ -70,7 +70,17 @@
         <Setter Property="Orientation" Value="Vertical" />
         <Setter Property="View" Value="GroupBox" />
     </Style>
-    
+
+    <Style x:Key="ContextLayoutGroup" TargetType="{x:Type dxlc:LayoutGroup}">
+        <Setter Property="View" Value="GroupBox" />
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="ItemLabelsAlignment" Value="Local" />
+        <Setter Property="IsCollapsible" Value="True" />
+        <Setter Property="IsCollapsed" Value="False" />
+    </Style>
+
     <Style x:Key="OutlineBorder" TargetType="{x:Type Border}">
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="BorderThickness" Value="1" />
