@@ -244,6 +244,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(RaisePullRequestChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestIterationChangedEvent>().Subscribe(RaisePullRequestIterationChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestThreadChangedEvent>().Subscribe(RaisePullRequestThreadChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(RaiseTestPlanChanged);
@@ -265,21 +266,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // N.B. Need to add to each Context Item for button to be enabled.
 
         //++ Add Commands that only depend on Organization Context here
-
-        // Other commands that depend on more do not need to be added
-        // as the check is in all CanExecute methods
-
-        private void RaiseBuildChanged(Domain.Build.Build build)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            GetBuildInfoCommand.RaiseCanExecuteChanged();
-            GetBuildChangesCommand.RaiseCanExecuteChanged();
-            GetBuildLogsCommand.RaiseCanExecuteChanged();
-            GetBuildWorkItemRefsCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
 
         private void RaiseCollectionChanged(SelectedCollectionChangedEventArgs args)
         {
@@ -348,6 +334,21 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetBehaviorsWITPCommand.RaiseCanExecuteChanged();
             GetListsCommand.RaiseCanExecuteChanged();
             GetProcessesWITPCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // Other commands that depend on more do not need to be added
+        // as the check is in all CanExecute methods
+
+        private void RaiseBuildChanged(Domain.Build.Build build)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetBuildInfoCommand.RaiseCanExecuteChanged();
+            GetBuildChangesCommand.RaiseCanExecuteChanged();
+            GetBuildLogsCommand.RaiseCanExecuteChanged();
+            GetBuildWorkItemRefsCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -461,6 +462,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestStatusesCommand.RaiseCanExecuteChanged();
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaisePullRequestIterationChanged(PullRequestIteration obj)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetPullRequestIterationChangesCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

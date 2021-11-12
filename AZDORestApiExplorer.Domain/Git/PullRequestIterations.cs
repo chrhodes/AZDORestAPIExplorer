@@ -48,7 +48,6 @@ namespace AZDORestApiExplorer.Domain.Git
 
     public class PullRequestIteration
     {
-
             public int id { get; set; }
             public string description { get; set; }
             public Author author { get; set; }

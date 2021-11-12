@@ -29,26 +29,53 @@ namespace AZDORestApiExplorer.Domain.Git
 
             public GitRepository Repository;
             public PullRequest PullRequest;
-            public PullRequestIteration pullRequestIteration;
+            public PullRequestIteration PullRequestIteration;
         }
 
         public class SelectedPullRequestIterationChangeChangedEvent : PubSubEvent<PullRequestIterationChange> { }
     }
 
+
+    //public class Rootobject
+    //{
+    //    public Changeentry[] changeEntries { get; set; }
+    //}
+
+    //public class Changeentry
+    //{
+    //    public int changeTrackingId { get; set; }
+    //    public int changeId { get; set; }
+    //    public Item item { get; set; }
+    //    public string changeType { get; set; }
+    //}
+
+    //public class Item
+    //{
+    //    public string objectId { get; set; }
+    //    public string originalObjectId { get; set; }
+    //    public string path { get; set; }
+    //}
+
     public class PullRequestIterationChanges
     {
-        public int count { get; set; }
-        public PullRequestIterationChange[] value { get; set; }
+        public PullRequestIterationChange[] changeEntries { get; set; }
     }
 
     public class PullRequestIterationChange
     {
-        // TODO(crhodes)
-        // PasteSpecial from Json result text
-
-        // Nest any additional classes inside class PullRequestIterationChange
+        public int changeTrackingId { get; set; }
+        public int changeId { get; set; }
+        public Item item { get; set; }
+        public string changeType { get; set; }
 
         #region Nested Classes
+
+        public class Item
+        {
+            public string objectId { get; set; }
+            public string originalObjectId { get; set; }
+            public string path { get; set; }
+        }
 
         #endregion
 
@@ -63,10 +90,12 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
-                // TODO(crhodes)
-                // Update Uri  Use args for parameters.
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/iterations/{iterationId}/changes?api-version=6.1-preview.1
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullRequests/{pullRequestId}/iterations/{iterationId}/changes?$top={$top}&$skip={$skip}&$compareTo={$compareTo}&api-version=6.1-preview.1
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"<UPDATE URI>?"
+                    + $"git/repositories/{args.Repository.id}/pullrequests"
+                    + $"/{args.PullRequest.pullRequestId}/iterations/{args.PullRequestIteration.id}/changes?$top=100&"
                     + "api-version=6.1-preview.1";
 
                 var exchange = Results.InitializeExchange(client, requestUri);
@@ -84,7 +113,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     PullRequestIterationChanges resultRoot = JsonConvert.DeserializeObject<PullRequestIterationChanges>(outJson);
 
-                    Results.ResultItems = new ObservableCollection<PullRequestIterationChange>(resultRoot.value);
+                    Results.ResultItems = new ObservableCollection<PullRequestIterationChange>(resultRoot.changeEntries);
 
                     // Use this for single items                    
 
@@ -132,7 +161,7 @@ namespace AZDORestApiExplorer.Domain.Git
 
                             PullRequestIterationChanges resultRootC = JsonConvert.DeserializeObject<PullRequestIterationChanges>(outJson2);
 
-                            Results.ResultItems.AddRange(resultRootC.value);
+                            Results.ResultItems.AddRange(resultRootC.changeEntries);
 
                             hasContinuationToken = response2.Headers.TryGetValues("x-ms-continuationtoken", out continuationHeaders);
                         }
@@ -147,43 +176,45 @@ namespace AZDORestApiExplorer.Domain.Git
 
                     bool hasMoreResults = false;
 
-                    if (resultRoot.count == 100)
+                    if (resultRoot.changeEntries.Count() == 100)
                     {
                         hasMoreResults = true;
                     }
 
                     int itemsToSkip = 100;
 
-                    // while (hasMoreResults)
-                    // {
-                    // var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    // + $"<UPDATE URI>$top=100&$skip={itemsToSkip}"
-                    // + "&api-version=6.1-preview.1";
+                    while (hasMoreResults)
+                    {
+                        var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                             + $"git/repositories/{args.Repository.id}/pullrequests"
+                             + $"/{args.PullRequest.pullRequestId}/iterations/{args.PullRequestIteration.id}/changes?$top=100&$skip={itemsToSkip}&"
+                        + $"<UPDATE URI>$top=100&$skip={itemsToSkip}"
+                        + "api-version=6.1-preview.1";
 
-                    // var exchange2 = Results.ContinueExchange(client, requestUri2);
+                        var exchange2 = Results.ContinueExchange(client, requestUri2);
 
-                    // using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
-                    // {
-                    // Results.RecordExchangeResponse(response2, exchange2);
+                        using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                        {
+                            Results.RecordExchangeResponse(response2, exchange2);
 
-                    // response2.EnsureSuccessStatusCode();
-                    // string outJson2 = await response2.Content.ReadAsStringAsync();
+                            response2.EnsureSuccessStatusCode();
+                            string outJson2 = await response2.Content.ReadAsStringAsync();
 
-                    // PullRequestIterationChanges resultRoot2C = JsonConvert.DeserializeObject<PullRequestIterationChanges>(outJson2);
+                            PullRequestIterationChanges resultRoot2C = JsonConvert.DeserializeObject<PullRequestIterationChanges>(outJson2);
 
-                    // Results.ResultItems.AddRange(resultRoot2C.value);
+                            Results.ResultItems.AddRange(resultRoot2C.changeEntries);
 
-                    // if (resultRoot2C.count == 100)
-                    // {
-                    // hasMoreResults = true;
-                    // itemsToSkip += 100;
-                    // }
-                    // else
-                    // {
-                    // hasMoreResults = false;
-                    // }
-                    // }
-                    // }
+                            if (resultRoot2C.changeEntries.Count() == 100)
+                            {
+                                hasMoreResults = true;
+                                itemsToSkip += 100;
+                            }
+                            else
+                            {
+                                hasMoreResults = false;
+                            }
+                        }
+                    }
 
                     #endregion
 

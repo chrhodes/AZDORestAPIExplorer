@@ -13,6 +13,8 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
+    xmlns:core="clr-namespace:AZDORestApiExplorer.Core;assembly=AZDORestApiExplorer.Core"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:vncazdopv="clr-namespace:AZDORestApiExplorer.Presentation.Views;assembly=AZDORestApiExplorer.Presentation"
     
@@ -100,38 +102,8 @@
                 </Style>
             </dxlc:LayoutGroup.GroupBoxStyle>
 
-            <dxlc:LayoutGroup Header="Iteration Changes" Height="300" >
-                <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitChangeMainRegion}" />-->
-                <dxg:GridControl
-                                    ItemsSource="{Binding Results.SelectedItem.comments}"
-                                    FontSize="12"
-                                    ScrollViewer.CanContentScroll="True"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                    <dxg:GridColumn FieldName="id" />
-                    <dxg:GridColumn FieldName="parentCommentId" />
-                    <dxg:GridColumn FieldName="author.displayName" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="content" BestFitModeOnSourceChange="VisibleRows" />
-                    <dxg:GridColumn FieldName="commentType" />
-
-                    <dxg:GridColumn FieldName="publishedDate" BestFitModeOnSourceChange="VisibleRows">
-                        <dxg:GridColumn.EditSettings>
-                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                        </dxg:GridColumn.EditSettings>
-                    </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="lastUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
-                        <dxg:GridColumn.EditSettings>
-                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                        </dxg:GridColumn.EditSettings>
-                    </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="lastContentUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
-                        <dxg:GridColumn.EditSettings>
-                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                        </dxg:GridColumn.EditSettings>
-                    </dxg:GridColumn>
-
-                </dxg:GridControl>
+            <dxlc:LayoutGroup Header="Iteration Changes" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationChangeMainRegion}" />
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Iteration Commits" >

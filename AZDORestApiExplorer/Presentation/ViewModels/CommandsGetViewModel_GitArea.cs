@@ -719,12 +719,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
 
-            //  EventAggregator.GetEvent<GetPullRequestIterationChangesEvent>().Publish(
-            //      new GetPullRequestIterationChangesEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
+            EventAggregator.GetEvent<GetPullRequestIterationChangesEvent>().Publish(
+                new GetPullRequestIterationChangesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest,
+                    PullRequestIteration = _contextMainViewModel.Context.SelectedPullRequestIteration
+                });
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -734,7 +737,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             if (_collectionMainViewModel.SelectedCollection is null
                 || _contextMainViewModel.Context.SelectedProject is null
                 || _contextMainViewModel.Context.SelectedGitRepository is null
-                || _contextMainViewModel.Context.SelectedPullRequest is null)
+                || _contextMainViewModel.Context.SelectedPullRequest is null
+                || _contextMainViewModel.Context.SelectedPullRequestIteration is null)
             {
                 return false;
             }

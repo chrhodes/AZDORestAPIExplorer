@@ -224,8 +224,13 @@
                                 <TextBlock Text="{Binding Context.SelectedPullRequest.pullRequestId}" />
                             </dxlc:LayoutItem>
 
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestIterationId:" 
+                                                 LabelPosition="Top">
+                                <TextBlock Text="{Binding Context.SelectedPullRequestIteration.id}" />
+                            </dxlc:LayoutItem>
+                            
                             <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestThreadId:" 
-                                             LabelPosition="Top">
+                                                 LabelPosition="Top">
                                 <TextBlock Text="{Binding Context.SelectedPullRequestThread.id}" />
                             </dxlc:LayoutItem>
                             

@@ -60,6 +60,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(PullRequestChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestCommitChangedEvent>().Subscribe(CommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestIterationChangedEvent>().Subscribe(PullRequestIterationChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestThreadChangedEvent>().Subscribe(PullRequestThreadChanged);
 
             EventAggregator.GetEvent<Domain.Test.Events.SelectedTestPlanChangedEvent>().Subscribe(TestPlanChanged);
@@ -198,7 +199,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private void PullRequestChanged(PullRequest pullRequest)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -208,9 +208,22 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void PullRequestIterationChanged(PullRequestIteration pullRequestIteration)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Context.SelectedPullRequestIteration = pullRequestIteration;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         private void PullRequestThreadChanged(PullRequestThread pullRequestThread)
         {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
             Context.SelectedPullRequestThread = pullRequestThread;
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TestPlanChanged(TestPlan testPlan)
