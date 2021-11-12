@@ -6,12 +6,13 @@
     xmlns:prism="http://prismlibrary.com/"
     
     Startup="Application_Startup"
-    Activated="Application_Activated"    
-    Deactivated="Application_Deactivated"
+
     Exit="Application_Exit"
     SessionEnding="Application_SessionEnding"
     DispatcherUnhandledException="Application_DispatcherUnhandledException"
 >
+    <!--Activated="Application_Activated"    
+    Deactivated="Application_Deactivated"-->
     <Application.Resources>
         
         <ResourceDictionary>

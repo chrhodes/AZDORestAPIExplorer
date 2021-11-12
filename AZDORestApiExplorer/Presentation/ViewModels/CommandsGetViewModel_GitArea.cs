@@ -85,6 +85,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
+            return;
             if (!(pullRequest is null))
             {
                 // NOTE(crhodes)
