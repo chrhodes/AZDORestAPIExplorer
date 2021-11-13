@@ -219,17 +219,22 @@
                             Style="{StaticResource ContextLayoutGroup}"
                             Background="{StaticResource CommitColor}">
 
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestId:"
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="PR Id:"
                                              LabelPosition="Top">
                                 <TextBlock Text="{Binding Context.SelectedPullRequest.pullRequestId}" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestIterationId:" 
+                        <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="PR commitId:" 
+                                             LabelPosition="Top">
+                            <TextBlock Text="{Binding Context.SelectedPullRequestCommit.commitId}" />
+                        </dxlc:LayoutItem>-->
+
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="PR IterationId:" 
                                                  LabelPosition="Top">
                                 <TextBlock Text="{Binding Context.SelectedPullRequestIteration.id}" />
                             </dxlc:LayoutItem>
                             
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="pullRequestThreadId:" 
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="PR ThreadId:" 
                                                  LabelPosition="Top">
                                 <TextBlock Text="{Binding Context.SelectedPullRequestThread.id}" />
                             </dxlc:LayoutItem>

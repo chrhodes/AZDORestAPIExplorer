@@ -69,13 +69,14 @@
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
                                 
-                        <dxg:GridColumn FieldName="changeTrackingId" Header="Change TrackingId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="changeId" Header="ChangeId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="changeType" Header="ChangeType" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="item.objectId" Header="Item.objectId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="item.originalObjectId" Header="Item.originalObjectId" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="item.path" Header="Item.path" BestFitModeOnSourceChange="VisibleRows"/>
-                        
+                        <dxg:GridColumn FieldName="changeTrackingId" Header="Change TrackingId" />
+                        <dxg:GridColumn FieldName="changeId" Header="ChangeId"/>
+                        <dxg:GridColumn FieldName="changeType" Header="ChangeType" />
+                        <dxg:GridColumn FieldName="item.path" Header="Item.path" BestFitModeOnSourceChange="Smart"/>
+
+                        <dxg:GridColumn FieldName="item.objectId" Header="Item.objectId" BestFitModeOnSourceChange="Smart"/>
+                        <dxg:GridColumn FieldName="item.originalObjectId" Header="Item.originalObjectId" BestFitModeOnSourceChange="Smart"/>
+
                         <!--<dxg:GridColumn FieldName="changeId" Header="Date" Width="150">
                             <dxg:GridColumn.EditSettings>
                                 <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />

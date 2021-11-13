@@ -51,14 +51,16 @@
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <dxg:GridColumn FieldName="objectId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="gitObjectType" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="commitId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="path" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="isFolder" BestFitModeOnSourceChange="VisibleRows"/>
+
+            <dxg:GridColumn FieldName="gitObjectType"/>
+            <dxg:GridColumn FieldName="path" />
+            <dxg:GridColumn FieldName="isFolder" />
+            <dxg:GridColumn FieldName="commitId" />            
+            <dxg:GridColumn FieldName="objectId" />
+
         </dxg:GridControl>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
             </dxlc:LayoutItem>

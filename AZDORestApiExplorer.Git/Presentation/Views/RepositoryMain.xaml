@@ -64,17 +64,17 @@
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-                        <dxg:GridColumn FieldName="name" Header="Repository Name" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="name" Header="Repository Name" BestFitModeOnSourceChange="Smart" />
                         <!--<dxg:GridColumn FieldName="id" />-->
                         <!--<dxg:GridColumn FieldName="url" />-->
-                        <dxg:GridColumn FieldName="project.name" Header="Team Project" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="defaultBranch" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="size" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="isDisabled" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="isFork" BestFitModeOnSourceChange="VisibleRows"/>
-                        <!--<dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="sshUrl" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="webUrl" BestFitModeOnSourceChange="VisibleRows"/>-->
+                        <dxg:GridColumn FieldName="project.name" Header="Team Project" />
+                    <dxg:GridColumn FieldName="defaultBranch" BestFitModeOnSourceChange="Smart"/>
+                        <dxg:GridColumn FieldName="size" />
+                        <dxg:GridColumn FieldName="isDisabled" />
+                        <dxg:GridColumn FieldName="isFork" />
+                        <!--<dxg:GridColumn FieldName="remoteUrl" />
+                        <dxg:GridColumn FieldName="sshUrl" />
+                        <dxg:GridColumn FieldName="webUrl" />-->
 
                     </dxg:GridControl>
 

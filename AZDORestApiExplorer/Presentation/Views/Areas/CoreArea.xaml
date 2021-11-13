@@ -33,7 +33,7 @@
                   
             <dxlc:LayoutGroup Header="Core"
                     Orientation="Vertical"  View="Tabs">
-            
+
                 <dxlc:LayoutGroup.GroupBoxStyle>
                     <Style TargetType="dxlc:GroupBox">
                         <Setter Property="Background" Value="Transparent" />
@@ -44,10 +44,6 @@
                     </Style>
                 </dxlc:LayoutGroup.GroupBoxStyle>
 
-                <dxlc:LayoutGroup Header="Processes">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ProcessMainRegion}" />
-                </dxlc:LayoutGroup>
-
                 <dxlc:LayoutGroup Header="Projects">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ProjectMainRegion}" />
                 </dxlc:LayoutGroup>
@@ -55,7 +51,11 @@
                 <dxlc:LayoutGroup Header="Teams"> 
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.TeamMainRegion}" />
                 </dxlc:LayoutGroup>
-            
+
+                <dxlc:LayoutGroup Header="Processes">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ProcessMainRegion}" />
+                </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>

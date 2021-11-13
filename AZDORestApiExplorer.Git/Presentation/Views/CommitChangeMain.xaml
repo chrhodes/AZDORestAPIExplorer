@@ -54,13 +54,13 @@
 
             <!--<dxg:GridColumn FieldName="item.commitId" />-->
 
-            <dxg:GridColumn FieldName="changeType" />
-            <dxg:GridColumn FieldName="item.path" Header="Path" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="item.isFolder" Header="Is Folder" />
             <dxg:GridColumn FieldName="item.gitObjectType" Header="Git ObjectType"/>
+            <dxg:GridColumn FieldName="changeType" />
+            <dxg:GridColumn FieldName="item.path" Header="Path" BestFitModeOnSourceChange="Smart"/>            
 
-            <dxg:GridColumn FieldName="item.objectId" Header="ObjectId" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="item.originalObjectId" Header="Original ObjectId" BestFitModeOnSourceChange="VisibleRows"/>
+            <dxg:GridColumn FieldName="item.objectId" Header="ObjectId" BestFitModeOnSourceChange="Smart" />
+            <dxg:GridColumn FieldName="item.originalObjectId" Header="Original ObjectId" BestFitModeOnSourceChange="Smart" />
 
         </dxg:GridControl>
 

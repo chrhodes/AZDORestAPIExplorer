@@ -85,7 +85,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
-            return;
+            //return;
             if (!(pullRequest is null))
             {
                 // NOTE(crhodes)
@@ -104,6 +104,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestIterationsEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestIterationsEventArgs()
+                    {
+                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                        Project = _contextMainViewModel.Context.SelectedProject,
+                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                        PullRequest = pullRequest
+                    });
+
+                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
+                    new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
                     {
                         Organization = _collectionMainViewModel.SelectedCollection.Organization,
                         Project = _contextMainViewModel.Context.SelectedProject,
@@ -150,14 +159,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                     });
 
 
-                EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestPropertiesEvent>().Publish(
-                    new Domain.Git.Events.GetPullRequestPropertiesEventArgs()
-                    {
-                        Organization = _collectionMainViewModel.SelectedCollection.Organization,
-                        Project = _contextMainViewModel.Context.SelectedProject,
-                        Repository = _contextMainViewModel.Context.SelectedGitRepository,
-                        PullRequest = pullRequest
-                    });
+
 
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestStatusesEventArgs()
@@ -175,7 +177,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetRepositories Command
 
         public DelegateCommand GetRepositoriesCommand { get; set; }
-        public string GetRepositoriesContent { get; set; } = "Get Repositories";
+        public string GetRepositoriesContent { get; set; } = "Repositories";
         public string GetRepositoriesToolTip { get; set; } = "Get Repositories ToolTip";
 
         // Can get fancy and use Resources
@@ -185,8 +187,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetAccountsContent">GetAccounts</system:String>
         //    <system:String x:Key="ViewName_GetAccountsContentToolTip">GetAccounts ToolTip</system:String>
-
-
 
         public void GetRepositoriesExecute()
         {
@@ -218,7 +218,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         #region GetProjectRepositories Command
 
         public DelegateCommand GetProjectRepositoriesCommand { get; set; }
-        public string GetProjectRepositoriesContent { get; set; } = "Get Project Repositories";
+        public string GetProjectRepositoriesContent { get; set; } = "Project Repositories";
         public string GetProjectRepositoriesToolTip { get; set; } = "Get Project Repositories ToolTip";
 
         // Can get fancy and use Resources
@@ -356,9 +356,9 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         public DelegateCommand GetCommitChangesCommand { get; set; }
 
-        public string GetCommitChangesContent { get; set; } = "GetCommitChanges";
+        public string GetCommitChangesContent { get; set; } = "Commit Changes";
 
-        public string GetCommitChangesToolTip { get; set; } = "GetCommitChanges ToolTip";
+        public string GetCommitChangesToolTip { get; set; } = "Get Commit Changes ToolTip";
 
         // Put these in Resource File
         //    <system:String x:Key="ViewName_GetCommitChangesContent">GetCommitChanges</system:String>
@@ -673,6 +673,53 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
 
+        }
+
+        #endregion
+
+        #region GetPullRequestCommitChanges Command
+
+        public DelegateCommand GetPullRequestCommitChangesCommand { get; set; }
+        public string GetPullRequestCommitChangesContent { get; set; } = "PR Commit Changes";
+        public string GetPullRequestCommitChangesToolTip { get; set; } = "Get PR Commit Changes ToolTip";
+
+        // Can get fancy and use Resources
+        //public string GetPullRequestCommitChangesContent { get; set; } = "ViewName_GetPullRequestCommitChangesContent";
+        //public string GetPullRequestCommitChangesToolTip { get; set; } = "ViewName_GetPullRequestCommitChangesContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_GetPullRequestCommitChangesContent">GetPullRequestCommitChanges</system:String>
+        //    <system:String x:Key="ViewName_GetPullRequestCommitChangesContentToolTip">GetPullRequestCommitChanges ToolTip</system:String>  
+
+        public void GetPullRequestCommitChanges()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            EventAggregator.GetEvent<GetPullRequestCommitChangesEvent>().Publish(
+                new GetPullRequestCommitChangesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    PullRequest = _contextMainViewModel.Context.SelectedPullRequest,
+                    PullRequestCommitId = int.Parse(_contextMainViewModel.Context.SelectedCommit.commitId)
+                });
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool GetPullRequestCommitChangesCanExecute()
+        {
+            if (_collectionMainViewModel.SelectedCollection is null
+                || _contextMainViewModel.Context.SelectedProject is null
+                || _contextMainViewModel.Context.SelectedGitRepository is null
+                || _contextMainViewModel.Context.SelectedPullRequest is null
+                || _contextMainViewModel.Context.SelectedCommit is null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

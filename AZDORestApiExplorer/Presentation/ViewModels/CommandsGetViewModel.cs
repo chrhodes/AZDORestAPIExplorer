@@ -130,6 +130,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetPullRequestAttachmentsCommand = new DelegateCommand(GetPullRequestAttachments, GetPullRequestInfoCanExecute);
             GetPullRequestCommitsCommand = new DelegateCommand(GetPullRequestCommits, GetPullRequestInfoCanExecute);
+            GetPullRequestCommitChangesCommand = new DelegateCommand(GetPullRequestCommitChanges, GetPullRequestCommitChangesCanExecute);
             GetPullRequestIterationsCommand = new DelegateCommand(GetPullRequestIterations, GetPullRequestInfoCanExecute);
             GetPullRequestIterationChangesCommand = new DelegateCommand(GetPullRequestIterationChanges, GetPullRequestIterationChangesCanExecute);
             GetPullRequestLabelsCommand = new DelegateCommand(GetPullRequestLabels, GetPullRequestInfoCanExecute);
@@ -358,6 +359,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             GetCommitChangesCommand.RaiseCanExecuteChanged();
+            GetPullRequestCommitChangesCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

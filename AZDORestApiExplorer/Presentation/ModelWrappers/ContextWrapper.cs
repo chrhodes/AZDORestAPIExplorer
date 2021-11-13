@@ -86,6 +86,12 @@ namespace AZDORestApiExplorer.Presentation.ModelWrappers
             set { SetValue(value); }
         }
 
+        //public PullRequestCommit SelectedPullRequestCommit
+        //{
+        //    get { return GetValue<PullRequestCommit>(); }
+        //    set { SetValue(value); }
+        //}
+
         public PullRequestIteration SelectedPullRequestIteration
         {
             get { return GetValue<PullRequestIteration>(); }

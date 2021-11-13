@@ -34,34 +34,35 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+       
+        <Grid MaxHeight="4096">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
+            <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                     Count="{Binding Results.Count, Mode=TwoWay}"/>
 
-        <dxg:GridControl x:Name="grdResults" Grid.Row="1"
+            <dxg:GridControl x:Name="grdResults" Grid.Row="1"
                     ItemsSource="{Binding Results.ResultItems}"
                     SelectedItem="{Binding Results.SelectedItem}"
                     FontSize="12"
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-            
-            <dxg:GridColumn FieldName="id" />
-            
-        </dxg:GridControl>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
-            <dxlc:LayoutItem Label="Url" >
-                <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
-            </dxlc:LayoutItem>
-        </dxlc:LayoutGroup>
+                <dxg:GridColumn FieldName="id" />
 
-    </Grid>
+            </dxg:GridControl>
 
+            <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                <dxlc:LayoutItem Label="Url" >
+                    <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+        </Grid>
+        
 </vncmvvm:ViewBase>

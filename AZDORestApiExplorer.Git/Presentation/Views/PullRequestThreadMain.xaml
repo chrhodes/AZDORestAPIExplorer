@@ -42,7 +42,7 @@
         Toss what is not needed.
     -->
 
-    <dxlc:LayoutControl Orientation="Vertical" >
+    <dxlc:LayoutControl Orientation="Vertical" MaxHeight="4096">
 
         <dxlc:LayoutGroup Orientation="Vertical" >
 
@@ -70,12 +70,12 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                         <dxg:GridColumn FieldName="id" />
-                        <dxg:GridColumn FieldName="publishedDate" BestFitModeOnSourceChange="VisibleRows" >
+                        <dxg:GridColumn FieldName="publishedDate"  >
                             <dxg:GridColumn.EditSettings>
                                 <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="lastUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
+                        <dxg:GridColumn FieldName="lastUpdatedDate" >
                             <dxg:GridColumn.EditSettings>
                                 <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                             </dxg:GridColumn.EditSettings>
@@ -110,21 +110,21 @@
 
                                 <dxg:GridColumn FieldName="id" />
                                 <dxg:GridColumn FieldName="parentCommentId" />
-                                    <dxg:GridColumn FieldName="author.displayName" BestFitModeOnSourceChange="VisibleRows"/>
-                                    <dxg:GridColumn FieldName="content" BestFitModeOnSourceChange="VisibleRows" />
+                                    <dxg:GridColumn FieldName="author.displayName" />
+                                    <dxg:GridColumn FieldName="content"  />
                                 <dxg:GridColumn FieldName="commentType" />
 
-                                <dxg:GridColumn FieldName="publishedDate" BestFitModeOnSourceChange="VisibleRows">
+                                <dxg:GridColumn FieldName="publishedDate" >
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="lastUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
+                                <dxg:GridColumn FieldName="lastUpdatedDate" >
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="lastContentUpdatedDate" BestFitModeOnSourceChange="VisibleRows">
+                                <dxg:GridColumn FieldName="lastContentUpdatedDate" >
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                                     </dxg:GridColumn.EditSettings>

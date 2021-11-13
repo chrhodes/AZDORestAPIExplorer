@@ -33,8 +33,8 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
-
-        <Grid>
+       
+        <Grid MaxHeight="4096">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -61,7 +61,7 @@
 
             </dxg:GridControl>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
             </dxlc:LayoutItem>

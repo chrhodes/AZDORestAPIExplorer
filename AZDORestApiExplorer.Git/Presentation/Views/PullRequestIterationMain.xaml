@@ -36,9 +36,10 @@
 
     </UserControl.Resources>
 
-    <dxlc:LayoutControl Orientation="Vertical" >
+    <dxlc:LayoutControl Orientation="Vertical" MaxHeight="4096" >
 
         <dxlc:LayoutGroup Header="Iterations" dxlc:LayoutControl.AllowVerticalSizing="True">
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -57,20 +58,20 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-                    <dxg:GridColumn FieldName="id" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="author.uniqueName" BestFitModeOnSourceChange="VisibleRows" Header="Author"/>
-                    <dxg:GridColumn FieldName="commonRefCommit.commitId" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="createdDate" BestFitModeOnSourceChange="VisibleRows" >
+                    <dxg:GridColumn FieldName="id" />
+                    <dxg:GridColumn FieldName="author.uniqueName"  Header="Author"/>
+                    <dxg:GridColumn FieldName="commonRefCommit.commitId" />
+                    <dxg:GridColumn FieldName="createdDate"  >
                         <dxg:GridColumn.EditSettings>
                             <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="hasMoreCommits" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="description" />
+                    <dxg:GridColumn FieldName="hasMoreCommits" />
 
-                    <dxg:GridColumn FieldName="push.pushId" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="reason" BestFitModeOnSourceChange="VisibleRows"/>
-                    <dxg:GridColumn FieldName="updatedDate" BestFitModeOnSourceChange="VisibleRows"/>
+                    <dxg:GridColumn FieldName="push.pushId" />
+                    <dxg:GridColumn FieldName="reason" />
+                    <dxg:GridColumn FieldName="updatedDate" />
                     <!--<dxg:GridColumn FieldName="url" />-->
 
                 </dxg:GridControl>

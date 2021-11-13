@@ -64,16 +64,16 @@
                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
             
-                        <dxg:GridColumn FieldName="commitId" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="commitId" />
             
-                        <dxg:GridColumn FieldName="author.name" Header="Author" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="author.name" Header="Author"/>
                         <dxg:GridColumn FieldName="author.date" Header="Authored Date" Width="150">
                             <dxg:GridColumn.EditSettings>
                                 <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
             
-                        <dxg:GridColumn FieldName="committer.name" Header="Committer" BestFitModeOnSourceChange="VisibleRows"/>
+                        <dxg:GridColumn FieldName="committer.name" Header="Committer" />
                         <dxg:GridColumn FieldName="committer.date" Header="Committer Date" Width="150">
                             <dxg:GridColumn.EditSettings>
                                 <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
@@ -85,7 +85,7 @@
                         <dxg:GridColumn FieldName="changeCounts.Edit" Header="Edits" Width="50" />
                         <dxg:GridColumn FieldName="comment" Width="*"/>
                         <dxg:GridColumn FieldName="commentTruncated" />            
-                        <!--<dxg:GridColumn FieldName="remoteUrl" BestFitModeOnSourceChange="VisibleRows"/>-->
+                        <!--<dxg:GridColumn FieldName="remoteUrl"/>-->
             
                     </dxg:GridControl>
 

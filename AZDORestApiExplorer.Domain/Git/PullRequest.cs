@@ -56,7 +56,6 @@ namespace AZDORestApiExplorer.Domain.Git
         public string mergeStatus { get; set; }
         public int pullRequestId { get; set; }
         public Repository repository { get; set; }
-        public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
         public Reviewer[] reviewers { get; set; }
         public string sourceRefName { get; set; }
         public string status { get; set; }
@@ -65,89 +64,7 @@ namespace AZDORestApiExplorer.Domain.Git
         public string title { get; set; }
         public string url { get; set; }
 
-        public async Task<RESTResult<PullRequest>> GetList(GetPullRequestsEventArgs args)
-        {
-            Int64 startTicks = Log.DOMAIN("Enter(PullRequest)", Common.LOG_CATEGORY);
-
-            using (HttpClient client = new HttpClient())
-            {
-                Results.InitializeHttpClient(client, args.Organization.PAT);
-
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&includeCommits={includeCommits}&includeWorkItemRefs={includeWorkItemRefs}&api-version=6.1-preview.1
-
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
-
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?api-version=6.1-preview.1
-                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
-
-                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                    + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100"
-                    + "&api-version=6.1-preview.1";
-
-                var exchange = Results.InitializeExchange(client, requestUri);
-
-                using (HttpResponseMessage response = await client.GetAsync(requestUri))
-                {
-                    Results.RecordExchangeResponse(response, exchange);
-
-                    response.EnsureSuccessStatusCode();
-
-                    string outJson = await response.Content.ReadAsStringAsync();
-
-                    PullRequests resultRoot = JsonConvert.DeserializeObject<PullRequests>(outJson);
-
-                    Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
-
-                    bool hasMoreResults = false;
-
-                    if (resultRoot.count == 100)
-                    {
-                        hasMoreResults = true;
-                    }
-
-                    int itemsToSkip = 100;
-
-                    while (hasMoreResults)
-                    {
-                        var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
-                            + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100&$skip={itemsToSkip}"
-                            + "&api-version=6.1-preview.1";
-
-                        var exchange2 = Results.ContinueExchange(client, requestUri2);
-
-                        using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
-                        {
-                            Results.RecordExchangeResponse(response2, exchange2);
-
-                            response2.EnsureSuccessStatusCode();
-                            string outJson2 = await response2.Content.ReadAsStringAsync();
-
-                            PullRequests resultRoot2C = JsonConvert.DeserializeObject<PullRequests>(outJson2);
-
-                            Results.ResultItems.AddRange(resultRoot2C.value);
-
-                            if (resultRoot2C.count == 100)
-                            {
-                                hasMoreResults = true;
-                                itemsToSkip += 100;
-                            }
-                            else
-                            {
-                                hasMoreResults = false;
-                            }
-                        }
-                    }
-
-                    Results.Count = Results.ResultItems.Count;
-                }
-            }
-
-            Log.DOMAIN("Exit(PullRequest)", Common.LOG_CATEGORY, startTicks);
-
-            return Results;
-        }
+        #region Nested Classes
 
         public class _Links
         {
@@ -259,22 +176,92 @@ namespace AZDORestApiExplorer.Domain.Git
             public int vote { get; set; }
         }
 
-        //---
+        #endregion
+
+        public RESTResult<PullRequest> Results { get; set; } = new RESTResult<PullRequest>();
+
+        public async Task<RESTResult<PullRequest>> GetList(GetPullRequestsEventArgs args)
+        {
+            Int64 startTicks = Log.DOMAIN("Enter(PullRequest)", Common.LOG_CATEGORY);
+
+            using (HttpClient client = new HttpClient())
+            {
+                Results.InitializeHttpClient(client, args.Organization.PAT);
+
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests/{pullRequestId}?maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&includeCommits={includeCommits}&includeWorkItemRefs={includeWorkItemRefs}&api-version=6.1-preview.1
+
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
+
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?api-version=6.1-preview.1
+                //GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pullrequests?searchCriteria.creatorId={searchCriteria.creatorId}&searchCriteria.includeLinks={searchCriteria.includeLinks}&searchCriteria.repositoryId={searchCriteria.repositoryId}&searchCriteria.reviewerId={searchCriteria.reviewerId}&searchCriteria.sourceRefName={searchCriteria.sourceRefName}&searchCriteria.sourceRepositoryId={searchCriteria.sourceRepositoryId}&searchCriteria.status={searchCriteria.status}&searchCriteria.targetRefName={searchCriteria.targetRefName}&maxCommentLength={maxCommentLength}&$skip={$skip}&$top={$top}&api-version=6.1-preview.1
+
+                var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                    + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100"
+                    + "&api-version=6.1-preview.1";
+
+                var exchange = Results.InitializeExchange(client, requestUri);
+
+                using (HttpResponseMessage response = await client.GetAsync(requestUri))
+                {
+                    Results.RecordExchangeResponse(response, exchange);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string outJson = await response.Content.ReadAsStringAsync();
+
+                    PullRequests resultRoot = JsonConvert.DeserializeObject<PullRequests>(outJson);
+
+                    Results.ResultItems = new ObservableCollection<PullRequest>(resultRoot.value);
+
+                    bool hasMoreResults = false;
+
+                    if (resultRoot.count == 100)
+                    {
+                        hasMoreResults = true;
+                    }
+
+                    int itemsToSkip = 100;
+
+                    while (hasMoreResults)
+                    {
+                        var requestUri2 = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
+                            + $"git/repositories/{args.Repository.id}/pullrequests?searchCriteria.status=all&$top=100&$skip={itemsToSkip}"
+                            + "&api-version=6.1-preview.1";
+
+                        var exchange2 = Results.ContinueExchange(client, requestUri2);
+
+                        using (HttpResponseMessage response2 = await client.GetAsync(requestUri2))
+                        {
+                            Results.RecordExchangeResponse(response2, exchange2);
+
+                            response2.EnsureSuccessStatusCode();
+                            string outJson2 = await response2.Content.ReadAsStringAsync();
+
+                            PullRequests resultRoot2C = JsonConvert.DeserializeObject<PullRequests>(outJson2);
+
+                            Results.ResultItems.AddRange(resultRoot2C.value);
+
+                            if (resultRoot2C.count == 100)
+                            {
+                                hasMoreResults = true;
+                                itemsToSkip += 100;
+                            }
+                            else
+                            {
+                                hasMoreResults = false;
+                            }
+                        }
+                    }
+
+                    Results.Count = Results.ResultItems.Count;
+                }
+            }
+
+            Log.DOMAIN("Exit(PullRequest)", Common.LOG_CATEGORY, startTicks);
+
+            return Results;
+        }
     }
-
-    //public class PullRequestCommitsRoot
-    //{
-    //    public int count { get; set; }
-    //    public Commit[] value { get; set; }
-
-    //    public class Commit
-    //    {
-    //        public Author author { get; set; }
-    //        public string comment { get; set; }
-    //        public string commitId { get; set; }
-    //        public Committer committer { get; set; }
-    //        public string url { get; set; }
-    //    }
-    //}
-
 }

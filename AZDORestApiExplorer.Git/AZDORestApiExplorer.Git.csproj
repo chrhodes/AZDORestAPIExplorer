@@ -33,6 +33,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Page Update="Presentation\Views\PullRequestCommitChangeMain.xaml">
+        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
       <Page Update="Presentation\Views\PullRequestThreadCommentMain.xaml">
         <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
         <SubType>Designer</SubType>

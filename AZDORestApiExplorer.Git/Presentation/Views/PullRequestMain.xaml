@@ -38,8 +38,6 @@
 
     <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
 
-        <!--<dxlc:LayoutGroup Orientation="Vertical" >-->
-
             <dxlc:LayoutGroup View="GroupBox"
                               Collapsed="LayoutGroup_ExpansionChanged" 
                               Expanded="LayoutGroup_ExpansionChanged"
@@ -61,34 +59,87 @@
                             SelectedItem="{Binding Results.SelectedItem}"
                             FontSize="12"
                             ScrollViewer.CanContentScroll="True"
-                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-                            <dxg:GridColumn FieldName="pullRequestId" BestFitModeOnSourceChange="VisibleRows"/>
-                            <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="description" Width="300" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings TextWrapping="Wrap"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="pullRequestId" />
+                    <dxg:GridColumn FieldName="title"/>
+                    <dxg:GridColumn FieldName="description" Width="300" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings TextWrapping="Wrap"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
 
-                        <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="status" BestFitModeOnSourceChange="VisibleRows" />
-                        <dxg:GridColumn FieldName="codeReviewId" />
+                    <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By"/>
+                    <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="status"  />
+                    <dxg:GridColumn FieldName="isDraft"  />
+                    <dxg:GridColumn FieldName="mergeStatus"  />
+                    <dxg:GridColumn FieldName="mergeId" />
+                    <dxg:GridColumn FieldName="codeReviewId" />
+                    <dxg:GridColumn FieldName="supportsIterations" />
+                    <dxg:GridColumn FieldName="sourceRefName" />
+                    <dxg:GridColumn FieldName="targetRefName"/>
+
+                    <dxg:GridColumn FieldName="autoCompleteSetBy.displayName" />
+                    <dxg:GridColumn FieldName="completionOptions.deleteSourceBranch" />
+                    <dxg:GridColumn FieldName="completionOptions.mergeCommitMessage" />
+                    <dxg:GridColumn FieldName="completionOptions.mergeStrategy" />
+                            
+                    <!--<dxg:GridColumn FieldName="pullRequestId" BestFitModeOnSourceChange="VisibleRows"/>
+                            <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
+                            <dxg:GridColumn FieldName="description" Width="300" >
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+
+                            <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="VisibleRows"/>
+                            <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="status" BestFitModeOnSourceChange="VisibleRows" />
+                            <dxg:GridColumn FieldName="isDraft" BestFitModeOnSourceChange="VisibleRows" />
+                            <dxg:GridColumn FieldName="mergeStatus" BestFitModeOnSourceChange="VisibleRows" />
+                            <dxg:GridColumn FieldName="mergeId" BestFitModeOnSourceChange="VisibleRows" />
+                            <dxg:GridColumn FieldName="codeReviewId" />
+                            <dxg:GridColumn FieldName="supportsIterations" />
+                            <dxg:GridColumn FieldName="sourceRefName" BestFitModeOnSourceChange="VisibleRows"/>
+                            <dxg:GridColumn FieldName="targetRefName" BestFitModeOnSourceChange="VisibleRows"/>
+
+                            <dxg:GridColumn FieldName="autoCompleteSetBy.displayName" />
+                            <dxg:GridColumn FieldName="completionOptions.deleteSourceBranch" />
+                            <dxg:GridColumn FieldName="completionOptions.mergeCommitMessage" />
+                            <dxg:GridColumn FieldName="completionOptions.mergeStrategy" />-->
 
                         <!--<dxg:GridColumn FieldName="url" />-->
                         
                         </dxg:GridControl>
 
                         <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+                            
                             <dxlc:LayoutItem Label="Url" >
                                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
                             </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="LastMergeCommit" >
+                                <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeCommit.commitId}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="LastMergeSourceCommit" >
+                                <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeSourceCommit.commitId}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="LastMergeTargetCommit" >
+                                <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeTargetCommit.commitId}" />
+                            </dxlc:LayoutItem>
+
                         </dxlc:LayoutGroup>
                     
                     </Grid>
@@ -102,47 +153,49 @@
 
         <dxlc:LayoutGroup Orientation="Vertical" View="Tabs" >
 
-                <dxlc:LayoutGroup.GroupBoxStyle>
-                    <Style TargetType="dxlc:GroupBox">
-                        <Setter Property="Background" Value="Transparent" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="TitleVisibility" Value="Collapsed" />
-                    </Style>
-                </dxlc:LayoutGroup.GroupBoxStyle>
+            <dxlc:LayoutGroup.GroupBoxStyle>
+                <Style TargetType="dxlc:GroupBox">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="TitleVisibility" Value="Collapsed" />
+                </Style>
+            </dxlc:LayoutGroup.GroupBoxStyle>
 
-                <dxlc:LayoutGroup Header="Attachments" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestAttachmentMainRegion}" />
-                </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="Attachments" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestAttachmentMainRegion}" />
+            </dxlc:LayoutGroup>
                 
-                <dxlc:LayoutGroup Header="Commits" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitMainRegion}" />
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Iterations" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationMainRegion}" />
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Labels" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestLabelMainRegion}" />
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Reviewers" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestReviewerMainRegion}" />
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="Threads" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestThreadMainRegion}" />
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Header="WorkItems" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestWorkItemMainRegion}" />
-                </dxlc:LayoutGroup>
-
+            <dxlc:LayoutGroup Header="Commits" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestCommitMainRegion}" />
             </dxlc:LayoutGroup>
 
-        <!--</dxlc:LayoutGroup>-->
+            <dxlc:LayoutGroup Header="Iterations" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationMainRegion}" />
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Labels" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestLabelMainRegion}" />
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Properties" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestPropertyMainRegion}"/>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Reviewers" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestReviewerMainRegion}" />
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Threads" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestThreadMainRegion}" />
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="WorkItems" >
+                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestWorkItemMainRegion}" />
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
 
     </dxlc:LayoutControl>
 

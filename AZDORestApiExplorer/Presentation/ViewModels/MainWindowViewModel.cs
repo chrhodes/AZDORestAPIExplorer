@@ -61,7 +61,7 @@ namespace AZDORestApiExplorer.ViewModels
             }
         }
 
-        private string _title = "AZDORestApiExplorer - MainWindow";
+        private string _title = "AZDORestApiExplorer - MainWindow   (Use Ctrl-Tab for Panel Selector)";
 
         public string Title
         {

@@ -81,6 +81,24 @@ namespace AZDORestApiExplorer.Domain.Git
             {
                 Results.InitializeHttpClient(client, args.Organization.PAT);
 
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pushes?api-version=6.1-preview.2
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pushes?
+                //          $skip={$skip}
+                //          &$top={$top}
+                //          &searchCriteria.fromDate={searchCriteria.fromDate}
+                //          &searchCriteria.includeLinks={searchCriteria.includeLinks}
+                //          &searchCriteria.includeRefUpdates={searchCriteria.includeRefUpdates}
+                //          &searchCriteria.pusherId={searchCriteria.pusherId}
+                //          &searchCriteria.refName={searchCriteria.refName}
+                //          &searchCriteria.toDate={searchCriteria.toDate}
+                //          &api-version=6.1-preview.2
+
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pushes/{pushId}?api-version=6.1-preview.2
+                // GET https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}/pushes/{pushId}?
+                //          includeCommits={includeCommits}
+                //          &includeRefUpdates={includeRefUpdates}
+                //          &api-version=6.1-preview.2
+
                 var requestUri = $"{args.Organization.Uri}/{args.Project.id}/_apis/"
                     + $"git/repositories/{args.Repository.id}/pushes?$top=100"
                     + "&api-version=6.1-preview.2";

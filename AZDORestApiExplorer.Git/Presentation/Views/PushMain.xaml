@@ -53,10 +53,10 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
             
             <!--<dxg:GridColumn FieldName="repository.name" Header="Repository" />-->
-            <dxg:GridColumn FieldName="pushId" BestFitModeOnSourceChange="VisibleRows" />            
-            <dxg:GridColumn FieldName="pushedBy.displayName" Header="Pushed By" BestFitModeOnSourceChange="VisibleRows" />
+            <dxg:GridColumn FieldName="pushId" />            
+            <dxg:GridColumn FieldName="pushedBy.displayName" Header="Pushed By"  />
 
-            <dxg:GridColumn FieldName="date"  BestFitModeOnSourceChange="VisibleRows">
+            <dxg:GridColumn FieldName="date"  >
                 <dxg:GridColumn.EditSettings>
                     <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
                 </dxg:GridColumn.EditSettings>

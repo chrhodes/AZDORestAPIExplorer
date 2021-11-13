@@ -117,10 +117,13 @@ namespace AZDORestApiExplorer.Core
         public static string PullRequestMainRegion = "PullRequestMainRegion";
 
         public static string PullRequestAttachmentMainRegion = "PullRequestAttachmentMainRegion";
+
         public static string PullRequestCommitMainRegion = "PullRequestCommitMainRegion";
         public static string PullRequestCommitChangeMainRegion = "PullRequestCommitChangeMainRegion";
+
         public static string PullRequestIterationMainRegion = "PullRequestIterationMainRegion";
         public static string PullRequestIterationChangeMainRegion = "PullRequestIterationChangeMainRegion";
+
         public static string PullRequestLabelMainRegion = "PullRequestLabelMainRegion";
         public static string PullRequestPropertyMainRegion = "PullRequestPropertyMainRegion";
         public static string PullRequestReviewerMainRegion = "PullRequestReviewerMainRegion";
