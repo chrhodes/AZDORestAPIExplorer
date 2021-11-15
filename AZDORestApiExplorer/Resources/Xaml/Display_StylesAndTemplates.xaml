@@ -11,8 +11,7 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"    
->
-    
+>    
    
     <!-- This is used to make the design experience better -->
     <Style x:Key="vncDesignStyleUC" TargetType="UserControl">
@@ -48,6 +47,15 @@
         <!--<Setter Property="ShowPinButton" Value="False" />-->
         <Setter Property="AllowClose" Value="False" />
         <Setter Property="AllowDrag" Value="True" />
+    </Style>
+
+    <Style x:Key="DateTimeColumn" TargetType="{x:Type dxg:GridColumn}">
+        <Setter Property="EditSettings" >
+            <Setter.Value>
+                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="150" />
     </Style>
     
     <Style x:Key="HiddenDragableLayoutPanel" TargetType="{x:Type dxdo:LayoutPanel}">

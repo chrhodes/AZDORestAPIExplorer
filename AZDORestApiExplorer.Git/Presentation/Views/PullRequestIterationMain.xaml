@@ -59,26 +59,29 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                     <dxg:GridColumn FieldName="id" />
-                    <dxg:GridColumn FieldName="author.uniqueName"  Header="Author"/>
-                    <dxg:GridColumn FieldName="commonRefCommit.commitId" />
-                    <dxg:GridColumn FieldName="createdDate"  >
-                        <dxg:GridColumn.EditSettings>
-                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                        </dxg:GridColumn.EditSettings>
-                    </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="description" />
+                    <dxg:GridColumn FieldName="author.uniqueName" Header="Author" BestFitModeOnSourceChange="Smart"/>
+                    <!--<dxg:GridColumn FieldName="commonRefCommit.commitId" BestFitModeOnSourceChange="Smart"/>-->
+                    <dxg:GridColumn FieldName="createdDate" Style="{StaticResource DateTimeColumn}" />
+                    <dxg:GridColumn FieldName="updatedDate" Style="{StaticResource DateTimeColumn}" />
+                    <dxg:GridColumn FieldName="description" BestFitModeOnSourceChange="Smart"/>
                     <dxg:GridColumn FieldName="hasMoreCommits" />
 
                     <dxg:GridColumn FieldName="push.pushId" />
                     <dxg:GridColumn FieldName="reason" />
-                    <dxg:GridColumn FieldName="updatedDate" />
+
                     <!--<dxg:GridColumn FieldName="url" />-->
 
                 </dxg:GridControl>
-
+                
                 <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
-                    <dxlc:LayoutItem Label="Url" >
-                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
+                    <dxlc:LayoutItem Label="SourceRef Commit" >
+                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.sourceRefCommit.commitId}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="TargetRef Commit" >
+                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.targetRefCommit.commitId}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="CommonRef Commit" >
+                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.commonRefCommit.commitId}" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
@@ -104,7 +107,7 @@
             </dxlc:LayoutGroup.GroupBoxStyle>
 
             <dxlc:LayoutGroup Header="Iteration Changes" >
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationChangeMainRegion}" />
+                <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PullRequestIterationChangeMainRegion}" />-->
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Header="Iteration Commits" >

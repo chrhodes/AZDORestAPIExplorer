@@ -70,16 +70,8 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                         <dxg:GridColumn FieldName="id" />
-                        <dxg:GridColumn FieldName="publishedDate"  >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="lastUpdatedDate" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="publishedDate" Style="{StaticResource DateTimeColumn}" />
+                        <dxg:GridColumn FieldName="lastUpdatedDate" Style="{StaticResource DateTimeColumn}" />
 
                         <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" Header="CR ThreadType"/>
                         <dxg:GridColumn FieldName="properties.CodeReviewVoteResult.value" Header="CR VoteResult"/>
@@ -99,7 +91,7 @@
                             <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Height="200">                
+                        <dxlc:LayoutItem Height="150">                
 
                             <dxg:GridControl
                                     ItemsSource="{Binding Results.SelectedItem.comments}"
@@ -110,26 +102,13 @@
 
                                 <dxg:GridColumn FieldName="id" />
                                 <dxg:GridColumn FieldName="parentCommentId" />
-                                    <dxg:GridColumn FieldName="author.displayName" />
-                                    <dxg:GridColumn FieldName="content"  />
+                                <dxg:GridColumn FieldName="author.displayName" Header="Author" BestFitModeOnSourceChange="Smart" />
+                                <dxg:GridColumn FieldName="content" BestFitModeOnSourceChange="Smart" />
                                 <dxg:GridColumn FieldName="commentType" />
-
-                                <dxg:GridColumn FieldName="publishedDate" >
-                                    <dxg:GridColumn.EditSettings>
-                                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                                    </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="lastUpdatedDate" >
-                                    <dxg:GridColumn.EditSettings>
-                                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                                    </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="lastContentUpdatedDate" >
-                                    <dxg:GridColumn.EditSettings>
-                                        <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                                    </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
-
+                                <dxg:GridColumn FieldName="publishedDate" Style="{StaticResource DateTimeColumn}" />
+                                <dxg:GridColumn FieldName="lastUpdatedDate" Style="{StaticResource DateTimeColumn}" />
+                                <dxg:GridColumn FieldName="lastContentUpdatedDate" Style="{StaticResource DateTimeColumn}" />
+                                
                             </dxg:GridControl>
                 
                         </dxlc:LayoutItem>

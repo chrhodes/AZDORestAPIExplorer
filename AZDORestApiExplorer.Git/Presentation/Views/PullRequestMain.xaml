@@ -63,32 +63,28 @@
                             ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                     <dxg:GridColumn FieldName="pullRequestId" />
-                    <dxg:GridColumn FieldName="title"/>
+                    <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="Smart"/>
                     <dxg:GridColumn FieldName="description" Width="300" >
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings TextWrapping="Wrap"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
 
-                    <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By"/>
-                    <dxg:GridColumn FieldName="creationDate" Header="Creation Date" >
-                        <dxg:GridColumn.EditSettings>
-                            <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                        </dxg:GridColumn.EditSettings>
-                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="createdBy.uniqueName" Header="Created By" BestFitModeOnSourceChange="Smart"/>
+                    <dxg:GridColumn FieldName="creationDate" Header="Creation Date" Style="{StaticResource DateTimeColumn}" />
                     <dxg:GridColumn FieldName="status"  />
-                    <dxg:GridColumn FieldName="isDraft"  />
+                    <dxg:GridColumn FieldName="isDraft" Width="75" />
                     <dxg:GridColumn FieldName="mergeStatus"  />
-                    <dxg:GridColumn FieldName="mergeId" />
+                    <!--<dxg:GridColumn FieldName="mergeId" />-->
                     <dxg:GridColumn FieldName="codeReviewId" />
                     <dxg:GridColumn FieldName="supportsIterations" />
-                    <dxg:GridColumn FieldName="sourceRefName" />
-                    <dxg:GridColumn FieldName="targetRefName"/>
+                    <dxg:GridColumn FieldName="sourceRefName" BestFitModeOnSourceChange="Smart" />
+                    <dxg:GridColumn FieldName="targetRefName" BestFitModeOnSourceChange="Smart" />
 
                     <dxg:GridColumn FieldName="autoCompleteSetBy.displayName" />
-                    <dxg:GridColumn FieldName="completionOptions.deleteSourceBranch" />
-                    <dxg:GridColumn FieldName="completionOptions.mergeCommitMessage" />
-                    <dxg:GridColumn FieldName="completionOptions.mergeStrategy" />
+                    <dxg:GridColumn FieldName="completionOptions.deleteSourceBranch" Header="DeleteSourceBranch" />
+                    <dxg:GridColumn FieldName="completionOptions.mergeCommitMessage" Header="MergeCommitMessage" />
+                    <dxg:GridColumn FieldName="completionOptions.mergeStrategy" Header="MergeStrategy" />
                             
                     <!--<dxg:GridColumn FieldName="pullRequestId" BestFitModeOnSourceChange="VisibleRows"/>
                             <dxg:GridColumn FieldName="title" BestFitModeOnSourceChange="VisibleRows"/>
@@ -128,11 +124,15 @@
                                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="LastMergeCommit" >
-                                <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeCommit.commitId}" />
+                            <dxlc:LayoutItem Label="MergeId" >
+                                <dxe:TextEdit  Text="{Binding Results.SelectedItem.mergeId}" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="LastMergeSourceCommit" >
+                    <dxlc:LayoutItem Label="LastMergeCommit" >
+                        <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeCommit.commitId}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="LastMergeSourceCommit" >
                                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.lastMergeSourceCommit.commitId}" />
                             </dxlc:LayoutItem>
 

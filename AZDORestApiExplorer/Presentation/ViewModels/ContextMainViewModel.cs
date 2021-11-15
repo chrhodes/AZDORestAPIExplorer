@@ -172,9 +172,14 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
+            ClearRepsitoryDependentContext();
             Context.SelectedGitRepository = repository;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        private void ClearRepsitoryDependentContext()
+        {
+            ClearPullRequestDependentContext();
         }
 
         private void CommitChanged(Commit commit)
@@ -203,9 +208,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
+            ClearPullRequestDependentContext();
             Context.SelectedPullRequest = pullRequest;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ClearPullRequestDependentContext()
+        {
+            Context.SelectedCommit = null;
+            Context.SelectedPullRequestIteration = null;
+            Context.SelectedPullRequestThread = null;
         }
 
         private void PullRequestIterationChanged(PullRequestIteration pullRequestIteration)

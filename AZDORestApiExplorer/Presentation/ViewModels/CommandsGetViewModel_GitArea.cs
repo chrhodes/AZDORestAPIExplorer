@@ -158,9 +158,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                         PullRequest = pullRequest
                     });
 
-
-
-
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestStatusesEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestStatusesEventArgs()
                     {
@@ -370,9 +367,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
         private void CallGetCommitChange(Commit commit)
         {
-            // TODO(crhodes)
-            // Call GetCommitChanges
-            //throw new NotImplementedException();
+            if (!(commit is null))
+            {
+                EventAggregator.GetEvent<Domain.Git.Events.GetCommitChangesEvent>().Publish(
+                new Domain.Git.Events.GetCommitChangesEventArgs()
+                {
+                    Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                    Project = _contextMainViewModel.Context.SelectedProject,
+                    Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                    Commit = commit
+                });
+            }
         }
 
         private void CallGetCommitChange(PullRequestCommit commit)

@@ -58,11 +58,7 @@
             <dxg:GridColumn FieldName="message" Header="Message" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="type" Header="Type" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="author.displayName" Header="Author" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="timestamp" Header="Date" Width="150">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>            
+            <dxg:GridColumn FieldName="timestamp" Header="Date" Style="{StaticResource DateTimeColumn}" />
             <!--<dxg:GridColumn FieldName="location" Header="Location" BestFitModeOnSourceChange="VisibleRows"/>-->
             <dxg:GridColumn FieldName="pusher" Header="Pusher" BestFitModeOnSourceChange="VisibleRows"/>
             

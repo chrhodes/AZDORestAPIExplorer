@@ -75,21 +75,9 @@
                         <dxg:GridColumn FieldName="content"  />
                         <dxg:GridColumn FieldName="commentType" />
 
-                        <dxg:GridColumn FieldName="publishedDate" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="lastUpdatedDate" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="lastContentUpdatedDate" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="publishedDate" Style="{StaticResource DateTimeColumn}" />
+                        <dxg:GridColumn FieldName="lastUpdatedDate" Style="{StaticResource DateTimeColumn}" />
+                        <dxg:GridColumn FieldName="lastContentUpdatedDate" Style="{StaticResource DateTimeColumn}" />
 
                     </dxg:GridControl>
 

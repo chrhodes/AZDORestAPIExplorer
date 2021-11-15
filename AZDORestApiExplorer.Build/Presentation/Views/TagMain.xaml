@@ -53,11 +53,7 @@
             ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <dxg:GridColumn FieldName="xxx" Header="XXX" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="date" Header="Date" Width="150">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="date" Header="Date" Style="{StaticResource DateTimeColumn}" />
 
         </dxg:GridControl>
 

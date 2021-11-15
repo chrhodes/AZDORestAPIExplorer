@@ -77,11 +77,7 @@
                         <dxg:GridColumn FieldName="item.objectId" Header="Item.objectId" BestFitModeOnSourceChange="Smart"/>
                         <dxg:GridColumn FieldName="item.originalObjectId" Header="Item.originalObjectId" BestFitModeOnSourceChange="Smart"/>
 
-                        <!--<dxg:GridColumn FieldName="changeId" Header="Date" Width="150">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>-->
+                        <!--<dxg:GridColumn FieldName="changeId" Header="Date" Style="{StaticResource DateTimeColumn}" />-->
                         
                     </dxg:GridControl>
 

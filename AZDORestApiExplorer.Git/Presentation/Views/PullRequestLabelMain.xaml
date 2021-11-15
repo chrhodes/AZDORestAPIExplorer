@@ -58,7 +58,7 @@
                 <dxg:GridColumn FieldName="codeReviewId" />
                 <dxg:GridColumn FieldName="status" />
                 <dxg:GridColumn FieldName="createdBy.uniqueName" />
-                <dxg:GridColumn FieldName="creationDate" />
+                <dxg:GridColumn FieldName="creationDate" Style="{StaticResource DateTimeColumn}" />
 
             </dxg:GridControl>
 

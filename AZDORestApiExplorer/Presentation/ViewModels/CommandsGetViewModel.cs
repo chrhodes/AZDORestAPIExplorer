@@ -244,6 +244,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<Domain.Git.Events.SelectedRepositoryChangedEvent>().Subscribe(RaiseRepositoryChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedCommitChangedEvent>().Subscribe(RaiseCommitChanged);
+            EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestCommitChangedEvent>().Subscribe(RaiseCommitChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestChangedEvent>().Subscribe(RaisePullRequestChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestIterationChangedEvent>().Subscribe(RaisePullRequestIterationChanged);
             EventAggregator.GetEvent<Domain.Git.Events.SelectedPullRequestThreadChangedEvent>().Subscribe(RaisePullRequestThreadChanged);
@@ -359,7 +360,17 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             GetCommitChangesCommand.RaiseCanExecuteChanged();
-            GetPullRequestCommitChangesCommand.RaiseCanExecuteChanged();
+            //GetPullRequestCommitChangesCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RaiseCommitChanged(PullRequestCommit pullRequestCommit)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            GetCommitChangesCommand.RaiseCanExecuteChanged();
+            //GetPullRequestCommitChangesCommand.RaiseCanExecuteChanged();
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

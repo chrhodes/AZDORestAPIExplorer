@@ -57,16 +57,8 @@
             <dxg:GridColumn FieldName="id" Header="id" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="type" Header="Type" BestFitModeOnSourceChange="VisibleRows"/>
             <dxg:GridColumn FieldName="lineCount" Header="LineCount" BestFitModeOnSourceChange="VisibleRows"/>
-            <dxg:GridColumn FieldName="createdOn" Header="Created" Width="150">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
-            <dxg:GridColumn FieldName="lastChangedOn" Header="Changed" Width="150">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="createdOn" Header="Created" Style="{StaticResource DateTimeColumn}" />
+            <dxg:GridColumn FieldName="lastChangedOn" Header="Changed" Style="{StaticResource DateTimeColumn}" />
 
         </dxg:GridControl>
 

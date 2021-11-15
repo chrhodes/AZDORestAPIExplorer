@@ -72,21 +72,9 @@
                         <dxg:GridColumn FieldName="repository.name" BestFitModeOnSourceChange="VisibleRows" />
                         <dxg:GridColumn FieldName="queue.name" BestFitModeOnSourceChange="VisibleRows" />
                         <dxg:GridColumn FieldName="queue.pool.name" BestFitModeOnSourceChange="VisibleRows"/>
-                        <dxg:GridColumn FieldName="queueTime" Width="150">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="startTime" Width="150" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="finishTime" Width="150" >
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="queueTime" Style="{StaticResource DateTimeColumn}" />
+                        <dxg:GridColumn FieldName="startTime" Style="{StaticResource DateTimeColumn}" />
+                        <dxg:GridColumn FieldName="finishTime" Style="{StaticResource DateTimeColumn}" />
                         <!--<dxg:GridColumn FieldName="finishTime" EditSettings="{dxe:TextEditSettings DisplayFormat=G}" />-->
 
                         <!--<dxg:GridColumn FieldName="plan.planId" />-->

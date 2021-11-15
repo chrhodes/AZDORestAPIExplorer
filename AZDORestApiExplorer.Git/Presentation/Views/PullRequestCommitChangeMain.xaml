@@ -61,8 +61,9 @@
                     <vncazdopv:CommonGridHeader x:Name="commonGridHeader" Grid.Row="0"  
                                                 Count="{Binding Results.Count, Mode=TwoWay}"/>
 
+                    <!--ItemsSource="{Binding Results.ResultItems}"-->
                     <dxg:GridControl x:Name="grdResults" Grid.Row="1"
-                        ItemsSource="{Binding Results.ResultItems}"
+
                         SelectedItem="{Binding Results.SelectedItem}"
                         FontSize="12"
                         ScrollViewer.CanContentScroll="True"
@@ -75,13 +76,7 @@
                         <dxg:GridColumn FieldName="item.objectId" Header="Item.objectId" />
                         <dxg:GridColumn FieldName="item.originalObjectId" Header="Item.originalObjectId"/>
                         <dxg:GridColumn FieldName="item.path" Header="Item.path" />
-                        
-                        <!--<dxg:GridColumn FieldName="changeId" Header="Date" Width="150">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:DateEditSettings DisplayFormat="yyyy/MM/dd hh:mm:ss tt" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>-->
-                        
+
                     </dxg:GridControl>
 
                     <dxlc:LayoutGroup Grid.Row="2" Header="Selected Item Details" 

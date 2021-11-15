@@ -52,14 +52,14 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <dxg:GridColumn FieldName="name"  />
+            <dxg:GridColumn FieldName="name" BestFitModeOnSourceChange="Smart" />
 
-            <dxg:GridColumn FieldName="creator.displayName" Header="Creator"  />
+            <dxg:GridColumn FieldName="creator.displayName" Header="Creator"  BestFitModeOnSourceChange="Smart"/>
             <!--<dxg:GridColumn FieldName="creator.uniqueName" />-->
             <dxg:GridColumn FieldName="isLocked" />
             <dxg:GridColumn FieldName="isLockedBy.displayName" Header="IsLockedBy"  />
             <!--<dxg:GridColumn FieldName="isLockedBy.uniqueName"  />-->
-            <dxg:GridColumn FieldName="objectId"  />            
+            <dxg:GridColumn FieldName="objectId"  BestFitModeOnSourceChange="Smart"/>            
             
         </dxg:GridControl>
 
