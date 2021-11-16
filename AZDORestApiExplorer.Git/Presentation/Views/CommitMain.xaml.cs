@@ -13,7 +13,8 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class CommitMain : ViewBase, IInstanceCountV
     {
-        public CommitMain(DomainViewModel<Commit, GetCommitsEvent, GetCommitsEventArgs, SelectedCommitChangedEvent> viewModel)
+        public CommitMain(
+            DomainViewModel2<Commit, GetCommitsEvent, GetCommitsEventArgs, SelectedCommitChangedEvent, ClearCommitsEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

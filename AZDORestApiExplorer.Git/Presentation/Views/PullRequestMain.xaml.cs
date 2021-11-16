@@ -34,7 +34,8 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
-        public PullRequestMain(DomainViewModel<PullRequest, GetPullRequestsEvent, GetPullRequestsEventArgs, SelectedPullRequestChangedEvent> viewModel)
+        public PullRequestMain(
+            DomainViewModel2<PullRequest, GetPullRequestsEvent, GetPullRequestsEventArgs, SelectedPullRequestChangedEvent, ClearPullRequestsEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

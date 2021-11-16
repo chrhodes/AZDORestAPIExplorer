@@ -20,6 +20,8 @@ namespace AZDORestApiExplorer.Domain.Git
     {
         public class GetPullRequestCommitsEvent : PubSubEvent<GetPullRequestCommitsEventArgs> { }
 
+        public class ClearPullRequestCommitsEvent : PubSubEvent { }
+
         public class GetPullRequestCommitsEventArgs
         {
             public Organization Organization;

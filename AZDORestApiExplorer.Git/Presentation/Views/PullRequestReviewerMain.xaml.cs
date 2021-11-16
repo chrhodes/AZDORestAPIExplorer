@@ -13,8 +13,9 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
 {
     public partial class PullRequestReviewerMain : ViewBase, IInstanceCountV
     {
-
-        public PullRequestReviewerMain(DomainViewModel<PullRequestReviewer, GetPullRequestReviewersEvent, GetPullRequestReviewersEventArgs, SelectedPullRequestReviewerChangedEvent> viewModel)
+        public PullRequestReviewerMain(
+            DomainViewModel2<PullRequestReviewer, GetPullRequestReviewersEvent, GetPullRequestReviewersEventArgs, 
+                SelectedPullRequestReviewerChangedEvent, ClearPullRequestReviewersEvent> viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -33,7 +34,6 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
         {
             get => _targetGrid;
             set => _targetGrid = value;
-
         }
 
         #region IInstanceCount
@@ -47,6 +47,5 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
         }
 
         #endregion
-
     }
 }

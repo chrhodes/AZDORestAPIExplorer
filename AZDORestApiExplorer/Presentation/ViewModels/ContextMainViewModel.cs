@@ -3,6 +3,7 @@
 using AZDORestApiExplorer.Domain.Build;
 using AZDORestApiExplorer.Domain.Core;
 using AZDORestApiExplorer.Domain.Git;
+using AZDORestApiExplorer.Domain.Git.Events;
 using AZDORestApiExplorer.Domain.Test;
 using AZDORestApiExplorer.Presentation.ModelWrappers;
 
@@ -173,10 +174,25 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             ClearRepsitoryDependentContext();
+
+            EventAggregator.GetEvent<ClearCommitsEvent>().Publish();
+
+            EventAggregator.GetEvent<ClearPullRequestsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestAttachmentsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestCommitsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestIterationsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestLabelsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestPropertiesEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestReviewersEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestStatusesEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestThreadsEvent>().Publish();
+            //EventAggregator.GetEvent<ClearPullRequestWorkItemsEvent>().Publish();
+
             Context.SelectedGitRepository = repository;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
         private void ClearRepsitoryDependentContext()
         {
             ClearPullRequestDependentContext();
@@ -208,7 +224,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            ClearPullRequestDependentContext();
+            //ClearPullRequestDependentContext();
             Context.SelectedPullRequest = pullRequest;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);

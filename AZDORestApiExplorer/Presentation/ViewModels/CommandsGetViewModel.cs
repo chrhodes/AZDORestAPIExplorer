@@ -44,7 +44,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -74,7 +73,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             #region Build Area
 
             // Trigger calls to other Build Related stuff anytime a new Build is selected
-            EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(CallBuildDependentStuff);
+            //EventAggregator.GetEvent<SelectedBuildChangedEvent>().Subscribe(CallBuildDependentStuff);
 
             GetAuthorizedResourcesCommand = new DelegateCommand(GetAuthorizedResources, GetAuthorizedResourcesCanExecute);
 
@@ -480,7 +479,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
 
-            CallPullRequestDependentStuff(pullRequest);
+            //CallPullRequestDependentStuff(pullRequest);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
