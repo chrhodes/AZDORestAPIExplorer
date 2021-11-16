@@ -73,7 +73,7 @@
                         <dxg:GridColumn FieldName="publishedDate" Style="{StaticResource DateTimeColumn}" />
                         <dxg:GridColumn FieldName="lastUpdatedDate" Style="{StaticResource DateTimeColumn}" />
 
-                        <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" Header="CR ThreadType"/>
+                        <dxg:GridColumn FieldName="properties.CodeReviewThreadType.value" Header="CR ThreadType" BestFitModeOnSourceChange="Smart"/>
                         <dxg:GridColumn FieldName="properties.CodeReviewVoteResult.value" Header="CR VoteResult"/>
                         <dxg:GridColumn FieldName="properties.CodeReviewVotedByIdentity.value" Header="CR VotedByIdentity"/>
                         <dxg:GridColumn FieldName="properties.CodeReviewVotedByInitiatorIdentity.value" Header="CR VotedByInitiatorIdentity"/>
@@ -91,7 +91,7 @@
                             <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Height="150">                
+                        <dxlc:LayoutItem Height="150" Label="Comments" LabelPosition="Top">                
 
                             <dxg:GridControl
                                     ItemsSource="{Binding Results.SelectedItem.comments}"

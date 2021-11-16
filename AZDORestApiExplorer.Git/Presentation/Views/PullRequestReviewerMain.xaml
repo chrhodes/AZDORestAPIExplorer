@@ -53,7 +53,7 @@
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                 <dxg:GridColumn FieldName="displayName" />
-                <dxg:GridColumn FieldName="uniqueName" />
+                <dxg:GridColumn FieldName="uniqueName" BestFitModeOnSourceChange="Smart" />
                 <dxg:GridColumn FieldName="isRequired" />
                 <dxg:GridColumn FieldName="vote" />
                 <dxg:GridColumn FieldName="hasDeclined" />

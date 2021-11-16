@@ -33,7 +33,6 @@ namespace AZDORestApiExplorer.Git.Presentation.Views
         {
             get => _targetGrid;
             set => _targetGrid = value;
-
         }
 
         private void LayoutGroup_ExpansionChanged(object sender, EventArgs e)

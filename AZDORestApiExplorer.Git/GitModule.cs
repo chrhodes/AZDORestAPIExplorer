@@ -53,10 +53,13 @@ namespace AZDORestApiExplorer.Git
 
             containerRegistry.RegisterSingleton<PullRequestMain>();
             containerRegistry.RegisterSingleton<PullRequestAttachmentMain>();
+
             containerRegistry.RegisterSingleton<PullRequestCommitMain>();
             containerRegistry.RegisterSingleton<PullRequestCommitChangeMain>();
+
             containerRegistry.RegisterSingleton<PullRequestIterationMain>();
             containerRegistry.RegisterSingleton<PullRequestIterationChangeMain>();
+
             containerRegistry.RegisterSingleton<PullRequestLabelMain>();
             containerRegistry.RegisterSingleton<PullRequestPropertyMain>();
             containerRegistry.RegisterSingleton<PullRequestReviewerMain>();

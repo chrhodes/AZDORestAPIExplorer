@@ -86,12 +86,11 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             //return;
-            if (!(pullRequest is null))
+            if (pullRequest is not null
+                && _contextMainViewModel.Context.SelectedPullRequest is not null)
             {
-                // NOTE(crhodes)
-                // When Pull Request changes, clear out Context that depends on Pull Request
-
-                _contextMainViewModel.Context.SelectedPullRequestThread = null;
+                var pri = pullRequest.pullRequestId;
+                var spri = _contextMainViewModel.Context.SelectedPullRequest.pullRequestId;
 
                 EventAggregator.GetEvent<Domain.Git.Events.GetPullRequestCommitsEvent>().Publish(
                     new Domain.Git.Events.GetPullRequestCommitsEventArgs()
@@ -728,6 +727,33 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         }
 
         #endregion
+
+        private void CallPullRequestIterationChanged(PullRequestIteration pullRequestIteration)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+
+            if (! (pullRequestIteration is null))
+            {
+                // We may have just switched Repositories and cleaned out the info.
+                var pri = pullRequestIteration.id;
+                var cspri = _contextMainViewModel.Context.SelectedPullRequestIteration;
+
+                if (pullRequestIteration.id > 1 
+                    && _contextMainViewModel.Context.SelectedPullRequestIteration is null) return;
+
+                    EventAggregator.GetEvent<GetPullRequestIterationChangesEvent>().Publish(
+                        new GetPullRequestIterationChangesEventArgs()
+                        {
+                            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+                            Project = _contextMainViewModel.Context.SelectedProject,
+                            Repository = _contextMainViewModel.Context.SelectedGitRepository,
+                            PullRequest = _contextMainViewModel.Context.SelectedPullRequest,
+                            PullRequestIteration = pullRequestIteration
+                        });
+            }
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #region GetPullRequestIterations Command
 

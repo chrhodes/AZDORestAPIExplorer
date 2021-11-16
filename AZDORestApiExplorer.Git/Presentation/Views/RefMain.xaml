@@ -54,16 +54,16 @@
 
             <dxg:GridColumn FieldName="name" BestFitModeOnSourceChange="Smart" />
 
-            <dxg:GridColumn FieldName="creator.displayName" Header="Creator"  BestFitModeOnSourceChange="Smart"/>
+            <dxg:GridColumn FieldName="creator.displayName" Header="Creator"  BestFitModeOnSourceChange="Smart" />
             <!--<dxg:GridColumn FieldName="creator.uniqueName" />-->
             <dxg:GridColumn FieldName="isLocked" />
-            <dxg:GridColumn FieldName="isLockedBy.displayName" Header="IsLockedBy"  />
+            <dxg:GridColumn FieldName="isLockedBy.displayName" Header="IsLockedBy" BestFitModeOnSourceChange="Smart" />
             <!--<dxg:GridColumn FieldName="isLockedBy.uniqueName"  />-->
-            <dxg:GridColumn FieldName="objectId"  BestFitModeOnSourceChange="Smart"/>            
+            <dxg:GridColumn FieldName="objectId"  BestFitModeOnSourceChange="Smart" />            
             
         </dxg:GridControl>
 
-                <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
+        <dxlc:LayoutGroup Grid.Row="2" Orientation="Vertical" ItemLabelsAlignment="Local" View="GroupBox" Header="Selected Item Details" >
             <dxlc:LayoutItem Label="Url" >
                 <dxe:TextEdit  Text="{Binding Results.SelectedItem.url}" />
             </dxlc:LayoutItem>

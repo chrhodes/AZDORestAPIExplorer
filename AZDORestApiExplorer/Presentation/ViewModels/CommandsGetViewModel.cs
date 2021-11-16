@@ -44,6 +44,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -109,8 +110,6 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             #region Git Area
 
-            EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Subscribe(CallPullRequestDependentStuff);
-
             GetRepositoriesCommand = new DelegateCommand(GetRepositoriesExecute, GetRepositoriesCanExecute);
             GetProjectRepositoriesCommand = new DelegateCommand(GetProjectRepositoriesExecute, GetProjectRepositoriesCanExecute);
 
@@ -128,10 +127,15 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             GetPullRequestsCommand = new DelegateCommand(GetPullRequests, GetPullRequestsCanExecute);
 
+            //EventAggregator.GetEvent<SelectedPullRequestChangedEvent>().Subscribe(CallPullRequestDependentStuff);
+
             GetPullRequestAttachmentsCommand = new DelegateCommand(GetPullRequestAttachments, GetPullRequestInfoCanExecute);
             GetPullRequestCommitsCommand = new DelegateCommand(GetPullRequestCommits, GetPullRequestInfoCanExecute);
             GetPullRequestCommitChangesCommand = new DelegateCommand(GetPullRequestCommitChanges, GetPullRequestCommitChangesCanExecute);
             GetPullRequestIterationsCommand = new DelegateCommand(GetPullRequestIterations, GetPullRequestInfoCanExecute);
+
+            EventAggregator.GetEvent<SelectedPullRequestIterationChangedEvent>().Subscribe(CallPullRequestIterationChanged);
+
             GetPullRequestIterationChangesCommand = new DelegateCommand(GetPullRequestIterationChanges, GetPullRequestIterationChangesCanExecute);
             GetPullRequestLabelsCommand = new DelegateCommand(GetPullRequestLabels, GetPullRequestInfoCanExecute);
             GetPullRequestPropertiesCommand = new DelegateCommand(GetPullRequestProperties, GetPullRequestInfoCanExecute);
@@ -476,6 +480,8 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             GetPullRequestThreadsCommand.RaiseCanExecuteChanged();
             GetPullRequestWorkItemsCommand.RaiseCanExecuteChanged();
 
+            CallPullRequestDependentStuff(pullRequest);
+
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -502,6 +508,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             GetPullRequestsCommand.RaiseCanExecuteChanged();
+
             GetPullRequestAttachmentsCommand.RaiseCanExecuteChanged();
             GetPullRequestCommitsCommand.RaiseCanExecuteChanged();
             GetPullRequestIterationsCommand.RaiseCanExecuteChanged();

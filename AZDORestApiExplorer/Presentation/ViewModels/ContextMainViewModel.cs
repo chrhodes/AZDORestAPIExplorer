@@ -217,6 +217,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         private void ClearPullRequestDependentContext()
         {
             Context.SelectedCommit = null;
+            Context.SelectedPullRequest = null;
             Context.SelectedPullRequestIteration = null;
             Context.SelectedPullRequestThread = null;
         }
@@ -225,6 +226,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
+            //Context.SelectedPullRequestIteration = null;
             Context.SelectedPullRequestIteration = pullRequestIteration;
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
