@@ -36,5 +36,15 @@ namespace AZDORestApiExplorer.Presentation.Views
         }
 
         #endregion
+
+        private void SaveLayout_Click(object sender, RoutedEventArgs e)
+        {
+            lg_Body_dlm.SaveLayoutToXml(@"C:\temp\AZDORestApiExplorerLayout.xml");
+        }
+
+        private void RestoreLayout_Click(object sender, RoutedEventArgs e)
+        {
+            lg_Body_dlm.RestoreLayoutFromXml(@"C:\temp\AZDORestApiExplorerLayout.xml");
+        }
     }
 }

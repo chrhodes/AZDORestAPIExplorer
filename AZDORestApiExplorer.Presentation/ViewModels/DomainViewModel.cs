@@ -47,7 +47,7 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<EType>().Subscribe(GetList);
 
-            this.Results.PropertyChanged += PublishSelectedItemChanged;
+            this.Results.PropertyChanged += PublishSelectedItemChangedEvent;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -144,22 +144,31 @@ namespace AZDORestApiExplorer.Presentation.ViewModels
                 EventAggregator.GetEvent<HttpExchangeEvent>().Publish(Results.RequestResponseExchange);
             }
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            Log.EVENT_HANDLER($"Exit: ({args.GetType()})", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PublishSelectedItemChanged(object sender, PropertyChangedEventArgs e)
+        private void PublishSelectedItemChangedEvent(object sender, PropertyChangedEventArgs e)
         {
-            if (! (Results.SelectedItem is null))
+            var p = e.PropertyName;
+
+            if (e.PropertyName.Equals("SelectedItem"))
             {
-                Int64 startTicks = Log.EVENT($"Enter:({typeof(SIEvent).Name})", Common.LOG_CATEGORY);
-                EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
-                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-            }
-            else
-            {
-                Int64 startTicks = Log.EVENT($"Enter(null)", Common.LOG_CATEGORY);
-                EventAggregator.GetEvent<SIEvent>().Publish(null);
-                Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+                if (Results.SelectedItem is not null)
+                {
+                    Int64 startTicks = Log.EVENT($"Enter:({typeof(SIEvent).Name})", Common.LOG_CATEGORY);
+
+                    EventAggregator.GetEvent<SIEvent>().Publish(Results.SelectedItem);
+
+                    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+                }
+                else
+                {
+                    Int64 startTicks = Log.EVENT($"Enter(null)", Common.LOG_CATEGORY);
+
+                    EventAggregator.GetEvent<SIEvent>().Publish(null);
+
+                    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+                }
             }
         }
 
