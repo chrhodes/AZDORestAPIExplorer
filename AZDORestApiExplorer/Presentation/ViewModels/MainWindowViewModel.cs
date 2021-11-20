@@ -34,7 +34,6 @@ namespace AZDORestApiExplorer.ViewModels
 
         #endregion
 
-
         #region Enums (none)
 
 
@@ -76,7 +75,6 @@ namespace AZDORestApiExplorer.ViewModels
         }
 
         #endregion
-
 
         #region Event Handlers (none)
 
