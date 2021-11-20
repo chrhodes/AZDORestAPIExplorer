@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99fbe2e6-2d02-48a0-acc9-116eb1dfd92d}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>DependencyValidation1</Name>
+    <RootNamespace>DependencyValidation1</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Validate Include="DependencyValidation1.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="DependencyValidation1.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>DependencyValidation1.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="DependencyValidation1.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>DependencyValidation1.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj">
+      <Name>VNC.Core</Name>
+      <Project>{d2fa62a0-3d59-4a1d-8c01-5e09e919788e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj">
+      <Name>VNC.WPF.Presentation.Dx</Name>
+      <Project>{6346a659-1276-46e3-af9b-4a9f64c36204}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj">
+      <Name>AZDORestApiExplorer.Accounts</Name>
+      <Project>{668fbc9a-bdce-4494-90f2-198560e71f24}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Artifacts\AZDORestApiExplorer.Artifacts.csproj">
+      <Name>AZDORestApiExplorer.Artifacts</Name>
+      <Project>{822727aa-fd7f-4e62-b549-ecfd890a18bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Build\AZDORestApiExplorer.Build.csproj">
+      <Name>AZDORestApiExplorer.Build</Name>
+      <Project>{20aaffa4-c7d6-4078-a6be-623e305e0be9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj">
+      <Name>AZDORestApiExplorer.Core</Name>
+      <Project>{9b33e1aa-0e4b-4114-a06f-be9ff098d712}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Dashboard\AZDORestApiExplorer.Dashboard.csproj">
+      <Name>AZDORestApiExplorer.Dashboard</Name>
+      <Project>{963c8cb8-d39c-4958-971c-a02372ee5ee3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj">
+      <Name>AZDORestApiExplorer.Domain</Name>
+      <Project>{d1eab69f-4e5d-4ccc-be85-06a63ba80cd2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Git\AZDORestApiExplorer.Git.csproj">
+      <Name>AZDORestApiExplorer.Git</Name>
+      <Project>{edb65af4-18c7-4a48-90d4-a0c10edc929e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Graph\AZDORestApiExplorer.Graph.csproj">
+      <Name>AZDORestApiExplorer.Graph</Name>
+      <Project>{b3f407f9-f1ff-4fe4-b016-e6c45db0e7a3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj">
+      <Name>AZDORestApiExplorer.Presentation</Name>
+      <Project>{62f2573e-02b9-4cb8-a492-ad28a08d91fc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Test\AZDORestApiExplorer.Test.csproj">
+      <Name>AZDORestApiExplorer.Test</Name>
+      <Project>{e2b464f7-e710-4629-a55e-8ceb51d5d5de}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj">
+      <Name>AZDORestApiExplorer.Tokens</Name>
+      <Project>{7ea0cdc3-b6e3-429e-82db-456035b96485}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcess\AZDORestApiExplorer.WorkItemTrackingProcess.csproj">
+      <Name>AZDORestApiExplorer.WorkItemTrackingProcess</Name>
+      <Project>{aec0eec0-4a03-4333-9a80-da4381c4f8c4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTracking\AZDORestApiExplorer.WorkItemTracking.csproj">
+      <Name>AZDORestApiExplorer.WorkItemTracking</Name>
+      <Project>{2c0db8c4-d5df-4d8b-a69d-8c270d13dda7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer.Work\AZDORestApiExplorer.Work.csproj">
+      <Name>AZDORestApiExplorer.Work</Name>
+      <Project>{c2e0e5f1-49b5-4a52-9855-3fd4fad5482d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AZDORestApiExplorer\AZDORestApiExplorer.csproj">
+      <Name>AZDORestApiExplorer</Name>
+      <Project>{446ed15a-f123-40b8-ad89-14b2ce51fb06}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

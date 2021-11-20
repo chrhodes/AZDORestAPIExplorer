@@ -7,6 +7,12 @@
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="..\DependencyValidation1\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
+      <Visible>False</Visible>
+    </AdditionalFiles>
+  </ItemGroup>
+
     <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
@@ -15,6 +21,7 @@
         <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
+        <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
         <!--<PackageReference Include="VNC.Core" Version="1.2.0" />-->
     </ItemGroup>
 

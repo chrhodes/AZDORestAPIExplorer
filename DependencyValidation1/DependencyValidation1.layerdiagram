@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="c3dac4c7-26af-461c-8da4-8028d247ada4" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" name="VNC.Core.dll">
+      <references>
+        <reference Id="712a0293-4920-47d0-bccf-042296852f9e" name="VNC.Core.dll">
+          <ArtifactNode Label="VNC.Core.dll" Category="CodeSchema_Assembly" Id="(Assembly=../../VNC/VNC.Core/bin/Debug/net5.0-windows/VNC.Core.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=VNC.Core)" Label="VNC.Core.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="de699813-8eda-41f5-ba7b-5a369104ac75" name="AZDORestApiExplorer.Core.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="6a86b7db-cfc6-41c5-b1ae-a1a03c2c0921" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b0ad001d-3f2b-4ebe-9689-9cfc4bd307ee" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="3cdf546b-1b50-4531-b934-ff0d7157fc99" name="AZDORestApiExplorer.Core.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Core.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Core/bin/Debug/net5.0-windows/AZDORestApiExplorer.Core.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Core)" Label="AZDORestApiExplorer.Core.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="1144e7e9-b966-4996-9ae1-9bfea713aa6e" name="AZDORestApiExplorer.WorkItemTracking.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="4bebe870-185c-4063-ace9-0de981d8fd49" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="17ff5c26-19d7-4372-86d3-08d5462454f4" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="e4f88e93-8f0a-45cf-b175-7b10357e5934" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="85ae3116-b16f-484d-abd6-9ef8a414a502" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="f3dc9690-aa40-48a8-8755-12cd44e4cc00" name="AZDORestApiExplorer.WorkItemTracking.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.WorkItemTracking.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.WorkItemTracking/bin/Debug/net5.0-windows/AZDORestApiExplorer.WorkItemTracking.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.WorkItemTracking)" Label="AZDORestApiExplorer.WorkItemTracking.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="de2ac259-1b11-420e-ac81-3c9378c80649" name="AZDORestApiExplorer.Graph.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="83c6816a-6084-43b1-a224-89a3dcf6eccb" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="32fd624d-dac9-47e2-b15d-69c9ff9e1c90" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d62518ba-73f7-4642-ba3f-e3f9d2122ee2" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="88d04d86-106d-4f85-9734-82af42963fe2" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="b7e1d3b3-22f0-4534-a2af-37277e082c5a" name="AZDORestApiExplorer.Graph.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Graph.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Graph/bin/Debug/net5.0-windows/AZDORestApiExplorer.Graph.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Graph)" Label="AZDORestApiExplorer.Graph.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="26f01c93-2f5e-49a4-884a-4a00d5a242bb" name="AZDORestApiExplorer.Work.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="f29489a8-5646-4eb0-b6b8-31ea7ff3c057" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="536f2691-6633-4d29-b821-80b9ad1fb426" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="034b0e7c-8aad-49dc-8a19-2a6df90a4779" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b03aec78-0d87-4759-a3b5-ae2d02449ddc" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="67ad45fb-32cc-48fa-8c45-6241f8c326c3" name="AZDORestApiExplorer.Work.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Work.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Work/bin/Debug/net5.0-windows/AZDORestApiExplorer.Work.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Work)" Label="AZDORestApiExplorer.Work.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" name="AZDORestApiExplorer.Domain.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="83be95c8-6f70-4b3c-8213-14f527945288" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="b8995024-8e64-467b-b6e2-231a9d4c8468" name="AZDORestApiExplorer.Domain.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Domain.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Domain/bin/Debug/net5.0-windows/AZDORestApiExplorer.Domain.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Domain)" Label="AZDORestApiExplorer.Domain.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="af24a860-c115-42e8-b6db-e0398826d4a2" name="AZDORestApiExplorer.Presentation.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="4d6d0231-e722-47e9-af2e-f52918ac4fc7" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b1b39bad-1e9c-4738-8801-169fedb89134" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="68c7d0dd-0f69-4d34-829c-05b06b725292" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="c581d993-1409-4684-b570-fdaecb321f80" name="AZDORestApiExplorer.Presentation.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Presentation.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Presentation/bin/Debug/net5.0-windows/AZDORestApiExplorer.Presentation.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Presentation)" Label="AZDORestApiExplorer.Presentation.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="bee5933c-67a9-49cc-820d-eafef0765490" name="AZDORestApiExplorer.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="45cf93fe-91ea-4552-9889-d731da7b2126" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="f12b531e-d68e-4e81-ad8c-06be21d145db" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="93a8c915-773c-4863-a9dc-b93ddb5a66a4" direction="Forward">
+          <layerMoniker Id="1144e7e9-b966-4996-9ae1-9bfea713aa6e" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="ab5ab7e6-4851-4877-aad2-5692a0229274" direction="Forward">
+          <layerMoniker Id="de2ac259-1b11-420e-ac81-3c9378c80649" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="f651cb59-dd67-423e-be06-151b53919bd5" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="1f5231bb-14d2-4592-897d-abd2ea65ea5a" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d864c135-43a6-4514-a737-ad877f2059ba" direction="Forward">
+          <layerMoniker Id="f92ea0d8-decc-4460-a73b-256296718bc1" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="08a9c0ff-a24b-43a9-a6b2-84601b57f345" direction="Forward">
+          <layerMoniker Id="4c154262-0a0c-490c-ad02-9cfe55d6e35c" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="3d528d03-ba57-439d-bdb4-00bff3d1e838" direction="Forward">
+          <layerMoniker Id="7601b50b-a6c3-4969-bba2-1cb53ab15a5d" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="30321ae4-a901-41e4-9463-5a5e0fa3215f" direction="Forward">
+          <layerMoniker Id="c78ada36-aaf0-4819-9980-4499660bd9ee" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="587ed81f-e6ae-4d1e-9697-02639d263e01" direction="Forward">
+          <layerMoniker Id="272bfeb0-fa21-4002-8e74-3f3725714624" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="bf14f460-aee2-48aa-9671-618bd8532022" direction="Forward">
+          <layerMoniker Id="bb301202-06cc-4ebe-b0b4-0cc50a7627bc" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b1211e51-b014-4c0a-b575-5728fefd2882" direction="Forward">
+          <layerMoniker Id="2d88b8b5-4f57-42cf-9ac9-52452363c57b" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="dfb5da67-1b58-4a43-ba3e-94c385f21f19" direction="Forward">
+          <layerMoniker Id="e3b6a436-3145-4014-868d-56f3691eb320" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="32178fe8-4bbf-4371-984a-c3a717f156ee" direction="Forward">
+          <layerMoniker Id="bb3842c1-e607-4814-91e0-22461901fe14" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="5ca47752-d701-42f8-90a0-f71f27ca8567" name="AZDORestApiExplorer.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer/bin/Debug/net5.0-windows/AZDORestApiExplorer.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer)" Label="AZDORestApiExplorer.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="f92ea0d8-decc-4460-a73b-256296718bc1" name="AZDORestApiExplorer.Tokens.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="d349c585-64d3-441c-b32d-08b390c44c5b" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="2c1b79d0-87b1-4d1d-99d8-df8136c8f7db" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="03344583-3f4e-4118-8348-2ce202429ffe" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d38c25df-8409-4f61-bfdb-fa2ea3ca5d4c" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="fc4957c6-aa3e-4d7a-8431-a6b3e9e2db8f" name="AZDORestApiExplorer.Tokens.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Tokens.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Tokens/bin/Debug/net5.0-windows/AZDORestApiExplorer.Tokens.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Tokens)" Label="AZDORestApiExplorer.Tokens.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="4c154262-0a0c-490c-ad02-9cfe55d6e35c" name="AZDORestApiExplorer.WorkItemTrackingProcess.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="bd7e5a13-7759-4953-b2fe-5be4ef89f31d" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="1a2575f0-4ec6-460e-be8b-8c903a5ca70b" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="feb4a20c-d8ac-48f2-b0fa-781176ab0066" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="a0abeb75-520b-4d4b-ad3c-030590ef3406" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="a8596089-c430-4c33-b41c-c1fadf73e3f3" name="AZDORestApiExplorer.WorkItemTrackingProcess.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.WorkItemTrackingProcess.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.WorkItemTrackingProcess/bin/Debug/net5.0-windows/AZDORestApiExplorer.WorkItemTrackingProcess.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.WorkItemTrackingProcess)" Label="AZDORestApiExplorer.WorkItemTrackingProcess.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="7601b50b-a6c3-4969-bba2-1cb53ab15a5d" name="AZDORestApiExplorer.Artifacts.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="4b316e65-4e55-46da-82ba-e6ace75c6768" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="f422dce5-aa1c-457f-a439-d4e3b6b1fae5" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="c389c817-a7aa-49e4-b8a1-e77766a56742" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="ceba64d8-a711-42bf-a458-94ae05a9181b" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="d99248ae-fc50-455f-8b72-fd89188cd8a9" name="AZDORestApiExplorer.Artifacts.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Artifacts.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Artifacts/bin/Debug/net5.0-windows/AZDORestApiExplorer.Artifacts.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Artifacts)" Label="AZDORestApiExplorer.Artifacts.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="c78ada36-aaf0-4819-9980-4499660bd9ee" name="AZDORestApiExplorer.Accounts.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="4c3cad61-cd53-4f66-8b44-7fc0dbd7af6b" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d6f6163a-060f-4dbc-a55c-7db82f61dd56" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="3ff49f89-68ee-4dd1-8fa6-7d9a9b9cd96e" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="8e431801-7576-484b-b138-cdd79c94d469" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="20562894-820d-4739-8443-7de4dd6c7ebe" name="AZDORestApiExplorer.Accounts.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Accounts.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Accounts/bin/Debug/net5.0-windows/AZDORestApiExplorer.Accounts.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Accounts)" Label="AZDORestApiExplorer.Accounts.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="272bfeb0-fa21-4002-8e74-3f3725714624" name="AZDORestApiExplorer.Git.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="ed0b08ba-34c7-4806-9de2-dc87cc9343f7" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="f34783c4-2280-4d36-88cc-c80b5ce618fb" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="63bc178a-6d83-448b-93fa-1811c9b239c7" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="fb70ecdc-80be-4296-97fd-98b2b0463c5c" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="e17854a5-8236-44f5-9cdc-aa47b67c0d26" name="AZDORestApiExplorer.Git.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Git.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Git/bin/Debug/net5.0-windows/AZDORestApiExplorer.Git.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Git)" Label="AZDORestApiExplorer.Git.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="bb301202-06cc-4ebe-b0b4-0cc50a7627bc" name="AZDORestApiExplorer.Test.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="930460f2-c2c3-47ee-8b77-91d596d2050b" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="e96be7c7-b8a1-477e-a1e7-d0490dc6c765" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="dbd986bc-4d18-4f17-b667-2988f0f31254" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="f576a7a1-0ca4-4d7e-9e13-62c1ca70c64d" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="9547e303-0fd5-4b00-bd4f-d39e9d9e7c73" name="AZDORestApiExplorer.Test.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Test.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Test/bin/Debug/net5.0-windows/AZDORestApiExplorer.Test.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Test)" Label="AZDORestApiExplorer.Test.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="2d88b8b5-4f57-42cf-9ac9-52452363c57b" name="VNC.WPF.Presentation.Dx.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="8ea69a8e-f742-4fc9-9643-a46d26b597f4" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="d2305245-2e93-458c-ad7c-70b90e11b69d" name="VNC.WPF.Presentation.Dx.dll">
+          <ArtifactNode Label="VNC.WPF.Presentation.Dx.dll" Category="CodeSchema_Assembly" Id="(Assembly=../../VNC/VNC.WPF.Presentation.Dx/bin/Debug/net5.0-windows/VNC.WPF.Presentation.Dx.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=VNC.WPF.Presentation.Dx)" Label="VNC.WPF.Presentation.Dx.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="e3b6a436-3145-4014-868d-56f3691eb320" name="AZDORestApiExplorer.Build.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="88bcc883-993d-4936-a5ca-62473b51c52f" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="6c8b3a4b-8b6f-47d9-b7c2-14d678204dc5" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="9e4cf567-8be8-42c5-b513-d81654fbba94" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="1184b439-31f8-48a7-ac6c-7e981db541f7" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="0f45a4b7-975b-4956-82da-78bc6247fcc3" name="AZDORestApiExplorer.Build.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Build.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Build/bin/Debug/net5.0-windows/AZDORestApiExplorer.Build.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Build)" Label="AZDORestApiExplorer.Build.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="bb3842c1-e607-4814-91e0-22461901fe14" name="AZDORestApiExplorer.Dashboard.dll">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="01d23d40-9dcb-404c-8eed-339e5bb53847" direction="Forward">
+          <layerMoniker Id="d0b2f9eb-f5cd-4460-a710-7a4d341a5d99" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="84c7cb2a-38f0-4ce9-8665-44594cfb6566" direction="Forward">
+          <layerMoniker Id="de699813-8eda-41f5-ba7b-5a369104ac75" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="96a498f8-5d6f-48fa-be81-9838cb911be8" direction="Forward">
+          <layerMoniker Id="2a927b53-1f7e-4d65-bc44-8afc7815dcb5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b3769425-ce81-407a-a5aa-b9dd0e38869e" direction="Forward">
+          <layerMoniker Id="af24a860-c115-42e8-b6db-e0398826d4a2" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="0e91473e-2e3c-49e3-befb-7ad4a34c5e4d" name="AZDORestApiExplorer.Dashboard.dll">
+          <ArtifactNode Label="AZDORestApiExplorer.Dashboard.dll" Category="CodeSchema_Assembly" Id="(Assembly=../AZDORestApiExplorer.Dashboard/bin/Debug/net5.0-windows/AZDORestApiExplorer.Dashboard.dll)">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=AZDORestApiExplorer.Dashboard)" Label="AZDORestApiExplorer.Dashboard.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>

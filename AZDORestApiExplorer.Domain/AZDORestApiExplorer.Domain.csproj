@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.36.2" />
     <PackageReference Include="VNC.Core" Version="1.2.0" />
     <!--<PackageReference Include="VNC.HttpHelper" Version="1.2.0" />-->      
@@ -43,6 +44,12 @@
     <Folder Include="Wiki\" />
     <Folder Include="WorkItemTrackingProcessTemplate\" />
     <Folder Include="Work\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\DependencyValidation1\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
+      <Visible>False</Visible>
+    </AdditionalFiles>
   </ItemGroup>
 
 </Project>
