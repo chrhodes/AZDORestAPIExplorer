@@ -1,23 +1,9 @@
 ﻿using System;
 
-using AZDORestApiExplorer.Core.Events;
-using AZDORestApiExplorer.Domain.Build;
-using AZDORestApiExplorer.Domain.Build.Events;
-using AZDORestApiExplorer.Domain.Core;
-using AZDORestApiExplorer.Domain.Core.Events;
-using AZDORestApiExplorer.Domain.Dashboard.Events;
 using AZDORestApiExplorer.Domain.Git;
 using AZDORestApiExplorer.Domain.Git.Events;
-using AZDORestApiExplorer.Domain.Graph.Events;
-using AZDORestApiExplorer.Domain.Test;
-using AZDORestApiExplorer.Domain.Tokens.Events;
-using AZDORestApiExplorer.Domain.WorkItemTracking;
-using AZDORestApiExplorer.Domain.WorkItemTracking.Events;
-using AZDORestApiExplorer.Domain.WorkItemTrackingProcess.Events;
 
 using Prism.Commands;
-using Prism.Events;
-using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
