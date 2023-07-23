@@ -2,7 +2,8 @@
 
   <PropertyGroup>
       <!--<TargetFrameworks>net5-windows10.0.17763.0;net48</TargetFrameworks>-->
-      <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+      <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
+      <TargetFrameworks>net6.0-windows</TargetFrameworks>
       <UseWPF>true</UseWPF>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
@@ -16,13 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.36.2" />
-    <PackageReference Include="VNC.Core" Version="1.2.0" />
-    <!--<PackageReference Include="VNC.HttpHelper" Version="1.2.0" />-->      
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.36.2" />  
   </ItemGroup>
-
+    
     <ItemGroup>
-        <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>

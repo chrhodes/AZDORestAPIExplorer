@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-      <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+      <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
+      <TargetFrameworks>net6.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Events\ArtifactsPackageTypes\**" />
+    <!--<Compile Remove="Events\ArtifactsPackageTypes\**" />
     <Compile Remove="Events\Artifacts\**" />
     <Compile Remove="Events\Audit\**" />
     <Compile Remove="Events\Build\**" />
@@ -89,11 +90,15 @@
     <None Remove="Events\Tfvc\**" />
     <None Remove="Events\TokenAdmin\**" />
     <None Remove="Events\Wiki\**" />
-    <None Remove="Events\Work\**" />
+    <None Remove="Events\Work\**" />-->
   </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
+    </ItemGroup>
+    
   <ItemGroup>
-    <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
     <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
   </ItemGroup>
 

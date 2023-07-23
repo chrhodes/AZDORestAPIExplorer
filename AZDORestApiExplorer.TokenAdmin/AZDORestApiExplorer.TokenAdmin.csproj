@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+        <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
@@ -20,14 +21,18 @@
         <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
-        <!--<PackageReference Include="VNC.Core" Version="1.2.0" />-->
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
+    </ItemGroup>
+    
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
-        <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />      
+   
     </ItemGroup>
 
     <ItemGroup>

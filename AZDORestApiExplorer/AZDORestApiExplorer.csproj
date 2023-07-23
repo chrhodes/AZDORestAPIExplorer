@@ -3,7 +3,8 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <!--<TargetFrameworks>net5-windows10.0.17763.0;net48</TargetFrameworks>-->
-        <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+        <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -19,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Core\**" />
+        <!--<Compile Remove="Core\**" />
         <Compile Remove="Domain\**" />
         <Compile Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
         <Compile Remove="Presentation\ModelWrappers\Artifacts\**" />
@@ -54,8 +55,8 @@
         <Compile Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
         <Compile Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
         <Compile Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <Compile Remove="Presentation\ModelWrappers\Work\**" />
-        <EmbeddedResource Remove="Core\**" />
+        <Compile Remove="Presentation\ModelWrappers\Work\**" />-->
+        <!--<EmbeddedResource Remove="Core\**" />
         <EmbeddedResource Remove="Domain\**" />
         <EmbeddedResource Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
         <EmbeddedResource Remove="Presentation\ModelWrappers\Artifacts\**" />
@@ -92,8 +93,8 @@
         <EmbeddedResource Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
         <EmbeddedResource Remove="Presentation\ModelWrappers\Work\**" />
         <None Remove="Core\**" />
-        <None Remove="Domain\**" />
-        <None Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
+        <None Remove="Domain\**" />-->
+        <!--<None Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
         <None Remove="Presentation\ModelWrappers\Artifacts\**" />
         <None Remove="Presentation\ModelWrappers\Audit\**" />
         <None Remove="Presentation\ModelWrappers\Build\**" />
@@ -162,7 +163,7 @@
         <Page Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
         <Page Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
         <Page Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <Page Remove="Presentation\ModelWrappers\Work\**" />
+        <Page Remove="Presentation\ModelWrappers\Work\**" />-->
     </ItemGroup>
 
     <ItemGroup>
@@ -195,9 +196,14 @@
         <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
         <PackageReference Include="Microsoft.VisualStudio.Services.InteractiveClient" Version="16.170.0" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
-        <!--<PackageReference Include="VNC.Core" Version="1.2.0" />-->
     </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="VNC.Core" Version="2.1.0" />
+    <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
+    <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListener" Version="1.0.0" />
+  </ItemGroup>
+          
     <ItemGroup>
         <ProjectReference Include="..\..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj" />
@@ -213,7 +219,6 @@
         <ProjectReference Include="..\AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTrackingProcess\AZDORestApiExplorer.WorkItemTrackingProcess.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.WorkItemTracking\AZDORestApiExplorer.WorkItemTracking.csproj" />
-        <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
