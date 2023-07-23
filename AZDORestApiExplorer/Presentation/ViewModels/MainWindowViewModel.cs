@@ -34,7 +34,6 @@ namespace AZDORestApiExplorer.ViewModels
 
         #endregion
 
-
         #region Enums (none)
 
 
@@ -45,7 +44,7 @@ namespace AZDORestApiExplorer.ViewModels
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
         private string _runtimeVersion = ".NET Runtime Version";
 

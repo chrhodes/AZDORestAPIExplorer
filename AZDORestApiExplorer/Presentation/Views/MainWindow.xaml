@@ -435,10 +435,8 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="VM:" />
-
                         <Label Content="{Binding InstanceCountVM}" />
                     </StackPanel>
-
 
                     <Button Content="Save Layout" Click="SaveLayout_Click" />
                     <Button Content="Restore Layout" Click="RestoreLayout_Click" />
