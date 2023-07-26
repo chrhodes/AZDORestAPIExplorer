@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 
@@ -44,6 +45,8 @@ namespace AZDORestApiExplorer
             Thread.Sleep(150);
             
             startTicks = Log.APPLICATION_START("App()", Common.LOG_CATEGORY);
+
+            Common.SetAppVersionInfo();
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -285,17 +288,36 @@ namespace AZDORestApiExplorer
             //    throw new FileNotFoundException($"Cannot find {Common.cCONFIG_FILE} - Aborting");
             //}
 
+            var assyb = Assembly.GetExecutingAssembly();
+            var a1 = assyb.FullName;
+            var a2 = assyb.ImageRuntimeVersion;
+            var a3 = assyb.Location;
+
             var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
 
             Common.RuntimeVersion = versionInfo.FileVersion;
 
-            //var v = versionInfo.Comments;
-            //var v1 = versionInfo.CompanyName;
-            //var v2 = versionInfo.FileDescription;
-            //var v3 = versionInfo.FileName;
-            //var v4 = versionInfo.FileVersion;
-            //var v5 = versionInfo.ProductVersion;
-            //var v6 = versionInfo.ProductName;
+            var v = versionInfo.Comments;
+            var v1 = versionInfo.CompanyName;
+            var v2 = versionInfo.FileDescription;
+            var v3 = versionInfo.FileName;
+            var v4 = versionInfo.FileVersion;
+            var v5 = versionInfo.ProductVersion;
+            var v6 = versionInfo.ProductName;
+
+            var versionInfo2 = System.Diagnostics.FileVersionInfo.GetVersionInfo(a3);
+
+            var av = versionInfo2.Comments;
+            var av1 = versionInfo2.CompanyName;
+            var av2 = versionInfo2.FileDescription;
+            var av3 = versionInfo2.FileName;
+            var av4 = versionInfo2.FileVersion;
+            var av5 = versionInfo2.ProductVersion;
+            var av6 = versionInfo2.ProductName;
+
+            // NOTE(crhodes)
+            // Looks like we want ProductVersion and maybe FileVersion
+
         }
 
         private void Application_Activated(object sender, EventArgs e)

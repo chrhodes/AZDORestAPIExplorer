@@ -424,7 +424,13 @@
             <DockPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Right" >
-                    <Label Content=".NET Runtime: " />
+                    <!--<Label Content="ProductName: " />
+                    <Label Content="{Binding ProductName}" />-->
+                    <Label Content="FileVersion: " />
+                    <Label Content="{Binding FileVersion}" />
+                    <Label Content=" ProductVersion: " />
+                    <Label Content="{Binding ProductVersion}" />
+                    <Label Content=" .NET Runtime: " />
                     <Label Content="{Binding RuntimeVersion}" />
                 </StackPanel>
 

@@ -24,7 +24,7 @@ namespace AZDORestApiExplorer.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
-            RuntimeVersion = Common.RuntimeVersion;
+            //RuntimeVersion = Common.RuntimeVersion;
 
             // TODO(crhodes)
             //
@@ -46,19 +46,23 @@ namespace AZDORestApiExplorer.ViewModels
 
         #region Fields and Properties
 
-        private string _runtimeVersion = ".NET Runtime Version";
+        //private string _runtimeVersion = Common.RuntimeVersion;
 
         public string RuntimeVersion
         {
-            get => _runtimeVersion;
-            set
-            {
-                if (_runtimeVersion == value)
-                    return;
-                _runtimeVersion = value;
-                OnPropertyChanged();
-            }
+            get => Common.RuntimeVersion;
+            //set
+            //{
+            //    if (_runtimeVersion == value)
+            //        return;
+            //    _runtimeVersion = value;
+            //    OnPropertyChanged();
+            //}
         }
+
+        public string FileVersion { get => Common.FileVersion; }
+        public string ProductVersion { get => Common.ProductVersion; }
+        public string ProductName { get => Common.ProductName; }
 
         private string _title = "AZDORestApiExplorer - MainWindow   (Use Ctrl-Tab for Panel Selector)";
 
