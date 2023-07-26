@@ -428,12 +428,14 @@
                     <Label Content="{Binding ProductName}" />-->
                     <Label Content="FileVersion: " />
                     <Label Content="{Binding FileVersion}" />
-                    <Label Content=" ProductVersion: " />
-                    <Label Content="{Binding ProductVersion}" />
+                    <!--<Label Content=" ProductVersion: " />
+                    <Label Content="{Binding ProductVersion}" />-->
                     <Label Content=" .NET Runtime: " />
                     <Label Content="{Binding RuntimeVersion}" />
                 </StackPanel>
 
+                <!-- This is useful for debugging V VM constructor issues -->
+                
                 <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left">
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label Content="V:" />
