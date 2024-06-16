@@ -20,153 +20,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!--<Compile Remove="Core\**" />
-        <Compile Remove="Domain\**" />
-        <Compile Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
-        <Compile Remove="Presentation\ModelWrappers\Artifacts\**" />
-        <Compile Remove="Presentation\ModelWrappers\Audit\**" />
-        <Compile Remove="Presentation\ModelWrappers\Build\**" />
-        <Compile Remove="Presentation\ModelWrappers\Core\**" />
-        <Compile Remove="Presentation\ModelWrappers\Dashbard\**" />
-        <Compile Remove="Presentation\ModelWrappers\DistributedTask\**" />
-        <Compile Remove="Presentation\ModelWrappers\ExtenstionManagement\**" />
-        <Compile Remove="Presentation\ModelWrappers\Git\**" />
-        <Compile Remove="Presentation\ModelWrappers\Graph\**" />
-        <Compile Remove="Presentation\ModelWrappers\Identities\**" />
-        <Compile Remove="Presentation\ModelWrappers\MemberEntitlementManagement\**" />
-        <Compile Remove="Presentation\ModelWrappers\Notification\**" />
-        <Compile Remove="Presentation\ModelWrappers\Operations\**" />
-        <Compile Remove="Presentation\ModelWrappers\PermissionsReport\**" />
-        <Compile Remove="Presentation\ModelWrappers\Pipelines\**" />
-        <Compile Remove="Presentation\ModelWrappers\Policy\**" />
-        <Compile Remove="Presentation\ModelWrappers\Profile\**" />
-        <Compile Remove="Presentation\ModelWrappers\Release\**" />
-        <Compile Remove="Presentation\ModelWrappers\Search\**" />
-        <Compile Remove="Presentation\ModelWrappers\SecurityRoles\**" />
-        <Compile Remove="Presentation\ModelWrappers\Security\**" />
-        <Compile Remove="Presentation\ModelWrappers\ServiceEndpoint\**" />
-        <Compile Remove="Presentation\ModelWrappers\ServiceHooks\**" />
-        <Compile Remove="Presentation\ModelWrappers\TestPlan\**" />
-        <Compile Remove="Presentation\ModelWrappers\TestResults\**" />
-        <Compile Remove="Presentation\ModelWrappers\Test\**" />
-        <Compile Remove="Presentation\ModelWrappers\Tfvc\**" />
-        <Compile Remove="Presentation\ModelWrappers\TokenAdmin\**" />
-        <Compile Remove="Presentation\ModelWrappers\Wiki\**" />
-        <Compile Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
-        <Compile Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
-        <Compile Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <Compile Remove="Presentation\ModelWrappers\Work\**" />-->
-        <!--<EmbeddedResource Remove="Core\**" />
-        <EmbeddedResource Remove="Domain\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Artifacts\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Audit\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Build\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Core\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Dashbard\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\DistributedTask\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\ExtenstionManagement\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Git\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Graph\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Identities\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\MemberEntitlementManagement\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Notification\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Operations\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\PermissionsReport\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Pipelines\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Policy\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Profile\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Release\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Search\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\SecurityRoles\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Security\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\ServiceEndpoint\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\ServiceHooks\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\TestPlan\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\TestResults\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Test\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Tfvc\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\TokenAdmin\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Wiki\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <EmbeddedResource Remove="Presentation\ModelWrappers\Work\**" />
-        <None Remove="Core\**" />
-        <None Remove="Domain\**" />-->
-        <!--<None Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
-        <None Remove="Presentation\ModelWrappers\Artifacts\**" />
-        <None Remove="Presentation\ModelWrappers\Audit\**" />
-        <None Remove="Presentation\ModelWrappers\Build\**" />
-        <None Remove="Presentation\ModelWrappers\Core\**" />
-        <None Remove="Presentation\ModelWrappers\Dashbard\**" />
-        <None Remove="Presentation\ModelWrappers\DistributedTask\**" />
-        <None Remove="Presentation\ModelWrappers\ExtenstionManagement\**" />
-        <None Remove="Presentation\ModelWrappers\Git\**" />
-        <None Remove="Presentation\ModelWrappers\Graph\**" />
-        <None Remove="Presentation\ModelWrappers\Identities\**" />
-        <None Remove="Presentation\ModelWrappers\MemberEntitlementManagement\**" />
-        <None Remove="Presentation\ModelWrappers\Notification\**" />
-        <None Remove="Presentation\ModelWrappers\Operations\**" />
-        <None Remove="Presentation\ModelWrappers\PermissionsReport\**" />
-        <None Remove="Presentation\ModelWrappers\Pipelines\**" />
-        <None Remove="Presentation\ModelWrappers\Policy\**" />
-        <None Remove="Presentation\ModelWrappers\Profile\**" />
-        <None Remove="Presentation\ModelWrappers\Release\**" />
-        <None Remove="Presentation\ModelWrappers\Search\**" />
-        <None Remove="Presentation\ModelWrappers\SecurityRoles\**" />
-        <None Remove="Presentation\ModelWrappers\Security\**" />
-        <None Remove="Presentation\ModelWrappers\ServiceEndpoint\**" />
-        <None Remove="Presentation\ModelWrappers\ServiceHooks\**" />
-        <None Remove="Presentation\ModelWrappers\TestPlan\**" />
-        <None Remove="Presentation\ModelWrappers\TestResults\**" />
-        <None Remove="Presentation\ModelWrappers\Test\**" />
-        <None Remove="Presentation\ModelWrappers\Tfvc\**" />
-        <None Remove="Presentation\ModelWrappers\TokenAdmin\**" />
-        <None Remove="Presentation\ModelWrappers\Wiki\**" />
-        <None Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
-        <None Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
-        <None Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <None Remove="Presentation\ModelWrappers\Work\**" />
-        <Page Remove="Core\**" />
-        <Page Remove="Domain\**" />
-        <Page Remove="Presentation\ModelWrappers\ArtifactsPackageTypes\**" />
-        <Page Remove="Presentation\ModelWrappers\Artifacts\**" />
-        <Page Remove="Presentation\ModelWrappers\Audit\**" />
-        <Page Remove="Presentation\ModelWrappers\Build\**" />
-        <Page Remove="Presentation\ModelWrappers\Core\**" />
-        <Page Remove="Presentation\ModelWrappers\Dashbard\**" />
-        <Page Remove="Presentation\ModelWrappers\DistributedTask\**" />
-        <Page Remove="Presentation\ModelWrappers\ExtenstionManagement\**" />
-        <Page Remove="Presentation\ModelWrappers\Git\**" />
-        <Page Remove="Presentation\ModelWrappers\Graph\**" />
-        <Page Remove="Presentation\ModelWrappers\Identities\**" />
-        <Page Remove="Presentation\ModelWrappers\MemberEntitlementManagement\**" />
-        <Page Remove="Presentation\ModelWrappers\Notification\**" />
-        <Page Remove="Presentation\ModelWrappers\Operations\**" />
-        <Page Remove="Presentation\ModelWrappers\PermissionsReport\**" />
-        <Page Remove="Presentation\ModelWrappers\Pipelines\**" />
-        <Page Remove="Presentation\ModelWrappers\Policy\**" />
-        <Page Remove="Presentation\ModelWrappers\Profile\**" />
-        <Page Remove="Presentation\ModelWrappers\Release\**" />
-        <Page Remove="Presentation\ModelWrappers\Search\**" />
-        <Page Remove="Presentation\ModelWrappers\SecurityRoles\**" />
-        <Page Remove="Presentation\ModelWrappers\Security\**" />
-        <Page Remove="Presentation\ModelWrappers\ServiceEndpoint\**" />
-        <Page Remove="Presentation\ModelWrappers\ServiceHooks\**" />
-        <Page Remove="Presentation\ModelWrappers\TestPlan\**" />
-        <Page Remove="Presentation\ModelWrappers\TestResults\**" />
-        <Page Remove="Presentation\ModelWrappers\Test\**" />
-        <Page Remove="Presentation\ModelWrappers\Tfvc\**" />
-        <Page Remove="Presentation\ModelWrappers\TokenAdmin\**" />
-        <Page Remove="Presentation\ModelWrappers\Wiki\**" />
-        <Page Remove="Presentation\ModelWrappers\WorkItemTrackingProcessTemplate\**" />
-        <Page Remove="Presentation\ModelWrappers\WorkItemTrackingProcess\**" />
-        <Page Remove="Presentation\ModelWrappers\WorkItemTracking\**" />
-        <Page Remove="Presentation\ModelWrappers\Work\**" />-->
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="Presentation\ModelWrappers\CollectionWrapper.cs" />
       <Compile Remove="Presentation\ModelWrappers\DashboardWrapper.cs" />
       <Compile Remove="Presentation\ModelWrappers\HTTPExchangeWrapper.cs" />
@@ -184,28 +37,30 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Docking" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisDark" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisLight" Version="21.1.4" />        
-        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="DevExpress.Wpf.Core" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisDark" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Themes.MetropolisLight" Version="22.1.3" />        
+        <PackageReference Include="EntityFramework" Version="6.4.4" />        
+        <PackageReference Include="Microsoft.Identity.Client.Broker" Version="4.61.3" />
         <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
         <PackageReference Include="Microsoft.VisualStudio.Services.InteractiveClient" Version="16.170.0" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
+        <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
     </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="VNC.Core" Version="2.1.0" />
-    <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
-    <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListener" Version="1.0.0" />
+        <!--<PackageReference Include="VNC.Core" Version="2.1.5" />-->
+        <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+
   </ItemGroup>
           
     <ItemGroup>
-        <ProjectReference Include="..\..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
+        <ProjectReference Include="..\..\VNCDevelopment\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Accounts\AZDORestApiExplorer.Accounts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Artifacts\AZDORestApiExplorer.Artifacts.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Build\AZDORestApiExplorer.Build.csproj" />
@@ -224,67 +79,6 @@
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy %282%29 - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain - Copy (2).xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy %282%29.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsPackageTypesArea.xaml.cs">
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy %282%29.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain - Copy.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain - Copy - Copy.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain - Copy.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ArtifactsMain - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ArtifactsMain.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\BuildMain - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>BuildMain.xaml.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Presentation\Views\Areas\ProfileMain - Copy.xaml.cs">
-        <SubType>Code</SubType>
-        <DependentUpon>ProfileMain.xaml.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Page Update="Presentation\Views\Areas\ArtifactsPackageTypesArea.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Presentation\Views\Areas\CloudLoadTestArea.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Presentation\Views\StatusBar.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      </Page>
-      <Page Update="Presentation\Views\CommandsPatch.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      </Page>
-      <Page Update="Presentation\Views\CommandsPost.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      </Page>
-      <Page Update="Presentation\Views\CommandsPut.xaml">
-        <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      </Page>
     </ItemGroup>
 
     <ItemGroup>

@@ -63,13 +63,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Wiki", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Work", "AZDORestApiExplorer.Work\AZDORestApiExplorer.Work.csproj", "{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\VNC\VNC.Core\VNC.Core.csproj", "{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation.Dx", "..\VNC\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj", "{6346A659-1276-46E3-AF9B-4A9F64C36204}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Presentation", "AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj", "{62F2573E-02B9-4CB8-A492-AD28A08D91FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AZDORestApiExplorer.Tokens", "AZDORestApiExplorer.Tokens\AZDORestApiExplorer.Tokens.csproj", "{7EA0CDC3-B6E3-429E-82DB-456035B96485}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\VNCDevelopment\VNC.Core\VNC.Core.csproj", "{6DA87938-D273-426F-86BD-51471BEA5F37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation.Dx", "..\VNCDevelopment\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj", "{C9EB6304-1B55-413C-AE36-13B708CD7F01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -193,14 +193,6 @@ Global
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E0E5F1-49B5-4A52-9855-3FD4FAD5482D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2FA62A0-3D59-4A1D-8C01-5E09E919788E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6346A659-1276-46E3-AF9B-4A9F64C36204}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F2573E-02B9-4CB8-A492-AD28A08D91FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -209,6 +201,14 @@ Global
 		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EA0CDC3-B6E3-429E-82DB-456035B96485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA87938-D273-426F-86BD-51471BEA5F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA87938-D273-426F-86BD-51471BEA5F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA87938-D273-426F-86BD-51471BEA5F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA87938-D273-426F-86BD-51471BEA5F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9EB6304-1B55-413C-AE36-13B708CD7F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9EB6304-1B55-413C-AE36-13B708CD7F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9EB6304-1B55-413C-AE36-13B708CD7F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9EB6304-1B55-413C-AE36-13B708CD7F01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

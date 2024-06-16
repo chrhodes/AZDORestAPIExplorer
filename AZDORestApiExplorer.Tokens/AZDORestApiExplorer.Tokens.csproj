@@ -8,17 +8,17 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="DevExpress.Wpf.Core" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Docking" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Grid" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.1.4" />
-        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.1.4" />
+        <PackageReference Include="DevExpress.Wpf.Core" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="22.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="22.1.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="VNC.Core" Version="2.1.0" />
-        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
+        <!--<PackageReference Include="VNC.Core" Version="2.1.5" />-->
+        <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
     
     <ItemGroup>

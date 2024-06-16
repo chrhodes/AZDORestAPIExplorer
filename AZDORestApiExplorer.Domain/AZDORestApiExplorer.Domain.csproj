@@ -17,12 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.36.2" />  
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />  
   </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="VNC.Core" Version="2.1.0" />
-        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
+        <!--<PackageReference Include="VNC.Core" Version="2.1.5" />-->
+        <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>

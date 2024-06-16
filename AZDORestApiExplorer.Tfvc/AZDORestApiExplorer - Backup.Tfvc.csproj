@@ -24,14 +24,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!--<PackageReference Include="VNC.Core" Version="2.1.5" />-->
-        <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
     </ItemGroup>
     
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
-        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />    
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />        
     </ItemGroup>
 
     <ItemGroup>

@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using Prism.Events;
 
 using VNC.Core.Net;
+using static AZDORestApiExplorer.Domain.Build.Option;
 
 namespace AZDORestApiExplorer.Domain.Tokens
 {
@@ -80,14 +81,41 @@ namespace AZDORestApiExplorer.Domain.Tokens
                 // NOTE(crhodes)
                 // This is from Demo App
                 // NB. .WithWindowsBroker() does not exist
+                // NOTE(crhodes)
+                // It used to work when developing this at BD
 
-                IPublicClientApplication publicClientApp = PublicClientApplicationBuilder.Create(clientId)
-                    .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
-                    .WithDefaultRedirectUri()
-                    .WithExperimentalFeatures()
-                    //.WithWindowsBroker(true)
-                    .WithBroker(true)
-                    .Build();
+                //IPublicClientApplication publicClientApp = PublicClientApplicationBuilder.Create(clientId)
+                //    .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
+                //    .WithDefaultRedirectUri()
+                //    .WithExperimentalFeatures()
+                //    //.WithWindowsBroker(true)
+                //    .WithBroker(true)
+                //    .Build();
+
+                // NOTE(crhodes)
+                // Now get this compiler error.
+                //Severity Code    Description Project File Line    Suppression State
+                //Error(active)  CS0619  'PublicClientApplicationBuilder.WithBroker(bool)' is obsolete: 
+                //'The desktop broker is not directly available in the MSAL package. 
+                //Install the NuGet package Microsoft.Identity.Client.Broker
+                //and call the extension method .WithBroker(BrokerOptions).
+                //For details, see https://aka.ms/msal-net-wam'	
+                //AZDORestApiExplorer.Domain(net6.0 - windows) D:\VNC\git\chrhodes\AZDORestAPIExplorer\AZDORestApiExplorer.Domain\Tokens\Pat.cs    86
+
+                // HACK(crhodes)
+                // This needs work.  Took stuff out to get it to compile
+                BrokerOptions options = new BrokerOptions(BrokerOptions.OperatingSystems.Windows);
+
+                options.Title = "AZDORestApiExplorer";
+
+                IPublicClientApplication publicClientApp =
+                  PublicClientApplicationBuilder.Create(clientId)
+                  .WithDefaultRedirectUri()
+                  .Build();
+                    //.WithDefaultRedirectUri()
+                    //.WithParentActivityOrWindow(GetConsoleOrTerminalWindow)
+                    //.WithBroker(true)
+                    //.Build();
 
                 // NOTE(crhodes)
                 // This throws exception and does not display signon

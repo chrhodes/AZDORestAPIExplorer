@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
-        <TargetFrameworks>net6.0-windows</TargetFrameworks>
-        <UseWPF>true</UseWPF>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    </PropertyGroup>
+  <PropertyGroup>
+      <!--<TargetFrameworks>net5.0-windows;net48</TargetFrameworks>-->
+      <TargetFrameworks>net6.0-windows</TargetFrameworks>
+      <UseWPF>true</UseWPF>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="DomainServices\Interfaces\" />
@@ -24,17 +24,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!--<PackageReference Include="VNC.Core" Version="2.1.5" />-->
-        <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <!--<ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />-->
     </ItemGroup>
     
     <ItemGroup>
         <ProjectReference Include="..\AZDORestApiExplorer.Core\AZDORestApiExplorer.Core.csproj" />
         <ProjectReference Include="..\AZDORestApiExplorer.Domain\AZDORestApiExplorer.Domain.csproj" />
-        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />    
+        <ProjectReference Include="..\AZDORestApiExplorer.Presentation\AZDORestApiExplorer.Presentation.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
+    
+        <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
     </ItemGroup>
